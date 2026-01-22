@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence — Phase 16: Global Nutrition &amp; Diet Intelligence (GNIE)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+        name="description"
+        content="Elisence Phase 16 — GNIE: Global Nutrition & Diet Intelligence Engine. A culturally aware, disease-aware nutrition brain for citizens, families, clinicians and ministries."
+    />
+
+    <style>
+        :root {
+            --bg-dark: #050814;
+            --bg-card: #0d1020;
+            --accent: #4ea8ff;
+            --accent-soft: rgba(78, 168, 255, 0.1);
+            --text-main: #f5f7ff;
+            --text-muted: #a3b0d8;
+            --border-soft: rgba(255, 255, 255, 0.08);
+            --danger: #ff5c7a;
+            --success: #4fd1c5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #111633 0, #050814 60%);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-soft);
+            background: linear-gradient(
+                to right,
+                rgba(7, 12, 40, 0.95),
+                rgba(6, 10, 32, 0.98)
+            );
+            backdrop-filter: blur(14px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-shell {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 20%, #4ea8ff, #7f5dff 45%, #111631);
+            box-shadow: 0 0 18px rgba(78, 168, 255, 0.6);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-text span:first-child {
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .brand-text span:last-child {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        nav {
+            display: flex;
+            gap: 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            padding-bottom: 0.15rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        nav a.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        main {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .phase-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(78, 168, 255, 0.5);
+        }
+
+        .phase-tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        h1 {
+            margin-top: 1.1rem;
+            font-size: 2rem;
+            letter-spacing: 0.03em;
+        }
+
+        .subtitle {
+            margin-top: 0.5rem;
+            max-width: 780px;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .grid {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            gap: 1.75rem;
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            nav {
+                display: none; /* simple mobile version for now */
+            }
+
+            header {
+                position: static;
+            }
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, #1a2147 0, #090d20 55%);
+            border-radius: 1.25rem;
+            border: 1px solid var(--border-soft);
+            padding: 1.5rem 1.4rem;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .card h3 {
+            margin-top: 1.3rem;
+            font-size: 1rem;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .pill {
+            font-size: 0.78rem;
+            padding: 0.28rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            background: rgba(10, 15, 40, 0.9);
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .pill.pill-strong {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+        }
+
+        .badge {
+            font-size: 0.72rem;
+            padding: 0.22rem 0.55rem;
+            border-radius: 0.4rem;
+            border: 1px solid var(--border-soft);
+            color: var(--text-muted);
+        }
+
+        .badge.badge-safe {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .badge.badge-risk {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .section {
+            margin-top: 2rem;
+        }
+
+        .section h2 {
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .section h3 {
+            font-size: 1rem;
+            margin-top: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .section p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .section ul {
+            margin: 0.5rem 0 0.5rem 1.2rem;
+            padding-left: 0;
+            font-size: 0.93rem;
+            color: var(--text-muted);
+        }
+
+        .section li {
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border-soft);
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="nav-shell">
+        <div class="brand">
+            <div class="brand-logo"></div>
+            <div class="brand-text">
+                <span>ELISENCE</span>
+                <span>Global Digital Health &amp; Humanity Platform</span>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="story.html">Story</a>
+            <a href="videos.html">Videos</a>
+            <a href="phases.html" class="active">Phases</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="phase-tag">
+        <span class="phase-tag-dot"></span>
+        <span>Phase 16 &mdash; Global Nutrition &amp; Diet Intelligence (GNIE)</span>
+    </div>
+
+    <h1>Global Nutrition &amp; Diet Intelligence Engine (GNIE)</h1>
+    <p class="subtitle">
+        Phase 16 is the nutrition brain of Elisence. It turns real food, cultural habits,
+        and disease context into a safe, intelligent nutrition layer for citizens, families,
+        clinicians and ministries &mdash; without crossing into diagnosis or prescription.
+    </p>
+
+    <div class="grid">
+        <section class="card">
+            <h2>Core Definition</h2>
+            <h3>What Phase 16 Is</h3>
+            <p>
+                GNIE is Elisence’s <span class="highlight">Global Nutrition &amp; Diet Intelligence Engine</span>.
+                It connects daily eating with weight, diabetes, Women+ health, biomarkers, and
+                family life. Instead of a simple calorie counter, GNIE builds a structured
+                nutrition view that understands:
+            </p>
+            <ul>
+                <li>diabetes, heart and kidney risk</li>
+                <li>women’s physiology (cycle, pregnancy, postpartum)</li>
+                <li>children’s growth and family routines</li>
+                <li>heat, Ramadan, and Eastern food culture</li>
+            </ul>
+
+            <h3>Design Principles</h3>
+            <div class="pill-list">
+                <span class="pill pill-strong">Zero-Trust &amp; Evidence-Ready</span>
+                <span class="pill pill-strong">Non-diagnostic, non-prescriptive</span>
+                <span class="pill">Five-language core (EN / FA / AR / TR / RO)</span>
+                <span class="pill">Culture-aware (Persian / GCC / Turkish / Romanian foods)</span>
+                <span class="pill">Ramadan- and climate-aware by design</span>
+            </div>
+        </section>
+
+        <aside class="card">
+            <h2>Stakeholder View</h2>
+            <h3>Who GNIE Serves</h3>
+            <ul>
+                <li>Citizens managing weight and chronic risk</li>
+                <li>Families supporting children’s healthy habits</li>
+                <li>Clinicians and dietitians (professional views)</li>
+                <li>Ministries and public-health teams</li>
+                <li>Insurers and cardiometabolic partners (later waves)</li>
+            </ul>
+
+            <h3>Safety &amp; Compliance</h3>
+            <div class="badge-row">
+                <span class="badge badge-safe">Medical mode OFF by default</span>
+                <span class="badge badge-safe">Wellness / education positioning</span>
+                <span class="badge badge-safe">NHS / EU MDR / FDA / GCC aware</span>
+                <span class="badge badge-risk">No diagnosis</span>
+                <span class="badge badge-risk">No treatment or dosing advice</span>
+            </div>
+        </aside>
+    </div>
+
+    <section class="section">
+        <h2>Personal Nutrition Passport</h2>
+        <h3>A Nutrition Profile That Actually Knows the User</h3>
+        <p>
+            Every person receives a <span class="highlight">Nutrition Passport</span>: a structured
+            profile that combines age, sex, weight, waist, culture and language with
+            key health context from other Elisence phases:
+        </p>
+        <ul>
+            <li>Diabetes and GLP-1 usage (Phase 9)</li>
+            <li>Women+ cycle, pregnancy and postpartum (Phase 7)</li>
+            <li>Blood biomarkers from AHE / hematology (Phase 8)</li>
+            <li>Allergies, intolerances and religious rules (e.g. halal)</li>
+            <li>Sleep, activity and work rhythm (Phase 3 &amp; lifestyle)</li>
+        </ul>
+        <p>
+            From this, GNIE sets <em>nutrition targets</em> and a <em>safety profile</em>:
+            calorie bands, macro balance, salt and sugar ceilings, hydration focus and
+            disease-linked constraints &mdash; always framed as guidance, not medical orders.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Meal Intelligence</h2>
+        <h3>Turning Real Food Into Structured Knowledge</h3>
+        <p>
+            GNIE converts real-world eating into structured events:
+        </p>
+        <ul>
+            <li>Free-text meals in EN / FA / AR / TR / RO</li>
+            <li>Barcodes and packaged foods</li>
+            <li>(Future) photos and visual recognition</li>
+        </ul>
+        <p>
+            Dishes like <em>chelo kebab</em>, <em>kabsa</em>, <em>lahmacun</em>, or
+            <em>sarmale</em> are recognised by name, mapped to regional databases, and
+            broken down into nutrients (macros, salt, sugar, fibre, fats). The output is a
+            standard <strong>NutritionEvent</strong> that all other Elisence engines can read.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Condition-Aware Safety Engine</h2>
+        <h3>Beyond Calories: Real Risk Awareness</h3>
+        <p>
+            GNIE’s Nutrition Safety Engine reviews meals through the lens of real health
+            context:
+        </p>
+        <ul>
+            <li>Diabetes &amp; GLP-1: glycaemic load, late-night carbs, hypo risk</li>
+            <li>CKD: potassium, sodium, protein and phosphate patterns</li>
+            <li>CVD / hypertension: salt and saturated fats</li>
+            <li>Liver / NAFLD: sugar and total energy patterns</li>
+            <li>Women+: iron, folate and energy around bleeding, pregnancy and postpartum</li>
+        </ul>
+        <p>
+            The engine produces <em>safety levels</em> (low / caution / educational /
+            “talk to your doctor”) and structured <em>risk tags</em>, then translates them
+            into calm, practical messages: swaps, timing tweaks and hydration reminders,
+            never diagnosis or treatment.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Behaviour Change &amp; Healthy Dopamine</h2>
+        <h3>Helping People Change, Not Just Count</h3>
+        <p>
+            GNIE is tightly linked to Elisence’s <span class="highlight">Healthy Dopamine Engine</span>
+            (Phase 5). Instead of punishing users for “bad days”, it quietly rewards:
+        </p>
+        <ul>
+            <li>consistent meal logging</li>
+            <li>healthier swaps within local cuisine</li>
+            <li>staying within safe salt/sugar bands over time</li>
+            <li>smart choices during Ramadan, holidays and heatwaves</li>
+        </ul>
+        <p>
+            Rewards appear as small medals, streaks and cards that users can keep private
+            or share through Phase 10’s social layer. The focus is sustainable change and
+            self-respect, not body shaming.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Five-Language &amp; Cultural Intelligence</h2>
+        <h3>Designed for Eastern Food Culture &amp; Ramadan</h3>
+        <p>
+            GNIE starts with five languages (EN / FA / AR / TR / RO) and treats food
+            culture as a first-class citizen. Persian stews, GCC rice dishes, Turkish
+            street food and Romanian classics are all understood on their own terms:
+            users keep their food culture, while GNIE helps them tune portions, sides and drinks.
+        </p>
+        <p>
+            A dedicated <span class="highlight">Ramadan Mode</span> understands suhoor, iftar
+            and hot-weather fasting. It suggests hydration strategies and gentler iftar
+            patterns, and always reminds people with chronic illness to discuss fasting
+            with their doctor, never issuing religious or medical permissions.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Population Nutrition Intelligence</h2>
+        <h3>From Individual Plates to National Policy</h3>
+        <p>
+            At aggregate level, GNIE becomes a strategic tool for ministries and
+            public-health teams:
+        </p>
+        <ul>
+            <li>anonymised dashboards of salt and sugar patterns</li>
+            <li>time-of-day and seasonal habits (including Ramadan vs non-Ramadan)</li>
+            <li>signals for childhood obesity, anaemia risk and ultra-processed food use</li>
+        </ul>
+        <p>
+            All views respect GDPR / UK DPA / GCC PDPL and local residency rules:
+            only large cohorts, no identifiable families or children. This allows
+            governments to measure the impact of sugar taxes, campaigns and guidelines
+            without ever seeing a named citizen.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Technical &amp; Regulatory Posture</h2>
+        <h3>Zero-Trust, WORM, and Medical Mode OFF</h3>
+        <p>
+            GNIE follows the same architecture proven in AHE (Phase 8) and the social
+            layer (Phase 10):
+        </p>
+        <ul>
+            <li>FastAPI-based engine with dedicated GNIE modules</li>
+            <li>All calls authenticated via Elisence Passport and role checks</li>
+            <li>Medical-grade “CDS mode” behind feature flags for future projects</li>
+            <li>Append-only WORM audit trails for key nutrition events and risk tags</li>
+        </ul>
+        <p>
+            By default, GNIE is a <em>wellness and education</em> engine. Countries can
+            later choose to enable stricter, clinician-only modes under their own
+            regulatory and liability frameworks.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Why Phase 16 Matters</h2>
+        <p>
+            For citizens, GNIE turns everyday meals into kind, practical guidance that
+            fits their culture, language and health story. For families, it supports
+            children’s nutrition without calorie obsession or shame.
+        </p>
+        <p>
+            For clinicians and hospitals, GNIE can surface a clear Nutrition Passport and
+            risk tags between visits. For ministries and investors, it is a defensible
+            global nutrition brain: scientifically grounded, culture-aware, and built to
+            regulatory standards from day one.
+        </p>
+    </section>
+
+    <div class="footer-note">
+        <strong>In one sentence:</strong><br />
+        Phase 16 turns food into a <span class="highlight">trusted, culturally aware
+        nutrition intelligence engine</span> &mdash; powering personal coaching and
+        national strategy, without ever trying to replace doctors or dictate tradition.
+    </div>
+</main>
+</body>
+</html>
