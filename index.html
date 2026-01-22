@@ -6,16 +6,11 @@
     <title>Elisence – Global Digital Health & Humanity Platform</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #0b1120 0%, #020617 45%, #000000 100%);
+            background: #000814;
             color: #e2e8f0;
-            line-height: 1.6;
         }
 
         a {
@@ -23,268 +18,140 @@
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
+        a:hover { text-decoration: underline; }
 
-        <!-- HERO HEADER -->
-<header class="hero-header">
-    <div class="hero-inner">
-        <img src="elisence.png" alt="Elisence Logo" class="hero-logo">
+        /* ================= HERO HEADER (SUPER LARGE) ================= */
 
-        <div class="hero-text">
-            <h1>ELISENCE</h1>
-            <p>Global Digital Health & Humanity Platform</p>
-        </div>
-    </div>
-
-    <nav class="main-nav">
-        <div class="main-nav-inner">
-            <a href="#home">Home</a>
-            <a href="#phases">Phases</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <a href="story.html">Story</a>
-            <a href="videos.html">Videos</a>
-        </div>
-    </nav>
-</header>
-
-<style>
-/* HERO HEADER – SUPER LARGE VERSION */
-        .hero-header {
-            background: linear-gradient(180deg, #000814 0%, #001522 55%, #000814 100%);
+        header.hero-header {
+            width: 100%;
+            height: 900px; /* SUPER HEADER — 20–22 cm on screen */
+            background: radial-gradient(circle at top, #000f1c 0%, #000814 50%, #000000 100%);
             border-bottom: 2px solid #1e293b;
-            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
-        
-        /* TOP HERO SECTION */
+
+        /* HERO inner (logo + text) */
         .hero-inner {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
-        
-            height: 650px; /* 15–17 cm REAL HEIGHT */
-            padding: 3rem;
-        
+            padding-top: 3rem;
+
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            gap: 3rem;
+            justify-content: center;
+            gap: 4rem;
+            height: 750px; /* majority of header */
         }
-        
-        /* HUGE LOGO (420px) */
+
+        /* HUGE LOGO */
         .hero-logo {
-            height: 420px;
+            height: 600px;   /* MASSIVE, ULTRA CLEAR */
             width: auto;
             border-radius: 50%;
-            flex-shrink: 0;
-        
             box-shadow:
-                0 0 75px rgba(56,189,248,0.75),
-                0 0 140px rgba(56,189,248,0.25);
+                0 0 90px rgba(56,189,248,0.9),
+                0 0 180px rgba(56,189,248,0.25);
         }
-        
-        /* TEXT NEXT TO LOGO */
+
+        /* TEXT */
         .hero-text h1 {
             margin: 0;
-            font-size: 5.4rem;      /* giant title */
-            letter-spacing: 0.24rem;
+            font-size: 6rem;        /* VERY BIG TITLE */
+            letter-spacing: 0.3rem;
             text-transform: uppercase;
         }
-        
+
         .hero-text p {
-            margin: 1.1rem 0 0;
-            font-size: 2.05rem;     /* MUCH bigger subtitle */
-            color: #93c5fd;
+            margin: 1.4rem 0 0;
+            font-size: 2.4rem;
+            color: #60a5fa;
         }
-        
-        /* NAV BAR UNDER HERO */
-        .main-nav {
-            border-top: 1px solid #1e293b;
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(10px);
-        }
-        
-        .main-nav-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.2rem 2.5rem;
-        
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2.4rem;
-        }
-        
-        .main-nav a {
-            font-size: 1.2rem;
-            color: #e5e7eb;
-        }
-        
-        .main-nav a:hover {
-            color: #38bdf8;
-        }
-        
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .hero-inner {
-                flex-direction: column;
-                height: auto;
-                text-align: center;
-            }
-        
-            .hero-logo {
-                height: 260px;
-            }
-        
-            .hero-text h1 {
-                font-size: 3rem;
-            }
-        
-            .hero-text p {
-                font-size: 1.2rem;
-            }
-        }
-        </style>}
 
-        /* NAV BAR زیر هدر */
+        /* ================= NAVIGATION (BELOW HERO) ================= */
 
-        .main-nav {
+        nav.main-nav {
+            width: 100%;
+            background: rgba(0,0,0,0.6);
             border-top: 1px solid #1e293b;
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
         }
 
         .main-nav-inner {
-            max-width: 1300px;
+            max-width: 1500px;
             margin: 0 auto;
-            padding: 0.9rem 2.5rem;
+            padding: 1.4rem 2.5rem;
 
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 2rem;
+            gap: 2.6rem;
         }
 
         .main-nav a {
-            font-size: 1.05rem;
+            font-size: 1.3rem;
             color: #e5e7eb;
-            text-transform: none;
         }
 
-        .main-nav a:hover {
-            color: #38bdf8;
-        }
+        .main-nav a:hover { color: #38bdf8; }
 
-        /* ========== MAIN CONTENT ========== */
+        /* ================= MAIN CONTENT ================= */
 
         main {
             max-width: 1100px;
-            margin: 3rem auto 4rem;
+            margin: 4rem auto;
             padding: 0 2rem 4rem;
         }
 
         .card {
-            background: rgba(15, 23, 42, 0.96);
-            border-radius: 16px;
-            padding: 1.9rem 2.1rem;
-            margin-bottom: 1.8rem;
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(148, 163, 184, 0.28);
+            background: rgba(15,23,42,0.96);
+            border-radius: 18px;
+            padding: 2rem 2.3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.75);
+            border: 1px solid rgba(148,163,184,0.25);
         }
 
         .card h2 {
-            margin: 0 0 0.8rem 0;
+            margin: 0 0 1rem;
+            font-size: 1.5rem;
             color: #38bdf8;
-            font-size: 1.4rem;
         }
 
-        .card p {
-            margin: 0.3rem 0;
-            font-size: 0.98rem;
-        }
+        .card p { font-size: 1rem; margin: 0.4rem 0; }
 
-        .card ul {
-            margin: 0.5rem 0 0 1.1rem;
-            padding-left: 0.7rem;
-            font-size: 0.96rem;
-        }
+        .card ul { margin: 0.5rem 0 0 1.1rem; padding-left: 0.7rem; }
+        .card li { margin-bottom: 0.3rem; }
 
-        .card li {
-            margin-bottom: 0.25rem;
-        }
-
-        .tagline {
-            color: #a5b4fc;
-            font-size: 0.95rem;
-        }
-
-        .highlight {
-            color: #22c55e;
-            font-weight: 600;
-        }
-
-        /* ========== FOOTER ========== */
-
+        /* FOOTER */
         footer {
-            border-top: 1px solid #1f2937;
-            padding: 1.2rem 0 2rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #64748b;
+            margin-top: 4rem;
+            padding: 1.4rem 0 2rem;
             background: #020617;
+            text-align: center;
+            color: #64748b;
+            border-top: 1px solid #1f2937;
         }
 
-        footer a {
-            color: #38bdf8;
-        }
-
-        /* ========== RESPONSIVE ========== */
-
-        @media (max-width: 900px) {
-            .hero-inner {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                height: auto;
-            }
-
-            .hero-logo {
-                height: 190px;
-            }
-
-            .hero-text h1 {
-                font-size: 2.4rem;
-            }
-
-            .hero-text p {
-                font-size: 1.15rem;
-            }
-
-            .main-nav-inner {
-                flex-wrap: wrap;
-                gap: 1.2rem;
-            }
-
-            main {
-                padding: 0 1.2rem 3rem;
-            }
-        }
+        footer a { color: #38bdf8; }
     </style>
 </head>
 
 <body>
-    <!-- HERO HEADER -->
+
+    <!-- ================= HERO HEADER ================= -->
     <header class="hero-header">
         <div class="hero-inner">
             <img src="elisence.png" alt="Elisence Logo" class="hero-logo">
 
             <div class="hero-text">
                 <h1>ELISENCE</h1>
-                <p>Global Digital Health &amp; Humanity Platform</p>
+                <p>Global Digital Health & Humanity Platform</p>
             </div>
         </div>
 
+        <!-- NAV BAR -->
         <nav class="main-nav">
             <div class="main-nav-inner">
                 <a href="#home">Home</a>
@@ -297,78 +164,37 @@
         </nav>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- ================= MAIN CONTENT ================= -->
     <main>
-        <!-- HOME / WELCOME -->
         <section id="home" class="card">
             <h2>Welcome to Elisence</h2>
-            <p>
-                This is the official homepage of <strong>Elisence</strong> — a global digital health &amp; humanity platform
-                built across <strong>17 advanced phases</strong> including medical intelligence, nutrition, women’s health,
-                diabetes, safety, access, AI context engines, and secure social health presence.
-            </p>
-            <p class="tagline">
-                From smart medication engines to national-scale safety layers, Elisence is designed to help
-                families, clinicians, ministries of health, and partners build a safer, smarter health future.
-            </p>
+            <p>The official public UI of a global, multi-phase digital health ecosystem serving families, clinicians, hospitals, and ministries worldwide.</p>
         </section>
 
-        <!-- PHASES SUMMARY -->
         <section id="phases" class="card">
-            <h2>Platform Roadmap (17 Phases)</h2>
-            <p>
-                Each phase of Elisence unlocks a new capability — from weight-loss and GLP-1 support to diabetes
-                intelligence, women’s health, emergency engines, nutrition, and global medical data analysis.
-                The public website will gradually include:
-            </p>
-            <ul>
-                <li>Short explainer videos for each phase (1–17).</li>
-                <li>Public documentation explaining what each phase does and who it serves.</li>
-                <li>Clear separation between <span class="highlight">non-diagnostic guidance</span> and clinician-only tools.</li>
-            </ul>
+            <h2>17-Phase Global Roadmap</h2>
+            <p>Each phase introduces a new layer of safety, intelligence, or care — from GLP-1, diabetes, women’s health, emergency engines, and nutrition (GNIE) to medical intelligence & national health passports.</p>
         </section>
 
-        <!-- ABOUT -->
         <section id="about" class="card">
-            <h2>About Elisence</h2>
-            <p>
-                Elisence is being built as a trusted, global-grade health platform with a focus on:
-            </p>
-            <ul>
-                <li><strong>Humanity &amp; Safety:</strong> non-judgmental, non-diagnostic support for people and families.</li>
-                <li><strong>Clinical Alignment:</strong> aligned with NHS and international guidelines where applicable.</li>
-                <li><strong>Data Protection:</strong> privacy, audit trails, and strict access controls from day one.</li>
-                <li><strong>Multi-language UX:</strong> English, Farsi, Arabic, Turkish, Romanian (with more to come).</li>
-            </ul>
-            <p class="tagline">
-                This website will evolve into the public window of Elisence: a place where ministries, hospitals,
-                partners and normal users can understand how the platform works and what it can safely offer.
-            </p>
+            <h2>About</h2>
+            <p>Elisence follows international standards (NHS, GCC, EU, HIPAA), with zero-trust security, multilingual UX, structured data governance, and complete safety boundaries.</p>
         </section>
 
-        <!-- CONTACT -->
         <section id="contact" class="card">
-            <h2>Contact &amp; Collaboration</h2>
-            <p>
-                Elisence is currently in a build and validation phase. Government bodies, hospitals, clinics,
-                universities, and technology partners interested in collaboration or pilots will find official
-                contact details here as the platform moves into its next stage.
-            </p>
-            <p>
-                Until the full contact module is ready, communication can be initiated using the official
-                <strong>elisence.com</strong> domain email addresses configured for the project.
-            </p>
+            <h2>Contact</h2>
+            <p>Official Elisence domain emails will be listed here once the contact module page is published.</p>
         </section>
     </main>
 
-    <!-- FOOTER -->
+    <!-- ================= FOOTER ================= -->
     <footer>
-        <p>© <span id="year"></span> Elisence. All rights reserved.</p>
-        <p>This site is an informational, non-diagnostic public UI for the Elisence platform.</p>
+        <p>© <span id="year"></span> Elisence — All rights reserved.</p>
     </footer>
 
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
+
 </body>
 </html>
