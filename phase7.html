@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elisence – Phase 7: Women+ Engine</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #020617;
+            color: #e5f2ff;
+            line-height: 1.6;
+        }
+
+        /* ======= HEADER ======= */
+        header {
+            background-color: #020617;
+            padding: 1.8rem 0;
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.14rem;
+        }
+
+        .brand-sub {
+            font-size: 0.85rem;
+            color: #60a5fa;
+        }
+
+        nav.main-nav {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        nav.main-nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.92rem;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+        }
+
+        nav.main-nav a:hover {
+            color: #38bdf8;
+            text-decoration: underline;
+        }
+
+        nav.main-nav a.active {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        /* ======= MAIN CONTENT ======= */
+        main {
+            max-width: 1100px;
+            margin: 2.4rem auto 3.2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .phase-label {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12rem;
+            color: #94a3b8;
+            margin-bottom: 0.4rem;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.6rem;
+            color: #f9a8d4;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #fce7f3;
+            margin-bottom: 1.8rem;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #f9a8d4;
+            margin-bottom: 0.8rem;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.96);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55);
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #f9a8d4;
+        }
+
+        .card h3 {
+            margin-top: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+            color: #fbcfe8;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.35rem;
+            font-size: 0.94rem;
+        }
+
+        .highlight-box {
+            border-left: 3px solid #f9a8d4;
+            padding-left: 0.9rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: #fee2e2;
+        }
+
+        .subtle {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 900px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            nav.main-nav {
+                flex-wrap: wrap;
+                gap: 1.1rem;
+            }
+
+            main {
+                padding: 0 1.2rem;
+            }
+
+            .card {
+                padding: 1.5rem 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="brand-block">
+            <span class="brand-title">ELISENCE</span>
+            <span class="brand-sub">Global Digital Health & Humanity Platform</span>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#phases" class="active">Phases</a>
+            <a href="about.html">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="story.html">Story</a>
+            <a href="videos.html">Videos</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <div class="phase-label">PHASE 7</div>
+    <h1>Women+ Engine</h1>
+
+    <p class="lead">
+        Phase 7 is a national-grade Women’s Health Engine designed for education, safety, and
+        government-controlled clinical activation. It delivers deterministic, multilingual, culturally aligned
+        guidance that is safe for citizens, controllable for ministries, and fully auditable for regulators.
+    </p>
+
+    <p class="tagline">
+        Safe for women. Controlled by ministries. Defensible for regulators. Attractive for investors.
+    </p>
+
+    <!-- 1. WHAT PHASE 7 IS -->
+    <section class="card">
+        <h2>1. What Phase 7 Is (Core Definition)</h2>
+        <p>
+            Phase 7 is a Women+ intelligence layer built as a national Women’s Health Engine rather than a consumer
+            period tracker. It is:
+        </p>
+        <ul>
+            <li>Non-diagnostic, legally safe, and clinically respectful.</li>
+            <li>Designed for long-term partnership with ministries and health systems.</li>
+            <li>Structured around a dual-mode architecture:</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>Public Mode (always ON)</strong> – calm, educational, trauma-aware guidance for women and girls.<br>
+            <strong>Clinical Mode (restricted / OFF)</strong> – activatable only by ministries, hospitals, or approved
+            programmes for specific maternal health pathways.
+        </div>
+    </section>
+
+    <!-- 2. PROBLEM → SOLUTION -->
+    <section class="card">
+        <h2>2. Why It Matters (Problem → Solution)</h2>
+        <h3>Problem</h3>
+        <ul>
+            <li>Online women’s health information is noisy, unsafe and non-standard.</li>
+            <li>Most apps are not culturally aligned with GCC, MENA, or conservative societies.</li>
+            <li>No clear national governance: apps behave independently of ministries.</li>
+        </ul>
+
+        <h3>Solution</h3>
+        <p>
+            Phase 7 provides a standardized, multilingual, culturally sensitive Women+ engine with deterministic safety
+            rules and national-level governance controls:
+        </p>
+        <ul>
+            <li>One engine – many front ends (apps, portals, call centres, chatbots).</li>
+            <li>Nationally consistent guidance that can be updated centrally.</li>
+            <li>Clear legal and technical boundaries between education and clinical activation.</li>
+        </ul>
+    </section>
+
+    <!-- 3. WHAT IS ALREADY BUILT -->
+    <section class="card">
+        <h2>3. What Is Already Built (Verified Evidence)</h2>
+        <p>
+            The Women+ engine is not a concept; it has a verified, test-backed core:
+        </p>
+        <ul>
+            <li><strong>11K Safety Engine</strong> – deterministic rules, explicit red flags, no diagnosis.</li>
+            <li><strong>Cycle &amp; Pain Modules (Week 3 &amp; 4)</strong> – fully implemented, feature-gated.</li>
+            <li><strong>Pregnancy Weeks (restricted)</strong> – built, OFF by default, reserved for ministries.</li>
+            <li><strong>AI Safety Layer</strong> – AI models cannot change risk levels or red flags; they only refine tone and wording.</li>
+            <li><strong>Multilingual Core (EN / FA / AR / TR / RO)</strong> – built into the engine, not just the UI.</li>
+        </ul>
+
+        <h3>Test Evidence</h3>
+        <ul>
+            <li>145 tests (Week Modules) — <strong>PASS</strong></li>
+            <li>205 tests (Trigger Registry) — <strong>PASS</strong></li>
+            <li>Multilingual &amp; context engine validation — <strong>PASS</strong></li>
+        </ul>
+        <p class="subtle">
+            All safety behaviour is verified through automated tests; no “black box” logic is trusted without evidence.
+        </p>
+    </section>
+
+    <!-- 4. GOVERNMENT-READY ARCHITECTURE -->
+    <section class="card">
+        <h2>4. Government-Ready Architecture (Why Ministries Trust It)</h2>
+        <ul>
+            <li><strong>OFF by Default</strong> for all sensitive medical pathways (e.g., pregnancy risk, emergency flags).</li>
+            <li><strong>Activation Discipline:</strong> environment flags + compile check + ON/OFF tests + audit logs.</li>
+            <li><strong>Fail-Closed Safety Model:</strong> if anything is misconfigured, medical outputs are blocked.</li>
+            <li><strong>Standalone:</strong> Women+ engine works independently (no hard dependency on other phases).</li>
+            <li>
+                <strong>Regulatory Alignment:</strong> designed to respect NHS, EU MDR, FDA CDS, and GCC PDPL boundaries
+                for wellness and non-diagnostic intelligence.
+            </li>
+        </ul>
+        <p class="subtle">
+            This makes Phase 7 deployable both as a citizen app module and as a hospital / ministry back-end service.
+        </p>
+    </section>
+
+    <!-- 5. VALUE FOR QATAR / SAUDI / GCC -->
+    <section class="card">
+        <h2>5. Value for Qatar, Saudi Arabia & GCC</h2>
+        <ul>
+            <li>Instant deployment in safe educational mode for women and families.</li>
+            <li>Gradual activation of clinical modules only when formally approved.</li>
+            <li>Strong Arabic support at the engine level (not just translated screens).</li>
+            <li>Ideal foundation for national maternal and reproductive health programmes.</li>
+            <li>Reduces misinformation and supports better early triage conversations.</li>
+            <li>
+                Can integrate with future Elisence phases:
+                Children+, Family+, Clinical Pathways, Voice Engine (Phase 13), and national dashboards.
+            </li>
+        </ul>
+    </section>
+
+    <!-- 6. TECHNICAL DIFFERENTIATORS -->
+    <section class="card">
+        <h2>6. Technical Differentiators (What Competitors Don’t Have)</h2>
+        <ul>
+            <li><strong>Deterministic Red-Flag Engine</strong> – clear, rule-based safety signals.</li>
+            <li><strong>Engine-Level Multilingual Enforcement</strong> – no mixed-language output; each response is coherent per locale.</li>
+            <li><strong>Government-Controlled Activation</strong> – ministries decide what is ON or OFF, not the app vendor.</li>
+            <li><strong>Test-Backed Safety</strong> – behaviour is proven via tests, not left to model guesswork.</li>
+            <li><strong>Standardised Outputs + Trace IDs</strong> – every serious output can be traced for legal defence and audit.</li>
+        </ul>
+    </section>
+
+    <!-- 7. INVESTMENT-READY -->
+    <section class="card">
+        <h2>7. Why Phase 7 Is Investment-Ready</h2>
+        <p>
+            Phase 7 has a complete, stable, government-grade architecture with clear commercial paths:
+        </p>
+        <ul>
+            <li>National licensing and platform partnerships with ministries of health.</li>
+            <li>Hospital and clinic integrations for Women+ services.</li>
+            <li>Paid activations for advanced clinical modules (pregnancy, complications, high-risk pathways).</li>
+            <li>Future Women+ expansions: fertility, menopause, pregnancy programmes, post-partum support.</li>
+            <li>Strong alignment with GCC digital health and women’s health priorities.</li>
+            <li>Designed for scalability, regulation, and long-term clinical trust.</li>
+        </ul>
+    </section>
+
+    <!-- 8. FINAL POSITIONING -->
+    <section class="card">
+        <h2>8. Final Positioning</h2>
+        <p>
+            Phase 7 is the first Women+ engine globally that is:
+        </p>
+        <ul>
+            <li><strong>Safe for citizens</strong> – trauma-aware, culturally aligned, non-diagnostic.</li>
+            <li><strong>Controlled for ministries</strong> – OFF-by-default medical pathways with strict activation rules.</li>
+            <li><strong>Auditable for regulators</strong> – deterministic rules, trace IDs, and test-backed evidence.</li>
+            <li><strong>Attractive for investors</strong> – national-scale engine with clear licensing and expansion opportunities.</li>
+        </ul>
+        <p>
+            It moves Women’s Health from “apps and influencers” to a stable, nation-grade, governed digital health layer.
+        </p>
+    </section>
+
+</main>
+
+</body>
+</html>
