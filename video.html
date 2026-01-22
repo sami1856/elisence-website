@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elisence – Phase Videos Library</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #08172a;
+            color: #e8f4fc;
+            line-height: 1.6;
+        }
+
+        /* HEADER (ساده، فقط متن + منو) */
+        header {
+            background-color: #020617;
+            padding: 1.8rem 0;
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.14rem;
+        }
+
+        .brand-sub {
+            font-size: 0.85rem;
+            color: #60a5fa;
+        }
+
+        .brand-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav.main-nav {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        nav.main-nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.92rem;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+        }
+
+        nav.main-nav a:hover {
+            color: #38bdf8;
+            text-decoration: underline;
+        }
+
+        /* وضعیت فعال برای Videos */
+        nav.main-nav a.active {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            max-width: 1100px;
+            margin: 2.2rem auto 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+            color: #38bdf8;
+        }
+
+        .intro-text {
+            font-size: 0.98rem;
+            color: #cbd5f5;
+            margin-bottom: 2rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .video-card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 16px;
+            border: 1px solid #1e293b;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65);
+            padding: 1.3rem 1.4rem 1.5rem 1.4rem;
+        }
+
+        .video-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            color: #94a3b8;
+            margin-bottom: 0.2rem;
+        }
+
+        .video-card h2 {
+            margin: 0.1rem 0 0.5rem 0;
+            font-size: 1.1rem;
+            color: #e5f2ff;
+        }
+
+        .video-card p {
+            margin: 0.2rem 0 0.8rem 0;
+            font-size: 0.9rem;
+            color: #cbd5f5;
+        }
+
+        .video-placeholder {
+            margin-top: 0.4rem;
+            padding: 0.7rem 0.8rem;
+            border-radius: 10px;
+            border: 1px dashed #38bdf8;
+            font-size: 0.85rem;
+            color: #7dd3fc;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            nav.main-nav {
+                flex-wrap: wrap;
+                gap: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="brand-block">
+            <span class="brand-title">ELISENCE</span>
+            <span class="brand-sub">Global Digital Health & Humanity Platform</span>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#phases">Phases</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="story.html">Story</a>
+            <a href="videos.html" class="active">Videos</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <h1>Elisence – Phase Videos Library</h1>
+    <p class="intro-text">
+        این صفحه آرشیو رسمی ویدیوهای معرفی Elisence است: یک ویدیو برای معرفی کلی پلتفرم
+        و ویدیوهای جداگانه برای هر یک از 17 فاز اصلی. بعد از تکمیل هر ویدیو، لینک و
+        کاور آن در این‌جا اضافه می‌شود.
+    </p>
+
+    <div class="video-grid">
+        <!-- Intro -->
+        <div class="video-card">
+            <div class="video-tag">Intro</div>
+            <h2>What is Elisence?</h2>
+            <p>
+                ویدیوی اصلی معرفی Elisence، داستان شکل‌گیری، مأموریت، و نقشه راه 17 فازی
+                برای ساخت زیرساخت هوش سلامت جهانی.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Intro video will be embedded here.
+            </div>
+        </div>
+
+        <!-- Phase 1 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 1</div>
+            <h2>GLP-1 & Weight Intelligence Core</h2>
+            <p>
+                توضیح فاز اول: پایش وزن، دوز داروهای GLP-1، عوارض و رفتارها، و تبدیل آن‌ها
+                به داشبورد هوشمند برای کاربر و کلینیک.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 1 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 2</div>
+            <h2>Medication Choice & Safety Engine</h2>
+            <p>
+                معرفی موتور انتخاب داروی هوشمند، مقایسه‌ی داروها، و نقش آن در کمک به پزشک و
+                داروساز برای انتخاب ایمن‌تر.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 2 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 3</div>
+            <h2>Care, Check-In & Weight-Loss Companion</h2>
+            <p>
+                همراه دیجیتال برای مسیر کاهش وزن و مراقبت روزانه: Check-in، SOS، نوتیفیکیشن‌های
+                هوشمند و پروفایل مراقبتی.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 3 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 4</div>
+            <h2>Global-Grade Infrastructure & Provenance</h2>
+            <p>
+                فاز زیرساخت: سرور پایدار، Provenance و QA، امضای دیجیتال داده‌ها و گزارش‌های
+                آماده برای دولت‌ها و سرمایه‌گذاران.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 4 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 5</div>
+            <h2>Dopamine, Voice & Behaviour Engine</h2>
+            <p>
+                توضیح موتور پاداش، صدا و رفتار؛ چطور Elisence به شکل امن و غیرمعتادکننده
+                با کاربران تعامل می‌کند.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 5 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 6 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 6</div>
+            <h2>Verified Profiles & Pro Economy</h2>
+            <p>
+                سیستم هویت تأیید شده، اقتصاد حرفه‌ای و پایه‌ی اعتماد برای پزشکی از راه دور
+                و همکاری با دولت‌ها.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 6 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 7 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 7</div>
+            <h2>Women+ Health & Life Companion</h2>
+            <p>
+                ماژول جامع سلامت زنان: قاعدگی، باروری، بارداری، پس از زایمان و یائسگی
+                با محوریت ایمنی و آموزش غیرتشخیصی.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 7 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 8 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 8</div>
+            <h2>Blood, Risk & Emergency Intelligence</h2>
+            <p>
+                هسته‌ی خون، ریسک و اورژانس؛ تفسیر نتایج آزمایشگاهی و کمک به تیم درمان برای
+                تصمیم‌گیری سریع‌تر و امن‌تر.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 8 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 9 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 9</div>
+            <h2>Diabetes & Metabolic Health Brain</h2>
+            <p>
+                مغز دیابت و متابولیک: تحلیل قند خون، وزن، دارو و سبک زندگی برای ارائه‌ی
+                بینش ایمن و غیرتشخیصی.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 9 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 10 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 10</div>
+            <h2>ELIS – Social & Identity Space</h2>
+            <p>
+                فضای هویت و سوشال Elisence؛ پروفایل‌ها، دیواره اجتماعی، اتچ‌منت‌ها و
+                vitrine رسمی برای پزشکان و سازمان‌ها.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 10 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 11 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 11</div>
+            <h2>Safety, AHE & Regulatory Backbone</h2>
+            <p>
+                توضیح فاز ایمنی و AHE: مرز SaMD، تست‌ها، لاگ‌ها و مستنداتی که Elisence را
+                برای نظارت مقرراتی آماده می‌کند.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 11 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 12 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 12</div>
+            <h2>Family, Kids & Guardianship Layer</h2>
+            <p>
+                لایه‌ی خانواده و کودکان؛ چطور والدین، سرپرست‌ها و تیم درمان می‌توانند
+                به شکل امن اطراف کودک همکاری کنند.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 12 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 13 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 13</div>
+            <h2>Global Care Teams & Collaboration</h2>
+            <p>
+                ساخت تیم‌های مراقبتی چندنقشی، اشتراک‌گذاری امن داده با پزشکان، کلینیک‌ها
+                و وزارتخانه‌ها.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 13 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 14 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 14</div>
+            <h2>Life Map & Daily Companion</h2>
+            <p>
+                Life Map Companion؛ نقشه‌ی روزانه و بلندمدت زندگی کاربر با تمرکز روی
+                سلامت، هدف و معنای زندگی.
+            </p>
+            <div class="video-placeholder">
+                Coming soon – Phase 14 video placeholder.
+            </div>
+        </div>
+
+        <!-- Phase 15 -->
+        <div class="video-card">
+            <div class="video-tag">Phase 15</div>
+            <h2>Environment, Air & City-Scale Signals</h2>
+            <p>
+                هوش محیطی: آلودگی هوا، اقلیم و سیگنال‌های شهری و نحوه‌ی اتصال آن‌ها به
+                توصیه‌های سلامت روزانه.
+            </p>
+            <div class="video-placeholder">
