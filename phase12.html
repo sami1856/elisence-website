@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence — Phase 12: Real-Time Voice & Video Connection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+        name="description"
+        content="Elisence Phase 12 — Real-time voice and video connection. Safe, governed calls between citizens, families, professionals and ministries, built on Zero-Trust identity and non-diagnostic rules."
+    />
+
+    <style>
+        :root {
+            --bg-dark: #050814;
+            --bg-card: #0d1020;
+            --accent: #4ea8ff;
+            --accent-soft: rgba(78, 168, 255, 0.1);
+            --text-main: #f5f7ff;
+            --text-muted: #a3b0d8;
+            --border-soft: rgba(255, 255, 255, 0.08);
+            --danger: #ff5c7a;
+            --success: #4fd1c5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #111633 0, #050814 60%);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-soft);
+            background: linear-gradient(
+                to right,
+                rgba(7, 12, 40, 0.95),
+                rgba(6, 10, 32, 0.98)
+            );
+            backdrop-filter: blur(14px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-shell {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 20%, #4ea8ff, #7f5dff 45%, #111631);
+            box-shadow: 0 0 18px rgba(78, 168, 255, 0.6);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-text span:first-child {
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .brand-text span:last-child {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        nav {
+            display: flex;
+            gap: 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            padding-bottom: 0.15rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        nav a.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        main {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .phase-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(78, 168, 255, 0.5);
+        }
+
+        .phase-tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        h1 {
+            margin-top: 1.1rem;
+            font-size: 2rem;
+            letter-spacing: 0.03em;
+        }
+
+        .subtitle {
+            margin-top: 0.5rem;
+            max-width: 720px;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .grid {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            gap: 1.75rem;
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            nav {
+                display: none; /* simple mobile version for now */
+            }
+
+            header {
+                position: static;
+            }
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, #1a2147 0, #090d20 55%);
+            border-radius: 1.25rem;
+            border: 1px solid var(--border-soft);
+            padding: 1.5rem 1.4rem;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .card h3 {
+            margin-top: 1.3rem;
+            font-size: 1rem;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .pill {
+            font-size: 0.78rem;
+            padding: 0.28rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            background: rgba(10, 15, 40, 0.9);
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .pill.pill-strong {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+        }
+
+        .badge {
+            font-size: 0.72rem;
+            padding: 0.22rem 0.55rem;
+            border-radius: 0.4rem;
+            border: 1px solid var(--border-soft);
+            color: var(--text-muted);
+        }
+
+        .badge.badge-safe {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .badge.badge-risk {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .section {
+            margin-top: 2rem;
+        }
+
+        .section h2 {
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .section h3 {
+            font-size: 1rem;
+            margin-top: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .section p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .section ul {
+            margin: 0.5rem 0 0.5rem 1.2rem;
+            padding-left: 0;
+            font-size: 0.93rem;
+            color: var(--text-muted);
+        }
+
+        .section li {
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border-soft);
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="nav-shell">
+        <div class="brand">
+            <div class="brand-logo"></div>
+            <div class="brand-text">
+                <span>ELISENCE</span>
+                <span>Global Digital Health &amp; Humanity Platform</span>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="story.html">Story</a>
+            <a href="videos.html">Videos</a>
+            <a href="phases.html" class="active">Phases</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="phase-tag">
+        <span class="phase-tag-dot"></span>
+        <span>Phase 12 &mdash; Real-Time Voice &amp; Video Connection</span>
+    </div>
+
+    <h1>Safe Voice &amp; Video Calls for Real Lives</h1>
+    <p class="subtitle">
+        Phase 12 is the real-time communication layer of Elisence. It turns profiles, messages and care journeys
+        into live, human conversations &mdash; through secure voice and video calls that are designed for health,
+        not for social noise.
+    </p>
+
+    <div class="grid">
+        <section class="card">
+            <h2>Core Definition</h2>
+            <h3>What Phase 12 Is</h3>
+            <p>
+                Phase 12 is Elisence’s <span class="highlight">real-time voice and video engine</span>. It provides:
+            </p>
+            <ul>
+                <li>One-to-one voice and video calls between citizens and trusted professionals</li>
+                <li>Family and carer calls around a shared health journey</li>
+                <li>Clinician-to-clinician calls for coordination, where allowed</li>
+                <li>Group sessions and webinars under ministry control</li>
+            </ul>
+            <p>
+                Technically, it is built on a WebRTC-style connectivity layer, secured by Phase 11 passports and
+                integrated with Phase 10 profiles and messaging.
+            </p>
+
+            <h3>Design Principles</h3>
+            <div class="pill-list">
+                <span class="pill pill-strong">Zero-Trust, Passport-Only Access</span>
+                <span class="pill pill-strong">Non-diagnostic, Non-prescriptive</span>
+                <span class="pill">End-to-end encryption aware</span>
+                <span class="pill">Low-bandwidth and mobile-first</span>
+                <span class="pill">Culturally respectful for GCC</span>
+            </div>
+        </section>
+
+        <aside class="card">
+            <h2>Stakeholder View</h2>
+            <h3>Who Uses Phase 12?</h3>
+            <ul>
+                <li>Citizens needing voice support instead of text</li>
+                <li>Parents, teens and carers coordinating around care</li>
+                <li>Doctors, nurses, psychologists and nutritionists</li>
+                <li>Clinics and hospitals running remote sessions</li>
+                <li>Ministries running official health webinars</li>
+            </ul>
+
+            <h3>Safety &amp; Governance</h3>
+            <div class="badge-row">
+                <span class="badge badge-safe">Passport + role + scope required</span>
+                <span class="badge badge-safe">Recording OFF by default</span>
+                <span class="badge badge-safe">Clear consent for any recording</span>
+                <span class="badge badge-safe">No anonymous calls</span>
+                <span class="badge badge-risk">No “open hotline” style random calls</span>
+                <span class="badge badge-risk">No public video rooms</span>
+            </div>
+        </aside>
+    </div>
+
+    <section class="section">
+        <h2>Call Types &amp; Use Cases</h2>
+        <h3>Citizen &amp; Family Calls</h3>
+        <p>
+            For citizens and families, Phase 12 offers a simple way to speak with trusted people when text is not enough:
+        </p>
+        <ul>
+            <li>Parent and teen discussing a Women+ or mental health journey with a coach</li>
+            <li>Family member joining a remote check-in around diabetes or medication adherence</li>
+            <li>Carer speaking with a clinic about practical, non-diagnostic support</li>
+        </ul>
+        <p>
+            All calls are tied to real profiles and clear expectations: what this call can and cannot be used for.
+        </p>
+
+        <h3>Professional Calls</h3>
+        <p>
+            For clinicians and wellness professionals, Phase 12 provides a channel that is:
+        </p>
+        <ul>
+            <li>identity-verified via Phase 11 passports</li>
+            <li>connected to Elisence profiles and attachments</li>
+            <li>guarded by scopes that define which roles may call whom</li>
+        </ul>
+        <p>
+            Ministries can restrict which call types are enabled in each country or programme.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>How Calls Are Started</h2>
+        <h3>From Profiles and Messages</h3>
+        <p>
+            Phase 12 is not a separate app. Instead, calls appear naturally where they make sense:
+        </p>
+        <ul>
+            <li>From a professional profile in Phase 10 (if calling is enabled)</li>
+            <li>From a secure message thread when both sides agree to escalate to a call</li>
+            <li>From a family view where carers are already connected to a user’s journey</li>
+        </ul>
+        <p>
+            Every call must pass through Phase 11: passport validation, role checks, scope checks
+            and replay protection, before any media connection is attempted.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Technical &amp; Network Architecture</h2>
+        <h3>Real-Time Engine</h3>
+        <p>
+            Under the surface, Phase 12 uses a WebRTC-style engine with:
+        </p>
+        <ul>
+            <li>STUN/TURN-like relays for difficult networks</li>
+            <li>Adaptive bitrate and resolution for low-bandwidth users</li>
+            <li>Support for voice-only mode when video is not possible or not desired</li>
+        </ul>
+        <p>
+            The goal is simple: “it just works” on typical home and mobile connections, including
+            conditions common in GCC and wider regions.
+        </p>
+
+        <h3>Encryption &amp; Identity</h3>
+        <p>
+            Media streams are encrypted in transit, and sessions are anchored to:
+        </p>
+        <ul>
+            <li>a valid X-Passport (Phase 11)</li>
+            <li>clear roles (citizen, teen, doctor, clinic, ministry)</li>
+            <li>scopes that define what kind of call is permitted</li>
+        </ul>
+        <p>
+            There are no anonymous or unverified calls inside Elisence.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Recording, Consent &amp; Compliance</h2>
+        <h3>Recording OFF by Default</h3>
+        <p>
+            To protect privacy and reduce risk, Phase 12 treats recording as an exception, not a default:
+        </p>
+        <ul>
+            <li>Recording is OFF by default for all calls</li>
+            <li>Any recording feature must be explicitly enabled by ministries</li>
+            <li>Both sides must receive clear, visible consent prompts</li>
+            <li>Storage rules (where, how long, who can access) are governed centrally</li>
+        </ul>
+
+        <h3>Non-Diagnostic Posture</h3>
+        <p>
+            Even when a doctor is on the call, Phase 12 is positioned as:
+        </p>
+        <ul>
+            <li>support, coaching and education</li>
+            <li>not a standalone clinical diagnosis engine</li>
+        </ul>
+        <p>
+            This helps keep Elisence on the safe side of regulatory boundaries while allowing value in everyday care.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Accessibility, Voice-First &amp; Languages</h2>
+        <h3>Voice-First Experience</h3>
+        <p>
+            Phase 12 works in harmony with the voice and zero-typing engines:
+        </p>
+        <ul>
+            <li>Users can start a call using simple voice commands</li>
+            <li>Elisa can assist before and after calls (summaries, next steps)</li>
+            <li>Voice-only calls are prioritised for users with limited bandwidth or comfort</li>
+        </ul>
+
+        <h3>Blind &amp; Low-Vision Support</h3>
+        <p>
+            Combined with accessibility phases, the call UI uses:
+        </p>
+        <ul>
+            <li>high-contrast layouts and large controls</li>
+            <li>screen-reader-friendly labels</li>
+            <li>audio cues for join/leave/mute events</li>
+        </ul>
+
+        <h3>Five-Language Foundation</h3>
+        <p>
+            System prompts, call controls and status messages are designed to work across:
+            English, Farsi, Arabic, Turkish and Romanian, with a path for future localisation.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Integration With Other Phases</h2>
+        <h3>From Data to Conversation</h3>
+        <p>
+            Phase 12 does not replace other engines &mdash; it connects them:
+        </p>
+        <ul>
+            <li><strong>Phase 7 &amp; 9:</strong> complex Women+ or diabetes journeys can escalate to guided calls when needed.</li>
+            <li><strong>Phase 10:</strong> social and profile interactions can safely move into real-time conversation.</li>
+            <li><strong>Phase 11:</strong> every call is anchored in the same security passport and audit system.</li>
+            <li><strong>Phase 16 &amp; 17:</strong> nutrition and mental health support can include structured, time-boxed sessions.</li>
+        </ul>
+        <p>
+            In practice, Phase 12 gives Elisence a live heartbeat: when data is not enough, people can talk.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Government &amp; Investor View</h2>
+        <h3>Governed, Not Chaotic</h3>
+        <p>
+            Unlike generic video platforms, Phase 12 is designed to be configured by ministries:
+        </p>
+        <ul>
+            <li>which roles are allowed to call which roles</li>
+            <li>in which regions and for which programmes</li>
+            <li>whether group sessions and webinars are enabled</li>
+            <li>whether recording is allowed and under what policies</li>
+        </ul>
+        <p>
+            This allows GCC governments, hospitals and insurers to deploy real-time care safely inside a controlled ecosystem.
+        </p>
+
+        <h3>Strategic Value</h3>
+        <p>
+            For investors, Phase 12 is a key part of Elisence’s moat: it turns the platform from a data layer into a living
+            network of real conversations, without losing clinical and regulatory discipline.
+        </p>
+    </section>
+
+    <div class="footer-note">
+        <strong>In one sentence:</strong>
+        Phase 12 gives Elisence a <span class="highlight">live voice and face</span> &mdash;
+        secure voice and video calls that connect citizens, families, professionals and ministries,
+        all governed by the same Zero-Trust, passport-based architecture that protects the rest of the platform.
+    </div>
+</main>
+</body>
+</html>
