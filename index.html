@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elisence – Global Digital Health & Humanity Platform</title>
 
     <style>
         /* GLOBAL */
-        :root {
-            --bg-main: #000a16;
-            --bg-header: #020b16;
-            --bg-card: rgba(9, 24, 46, 0.96);
-            --accent: #38bdf8;
-            --accent-soft: #93c5fd;
-            --text-main: #e5e7eb;
-            --text-muted: #9ca3af;
-            --border-soft: #1f2937;
-        }
-
         * {
             box-sizing: border-box;
         }
@@ -25,135 +14,139 @@
         body {
             margin: 0;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #052441 0, #00040a 55%, #000000 100%);
-            color: var(--text-main);
-            min-height: 100vh;
+            background: radial-gradient(circle at top, #0b1220 0%, #020617 45%, #000000 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
         }
 
         a {
             color: inherit;
         }
 
-        /* HEADER */
+        /* HEADER (BIG BAR + BIG LOGO) */
         header {
-            background-color: var(--bg-header);
-            border-bottom: 1px solid #123256;
-            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
-            position: sticky;
-            top: 0;
-            z-index: 20;
+            background: linear-gradient(90deg, #000814 0%, #001b2a 45%, #000814 100%);
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75);
         }
 
-        .header-inner {
-            max-width: 1180px;
+        .header-wrapper {
+            max-width: 1250px;
             margin: 0 auto;
-            padding: 1.1rem 2.2rem;
+            padding: 0 2rem;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 1.6rem;
+
+            height: 180px; /* حدود ۹–۱۰ سانت روی لپ‌تاپ تو */
         }
 
-        .brand {
+        .brand-block {
             display: flex;
             align-items: center;
-            gap: 0.9rem;
         }
 
-        .brand-logo img {
-            height: 56px;      /* لوگو را درشت‌تر می‌کند */
+        /* BIG LOGO */
+        .elis-logo {
+            height: 160px; /* اندازه‌ی خود لوگو */
             width: auto;
-            display: block;
+            margin-right: 1.8rem;
             border-radius: 999px;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.8);
         }
 
         .brand-text h1 {
             margin: 0;
-            font-size: 1.45rem;
-            letter-spacing: 0.14em;
+            font-size: 2.8rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
         }
 
         .brand-text p {
-            margin: 0.15rem 0 0;
-            font-size: 0.86rem;
-            color: var(--accent-soft);
+            margin: 0.4rem 0 0;
+            font-size: 1.1rem;
+            color: #93c5fd;
         }
 
-        /* NAV */
+        /* NAVIGATION */
         nav {
             display: flex;
             align-items: center;
-            gap: 1.4rem;
-            font-size: 0.9rem;
         }
 
         nav a {
-            color: #e5e7eb;
+            margin-left: 1.4rem;
+            color: #e2e8f0;
             text-decoration: none;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            font-weight: 500;
-            opacity: 0.86;
+            font-size: 1rem;
+            text-transform: none;
         }
 
         nav a:hover {
-            color: var(--accent);
-            opacity: 1;
+            color: #38bdf8;
+            text-decoration: underline;
         }
 
         /* MAIN LAYOUT */
         main {
-            max-width: 1180px;
-            margin: 2.7rem auto 3.5rem;
-            padding: 0 2.2rem 2rem;
+            max-width: 1100px;
+            margin: 3rem auto 4rem;
+            padding: 0 2rem 4rem;
         }
 
         .card {
-            background: var(--bg-card);
-            border-radius: 18px;
-            border: 1px solid rgba(37, 99, 235, 0.35);
-            box-shadow: 0 18px 55px rgba(15, 23, 42, 0.9);
-            padding: 2.2rem 2.4rem;
-            backdrop-filter: blur(16px);
+            background: rgba(15, 23, 42, 0.92);
+            border-radius: 14px;
+            padding: 1.8rem 2.1rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.25);
         }
 
         .card h2 {
-            margin: 0 0 1.2rem;
-            font-size: 1.4rem;
-            color: var(--accent);
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            color: #38bdf8;
+            font-size: 1.35rem;
         }
 
         .card p {
-            margin: 0 0 0.7rem;
+            margin: 0.3rem 0;
             font-size: 0.98rem;
-            color: var(--text-main);
-            line-height: 1.6;
         }
 
-        .card p span.highlight {
-            color: var(--accent-soft);
-            font-weight: 500;
+        .card ul {
+            margin: 0.4rem 0 0 1.1rem;
+            padding-left: 0.8rem;
+            font-size: 0.96rem;
         }
 
-        .subtext {
-            margin-top: 1.6rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        .card li {
+            margin-bottom: 0.2rem;
         }
 
+        .tagline {
+            color: #a5b4fc;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        /* FOOTER */
         footer {
-            max-width: 1180px;
-            margin: 0 auto 2.2rem;
-            padding: 0 2.2rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-align: right;
+            border-top: 1px solid #1f2937;
+            padding: 1.2rem 0 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            background: #020617;
         }
 
         footer a {
-            color: var(--accent-soft);
+            color: #38bdf8;
             text-decoration: none;
         }
 
@@ -161,39 +154,50 @@
             text-decoration: underline;
         }
 
-        @media (max-width: 768px) {
-            .header-inner {
+        /* RESPONSIVE (MOBILE / TABLET) */
+        @media (max-width: 900px) {
+            .header-wrapper {
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 0.9rem 1.3rem 1.1rem;
+                height: auto;
+                padding-top: 1.2rem;
+                padding-bottom: 1.2rem;
+            }
+
+            .brand-block {
+                margin-bottom: 1rem;
+            }
+
+            .elis-logo {
+                height: 110px;
+                margin-right: 1rem;
             }
 
             nav {
+                width: 100%;
                 flex-wrap: wrap;
-                gap: 0.9rem;
-                padding-top: 0.3rem;
+                justify-content: flex-start;
+                margin-top: 0.3rem;
+            }
+
+            nav a {
+                margin: 0.2rem 1.2rem 0.2rem 0;
             }
 
             main {
-                padding: 0 1.3rem 2rem;
-                margin-top: 2rem;
-            }
-
-            .card {
-                padding: 1.7rem 1.5rem;
+                padding: 0 1.2rem 3rem;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- HEADER -->
     <header>
-        <div class="header-inner">
-            <div class="brand">
-                <div class="brand-logo">
-                    <!-- لوگو در ریشه مخزن: elisence.png -->
-                    <img src="elisence.png" alt="Elisence Orb Logo" />
-                </div>
+        <div class="header-wrapper">
+            <div class="brand-block">
+                <img src="elisence.png" alt="Elisence Logo" class="elis-logo">
+
                 <div class="brand-text">
                     <h1>ELISENCE</h1>
                     <p>Global Digital Health &amp; Humanity Platform</p>
@@ -201,41 +205,89 @@
             </div>
 
             <nav>
-                <a href="index.html#home">Home</a>
-                <a href="videos.html">Videos</a>
+                <a href="#home">Home</a>
                 <a href="#phases">Phases</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
                 <a href="story.html">Story</a>
+                <a href="videos.html">Videos</a>
             </nav>
         </div>
     </header>
 
-    <main id="home">
-        <section class="card">
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HOME / WELCOME -->
+        <section id="home" class="card">
             <h2>Welcome to Elisence</h2>
             <p>
-                This is the official homepage of <span class="highlight">Elisence</span> — a global digital health &amp;
-                humanity platform built across <span class="highlight">17 advanced phases</span> including
-                medical intelligence, nutrition, women’s health, diabetes, safety, access,
-                AI context engines, and secure social health presence.
+                This is the official homepage of <strong>Elisence</strong> — a global digital health &amp; humanity platform
+                built across <strong>17 advanced phases</strong> including medical intelligence, nutrition, women’s health,
+                diabetes, safety, access, AI context engines, and secure social health presence.
             </p>
+            <p class="tagline">
+                From smart medication engines to national-scale safety layers, Elisence is designed to help
+                families, clinicians, ministries of health, and partners build a safer, smarter health future.
+            </p>
+        </section>
 
-            <p class="subtext">
-                This public website will host:
-                <br />
-                • Full video explainers for citizen users, clinicians, hospitals, and governments. <br />
-                • Clear documentation for every Elisence phase and core engine. <br />
-                • A trusted entry point into the Elisence ecosystem — always privacy-first, non-diagnostic, and aligned
-                with international health-tech standards.
+        <!-- PHASES SUMMARY -->
+        <section id="phases" class="card">
+            <h2>Platform Roadmap (17 Phases)</h2>
+            <p>
+                Each phase of Elisence unlocks a new capability — from weight-loss and GLP-1 support to diabetes
+                intelligence, women’s health, safety engines, emergency pathways, nutrition, and global medical data
+                analysis. The detailed roadmap will be presented here with:
+            </p>
+            <ul>
+                <li>Short explainer videos for each phase (1–17)</li>
+                <li>Public documentation describing what each phase does and who it serves</li>
+                <li>Clear separation between <span class="highlight">non-diagnostic guidance</span> and clinician-only tools</li>
+            </ul>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="card">
+            <h2>About Elisence</h2>
+            <p>
+                Elisence is being built as a trusted, global-grade health platform with a focus on:
+            </p>
+            <ul>
+                <li><strong>Humanity &amp; Safety:</strong> non-judgmental, non-diagnostic support for people and families.</li>
+                <li><strong>Clinical Alignment:</strong> aligned with NHS and international guidelines where applicable.</li>
+                <li><strong>Data Protection:</strong> privacy, audit trails, and strict access controls from day one.</li>
+                <li><strong>Multi-language UX:</strong> English, Farsi, Arabic, Turkish, Romanian (and more to come).</li>
+            </ul>
+            <p class="tagline">
+                This website will evolve into the public window of Elisence: a place where ministries, hospitals,
+                partners and normal users can understand how the platform works and what it can safely offer.
+            </p>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="card">
+            <h2>Contact &amp; Collaboration</h2>
+            <p>
+                Elisence is currently in a build and validation phase. Government bodies, hospitals, clinics,
+                universities, and technology partners interested in collaboration or pilots can get in touch
+                via the official contact channels that will be published here.
+            </p>
+            <p>
+                Until the full contact module is ready, please use the existing email channel associated with
+                the domain <strong>elisence.com</strong> for any formal communication.
             </p>
         </section>
     </main>
 
+    <!-- FOOTER -->
     <footer>
-        <span>© Elisence — Global Digital Health &amp; Humanity Platform.</span>
-        &nbsp;|&nbsp;
-        <a href="story.html">Read the Elisence story</a>
+        <p>© <span id="year"></span> Elisence. All rights reserved.</p>
+        <p>This site is an informational, non-diagnostic public UI for the Elisence platform.</p>
     </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
