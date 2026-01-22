@@ -27,48 +27,125 @@
             text-decoration: underline;
         }
 
-        /* ========== HERO HEADER (BIG BAR + BIG LOGO) ========== */
+        <!-- HERO HEADER -->
+<header class="hero-header">
+    <div class="hero-inner">
+        <img src="elisence.png" alt="Elisence Logo" class="hero-logo">
 
-        header.hero-header {
-            background: linear-gradient(180deg, #000814 0%, #001622 55%, #000814 100%);
-            border-bottom: 1px solid #1e293b;
-            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.8);
+        <div class="hero-text">
+            <h1>ELISENCE</h1>
+            <p>Global Digital Health & Humanity Platform</p>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="main-nav-inner">
+            <a href="#home">Home</a>
+            <a href="#phases">Phases</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="story.html">Story</a>
+            <a href="videos.html">Videos</a>
+        </div>
+    </nav>
+</header>
+
+<style>
+/* HERO HEADER – SUPER LARGE VERSION */
+        .hero-header {
+            background: linear-gradient(180deg, #000814 0%, #001522 55%, #000814 100%);
+            border-bottom: 2px solid #1e293b;
+            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.8);
         }
-
+        
+        /* TOP HERO SECTION */
         .hero-inner {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem 2.5rem;
-            height: 420px; /* حدود 11–12 سانت روی اکثر لپ‌تاپ‌ها */
-
+        
+            height: 650px; /* 15–17 cm REAL HEIGHT */
+            padding: 3rem;
+        
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            gap: 2rem;
+            gap: 3rem;
         }
-
+        
+        /* HUGE LOGO (420px) */
         .hero-logo {
-            height: 260px;  /* لوگوی اصلی – خیلی بزرگ */
+            height: 420px;
             width: auto;
             border-radius: 50%;
-            box-shadow:
-                0 0 45px rgba(56, 189, 248, 0.7),
-                0 0 90px rgba(56, 189, 248, 0.2);
             flex-shrink: 0;
+        
+            box-shadow:
+                0 0 75px rgba(56,189,248,0.75),
+                0 0 140px rgba(56,189,248,0.25);
         }
-
+        
+        /* TEXT NEXT TO LOGO */
         .hero-text h1 {
             margin: 0;
-            font-size: 4.4rem;
-            letter-spacing: 0.18rem;
+            font-size: 5.4rem;      /* giant title */
+            letter-spacing: 0.24rem;
             text-transform: uppercase;
         }
-
+        
         .hero-text p {
-            margin: 0.9rem 0 0;
-            font-size: 1.5rem;
+            margin: 1.1rem 0 0;
+            font-size: 2.05rem;     /* MUCH bigger subtitle */
             color: #93c5fd;
         }
+        
+        /* NAV BAR UNDER HERO */
+        .main-nav {
+            border-top: 1px solid #1e293b;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(10px);
+        }
+        
+        .main-nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2.5rem;
+        
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2.4rem;
+        }
+        
+        .main-nav a {
+            font-size: 1.2rem;
+            color: #e5e7eb;
+        }
+        
+        .main-nav a:hover {
+            color: #38bdf8;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero-inner {
+                flex-direction: column;
+                height: auto;
+                text-align: center;
+            }
+        
+            .hero-logo {
+                height: 260px;
+            }
+        
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+        
+            .hero-text p {
+                font-size: 1.2rem;
+            }
+        }
+        </style>}
 
         /* NAV BAR زیر هدر */
 
