@@ -6,7 +6,6 @@
     <title>Elisence – Global Digital Health & Humanity Platform</title>
 
     <style>
-        /* GLOBAL */
         * {
             box-sizing: border-box;
         }
@@ -14,80 +13,94 @@
         body {
             margin: 0;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #0b1220 0%, #020617 45%, #000000 100%);
+            background: radial-gradient(circle at top, #0b1120 0%, #020617 45%, #000000 100%);
             color: #e2e8f0;
             line-height: 1.6;
         }
 
         a {
             color: inherit;
-        }
-
-        /* HEADER (BIG BAR + BIG LOGO) */
-        header {
-            background: linear-gradient(90deg, #000814 0%, #001b2a 45%, #000814 100%);
-            border-bottom: 1px solid #1e293b;
-            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75);
-        }
-
-        .header-wrapper {
-            max-width: 1250px;
-            margin: 0 auto;
-            padding: 0 2rem;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            height: 180px; /* حدود ۹–۱۰ سانت روی لپ‌تاپ تو */
-        }
-
-        .brand-block {
-            display: flex;
-            align-items: center;
-        }
-
-        /* BIG LOGO */
-        .elis-logo {
-            height: 160px; /* اندازه‌ی خود لوگو */
-            width: auto;
-            margin-right: 1.8rem;
-            border-radius: 999px;
-        }
-
-        .brand-text h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .brand-text p {
-            margin: 0.4rem 0 0;
-            font-size: 1.1rem;
-            color: #93c5fd;
-        }
-
-        /* NAVIGATION */
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        nav a {
-            margin-left: 1.4rem;
-            color: #e2e8f0;
             text-decoration: none;
-            font-size: 1rem;
-            text-transform: none;
         }
 
-        nav a:hover {
-            color: #38bdf8;
+        a:hover {
             text-decoration: underline;
         }
 
-        /* MAIN LAYOUT */
+        /* ========== HERO HEADER (BIG BAR + BIG LOGO) ========== */
+
+        header.hero-header {
+            background: linear-gradient(180deg, #000814 0%, #001622 55%, #000814 100%);
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 2.5rem;
+            height: 420px; /* حدود 11–12 سانت روی اکثر لپ‌تاپ‌ها */
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 2rem;
+        }
+
+        .hero-logo {
+            height: 260px;  /* لوگوی اصلی – خیلی بزرگ */
+            width: auto;
+            border-radius: 50%;
+            box-shadow:
+                0 0 45px rgba(56, 189, 248, 0.7),
+                0 0 90px rgba(56, 189, 248, 0.2);
+            flex-shrink: 0;
+        }
+
+        .hero-text h1 {
+            margin: 0;
+            font-size: 4.4rem;
+            letter-spacing: 0.18rem;
+            text-transform: uppercase;
+        }
+
+        .hero-text p {
+            margin: 0.9rem 0 0;
+            font-size: 1.5rem;
+            color: #93c5fd;
+        }
+
+        /* NAV BAR زیر هدر */
+
+        .main-nav {
+            border-top: 1px solid #1e293b;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(10px);
+        }
+
+        .main-nav-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0.9rem 2.5rem;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .main-nav a {
+            font-size: 1.05rem;
+            color: #e5e7eb;
+            text-transform: none;
+        }
+
+        .main-nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+
         main {
             max-width: 1100px;
             margin: 3rem auto 4rem;
@@ -95,19 +108,18 @@
         }
 
         .card {
-            background: rgba(15, 23, 42, 0.92);
-            border-radius: 14px;
-            padding: 1.8rem 2.1rem;
+            background: rgba(15, 23, 42, 0.96);
+            border-radius: 16px;
+            padding: 1.9rem 2.1rem;
             margin-bottom: 1.8rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.28);
         }
 
         .card h2 {
-            margin-top: 0;
-            margin-bottom: 0.75rem;
+            margin: 0 0 0.8rem 0;
             color: #38bdf8;
-            font-size: 1.35rem;
+            font-size: 1.4rem;
         }
 
         .card p {
@@ -116,13 +128,13 @@
         }
 
         .card ul {
-            margin: 0.4rem 0 0 1.1rem;
-            padding-left: 0.8rem;
+            margin: 0.5rem 0 0 1.1rem;
+            padding-left: 0.7rem;
             font-size: 0.96rem;
         }
 
         .card li {
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.25rem;
         }
 
         .tagline {
@@ -135,7 +147,8 @@
             font-weight: 600;
         }
 
-        /* FOOTER */
+        /* ========== FOOTER ========== */
+
         footer {
             border-top: 1px solid #1f2937;
             padding: 1.2rem 0 2rem;
@@ -147,41 +160,33 @@
 
         footer a {
             color: #38bdf8;
-            text-decoration: none;
         }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+        /* ========== RESPONSIVE ========== */
 
-        /* RESPONSIVE (MOBILE / TABLET) */
         @media (max-width: 900px) {
-            .header-wrapper {
+            .hero-inner {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                text-align: center;
                 height: auto;
-                padding-top: 1.2rem;
-                padding-bottom: 1.2rem;
             }
 
-            .brand-block {
-                margin-bottom: 1rem;
+            .hero-logo {
+                height: 190px;
             }
 
-            .elis-logo {
-                height: 110px;
-                margin-right: 1rem;
+            .hero-text h1 {
+                font-size: 2.4rem;
             }
 
-            nav {
-                width: 100%;
+            .hero-text p {
+                font-size: 1.15rem;
+            }
+
+            .main-nav-inner {
                 flex-wrap: wrap;
-                justify-content: flex-start;
-                margin-top: 0.3rem;
-            }
-
-            nav a {
-                margin: 0.2rem 1.2rem 0.2rem 0;
+                gap: 1.2rem;
             }
 
             main {
@@ -192,27 +197,27 @@
 </head>
 
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="header-wrapper">
-            <div class="brand-block">
-                <img src="elisence.png" alt="Elisence Logo" class="elis-logo">
+    <!-- HERO HEADER -->
+    <header class="hero-header">
+        <div class="hero-inner">
+            <img src="elisence.png" alt="Elisence Logo" class="hero-logo">
 
-                <div class="brand-text">
-                    <h1>ELISENCE</h1>
-                    <p>Global Digital Health &amp; Humanity Platform</p>
-                </div>
+            <div class="hero-text">
+                <h1>ELISENCE</h1>
+                <p>Global Digital Health &amp; Humanity Platform</p>
             </div>
+        </div>
 
-            <nav>
+        <nav class="main-nav">
+            <div class="main-nav-inner">
                 <a href="#home">Home</a>
                 <a href="#phases">Phases</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
                 <a href="story.html">Story</a>
                 <a href="videos.html">Videos</a>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
 
     <!-- MAIN CONTENT -->
@@ -236,13 +241,13 @@
             <h2>Platform Roadmap (17 Phases)</h2>
             <p>
                 Each phase of Elisence unlocks a new capability — from weight-loss and GLP-1 support to diabetes
-                intelligence, women’s health, safety engines, emergency pathways, nutrition, and global medical data
-                analysis. The detailed roadmap will be presented here with:
+                intelligence, women’s health, emergency engines, nutrition, and global medical data analysis.
+                The public website will gradually include:
             </p>
             <ul>
-                <li>Short explainer videos for each phase (1–17)</li>
-                <li>Public documentation describing what each phase does and who it serves</li>
-                <li>Clear separation between <span class="highlight">non-diagnostic guidance</span> and clinician-only tools</li>
+                <li>Short explainer videos for each phase (1–17).</li>
+                <li>Public documentation explaining what each phase does and who it serves.</li>
+                <li>Clear separation between <span class="highlight">non-diagnostic guidance</span> and clinician-only tools.</li>
             </ul>
         </section>
 
@@ -256,7 +261,7 @@
                 <li><strong>Humanity &amp; Safety:</strong> non-judgmental, non-diagnostic support for people and families.</li>
                 <li><strong>Clinical Alignment:</strong> aligned with NHS and international guidelines where applicable.</li>
                 <li><strong>Data Protection:</strong> privacy, audit trails, and strict access controls from day one.</li>
-                <li><strong>Multi-language UX:</strong> English, Farsi, Arabic, Turkish, Romanian (and more to come).</li>
+                <li><strong>Multi-language UX:</strong> English, Farsi, Arabic, Turkish, Romanian (with more to come).</li>
             </ul>
             <p class="tagline">
                 This website will evolve into the public window of Elisence: a place where ministries, hospitals,
@@ -269,12 +274,12 @@
             <h2>Contact &amp; Collaboration</h2>
             <p>
                 Elisence is currently in a build and validation phase. Government bodies, hospitals, clinics,
-                universities, and technology partners interested in collaboration or pilots can get in touch
-                via the official contact channels that will be published here.
+                universities, and technology partners interested in collaboration or pilots will find official
+                contact details here as the platform moves into its next stage.
             </p>
             <p>
-                Until the full contact module is ready, please use the existing email channel associated with
-                the domain <strong>elisence.com</strong> for any formal communication.
+                Until the full contact module is ready, communication can be initiated using the official
+                <strong>elisence.com</strong> domain email addresses configured for the project.
             </p>
         </section>
     </main>
@@ -286,7 +291,6 @@
     </footer>
 
     <script>
-        // Set current year in footer
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
