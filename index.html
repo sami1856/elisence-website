@@ -18,99 +18,91 @@
             text-decoration: none;
         }
 
-        a:hover { text-decoration: underline; }
-
-        /* ================= HERO HEADER (SUPER LARGE) ================= */
-
-        header.hero-header {
-            width: 100%;
-            height: 900px; /* SUPER HEADER — 20–22 cm on screen */
-            background: radial-gradient(circle at top, #000f1c 0%, #000814 50%, #000000 100%);
-            border-bottom: 2px solid #1e293b;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
+        a:hover {
+            text-decoration: underline;
         }
 
-        /* HERO inner (logo + text) */
-        .hero-inner {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding-top: 3rem;
+        /* ============ HEADER + HERO ============ */
 
+        header {
+            background: radial-gradient(circle at top, #001327 0%, #000814 50%, #000000 100%);
+            border-bottom: 2px solid #1f2937;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+        }
+
+        .hero-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.8rem 2.2rem 2.8rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 4rem;
-            height: 750px; /* majority of header */
+            justify-content: space-between;
+            gap: 3.5rem;
         }
 
-        /* HUGE LOGO */
         .hero-logo {
-            height: 600px;   /* MASSIVE, ULTRA CLEAR */
+            height: 260px;      /* لوگوی بزرگ و واضح */
             width: auto;
-            border-radius: 50%;
+            border-radius: 999px;
             box-shadow:
-                0 0 90px rgba(56,189,248,0.9),
-                0 0 180px rgba(56,189,248,0.25);
+                0 0 60px rgba(56,189,248,0.85),
+                0 0 120px rgba(56,189,248,0.25);
         }
 
-        /* TEXT */
         .hero-text h1 {
-            margin: 0;
-            font-size: 6rem;        /* VERY BIG TITLE */
-            letter-spacing: 0.3rem;
+            margin: 0 0 0.6rem;
+            font-size: 3.6rem;
+            letter-spacing: 0.25rem;
             text-transform: uppercase;
         }
 
         .hero-text p {
-            margin: 1.4rem 0 0;
-            font-size: 2.4rem;
+            margin: 0;
+            font-size: 1.2rem;
             color: #60a5fa;
         }
 
-        /* ================= NAVIGATION (BELOW HERO) ================= */
+        /* ============ NAVIGATION ============ */
 
         nav.main-nav {
-            width: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.7);
             border-top: 1px solid #1e293b;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
         }
 
         .main-nav-inner {
-            max-width: 1500px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 1.4rem 2.5rem;
-
+            padding: 0.9rem 2.2rem;
             display: flex;
-            justify-content: center;
-            gap: 2.6rem;
+            justify-content: flex-end;
+            gap: 2.2rem;
         }
 
         .main-nav a {
-            font-size: 1.3rem;
+            font-size: 1rem;
             color: #e5e7eb;
         }
 
-        .main-nav a:hover { color: #38bdf8; }
+        .main-nav a:hover {
+            color: #38bdf8;
+        }
 
-        /* ================= MAIN CONTENT ================= */
+        /* ============ MAIN CONTENT ============ */
 
         main {
             max-width: 1100px;
-            margin: 4rem auto;
-            padding: 0 2rem 4rem;
+            margin: 3.5rem auto 4rem;
+            padding: 0 2rem;
         }
 
         .card {
-            background: rgba(15,23,42,0.96);
+            background: rgba(15, 23, 42, 0.96);
             border-radius: 18px;
             padding: 2rem 2.3rem;
             margin-bottom: 2rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.75);
-            border: 1px solid rgba(148,163,184,0.25);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.25);
         }
 
         .card h2 {
@@ -119,14 +111,24 @@
             color: #38bdf8;
         }
 
-        .card p { font-size: 1rem; margin: 0.4rem 0; }
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 1rem;
+        }
 
-        .card ul { margin: 0.5rem 0 0 1.1rem; padding-left: 0.7rem; }
-        .card li { margin-bottom: 0.3rem; }
+        .card ul {
+            margin: 0.6rem 0 0 1.1rem;
+            padding-left: 0.7rem;
+        }
 
-        /* FOOTER */
+        .card li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* ============ FOOTER ============ */
+
         footer {
-            margin-top: 4rem;
+            margin-top: 3rem;
             padding: 1.4rem 0 2rem;
             background: #020617;
             text-align: center;
@@ -134,15 +136,44 @@
             border-top: 1px solid #1f2937;
         }
 
-        footer a { color: #38bdf8; }
+        footer a {
+            color: #38bdf8;
+        }
+
+        /* ============ RESPONSIVE ============ */
+
+        @media (max-width: 900px) {
+            .hero-wrap {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 1.8rem;
+            }
+
+            .hero-logo {
+                height: 210px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.7rem;
+            }
+
+            .hero-text p {
+                font-size: 1.05rem;
+            }
+
+            .main-nav-inner {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1.4rem;
+            }
+        }
     </style>
 </head>
-
 <body>
 
-    <!-- ================= HERO HEADER ================= -->
-    <header class="hero-header">
-        <div class="hero-inner">
+    <!-- HEADER + HERO -->
+    <header>
+        <div class="hero-wrap">
             <img src="elisence.png" alt="Elisence Logo" class="hero-logo">
 
             <div class="hero-text">
@@ -151,7 +182,6 @@
             </div>
         </div>
 
-        <!-- NAV BAR -->
         <nav class="main-nav">
             <div class="main-nav-inner">
                 <a href="#home">Home</a>
@@ -164,30 +194,43 @@
         </nav>
     </header>
 
-    <!-- ================= MAIN CONTENT ================= -->
+    <!-- MAIN CONTENT -->
     <main>
         <section id="home" class="card">
             <h2>Welcome to Elisence</h2>
-            <p>The official public UI of a global, multi-phase digital health ecosystem serving families, clinicians, hospitals, and ministries worldwide.</p>
+            <p>
+                This is the official homepage of Elisence — a global digital health & humanity platform
+                built across 17 advanced phases including medical intelligence, nutrition, women’s health,
+                diabetes, safety, access, AI context engines, and secure social health presence.
+            </p>
         </section>
 
         <section id="phases" class="card">
-            <h2>17-Phase Global Roadmap</h2>
-            <p>Each phase introduces a new layer of safety, intelligence, or care — from GLP-1, diabetes, women’s health, emergency engines, and nutrition (GNIE) to medical intelligence & national health passports.</p>
+            <h2>Platform Roadmap (17 Phases)</h2>
+            <p>
+                Each phase unlocks a new capability — from GLP-1 and metabolic intelligence, to women’s health,
+                emergency engines, national health passports, and global medication intelligence.
+            </p>
         </section>
 
         <section id="about" class="card">
             <h2>About</h2>
-            <p>Elisence follows international standards (NHS, GCC, EU, HIPAA), with zero-trust security, multilingual UX, structured data governance, and complete safety boundaries.</p>
+            <p>
+                Elisence is designed from day one around trust, governance, and safety — following NHS, GCC,
+                EU, HIPAA and global digital-health standards with a zero-trust architecture and multilingual UX.
+            </p>
         </section>
 
         <section id="contact" class="card">
             <h2>Contact</h2>
-            <p>Official Elisence domain emails will be listed here once the contact module page is published.</p>
+            <p>
+                Official Elisence contact details will appear here once the dedicated communication channels
+                are activated for partners, ministries, and clinical organisations.
+            </p>
         </section>
     </main>
 
-    <!-- ================= FOOTER ================= -->
+    <!-- FOOTER -->
     <footer>
         <p>© <span id="year"></span> Elisence — All rights reserved.</p>
     </footer>
