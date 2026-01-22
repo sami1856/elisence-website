@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elisence – Phase 2: Medication Choice & Safety Engine</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #08172a;
+            color: #e8f4fc;
+            line-height: 1.6;
+        }
+
+        /* ======= HEADER ======= */
+        header {
+            background-color: #020617;
+            padding: 1.8rem 0;
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.14rem;
+        }
+
+        .brand-sub {
+            font-size: 0.85rem;
+            color: #60a5fa;
+        }
+
+        nav.main-nav {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        nav.main-nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.92rem;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+        }
+
+        nav.main-nav a:hover {
+            color: #38bdf8;
+            text-decoration: underline;
+        }
+
+        nav.main-nav a.active {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        /* ======= MAIN CONTENT ======= */
+        main {
+            max-width: 1100px;
+            margin: 2.4rem auto 3.2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.8rem;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55);
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.4rem;
+            font-size: 0.94rem;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #93c5fd;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-label {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12rem;
+            color: #94a3b8;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ======= RESPONSIVE ======= */
+        @media (max-width: 900px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            nav.main-nav {
+                flex-wrap: wrap;
+                gap: 1.1rem;
+            }
+
+            main {
+                padding: 0 1.2rem;
+            }
+
+            .card {
+                padding: 1.5rem 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="brand-block">
+            <span class="brand-title">ELISENCE</span>
+            <span class="brand-sub">Global Digital Health & Humanity Platform</span>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#phases">Phases</a>
+            <a href="about.html">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="story.html">Story</a>
+            <a href="videos.html">Videos</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="phase-label">PHASE 2</div>
+    <h1>Medication Choice & Safety Engine</h1>
+    <p class="lead">
+        Phase 2 is the medication choice brain of Elisence. It does not prescribe or diagnose. Instead,
+        it organises and compares medication options — starting with GLP-1 therapies — in a safe,
+        transparent way for users, clinicians, and, in future, ministries of health.
+    </p>
+
+    <section class="card">
+        <h2>What Phase 2 Is</h2>
+        <p class="tagline">
+            From “Which drug is right for me?” to a clear, structured, safety-first view.
+        </p>
+        <p>
+            Phase 2 is designed to answer one of the hardest questions in modern metabolic and chronic care:
+            <strong>“which medication, at which time, for which person, under which conditions?”</strong>
+        </p>
+        <p>
+            It focuses first on GLP-1 and related metabolic therapies and then extends to broader drug classes.
+            The engine can:
+        </p>
+        <ul>
+            <li>Compare different GLP-1 options (e.g. Ozempic, Wegovy, Mounjaro) from a safety and suitability angle</li>
+            <li>Highlight key differences such as dosing rhythm, indication, common side effects, and escalation patterns</li>
+            <li>Map high-level benefit–risk considerations (non-diagnostic, non-prescriptive)</li>
+            <li>Prepare structured summaries that clinicians can use during real consultations</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>How It Feels for Users</h2>
+        <p>
+            For individuals and families, Phase 2 is not a medical calculator.
+            It is a <strong>clarity layer</strong> sitting on top of confusing drug names and claims.
+        </p>
+        <ul>
+            <li>Plain-language explanations of what each medication is intended to do</li>
+            <li>Simple comparisons (e.g. “weekly injection vs daily tablet”, “weight focus vs diabetes focus”)</li>
+            <li>Safety prompts like “this is a conversation to have with your doctor if you have X or Y condition”</li>
+            <li>Guidance delivered through <strong>Elisa</strong> in a calm, non-judgmental way</li>
+        </ul>
+        <p>
+            Phase 2 never tells users which medication to take, never adjusts doses,
+            and never replaces the doctor–patient decision.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>How It Works for Clinicians & Clinics</h2>
+        <p>
+            For clinicians, Phase 2 is a structured background engine that helps them:
+        </p>
+        <ul>
+            <li>See a consolidated view of relevant medication options for a given profile (e.g. GLP-1, SGLT2, or others later)</li>
+            <li>Review key compatibility and high-level caution markers (e.g. kidney disease, pregnancy, severe GI issues)</li>
+            <li>Receive a concise, printable or shareable summary to support shared decision-making with the patient</li>
+        </ul>
+        <p>
+            Over time, Phase 2 can connect to national formularies, hospital guidelines, and
+            health-authority restrictions, while keeping the final choice firmly with clinicians.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>Safety, Limits & Governance</h2>
+        <p>
+            Phase 2 follows strict safety boundaries:
+        </p>
+        <ul>
+            <li><strong>Non-diagnostic:</strong> never labels or confirms a disease.</li>
+            <li><strong>Non-prescriptive:</strong> never chooses or adjusts a specific medication or dose.</li>
+            <li><strong>Evidence-grounded:</strong> anchored in guideline-style data and transparent sources.</li>
+            <li><strong>Zero-trust & audit-ready:</strong> every query and generated summary can be logged
+                and later inspected through Phase 4 and Phase 8.</li>
+        </ul>
+        <p>
+            The engine is built so that ministries, hospitals and regulators can see clearly how
+            medication comparisons are generated, and where its boundaries are.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>Connection to the Wider Elisence Platform</h2>
+        <p>
+            Phase 2 does not work in isolation; it is designed to sit between real-world data and real-world decisions.
+        </p>
+        <ul>
+            <li><strong>Phase 1:</strong> uses the weight, symptoms and GLP-1 history to add context to choices</li>
+            <li><strong>Phase 3:</strong> converts chosen treatment plans into daily care, reminders and follow-up</li>
+            <li><strong>Phase 7:</strong> respects women’s health specifics when considering safety and pathways</li>
+            <li><strong>Phase 8:</strong> feeds anonymised patterns into risk engines and national dashboards</li>
+            <li><strong>Phase 9:</strong> links diabetes-specific needs (HbA1c, hypoglycaemia risk, comorbidities)</li>
+            <li><strong>Phase 16:</strong> aligns medication decisions with nutrition and lifestyle recommendations</li>
+        </ul>
+        <p>
+            In short, Phase 2 is the <strong>medication choice layer</strong> inside Elisence –
+            always supportive, always transparent, always within safe boundaries.
+        </p>
+    </section>
+</main>
+
+</body>
+</html>
