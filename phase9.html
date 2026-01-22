@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elisence – Phase 9: Diabetes & Metabolic Health Engine</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #020617;
+            color: #e5f2ff;
+            line-height: 1.6;
+        }
+
+        /* ======= HEADER ======= */
+        header {
+            background-color: #020617;
+            padding: 1.8rem 0;
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.14rem;
+        }
+
+        .brand-sub {
+            font-size: 0.85rem;
+            color: #38bdf8;
+        }
+
+        nav.main-nav {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        nav.main-nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.92rem;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase;
+        }
+
+        nav.main-nav a:hover {
+            color: #38bdf8;
+            text-decoration: underline;
+        }
+
+        nav.main-nav a.active {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        /* ======= MAIN CONTENT ======= */
+        main {
+            max-width: 1100px;
+            margin: 2.4rem auto 3.2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .phase-label {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12rem;
+            color: #94a3b8;
+            margin-bottom: 0.4rem;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #e0f2fe;
+            margin-bottom: 1.8rem;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #7dd3fc;
+            margin-bottom: 0.8rem;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.96);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55);
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card h3 {
+            margin-top: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+            color: #bae6fd;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.35rem;
+            font-size: 0.94rem;
+        }
+
+        .highlight-box {
+            border-left: 3px solid #38bdf8;
+            padding-left: 0.9rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: #e0f2fe;
+        }
+
+        .subtle {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 900px) {
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            nav.main-nav {
+                flex-wrap: wrap;
+                gap: 1.1rem;
+            }
+
+            main {
+                padding: 0 1.2rem;
+            }
+
+            .card {
+                padding: 1.5rem 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="brand-block">
+            <span class="brand-title">ELISENCE</span>
+            <span class="brand-sub">Global Digital Health & Humanity Platform</span>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#phases" class="active">Phases</a>
+            <a href="about.html">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="story.html">Story</a>
+            <a href="videos.html">Videos</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <div class="phase-label">PHASE 9</div>
+    <h1>Diabetes &amp; Metabolic Health Engine</h1>
+
+    <p class="lead">
+        Phase 9 is the <strong>Diabetes &amp; Metabolic Health brain</strong> of Elisence – a governed, non-diagnostic
+        engine that understands glucose, weight, GLP-1 journeys and metabolic risk, and turns them into safe, structured,
+        multilingual intelligence for citizens, clinicians and ministries.
+    </p>
+
+    <p class="tagline">
+        Built for GLP-1 and diabetes at scale – Zero-Trust, multi-language, regulator-ready, and fully integrated with
+        the rest of Elisence.
+    </p>
+
+    <!-- 1. WHAT PHASE 9 IS -->
+    <section class="card">
+        <h2>1. What Phase 9 Is</h2>
+        <p>
+            Phase 9 is the Diabetes &amp; Metabolic Health Engine of Elisence. It focuses on:
+        </p>
+        <ul>
+            <li>Type 2 diabetes and pre-diabetes.</li>
+            <li>GLP-1–based weight-loss programmes and obesity management.</li>
+            <li>Metabolic risk for citizens using medication, lifestyle changes or both.</li>
+        </ul>
+        <p>
+            It is:
+        </p>
+        <ul>
+            <li><strong>Non-diagnostic by design</strong> – it never replaces a doctor or prescribes treatment.</li>
+            <li><strong>Risk-oriented and education-oriented</strong> – built to support safe decisions, not make them.</li>
+            <li><strong>Multi-language</strong> – designed from day one for EN, FA, AR, TR, RO.</li>
+            <li><strong>Globally compliant</strong> – aligned with NHS, FDA, EU MDR and GCC/PDPL expectations.</li>
+        </ul>
+        <p class="highlight-box">
+            In one line: Phase 9 turns fragmented diabetes and metabolic data into safe, explainable intelligence that
+            supports citizens, clinicians and ministries without becoming a diagnostic device.
+        </p>
+    </section>
+
+    <!-- 2. TECHNICAL CORE -->
+    <section class="card">
+        <h2>2. Technical Core — How Phase 9 Works</h2>
+        <p>
+            The Phase 9 engine brings together multiple data sources and transforms them into structured risk views.
+        </p>
+
+        <h3>2.1 Inputs (Signals into the Engine)</h3>
+        <ul>
+            <li>Blood glucose logs (fingerstick, CGM, manual entries).</li>
+            <li>HbA1c values and other lab markers (via Phase 8 – Blood Core).</li>
+            <li>Weight curves and BMI trends (linked to Phase 3 – Weight &amp; Care).</li>
+            <li>Medication data (GLP-1, insulin, oral agents) via Phase 6 – Global Medication Brain.</li>
+            <li>Lifestyle signals: activity, steps, sleep, nutrition patterns.</li>
+            <li>Symptoms and PRO: hypo/hyper feelings, dizziness, thirst, fatigue.</li>
+        </ul>
+
+        <h3>2.2 Core Diabetes &amp; GLP-1 Logic</h3>
+        <ul>
+            <li>Risk tagging: tags for hypo-risk, hyper-risk, volatility, poor adherence, fast weight change, etc.</li>
+            <li>Threshold ladders: jurisdiction-aware ranges for glucose, A1c and weight dynamics.</li>
+            <li>Trend detection: improving, stable, or deteriorating metabolic patterns.</li>
+            <li>Zero-Trust checks: low-quality or conflicting data is flagged, not silently accepted.</li>
+        </ul>
+
+        <h3>2.3 Outputs (What the Engine Produces)</h3>
+        <ul>
+            <li>Structured risk snapshots for each user (non-diagnostic, explainable).</li>
+            <li>Safe textual explanations in five languages, adapted to role and country.</li>
+            <li>Flags for Elisa (Phase 5) to speak about risk in a calm, supportive tone.</li>
+            <li>Aggregated analytics for clinics and ministries (when enabled) via Phase 8.</li>
+        </ul>
+    </section>
+
+    <!-- 3. SAFETY & REGULATION -->
+    <section class="card">
+        <h2>3. Safety &amp; Regulatory Posture</h2>
+        <p>
+            Phase 9 is designed from the start to be safe for citizens and comfortable for regulators.
+        </p>
+
+        <h3>3.1 Dual-Mode Design</h3>
+        <ul>
+            <li><strong>Wellness / Education Mode (default)</strong>
+                <ul>
+                    <li>Always ON and ready to deploy to the public.</li>
+                    <li>Provides education, lifestyle guidance and gentle risk awareness.</li>
+                    <li>No diagnosis, no treatment decisions, no numerical risk promises.</li>
+                </ul>
+            </li>
+            <li><strong>Medical-Adjacent Mode (restricted)</strong>
+                <ul>
+                    <li>Provides tighter thresholds, structured risk views and dashboards.</li>
+                    <li>OFF by default and only enabled by ministries or accredited clinical partners.</li>
+                    <li>Controlled through feature flags, environment variables and governance.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>3.2 Alignment with Major Frameworks</h3>
+        <ul>
+            <li><strong>NHS</strong> – aligned with diabetes self-management and safety messaging guidelines.</li>
+            <li><strong>FDA Non-Device CDS</strong> – users can understand the basis of outputs; no opaque decisions.</li>
+            <li><strong>EU MDR</strong> – stays outside direct diagnosis/prescription; built as decision support and education.</li>
+            <li><strong>GCC / PDPL</strong> – supports data residency, privacy and public-health analytics boundaries.</li>
+        </ul>
+
+        <h3>3.3 Zero-Trust &amp; BBVP</h3>
+        <ul>
+            <li>Zero-Trust: no guessing of values; uncertainty is surfaced and users are asked for clarification.</li>
+            <li>BBVP (Build-Back-Verify-Prove): each engine and threshold must be tested and evidenced before being claimed as DONE.</li>
+        </ul>
+    </section>
+
+    <!-- 4. DATABASE & STRUCTURE -->
+    <section class="card">
+        <h2>4. Data Structures &amp; Evidence Layer</h2>
+        <p>
+            Phase 9 uses clearly defined schemas that make every decision traceable and auditable.
+        </p>
+        <ul>
+            <li><strong>diabetes_profiles</strong> – long-term context: diagnosis status, type, duration, comorbidities.</li>
+            <li><strong>glucose_events</strong> – timestamped readings with source, units and confidence.</li>
+            <li><strong>medication_intakes</strong> – linked to Phase 6 with dose, timing and confidence flags.</li>
+            <li><strong>lifestyle_events</strong> – activity, sleep, nutrition, stress markers.</li>
+            <li><strong>risk_snapshots</strong> – frozen views of risk tags, thresholds and explanations at each evaluation.</li>
+            <li><strong>audit_logs</strong> – WORM-style logs for regulators and internal QA.</li>
+        </ul>
+        <p class="subtle">
+            This structure allows a regulator or ministry to see exactly how a risk message was generated, which signals
+            were used, and which thresholds were applied.
+        </p>
+    </section>
+
+    <!-- 5. INTEGRATION WITH OTHER PHASES -->
+    <section class="card">
+        <h2>5. Integration with Other Phases</h2>
+        <p>Phase 9 is deeply connected to the rest of Elisence:</p>
+
+        <h3>5.1 Phase 4 — Governance &amp; Analytics</h3>
+        <ul>
+            <li>Diabetes risk results flow into comparative intelligence and RWE analytics.</li>
+            <li>WORM ledger and provenance ensure traceable exports and dashboards.</li>
+        </ul>
+
+        <h3>5.2 Phase 5 — Elisa Personality &amp; Dopamine</h3>
+        <ul>
+            <li>Elisa uses Phase 9 signals to coach users kindly about risk, adherence and lifestyle.</li>
+            <li>Healthy Dopamine engine rewards safe behaviours (logging, movement, checks), not extremes.</li>
+        </ul>
+
+        <h3>5.3 Phase 6 — Global Medication Brain</h3>
+        <ul>
+            <li>Medication understanding (names, doses, timing) is delegated to Phase 6.</li>
+            <li>Phase 9 uses structured medication events to reason about GLP-1 and diabetes regimens.</li>
+        </ul>
+
+        <h3>5.4 Phase 7 — Women+ &amp; Phase 8 — AHE</h3>
+        <ul>
+            <li>Women+ pathways include metabolic and pregnancy-related diabetes, feeding back into Phase 9 rules.</li>
+            <li>AHE Core-2 (blood) and Core-3 (diabetes) reuse the Phase 9 logic for national dashboards and risk engines.</li>
+        </ul>
+
+        <h3>5.5 Phase 13 — Voice / Zero-Typing</h3>
+        <ul>
+            <li>Citizens can speak naturally (“Elisa, my sugar was 210 after dinner”).</li>
+            <li>Speech is transcribed, interpreted by Phase 6 &amp; 9, then turned into safe, voice-ready explanations.</li>
+        </ul>
+    </section>
+
+    <!-- 6. REAL-WORLD USE CASES -->
+    <section class="card">
+        <h2>6. How Phase 9 Is Used in Real Life</h2>
+
+        <h3>6.1 Citizens</h3>
+        <ul>
+            <li>Track glucose, weight and medications with minimal friction (including voice).</li>
+            <li>Receive gentle, multilingual explanations about patterns: “improving”, “stable”, “needs attention”.</li>
+            <li>Get nudges to move, hydrate, sleep better and speak to clinicians earlier.</li>
+        </ul>
+
+        <h3>6.2 Women+ Users</h3>
+        <ul>
+            <li>Women using GLP-1 or at risk of gestational diabetes get integrated support via Phases 7 and 9.</li>
+            <li>Signals are handled with extra caution and clear non-diagnostic language.</li>
+        </ul>
+
+        <h3>6.3 Clinicians &amp; Clinics (when enabled)</h3>
+        <ul>
+            <li>View structured risk summaries, trend charts and adherence patterns for their own patients.</li>
+            <li>Use Elisence as a time-saving intake and context layer, not as an automatic decision-maker.</li>
+        </ul>
+
+        <h3>6.4 Ministries &amp; Public-Health Teams</h3>
+        <ul>
+            <li>Monitor anonymised GLP-1 adoption, adherence and metabolic trends at population level.</li>
+            <li>Evaluate impact of national programmes (education, medication access, lifestyle campaigns).</li>
+        </ul>
+    </section>
+
+    <!-- 7. INVESTOR & REGULATOR QUESTIONS -->
+    <section class="card">
+        <h2>7. Investor &amp; Regulator Questions</h2>
+
+        <h3>Liability — “Are you acting like a virtual doctor?”</h3>
+        <p>
+            <strong>Answer:</strong> No. Phase 9 never diagnoses or prescribes. It provides structured risk awareness and
+            educational guidance, with clear “this is not a diagnosis” posture in every jurisdiction.
+        </p>
+
+        <h3>Safety — “What about hypo/hyper-glycaemia risk?”</h3>
+        <p>
+            <strong>Answer:</strong> Potentially dangerous patterns trigger strong escalation messages (“seek urgent
+            medical help”, “contact your clinician”), not home treatment instructions or dose changes.
+        </p>
+
+        <h3>Data Quality &amp; Bias — “Can we trust the numbers?”</h3>
+        <p>
+            <strong>Answer:</strong> All data goes through Zero-Trust cleaning; low-quality or conflicting data is flagged,
+            and risk outputs clearly indicate uncertainty. Thresholds are calibrated to avoid dangerous false reassurance.
+        </p>
+
+        <h3>Scalability — “Can this handle national-scale data?”</h3>
+        <p>
+            <strong>Answer:</strong> Phase 9 is designed for pre-computation of aggregates, efficient querying and horizontal
+            scaling, so ministries can monitor millions of events per day.
+        </p>
+
+        <h3>Jurisdiction Switching — “How do you handle UK vs EU vs GCC?”</h3>
+        <p>
+            <strong>Answer:</strong> The engine reads jurisdiction from Passport (country, system) and applies appropriate
+            ranges, wording and policy boundaries per deployment.
+        </p>
+
+        <h3>Voice — “Is voice safe in multiple languages?”</h3>
+        <p>
+            <strong>Answer:</strong> Voice (Phase 13) is governed by the same safety rules. Low ASR confidence or unclear
+            phrases lead to clarification prompts, not silent assumptions.
+        </p>
+    </section>
+
+    <!-- 8. GCC & NATIONAL STRATEGY ANGLE -->
+    <section class="card">
+        <h2>8. GCC, Qatar &amp; Saudi – National Diabetes Strategy Partner</h2>
+        <p>
+            For GCC markets, Phase 9 is designed as a strategic partner for national diabetes and obesity programmes:
+        </p>
+        <ul>
+            <li>Supports GLP-1 programmes, lifestyle interventions and early-risk awareness.</li>
+            <li>Respects cultural context: diet patterns, family structures, Ramadan rhythms and activity habits.</li>
+            <li>Provides five-language capability and deep Arabic &amp; Farsi support at engine level.</li>
+            <li>Allows governments to start in safe wellness mode, then gradually activate advanced features when governance is ready.</li>
+            <li>Integrates with hospital systems and future national registries through Phase 4 &amp; 8 infrastructure.</li>
+        </ul>
+    </section>
+
+    <!-- 9. FINAL POSITION -->
+    <section class="card">
+        <h2>9. Final Position Statement</h2>
+        <p>
+            Phase 9 makes Elisence a serious, governed partner for diabetes and metabolic health:
+        </p>
+        <ul>
+            <li><strong>For citizens</strong> – a calm, multilingual companion that explains risk and supports healthier choices.</li>
+            <li><strong>For clinicians</strong> – a structured, explainable context layer, not a competing “AI doctor”.</li>
+            <li><strong>For ministries</strong> – a scalable, privacy-respecting engine for national metabolic intelligence.</li>
+        </ul>
+        <p>
+            It is zero-hype, evidence-based, regulator-friendly and commercially attractive – ready to sit at the centre
+            of national GLP-1 and diabetes strategies in Qatar, Saudi Arabia, the wider GCC and beyond.
+        </p>
+    </section>
+
+</main>
+
+</body>
+</html>
