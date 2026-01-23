@@ -1,648 +1,371 @@
 <!DOCTYPE html>
-<html lang="en" id="top">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elisence – Trusted Health Intelligence</title>
+    <meta charset="UTF-8" />
+    <title>Elisence – Global Digital Health & Humanity Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style>
-        /* ====== RESET ساده ====== */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
         }
 
         body {
+            min-height: 100vh;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #071324 0%, #02040a 45%, #000000 100%);
-            color: #f5f7ff;
-            -webkit-font-smoothing: antialiased;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* ====== لایه کلی صفحه ====== */
-        .page-wrap {
+        /* --- صفحه کلی --- */
+        .page-wrapper {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-        }
-
-        /* ====== نوار بالا (لوگو + منو) ====== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 20;
-            padding: 14px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            backdrop-filter: blur(18px);
-            background: linear-gradient(
-                to bottom,
-                rgba(3, 10, 25, 0.88),
-                rgba(3, 10, 25, 0.70),
-                transparent
-            );
-            border-bottom: 1px solid rgba(120, 160, 255, 0.18);
-        }
-
-        /* لوگو کوچک در هدر (متفاوت از باکس اصلی وسط صفحه) */
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header-logo-mark {
-            width: 28px;
-            height: 28px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 0%, #19d0ff, #0055ff 60%, #001030 100%);
-            box-shadow: 0 0 18px rgba(0, 180, 255, 0.9);
-        }
-
-        .header-logo-text {
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #e6f1ff;
-        }
-
-        /* ====== منوی راست با افکت Glow و بادکردن ====== */
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-link {
-            position: relative;
-            padding: 8px 18px;
-            border-radius: 999px;
-            border: 1px solid rgba(135, 180, 255, 0.25);
-            background: radial-gradient(circle at 0% 0%, rgba(35, 120, 255, 0.55), rgba(3, 10, 25, 0.9));
-            font-size: 13px;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #f5fbff;
-            cursor: pointer;
-            overflow: hidden;
-            box-shadow:
-                0 0 0 rgba(0, 180, 255, 0),
-                0 0 0 rgba(0, 0, 0, 0.4);
-            transition:
-                transform 0.18s ease,
-                box-shadow 0.18s ease,
-                background 0.18s ease,
-                border-color 0.18s ease;
-        }
-
-        .nav-link::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.18), transparent 55%);
-            opacity: 0;
-            transition: opacity 0.18s ease;
-        }
-
-        .nav-link:hover {
-            transform: translateY(-1px) scale(1.05); /* افکت بادکردن */
-            border-color: rgba(170, 210, 255, 0.9);
-            background: radial-gradient(circle at 5% 0%, rgba(90, 210, 255, 0.85), rgba(3, 10, 25, 0.96));
-            box-shadow:
-                0 0 22px rgba(0, 190, 255, 0.9),
-                0 18px 40px rgba(0, 0, 0, 0.8);
-        }
-
-        .nav-link:hover::before {
-            opacity: 1;
-        }
-
-        .nav-link--primary {
-            border-color: rgba(0, 204, 255, 0.9);
-            background: radial-gradient(circle at 0% 0%, #19d0ff, #0059ff);
-            box-shadow: 0 0 18px rgba(0, 180, 255, 0.7);
-        }
-
-        .nav-link--primary:hover {
-            box-shadow:
-                0 0 26px rgba(0, 220, 255, 1),
-                0 18px 46px rgba(0, 0, 0, 0.9);
-        }
-
-        /* ====== Hero (لوگو اصلی وسط صفحه) ====== */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .hero {
-            min-height: 100vh;
-            padding: 120px 40px 60px;
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 30px;
+            padding: 40px 40px 60px 40px;
         }
 
-        /* 🟦 باکس لوگو – اینجا Wide تر شده */
-        .logo-box {
-            position: relative;
+        /* فضای خالی برای منوی سمت راست */
+        .hero-area {
             width: 100%;
-            max-width: 560px;   /* ⬅ قبلاً باریک‌تر بوده، الان پهن‌تر شد */
-            height: 220px;      /* ⬅ ارتفاع تقریباً ثابت */
-            border-radius: 28px;
-            padding: 22px 26px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 10px;
-            background: radial-gradient(circle at 0% 0%, rgba(40, 150, 255, 0.18), rgba(5, 15, 40, 0.96));
+            max-width: 960px;
+            margin-right: 170px; /* جا برای منوی عمودی */
+        }
+
+        /* --- کارت مرکزی (لوگو + متن) --- */
+        .hero-card {
+            max-width: 540px;
+            margin: 0 auto 32px auto;
+            padding: 32px 40px 32px 40px;
+            border-radius: 26px;
+            background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
             box-shadow:
-                0 0 30px rgba(0, 180, 255, 0.8),   /* Glow اصلی آبی */
-                0 22px 60px rgba(0, 0, 0, 0.9);
-            border: 1px solid rgba(120, 170, 255, 0.32);
-            overflow: hidden;
+                0 0 45px rgba(0, 170, 255, 0.85),
+                0 0 120px rgba(0, 80, 200, 0.65);
+            text-align: center;
+            border: 1px solid rgba(70, 190, 255, 0.6);
         }
 
-        .logo-box::before {
-            content: "";
-            position: absolute;
-            inset: -40%;
-            background:
-                radial-gradient(circle at 0% 0%, rgba(70, 210, 255, 0.3), transparent 55%),
-                radial-gradient(circle at 80% 120%, rgba(0, 90, 255, 0.3), transparent 60%);
-            opacity: 0.75;
-            pointer-events: none;
+        .hero-logo-orb {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 20%, #35c8ff, #005cff 55%, #001430 100%);
+            box-shadow: 0 0 32px rgba(0, 180, 255, 0.9);
         }
 
-        .logo-inner {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 22px;
-        }
-
-        .hero-logo-mark {
-            width: 86px;
-            height: 86px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 0%, #19d0ff, #0055ff 60%, #000a30 100%);
-            box-shadow:
-                0 0 34px rgba(0, 190, 255, 1),
-                0 0 120px rgba(0, 80, 255, 0.9);
-        }
-
-        .hero-logo-text-block {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .hero-logo-title {
-            font-size: 26px;
-            font-weight: 650;
-            letter-spacing: 0.08em;
+        .hero-title {
+            font-size: 30px;
+            letter-spacing: 0.24em;
+            font-weight: 700;
             text-transform: uppercase;
+            margin-bottom: 8px;
         }
 
-        .hero-logo-sub {
+        .hero-subtitle {
             font-size: 14px;
-            opacity: 0.88;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #a5d7ff;
+            margin-bottom: 16px;
         }
 
         .hero-tagline {
-            margin-top: 16px;
-            font-size: 14px;
-            opacity: 0.9;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #d4e8ff;
         }
 
-        /* متن کنار/زیر لوگو */
-        .hero-text {
-            max-width: 720px;
-            text-align: center;
-            font-size: 17px;
-            line-height: 1.6;
-            color: #dbe6ff;
-            opacity: 0.93;
+        .hero-body {
+            margin-top: 18px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #dbefff;
         }
 
         .hero-actions {
+            margin-top: 22px;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 14px;
-            margin-top: 8px;
         }
 
-        .hero-caption {
-            margin-top: 8px;
+        .btn-primary,
+        .btn-secondary {
+            padding: 10px 22px;
+            border-radius: 999px;
             font-size: 13px;
-            opacity: 0.75;
-        }
-
-        /* ====== سکشن Phases ====== */
-        .section {
-            padding: 40px 40px 60px;
-        }
-
-        .section--phases {
-            background: radial-gradient(circle at top, #050a18 0%, #01020a 70%, #000000 100%);
-            border-top: 1px solid rgba(90, 130, 220, 0.35);
-            border-bottom: 1px solid rgba(40, 80, 180, 0.45);
-        }
-
-        .section-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .section-subtitle {
-            font-size: 14px;
-            opacity: 0.8;
-            margin-bottom: 24px;
-            max-width: 720px;
-        }
-
-        .phases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-            gap: 16px;
-        }
-
-        .phase-card {
-            position: relative;
-            padding: 14px 14px 16px;
-            border-radius: 18px;
-            background: radial-gradient(circle at 0% 0%, rgba(45, 140, 255, 0.25), rgba(6, 12, 30, 0.98));
-            border: 1px solid rgba(100, 150, 255, 0.4);
-            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.85);
-        }
-
-        .phase-title {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 4px;
-        }
-
-        .phase-desc {
-            font-size: 13px;
-            opacity: 0.8;
-            margin-bottom: 10px;
-        }
-
-        .phase-link {
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-size: 12px;
+            justify-content: center;
+            white-space: nowrap;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00b4ff, #0075ff);
+            color: #ffffff;
+            box-shadow: 0 0 18px rgba(0, 160, 255, 0.85);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 26px rgba(0, 190, 255, 0.95);
+            background: linear-gradient(135deg, #00c8ff, #1185ff);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 0, 0, 0.45);
+            color: #dbefff;
+            border-color: rgba(118, 190, 255, 0.7);
+            box-shadow: 0 0 14px rgba(0, 80, 200, 0.7);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-1px);
+            background: rgba(0, 30, 90, 0.9);
+            box-shadow: 0 0 20px rgba(0, 140, 255, 0.9);
+        }
+
+        .hero-footnote {
+            margin-top: 26px;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            padding: 6px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(120, 190, 255, 0.8);
-            background: rgba(4, 16, 40, 0.95);
-            cursor: pointer;
-            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+            color: #7fb5ff;
         }
 
-        .phase-link span:last-child {
-            font-size: 12px;
+        .hero-footnote span {
+            opacity: 0.9;
         }
 
-        .phase-link:hover {
-            transform: translateY(-1px) scale(1.03);
-            background: radial-gradient(circle at 0% 0%, rgba(0, 180, 255, 0.9), rgba(4, 16, 40, 1));
-            box-shadow:
-                0 0 16px rgba(0, 180, 255, 0.9),
-                0 10px 28px rgba(0, 0, 0, 0.9);
+        /* --- سکشن‌ها --- */
+        section {
+            max-width: 720px;
+            margin: 40px auto 0 auto;
+            padding: 12px 4px;
         }
 
-        /* ====== فوتر ====== */
-        footer {
-            padding: 18px 40px 22px;
-            font-size: 12px;
-            opacity: 0.65;
+        section h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        section p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #d7e7ff;
+        }
+
+        /* --- منوی عمودی سمت راست --- */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(40, 70, 140, 0.55);
-            background: radial-gradient(circle at top, #050816 0%, #010109 70%);
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
         }
 
-        footer a {
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            text-underline-offset: 3px;
+        .nav-btn {
+            display: block;
+            padding: 9px 26px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.4), rgba(0, 10, 35, 0.95));
+            border: 1px solid rgba(90, 185, 255, 0.85);
+            box-shadow:
+                0 0 12px rgba(0, 130, 255, 0.85),
+                0 0 28px rgba(0, 40, 120, 0.85);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
         }
 
-        /* ====== ریسپانسیو ====== */
-        @media (max-width: 768px) {
-            header {
-                padding: 10px 16px;
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 30px;
+            box-shadow:
+                0 0 18px rgba(0, 190, 255, 0.95),
+                0 0 40px rgba(0, 80, 200, 0.95);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.6), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* نقطه‌ی کوچک بالا (لوگو متنی) */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+        }
+
+        /* ریسپانسیو برای موبایل */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 18px 40px 18px;
             }
 
-            .main-nav {
-                gap: 6px;
+            .hero-area {
+                margin-right: 0;
             }
 
-            .nav-link {
-                padding: 6px 12px;
-                font-size: 11px;
-            }
-
-            .hero {
-                padding: 110px 18px 40px;
-            }
-
-            .logo-box {
-                max-width: 100%;
-                height: auto;
-                min-height: 190px;
-            }
-
-            .logo-inner {
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
                 flex-direction: row;
-                align-items: center;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
             }
 
-            .hero-text {
-                font-size: 15px;
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 11px;
+                letter-spacing: 0.09em;
             }
 
-            .section {
-                padding: 34px 18px 40px;
+            .hero-card {
+                max-width: 100%;
+                padding: 24px 20px;
             }
 
-            footer {
-                padding: 14px 18px 20px;
-                flex-direction: column;
-                gap: 6px;
-                text-align: center;
+            section {
+                margin-top: 30px;
             }
         }
     </style>
 </head>
 <body>
-<div class="page-wrap">
 
-    <!-- ===== هدر ثابت بالا ===== -->
-    <header>
-        <div class="header-logo">
-            <div class="header-logo-mark"></div>
-            <div class="header-logo-text">Elisence</div>
-        </div>
+    <!-- نقطه‌ی بالا و نام ELISENCE -->
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
 
-        <nav class="main-nav">
-            <!-- توجه: لینک Phases اینجاست که درست شده -->
-            <a href="#top" class="nav-link">Home</a>
-            <a href="#phases" class="nav-link">Phases</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="story.html" class="nav-link">Story</a>
-            <a href="video.html" class="nav-link">Videos</a>
-            <a href="contact.html" class="nav-link nav-link--primary">Contact</a>
-        </nav>
-    </header>
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="#home" class="nav-btn">Home</a>
+        <a href="#phases" class="nav-btn">Phases</a>
+        <a href="#about" class="nav-btn">About</a>
+        <a href="#story" class="nav-btn">Story</a>
+        <a href="#videos" class="nav-btn">Videos</a>
+        <a href="#contact" class="nav-btn">Contact</a>
+    </nav>
 
-    <!-- ===== Hero + لوگو اصلی ===== -->
-    <main>
-        <section class="hero">
-            <div class="logo-box">
-                <div class="logo-inner">
-                    <!-- اگر لوگوی تصویری داری، src رو جایگزین کن -->
-                    <!-- <img src="assets/elisence-orb.svg" alt="Elisence Orb" class="hero-logo-mark" /> -->
-                    <div class="hero-logo-mark"></div>
+    <!-- محتوای اصلی -->
+    <div class="page-wrapper" id="home">
+        <div class="hero-area">
+            <div class="hero-card">
+                <div class="hero-logo-orb"></div>
 
-                    <div class="hero-logo-text-block">
-                        <div class="hero-logo-title">Elisence</div>
-                        <div class="hero-logo-sub">Growth · Health · Humanity · Embracing the Future</div>
-                    </div>
-                </div>
+                <div class="hero-title">ELISENCE</div>
+                <div class="hero-subtitle">Growth · Health · Humanity · Embracing the Future</div>
 
                 <p class="hero-tagline">
-                    A trusted, multi-phase health intelligence platform for families, clinicians and governments —
-                    built to be safe, auditable, and ready for real-world healthcare.
+                    A trusted, multi-phase health intelligence platform for families, clinicians and
+                    governments — built to be safe, auditable, and ready for real-world healthcare.
                 </p>
-            </div>
 
-            <p class="hero-text">
-                Elisence brings together weight-loss journeys, diabetes and metabolic health, women’s health,
-                mental health, clinical passports, and secure messaging into one regulated-grade ecosystem.
-                Every phase is designed with audit trails, multi-language support, and evidence packs
-                that ministries, hospitals and investors can verify — not just trust.
-            </p>
+                <p class="hero-body">
+                    Elisence brings together weight-loss journeys, diabetes & metabolic health, women’s health,
+                    mental health, clinical passports, and secure messaging into one regulated-grade ecosystem.
+                    Every phase is designed with audit trails, multi-language support, and evidence packs that
+                    ministries, hospitals and investors can verify — not just trust.
+                </p>
 
-            <div class="hero-actions">
-                <a href="#phases" class="nav-link nav-link--primary">Explore the Phases</a>
-                <a href="video.html" class="nav-link">Watch Explainer Videos</a>
-            </div>
-
-            <div class="hero-caption">
-                Built by Saami — Powered by ChatGPT
-            </div>
-        </section>
-
-        <!-- ===== سکشن Phases با anchor id="phases" ===== -->
-        <section class="section section--phases" id="phases">
-            <h2 class="section-title">Elisence Phases (1–17)</h2>
-            <p class="section-subtitle">
-                Each phase focuses on a specific part of the Elisence journey — from core data ingestion and
-                safety engines to comparative intelligence, attachments, and global nutrition intelligence.
-                Click any phase to see its dedicated page and technical details.
-            </p>
-
-            <div class="phases-grid">
-                <!-- Phase cards — متن‌ها را بعداً می‌توانیم دقیق طبق گزارش‌هایت تنظیم کنیم -->
-                <div class="phase-card">
-                    <div class="phase-title">Phase 1 — Foundations</div>
-                    <div class="phase-desc">Core data engine, stability, and first clinical rails.</div>
-                    <a href="phase1.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
+                <div class="hero-actions">
+                    <a href="#phases" class="btn-primary">Explore the Phases</a>
+                    <a href="#videos" class="btn-secondary">Watch Explainer Videos</a>
                 </div>
 
-                <div class="phase-card">
-                    <div class="phase-title">Phase 2 — GLP-1 / Drug Engine</div>
-                    <div class="phase-desc">Drug selection intelligence around GLP-1 and related therapies.</div>
-                    <a href="phase2.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 3 — Care / Weight-Loss</div>
-                    <div class="phase-desc">Care dashboard, weight-loss journeys, SOS, and daily follow-up.</div>
-                    <a href="phase3.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 4 — Provenance & Integrity</div>
-                    <div class="phase-desc">Data lineage, export bundles, signatures, and WORM audit trails.</div>
-                    <a href="phase4.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 5 — Voice & Dopamine</div>
-                    <div class="phase-desc">Voice interface, reward engine, and habit-forming coaching.</div>
-                    <a href="phase5.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 6 — Mental Health & AHE</div>
-                    <div class="phase-desc">Alignment with AHE, emotional safety and mental health flows.</div>
-                    <a href="phase6.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 7 — Women+</div>
-                    <div class="phase-desc">Cycle, pelvic pain, pregnancy and safety guidance engines.</div>
-                    <a href="phase7.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 8 — AHE Integration</div>
-                    <div class="phase-desc">Official AHE contract, passports and risk validation layers.</div>
-                    <a href="phase8.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 9 — Diabetes & Metabolic</div>
-                    <div class="phase-desc">Diabetes-focused intelligence and metabolic health monitoring.</div>
-                    <a href="phase9.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 10 — Messaging & Attachments</div>
-                    <div class="phase-desc">Secure messaging, profiles, and internal attachments vault.</div>
-                    <a href="phase10.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 11 — Comparative Intelligence</div>
-                    <div class="phase-desc">Efficacy vs safety comparisons and decision-support narratives.</div>
-                    <a href="phase11.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 12 — Charts & Reporting</div>
-                    <div class="phase-desc">Advanced charts, dashboards and regulator-ready reports.</div>
-                    <a href="phase12.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 13 — Global Safety Layer</div>
-                    <div class="phase-desc">Safety cases, hazard logs and DTAC/DTx compliance work.</div>
-                    <a href="phase13.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 14 — Life Map Companion</div>
-                    <div class="phase-desc">Life map, human moments, and day-to-day companion behaviour.</div>
-                    <a href="phase14.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 15 — Global Medication Intelligence</div>
-                    <div class="phase-desc">Medication ontologies, RxNorm, ATC and GNIE prep.</div>
-                    <a href="phase15.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 16 — Global Nutrition & Diet</div>
-                    <div class="phase-desc">GNIE engine for nutrition, diet patterns and culture-aware guidance.</div>
-                    <a href="phase16.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
-                </div>
-
-                <div class="phase-card">
-                    <div class="phase-title">Phase 17 — Future Expansion</div>
-                    <div class="phase-desc">Reserved for future modules and research-grade extensions.</div>
-                    <a href="phase17.html" class="phase-link">
-                        <span>Open</span>
-                        <span>➜</span>
-                    </a>
+                <div class="hero-footnote">
+                    <span>Built by Saami — Powered by ChatGPT</span>
                 </div>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <div>
-            © <span id="year"></span> Elisence. All rights reserved.
+            <!-- سکشن‌های پایین صفحه -->
+            <section id="phases">
+                <h2>Phases Overview</h2>
+                <p>
+                    Elisence is organised into multiple phases — from weight-loss and GLP-1 optimisation, through
+                    women’s health, mental health, passports and hospital-grade attachments, all the way to global
+                    nutrition intelligence. Each phase can be used on its own, but is even stronger when connected:
+                    data, evidence packs and safety rules are shared across the platform.
+                </p>
+            </section>
+
+            <section id="about">
+                <h2>About Elisence</h2>
+                <p>
+                    Elisence is designed as a global digital health & humanity platform: simple for citizens, powerful
+                    for clinicians and ministries. The core principles are safety, transparency, auditability and
+                    respect for people’s time, culture and language.
+                </p>
+            </section>
+
+            <section id="story">
+                <h2>The Story</h2>
+                <p>
+                    Elisence began as a personal mission to build something better than the fragmented, unsafe digital
+                    tools most people live with today. Over time, it grew into a multi-phase platform that families,
+                    hospitals and governments can rely on for real, everyday decisions — not just demos.
+                </p>
+            </section>
+
+            <section id="videos">
+                <h2>Explainer Videos</h2>
+                <p>
+                    Here you can add short explainer videos for each phase — showing how the system works for citizens,
+                    clinicians and ministries. For now, this section is a placeholder for your upcoming Phase-by-Phase
+                    videos.
+                </p>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>
+                    For partnership, investment or government collaboration enquiries, Elisence will provide a dedicated
+                    contact channel. Until then, this section can link to your email, WhatsApp Business, or a secure
+                    contact form.
+                </p>
+            </section>
         </div>
-        <div>
-            For ministries, hospitals and investors: see full technical dossiers in each Phase page.
-        </div>
-    </footer>
-</div>
-
-<script>
-    // سال فوتر
-    document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
+    </div>
 </body>
 </html>
