@@ -1,300 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elisence – Global Digital Health & Humanity Platform</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style>
-        * {
-            box-sizing: border-box;
+        body {
             margin: 0;
             padding: 0;
+            background-color: #000814;
+            color: #e8f4fc;
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        body {
-            min-height: 100vh;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        /* صفحه کلی */
-        .page-wrapper {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 40px 60px 40px;
-        }
-
-        /* فضای محتوای اصلی، با جا برای منوی راست */
-        .hero-area {
-            width: 100%;
-            max-width: 960px;
-            margin-right: 190px; /* فضای کافی برای منوی عمودی */
-        }
-
-        /* کارت مرکزی (لوگو + متن) */
-        .hero-card {
-            max-width: 540px;
-            margin: 0 auto;
-            padding: 32px 40px 32px 40px;
-            border-radius: 26px;
-            background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
-            box-shadow:
-                0 0 45px rgba(0, 170, 255, 0.85),
-                0 0 120px rgba(0, 80, 200, 0.65);
+        /* ---- CENTER LOGO BOX (BIGGER + STRONGER GLOW) ---- */
+        .hero-container {
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            border: 1px solid rgba(70, 190, 255, 0.6);
         }
 
-        .hero-logo-orb {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px auto;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 20%, #35c8ff, #005cff 55%, #001430 100%);
-            box-shadow: 0 0 40px rgba(0, 180, 255, 0.95);
+        .hero-container img {
+            width: 820px;        /* <<< BIGGER BOX  */
+            max-width: 94%;
+            border-radius: 20px;
+
+            filter:
+                drop-shadow(0 0 35px rgba(0, 160, 255, 1))
+                drop-shadow(0 0 75px rgba(0, 120, 255, 0.75))
+                drop-shadow(0 0 140px rgba(0, 80, 200, 0.55));
         }
 
         .hero-title {
-            font-size: 30px;
-            letter-spacing: 0.24em;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-top: 1.3rem;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+            color: #4db8ff;
+            text-shadow:
+                0 0 14px rgba(0, 150, 255, 0.85),
+                0 0 28px rgba(0, 100, 220, 0.75);
         }
 
-        .hero-subtitle {
-            font-size: 14px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: #a5d7ff;
-            margin-bottom: 16px;
-        }
-
-        .hero-tagline {
-            font-size: 13px;
-            line-height: 1.5;
-            color: #d4e8ff;
-        }
-
-        .hero-body {
-            margin-top: 18px;
-            font-size: 13px;
-            line-height: 1.7;
-            color: #dbefff;
-        }
-
-        .hero-actions {
-            margin-top: 22px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-
-        .btn-primary,
-        .btn-secondary {
-            padding: 10px 24px;
-            border-radius: 999px;
-            font-size: 13px;
-            border: 1px solid transparent;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #00b4ff, #0075ff);
-            color: #ffffff;
-            box-shadow: 0 0 18px rgba(0, 160, 255, 0.85);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 0 26px rgba(0, 190, 255, 0.95);
-            background: linear-gradient(135deg, #00c8ff, #1185ff);
-        }
-
-        .btn-secondary {
-            background: rgba(0, 0, 0, 0.45);
-            color: #dbefff;
-            border-color: rgba(118, 190, 255, 0.7);
-            box-shadow: 0 0 14px rgba(0, 80, 200, 0.7);
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-1px);
-            background: rgba(0, 30, 90, 0.9);
-            box-shadow: 0 0 20px rgba(0, 140, 255, 0.9);
-        }
-
-        .hero-footnote {
-            margin-top: 26px;
-            text-align: center;
-            font-size: 11px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: #7fb5ff;
-        }
-
-        .hero-footnote span {
-            opacity: 0.9;
-        }
-
-        /* منوی عمودی سمت راست */
-        .side-nav {
-            position: fixed;
-            right: 32px;
+        /* ---- RIGHT-SIDE MENU ---- */
+        .side-menu {
+            position: absolute;
             top: 50%;
+            right: 40px;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            z-index: 999;
+            gap: 18px;
         }
 
-        .nav-btn {
+        .side-menu a {
             display: block;
-            padding: 13px 38px; /* بزرگ‌تر */
+            min-width: 160px;
+            padding: 0.8rem 1.6rem;
+
             border-radius: 999px;
+            border: 1px solid rgba(0, 200, 255, 0.4);
+
+            background: radial-gradient(circle at 30% 0%,
+                rgba(0, 180, 255, 0.28),
+                rgba(0, 10, 40, 0.98)
+            );
+
+            color: #e8f4fc;
+            font-size: 0.95rem;
+            text-transform: uppercase;
             text-decoration: none;
-            font-size: 14px;    /* فونت درشت‌تر */
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: #e3f2ff;
-            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
-            border: 1px solid rgba(90, 185, 255, 0.9);
+            text-align: center;
+
+            backdrop-filter: blur(6px);
+
             box-shadow:
-                0 0 16px rgba(0, 130, 255, 0.95),
-                0 0 34px rgba(0, 40, 120, 0.95);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+                0 0 14px rgba(0, 180, 255, 0.55),
+                0 0 45px rgba(0, 120, 255, 0.35);
+
+            transition:
+                background 0.22s ease,
+                box-shadow 0.22s ease,
+                transform 0.22s ease,
+                border-color 0.22s ease;
         }
 
-        .nav-btn:hover {
-            transform: translateX(-4px);
-            padding-right: 44px;
+        .side-menu a:hover {
+            background: radial-gradient(circle at 30% 0%,
+                rgba(0, 210, 255, 0.7),
+                rgba(0, 20, 70, 1)
+            );
+
+            border-color: rgba(0, 230, 255, 0.95);
+
+            transform: translateX(-4px) scale(1.06);
+
             box-shadow:
-                0 0 22px rgba(0, 190, 255, 1),
-                0 0 46px rgba(0, 80, 200, 1);
-            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+                0 0 22px rgba(0, 230, 255, 0.95),
+                0 0 70px rgba(0, 190, 255, 0.85);
         }
 
-        .nav-btn:active {
-            transform: translateX(-2px) scale(0.99);
+        .side-menu a:active {
+            transform: translateX(-2px) scale(0.97);
         }
 
-        /* نقطه و متن کوچک بالا */
-        .top-dot {
-            position: fixed;
-            left: 18px;
-            top: 18px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
-            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
-        }
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .hero-container img { width: 380px; }
+            .hero-title { font-size: 1.4rem; }
 
-        .top-dot-label {
-            position: fixed;
-            left: 40px;
-            top: 16px;
-            font-size: 14px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: #a9d4ff;
-        }
-
-        /* ریسپانسیو برای موبایل */
-        @media (max-width: 900px) {
-            .page-wrapper {
-                padding: 80px 18px 40px 18px;
+            .side-menu {
+                right: 14px;
+                gap: 12px;
             }
-
-            .hero-area {
-                margin-right: 0;
-            }
-
-            .side-nav {
-                position: fixed;
-                right: 50%;
-                top: auto;
-                bottom: 18px;
-                transform: translateX(50%);
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 8px;
-            }
-
-            .nav-btn {
-                padding: 9px 20px;
-                font-size: 11px;
-                letter-spacing: 0.11em;
-            }
-
-            .hero-card {
-                max-width: 100%;
-                padding: 24px 20px;
+            .side-menu a {
+                min-width: 120px;
+                padding: 0.6rem 1.1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- نقطه و نام ELISENCE بالا -->
-    <div class="top-dot"></div>
-    <div class="top-dot-label">ELISENCE</div>
+    <!-- CENTERED LOGO + TITLE -->
+    <div class="hero-container">
+        <img src="elisence.png" alt="Elisence Logo">
+        <div class="hero-title">Global Digital Health & Humanity Platform</div>
+    </div>
 
-    <!-- منوی عمودی سمت راست با لینک به صفحه‌های جدا -->
-    <nav class="side-nav">
-        <a href="index.html"   class="nav-btn">Home</a>
-        <a href="phases.html"  class="nav-btn">Phases</a>
-        <a href="about.html"   class="nav-btn">About</a>
-        <a href="story.html"   class="nav-btn">Story</a>
-        <a href="video.html"   class="nav-btn">Videos</a>
-        <a href="contact.html" class="nav-btn">Contact</a>
-    </nav>
-
-    <!-- محتوای اصلی -->
-    <div class="page-wrapper">
-        <div class="hero-area">
-            <div class="hero-card">
-                <div class="hero-logo-orb"></div>
-
-                <div class="hero-title">ELISENCE</div>
-                <div class="hero-subtitle">Growth · Health · Humanity · Embracing the Future</div>
-
-                <p class="hero-tagline">
-                    A trusted, multi-phase health intelligence platform for families, clinicians and
-                    governments — built to be safe, auditable, and ready for real-world healthcare.
-                </p>
-
-                <p class="hero-body">
-                    Elisence brings together weight-loss journeys, diabetes & metabolic health, women’s health,
-                    mental health, clinical passports, and secure messaging into one regulated-grade ecosystem.
-                    Every phase is designed with audit trails, multi-language support, and evidence packs that
-                    ministries, hospitals and investors can verify — not just trust.
-                </p>
-
-                <div class="hero-actions">
-                    <a href="phases.html" class="btn-primary">Explore the Phases</a>
-                    <a href="video.html"  class="btn-secondary">Watch Explainer Videos</a>
-                </div>
-
-                <div class="hero-footnote">
-                    <span>Built by Saami — Powered by ChatGPT</span>
-                </div>
-            </div>
-        </div>
+    <!-- RIGHT SIDE MENU -->
+    <div class="side-menu">
+        <a href="index.html">Home</a>
+        <a href="phases1.html">Phases</a> <!-- 🔥 FIXED 🔥 -->
+        <a href="about.html">About</a>
+        <a href="story.html">Story</a>
+        <a href="video.html">Videos</a>
+        <a href="contact.html">Contact</a>
     </div>
 
 </body>
