@@ -6,110 +6,357 @@
     <title>Elisence – Global Digital Health & Humanity Platform</title>
 
     <style>
+        /* ====== GLOBAL ====== */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            padding: 0;
-            background-color: #000814;
-            color: #e8f4fc;
             font-family: Arial, Helvetica, sans-serif;
-            height: 100vh;
-            overflow: hidden;
+            background: radial-gradient(circle at top, #0b2f4f 0%, #020712 55%, #01040a 100%);
+            color: #e8f4fc;
+            min-height: 100vh;
         }
 
-        /* ---- FULLSCREEN LOGO ---- */
-        .hero-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .hero-container img {
-            width: 480px;
-            max-width: 85%;
-            filter: drop-shadow(0 0 25px rgba(0, 150, 255, 0.75));
+        h1, h2, h3 {
+            margin: 0;
         }
 
-        .hero-title {
-            margin-top: 1rem;
-            font-size: 2rem;
-            letter-spacing: 2px;
-            font-weight: bold;
-            color: #4db8ff;
-            text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
-        }
-
-        /* ---- RIGHT-SIDE VERTICAL MENU ---- */
-        .side-menu {
-            position: absolute;
+        /* ====== RIGHT NAV (VERTICAL BUTTONS) ====== */
+        .nav-right {
+            position: fixed;
             top: 50%;
             right: 40px;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 0.75rem;
+            z-index: 50;
         }
 
-        .side-menu a {
-            padding: 12px 20px;
-            background: rgba(0, 40, 80, 0.75);
-            border: 1px solid rgba(0, 140, 255, 0.5);
-            border-radius: 10px;
-            color: #bfe9ff;
-            font-weight: bold;
-            text-decoration: none;
+        .nav-button {
+            min-width: 130px;
+            padding: 0.6rem 1.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.45);
+            color: #e8f4fc;
+            font-size: 0.9rem;
+            font-weight: 600;
             text-align: center;
-            width: 140px;
-            backdrop-filter: blur(6px);
-            transition: 0.25s;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: all 0.18s ease-out;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
         }
 
-        .side-menu a:hover {
-            background: rgba(0, 120, 255, 0.9);
-            color: #fff;
-            border-color: rgba(0, 200, 255, 1);
-            transform: translateX(-6px);
+        .nav-button:hover {
+            background: #0ea5e9;
+            color: #f9fafb;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.85);
+            transform: translateX(-4px) scale(1.02);
         }
 
-        /* MOBILE FIX */
-        @media (max-width: 768px) {
-            .side-menu {
-                right: 15px;
-                gap: 12px;
+        .nav-button.primary {
+            background: #0ea5e9;
+            border-color: rgba(148, 246, 255, 0.6);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.9);
+        }
+
+        .nav-button.primary:hover {
+            background: #38bdf8;
+        }
+
+        /* ====== HERO (FULL SCREEN CENTER) ====== */
+        .hero-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3.5rem 5vw 4.5rem;
+        }
+
+        .hero-inner {
+            text-align: center;
+        }
+
+        .hero-logo {
+            max-width: 520px;
+            width: 80%;
+            height: auto;
+            border-radius: 18px;
+            box-shadow:
+                0 0 40px rgba(56, 189, 248, 0.9),
+                0 0 120px rgba(15, 23, 42, 0.9);
+        }
+
+        .hero-tagline {
+            margin-top: 1.8rem;
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #e5f3ff;
+            text-shadow: 0 0 18px rgba(15, 23, 42, 0.9);
+        }
+
+        /* ====== MAIN CONTENT CARDS ====== */
+        main {
+            padding: 0 5vw 3.5rem;
+        }
+
+        .card {
+            max-width: 980px;
+            margin: 0 auto 2rem;
+            padding: 1.8rem 2.1rem;
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.95));
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            box-shadow: 0 22px 55px rgba(15, 23, 42, 0.9);
+        }
+
+        .card h2 {
+            font-size: 1.45rem;
+            margin-bottom: 0.6rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.25rem 0;
+            line-height: 1.6;
+            color: #dbeafe;
+        }
+
+        .pill {
+            display: inline-block;
+            margin-top: 0.4rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            color: #e5e7eb;
+        }
+
+        /* ====== ROADMAP LIST ====== */
+        .roadmap-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.9rem;
+        }
+
+        .roadmap-item {
+            padding: 0.65rem 0.8rem;
+            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(51, 65, 85, 0.9);
+            font-size: 0.9rem;
+        }
+
+        .roadmap-item strong {
+            color: #7dd3fc;
+        }
+
+        .roadmap-item a {
+            color: #bae6fd;
+            text-decoration: underline;
+        }
+
+        .roadmap-item a:hover {
+            color: #e0f2fe;
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 900px) {
+            .nav-right {
+                position: fixed;
+                top: auto;
+                bottom: 18px;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                background: rgba(15, 23, 42, 0.95);
+                padding: 0.5rem 0.75rem;
+                border-radius: 999px;
+                gap: 0.45rem;
+                box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
             }
-            .side-menu a {
-                width: 110px;
-                padding: 10px 14px;
-                font-size: 0.85rem;
+
+            .nav-button {
+                min-width: auto;
+                padding: 0.45rem 0.9rem;
+                font-size: 0.8rem;
             }
-            .hero-container img {
-                width: 300px;
+
+            .hero-wrapper {
+                padding: 2.8rem 1.5rem 5rem;
+            }
+
+            .hero-logo {
+                max-width: 360px;
+            }
+
+            .hero-tagline {
+                font-size: 1.35rem;
+            }
+
+            main {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .card {
+                padding: 1.4rem 1.35rem;
             }
         }
     </style>
 </head>
 
-
 <body>
 
-    <!-- CENTERED LOGO + TITLE -->
-    <div class="hero-container">
-        <img src="elisence.png" alt="Elisence Logo">
-        <div class="hero-title">
-            Global Digital Health & Humanity Platform
+    <!-- RIGHT SIDE NAVIGATION -->
+    <div class="nav-right">
+        <a href="index.html" class="nav-button primary">Home</a>
+        <a href="#phases" class="nav-button">Phases</a>
+        <a href="about.html" class="nav-button">About</a>
+        <a href="story.html" class="nav-button">Story</a>
+        <a href="video.html" class="nav-button">Videos</a>
+        <a href="contact.html" class="nav-button">Contact</a>
+    </div>
+
+    <!-- HERO SECTION (FULL SCREEN CENTERED LOGO) -->
+    <div class="hero-wrapper">
+        <div class="hero-inner">
+            <img src="elisence.png"
+                 alt="Elisence – Global Digital Health & Humanity Platform"
+                 class="hero-logo">
+
+            <h2 class="hero-tagline">
+                Global Digital Health & Humanity Platform
+            </h2>
         </div>
     </div>
 
-    <!-- RIGHT SIDE MENU -->
-    <div class="side-menu">
-        <a href="index.html">Home</a>
-        <a href="index.html#phases">Phases</a>
-        <a href="about.html">About</a>
-        <a href="story.html">Story</a>
-        <a href="video.html">Videos</a>
-        <a href="contact.html">Contact</a>
-    </div>
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="card" id="home">
+            <span class="pill">Welcome to Elisence</span>
+            <h2>Official Global Homepage</h2>
+            <p>
+                Elisence is a global digital health &amp; humanity platform, built across
+                <strong>17 advanced phases</strong> including medical intelligence, nutrition,
+                women’s health, diabetes, safety, access, AI context engines, and secure social health presence.
+            </p>
+            <p>
+                This website gives governments, clinicians, partners and citizens a clear,
+                non-exaggerated view of what each phase does, how it is designed, and how it can be deployed safely.
+            </p>
+        </section>
+
+        <section class="card" id="phases">
+            <span class="pill">Platform Roadmap</span>
+            <h2>17 Phases of Elisence</h2>
+            <p>
+                Each phase focuses on a specific pillar of the Elisence ecosystem. The links below open
+                dedicated pages with investor- and ministry-ready explanations for that phase.
+            </p>
+
+            <div class="roadmap-list">
+                <div class="roadmap-item">
+                    <strong>Phase 1 – GLP-1 & Metabolic Intelligence Core</strong><br>
+                    <a href="phase1.html">Open Phase 1 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 2 – Medication Choice & Dosing Engine</strong><br>
+                    <a href="phase2.html">Open Phase 2 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 3 – Care & Weight-Loss Companion Platform</strong><br>
+                    <a href="phase3.html">Open Phase 3 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 4 – Global Medication Intelligence Core</strong><br>
+                    <a href="phase4.html">Open Phase 4 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 5 – Dopamine & Behaviour Engine</strong><br>
+                    <a href="phase5.html">Open Phase 5 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 6 – Advanced Health Engine</strong><br>
+                    <a href="phase6.html">Open Phase 6 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 7 – Women’s Health & Safety Engine</strong><br>
+                    <a href="phase7.html">Open Phase 7 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 8 – Blood, Labs & AHE Governance</strong><br>
+                    <a href="phase8.html">Open Phase 8 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 9 – Diabetes & Metabolic Health Engine</strong><br>
+                    <a href="phase9.html">Open Phase 9 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 10 – User Profiles & Social Presence</strong><br>
+                    <a href="phase10.html">Open Phase 10 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 11 – Security, Identity & Passport</strong><br>
+                    <a href="phase11.html">Open Phase 11 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 12 – Real-time Voice & Video Calls</strong><br>
+                    <a href="phase12.html">Open Phase 12 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 13 – Voice & Zero-Typing Navigation</strong><br>
+                    <a href="phase13.html">Open Phase 13 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 14 – Life Map Companion</strong><br>
+                    <a href="phase14.html">Open Phase 14 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 15 – Emergency, Safety & Response</strong><br>
+                    <a href="phase15.html">Open Phase 15 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 16 – Global Nutrition & Diet Intelligence</strong><br>
+                    <a href="phase16.html">Open Phase 16 page</a>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>Phase 17 – Research, Population Insights & Future Labs</strong><br>
+                    <a href="phase17.html">Open Phase 17 page</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
 </body>
 </html>
