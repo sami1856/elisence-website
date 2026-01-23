@@ -16,38 +16,35 @@
             overflow: hidden;
         }
 
-        /* ---- CENTER LOGO BOX (BIGGER + STRONGER GLOW) ---- */
+        /* ---- CENTERED LOGO + TITLE (باکس بزرگ‌تر با هاله قوی) ---- */
         .hero-container {
             position: absolute;
-            top: 48%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
         }
 
         .hero-container img {
-            width: 820px;        /* <<< BIGGER BOX  */
-            max-width: 94%;
-            border-radius: 20px;
-
+            width: 620px;              /* بزرگ‌تر از قبل (۴۸۰ → ۶۲۰) */
+            max-width: 90%;
             filter:
-                drop-shadow(0 0 35px rgba(0, 160, 255, 1))
-                drop-shadow(0 0 75px rgba(0, 120, 255, 0.75))
-                drop-shadow(0 0 140px rgba(0, 80, 200, 0.55));
+                drop-shadow(0 0 28px rgba(0, 160, 255, 0.9))
+                drop-shadow(0 0 60px rgba(0, 80, 200, 0.7));
         }
 
         .hero-title {
-            margin-top: 1.3rem;
-            font-size: 2.2rem;
+            margin-top: 1.2rem;
+            font-size: 2rem;
             letter-spacing: 2px;
             font-weight: bold;
             color: #4db8ff;
             text-shadow:
-                0 0 14px rgba(0, 150, 255, 0.85),
-                0 0 28px rgba(0, 100, 220, 0.75);
+                0 0 10px rgba(0, 150, 255, 0.7),
+                0 0 25px rgba(0, 100, 220, 0.7);
         }
 
-        /* ---- RIGHT-SIDE MENU ---- */
+        /* ---- RIGHT-SIDE VERTICAL MENU ---- */
         .side-menu {
             position: absolute;
             top: 50%;
@@ -58,6 +55,7 @@
             gap: 18px;
         }
 
+        /* حالت عادی دکمه‌ها: هاله آبی ملایم + حالت قرص */
         .side-menu a {
             display: block;
             min-width: 160px;
@@ -73,12 +71,14 @@
 
             color: #e8f4fc;
             font-size: 0.95rem;
+            letter-spacing: 0.03em;
             text-transform: uppercase;
             text-decoration: none;
             text-align: center;
 
             backdrop-filter: blur(6px);
 
+            /* نور آبی مثل لوگو */
             box-shadow:
                 0 0 14px rgba(0, 180, 255, 0.55),
                 0 0 45px rgba(0, 120, 255, 0.35);
@@ -90,6 +90,7 @@
                 border-color 0.22s ease;
         }
 
+        /* Hover: دکمه باد می‌کند + نور بیشتر می‌شود */
         .side-menu a:hover {
             background: radial-gradient(circle at 30% 0%,
                 rgba(0, 210, 255, 0.7),
@@ -105,23 +106,30 @@
                 0 0 70px rgba(0, 190, 255, 0.85);
         }
 
+        /* حالت کلیک‌شده (active) – لحظه فشار دادن */
         .side-menu a:active {
-            transform: translateX(-2px) scale(0.97);
+            transform: translateX(-2px) scale(0.98);
+            box-shadow:
+                0 0 12px rgba(0, 190, 255, 0.85),
+                0 0 36px rgba(0, 120, 220, 0.6);
         }
 
-        /* MOBILE */
+        /* MOBILE FIX */
         @media (max-width: 768px) {
-            .hero-container img { width: 380px; }
-            .hero-title { font-size: 1.4rem; }
-
             .side-menu {
-                right: 14px;
+                right: 15px;
                 gap: 12px;
             }
             .side-menu a {
-                min-width: 120px;
+                min-width: 130px;
                 padding: 0.6rem 1.1rem;
                 font-size: 0.8rem;
+            }
+            .hero-container img {
+                width: 320px;
+            }
+            .hero-title {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -132,13 +140,15 @@
     <!-- CENTERED LOGO + TITLE -->
     <div class="hero-container">
         <img src="elisence.png" alt="Elisence Logo">
-        <div class="hero-title">Global Digital Health & Humanity Platform</div>
+        <div class="hero-title">
+            Global Digital Health & Humanity Platform
+        </div>
     </div>
 
     <!-- RIGHT SIDE MENU -->
     <div class="side-menu">
         <a href="index.html">Home</a>
-        <a href="phases1.html">Phases</a> <!-- 🔥 FIXED 🔥 -->
+        <a href="index.html#phases">Phases</a>
         <a href="about.html">About</a>
         <a href="story.html">Story</a>
         <a href="video.html">Videos</a>
