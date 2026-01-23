@@ -1,425 +1,442 @@
+// Elisa Web Widget (front-only mock version)
+// This file only runs on the static Elisence website.
+// It shows a floating button with Elisa's avatar and a small chat panel
+// and replies with safe, non-diagnostic demo messages (no backend yet).
+
 (function () {
-  // === CONFIG ===
-  const BACKEND_URL = "/api/elisa/chat"; // بعداً بک‌اند واقعی به این آدرس متصل می‌شود
-  const WIDGET_TITLE = "Elisa — Your Kind Companion";
-  const WIDGET_SUBTITLE = "Gentle, non-diagnostic conversations only.";
-
-  // === STATE ===
-  let isOpen = false;
-  let isSending = false;
-  let sessionId = null;
-  let hasShownWelcome = false;
-
-  let rootEl = null;
-  let buttonEl = null;
-  let panelEl = null;
-  let messagesEl = null;
-  let inputEl = null;
-  let sendBtnEl = null;
-  let statusEl = null;
-
-  document.addEventListener("DOMContentLoaded", function () {
-    rootEl = document.getElementById("elisa-chat-root");
-    if (!rootEl) {
-      console.warn("[ElisaChat] #elisa-chat-root not found.");
-      return;
+    function onReady(fn) {
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            fn();
+        } else {
+            document.addEventListener("DOMContentLoaded", fn);
+        }
     }
-    injectStyles();
-    createWidget();
-  });
 
-  function injectStyles() {
-    const style = document.createElement("style");
-    style.setAttribute("data-elisa-chat-style", "1");
-    style.innerHTML = `
-      #elisa-chat-root {
-        position: fixed;
-        inset: auto 16px 16px auto;
-        z-index: 9999;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
+    onReady(function () {
+        // ---------- 1) Base container ----------
+        var root = document.createElement("div");
+        root.id = "elisa-widget-root";
+        document.body.appendChild(root);
 
-      .elisa-chat-button {
-        width: 260px;
-        height: 80px;
-        border-radius: 999px;
-        border: none;
-        padding: 0;
-        margin: 0;
-        cursor: pointer;
-        background-color: transparent;
-        background-image: url("elisa.jpeg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        box-shadow: none;
-        outline: none;
-        transition: transform 0.15s ease;
-      }
+        // ---------- 2) Inject minimal styles ----------
+        var style = document.createElement("style");
+        style.type = "text/css";
+        style.textContent = ""
+            + "#elisa-widget-root {"
+            + "  position: fixed;"
+            + "  right: 24px;"
+            + "  bottom: 24px;"
+            + "  z-index: 9999;"
+            + "  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;"
+            + "}"
+            + ".elisa-launcher {"
+            + "  display: inline-flex;"
+            + "  align-items: center;"
+            + "  gap: 8px;"
+            + "  padding: 8px 14px 8px 8px;"
+            + "  border-radius: 999px;"
+            + "  border: 1px solid rgba(120, 200, 255, 0.9);"
+            + "  background: radial-gradient(circle at top left, rgba(0, 190, 255, 0.9), rgba(0, 30, 80, 0.96));"
+            + "  box-shadow: 0 0 18px rgba(0, 180, 255, 0.9);"
+            + "  color: #ffffff;"
+            + "  cursor: pointer;"
+            + "  transition: transform 0.15s ease, box-shadow 0.15s ease;"
+            + "}"
+            + ".elisa-launcher:hover {"
+            + "  transform: translateY(-1px);"
+            + "  box-shadow: 0 0 26px rgba(0, 220, 255, 1);"
+            + "}"
+            + ".elisa-launcher-avatar {"
+            + "  width: 40px;"
+            + "  height: 40px;"
+            + "  border-radius: 50%;"
+            + "  overflow: hidden;"
+            + "  flex-shrink: 0;"
+            + "  box-shadow: 0 0 14px rgba(0, 180, 255, 0.9);"
+            + "}"
+            + ".elisa-launcher-avatar img {"
+            + "  width: 100%;"
+            + "  height: 100%;"
+            + "  object-fit: cover;"
+            + "  display: block;"
+            + "}"
+            + ".elisa-launcher-texts {"
+            + "  display: flex;"
+            + "  flex-direction: column;"
+            + "  line-height: 1.2;"
+            + "}"
+            + ".elisa-launcher-title {"
+            + "  font-size: 13px;"
+            + "  font-weight: 600;"
+            + "}"
+            + ".elisa-launcher-sub {"
+            + "  font-size: 11px;"
+            + "  opacity: 0.9;"
+            + "}"
+            + ".elisa-panel {"
+            + "  position: fixed;"
+            + "  right: 24px;"
+            + "  bottom: 82px;"
+            + "  width: 320px;"
+            + "  max-height: 420px;"
+            + "  display: none;"
+            + "  flex-direction: column;"
+            + "  border-radius: 20px;"
+            + "  background: radial-gradient(circle at top, rgba(0, 160, 255, 0.95), rgba(0, 8, 30, 0.98));"
+            + "  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);"
+            + "  overflow: hidden;"
+            + "  border: 1px solid rgba(120, 200, 255, 0.9);"
+            + "}"
+            + ".elisa-panel-header {"
+            + "  display: flex;"
+            + "  align-items: center;"
+            + "  justify-content: space-between;"
+            + "  padding: 10px 12px;"
+            + "  border-bottom: 1px solid rgba(120, 200, 255, 0.5);"
+            + "}"
+            + ".elisa-panel-header-left {"
+            + "  display: flex;"
+            + "  align-items: center;"
+            + "  gap: 8px;"
+            + "}"
+            + ".elisa-panel-header-avatar {"
+            + "  width: 30px;"
+            + "  height: 30px;"
+            + "  border-radius: 50%;"
+            + "  overflow: hidden;"
+            + "  box-shadow: 0 0 12px rgba(0, 200, 255, 0.9);"
+            + "}"
+            + ".elisa-panel-header-avatar img {"
+            + "  width: 100%;"
+            + "  height: 100%;"
+            + "  object-fit: cover;"
+            + "  display: block;"
+            + "}"
+            + ".elisa-panel-header-texts {"
+            + "  display: flex;"
+            + "  flex-direction: column;"
+            + "}"
+            + ".elisa-panel-header-title {"
+            + "  font-size: 13px;"
+            + "  font-weight: 600;"
+            + "}"
+            + ".elisa-panel-header-sub {"
+            + "  font-size: 11px;"
+            + "  color: #d5ecff;"
+            + "  opacity: 0.9;"
+            + "}"
+            + ".elisa-panel-close {"
+            + "  border: none;"
+            + "  background: transparent;"
+            + "  color: #e4f3ff;"
+            + "  font-size: 16px;"
+            + "  cursor: pointer;"
+            + "}"
+            + ".elisa-panel-messages {"
+            + "  flex: 1 1 auto;"
+            + "  padding: 10px 10px 4px 10px;"
+            + "  overflow-y: auto;"
+            + "  font-size: 12px;"
+            + "  background: radial-gradient(circle at top, rgba(0, 40, 90, 0.9), rgba(0, 0, 10, 0.98));"
+            + "}"
+            + ".elisa-msg-row {"
+            + "  display: flex;"
+            + "  margin-bottom: 6px;"
+            + "}"
+            + ".elisa-msg-row.elisa {"
+            + "  justify-content: flex-start;"
+            + "}"
+            + ".elisa-msg-row.user {"
+            + "  justify-content: flex-end;"
+            + "}"
+            + ".elisa-msg {"
+            + "  max-width: 78%;"
+            + "  padding: 7px 9px;"
+            + "  border-radius: 12px;"
+            + "  line-height: 1.4;"
+            + "}"
+            + ".elisa-msg.elisa {"
+            + "  background: rgba(0, 150, 255, 0.85);"
+            + "  color: #ffffff;"
+            + "  border-bottom-left-radius: 2px;"
+            + "}"
+            + ".elisa-msg.user {"
+            + "  background: rgba(255, 255, 255, 0.92);"
+            + "  color: #001020;"
+            + "  border-bottom-right-radius: 2px;"
+            + "}"
+            + ".elisa-typing {"
+            + "  font-size: 11px;"
+            + "  color: #cfe8ff;"
+            + "  opacity: 0.85;"
+            + "  margin-bottom: 4px;"
+            + "}"
+            + ".elisa-panel-input {"
+            + "  border-top: 1px solid rgba(120, 200, 255, 0.5);"
+            + "  padding: 6px 8px;"
+            + "  background: rgba(0, 10, 40, 0.98);"
+            + "  display: flex;"
+            + "  gap: 6px;"
+            + "}"
+            + ".elisa-panel-input textarea {"
+            + "  flex: 1 1 auto;"
+            + "  resize: none;"
+            + "  border-radius: 10px;"
+            + "  border: 1px solid rgba(120, 200, 255, 0.6);"
+            + "  padding: 6px 8px;"
+            + "  font-size: 12px;"
+            + "  background: rgba(0, 4, 20, 0.96);"
+            + "  color: #e8f4ff;"
+            + "  outline: none;"
+            + "}"
+            + ".elisa-panel-input button {"
+            + "  flex-shrink: 0;"
+            + "  border-radius: 999px;"
+            + "  border: 1px solid rgba(140, 210, 255, 0.9);"
+            + "  padding: 0 12px;"
+            + "  font-size: 12px;"
+            + "  background: linear-gradient(135deg, #00b4ff, #0075ff);"
+            + "  color: #ffffff;"
+            + "  cursor: pointer;"
+            + "}"
+            + ".elisa-panel-input button:disabled {"
+            + "  opacity: 0.6;"
+            + "  cursor: default;"
+            + "}"
+            + "@media (max-width: 640px) {"
+            + "  .elisa-panel {"
+            + "    right: 10px;"
+            + "    left: 10px;"
+            + "    width: auto;"
+            + "  }"
+            + "  .elisa-launcher {"
+            + "    max-width: 210px;"
+            + "  }"
+            + "}";
+        document.head.appendChild(style);
 
-      .elisa-chat-button:hover {
-        transform: scale(1.02);
-      }
+        // ---------- 3) Launcher button ----------
+        var launcher = document.createElement("button");
+        launcher.type = "button";
+        launcher.className = "elisa-launcher";
 
-      .elisa-chat-button:active {
-        transform: scale(0.99);
-      }
+        var avatarWrap = document.createElement("div");
+        avatarWrap.className = "elisa-launcher-avatar";
+        var avatarImg = document.createElement("img");
+        avatarImg.src = "elisa.jpeg";
+        avatarImg.alt = "Elisa";
+        avatarWrap.appendChild(avatarImg);
 
-      .elisa-chat-panel {
-        position: fixed;
-        inset: auto 16px 104px auto;
-        width: 320px;
-        max-height: 420px;
-        background: #050816;
-        color: #ffffff;
-        border-radius: 16px;
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
-        display: none;
-        flex-direction: column;
-        overflow: hidden;
-      }
+        var textWrap = document.createElement("div");
+        textWrap.className = "elisa-launcher-texts";
+        var titleEl = document.createElement("div");
+        titleEl.className = "elisa-launcher-title";
+        titleEl.textContent = "Elisa";
+        var subEl = document.createElement("div");
+        subEl.className = "elisa-launcher-sub";
+        subEl.textContent = "Your kind companion";
+        textWrap.appendChild(titleEl);
+        textWrap.appendChild(subEl);
 
-      .elisa-chat-panel.open {
-        display: flex;
-      }
+        launcher.appendChild(avatarWrap);
+        launcher.appendChild(textWrap);
 
-      .elisa-chat-header {
-        padding: 12px 14px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+        root.appendChild(launcher);
 
-      .elisa-chat-header-left {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
+        // ---------- 4) Panel structure ----------
+        var panel = document.createElement("div");
+        panel.className = "elisa-panel";
 
-      .elisa-chat-header-title {
-        font-size: 14px;
-        font-weight: 600;
-      }
+        var header = document.createElement("div");
+        header.className = "elisa-panel-header";
 
-      .elisa-chat-header-subtitle {
-        font-size: 11px;
-        opacity: 0.8;
-      }
+        var headerLeft = document.createElement("div");
+        headerLeft.className = "elisa-panel-header-left";
 
-      .elisa-chat-close-btn {
-        border: none;
-        background: transparent;
-        color: #ffffff;
-        cursor: pointer;
-        font-size: 16px;
-        line-height: 1;
-      }
+        var headerAvatar = document.createElement("div");
+        headerAvatar.className = "elisa-panel-header-avatar";
+        var headerAvatarImg = document.createElement("img");
+        headerAvatarImg.src = "elisa.jpeg";
+        headerAvatarImg.alt = "Elisa";
+        headerAvatar.appendChild(headerAvatarImg);
 
-      .elisa-chat-messages {
-        flex: 1;
-        padding: 10px 12px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        font-size: 13px;
-      }
+        var headerTexts = document.createElement("div");
+        headerTexts.className = "elisa-panel-header-texts";
+        var headerTitle = document.createElement("div");
+        headerTitle.className = "elisa-panel-header-title";
+        headerTitle.textContent = "Elisa";
+        var headerSub = document.createElement("div");
+        headerSub.className = "elisa-panel-header-sub";
+        headerSub.textContent = "Warm, safe, non-diagnostic guidance";
+        headerTexts.appendChild(headerTitle);
+        headerTexts.appendChild(headerSub);
 
-      .elisa-chat-message {
-        max-width: 90%;
-        padding: 8px 10px;
-        border-radius: 12px;
-        line-height: 1.4;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
+        headerLeft.appendChild(headerAvatar);
+        headerLeft.appendChild(headerTexts);
 
-      .elisa-chat-message.user {
-        margin-left: auto;
-        background: #1f2937;
-      }
+        var closeBtn = document.createElement("button");
+        closeBtn.type = "button";
+        closeBtn.className = "elisa-panel-close";
+        closeBtn.innerHTML = "&times;";
 
-      .elisa-chat-message.elisa {
-        margin-right: auto;
-        background: radial-gradient(circle at 20% 20%, #00c6ff, #0040ff);
-      }
+        header.appendChild(headerLeft);
+        header.appendChild(closeBtn);
 
-      .elisa-chat-footer {
-        padding: 8px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
+        var messages = document.createElement("div");
+        messages.className = "elisa-panel-messages";
 
-      .elisa-chat-input-row {
-        display: flex;
-        gap: 6px;
-      }
+        var inputWrap = document.createElement("div");
+        inputWrap.className = "elisa-panel-input";
 
-      .elisa-chat-input {
-        flex: 1;
-        padding: 6px 8px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: #020617;
-        color: #ffffff;
-        font-size: 13px;
-      }
+        var textarea = document.createElement("textarea");
+        textarea.rows = 2;
+        textarea.placeholder = "You can ask Elisa about your day, your health journey, or Elisence…";
+        var sendBtn = document.createElement("button");
+        sendBtn.type = "button";
+        sendBtn.textContent = "Send";
 
-      .elisa-chat-input::placeholder {
-        color: rgba(156, 163, 175, 0.9);
-      }
+        inputWrap.appendChild(textarea);
+        inputWrap.appendChild(sendBtn);
 
-      .elisa-chat-send-btn {
-        padding: 6px 10px;
-        border-radius: 999px;
-        border: none;
-        cursor: pointer;
-        background: #2563eb;
-        color: #ffffff;
-        font-size: 13px;
-        font-weight: 500;
-        white-space: nowrap;
-      }
+        panel.appendChild(header);
+        panel.appendChild(messages);
+        panel.appendChild(inputWrap);
 
-      .elisa-chat-send-btn:disabled {
-        opacity: 0.6;
-        cursor: default;
-      }
+        root.appendChild(panel);
 
-      .elisa-chat-status {
-        font-size: 11px;
-        min-height: 14px;
-        color: rgba(156, 163, 175, 0.9);
-      }
+        // ---------- 5) Helpers ----------
+        var isOpen = false;
+        var typingEl = null;
 
-      .elisa-chat-status.error {
-        color: #fca5a5;
-      }
-
-      @media (max-width: 480px) {
-        .elisa-chat-panel {
-          inset: auto 8px 96px 8px;
-          width: auto;
-          max-height: 60vh;
+        function openPanel() {
+            if (!isOpen) {
+                panel.style.display = "flex";
+                isOpen = true;
+                textarea.focus();
+                if (messages.children.length === 0) {
+                    addElisaMessage("Hi, I am Elisa. I cannot diagnose or replace a doctor, " +
+                        "but I can help you think about your day, your health journey, and how Elisence works.");
+                }
+            }
         }
 
-        #elisa-chat-root {
-          inset: auto 8px 8px auto;
+        function closePanel() {
+            if (isOpen) {
+                panel.style.display = "none";
+                isOpen = false;
+            }
         }
 
-        .elisa-chat-button {
-          width: 220px;
-          height: 68px;
+        function addRow(role, text) {
+            var row = document.createElement("div");
+            row.className = "elisa-msg-row " + role;
+
+            var bubble = document.createElement("div");
+            bubble.className = "elisa-msg " + role;
+            bubble.textContent = text;
+
+            row.appendChild(bubble);
+            messages.appendChild(row);
+            messages.scrollTop = messages.scrollHeight;
         }
-      }
-    `;
-    document.head.appendChild(style);
-  }
 
-  function createWidget() {
-    buttonEl = document.createElement("button");
-    buttonEl.className = "elisa-chat-button";
-    buttonEl.type = "button";
-    buttonEl.addEventListener("click", togglePanel);
+        function addUserMessage(text) {
+            addRow("user", text);
+        }
 
-    panelEl = document.createElement("div");
-    panelEl.className = "elisa-chat-panel";
+        function addElisaMessage(text) {
+            addRow("elisa", text);
+        }
 
-    const headerEl = document.createElement("div");
-    headerEl.className = "elisa-chat-header";
+        function showTyping() {
+            if (typingEl) return;
+            typingEl = document.createElement("div");
+            typingEl.className = "elisa-typing";
+            typingEl.textContent = "Elisa is thinking…";
+            messages.appendChild(typingEl);
+            messages.scrollTop = messages.scrollHeight;
+        }
 
-    const headerLeft = document.createElement("div");
-    headerLeft.className = "elisa-chat-header-left";
+        function hideTyping() {
+            if (typingEl && typingEl.parentNode) {
+                typingEl.parentNode.removeChild(typingEl);
+            }
+            typingEl = null;
+        }
 
-    const titleEl = document.createElement("div");
-    titleEl.className = "elisa-chat-header-title";
-    titleEl.textContent = WIDGET_TITLE;
+        function buildMockReply(userText) {
+            var t = (userText || "").toLowerCase();
 
-    const subtitleEl = document.createElement("div");
-    subtitleEl.className = "elisa-chat-header-subtitle";
-    subtitleEl.textContent = WIDGET_SUBTITLE;
+            if (t.indexOf("سلام") !== -1 || t.indexOf("salam") !== -1) {
+                return "سلام، من الیسا هستم. نمی‌توانم تشخیص بدهم یا نسخه بدهم، " +
+                    "ولی می‌توانیم با هم در مورد روزت، بدنت و برنامه سلامتت فکر کنیم.";
+            }
+            if (t.indexOf("stress") !== -1 || t.indexOf("استرس") !== -1) {
+                return "استرس می‌تواند خیلی خسته‌کننده باشد. من تشخیص نمی‌دهم، " +
+                    "اما معمولاً چند کار کوچک کمک می‌کند: نفس عمیق، یک قدم زدن کوتاه، " +
+                    "و اگر ادامه داشت، صحبت با پزشک یا مشاور قابل اعتماد.";
+            }
+            if (t.indexOf("weight") !== -1 || t.indexOf("وزن") !== -1) {
+                return "برای وزن، من قرار نیست جای دکتر باشم، " +
+                    "اما می‌توانیم روی عادت‌های کوچک تمرکز کنیم: خواب کافی، آب، " +
+                    "کمی حرکت روزانه و پیگیری با پزشک برای دارو و آزمایش‌ها.";
+            }
+            if (t.indexOf("elisence") !== -1 || t.indexOf("الیسنس") !== -1) {
+                return "Elisence یک پلتفرم سلامت دیجیتال چند مرحله‌ای است که " +
+                    "به خانواده‌ها، پزشکان و دولت‌ها کمک می‌کند داده‌ها را امن، قابل‌ردگیری " +
+                    "و قابل‌اعتماد نگه دارند. این چت فقط یک نسخه نمایشیِ امن است.";
+            }
 
-    headerLeft.appendChild(titleEl);
-    headerLeft.appendChild(subtitleEl);
+            return "Thank you for sharing that with me. I cannot diagnose or give you a treatment plan, " +
+                "but we can think step by step about your habits, your questions, and when it might be a good idea " +
+                "to talk to a doctor or nurse in real life.";
+        }
 
-    const closeBtn = document.createElement("button");
-    closeBtn.className = "elisa-chat-close-btn";
-    closeBtn.type = "button";
-    closeBtn.innerHTML = "×";
-    closeBtn.addEventListener("click", closePanel);
+        function handleSend() {
+            var text = textarea.value.trim();
+            if (!text) {
+                return;
+            }
+            textarea.value = "";
+            addUserMessage(text);
+            textarea.focus();
 
-    headerEl.appendChild(headerLeft);
-    headerEl.appendChild(closeBtn);
+            sendBtn.disabled = true;
+            textarea.disabled = true;
+            showTyping();
 
-    messagesEl = document.createElement("div");
-    messagesEl.className = "elisa-chat-messages";
+            setTimeout(function () {
+                var reply = buildMockReply(text);
+                hideTyping();
+                addElisaMessage(reply);
+                sendBtn.disabled = false;
+                textarea.disabled = false;
+                textarea.focus();
+            }, 900);
+        }
 
-    const footerEl = document.createElement("div");
-    footerEl.className = "elisa-chat-footer";
+        // ---------- 6) Events ----------
+        launcher.addEventListener("click", function () {
+            if (isOpen) {
+                closePanel();
+            } else {
+                openPanel();
+            }
+        });
 
-    const inputRow = document.createElement("div");
-    inputRow.className = "elisa-chat-input-row";
+        closeBtn.addEventListener("click", function () {
+            closePanel();
+        });
 
-    inputEl = document.createElement("input");
-    inputEl.className = "elisa-chat-input";
-    inputEl.type = "text";
-    inputEl.placeholder = "Ask Elisa about your day, stress, health, or Elisence…";
+        sendBtn.addEventListener("click", function () {
+            handleSend();
+        });
 
-    inputEl.addEventListener("keydown", function (evt) {
-      if (evt.key === "Enter" && !evt.shiftKey) {
-        evt.preventDefault();
-        handleSend();
-      }
+        textarea.addEventListener("keydown", function (ev) {
+            if (ev.key === "Enter" && !ev.shiftKey) {
+                ev.preventDefault();
+                handleSend();
+            }
+        });
     });
-
-    sendBtnEl = document.createElement("button");
-    sendBtnEl.className = "elisa-chat-send-btn";
-    sendBtnEl.type = "button";
-    sendBtnEl.textContent = "Send";
-    sendBtnEl.addEventListener("click", handleSend);
-
-    inputRow.appendChild(inputEl);
-    inputRow.appendChild(sendBtnEl);
-
-    statusEl = document.createElement("div");
-    statusEl.className = "elisa-chat-status";
-    statusEl.textContent = "";
-
-    footerEl.appendChild(inputRow);
-    footerEl.appendChild(statusEl);
-
-    panelEl.appendChild(headerEl);
-    panelEl.appendChild(messagesEl);
-    panelEl.appendChild(footerEl);
-
-    rootEl.appendChild(buttonEl);
-    rootEl.appendChild(panelEl);
-  }
-
-  function togglePanel() {
-    if (isOpen) {
-      closePanel();
-    } else {
-      openPanel();
-    }
-  }
-
-  function openPanel() {
-    isOpen = true;
-    panelEl.classList.add("open");
-    if (!hasShownWelcome) {
-      showWelcomeMessage();
-      hasShownWelcome = true;
-    }
-    setTimeout(function () {
-      if (inputEl) {
-        inputEl.focus();
-      }
-    }, 50);
-  }
-
-  function closePanel() {
-    isOpen = false;
-    panelEl.classList.remove("open");
-  }
-
-  function appendMessage(role, text) {
-    if (!messagesEl) return;
-    const bubble = document.createElement("div");
-    bubble.className = "elisa-chat-message " + (role === "user" ? "user" : "elisa");
-    bubble.textContent = text;
-    messagesEl.appendChild(bubble);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-  }
-
-  function showWelcomeMessage() {
-    const msg =
-      "Hi, I’m Elisa. I cannot diagnose or replace a doctor, but I can be your kind companion and help you think about your day, your wellbeing, and how Elisence works.";
-    appendMessage("elisa", msg);
-  }
-
-  function handleSend() {
-    if (!inputEl || !inputEl.value.trim() || isSending) {
-      return;
-    }
-    const text = inputEl.value.trim();
-    inputEl.value = "";
-    appendMessage("user", text);
-    sendToBackend(text);
-  }
-
-  function setStatus(text, isError) {
-    if (!statusEl) return;
-    statusEl.textContent = text || "";
-    if (isError) {
-      statusEl.classList.add("error");
-    } else {
-      statusEl.classList.remove("error");
-    }
-  }
-
-  function generateSessionId() {
-    if (sessionId) return sessionId;
-    try {
-      sessionId = crypto.randomUUID();
-    } catch (e) {
-      sessionId = "elisa-" + Date.now() + "-" + Math.floor(Math.random() * 1000000);
-    }
-    return sessionId;
-  }
-
-  function sendToBackend(messageText) {
-    isSending = true;
-    if (sendBtnEl) sendBtnEl.disabled = true;
-    setStatus("Elisa is thinking…", false);
-
-    const sid = generateSessionId();
-    const payload = {
-      session_id: sid,
-      message: messageText,
-      language: "en",
-      page: window.location.pathname || "/"
-    };
-
-    fetch(BACKEND_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    })
-      .then(function (res) {
-        if (!res.ok) {
-          throw new Error("HTTP " + res.status);
-        }
-        return res.json();
-      })
-      .then(function (data) {
-        if (!data || !data.ok) {
-          appendMessage(
-            "elisa",
-            "Elisa is temporarily unavailable. Please try again in a few minutes."
-          );
-          setStatus("Service temporarily unavailable.", true);
-          return;
-        }
-        const reply = data.reply || "...";
-        appendMessage("elisa", reply);
-        setStatus("", false);
-      })
-      .catch(function () {
-        appendMessage(
-          "elisa",
-          "I’m having trouble connecting right now. Please try again in a few moments."
-        );
-        setStatus("Network or server error.", true);
-      })
-      .finally(function () {
-        isSending = false;
-        if (sendBtnEl) sendBtnEl.disabled = false;
-      });
-  }
 })();
