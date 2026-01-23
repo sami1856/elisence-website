@@ -26,9 +26,14 @@
         }
 
         .hero-container img {
-            width: 820px;        /* <<< BIGGER BOX  */
-            max-width: 94%;
-            border-radius: 20px;
+            /* روی دسکتاپ بزرگ‌تر و کشیده‌تر دیده شود */
+            width: 640px;          /* قبلاً ~520 بود، حالا کمی درازترش کردیم */
+            max-width: 90vw;       /* حداکثر ۹۰٪ عرض صفحه */
+            height: auto;          /* نسبت تصویر حفظ شود، کشیدگی عمودی نداشته باشیم */
+        
+            /* همان هاله‌ی آبی قبلی */
+            filter: drop-shadow(0 0 25px rgba(0, 150, 255, 0.75));
+        }
 
             filter:
                 drop-shadow(0 0 35px rgba(0, 160, 255, 1))
@@ -111,19 +116,19 @@
 
         /* MOBILE */
         @media (max-width: 768px) {
-            .hero-container img { width: 380px; }
-            .hero-title { font-size: 1.4rem; }
-
-            .side-menu {
-                right: 14px;
-                gap: 12px;
-            }
-            .side-menu a {
-                min-width: 120px;
-                padding: 0.6rem 1.1rem;
-                font-size: 0.8rem;
-            }
-        }
+    .side-menu {
+        right: 15px;
+        gap: 12px;
+    }
+    .side-menu a {
+        width: 110px;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+    .hero-container img {
+        width: 300px;
+    }
+}
     </style>
 </head>
 
