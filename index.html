@@ -323,6 +323,15 @@
             background: linear-gradient(135deg, #00c8ff, #1185ff);
         }
 
+        /* وقتی فقط فازها را می‌خواهیم نشان بدهیم (hash=#phases) */
+        .show-phases-only .page-wrapper {
+            display: none;
+        }
+
+        .show-phases-only .phases-wrapper {
+            padding-top: 80px;
+        }
+
         /* ===== ریسپانسیو ===== */
         @media (max-width: 900px) {
             .page-wrapper {
@@ -601,6 +610,23 @@
             </div>
         </div>
     </main>
+
+    <!-- اسکریپت کوچک فقط برای مخفی کردن هیرو در حالت #phases -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function updateViewForHash() {
+                if (window.location.hash === '#phases') {
+                    document.body.classList.add('show-phases-only');
+                    window.scrollTo(0, 0);
+                } else {
+                    document.body.classList.remove('show-phases-only');
+                }
+            }
+
+            window.addEventListener('hashchange', updateViewForHash);
+            updateViewForHash();
+        });
+    </script>
 
 </body>
 </html>
