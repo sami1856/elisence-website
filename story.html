@@ -1,44 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elisence Story</title>
+    <meta charset="UTF-8" />
+    <title>Elisence — Story</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <style>
-        body {
+        * {
             margin: 0;
-            padding: 2rem;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            line-height: 1.7;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            padding: 80px 40px;
+        }
+
+        /* نقطه و لوگوی بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .content-wrap {
+            max-width: 880px;
+            margin-right: 200px;
+            margin-left: auto;
+            padding-top: 40px;
         }
 
         h1 {
-            text-align: center;
-            color: #38bdf8;
-            margin-bottom: 2rem;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #7dd3fc;
+            text-align: left;
         }
 
         p {
-            max-width: 900px;
-            margin: 0 auto 1.5rem auto;
-            font-size: 1.1rem;
+            font-size: 17px;
+            color: #e8f7ff;
+            margin-bottom: 18px;
+            line-height: 1.75;
         }
 
         a {
-            color: #38bdf8;
+            color: #5fc5ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .side-nav {
+                right: 50%;
+                bottom: 18px;
+                top: auto;
+                transform: translateX(50%);
+                flex-direction: row;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 11px;
+            }
+
+            .content-wrap {
+                margin-right: 0;
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>The Story of Elisence</h1>
 
-    <p>This page is reserved for the official story of how the Elisence platform was created — 
-    from the early challenges and hardships to the vision that shaped a global digital health and humanity system.</p>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
 
-    <p>The full story will be added here soon.</p>
+    <nav class="side-nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="story.html" class="nav-btn">Story</a>
+        <a href="videos.html" class="nav-btn">Videos</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+    </nav>
 
-    <p><a href="index.html">← Back to Home</a></p>
+    <div class="content-wrap">
+        <h1>The Story of Elisence</h1>
+
+        <p>
+            This page is reserved for the official story behind the creation of Elisence — from the early
+            challenges and turning points, to the long-term vision that shaped a global digital health
+            and humanity ecosystem built across 17 phases.
+        </p>
+
+        <p>
+            The full historical narrative, including the origins of the platform, the real-world motivations,
+            and the evolution of each major phase, will be added here soon.
+        </p>
+
+        <p>
+            <a href="index.html">← Back to Home</a>
+        </p>
+    </div>
+
 </body>
 </html>
