@@ -24,6 +24,8 @@
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
@@ -33,6 +35,7 @@
             background: radial-gradient(circle at top, #111633 0, #050814 60%);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
@@ -44,94 +47,81 @@
             text-decoration: underline;
         }
 
-        header {
-            border-bottom: 1px solid var(--border-soft);
-            background: linear-gradient(
-                to right,
-                rgba(7, 12, 40, 0.95),
-                rgba(6, 10, 32, 0.98)
-            );
-            backdrop-filter: blur(14px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
+        /* نقطه و برچسب بالا (مثل index/about) */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
         }
 
-        .nav-shell {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .brand-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #4ea8ff, #7f5dff 45%, #111631);
-            box-shadow: 0 0 18px rgba(78, 168, 255, 0.6);
-        }
-
-        .brand-text {
+        /* منوی عمودی سمت راست (هم‌استایل با index/about) */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            z-index: 999;
         }
 
-        .brand-text span:first-child {
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            font-size: 0.8rem;
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
         }
 
-        .brand-text span:last-child {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
         }
 
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            font-size: 0.9rem;
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
         }
 
-        nav a {
-            color: var(--text-muted);
-            padding-bottom: 0.15rem;
-            border-bottom: 2px solid transparent;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
-
-        nav a.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        @media (max-width: 900px) {
-            nav {
-                display: none; /* simple mobile version for now */
-            }
-
-            header {
-                position: static;
-            }
-        }
-
+        /* شِل صفحه */
         main {
             max-width: 1120px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-shell {
+            margin-right: 190px; /* فضای منوی عمودی سمت راست در دسکتاپ */
         }
 
         .page-tag {
@@ -176,8 +166,34 @@
         }
 
         @media (max-width: 900px) {
+            main {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-shell {
+                margin-right: 0;
+            }
+
             .grid {
                 grid-template-columns: minmax(0, 1fr);
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
             }
         }
 
@@ -345,169 +361,209 @@
     </style>
 </head>
 <body>
-<header>
-    <div class="nav-shell">
-        <div class="brand">
-            <div class="brand-logo"></div>
-            <div class="brand-text">
-                <span>ELISENCE</span>
-                <span>Global Digital Health &amp; Humanity Platform</span>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html"        class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
+    </nav>
+
+    <main>
+        <div class="content-shell">
+            <div class="page-tag">
+                <span class="page-tag-dot"></span>
+                <span>Contact Elisence</span>
+            </div>
+
+            <h1>Contact & Partnership</h1>
+            <p class="subtitle">
+                Elisence is building a trusted, global digital health and humanity platform.
+                Use the details below to reach our London team for partnerships, pilots,
+                investment discussions, media enquiries, general user questions or any other topic.
+            </p>
+
+            <div class="grid">
+                <!-- LEFT: CONTACT DETAILS -->
+                <section class="card">
+                    <h2>How to Reach Us</h2>
+
+                    <ul class="contact-list">
+                        <li class="contact-item">
+                            <div class="contact-label">Phone (UK)</div>
+                            <div class="contact-value">
+                                <strong>+44 20 3538 5825</strong><br />
+                                London business line — answered during office hours (GMT).
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-label">WhatsApp</div>
+                            <div class="contact-value">
+                                <strong>+44 7405 682377</strong><br />
+                                Fast channel for questions, demos and coordination.
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value">
+                                <a href="mailto:contact@elisence.com">
+                                    <strong>contact@elisence.com</strong>
+                                </a><br />
+                                For formal enquiries, RFPs, pilots and partnership requests.
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-label">Website</div>
+                            <div class="contact-value">
+                                <a href="https://www.elisence.com" target="_blank" rel="noopener">
+                                    www.elisence.com
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-label">Address</div>
+                            <div class="contact-value">
+                                <strong>61 Sunned Road</strong><br />
+                                London, NW9 8BS<br />
+                                United Kingdom
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="pill-row">
+                        <span class="pill pill-strong">Government &amp; Ministry Partnerships</span>
+                        <span class="pill">Hospitals &amp; Health Systems</span>
+                        <span class="pill">Clinics &amp; Physicians</span>
+                        <span class="pill">Investors &amp; Strategic Partners</span>
+                        <span class="pill">Research Collaborations</span>
+                        <span class="pill">Individuals &amp; Families</span>
+                    </div>
+
+                    <p class="note">
+                        For sensitive discussions (national deployments, regulatory reviews,
+                        pilots with ministries or major hospital groups), please mention this
+                        in the subject line so we can route your message to the appropriate
+                        Elisence leadership group.
+                    </p>
+                </section>
+
+                <!-- RIGHT: CONTACT FORM (Client-side mailto) -->
+                <aside class="card">
+                    <h2>Send Us a Message</h2>
+                    <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0;">
+                        This form will open your email application with a pre-filled message
+                        to <strong>contact@elisence.com</strong>. You can review and send it there.
+                    </p>
+
+                    <form id="contact-form">
+                        <div class="field-group">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" placeholder="Your full name" />
+                        </div>
+
+                        <div class="field-group">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com" />
+                        </div>
+
+                        <div class="field-group">
+                            <label for="org">Organisation</label>
+                            <input id="org" name="org" type="text" placeholder="Ministry, hospital, clinic, investor, individual, etc." />
+                        </div>
+
+                        <div class="field-group">
+                            <label for="topic">Topic</label>
+                            <select id="topic" name="topic">
+                                <option value="">Select an option</option>
+                                <option>Individual / family user question</option>
+                                <option>Government / Ministry partnership</option>
+                                <option>Hospital / clinic deployment</option>
+                                <option>Investor / funding enquiry</option>
+                                <option>Technology / integration question</option>
+                                <option>Media / press</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="message">Message</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="Tell us briefly how you would like to work with Elisence, or what you need help with."
+                            ></textarea>
+                        </div>
+
+                        <div class="button-row">
+                            <button type="submit">Send Message</button>
+                        </div>
+                    </form>
+
+                    <p class="note">
+                        By contacting Elisence you agree that we may use your details to
+                        follow up on your enquiry. Elisence follows Zero-Trust, GDPR/UK DPA
+                        and GCC PDPL principles for all communications.
+                    </p>
+                </aside>
+            </div>
+
+            <div class="footer-note">
+                <strong>In one sentence:</strong>
+                Elisence is building a <span class="highlight">trusted global digital health
+                and humanity platform</span> — this contact channel connects you directly
+                with the core team behind every phase of that vision.
             </div>
         </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="story.html">Story</a>
-            <a href="videos.html">Videos</a>
-            <a href="phases.html">Phases</a>
-            <a href="contact.html" class="active">Contact</a>
-        </nav>
-    </div>
-</header>
+    </main>
 
-<main>
-    <div class="page-tag">
-        <span class="page-tag-dot"></span>
-        <span>Contact Elisence</span>
-    </div>
+    <script>
+        // اتصال فرم به contact@elisence.com با mailto
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('contact-form');
+            if (!form) return;
 
-    <h1>Contact & Partnership</h1>
-    <p class="subtitle">
-        Elisence is building a trusted, global digital health and humanity platform.
-        Use the details below to reach our London team for partnerships, pilots,
-        investment discussions, media enquiries or general questions.
-    </p>
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
 
-    <div class="grid">
-        <!-- LEFT: CONTACT DETAILS -->
-        <section class="card">
-            <h2>How to Reach Us</h2>
+                var name    = document.getElementById('name').value.trim();
+                var email   = document.getElementById('email').value.trim();
+                var org     = document.getElementById('org').value.trim();
+                var topic   = document.getElementById('topic').value;
+                var message = document.getElementById('message').value.trim();
 
-            <ul class="contact-list">
-                <li class="contact-item">
-                    <div class="contact-label">Phone (UK)</div>
-                    <div class="contact-value">
-                        <strong>+44 20 3538 5825</strong><br />
-                        London business line — answered during office hours (GMT).
-                    </div>
-                </li>
+                var subjectTopic = topic || 'General enquiry';
+                var subject = 'Elisence contact – ' + subjectTopic;
 
-                <li class="contact-item">
-                    <div class="contact-label">WhatsApp</div>
-                    <div class="contact-value">
-                        <strong>+44 7405 682377</strong><br />
-                        Fast channel for questions, demos and coordination.
-                    </div>
-                </li>
+                var bodyLines = [];
+                if (name)  bodyLines.push('Name: ' + name);
+                if (email) bodyLines.push('Email: ' + email);
+                if (org)   bodyLines.push('Organisation: ' + org);
+                if (topic) bodyLines.push('Topic: ' + topic);
+                bodyLines.push('');
+                bodyLines.push('Message:');
+                bodyLines.push(message || '(no message provided)');
 
-                <li class="contact-item">
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value">
-                        <a href="mailto:contact@elisence.com"><strong>contact@elisence.com</strong></a><br />
-                        For formal enquiries, RFPs, pilots and partnership requests.
-                    </div>
-                </li>
+                var body = bodyLines.join('\n');
 
-                <li class="contact-item">
-                    <div class="contact-label">Website</div>
-                    <div class="contact-value">
-                        <a href="https://www.elisence.com" target="_blank" rel="noopener">
-                            www.elisence.com
-                        </a>
-                    </div>
-                </li>
+                var mailtoLink =
+                    'mailto:contact@elisence.com' +
+                    '?subject=' + encodeURIComponent(subject) +
+                    '&body='    + encodeURIComponent(body);
 
-                <li class="contact-item">
-                    <div class="contact-label">Address</div>
-                    <div class="contact-value">
-                        <strong>61 Sunned Road</strong><br />
-                        London, NW9 8BS<br />
-                        United Kingdom
-                    </div>
-                </li>
-            </ul>
+                window.location.href = mailtoLink;
+            });
+        });
+    </script>
 
-            <div class="pill-row">
-                <span class="pill pill-strong">Government &amp; Ministry Partnerships</span>
-                <span class="pill">Hospitals &amp; Health Systems</span>
-                <span class="pill">Clinics &amp; Physicians</span>
-                <span class="pill">Investors &amp; Strategic Partners</span>
-                <span class="pill">Research Collaborations</span>
-            </div>
-
-            <p class="note">
-                For sensitive discussions (national deployments, regulatory reviews,
-                pilots with ministries or major hospital groups), please mention this
-                in the subject line so we can route your message to the appropriate
-                Elisence leadership group.
-            </p>
-        </section>
-
-        <!-- RIGHT: CONTACT FORM (STATIC FOR NOW) -->
-        <aside class="card">
-            <h2>Send Us a Message</h2>
-            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0;">
-                Use this form as a template. Your development team can later connect it
-                to your preferred email or ticketing system.
-            </p>
-
-            <form>
-                <div class="field-group">
-                    <label for="name">Name</label>
-                    <input id="name" name="name" type="text" placeholder="Your full name" />
-                </div>
-
-                <div class="field-group">
-                    <label for="email">Work Email</label>
-                    <input id="email" name="email" type="email" placeholder="you@organisation.com" />
-                </div>
-
-                <div class="field-group">
-                    <label for="org">Organisation</label>
-                    <input id="org" name="org" type="text" placeholder="Ministry, hospital, clinic, investor, etc." />
-                </div>
-
-                <div class="field-group">
-                    <label for="topic">Topic</label>
-                    <select id="topic" name="topic">
-                        <option value="">Select an option</option>
-                        <option>Government / Ministry partnership</option>
-                        <option>Hospital / clinic deployment</option>
-                        <option>Investor / funding enquiry</option>
-                        <option>Technology / integration question</option>
-                        <option>Media / press</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-
-                <div class="field-group">
-                    <label for="message">Message</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        placeholder="Tell us briefly how you would like to work with Elisence."
-                    ></textarea>
-                </div>
-
-                <div class="button-row">
-                    <button type="submit">Send Message</button>
-                </div>
-            </form>
-
-            <p class="note">
-                By contacting Elisence you agree that we may use your details to
-                follow up on your enquiry. Elisence follows Zero-Trust, GDPR/UK DPA
-                and GCC PDPL principles for all communications.
-            </p>
-        </aside>
-    </div>
-
-    <div class="footer-note">
-        <strong>In one sentence:</strong>
-        Elisence is building a <span class="highlight">trusted global digital health
-        and humanity platform</span> — this contact channel connects you directly
-        with the core team behind every phase of that vision.
-    </div>
-</main>
 </body>
 </html>
