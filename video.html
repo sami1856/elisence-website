@@ -14,14 +14,14 @@
 
         body {
             min-height: 100vh;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
             color: #ffffff;
             overflow-x: hidden;
             padding: 80px 40px;
         }
 
-        /* نقطه و لوگوی بالا */
+        /* Top dot + label */
         .top-dot {
             position: fixed;
             left: 18px;
@@ -45,7 +45,7 @@
             z-index: 20;
         }
 
-        /* منوی عمودی */
+        /* Right vertical nav – same family as index/about/story */
         .side-nav {
             position: fixed;
             right: 32px;
@@ -71,7 +71,7 @@
             box-shadow:
                 0 0 16px rgba(0, 130, 255, 0.95),
                 0 0 34px rgba(0, 40, 120, 0.95);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
 
         .nav-btn:hover {
@@ -82,10 +82,14 @@
             background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
         }
 
-        /* محتوای اصلی */
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* Main content */
         .content-wrap {
             max-width: 960px;
-            margin-right: 200px;
+            margin-right: 200px; /* space for side nav */
             margin-left: auto;
             padding-top: 40px;
         }
@@ -104,7 +108,6 @@
             max-width: 800px;
         }
 
-        /* کارت ویدیوها */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -112,11 +115,11 @@
         }
 
         .video-card {
-            background: rgba(10, 20, 40, 0.85);
+            background: rgba(10, 20, 40, 0.88);
             border-radius: 16px;
             border: 1px solid rgba(90, 185, 255, 0.35);
             padding: 1.3rem 1.4rem 1.6rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65);
         }
 
         .video-tag {
@@ -124,20 +127,20 @@
             text-transform: uppercase;
             letter-spacing: 0.08rem;
             color: #94a3b8;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.25rem;
         }
 
         .video-card h2 {
             margin: 0;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.55rem;
             font-size: 1.1rem;
             color: #e5f2ff;
         }
 
         .video-card p {
+            margin: 0 0 0.9rem 0;
             font-size: 0.9rem;
             color: #cbd5f5;
-            margin-bottom: 0.9rem;
         }
 
         .video-placeholder {
@@ -150,22 +153,31 @@
         }
 
         @media (max-width: 900px) {
+            body {
+                padding: 80px 18px 110px 18px;
+            }
+
             .side-nav {
-                bottom: 18px;
-                top: auto;
+                position: fixed;
                 right: 50%;
+                top: auto;
+                bottom: 18px;
                 transform: translateX(50%);
                 flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
                 gap: 8px;
             }
 
             .nav-btn {
-                padding: 10px 20px;
-                font-size: 12px;
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
             }
 
             .content-wrap {
                 margin-right: 0;
+                margin-left: 0;
             }
         }
     </style>
@@ -176,43 +188,259 @@
     <div class="top-dot-label">ELISENCE</div>
 
     <nav class="side-nav">
-        <a href="index.html" class="nav-btn">Home</a>
+        <a href="index.html"        class="nav-btn">Home</a>
         <a href="index.html#phases" class="nav-btn">Phases</a>
-        <a href="about.html" class="nav-btn">About</a>
-        <a href="story.html" class="nav-btn">Story</a>
-        <a href="videos.html" class="nav-btn">Videos</a>
-        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
     </nav>
 
     <div class="content-wrap">
         <h1>Elisence – Phase Videos Library</h1>
 
         <p class="intro-text">
-            این صفحه آرشیو رسمی ویدیوهای Elisence است — شامل ویدیوهای معرفی کل پلتفرم،
-            ویدیوهای اختصاصی هر فاز، و نسخه‌های کوتاه برای نمایشگاه‌ها، وزارتخانه‌ها،
-            سرمایه‌گذاران و کلینیک‌ها.
+            This page is the official archive of Elisence videos — one high-level introduction
+            to the platform and dedicated explainers for each of the 17 phases. As each video
+            is produced, its thumbnail and link will be added here for ministries, clinics,
+            investors and users to view.
         </p>
 
         <div class="video-grid">
-            <!-- مثال: ویدیو فازها → همان‌هایی که در نسخه قبلی داشتی -->
+            <!-- Intro -->
             <div class="video-card">
                 <div class="video-tag">Intro</div>
                 <h2>What is Elisence?</h2>
-                <p>ویدیوی اصلی معرفی پلتفرم، داستان، فلسفه و 17 فاز.</p>
-                <div class="video-placeholder">Coming soon</div>
+                <p>
+                    The core story of Elisence: why it was created, who it serves, and how
+                    the 17-phase roadmap builds a trusted global digital health infrastructure.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Intro video will be embedded here.
+                </div>
             </div>
 
+            <!-- Phase 1 -->
             <div class="video-card">
                 <div class="video-tag">Phase 1</div>
-                <h2>GLP-1 & Weight Intelligence</h2>
-                <p>موتور هوش وزن، رفتار و دارو.</p>
-                <div class="video-placeholder">Coming soon</div>
+                <h2>GLP-1 & Weight Intelligence Core</h2>
+                <p>
+                    Overview of the Phase 1 engine: tracking weight, GLP-1 dosing, side-effects
+                    and behaviours, and turning them into safe, structured insights.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 1 video placeholder.
+                </div>
             </div>
 
-            <!-- ... ادامه‌ی تمام فازها را مثل قبل قرار بده ... -->
+            <!-- Phase 2 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 2</div>
+                <h2>Medication Choice & Safety Engine</h2>
+                <p>
+                    How Elisence structures medication journeys, compares options and supports
+                    safer decision-making for clinicians and pharmacists.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 2 video placeholder.
+                </div>
+            </div>
 
+            <!-- Phase 3 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 3</div>
+                <h2>Care, Check-In & Weight-Loss Companion</h2>
+                <p>
+                    Daily journeys, check-ins, SOS, smart notifications and caregiver views
+                    for safe, supported weight-loss at home.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 3 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 4</div>
+                <h2>Global-Grade Infrastructure & Provenance</h2>
+                <p>
+                    The infrastructure phase: provenance engine, export manifests, signatures
+                    and verification for audit-ready health data.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 4 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 5 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 5</div>
+                <h2>Dopamine, Voice & Behaviour Engine</h2>
+                <p>
+                    How Elisence uses healthy rewards, voice interaction and behaviour patterns
+                    without becoming addictive or manipulative.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 5 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 6 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 6</div>
+                <h2>Safety Alignment & Pro Economy</h2>
+                <p>
+                    Verified profiles, professional economy and the trust layer that enables
+                    remote care and collaboration with governments.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 6 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 7 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 7</div>
+                <h2>Women+ Health & Life Companion</h2>
+                <p>
+                    The Women+ module: periods, fertility, pregnancy, postpartum and menopause
+                    with a strong focus on safety, education and respect.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 7 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 8 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 8</div>
+                <h2>Blood, Risk & Emergency Intelligence</h2>
+                <p>
+                    Blood and emergency intelligence: interpreting lab results, surfacing risk
+                    and supporting faster, safer escalation.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 8 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 9 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 9</div>
+                <h2>Diabetes & Metabolic Health Brain</h2>
+                <p>
+                    The diabetes and metabolic core: glucose, weight, medication and lifestyle
+                    signals turned into non-diagnostic intelligence.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 9 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 10 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 10</div>
+                <h2>ELIS – Social & Identity Space</h2>
+                <p>
+                    Profiles, social wall, secure attachments and the official vitrine for
+                    clinicians, organisations and ministries.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 10 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 11 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 11</div>
+                <h2>Safety, AHE & Regulatory Backbone</h2>
+                <p>
+                    The safety and AHE layer: SaMD boundaries, tests, logs and documentation
+                    that prepare Elisence for regulatory review.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 11 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 12 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 12</div>
+                <h2>Family, Kids & Guardianship Layer</h2>
+                <p>
+                    How families, guardians and care teams collaborate safely around children
+                    inside the Elisence ecosystem.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 12 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 13 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 13</div>
+                <h2>Global Care Teams & Collaboration</h2>
+                <p>
+                    Multi-role care teams, shared views and secure collaboration across
+                    clinics, hospitals and ministries.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 13 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 14 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 14</div>
+                <h2>Life Map & Daily Companion</h2>
+                <p>
+                    The Life Map Companion: a long-term, voice-first view of daily life,
+                    goals and health for vulnerable users.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 14 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 15 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 15</div>
+                <h2>Environment, Air & City-Scale Signals</h2>
+                <p>
+                    Environmental intelligence: air quality, climate and city-scale signals
+                    connected to daily health guidance.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 15 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 16 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 16</div>
+                <h2>Global Nutrition Intelligence (GNIE)</h2>
+                <p>
+                    The GNIE engine: global nutrition and diet intelligence for ministries,
+                    families and clinicians, with a wellness/education posture.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 16 video placeholder.
+                </div>
+            </div>
+
+            <!-- Phase 17 -->
+            <div class="video-card">
+                <div class="video-tag">Phase 17</div>
+                <h2>Future & Research Layer</h2>
+                <p>
+                    Long-term research, analytics and collaboration layer for universities,
+                    ministries and partners – the future orbit of Elisence.
+                </p>
+                <div class="video-placeholder">
+                    Coming soon – Phase 17 video placeholder.
+                </div>
+            </div>
         </div>
-
     </div>
 
 </body>
