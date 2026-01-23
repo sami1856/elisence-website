@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== HERO / صفحه اول ===== */
+        /* ===== HERO SECTION ===== */
         .page-wrapper {
             min-height: 100vh;
             display: flex;
@@ -33,91 +33,70 @@
 
         .hero-area {
             width: 100%;
-            max-width: 1100px; /* کمی عریض‌تر برای فرم مستطیلی */
+            max-width: 1100px;
             margin-right: 190px; 
         }
 
         .hero-card {
             width: 100%;
             margin: 0 auto;
-            padding: 40px 60px;
+            padding: 50px 60px;
             border-radius: 30px;
-            background: radial-gradient(circle at top, rgba(0, 156, 255, 0.25), rgba(0, 12, 40, 0.98));
+            background: radial-gradient(circle at top, rgba(0, 156, 255, 0.2), rgba(0, 12, 40, 0.98));
             box-shadow:
-                0 0 50px rgba(0, 170, 255, 0.6),
-                0 0 150px rgba(0, 80, 200, 0.4);
+                0 0 50px rgba(0, 170, 255, 0.4),
+                0 0 150px rgba(0, 80, 200, 0.3);
             text-align: center;
-            border: 1px solid rgba(70, 190, 255, 0.4);
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(70, 190, 255, 0.3);
+            backdrop-filter: blur(15px);
         }
 
-        /* بخش جدید برای چیدمان مستطیلی لوگو و نام */
-        .hero-header-flex {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .hero-logo-orb {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 20%, #35c8ff, #005cff 55%, #001430 100%);
-            box-shadow: 0 0 45px rgba(0, 180, 255, 0.9);
+        /* کانتینر لوگوی مستطیلی جدید */
+        .hero-logo-container {
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto 30px auto;
             position: relative;
-            animation: pulseGlow 4s infinite ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* حلقه نوری چرخان دور لوگو */
-        .hero-logo-orb::after {
-            content: '';
-            position: absolute;
-            top: -6px; left: -6px; right: -6px; bottom: -6px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            border-top-color: rgba(0, 190, 255, 0.8);
-            animation: spin 3s linear infinite;
+        .main-hero-logo {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            /* انیمیشن درخشش و تپش نوری */
+            animation: breathingGlow 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.6));
         }
 
-        .hero-title {
-            font-size: 48px;
-            letter-spacing: 0.3em;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin: 0;
-            background: linear-gradient(90deg, #ffffff 0%, #82d1ff 50%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(0, 160, 255, 0.5));
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(0, 180, 255, 0.8); }
-            50% { transform: scale(1.05); box-shadow: 0 0 70px rgba(0, 200, 255, 1); }
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes breathingGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 25px rgba(0, 160, 255, 0.5)) brightness(1);
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 50px rgba(0, 200, 255, 0.9)) brightness(1.15);
+                transform: scale(1.015);
+            }
         }
 
         .hero-subtitle {
-            font-size: 15px;
-            letter-spacing: 0.2em;
+            font-size: 16px;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: #a5d7ff;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 300;
+            opacity: 0.9;
         }
 
         .hero-tagline {
-            font-size: 14px;
+            font-size: 15px;
             line-height: 1.6;
             color: #d4e8ff;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto 20px auto;
         }
 
@@ -127,48 +106,109 @@
             color: #dbefff;
             max-width: 850px;
             margin: 20px auto 0 auto;
+            opacity: 0.85;
         }
 
-        /* سایر استایل‌ها طبق نسخه اصلی برای حفظ پایداری */
-        .hero-actions { margin-top: 30px; display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
-        .btn-primary, .btn-secondary { padding: 12px 30px; border-radius: 999px; font-size: 14px; border: 1px solid transparent; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
-        .btn-primary { background: linear-gradient(135deg, #00b4ff, #0075ff); color: #fff; box-shadow: 0 0 20px rgba(0, 160, 255, 0.7); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(0, 190, 255, 1); }
-        .btn-secondary { background: rgba(0, 0, 0, 0.5); color: #dbefff; border-color: rgba(118, 190, 255, 0.6); }
-        .btn-secondary:hover { transform: translateY(-2px); background: rgba(0, 30, 90, 0.8); border-color: #fff; }
+        /* ===== BUTTONS ===== */
+        .hero-actions { 
+            margin-top: 35px; 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+        }
 
-        .hero-footnote { margin-top: 35px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #7fb5ff; opacity: 0.8; }
+        .btn-primary, .btn-secondary { 
+            padding: 14px 36px; 
+            border-radius: 999px; 
+            font-size: 14px; 
+            font-weight: 600;
+            border: 1px solid transparent; 
+            cursor: pointer; 
+            text-decoration: none; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
 
-        /* منوی سمت راست - بدون تغییر */
+        .btn-primary { 
+            background: linear-gradient(135deg, #00b4ff, #0075ff); 
+            color: #fff; 
+            box-shadow: 0 0 20px rgba(0, 160, 255, 0.6); 
+        }
+
+        .btn-primary:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 0 40px rgba(0, 190, 255, 0.9); 
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary { 
+            background: rgba(0, 0, 0, 0.4); 
+            color: #dbefff; 
+            border-color: rgba(118, 190, 255, 0.5); 
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover { 
+            transform: translateY(-3px); 
+            background: rgba(0, 30, 90, 0.7); 
+            border-color: #ffffff;
+            box-shadow: 0 0 25px rgba(0, 140, 255, 0.5);
+        }
+
+        .hero-footnote { 
+            margin-top: 45px; 
+            font-size: 11px; 
+            letter-spacing: 0.2em; 
+            text-transform: uppercase; 
+            color: #7fb5ff; 
+            opacity: 0.6; 
+        }
+
+        /* ===== SIDE NAVIGATION ===== */
         .side-nav { position: fixed; right: 32px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 999; }
-        .nav-btn { display: block; padding: 13px 38px; border-radius: 999px; text-decoration: none; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: #e3f2ff; background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97)); border: 1px solid rgba(90, 185, 255, 0.9); box-shadow: 0 0 16px rgba(0, 130, 255, 0.95), 0 0 34px rgba(0, 40, 120, 0.95); transition: all 0.2s ease; }
-        .nav-btn:hover { transform: translateX(-4px); padding-right: 44px; background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1)); }
+        .nav-btn { display: block; padding: 13px 38px; border-radius: 999px; text-decoration: none; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: #e3f2ff; background: radial-gradient(circle at top, rgba(0, 130, 255, 0.4), rgba(0, 10, 35, 0.95)); border: 1px solid rgba(90, 185, 255, 0.7); box-shadow: 0 0 15px rgba(0, 130, 255, 0.6); transition: all 0.2s ease; }
+        .nav-btn:hover { transform: translateX(-5px); padding-right: 44px; background: radial-gradient(circle at top, rgba(0, 170, 255, 0.6), rgba(0, 25, 80, 1)); border-color: #fff; }
 
-        .top-dot { position: fixed; left: 18px; top: 18px; width: 14px; height: 14px; border-radius: 50%; background: #34c8ff; box-shadow: 0 0 15px #00b4ff; }
-        .top-dot-label { position: fixed; left: 40px; top: 16px; font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase; color: #a9d4ff; }
+        /* TOP CORNER BRANDING */
+        .top-dot { position: fixed; left: 18px; top: 18px; width: 12px; height: 12px; border-radius: 50%; background: #34c8ff; box-shadow: 0 0 15px #00b4ff; animation: pulse 2s infinite; }
+        .top-dot-label { position: fixed; left: 40px; top: 16px; font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase; color: #a9d4ff; font-weight: 700; }
 
-        /* سکشن فازها - بدون تغییر استایل */
-        .phases-wrapper { padding: 0 40px 80px 40px; }
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* ===== PHASES SECTION ===== */
+        .phases-wrapper { padding: 40px 40px 100px 40px; }
         .content-area { width: 100%; max-width: 1100px; margin: 0 auto; margin-right: 190px; }
-        .phases-header { margin-bottom: 30px; }
-        .phases-title { font-size: 26px; letter-spacing: 0.18em; text-transform: uppercase; }
-        .phases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
-        .phase-card { border-radius: 18px; padding: 20px; background: radial-gradient(circle at top, rgba(0, 120, 255, 0.35), rgba(0, 15, 40, 0.95)); border: 1px solid rgba(90, 185, 255, 0.6); transition: 0.3s; }
-        .phase-card:hover { transform: translateY(-5px); border-color: #00b4ff; }
-        .phase-label { font-size: 11px; color: #a9d4ff; text-transform: uppercase; margin-bottom: 8px; }
-        .phase-name { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-        .phase-desc { font-size: 12px; line-height: 1.6; color: #d8e7ff; margin-bottom: 15px; }
-        .phase-link { padding: 6px 18px; border-radius: 999px; font-size: 11px; text-decoration: none; color: #fff; background: linear-gradient(135deg, #00b4ff, #0075ff); display: inline-block; }
+        .phases-header { margin-bottom: 40px; text-align: center; }
+        .phases-title { font-size: 28px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; }
+        .phases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .phase-card { border-radius: 20px; padding: 25px; background: radial-gradient(circle at top, rgba(0, 120, 255, 0.3), rgba(0, 15, 40, 0.95)); border: 1px solid rgba(90, 185, 255, 0.4); transition: 0.3s; }
+        .phase-card:hover { transform: translateY(-8px); border-color: #00b4ff; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .phase-label { font-size: 11px; color: #a9d4ff; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.1em; }
+        .phase-name { font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #fff; }
+        .phase-desc { font-size: 12.5px; line-height: 1.6; color: #d8e7ff; margin-bottom: 20px; }
+        .phase-link { padding: 8px 20px; border-radius: 999px; font-size: 11px; text-decoration: none; color: #fff; background: linear-gradient(135deg, #00b4ff, #0075ff); display: inline-block; transition: 0.2s; }
+        .phase-link:hover { filter: brightness(1.2); }
 
         .show-phases-only .page-wrapper { display: none; }
-        .show-phases-only .phases-wrapper { padding-top: 80px; }
+        .show-phases-only .phases-wrapper { padding-top: 100px; }
 
-        @media (max-width: 1000px) {
-            .hero-header-flex { flex-direction: column; gap: 15px; }
-            .hero-title { font-size: 36px; }
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
             .hero-area, .content-area { margin-right: 0; }
-            .side-nav { position: fixed; right: 50%; top: auto; bottom: 18px; transform: translateX(50%); flex-direction: row; }
+            .side-nav { position: fixed; right: 50%; top: auto; bottom: 20px; transform: translateX(50%); flex-direction: row; gap: 8px; }
+            .nav-btn { padding: 10px 20px; font-size: 11px; }
             .phases-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .phases-grid { grid-template-columns: 1fr; }
+            .hero-card { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -189,9 +229,9 @@
     <div class="page-wrapper">
         <div class="hero-area">
             <div class="hero-card">
-                <div class="hero-header-flex">
-                    <div class="hero-logo-orb"></div>
-                    <h1 class="hero-title">ELISENCE</h1>
+                
+                <div class="hero-logo-container">
+                    <img src="Elisa2015.jpeg" alt="Elisence Global Platform" class="main-hero-logo">
                 </div>
 
                 <div class="hero-subtitle">Growth · Health · Humanity · Embracing the Future</div>
@@ -224,13 +264,13 @@
         <div class="content-area">
             <div class="phases-header">
                 <div class="phases-title">ELISENCE PHASES</div>
-                <div class="phases-subtitle">From Weight-Loss Journeys to Global Nutrition Intelligence</div>
+                <div class="phases-subtitle">Global Health Intelligence Roadmap</div>
             </div>
 
             <div class="phases-grid">
                 <div class="phase-card">
                     <div class="phase-label">Phase 1</div>
-                    <div class="phase-name">GLP-1 Foundations & Safety</div>
+                    <div class="phase-name">GLP-1 Foundations</div>
                     <div class="phase-desc">Core safe engine for GLP-1 and related medications.</div>
                     <a class="phase-link" href="phase1.html">Open Phase 1</a>
                 </div>
