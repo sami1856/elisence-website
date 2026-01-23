@@ -20,6 +20,7 @@
             overflow-x: hidden;
         }
 
+        /* صفحه کلی */
         .page-wrapper {
             min-height: 100vh;
             display: flex;
@@ -28,10 +29,11 @@
             padding: 40px 40px 60px 40px;
         }
 
+        /* فضای محتوای اصلی، با جا برای منوی راست */
         .hero-area {
             width: 100%;
             max-width: 960px;
-            margin-right: 170px; /* جا برای منوی عمودی سمت راست */
+            margin-right: 190px; /* فضای کافی برای منوی عمودی */
         }
 
         /* کارت مرکزی (لوگو + متن) */
@@ -49,12 +51,12 @@
         }
 
         .hero-logo-orb {
-            width: 72px;
-            height: 72px;
+            width: 80px;
+            height: 80px;
             margin: 0 auto 20px auto;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 20%, #35c8ff, #005cff 55%, #001430 100%);
-            box-shadow: 0 0 32px rgba(0, 180, 255, 0.9);
+            box-shadow: 0 0 40px rgba(0, 180, 255, 0.95);
         }
 
         .hero-title {
@@ -96,7 +98,7 @@
 
         .btn-primary,
         .btn-secondary {
-            padding: 10px 22px;
+            padding: 10px 24px;
             border-radius: 999px;
             font-size: 13px;
             border: 1px solid transparent;
@@ -155,41 +157,41 @@
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             z-index: 999;
         }
 
         .nav-btn {
             display: block;
-            padding: 9px 26px;
+            padding: 13px 38px; /* بزرگ‌تر */
             border-radius: 999px;
             text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 0.12em;
+            font-size: 14px;    /* فونت درشت‌تر */
+            letter-spacing: 0.14em;
             text-transform: uppercase;
             color: #e3f2ff;
-            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.4), rgba(0, 10, 35, 0.95));
-            border: 1px solid rgba(90, 185, 255, 0.85);
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
             box-shadow:
-                0 0 12px rgba(0, 130, 255, 0.85),
-                0 0 28px rgba(0, 40, 120, 0.85);
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
             transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
         }
 
         .nav-btn:hover {
             transform: translateX(-4px);
-            padding-right: 30px;
+            padding-right: 44px;
             box-shadow:
-                0 0 18px rgba(0, 190, 255, 0.95),
-                0 0 40px rgba(0, 80, 200, 0.95);
-            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.6), rgba(0, 25, 80, 1));
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
         }
 
         .nav-btn:active {
             transform: translateX(-2px) scale(0.99);
         }
 
-        /* نقطه و نوشته‌ی بالا */
+        /* نقطه و متن کوچک بالا */
         .top-dot {
             position: fixed;
             left: 18px;
@@ -234,9 +236,9 @@
             }
 
             .nav-btn {
-                padding: 8px 16px;
+                padding: 9px 20px;
                 font-size: 11px;
-                letter-spacing: 0.09em;
+                letter-spacing: 0.11em;
             }
 
             .hero-card {
@@ -248,10 +250,11 @@
 </head>
 <body>
 
+    <!-- نقطه و نام ELISENCE بالا -->
     <div class="top-dot"></div>
     <div class="top-dot-label">ELISENCE</div>
 
-    <!-- منوی عمودی سمت راست با لینک به صفحات جدا -->
+    <!-- منوی عمودی سمت راست با لینک به صفحه‌های جدا -->
     <nav class="side-nav">
         <a href="index.html"   class="nav-btn">Home</a>
         <a href="phases.html"  class="nav-btn">Phases</a>
@@ -261,6 +264,7 @@
         <a href="contact.html" class="nav-btn">Contact</a>
     </nav>
 
+    <!-- محتوای اصلی -->
     <div class="page-wrapper">
         <div class="hero-area">
             <div class="hero-card">
@@ -292,5 +296,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>
