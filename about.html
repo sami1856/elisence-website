@@ -1,80 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elisence – About</title>
+    <meta charset="UTF-8" />
+    <title>About Elisence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style>
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #08172a;
-            color: #e8f4fc;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* ======= HEADER (same style family as videos.html) ======= */
-        header {
-            background-color: #020617;
-            padding: 1.8rem 0;
-            border-bottom: 1px solid #1e293b;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        /* نقطه و لوگوی بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
         }
 
-        .header-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
         }
 
-        .brand-block {
+        /* منوی عمودی سمت راست (همان استایل index) */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            z-index: 999;
         }
 
-        .brand-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 0.14rem;
-        }
-
-        .brand-sub {
-            font-size: 0.85rem;
-            color: #60a5fa;
-        }
-
-        nav.main-nav {
-            display: flex;
-            gap: 1.8rem;
-        }
-
-        nav.main-nav a {
-            color: #e2e8f0;
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
             text-decoration: none;
-            font-size: 0.92rem;
-            letter-spacing: 0.05rem;
+            font-size: 14px;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
         }
 
-        nav.main-nav a:hover {
-            color: #38bdf8;
-            text-decoration: underline;
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
         }
 
-        nav.main-nav a.active {
-            color: #38bdf8;
-            font-weight: 600;
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
         }
 
-        /* ======= MAIN CONTENT ======= */
-        main {
+        /* محتوای اصلی صفحه About */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
             max-width: 1100px;
-            margin: 2.4rem auto 3.2rem auto;
-            padding: 0 1.5rem;
+            margin-right: 190px; /* فضای منوی عمودی سمت راست */
         }
 
         h1 {
@@ -119,6 +144,7 @@
         .card li {
             margin-bottom: 0.4rem;
             font-size: 0.94rem;
+            color: #dceafe;
         }
 
         .highlight {
@@ -126,124 +152,130 @@
             font-weight: 600;
         }
 
-        /* ======= RESPONSIVE ======= */
         @media (max-width: 900px) {
-            .header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.8rem;
+            .page-shell {
+                padding: 80px 18px 100px 18px;
             }
 
-            nav.main-nav {
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
                 flex-wrap: wrap;
-                gap: 1.1rem;
+                justify-content: center;
+                gap: 8px;
             }
 
-            main {
-                padding: 0 1.2rem;
-            }
-
-            .card {
-                padding: 1.5rem 1.4rem;
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
             }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="header-inner">
-        <div class="brand-block">
-            <span class="brand-title">ELISENCE</span>
-            <span class="brand-sub">Global Digital Health & Humanity Platform</span>
-        </div>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
 
-        <nav class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#phases">Phases</a>
-            <a href="about.html" class="active">About</a>
-            <a href="index.html#contact">Contact</a>
-            <a href="story.html">Story</a>
-            <a href="videos.html">Videos</a>
-        </nav>
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html"        class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <h1>About Elisence</h1>
+
+            <p class="lead">
+                Elisence is a global digital health &amp; humanity platform designed to connect real people, real clinics,
+                and real governments through one trusted, compliant infrastructure – from daily life to national health strategy.
+            </p>
+
+            <section class="card">
+                <h2>What Elisence Is</h2>
+                <p>
+                    Elisence is not a single app. It is a
+                    <span class="highlight">multi-phase health infrastructure</span> built across
+                    17 connected phases – from GLP-1 and metabolic engines, to women’s health, blood intelligence, diabetes,
+                    emergency engines, nutrition (GNIE), mental health, and ELIS social identity.
+                </p>
+                <p>
+                    Each phase adds a new layer of:
+                </p>
+                <ul>
+                    <li>Safe, non-diagnostic health intelligence</li>
+                    <li>Structured data and provenance for governments and regulators</li>
+                    <li>Real-world support for families, clinicians, hospitals, and ministries</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2>Who Elisence Serves</h2>
+                <p>Elisence is built to serve multiple real stakeholders at the same time:</p>
+                <ul>
+                    <li><span class="highlight">Individuals &amp; families</span> – daily health support, reminders, education and safe guidance</li>
+                    <li><span class="highlight">Clinicians &amp; care teams</span> – structured views, risk insights, and safer collaboration</li>
+                    <li><span class="highlight">Hospitals &amp; clinics</span> – a modern digital layer on top of existing systems</li>
+                    <li><span class="highlight">Ministries &amp; governments</span> – dashboards, population insights, and evidence packs</li>
+                    <li><span class="highlight">Researchers &amp; partners</span> – a governed, auditable environment for real-world data</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2>How Elisence Is Built</h2>
+                <p>
+                    Elisence is designed from day one around
+                    <span class="highlight">trust, safety and regulation</span>.
+                    The platform follows international standards and expectations, including:
+                </p>
+                <ul>
+                    <li>NHS and European guidance for digital health and clinical safety</li>
+                    <li>GCC data protection, consent and sovereignty principles</li>
+                    <li>HIPAA-style protection for sensitive health information</li>
+                    <li>Zero-trust security architecture, audit logs, and evidence packs</li>
+                </ul>
+                <p>
+                    Every major feature is designed with an explicit boundary:
+                    what Elisence will do, and what it will <strong>never</strong> do
+                    (for example, replacing a doctor or giving diagnostic orders).
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>Current Status</h2>
+                <p>
+                    As of now, Elisence is in an advanced build phase with multiple phases already mapped,
+                    designed, and partially implemented across backend, safety tests, and UI.
+                </p>
+                <p>
+                    The platform is preparing for:
+                </p>
+                <ul>
+                    <li>Showcasing at regional and global events</li>
+                    <li>Pilot collaborations with clinics and ministries</li>
+                    <li>Formal company registration and regulatory pathways</li>
+                </ul>
+                <p>
+                    This About page is part of the public-facing layer that explains to partners, investors and
+                    ministries what Elisence is and why it is designed for long-term trust.
+                </p>
+            </section>
+        </main>
     </div>
-</header>
-
-<main>
-    <h1>About Elisence</h1>
-    <p class="lead">
-        Elisence is a global digital health & humanity platform designed to connect real people, real clinics,
-        and real governments through one trusted, compliant infrastructure – from daily life to national health strategy.
-    </p>
-
-    <section class="card">
-        <h2>What Elisence Is</h2>
-        <p>
-            Elisence is not a single app. It is a <span class="highlight">multi-phase health infrastructure</span> built across
-            17 connected phases – from GLP-1 and metabolic engines, to women’s health, blood intelligence, diabetes,
-            emergency engines, nutrition (GNIE), mental health, and ELIS social identity.
-        </p>
-        <p>
-            Each phase adds a new layer of:
-        </p>
-        <ul>
-            <li>Safe, non-diagnostic health intelligence</li>
-            <li>Structured data and provenance for governments and regulators</li>
-            <li>Real-world support for families, clinicians, hospitals, and ministries</li>
-        </ul>
-    </section>
-
-    <section class="card">
-        <h2>Who Elisence Serves</h2>
-        <p>Elisence is built to serve multiple real stakeholders at the same time:</p>
-        <ul>
-            <li><span class="highlight">Individuals & families</span> – daily health support, reminders, education and safe guidance</li>
-            <li><span class="highlight">Clinicians & care teams</span> – structured views, risk insights, and safer collaboration</li>
-            <li><span class="highlight">Hospitals & clinics</span> – a modern digital layer on top of existing systems</li>
-            <li><span class="highlight">Ministries & governments</span> – dashboards, population insights, and evidence packs</li>
-            <li><span class="highlight">Researchers & partners</span> – a governed, auditable environment for real-world data</li>
-        </ul>
-    </section>
-
-    <section class="card">
-        <h2>How Elisence Is Built</h2>
-        <p>
-            Elisence is designed from day one around <span class="highlight">trust, safety and regulation</span>.
-            The platform follows international standards and expectations, including:
-        </p>
-        <ul>
-            <li>NHS and European guidance for digital health and clinical safety</li>
-            <li>GCC data protection, consent and sovereignty principles</li>
-            <li>HIPAA-style protection for sensitive health information</li>
-            <li>Zero-trust security architecture, audit logs, and evidence packs</li>
-        </ul>
-        <p>
-            Every major feature is designed with an explicit boundary:
-            what Elisence will do, and what it will <strong>never</strong> do
-            (for example, replacing a doctor or giving diagnostic orders).
-        </p>
-    </section>
-
-    <section class="card">
-        <h2>Current Status</h2>
-        <p>
-            As of now, Elisence is in an advanced build phase with multiple phases already mapped,
-            designed, and partially implemented across backend, safety tests, and UI.
-        </p>
-        <p>
-            The platform is preparing for:
-        </p>
-        <ul>
-            <li>Showcasing at regional and global events</li>
-            <li>Pilot collaborations with clinics and ministries</li>
-            <li>Formal company registration and regulatory pathways</li>
-        </ul>
-        <p>
-            This About page is part of the public-facing layer that explains to partners, investors and
-            ministries what Elisence is and why it is designed for long-term trust.
-        </p>
-    </section>
-</main>
 
 </body>
 </html>
