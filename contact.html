@@ -9,6 +9,9 @@
         content="Contact Elisence — Global Digital Health & Humanity Platform. Get in touch for partnerships, pilots, and support."
     />
 
+    <!-- Elisa chat widget script (same as index.html) -->
+    <script defer src="/assets/elisa-chat.js"></script>
+
     <style>
         :root {
             --bg-dark: #050814;
@@ -462,7 +465,8 @@
                     <h2>Send Us a Message</h2>
                     <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0;">
                         This form will open your email application with a pre-filled message
-                        to <strong>contact@elisence.com</strong>. You can review and send it there.
+                        to <strong>contact@elisence.com</strong> (CC:
+                        <strong>Sami1856@yahoo.co.uk</strong>). You can review and send it there.
                     </p>
 
                     <form id="contact-form">
@@ -526,8 +530,11 @@
         </div>
     </main>
 
+    <!-- Elisa chat widget root (like other pages) -->
+    <div id="elisa-chat-root"></div>
+
     <script>
-        // اتصال فرم به contact@elisence.com با mailto
+        // اتصال فرم به contact@elisence.com با CC به Sami1856@yahoo.co.uk
         document.addEventListener('DOMContentLoaded', function () {
             var form = document.getElementById('contact-form');
             if (!form) return;
@@ -557,7 +564,8 @@
 
                 var mailtoLink =
                     'mailto:contact@elisence.com' +
-                    '?subject=' + encodeURIComponent(subject) +
+                    '?cc=' + encodeURIComponent('Sami1856@yahoo.co.uk') +
+                    '&subject=' + encodeURIComponent(subject) +
                     '&body='    + encodeURIComponent(body);
 
                 window.location.href = mailtoLink;
