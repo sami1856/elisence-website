@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* --- صفحه کلی --- */
         .page-wrapper {
             min-height: 100vh;
             display: flex;
@@ -29,17 +28,16 @@
             padding: 40px 40px 60px 40px;
         }
 
-        /* فضای خالی برای منوی سمت راست */
         .hero-area {
             width: 100%;
             max-width: 960px;
-            margin-right: 170px; /* جا برای منوی عمودی */
+            margin-right: 170px; /* جا برای منوی عمودی سمت راست */
         }
 
-        /* --- کارت مرکزی (لوگو + متن) --- */
+        /* کارت مرکزی (لوگو + متن) */
         .hero-card {
             max-width: 540px;
-            margin: 0 auto 32px auto;
+            margin: 0 auto;
             padding: 32px 40px 32px 40px;
             border-radius: 26px;
             background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
@@ -149,27 +147,7 @@
             opacity: 0.9;
         }
 
-        /* --- سکشن‌ها --- */
-        section {
-            max-width: 720px;
-            margin: 40px auto 0 auto;
-            padding: 12px 4px;
-        }
-
-        section h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-
-        section p {
-            font-size: 13px;
-            line-height: 1.8;
-            color: #d7e7ff;
-        }
-
-        /* --- منوی عمودی سمت راست --- */
+        /* منوی عمودی سمت راست */
         .side-nav {
             position: fixed;
             right: 32px;
@@ -211,7 +189,7 @@
             transform: translateX(-2px) scale(0.99);
         }
 
-        /* نقطه‌ی کوچک بالا (لوگو متنی) */
+        /* نقطه و نوشته‌ی بالا */
         .top-dot {
             position: fixed;
             left: 18px;
@@ -265,31 +243,25 @@
                 max-width: 100%;
                 padding: 24px 20px;
             }
-
-            section {
-                margin-top: 30px;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- نقطه‌ی بالا و نام ELISENCE -->
     <div class="top-dot"></div>
     <div class="top-dot-label">ELISENCE</div>
 
-    <!-- منوی عمودی سمت راست -->
+    <!-- منوی عمودی سمت راست با لینک به صفحات جدا -->
     <nav class="side-nav">
-        <a href="#home" class="nav-btn">Home</a>
-        <a href="#phases" class="nav-btn">Phases</a>
-        <a href="#about" class="nav-btn">About</a>
-        <a href="#story" class="nav-btn">Story</a>
-        <a href="#videos" class="nav-btn">Videos</a>
-        <a href="#contact" class="nav-btn">Contact</a>
+        <a href="index.html"   class="nav-btn">Home</a>
+        <a href="phases.html"  class="nav-btn">Phases</a>
+        <a href="about.html"   class="nav-btn">About</a>
+        <a href="story.html"   class="nav-btn">Story</a>
+        <a href="video.html"   class="nav-btn">Videos</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
     </nav>
 
-    <!-- محتوای اصلی -->
-    <div class="page-wrapper" id="home">
+    <div class="page-wrapper">
         <div class="hero-area">
             <div class="hero-card">
                 <div class="hero-logo-orb"></div>
@@ -310,61 +282,14 @@
                 </p>
 
                 <div class="hero-actions">
-                    <a href="#phases" class="btn-primary">Explore the Phases</a>
-                    <a href="#videos" class="btn-secondary">Watch Explainer Videos</a>
+                    <a href="phases.html" class="btn-primary">Explore the Phases</a>
+                    <a href="video.html"  class="btn-secondary">Watch Explainer Videos</a>
                 </div>
 
                 <div class="hero-footnote">
                     <span>Built by Saami — Powered by ChatGPT</span>
                 </div>
             </div>
-
-            <!-- سکشن‌های پایین صفحه -->
-            <section id="phases">
-                <h2>Phases Overview</h2>
-                <p>
-                    Elisence is organised into multiple phases — from weight-loss and GLP-1 optimisation, through
-                    women’s health, mental health, passports and hospital-grade attachments, all the way to global
-                    nutrition intelligence. Each phase can be used on its own, but is even stronger when connected:
-                    data, evidence packs and safety rules are shared across the platform.
-                </p>
-            </section>
-
-            <section id="about">
-                <h2>About Elisence</h2>
-                <p>
-                    Elisence is designed as a global digital health & humanity platform: simple for citizens, powerful
-                    for clinicians and ministries. The core principles are safety, transparency, auditability and
-                    respect for people’s time, culture and language.
-                </p>
-            </section>
-
-            <section id="story">
-                <h2>The Story</h2>
-                <p>
-                    Elisence began as a personal mission to build something better than the fragmented, unsafe digital
-                    tools most people live with today. Over time, it grew into a multi-phase platform that families,
-                    hospitals and governments can rely on for real, everyday decisions — not just demos.
-                </p>
-            </section>
-
-            <section id="videos">
-                <h2>Explainer Videos</h2>
-                <p>
-                    Here you can add short explainer videos for each phase — showing how the system works for citizens,
-                    clinicians and ministries. For now, this section is a placeholder for your upcoming Phase-by-Phase
-                    videos.
-                </p>
-            </section>
-
-            <section id="contact">
-                <h2>Contact</h2>
-                <p>
-                    For partnership, investment or government collaboration enquiries, Elisence will provide a dedicated
-                    contact channel. Until then, this section can link to your email, WhatsApp Business, or a secure
-                    contact form.
-                </p>
-            </section>
         </div>
     </div>
 </body>
