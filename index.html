@@ -34,14 +34,15 @@
 
         .hero-area {
             width: 100%;
-            max-width: 960px;
+            max-width: 1100px;
             margin-right: 190px; /* جا برای منوی عمودی سمت راست */
         }
 
         .hero-card {
-            max-width: 540px;
+            width: 100%;
+            max-width: 850px;
             margin: 0 auto;
-            padding: 32px 40px 32px 40px;
+            padding: 50px 60px;
             border-radius: 26px;
             background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
             box-shadow:
@@ -51,13 +52,34 @@
             border: 1px solid rgba(70, 190, 255, 0.6);
         }
 
-        .hero-logo-orb {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px auto;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 20%, #35c8ff, #005cff 55%, #001430 100%);
-            box-shadow: 0 0 40px rgba(0, 180, 255, 0.95);
+        /* کانتینر و استایل لوگوی بزرگ Elisence */
+        .hero-logo-container {
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto 30px auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-hero-logo {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            animation: breathingGlow 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.6));
+        }
+
+        @keyframes breathingGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 25px rgba(0, 160, 255, 0.5)) brightness(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(0, 200, 255, 0.9)) brightness(1.15);
+                transform: scale(1.015);
+            }
         }
 
         .hero-title {
@@ -397,7 +419,13 @@
     <div class="page-wrapper">
         <div class="hero-area">
             <div class="hero-card">
-                <div class="hero-logo-orb"></div>
+
+                <!-- لوگوی اصلی Elisence به‌صورت مستطیلی -->
+                <div class="hero-logo-container">
+                    <img src="elisence.png"
+                         alt="Elisence – Global Digital Health & Humanity Platform"
+                         class="main-hero-logo">
+                </div>
 
                 <div class="hero-title">ELISENCE</div>
                 <div class="hero-subtitle">Growth · Health · Humanity · Embracing the Future</div>
