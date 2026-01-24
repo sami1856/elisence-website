@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence — Phase 10: User Profiles & Social Presence</title>
+    <title>Elisence – Phase 10: User Profiles & Social Presence</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
         name="description"
-        content="Elisence Phase 10 — User Profiles, Social Presence and Secure Attachments. The public face and social heart of the Elisence platform."
+        content="Elisence Phase 10 — User Profiles, Social Presence & Secure Attachments. The public face and social heart of the Elisence platform."
     />
 
     <!-- Elisa chat widget script -->
@@ -14,15 +14,15 @@
 
     <style>
         :root {
-            --bg-space: radial-gradient(circle at top, #020924 0%, #020617 45%, #000000 100%);
+            --bg-space: radial-gradient(circle at top, #04101f 0%, #020617 45%, #000000 100%);
             --text-main: #e8f4fc;
             --text-soft: #cbd5f5;
             --text-muted: #94a3b8;
-            --accent: #4ea8ff;
-            --accent-soft: #93c5fd;
-            --card-bg: rgba(13, 16, 32, 0.96);
-            --card-border: rgba(78, 168, 255, 0.9); /* social / vitrine tint */
-            --shadow-strong: 0 0 28px rgba(78, 168, 255, 0.7), 0 0 52px rgba(15, 23, 42, 0.9);
+            --accent: #38bdf8;
+            --accent-soft: #7dd3fc;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-border: rgba(56, 189, 248, 0.9); /* blue tint for Phase 10 vitrine */
+            --shadow-strong: 0 0 28px rgba(56, 189, 248, 0.7), 0 0 52px rgba(15, 23, 42, 0.9);
         }
 
         * {
@@ -45,8 +45,8 @@
             width: 11px;
             height: 11px;
             border-radius: 999px;
-            background: var(--accent);
-            box-shadow: 0 0 16px rgba(78, 168, 255, 0.95);
+            background: #38bdf8;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.95);
             z-index: 900;
         }
 
@@ -85,7 +85,7 @@
             border-radius: 999px;
             border: 1px solid rgba(148, 163, 184, 0.75);
             background: radial-gradient(circle at top left,
-                rgba(78, 168, 255, 0.32),
+                rgba(56, 189, 248, 0.32),
                 rgba(15, 23, 42, 0.96));
             color: #e2e8f0;
             font-size: 0.78rem;
@@ -102,10 +102,10 @@
 
         .nav-btn:hover {
             transform: translateX(-2px);
-            border-color: rgba(78, 168, 255, 0.95);
-            box-shadow: 0 0 22px rgba(78, 168, 255, 0.9);
+            border-color: rgba(56, 189, 248, 0.95);
+            box-shadow: 0 0 22px rgba(56, 189, 248, 0.9);
             background: radial-gradient(circle at top left,
-                rgba(78, 168, 255, 0.45),
+                rgba(56, 189, 248, 0.45),
                 rgba(15, 23, 42, 0.98));
         }
 
@@ -126,7 +126,7 @@
 
         .phase-hero-card {
             background: radial-gradient(circle at top left,
-                rgba(78, 168, 255, 0.35),
+                rgba(56, 189, 248, 0.35),
                 rgba(15, 23, 42, 0.98));
             border-radius: 26px;
             border: 1px solid var(--card-border);
@@ -187,7 +187,7 @@
             font-size: 0.95rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: #bfdbfe;
+            color: #7dd3fc;
             margin-bottom: 0.6rem;
         }
 
@@ -201,7 +201,7 @@
             margin: 0.3rem 0 0 0;
             padding-left: 1.1rem;
             font-size: 0.9rem;
-            color: #dbeafe;
+            color: #e0f2fe;
         }
 
         .phase-hero-bullets li {
@@ -234,7 +234,7 @@
             margin-top: 1.1rem;
             margin-bottom: 0.4rem;
             font-size: 1.02rem;
-            color: #bfdbfe;
+            color: #bae6fd;
         }
 
         .info-card p {
@@ -256,6 +256,11 @@
         .subtle {
             font-size: 0.88rem;
             color: var(--text-muted);
+        }
+
+        .highlight {
+            color: var(--accent-soft);
+            font-weight: 500;
         }
 
         /* Responsive */
@@ -322,17 +327,17 @@
                     <div class="phase-label">PHASE 10</div>
                     <h1 class="phase-title">User Profiles, Social Presence &amp; Secure Attachments</h1>
                     <div class="phase-subtitle">
-                        PROFILES · SOCIAL GRAPH · ATTACHMENTS VAULT · SAFETY-FIRST
+                        VITRINE · COMMUNITY · ATTACHMENTS · TRUST
                     </div>
                     <p class="phase-lead">
-                        Phase 10 is the public face and social heart of Elisence. It turns people, clinicians,
-                        clinics and ministries from silent data rows into <strong>living profiles, conversations
-                        and communities</strong> – under a strict Zero-Trust, evidence-ready architecture.
+                        Phase 10 is the <strong>public face and social heart</strong> of Elisence. It turns citizens,
+                        families, clinicians, hospitals and ministries from anonymous data rows into living profiles,
+                        conversations and communities — inside a strict Zero-Trust, evidence-ready architecture.
                     </p>
                     <ul class="phase-hero-bullets">
-                        <li>The vitrine where all other phases become visible and human.</li>
-                        <li>Rich profiles, social presence and a healthcare-grade Attachments &amp; Media Vault.</li>
-                        <li>Designed as a safe alternative to generic social networks for health.</li>
+                        <li>Health-centric profiles and feed — built for care, not for clicks.</li>
+                        <li>Secure Attachments Vault for reports, scans and legal documents.</li>
+                        <li>Safer social graph that connects all other Elisence phases in one vitrine.</li>
                     </ul>
                 </div>
             </div>
@@ -342,27 +347,28 @@
     <!-- DETAIL CARDS -->
     <main class="phase-main">
 
-        <!-- 1. CORE DEFINITION -->
+        <!-- 1. WHAT PHASE 10 IS -->
         <section class="info-card">
             <h2>1. What Phase 10 Really Is</h2>
+            <h3>10.1 Core Definition</h3>
             <p>
-                Phase 10 is Elisence’s <strong>User Profile &amp; Social Identity Layer</strong>. It is where
-                identities, stories and achievements live:
+                Phase 10 is Elisence’s <strong>User Profile &amp; Social Identity Layer</strong>. It provides:
             </p>
             <ul>
                 <li>Rich personal profiles for citizens and families.</li>
-                <li>Verified professional profiles for doctors, clinics, pharmacists and partners.</li>
+                <li>Verified professional profiles for doctors, nurses, clinics, pharmacists and partners.</li>
                 <li>Social presence: posts, reactions, shared achievements and topic communities.</li>
                 <li>A secure <strong>Attachments &amp; Media Vault</strong> for documents, scans, reports and legal files.</li>
-                <li>Discovery and interaction that are safer than mainstream social networks, because they are built for health, not clicks.</li>
+                <li>Discovery and interaction that are safer than mainstream social networks, because they are built for health — not for engagement metrics.</li>
             </ul>
-            <p>
-                Design principles:
-            </p>
+
+            <h3>10.2 Design Principles</h3>
             <ul>
-                <li>Zero-Trust by design and BBVP (Build • Back • Verify • Prove) for every module.</li>
-                <li>NHS / GDPR / EU MDR / HIPAA / GCC PDPL aware, with clear non-diagnostic boundaries.</li>
-                <li>Five-language foundation from day one: EN, FA, AR, TR, RO.</li>
+                <li><strong>Zero-Trust by design</strong> — every identity, file and action is verified and auditable.</li>
+                <li><strong>BBVP</strong> (Build • Back • Verify • Prove) for every feature.</li>
+                <li>NHS / GDPR / EU MDR / HIPAA / GCC PDPL aware; health-data first, not ad-tech.</li>
+                <li>Non-diagnostic, non-prescriptive — no direct medical advice in feeds or comments.</li>
+                <li>Five-language foundation from day one (EN / FA / AR / TR / RO).</li>
             </ul>
         </section>
 
@@ -372,30 +378,31 @@
             <h3>2.1 Personal Identity</h3>
             <p>
                 Phase 10 gives every user a safe, modern health identity. A profile can include a photo or avatar,
-                a short bio, and key health focuses such as weight-loss, diabetes support, Women+ health, or mental
-                wellbeing. Every field is under the user’s control.
+                a short bio and key health focuses such as weight-loss, diabetes support, Women+ health or mental wellbeing.
+                Every field is under the user’s control.
             </p>
             <p>
-                Privacy levels are simple and explicit:
-                <em>private</em>, <em>friends-only</em> or <em>public</em>. Nothing is exposed by accident.
+                Privacy levels are simple and explicit: <em>private</em>, <em>friends-only</em> or <em>public</em>.
+                Nothing becomes public by accident.
             </p>
 
             <h3>2.2 Family &amp; Care Profiles</h3>
             <p>
-                Parents and carers can manage profiles for children or elderly relatives, linked to the Elisence Care
-                modules. All sharing is consent-based and fully traceable. Sensitive details never leak into public views.
+                Parents and carers can manage profiles for children or elderly relatives, linked to Elisence Care modules.
+                All sharing is consent-based and traceable. Sensitive details never appear in public views, only in clinical
+                or family contexts where they belong.
             </p>
 
             <h3>2.3 Healthy Social Feed (Not Addictive)</h3>
             <p>
                 Users can post progress updates, celebrate milestones from their weight-loss, diabetes or Women+ journeys,
-                and share positive achievements powered by the Healthy Dopamine engine. The algorithm is explicitly
-                <strong>not</strong> addictive:
+                and share positive achievements powered by the Healthy Dopamine engine. The feed is designed
+                <strong>not</strong> to be addictive:
             </p>
             <ul>
-                <li>No casino-style loops, no dark patterns, no engagement traps.</li>
-                <li>Only reinforcement of healthy, sustainable behaviours.</li>
-                <li>No shaming, no comparison leaderboards, no toxic metrics.</li>
+                <li>No casino-style loops, endless scroll traps or manipulative notifications.</li>
+                <li>No weight-shaming or comparison leaderboards.</li>
+                <li>Only reinforcement of healthy, sustainable behaviours and rest days.</li>
             </ul>
         </section>
 
@@ -404,59 +411,45 @@
             <h2>3. Professional &amp; Organisation Profiles</h2>
             <h3>3.1 Verified Professional Identity</h3>
             <p>
-                Phase 10 allows doctors, nurses, dietitians, psychologists, pharmacists, clinics and hospitals to hold
+                Phase 10 allows clinicians, dietitians, psychologists, pharmacists, clinics and hospitals to hold
                 <strong>verified professional profiles</strong>. Verification is tied to Elisence Passport V1 and the
-                Advanced Health Engine (Phase 8), with national rules for who can be approved.
+                AHE (Phase 8), with country-specific rules for who can be approved.
             </p>
             <p>
-                Professional profiles can show:
-            </p>
-            <ul>
-                <li>Credentials, specialities and professional affiliations.</li>
-                <li>Opening hours, clinic locations and accepted programmes.</li>
-                <li>Educational posts, community Q&amp;A and public updates.</li>
-            </ul>
-
-            <h3>3.2 Rules Defined by Ministries &amp; Regulators</h3>
-            <p>
-                Ministries and regulators configure:
+                Professional profiles can show credentials, specialities, affiliations, opening hours and educational posts.
+                Ministries and regulators define:
             </p>
             <ul>
-                <li>Which roles can be verified and under what process.</li>
-                <li>What professional accounts are allowed to publish.</li>
-                <li>Which regions, insurers and public programmes are enabled first.</li>
+                <li>who can be verified,</li>
+                <li>what professional accounts are allowed to publish,</li>
+                <li>which regions and programmes are enabled first.</li>
             </ul>
             <p>
-                The result is a trustable health network, not a free-for-all forum.
+                The result is a trustable health network, not a generic, unmoderated forum.
             </p>
         </section>
 
-        <!-- 4. SECURE ATTACHMENTS & MEDIA VAULT -->
+        <!-- 4. SECURE ATTACHMENTS VAULT -->
         <section class="info-card">
             <h2>4. Secure Attachments &amp; Media Vault</h2>
-            <h3>4.1 One Safe Place for Health Documents</h3>
+            <h3>4.1 Health Documents in One Safe Place</h3>
             <p>
-                The Attachments &amp; Media Vault is one of the core innovations of Phase 10. Users can store and share:
+                The Attachments &amp; Media Vault is a core innovation of Phase 10. Users can store and share:
             </p>
             <ul>
-                <li>Lab results, imaging, clinic and hospital letters.</li>
-                <li>Prescription photos and medication summaries.</li>
-                <li>Legal and consent documents.</li>
-                <li>Photos and videos relevant to their health journey.</li>
+                <li>lab results, imaging, clinic and hospital letters,</li>
+                <li>prescription photos and medication summaries,</li>
+                <li>legal and consent documents,</li>
+                <li>photos and videos relevant to their health journeys.</li>
             </ul>
-
-            <h3>4.2 Access Control &amp; WORM Audit</h3>
             <p>
-                Access is fully user-controlled: they decide who can see each file, for how long, and for what purpose.
+                Access is fully user-controlled: they decide who can see each file, for how long and for what purpose.
+                Time-limited secure links, revocation controls and WORM audit logs turn the vault into the safest place to
+                keep and share health documents.
             </p>
-            <ul>
-                <li>Time-limited secure links and revocation controls.</li>
-                <li>WORM audit logs for all critical actions and sharing events.</li>
-                <li>Fine-grained roles for family, clinicians, hospitals and ministries.</li>
-            </ul>
             <p>
-                Elisence does not rely on random public file links or consumer clouds. The entire flow runs inside
-                the Elisence infrastructure with healthcare-grade security and passport-based access control.
+                Elisence does not rely on random public-cloud links. The entire flow is handled inside Elisence
+                infrastructure, with healthcare-grade security and clear jurisdiction rules.
             </p>
         </section>
 
@@ -465,16 +458,17 @@
             <h2>5. Safer Social Interaction</h2>
             <h3>5.1 Built for Health, Not for Clicks</h3>
             <p>
-                Phase 10 includes familiar social features – posts, comments, reactions and topic spaces – but rebuilt
-                for health contexts:
+                Phase 10 includes familiar social features — posts, comments, reactions and topic spaces —
+                but rebuilt specifically for health:
             </p>
             <ul>
-                <li>Clear content rules and moderation playbooks.</li>
-                <li>Zero tolerance for abuse, hate or organised health misinformation.</li>
-                <li>Reporting, escalation and bans for harmful behaviour.</li>
+                <li>clear content rules and human + AI moderation,</li>
+                <li>no tolerance for abuse, hate, bullying or organised misinformation campaigns,</li>
+                <li>reporting, escalation and bans for harmful behaviour.</li>
             </ul>
             <p>
-                Social interactions happen in a container designed for care, not for ad impressions or engagement metrics.
+                Social interactions happen in a container designed for care and safety, not for ad impressions or
+                engagement KPIs.
             </p>
         </section>
 
@@ -483,41 +477,36 @@
             <h2>6. Voice, Accessibility &amp; Languages</h2>
             <h3>6.1 Voice-First Social Experience</h3>
             <p>
-                With Phase 13 (Voice Engine), users can browse profiles, open posts, listen to updates and send short
-                messages entirely by voice. Elisa can read key updates aloud and help visually-impaired users navigate
-                the social layer safely.
+                With Phase 13 (Voice Engine), users can browse profiles, open posts, listen to updates and send short messages
+                entirely by voice. Elisa can read key updates aloud and help visually impaired users navigate the social layer
+                safely.
             </p>
 
             <h3>6.2 Accessibility &amp; Blind-Assist</h3>
             <p>
-                Phase 10 integrates with the Blind/Accessibility modules:
+                Phase 10 integrates with the Blind/Accessibility modules: high-contrast UI, voice-first flows and
+                camera-assisted descriptions allow visually impaired users to participate fully in the Elisence community.
             </p>
-            <ul>
-                <li>High-contrast UI and clear typography.</li>
-                <li>Voice-first flows and captioned content.</li>
-                <li>Camera-assisted descriptions that allow visually impaired users to participate fully in the community.</li>
-            </ul>
 
             <h3>6.3 Five-Language Foundation</h3>
             <p>
                 All profile labels, system messages and structural text are designed to support five languages from day one:
-                English, Farsi, Arabic, Turkish and Romanian – with a clear path to add more in future, including full
-                RTL support where needed.
+                English, Farsi, Arabic, Turkish and Romanian, with a clear path to add more languages in future phases.
             </p>
         </section>
 
         <!-- 7. INTEGRATION WITH OTHER PHASES -->
         <section class="info-card">
-            <h2>7. Integration With Other Phases — The Vitrine of Elisence</h2>
+            <h2>7. Integration With Other Phases – The Vitrine of Elisence</h2>
             <p>
-                Phase 10 is where other phases become visible and human:
+                Phase 10 is where the rest of Elisence becomes visible and human:
             </p>
             <ul>
-                <li><strong>Phase 3 &amp; 9:</strong> weight, GLP-1 and diabetes milestones become shareable achievements (if the user chooses).</li>
-                <li><strong>Phase 5:</strong> Healthy Dopamine events appear as subtle, ethical rewards in the social feed.</li>
-                <li><strong>Phase 6:</strong> Structured medication behaviour can drive safe, anonymised badges and streaks.</li>
+                <li><strong>Phase 3 &amp; 9:</strong> weight, GLP-1 and diabetes milestones can become shareable achievements (if the user chooses).</li>
+                <li><strong>Phase 5:</strong> Healthy Dopamine events appear as subtle, ethical rewards in the feed.</li>
+                <li><strong>Phase 6:</strong> structured medication behaviour drives safe, anonymised badges and gentle streaks.</li>
                 <li><strong>Phase 7:</strong> Women+ journeys connect to respectful, trauma-aware communities.</li>
-                <li><strong>Phase 8:</strong> Professional and institutional identities are anchored via Passport V1 and AHE.</li>
+                <li><strong>Phase 8:</strong> professional and institutional identities are anchored via Passport V1 and the AHE engine.</li>
             </ul>
             <p>
                 In practice, Phase 10 is the <strong>vitrine</strong> where citizens, families, clinicians and ministries
@@ -539,14 +528,17 @@
             </p>
             <ul>
                 <li>NHS DTAC / DCB0129–0160 principles.</li>
-                <li>GDPR / UK DPA.</li>
-                <li>EU MDR boundaries for non-device software.</li>
-                <li>HIPAA-style expectations for health data.</li>
+                <li>GDPR / UK DPA privacy frameworks.</li>
+                <li>EU MDR boundaries for non-device / wellness software.</li>
+                <li>HIPAA-style expectations for health data handling.</li>
                 <li>GCC / Qatar / Saudi PDPL data-residency and privacy rules.</li>
             </ul>
+
+            <h3>8.2 BBVP &amp; WORM Audit</h3>
             <p>
-                Every critical action can be logged to WORM audit trails. BBVP is applied to every module so that new
-                features are always shipped with evidence packs and tests, not just promises.
+                Every critical action — verification, attachment-sharing, role changes — can be logged to WORM audit trails.
+                BBVP is applied to each module so that new features are always shipped with tests and evidence packs, not
+                just promises.
             </p>
         </section>
 
@@ -558,13 +550,13 @@
                 to share progress safely.
             </p>
             <p>
-                For clinicians and hospitals, Phase 10 is a trusted social–clinical bridge, combining professional
-                identity, secure documents and patient-friendly communication under clear rules.
+                For clinicians and hospitals, Phase 10 is a trusted social–clinical bridge, combining professional identity,
+                secure documents and patient-friendly communication under clear, auditable rules.
             </p>
             <p>
-                For ministries and investors, Phase 10 is a strategic moat: it owns the health-centric social graph,
-                provides a safe alternative to generic social networks for health discussions, and binds all other
-                Elisence phases into one coherent public-facing experience.
+                For ministries and investors, Phase 10 is a strategic moat: it owns the health-centric social graph, provides
+                a safe alternative to generic social networks for health discussions, and binds all other Elisence phases
+                into one coherent public-facing experience.
             </p>
         </section>
 
@@ -573,15 +565,15 @@
             <h2>10. One-Sentence Summary</h2>
             <p>
                 Phase 10 turns Elisence from a powerful health engine into a
-                <strong>trusted, human social universe</strong> – where profiles, conversations, achievements and secure
-                documents live together under one globally compliant, Zero-Trust architecture.
+                <strong>trusted, human social universe</strong> — where profiles, conversations, achievements and
+                secure documents live together under one globally compliant, Zero-Trust architecture.
             </p>
         </section>
 
     </main>
 </div>
 
-<!-- Elisa chat widget root (Elisa appears in the bottom corner via elisa-chat.js) -->
+<!-- Elisa chat widget root -->
 <div id="elisa-chat-root"></div>
 
 </body>
