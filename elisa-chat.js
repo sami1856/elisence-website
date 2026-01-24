@@ -1,11 +1,11 @@
 // elisa-chat.js
-// Final version – connects to real Elisa backend (Scenario C)
+// Final version – Scenario C (Elisa widget with backend call)
 
-// TODO: وقتی بک‌اند را deploy کردی، فقط این URL را عوض کن:
+// TODO: وقتی بک‌اند را deploy کردی، این آدرس را با آدرس واقعی خودت عوض کن:
 const ELISA_API_URL = "https://YOUR-ELISA-BACKEND-DOMAIN/elisa/chat";
 
 // —————————————————————————————
-// Helper: create DOM elements
+// Helpers: create DOM elements
 // —————————————————————————————
 function createElisaLauncher() {
   const launcher = document.createElement("button");
@@ -156,9 +156,10 @@ async function sendToElisaBackend(messageText) {
 // Wiring everything together
 // —————————————————————————————
 document.addEventListener("DOMContentLoaded", function () {
-  // Add styles (for all pages) – سبک هماهنگ با تم تیره Elisence
+  // Inject styles
   const style = document.createElement("style");
   style.textContent = `
+    /* Launcher button – desktop default */
     #elisa-launcher {
       position: fixed;
       right: 18px;
@@ -361,22 +362,20 @@ document.addEventListener("DOMContentLoaded", function () {
       box-shadow: none;
     }
 
-   @media (max-width: 520px) {
-      /* پنل چت روی موبایل مثل قبل */
+    /* نسخه موبایل – کوچیک کردن الیسا و جلوگیری از تداخل با CONTACT */
+    @media (max-width: 520px) {
       #elisa-chat-panel {
         right: 10px;
         left: 10px;
         width: auto;
       }
 
-      /* دکمه‌ی الیسا روی موبایل کوچیک‌تر و کمی بالاتر */
       #elisa-launcher {
         right: 10px;
-        bottom: 18px;             /* کمی بالاتر از تماس */
-        padding: 4px 10px 4px 4px;/* باریک‌تر از دسکتاپ */
+        bottom: 18px;              /* کمی بالاتر از لبه پایین */
+        padding: 4px 10px 4px 4px;  /* باریک‌تر از دسکتاپ */
       }
 
-      /* آواتار و متن‌ها هم ریزتر بشن */
       .elisa-avatar {
         width: 30px;
         height: 30px;
@@ -390,6 +389,7 @@ document.addEventListener("DOMContentLoaded", function () {
         font-size: 10px;
       }
     }
+  `;
   document.head.appendChild(style);
 
   const launcher = createElisaLauncher();
@@ -403,7 +403,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (input) input.focus();
 
     const hasMessages =
-      document.getElementById("elisa-messages")?.children.length || 0;
+      (document.getElementById("elisa-messages")?.children.length || 0) > 0;
 
     if (!hasMessages) {
       addMessage(
