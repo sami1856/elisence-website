@@ -158,12 +158,12 @@ async function sendToElisaBackend(messageText) {
 document.addEventListener("DOMContentLoaded", function () {
   // Inject styles
   const style = document.createElement("style");
-  style.textContent = `
-    /* Launcher button – desktop default */
+  /* Launcher button – desktop default (TOP RIGHT) */
     #elisa-launcher {
       position: fixed;
       right: 18px;
-      bottom: 18px;
+      top: 18px;        /* به‌جای bottom:18px  */
+      bottom: auto;     /* مطمئن می‌شیم پایین غیرفعال است */
       z-index: 1200;
       border: none;
       border-radius: 999px;
