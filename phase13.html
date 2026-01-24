@@ -2,563 +2,662 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence — Phase 13: Voice & Zero-Typing Engine</title>
+    <title>Elisence – Phase 13: Voice & Zero-Typing Engine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-        name="description"
-        content="Elisence Phase 13 — Voice and zero-typing engine that lets users talk to Elisence safely in five languages, with strict non-diagnostic, Zero-Trust rules."
-    />
+
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
 
     <style>
-        :root {
-            --bg-dark: #050814;
-            --bg-card: #0d1020;
-            --accent: #4ea8ff;
-            --accent-soft: rgba(78, 168, 255, 0.1);
-            --text-main: #f5f7ff;
-            --text-muted: #a3b0d8;
-            --border-soft: rgba(255, 255, 255, 0.08);
-            --danger: #ff5c7a;
-            --success: #4fd1c5;
-        }
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-space: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            --text-main: #e8f4fc;
+            --text-soft: #cbd5f5;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-soft: #7dd3fc;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-border: rgba(56, 189, 248, 0.9);
+            --shadow-strong: 0 0 28px rgba(56, 189, 248, 0.9),
+                             0 0 52px rgba(15, 23, 42, 0.9);
         }
 
         body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #111633 0, #050814 60%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+            background: var(--bg-space);
             color: var(--text-main);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
+        /* ===== top dot + label ===== */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 900;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 900;
         }
 
-        header {
-            border-bottom: 1px solid var(--border-soft);
-            background: linear-gradient(
-                to right,
-                rgba(7, 12, 40, 0.95),
-                rgba(6, 10, 32, 0.98)
-            );
-            backdrop-filter: blur(14px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .nav-shell {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .brand-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #4ea8ff, #7f5dff 45%, #111631);
-            box-shadow: 0 0 18px rgba(78, 168, 255, 0.6);
-        }
-
-        .brand-text {
+        /* ===== side navigation ===== */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            z-index: 999;
         }
 
-        .brand-text span:first-child {
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            font-size: 0.8rem;
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top,
+                rgba(0, 130, 255, 0.45),
+                rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease,
+                padding 0.2s ease;
         }
 
-        .brand-text span:last-child {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top,
+                rgba(0, 170, 255, 0.7),
+                rgba(0, 25, 80, 1));
         }
 
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            font-size: 0.9rem;
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
         }
 
-        nav a {
-            color: var(--text-muted);
-            padding-bottom: 0.15rem;
-            border-bottom: 2px solid transparent;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
-
-        nav a.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        main {
-            max-width: 1120px;
+        /* ===== layout wrapper ===== */
+        .page-wrapper {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
+            padding: 96px 1.8rem 72px 1.8rem;
         }
 
-        .phase-tag {
-            display: inline-flex;
+        .hero-area {
+            margin-bottom: 2.4rem;
+        }
+
+        .phase-hero-card {
+            background: radial-gradient(circle at top left,
+                rgba(56, 189, 248, 0.28),
+                rgba(15, 23, 42, 0.98));
+            border-radius: 26px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.6rem 1.8rem;
+        }
+
+        .phase-hero-inner {
+            display: flex;
+            gap: 1.8rem;
+            align-items: stretch;
+        }
+
+        .phase-hero-logo-box {
+            flex: 0 0 290px;
+            border-radius: 22px;
+            background: radial-gradient(circle at top, #0b1220, #020617);
+            display: flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            background: var(--accent-soft);
-            border-radius: 999px;
-            padding: 0.35rem 0.9rem;
-            border: 1px solid rgba(78, 168, 255, 0.5);
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow:
+                0 0 24px rgba(15, 23, 42, 0.9),
+                0 0 40px rgba(15, 23, 42, 0.9);
         }
 
-        .phase-tag-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: var(--accent);
+        .phase-hero-logo {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 0 28px rgba(15, 23, 42, 0.95);
         }
 
-        h1 {
-            margin-top: 1.1rem;
-            font-size: 2rem;
-            letter-spacing: 0.03em;
-        }
-
-        .subtitle {
-            margin-top: 0.5rem;
-            max-width: 720px;
-            color: var(--text-muted);
-            font-size: 0.98rem;
-        }
-
-        .grid {
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-            gap: 1.75rem;
-        }
-
-        @media (max-width: 900px) {
-            .grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            nav {
-                display: none; /* simple mobile version for now */
-            }
-
-            header {
-                position: static;
-            }
-        }
-
-        .card {
-            background: radial-gradient(circle at top left, #1a2147 0, #090d20 55%);
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.5rem 1.4rem;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        .card h3 {
-            margin-top: 1.3rem;
-            font-size: 1rem;
-        }
-
-        .pill-list {
+        .phase-hero-text-box {
+            flex: 1;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-top: 0.75rem;
-            margin-bottom: 0.25rem;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .pill {
+        .phase-label {
             font-size: 0.78rem;
-            padding: 0.28rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background: rgba(10, 15, 40, 0.9);
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .pill.pill-strong {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
-        }
-
-        .badge-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-        }
-
-        .badge {
-            font-size: 0.72rem;
-            padding: 0.22rem 0.55rem;
-            border-radius: 0.4rem;
-            border: 1px solid var(--border-soft);
-            color: var(--text-muted);
-        }
-
-        .badge.badge-safe {
-            border-color: var(--success);
-            color: var(--success);
-        }
-
-        .badge.badge-risk {
-            border-color: var(--danger);
-            color: var(--danger);
-        }
-
-        .section {
-            margin-top: 2rem;
-        }
-
-        .section h2 {
-            font-size: 1.05rem;
             text-transform: uppercase;
-            letter-spacing: 0.13em;
+            letter-spacing: 0.18em;
             color: var(--text-muted);
             margin-bottom: 0.3rem;
         }
 
-        .section h3 {
-            font-size: 1rem;
-            margin-top: 1.1rem;
+        .phase-title {
+            font-size: 1.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #f9fafb;
+            margin: 0 0 0.35rem 0;
+        }
+
+        .phase-subtitle {
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 0.6rem;
+        }
+
+        .phase-lead {
+            font-size: 0.98rem;
+            color: var(--text-soft);
+            margin-bottom: 0.7rem;
+        }
+
+        .phase-hero-bullets {
+            margin: 0.3rem 0 0 0;
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
+            color: #dbeafe;
+        }
+
+        .phase-hero-bullets li {
             margin-bottom: 0.2rem;
         }
 
-        .section p {
-            font-size: 0.95rem;
-            color: var(--text-main);
+        /* ===== detail cards ===== */
+        .phase-main {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .section ul {
-            margin: 0.5rem 0 0.5rem 1.2rem;
-            padding-left: 0;
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.8rem 1.7rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .info-card h2 {
+            margin-top: 0;
+            margin-bottom: 0.85rem;
+            font-size: 1.3rem;
+            color: var(--accent-soft);
+        }
+
+        .info-card h3 {
+            margin-top: 1.1rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.02rem;
+            color: #bae6fd;
+        }
+
+        .info-card p {
+            margin: 0.35rem 0;
+            font-size: 0.94rem;
+            color: #e5f2ff;
+        }
+
+        .info-card ul {
+            margin: 0.45rem 0 0.25rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.32rem;
             font-size: 0.93rem;
-            color: var(--text-muted);
         }
 
-        .section li {
-            margin-bottom: 0.25rem;
+        .tagline {
+            font-size: 0.94rem;
+            color: #93c5fd;
+            margin-bottom: 0.45rem;
         }
 
-        .footer-note {
-            margin-top: 2.5rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid var(--border-soft);
-            font-size: 0.86rem;
+        .subtle {
+            font-size: 0.88rem;
             color: var(--text-muted);
         }
 
         .highlight {
-            color: var(--accent);
-            font-weight: 500;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.9rem;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        /* ===== responsive ===== */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 1.2rem 80px 1.2rem;
+            }
+
+            .phase-hero-inner {
+                flex-direction: column;
+            }
+
+            .phase-hero-logo-box {
+                flex: 0 0 auto;
+            }
+
+            .info-card {
+                padding: 1.5rem 1.35rem;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
         }
     </style>
-<header>
-    <div class="header-inner">
-        <div class="logo-section">
-            <img src="elisence.png" alt="Elisence Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>ELISENCE</h1>
-                <p>Global Digital Health & Humanity Platform</p>
+</head>
+<body>
+
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<nav class="side-nav">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn" href="index.html#phases">Phases</a>
+    <a class="nav-btn" href="about.html">About</a>
+    <a class="nav-btn" href="story.html">Story</a>
+    <a class="nav-btn" href="video.html">Videos</a>
+    <a class="nav-btn" href="contact.html">Contact</a>
+</nav>
+
+<div class="page-wrapper">
+    <!-- HERO -->
+    <section class="hero-area">
+        <div class="phase-hero-card">
+            <div class="phase-hero-inner">
+                <div class="phase-hero-logo-box">
+                    <img src="elisence.png"
+                         alt="Elisence – Global Digital Health & Humanity Platform"
+                         class="phase-hero-logo">
+                </div>
+                <div class="phase-hero-text-box">
+                    <div class="phase-label">PHASE 13</div>
+                    <h1 class="phase-title">Voice &amp; Zero-Typing Engine</h1>
+                    <div class="phase-subtitle">
+                        HUMAN VOICE INTERFACE · ZERO-TYPING ACCESS · MULTILINGUAL
+                    </div>
+                    <p class="phase-lead">
+                        Phase 13 is the <strong>Voice &amp; Zero-Typing Engine</strong> of Elisence — the
+                        primary human interface and accessibility gateway for the entire ecosystem. It enables
+                        a true zero-typing experience for elderly users, visually impaired people, busy clinicians
+                        and patients in acute distress, while respecting strict regulatory and safety boundaries.
+                    </p>
+                    <ul class="phase-hero-bullets">
+                        <li>Zero-typing access to all major Elisence phases.</li>
+                        <li>Tri-layer failure-safe protocol for reliable, safe voice use.</li>
+                        <li>Accent- and dialect-aware engine across 5 languages and 4 jurisdictions.</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
 
-        <nav class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#phases">Phases</a>
-            <a href="about.html">About</a>
-            <a href="story.html">Story</a>
-            <a href="video.html">Videos</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
+    <!-- DETAIL CARDS -->
+    <main class="phase-main">
 
-<main>
-    <div class="phase-tag">
-        <span class="phase-tag-dot"></span>
-        <span>Phase 13 &mdash; Voice &amp; Zero-Typing Engine</span>
-    </div>
-
-    <h1>Talking to Elisence, Safely, in Five Languages</h1>
-    <p class="subtitle">
-        Phase 13 is the voice and zero-typing layer of Elisence. It lets people talk to Elisa
-        in natural language, while keeping every step non-diagnostic, auditable and safe for
-        real-world health journeys across English, Farsi, Arabic, Turkish and Romanian.
-    </p>
-
-    <div class="grid">
-        <section class="card">
-            <h2>Core Definition</h2>
-            <h3>What Phase 13 Is</h3>
+        <!-- 0. HEADER / CONTEXT -->
+        <section class="info-card">
+            <h2>0. Phase 13 Executive Context</h2>
             <p>
-                Phase 13 is Elisence’s <span class="highlight">Voice &amp; Zero-Typing Engine</span>.
-                It turns speech into safe actions, so users can say:
+                <strong>Document Ref:</strong> ELIS-P13-2026-EXEC<br>
+                <strong>Role in Ecosystem:</strong> The “Human Interface” of the Elisence platform — how humans
+                speak to all 15+ phases, and how those phases safely speak back.
+            </p>
+            <p>
+                <strong>Compliance Framework:</strong>
             </p>
             <ul>
-                <li>“Elisa, show me my diabetes dashboard.”</li>
-                <li>“My bleeding is very heavy and I feel dizzy.”</li>
-                <li>“Read this medicine label for me.”</li>
-                <li>“Take me to Women’s pain information.”</li>
+                <li>NHS DCB0129 / 0160 safety mindset.</li>
+                <li>FDA CDS-safe positioning (Non-Device CDS).</li>
+                <li>EU MDR Class I boundary.</li>
+                <li>GCC health privacy and data residency principles.</li>
             </ul>
             <p>
-                The engine converts voice to text, text to intent, and intent to
-                <span class="highlight">governed, non-diagnostic responses</span>.
+                <strong>Methodology:</strong> BBVP (Build, Backtest, Verify, Prove).<br>
+                <strong>Security Model:</strong> Zero-Trust Infrastructure with WORM-style logging, passport-based
+                headers (from Phase 11) and strict fail-closed behaviour.
             </p>
-
-            <h3>Design Principles</h3>
-            <div class="pill-list">
-                <span class="pill pill-strong">Zero-Trust by default</span>
-                <span class="pill pill-strong">Non-diagnostic, non-prescriptive</span>
-                <span class="pill">NHS / EU MDR / FDA CDS boundary-aware</span>
-                <span class="pill">5-language, accent-aware foundation</span>
-                <span class="pill">BBVP: Build, Back, Verify, Prove</span>
-            </div>
         </section>
 
-        <aside class="card">
-            <h2>Stakeholder View</h2>
-            <h3>Who Benefits From Phase 13?</h3>
+        <!-- 1. STRATEGIC VALUE PROPOSITION -->
+        <section class="info-card">
+            <h2>1. The Strategic Value Proposition</h2>
+            <p>
+                Phase 13 is <strong>not an add-on feature</strong>; it is the primary accessibility gateway
+                for Elisence.
+            </p>
+            <p>
+                By enabling a <strong>Zero-Typing environment</strong>, Phase 13 removes friction for:
+            </p>
             <ul>
-                <li>Citizens who prefer speaking instead of typing</li>
-                <li>Women+ users describing symptoms in their own words</li>
-                <li>People living with diabetes or chronic conditions</li>
-                <li>Blind and low-vision users needing voice-first access</li>
-                <li>Clinicians and ministries that want safe, auditable voice flows</li>
+                <li>Elderly users who struggle with keyboards and small screens.</li>
+                <li>Visually impaired users who depend on audio for independence.</li>
+                <li>Busy clinicians who cannot type during rounds, home visits or emergencies.</li>
+                <li>Patients in acute distress, especially in Women’s Health and Diabetes scenarios.</li>
+            </ul>
+            <p class="subtle">
+                Strategically, Phase 13 is how Elisence becomes usable in the real world — in hospital corridors,
+                taxis, kitchens, and living rooms — not just at a desk.
+            </p>
+        </section>
+
+        <!-- 2. RELIABILITY GAP -->
+        <section class="info-card">
+            <h2>2. Eliminating the “Reliability Gap”</h2>
+            <p>
+                Generic Voice AI fails when background noise, low confidence, or ambiguous words appear.
+                Phase 13 is engineered to <strong>eliminate the reliability gap</strong> through a
+                <strong>Tri-Layer Failure-Safe Protocol</strong>:
+            </p>
+
+            <h3>Layer 1: Semantic Verification</h3>
+            <ul>
+                <li>Every Speech-to-Text (STT) output is scored for confidence.</li>
+                <li>If STT confidence &lt; <strong>92%</strong>, the engine triggers an automatic
+                    <strong>Confirmation Loop</strong>:
+                    <ul>
+                        <li>Repeats back what it heard (“Did you say…?”).</li>
+                        <li>Requests a simple yes/no or short confirmation.</li>
+                        <li>Avoids acting on low-confidence guesses.</li>
+                    </ul>
+                </li>
             </ul>
 
-            <h3>Safety Guarantees</h3>
-            <div class="badge-row">
-                <span class="badge badge-safe">No diagnosis, ever</span>
-                <span class="badge badge-safe">No dosage or treatment decisions</span>
-                <span class="badge badge-safe">Uncertainty = clarify or safe fallback</span>
-                <span class="badge badge-safe">WORM audit for safety events</span>
-                <span class="badge badge-risk">No “It is safe / unsafe to cross”</span>
-                <span class="badge badge-risk">No navigation decisions</span>
-            </div>
-        </aside>
-    </div>
+            <h3>Layer 2: Ambient Noise Suppression</h3>
+            <ul>
+                <li>Use of localized noise-cancellation models optimised for:
+                    <ul>
+                        <li>Public transport and street noise.</li>
+                        <li>Clinical wards, waiting rooms and pharmacies.</li>
+                        <li>Busy homes, kids in the background, TV/radio noise.</li>
+                    </ul>
+                </li>
+                <li>Maintains stable recognition in “High-Chaos” environments.</li>
+            </ul>
 
-    <section class="section">
-        <h2>How the Voice Engine Works</h2>
-        <h3>From Speech to Safe Action</h3>
-        <p>
-            Phase 13 follows a clear, inspectable pipeline:
-        </p>
-        <ul>
-            <li><strong>Audio capture</strong> on the phone or headset</li>
-            <li><strong>Speech-to-text</strong> (on-device where possible, edge or cloud as backup)</li>
-            <li><strong>Intent extraction</strong> using hybrid rules and models</li>
-            <li><strong>Safety guard</strong> checking symptoms, roles and country rules</li>
-            <li><strong>Routing</strong> to Women+, Diabetes, AHE, Blind-Assist or coaching engines</li>
-            <li><strong>Localized response</strong> in the user’s language, text and voice</li>
-            <li><strong>WORM logging</strong> for safety-relevant decisions</li>
-        </ul>
-        <p>
-            Each step is testable and traceable. Phase 13 is not a black-box assistant;
-            it is a governed control layer on top of Elisence’s health engines.
-        </p>
-    </section>
+            <h3>Layer 3: The “Safe-Fail” State</h3>
+            <ul>
+                <li>If user intent is unrecognized or conflicting, the engine:
+                    <ul>
+                        <li>Does not guess or improvise.</li>
+                        <li>Defaults to pre-approved safety guidance for high-risk phrases.</li>
+                        <li>Examples: “If you feel you may be in danger, seek emergency care immediately.”</li>
+                    </ul>
+                </li>
+            </ul>
 
-    <section class="section">
-        <h2>Noise, Reliability &amp; Uncertainty</h2>
-        <h3>Built for Real Homes and Hospitals</h3>
-        <p>
-            Voice systems often break in noisy, stressful environments. Phase 13 treats this as a
-            first-class problem, not an afterthought:
-        </p>
-        <ul>
-            <li>Uses more than one STT source when allowed, and compares meanings</li>
-            <li>Flags inputs as <em>uncertain</em> when transcripts do not agree</li>
-            <li>Never silently guesses around safety-related words</li>
-        </ul>
-        <p>
-            When uncertainty is detected around symptoms like heavy bleeding, chest pain or severe
-            dizziness, Elisa will ask for clarification rather than acting as if she is sure.
-            If doubt remains, the system falls back to generic, guideline-safe advice such as
-            seeking urgent care, instead of making a risky decision.
-        </p>
-    </section>
+            <p class="subtle">
+                Together, these three layers provide an auditable, regulator-friendly answer to the classic
+                “What if Voice AI gets it wrong?” question.
+            </p>
+        </section>
 
-    <section class="section">
-        <h2>Accents, Dialects &amp; Five Languages</h2>
-        <h3>Accent-Aware, Not Accent-Blind</h3>
-        <p>
-            Phase 13 is designed for English, Farsi, Arabic, Turkish and Romanian, with space for
-            multiple accents and dialects within each language. Every session carries:
-        </p>
-        <ul>
-            <li>a language code (en, fa, ar, tr, ro)</li>
-            <li>a region hint (UK, EU, GCC and others)</li>
-            <li>an accent hint where available (for example Gulf Arabic vs other variants)</li>
-        </ul>
-        <p>
-            Vocabulary is hybrid: shared clinical and wellness terms plus regional phrases, with
-            conservative behaviour when confidence is low. The engine prefers to admit uncertainty
-            rather than pretend it understands every accent perfectly from day one.
-        </p>
-    </section>
+        <!-- 3. ACCENT & DIALECT MOAT -->
+        <section class="info-card">
+            <h2>3. The Accent &amp; Dialect Moat</h2>
+            <p>
+                Global expansion fails when systems cannot understand local accents. Phase 13 is designed to
+                solve the <strong>Dialect Problem</strong> that blocks generic AIs in GCC and MENA regions.
+            </p>
 
-    <section class="section">
-        <h2>Non-Medical, Non-Diagnostic Boundary</h2>
-        <h3>Voice as a Companion, Not a Doctor</h3>
-        <p>
-            Even when users describe serious symptoms, Phase 13 is carefully positioned as a
-            <span class="highlight">wellness and guidance companion</span>, not a diagnostic tool:
-        </p>
-        <ul>
-            <li>No statements like “You have anaemia” or “You are having a stroke”</li>
-            <li>No direct dosage or medication decisions</li>
-            <li>No replacement of clinicians or emergency services</li>
-        </ul>
-        <p>
-            Instead, the engine recognises categories of concern and delivers general, legally safe
-            guidance, encouraging users to seek proper care when needed. This keeps Elisence on the
-            safe side of NHS, FDA CDS, EU MDR and GCC rules.
-        </p>
-    </section>
+            <h3>Accent-Aware Hinting (via Passport V1)</h3>
+            <ul>
+                <li>Leverages Passport V1 (Phase 8 &amp; 11) to pre-load dialect-specific vocabularies at session start.</li>
+                <li>For example:
+                    <ul>
+                        <li>Gulf Arabic vs. Levantine Arabic.</li>
+                        <li>Iranian Persian vs. diaspora accents.</li>
+                        <li>Regional Turkish, Romanian, and English variants.</li>
+                    </ul>
+                </li>
+                <li>Context-aware language hints embedded in each voice session.</li>
+            </ul>
 
-    <section class="section">
-        <h2>Blind-Assist &amp; Accessibility</h2>
-        <h3>Describing the World, Not Controlling It</h3>
-        <p>
-            Together with the accessibility phases, Phase 13 acts as the voice of Elisence for blind
-            and low-vision users:
-        </p>
-        <ul>
-            <li>Reading medicine labels, menus and signs aloud</li>
-            <li>Describing scenes in front of the camera in soft language (“It looks like…”, “There may be…”) </li>
-            <li>Helping users move through Elisence without typing or complex gestures</li>
-        </ul>
-        <p>
-            It deliberately avoids giving precise navigation commands or promises of safety.
-            Existing mobility tools remain in charge; Elisence’s role is to describe, not to direct.
-        </p>
-    </section>
+            <h3>Multi-Locale, Multi-Language Engine</h3>
+            <ul>
+                <li>Native support for:
+                    <strong>EN, FA, AR, TR, RO</strong>.
+                </li>
+                <li>Cultural nuance mapping:
+                    <ul>
+                        <li>Preferred ways of addressing elders and clinicians.</li>
+                        <li>Respectful phrasing for sensitive topics (women’s health, mental health).</li>
+                    </ul>
+                </li>
+            </ul>
 
-    <section class="section">
-        <h2>Latency, Performance &amp; Cost</h2>
-        <h3>Fast Enough to Feel Human</h3>
-        <p>
-            To feel natural, voice needs to respond quickly. Phase 13 is engineered with strict
-            latency budgets:
-        </p>
-        <ul>
-            <li>On-device speech recognition where possible</li>
-            <li>Lightweight intent and safety checks</li>
-            <li>Streaming voice responses so users hear the first words in under a second in typical conditions</li>
-        </ul>
-        <p>
-            On-device and edge processing keep both latency and cost under control, so voice can
-            scale to national programmes without becoming unaffordable.
-        </p>
-    </section>
+            <p class="subtle">
+                This dialect-aware approach creates a defensible moat: it is expensive and time-consuming
+                for generic global AIs to replicate at healthcare-grade quality.
+            </p>
+        </section>
 
-    <section class="section">
-        <h2>Security, Zero-Trust &amp; Audit</h2>
-        <h3>Every Utterance Under Control</h3>
-        <p>
-            Phase 13 inherits the security spine of Elisence:
-        </p>
-        <ul>
-            <li>Every request is tied to a Phase 11 passport and role</li>
-            <li>Actions are constrained by scopes and jurisdiction rules</li>
-            <li>Safety-critical events are logged in append-only WORM audit trails</li>
-        </ul>
-        <p>
-            This means regulators and ministries can see, in detail, how voice inputs were
-            interpreted, which rules fired and why certain responses were given.
-        </p>
-    </section>
+        <!-- 4. REGULATORY SAFE-ZONE -->
+        <section class="info-card">
+            <h2>4. Regulatory “Safe-Zone” Strategy</h2>
+            <p>
+                Phase 13 is engineered to be <strong>investable</strong> and <strong>low-risk</strong> by holding
+                a firm position inside a regulatory “safe-zone”.
+            </p>
 
-    <section class="section">
-        <h2>Integration With Other Phases</h2>
-        <h3>Voice Front Door for All Journeys</h3>
-        <p>
-            Phase 13 does not work in isolation. It is the voice front door for:
-        </p>
-        <ul>
-            <li>Women+ health journeys (Phase 7)</li>
-            <li>Diabetes and metabolic health (Phase 9)</li>
-            <li>Social profiles and messages (Phase 10)</li>
-            <li>Security and passports (Phase 11)</li>
-            <li>Real-time calls (Phase 12)</li>
-            <li>Accessibility and mental health phases beyond</li>
-        </ul>
-        <p>
-            In practice, it lets people say what they need, in their own words, and then hands off
-            to the right engine under clear, auditable rules.
-        </p>
-    </section>
+            <h3>Non-Diagnostic Behaviour</h3>
+            <ul>
+                <li>Elisa does not diagnose conditions.</li>
+                <li>Instead, she identifies <strong>Categories of Concern</strong> such as:
+                    <ul>
+                        <li>“Potential clinical urgency”.</li>
+                        <li>“Please contact your doctor soon” signals.</li>
+                    </ul>
+                </li>
+                <li>Routes risk signals to verified, pre-reviewed safety messages.</li>
+            </ul>
 
-    <section class="section">
-        <h2>Government &amp; Investor View</h2>
-        <h3>Accessible, Yet Legally Defensible</h3>
-        <p>
-            For governments and health systems, Phase 13 offers voice access without creating
-            unmanaged risk:
-        </p>
-        <ul>
-            <li>Clear non-diagnostic boundary</li>
-            <li>Evidence-based validation and stress testing</li>
-            <li>Transparent metrics on accuracy, latency and safety fallbacks</li>
-        </ul>
-        <p>
-            For investors, it turns Elisence from a “text app” into a genuinely inclusive companion
-            that people can speak to, in their own language and accent, while still satisfying strict
-            regulatory expectations.
-        </p>
-    </section>
+            <h3>Non-Prescriptive Engine</h3>
+            <ul>
+                <li>Never suggests medication names or dosages.</li>
+                <li>Never changes treatment plans.</li>
+                <li>Always points users back to their own clinicians for medical decisions.</li>
+            </ul>
 
-    <div class="footer-note">
-        <strong>In one sentence:</strong>
-        Phase 13 makes Elisence a <span class="highlight">true voice-first health companion</span> &mdash;
-        people talk, Elisa listens and responds safely, in five languages, under a Zero-Trust,
-        non-diagnostic architecture that regulators and investors can understand and trust.
-    </div>
-</main>
+            <h3>Clinical Safety &amp; Classification</h3>
+            <ul>
+                <li>Aligned with NHS DCB0129 / 0160 safety thinking.</li>
+                <li>Designed to remain a “Digital Wellness Companion” or low-risk CDS.</li>
+                <li>Avoids the cost, complexity and multi-year delays of Class II Medical Device certification.</li>
+            </ul>
+        </section>
+
+        <!-- 5. UNIT ECONOMICS & PERFORMANCE -->
+        <section class="info-card">
+            <h2>5. Unit Economics &amp; Performance</h2>
+            <p>
+                Phase 13 is designed not only to be clinically safe, but also technically efficient and
+                economically viable at national scale.
+            </p>
+
+            <h3>Zero-Latency Target</h3>
+            <ul>
+                <li>Target &lt; <strong>800 ms</strong> Time-to-First-Word (TTFW) for voice responses.</li>
+                <li>Achieved using a <strong>Hybrid Edge-Computing</strong> model:
+                    <ul>
+                        <li>On-device STT for the majority of users.</li>
+                        <li>Selective cloud processing for complex cases or low-power devices.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Scalability &amp; Cost</h3>
+            <ul>
+                <li>Approximately <strong>80% of processing</strong> shifted to on-device STT.</li>
+                <li>Reduces cloud infrastructure cost per transaction to near zero for most interactions.</li>
+                <li>Makes national or multi-country deployments financially realistic.</li>
+            </ul>
+        </section>
+
+        <!-- 6. BLIND-ASSIST -->
+        <section class="info-card">
+            <h2>6. Blind-Assist: ESG &amp; Independence</h2>
+            <p>
+                Phase 13 powers the <strong>“Digital Vision”</strong> module — Elisence’s Blind-Assist capability.
+            </p>
+            <p>
+                By following a <strong>“Descriptive, Not Navigational”</strong> legal framework, the system:
+            </p>
+            <ul>
+                <li>Provides independence for visually impaired users by:
+                    <ul>
+                        <li>Reading medicine labels aloud.</li>
+                        <li>Describing environments and screens.</li>
+                        <li>Summarising health information and reminders.</li>
+                    </ul>
+                </li>
+                <li>Avoids navigational liability by:
+                    <ul>
+                        <li>Not giving “turn left/right” navigation instructions.</li>
+                        <li>Not promising safe paths or collision avoidance.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="subtle">
+                Result: a high-impact ESG story — practical independence for blind and low-vision users —
+                while maintaining a legally robust risk posture.
+            </p>
+        </section>
+
+        <!-- 7. INVESTOR ADVISORY -->
+        <section class="info-card">
+            <h2>7. Investor Advisory: Why Now?</h2>
+            <p>
+                Phase 13 is the <strong>Control Layer</strong> that standardises how 15 different Elisence
+                phases “talk to the world” through voice.
+            </p>
+
+            <h3>1) Auditable</h3>
+            <ul>
+                <li>Every voice intent is logged via WORM (Write Once, Read Many) mechanisms.</li>
+                <li>Regulators and ministries can trace:
+                    <ul>
+                        <li>What was said.</li>
+                        <li>How it was interpreted.</li>
+                        <li>What safety route was taken.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>2) Defensible</h3>
+            <ul>
+                <li>Combination of medical-grade routing, non-diagnostic boundaries and multilingual safety rules.</li>
+                <li>Creates a <strong>high moat</strong> that generic LLM-based chatbots cannot easily breach.</li>
+            </ul>
+
+            <h3>3) Scalable</h3>
+            <ul>
+                <li>A single engine governs:
+                    <ul>
+                        <li>5 major languages (EN / FA / AR / TR / RO).</li>
+                        <li>4 major global regulatory zones (NHS, EU, US CDS-safe, GCC).</li>
+                        <li>15+ Elisence phases — from Women+ and Diabetes to Environment and Kids+.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 8. FINAL VERDICT -->
+        <section class="info-card">
+            <h2>8. Final Verdict</h2>
+            <p class="highlight">
+                Phase 13 transforms Elisence from a <strong>software tool</strong> into a
+                <strong>regulated global infrastructure layer</strong>.
+            </p>
+            <ul>
+                <li>Reduces user friction by up to <strong>90%</strong> via true zero-typing access.</li>
+                <li>Maintains the highest standard of clinical and legal safety through:
+                    <ul>
+                        <li>Tri-layer failure-safe voice handling.</li>
+                        <li>Non-diagnostic, non-prescriptive design.</li>
+                        <li>Zero-Trust security and WORM logging.</li>
+                    </ul>
+                </li>
+                <li>Locks in a defensible, scalable voice interface that can serve:
+                    <ul>
+                        <li>Citizens, clinicians and ministries.</li>
+                        <li>Multiple regions and languages.</li>
+                        <li>All future Elisence phases as they come online.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="subtle">
+                In summary, Phase 13 is how Elisence is heard — safely, clearly and in the user’s own language.
+            </p>
+        </section>
+
+    </main>
+</div>
+
+<!-- Elisa chat widget root -->
+<div id="elisa-chat-root"></div>
+
 </body>
 </html>
