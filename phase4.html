@@ -1,506 +1,625 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elisence – Phase 4: Stability, Integrity & Comparative Intelligence Layer</title>
+    <meta charset="UTF-8" />
+    <title>Elisence – Phase 4 · Stability, Integrity & Comparative Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+        name="description"
+        content="Elisence Phase 4 – Stability, Integrity & Comparative Intelligence Layer. WORM ledger, FHIR interoperability, provenance, AKAC and global medical intelligence."
+    />
+
+    <!-- Elisa chat widget script (مثل index و phase2) -->
+    <script defer src="elisa-chat.js"></script>
 
     <style>
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #08172a;
-            color: #e8f4fc;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* ======= HEADER ======= */
-        header {
-            background-color: #020617;
-            padding: 1.8rem 0;
-            border-bottom: 1px solid #1e293b;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        /* نقطه و برچسب بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
         }
 
-        .header-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست (هم‌استایل index/phase2) */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* شِل اصلی صفحه */
+        .page-wrapper {
+            min-height: 100vh;
+            padding: 80px 40px 80px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-shell {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* جا برای منوی راست روی دسکتاپ */
+        }
+
+        /* کارت هیرو بالا (مثل فاز ۲) */
+        .hero-card {
+            border-radius: 26px;
+            padding: 34px 34px 30px 34px;
+            background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
+            box-shadow:
+                0 0 45px rgba(0, 170, 255, 0.85),
+                0 0 120px rgba(0, 80, 200, 0.65);
+            border: 1px solid rgba(70, 190, 255, 0.6);
+            margin-bottom: 26px;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.9fr);
+            gap: 26px;
             align-items: center;
         }
 
-        .brand-block {
-            display: flex;
-            flex-direction: column;
+        .hero-logo-container {
+            width: 100%;
+            max-width: 430px;
+            margin: 0 auto;
         }
 
-        .brand-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 0.14rem;
+        .main-hero-logo {
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+            animation: breathingGlow 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.6));
         }
 
-        .brand-sub {
-            font-size: 0.85rem;
-            color: #60a5fa;
-        }
-
-        nav.main-nav {
-            display: flex;
-            gap: 1.8rem;
-        }
-
-        nav.main-nav a {
-            color: #e2e8f0;
-            text-decoration: none;
-            font-size: 0.92rem;
-            letter-spacing: 0.05rem;
-            text-transform: uppercase;
-        }
-
-        nav.main-nav a:hover {
-            color: #38bdf8;
-            text-decoration: underline;
-        }
-
-        nav.main-nav a.active {
-            color: #38bdf8;
-            font-weight: 600;
-        }
-
-        /* ======= MAIN CONTENT ======= */
-        main {
-            max-width: 1100px;
-            margin: 2.4rem auto 3.2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        h1 {
-            font-size: 1.9rem;
-            margin-bottom: 0.6rem;
-            color: #38bdf8;
+        @keyframes breathingGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 25px rgba(0, 160, 255, 0.5)) brightness(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(0, 200, 255, 0.9)) brightness(1.15);
+                transform: scale(1.015);
+            }
         }
 
         .phase-label {
-            font-size: 0.82rem;
+            font-size: 11px;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            letter-spacing: 0.12rem;
-            color: #94a3b8;
-            margin-bottom: 0.4rem;
+            color: #a5d7ff;
+            margin-bottom: 6px;
         }
 
-        .lead {
-            font-size: 1rem;
-            color: #cbd5f5;
-            margin-bottom: 1.8rem;
+        .hero-title {
+            font-size: 26px;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
         }
 
-        .card {
-            background: rgba(15, 23, 42, 0.95);
-            border-radius: 18px;
-            border: 1px solid #1e293b;
-            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55);
-            padding: 1.8rem 1.9rem;
-            margin-bottom: 1.8rem;
+        .hero-tagline {
+            font-size: 13px;
+            color: #d4e8ff;
+            margin-bottom: 10px;
         }
 
-        .card h2 {
-            margin-top: 0;
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-            color: #7dd3fc;
+        .hero-body {
+            font-size: 13px;
+            color: #dbefff;
         }
 
-        .card h3 {
-            margin-top: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-size: 1.05rem;
-            color: #bae6fd;
+        .hero-footnote {
+            margin-top: 16px;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #7fb5ff;
         }
 
-        .card p {
-            margin: 0.4rem 0;
-            font-size: 0.95rem;
-            color: #e5f2ff;
-        }
-
-        .card ul {
-            margin: 0.5rem 0 0.2rem 1.2rem;
-            padding-left: 0.4rem;
-        }
-
-        .card li {
-            margin-bottom: 0.35rem;
-            font-size: 0.94rem;
-        }
-
-        .tagline {
-            font-size: 0.95rem;
-            color: #93c5fd;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtle {
-            font-size: 0.9rem;
-            color: #94a3b8;
-        }
-
-        hr.section-separator {
-            border: none;
-            border-top: 1px solid #1f2937;
-            margin: 2.2rem 0 1.6rem 0;
+        /* کارت‌های پایین (grid مثل دو جدول فاز۲، ولی بیشتر کارت) */
+        .card-grid {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
         }
 
         @media (max-width: 900px) {
-            .header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.8rem;
+            .page-wrapper {
+                padding: 80px 18px 110px 18px;
             }
 
-            nav.main-nav {
+            .content-shell {
+                margin-right: 0;
+            }
+
+            .hero-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .card-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
                 flex-wrap: wrap;
-                gap: 1.1rem;
+                justify-content: center;
+                gap: 8px;
             }
 
-            main {
-                padding: 0 1.2rem;
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
             }
+        }
 
-            .card {
-                padding: 1.5rem 1.4rem;
-            }
+        .info-card {
+            border-radius: 20px;
+            padding: 18px 18px 18px 18px;
+            background: radial-gradient(circle at top, rgba(0, 120, 255, 0.40), rgba(0, 15, 40, 0.96));
+            border: 1px solid rgba(90, 185, 255, 0.85);
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+        }
+
+        .info-title {
+            font-size: 13px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            margin-bottom: 8px;
+        }
+
+        .info-subtitle {
+            font-size: 12px;
+            color: #93c5fd;
+            margin-bottom: 6px;
+        }
+
+        .info-body {
+            font-size: 12.5px;
+            color: #dbefff;
+        }
+
+        .info-body p {
+            margin-bottom: 6px;
+        }
+
+        .info-body ul {
+            margin: 4px 0 6px 18px;
+            padding-left: 0;
+        }
+
+        .info-body li {
+            margin-bottom: 4px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #7dd3fc;
         }
     </style>
 </head>
-
 <body>
 
-<header>
-    <div class="header-inner">
-        <div class="logo-section">
-            <img src="elisence.png" alt="Elisence Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>ELISENCE</h1>
-                <p>Global Digital Health & Humanity Platform</p>
-            </div>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html"        class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
+    </nav>
+
+    <div class="page-wrapper">
+        <div class="content-shell">
+
+            <!-- هیرو فاز ۴ -->
+            <section class="hero-card">
+                <div class="hero-layout">
+
+                    <!-- لوگو -->
+                    <div class="hero-logo-container">
+                        <img
+                            src="elisence.png"
+                            alt="Elisence – Global Digital Health & Humanity Platform"
+                            class="main-hero-logo"
+                        />
+                    </div>
+
+                    <!-- متن خلاصه -->
+                    <div>
+                        <div class="phase-label">Phase 4 · Stability, Integrity & Comparative Intelligence Layer</div>
+                        <div class="hero-title">From App to Health Infrastructure</div>
+                        <p class="hero-tagline">
+                            Phase 4 transforms Elisence from a single application into a governance-grade,
+                            audit-ready health intelligence infrastructure for ministries, hospitals and regulators.
+                        </p>
+                        <p class="hero-body">
+                            It is the layer where **every number, model and comparison is traceable**.
+                            WORM audit logs, FHIR interoperability, advanced provenance and AKAC privacy
+                            controls ensure that real-world evidence is safe, verifiable and compatible
+                            with national healthcare standards across the UK, EU, US and GCC regions.
+                        </p>
+                        <div class="hero-footnote">
+                            <span>Stable · Auditable · Privacy-First · Comparative Intelligence</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- کارت‌های جزئیات (کامل، بدون خلاصه‌نویسی) -->
+            <section class="card-grid">
+
+                <!-- کارت ۱: Vision + Core Engine -->
+                <article class="info-card">
+                    <h2 class="info-title">1. Vision – Why Phase 4 Exists</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 4 establishes the foundation where governments, clinicians and citizens
+                            can trust Elisence’s conclusions at **national scale**. It guarantees that:
+                        </p>
+                        <ul>
+                            <li>All real-world evidence (RWE) is traceable from input to output.</li>
+                            <li>Every analytical result is backed by immutable logs and QA.</li>
+                            <li>Privacy and clinical safety are enforced by design, not by policy only.</li>
+                        </ul>
+                        <p>
+                            This is the layer that prepares Elisence for **formal evaluation** by ministries of health,
+                            national health services and global partners.
+                        </p>
+
+                        <h3 class="info-subtitle">2. Core Engine – Four Technical Pillars</h3>
+                        <p class="info-subtitle">
+                            WORM Ledger · FHIR Interoperability · Provenance Engine · AKAC
+                        </p>
+
+                        <p class="highlight">2.1 WORM Ledger — Immutable Audit Trails</p>
+                        <p>
+                            A cryptographically enforced, append-only ledger that stores:
+                        </p>
+                        <ul>
+                            <li>Dataset fingerprints and hashes.</li>
+                            <li>Model version identifiers and configuration snapshots.</li>
+                            <li>QA digests and full test outcomes.</li>
+                            <li>Export hashes, signatures and delivery timestamps.</li>
+                            <li>Archive and snapshot timestamps.</li>
+                        </ul>
+                        <p>
+                            <strong>Why it matters:</strong> regulators and hospitals can reconstruct
+                            exactly how a conclusion was produced. There are **no silent edits**, no hidden changes,
+                            and no trust gaps.
+                        </p>
+
+                        <p class="highlight">2.2 FHIR Integration — Global Interoperability</p>
+                        <p>
+                            Phase 4 harmonises medication and usage data with global medical standards:
+                        </p>
+                        <ul>
+                            <li>FHIR resources: <em>Medication</em>, <em>MedicationRequest</em>, <em>MedicationStatement</em>.</li>
+                            <li>RxNorm / ATC codes for drug identification.</li>
+                            <li>MedDRA for adverse event and side-effect coding.</li>
+                            <li>SNOMED CT / ICD-10 for conditions and diagnoses.</li>
+                        </ul>
+                        <p>
+                            <strong>Why it matters:</strong> ministries, hospitals and health systems can integrate Elisence
+                            without rebuilding their infrastructure. FHIR makes Elisence **“plug-into-the-health-system ready.”**
+                        </p>
+                    </div>
+                </article>
+
+                <!-- کارت ۲: ادامه Core Engine (Provenance + AKAC) -->
+                <article class="info-card">
+                    <h2 class="info-title">2. Core Engine (continued) – Provenance & AKAC</h2>
+                    <div class="info-body">
+                        <p class="highlight">2.3 Provenance Engine — End-to-End Traceability</p>
+                        <p>
+                            Every analysis, chart, comparison or export carries embedded provenance metadata:
+                        </p>
+                        <ul>
+                            <li>Data sources and ingestion paths.</li>
+                            <li>Transformations, filters and quality checks applied.</li>
+                            <li>Model parameters, training lineage and runtime versions.</li>
+                            <li>Timestamps, environment and execution context.</li>
+                            <li>Digital signatures, QA status and reviewer information.</li>
+                            <li>AKAC privacy level and cohort size used.</li>
+                        </ul>
+                        <p>
+                            This provides true real-world evidence transparency, aligned with
+                            UK / EU / US / GCC expectations for medical data and pharmacovigilance.
+                        </p>
+
+                        <p class="highlight">2.4 AKAC — Adaptive Knowledge Access Control</p>
+                        <p>
+                            AKAC is a dynamic privacy supervisor that:
+                        </p>
+                        <ul>
+                            <li>Adjusts anonymisation thresholds based on cohort size.</li>
+                            <li>Applies k-anonymity and safe aggregation rules.</li>
+                            <li>Blocks unsafe slices, drill-downs or high-risk combinations.</li>
+                            <li>Ensures aggregate reports cannot deanonymise individuals.</li>
+                        </ul>
+                        <p>
+                            <strong>Why it matters:</strong> citizens gain confidence that their identity is protected;
+                            regulators gain formal proof of compliance; clinicians still receive **useful, safe insights**.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- کارت ۳: Intelligence & Analytics -->
+                <article class="info-card">
+                    <h2 class="info-title">3. Intelligence & Analytics</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 4 houses the analytical brain of Elisence, converting raw usage data into
+                            trusted insight for **public health, clinical practice and national decision-making**.
+                        </p>
+
+                        <p class="highlight">3.1 Drug Effectiveness Intelligence</p>
+                        <p>The engine computes, with QA and provenance on each metric:</p>
+                        <ul>
+                            <li>Mean effectiveness metrics and improvement scores.</li>
+                            <li>Response rates across cohorts and sub-populations.</li>
+                            <li>Δ-change metrics (before / after treatment windows).</li>
+                            <li>Net Benefit Index (NBI) combining benefit and safety.</li>
+                            <li>Cohort-specific performance curves over time.</li>
+                        </ul>
+
+                        <p class="highlight">3.2 Side-Effect Intelligence</p>
+                        <p>
+                            Integrated safety analytics using:
+                        </p>
+                        <ul>
+                            <li>MedDRA-coded adverse events with severity grading.</li>
+                            <li>Proportional Reporting Ratios (PRR) and ROR calculations.</li>
+                            <li>Temporal patterns – onset, duration and recurrence.</li>
+                            <li>Geo-demographic risk variations and clusters.</li>
+                        </ul>
+                        <p>
+                            This produces contextualised safety profiles for public health and for
+                            clinician governance boards.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- کارت ۴: Comparative Engine + Global Medical Intelligence -->
+                <article class="info-card">
+                    <h2 class="info-title">3. Comparative & Global Medical Intelligence</h2>
+                    <div class="info-body">
+                        <p class="highlight">3.3 Comparative Intelligence Engine</p>
+                        <p>
+                            The flagship capability of Phase 4, enabling:
+                        </p>
+                        <ul>
+                            <li>Drug-vs-drug comparisons across matched cohorts.</li>
+                            <li>Cohort matching and propensity-score weighting.</li>
+                            <li>Benefit–risk scoring, ranking and scenario exploration.</li>
+                            <li>
+                                Multilingual narrative generation (EN / FA / AR / TR / RO)
+                                explaining results in plain language.
+                            </li>
+                        </ul>
+                        <p>
+                            <strong>Narrative example:</strong><br />
+                            “Drug&nbsp;B showed substantially higher effectiveness and fewer severe adverse
+                            events than Drug&nbsp;A in this cohort, based on anonymised real-world data.”
+                        </p>
+                        <p>
+                            This allows clinicians and ministries to compare therapeutic options
+                            **without guesswork or black-box behaviour**.
+                        </p>
+
+                        <p class="highlight">3.4 Global Medical-Intelligence Layer</p>
+                        <p>
+                            A unified intelligence fabric that powers:
+                        </p>
+                        <ul>
+                            <li>National health and utilisation reports.</li>
+                            <li>Population-level analytics and trend detection.</li>
+                            <li>Ministry dashboards and oversight tools.</li>
+                            <li>High-level, non-diagnostic risk–benefit summaries for citizens.</li>
+                        </ul>
+                        <p>
+                            This layer turns Elisence from an app into a **real health-system intelligence backbone**.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- کارت ۵: Safety & Governance -->
+                <article class="info-card">
+                    <h2 class="info-title">4. Safety, Governance & Compliance</h2>
+                    <div class="info-body">
+                        <p class="highlight">4.1 QA Gates – No Output Without Evidence</p>
+                        <p>
+                            No analytical output is released unless it passes a chain of QA gates:
+                        </p>
+                        <ul>
+                            <li>Completeness and coverage checks.</li>
+                            <li>Recency and freshness of data.</li>
+                            <li>Duplicate and outlier detection.</li>
+                            <li>Internal consistency and plausibility checks.</li>
+                            <li>Cohort safety and minimum-size thresholds.</li>
+                            <li>Privacy and AKAC compliance checks.</li>
+                        </ul>
+                        <p>
+                            If any gate fails → the output is **blocked, flagged and not shown** to end users.
+                        </p>
+
+                        <p class="highlight">4.2 Governance of Effectiveness & Adverse Intelligence</p>
+                        <ul>
+                            <li>Transparent, documented statistical methodology.</li>
+                            <li>Versioned models with full changelog and review trail.</li>
+                            <li>Clear statement of assumptions and known limitations.</li>
+                            <li>Clinical-grade metrics and validation procedures.</li>
+                            <li>Multilingual narratives for global clinical and policy use.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- کارت ۶: Compliance frameworks + Stakeholder impact & Scaling -->
+                <article class="info-card">
+                    <h2 class="info-title">5. Compliance, Impact & Scalability</h2>
+                    <div class="info-body">
+                        <p class="highlight">4.3 Trust Compliance Framework</p>
+                        <p>
+                            Phase 4 aligns with the operational expectations of:
+                        </p>
+                        <ul>
+                            <li>GDPR and the UK Data Protection Act.</li>
+                            <li>NHS DTAC principles for digital health.</li>
+                            <li>EU MDR-aligned non-diagnostic AI behaviour.</li>
+                            <li>HIPAA-style de-identification expectations.</li>
+                            <li>GCC / Qatar / UAE PDPL-style privacy requirements.</li>
+                            <li>ENCePP, STROBE and RECORD-PE for real-world evidence.</li>
+                        </ul>
+                        <p>
+                            Outcome: Elisence becomes eligible for **formal evaluation** by healthcare authorities,
+                            ethics boards and national partners.
+                        </p>
+
+                        <p class="highlight">5.1 Stakeholder Impact</p>
+                        <p><strong>Governments & Ministries of Health</strong></p>
+                        <ul>
+                            <li>National-scale monitoring of drug safety and effectiveness.</li>
+                            <li>Immutable WORM logs for compliance and investigations.</li>
+                            <li>Real-world comparative intelligence for formulary and policy decisions.</li>
+                            <li>Audit-ready provenance for every aggregate metric.</li>
+                            <li>Privacy-by-design architecture backed by AKAC and anonymisation.</li>
+                        </ul>
+
+                        <p><strong>Hospitals, Clinics & Medical Networks</strong></p>
+                        <ul>
+                            <li>Evidence-backed medication comparisons at population and service level.</li>
+                            <li>Safety signals and adverse-event intelligence for governance boards.</li>
+                            <li>Transparent QA and methodology reports.</li>
+                            <li>Multilingual clinical narratives for diverse populations.</li>
+                            <li>Interoperability with existing EHR / FHIR systems.</li>
+                        </ul>
+
+                        <p><strong>Citizens & Families</strong></p>
+                        <ul>
+                            <li>Trust that identifiable data is never exposed in analytics.</li>
+                            <li>Assurance that outputs are QA-checked and evidence-based.</li>
+                            <li>Clear, human-friendly explanations of high-level patterns.</li>
+                            <li>Future personalised coaching powered by aggregated RWE.</li>
+                            <li>Strong privacy using AKAC, anonymisation and (later) differential privacy.</li>
+                        </ul>
+
+                        <p class="highlight">5.2 Scalability & Performance</p>
+                        <ul>
+                            <li>Pre-computed aggregates targeting &lt; 200&nbsp;ms API latency.</li>
+                            <li>Optimised ETL and caching strategies for national workloads.</li>
+                            <li>Archiving and snapshot systems for long-term reliability.</li>
+                            <li>Partitioned analytics structures and safe cohorting.</li>
+                            <li>WORM-integrated distributed ledger for durable audit history.</li>
+                        </ul>
+
+                        <p>
+                            Phase 4 prepares Elisence for later expansions – diabetes intelligence (Phase&nbsp;9),
+                            Women+ engines (Phase&nbsp;7), passports and access layers, public dashboards
+                            and research portals – all resting on the same integrity and trust created here.
+                        </p>
+
+                        <p class="highlight">7. Final Statement</p>
+                        <p>
+                            Phase 4 is the moment Elisence becomes **infrastructure**, not just an app.
+                            It provides the stability, transparency, governance and comparative intelligence
+                            that governments, clinicians and citizens need in order to rely on its outputs.
+                            All advanced capabilities in later phases are built on this foundation.
+                        </p>
+                    </div>
+                </article>
+
+            </section>
+
         </div>
-
-        <nav class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#phases">Phases</a>
-            <a href="about.html">About</a>
-            <a href="story.html">Story</a>
-            <a href="video.html">Videos</a>
-            <a href="contact.html">Contact</a>
-        </nav>
     </div>
-</header>
-<main>
 
-    <div class="phase-label">PHASE 4</div>
-    <h1>Stability, Integrity & Comparative Intelligence Layer</h1>
-
-    <p class="lead">
-        Phase 4 transforms Elisence from an application into a governance-grade, audit-ready
-        health intelligence infrastructure. It is the layer that ministries of health, hospitals,
-        research bodies, and regulators can rely on — because every number, model, and comparison
-        is backed by verifiable integrity, privacy, and scientific rigor.
-    </p>
-
-    <!-- 1. VISION -->
-    <section class="card">
-        <h2>1. Vision</h2>
-        <p>
-            Phase 4 establishes the foundation where governments, clinicians, and citizens can trust
-            Elisence’s conclusions at national scale. It ensures that:
-        </p>
-        <ul>
-            <li>All real-world evidence (RWE) is traceable from input to output</li>
-            <li>Every analytical result is backed by immutable logs and QA</li>
-            <li>Privacy and clinical safety are enforced by design</li>
-        </ul>
-        <p>
-            This is the layer that prepares Elisence for formal evaluation by ministries, national
-            health services, and global partners.
-        </p>
-    </section>
-
-    <!-- 2. CORE ENGINE -->
-    <section class="card">
-        <h2>2. Core Engine Architecture</h2>
-        <p class="tagline">
-            Four pillars: WORM Ledger, FHIR Interoperability, Advanced Provenance, and AKAC.
-        </p>
-
-        <h3>2.1 WORM Ledger — Immutable Audit Trails</h3>
-        <p>
-            A cryptographically enforced append-only ledger that stores:
-        </p>
-        <ul>
-            <li>Dataset fingerprints</li>
-            <li>Model version identifiers</li>
-            <li>QA digests and test outcomes</li>
-            <li>Export hashes and signatures</li>
-            <li>Archive timestamps</li>
-        </ul>
-        <p>
-            <strong>Why it matters:</strong> Regulators and hospitals can reconstruct exactly how a conclusion
-            was produced. There are no silent edits, no hidden changes, and no trust gaps.
-        </p>
-
-        <h3>2.2 FHIR Integration — Global Interoperability</h3>
-        <p>
-            Phase 4 harmonises medication and usage data to global medical standards:
-        </p>
-        <ul>
-            <li>FHIR resources: Medication, MedicationRequest, MedicationStatement</li>
-            <li>RxNorm / ATC drug identifiers</li>
-            <li>MedDRA for adverse events and side-effect coding</li>
-            <li>SNOMED / ICD-10 for conditions and diagnoses</li>
-        </ul>
-        <p>
-            <strong>Why it matters:</strong> Ministries, hospitals, and health systems can integrate Elisence
-            without rebuilding their infrastructure. FHIR makes Elisence “plug-into-the-health-system ready”.
-        </p>
-
-        <h3>2.3 Provenance Engine — End-to-End Traceability</h3>
-        <p>
-            Every analysis, chart, comparison, or export carries embedded provenance metadata:
-        </p>
-        <ul>
-            <li>Data sources and ingest paths</li>
-            <li>Transformations and filters applied</li>
-            <li>Model parameters and versions</li>
-            <li>Timestamps, environment, and execution context</li>
-            <li>Digital signatures and QA status</li>
-            <li>AKAC privacy level</li>
-        </ul>
-        <p>
-            This provides true real-world evidence transparency, aligned with UK/EU/US/GCC expectations.
-        </p>
-
-        <h3>2.4 AKAC — Adaptive Knowledge Access Control</h3>
-        <p>
-            A dynamic privacy supervisor that:
-        </p>
-        <ul>
-            <li>Adjusts anonymisation thresholds based on cohort size</li>
-            <li>Applies k-anonymity and safe aggregation rules</li>
-            <li>Blocks unsafe slices, drill-downs, or high-risk combinations</li>
-            <li>Ensures reports cannot deanonymise individuals</li>
-        </ul>
-        <p>
-            <strong>Why it matters:</strong> Citizens gain confidence that their identity is protected;
-            regulators gain formal proof of compliance; clinicians still receive useful, safe insights.
-        </p>
-    </section>
-
-    <!-- 3. INTELLIGENCE & ANALYTICS -->
-    <section class="card">
-        <h2>3. Intelligence & Analytics (Global Medical Intelligence Engine)</h2>
-        <p>
-            Phase 4 houses the analytical brain of Elisence — converting raw usage data into
-            trusted insight for public health, clinical practice, and future decision support.
-        </p>
-
-        <h3>3.1 Drug Effectiveness Intelligence</h3>
-        <p>
-            The engine computes:
-        </p>
-        <ul>
-            <li>Mean effectiveness metrics</li>
-            <li>Response rates across cohorts</li>
-            <li>Δ-change metrics (before/after treatment)</li>
-            <li>Net Benefit Index (NBI)</li>
-            <li>Cohort-specific performance curves</li>
-        </ul>
-        <p>
-            All metrics are validated through QA gates, provenance checks, and population safeguards.
-        </p>
-
-        <h3>3.2 Side Effect Intelligence</h3>
-        <p>
-            Integrated safety analytics using:
-        </p>
-        <ul>
-            <li>MedDRA-coded adverse events</li>
-            <li>Severity weighting and grading</li>
-            <li>PRR / ROR calculations</li>
-            <li>Temporal patterns (onset, duration, recurrence)</li>
-            <li>Geo-demographic risk variations</li>
-        </ul>
-        <p>
-            This produces contextualised safety profiles for public health and clinical support.
-        </p>
-
-        <h3>3.3 Comparative Intelligence Engine</h3>
-        <p>
-            The flagship capability of Phase 4, enabling:
-        </p>
-        <ul>
-            <li>Drug-vs-drug comparisons</li>
-            <li>Cohort matching & propensity weighting</li>
-            <li>Benefit–risk scoring and ranking</li>
-            <li>Multilingual narrative generation (EN/FA/AR/TR/RO)</li>
-        </ul>
-        <p>
-            <strong>Narrative example:</strong><br>
-            “Drug B showed substantially higher effectiveness and fewer severe adverse events than Drug A in this cohort.”
-        </p>
-        <p>
-            This allows clinicians and ministries to compare therapeutic options without guesswork.
-        </p>
-
-        <h3>3.4 Global Medical-Intelligence Layer</h3>
-        <p>
-            A unified intelligence fabric that powers:
-        </p>
-        <ul>
-            <li>National health reports</li>
-            <li>Population analytics</li>
-            <li>Ministry dashboards and oversight tools</li>
-            <li>Personalised risk–benefit summaries (non-diagnostic)</li>
-        </ul>
-        <p>
-            This layer turns Elisence from an app into a real health system intelligence backbone.
-        </p>
-    </section>
-
-    <!-- 4. SAFETY & GOVERNANCE -->
-    <section class="card">
-        <h2>4. Safety, Governance & Compliance</h2>
-
-        <h3>4.1 QA Gates</h3>
-        <p>
-            No analytical output is released unless it passes a chain of QA gates:
-        </p>
-        <ul>
-            <li>Completeness and coverage checks</li>
-            <li>Recency and freshness of data</li>
-            <li>Duplicates and outlier detection</li>
-            <li>Internal consistency checks</li>
-            <li>Cohort safety and minimum-size thresholds</li>
-            <li>Privacy and AKAC checks</li>
-        </ul>
-        <p>
-            If any gate fails → the output is blocked, flagged, and not shown.
-        </p>
-
-        <h3>4.2 Governance of Effectiveness & Adverse Intelligence</h3>
-        <ul>
-            <li>Transparent, documented methodology</li>
-            <li>Versioned models with full changelog</li>
-            <li>Clear statement of assumptions and limits</li>
-            <li>Clinical-grade metrics and validation</li>
-            <li>Multilingual narratives for global use</li>
-        </ul>
-
-        <h3>4.3 Trust Compliance Framework</h3>
-        <p>
-            Phase 4 aligns with the operational expectations of:
-        </p>
-        <ul>
-            <li>GDPR / UK Data Protection Act</li>
-            <li>NHS DTAC principles</li>
-            <li>EU MDR-aligned non-diagnostic AI behaviour</li>
-            <li>HIPAA-style de-identification</li>
-            <li>GCC / Qatar / UAE PDPL requirements</li>
-            <li>ENCePP / STROBE / RECORD-PE for real-world evidence</li>
-        </ul>
-        <p>
-            Outcome: Elisence becomes eligible for formal evaluation by healthcare authorities,
-            ethics boards, and national partners.
-        </p>
-    </section>
-
-    <!-- 5. STAKEHOLDER IMPACT -->
-    <section class="card">
-        <h2>5. Stakeholder Impact</h2>
-        <p>
-            Phase 4 delivers clear, distinct value to every major stakeholder group.
-        </p>
-
-        <h3>5.1 Governments & Ministries of Health</h3>
-        <ul>
-            <li>National-scale monitoring of drug safety and effectiveness</li>
-            <li>Immutable WORM logs for compliance and investigations</li>
-            <li>Real-world comparative intelligence for formulary and policy decisions</li>
-            <li>Audit-ready provenance for every aggregate metric</li>
-            <li>Privacy-by-design architecture backed by AKAC and anonymisation</li>
-        </ul>
-
-        <h3>5.2 Hospitals, Clinics & Medical Networks</h3>
-        <ul>
-            <li>Evidence-backed medication comparisons at population and service level</li>
-            <li>Safety signals and adverse-event intelligence for governance boards</li>
-            <li>Transparent QA and methodology reports</li>
-            <li>Multilingual clinical narratives for diverse populations</li>
-            <li>Interoperability with existing EHR/FHIR systems</li>
-        </ul>
-
-        <h3>5.3 Citizens</h3>
-        <ul>
-            <li>Trust that identifiable data is never exposed</li>
-            <li>Assurance that outputs are QA-checked and evidence-based</li>
-            <li>Clear, human-friendly explanations of high-level patterns</li>
-            <li>Future personalised coaching powered by aggregated real-world evidence</li>
-            <li>Strong privacy using AKAC, anonymisation, and (later) differential privacy</li>
-        </ul>
-    </section>
-
-    <!-- 6. SCALABILITY & PERFORMANCE -->
-    <section class="card">
-        <h2>6. Scalability & Performance</h2>
-
-        <h3>6.1 System-Level Performance</h3>
-        <ul>
-            <li>Precomputed aggregates targeting &lt; 200ms API latency</li>
-            <li>Optimised ETL and caching strategies</li>
-            <li>Archiving and snapshot systems for long-term reliability</li>
-            <li>Horizontal scaling strategy to support national workloads</li>
-        </ul>
-
-        <h3>6.2 Data Architecture Scaling</h3>
-        <ul>
-            <li>Modular ingestion pipelines</li>
-            <li>FHIR-compliant transformations</li>
-            <li>Partitioned analytics structures and safe cohorting</li>
-            <li>WORM-integrated distributed ledger for durable audit history</li>
-        </ul>
-
-        <h3>6.3 Operational Readiness</h3>
-        <p>
-            Phase 4 prepares Elisence for future expansions, including:
-        </p>
-        <ul>
-            <li>Humanised AI and behavioural engines</li>
-            <li>National diabetes intelligence (Phase 9)</li>
-            <li>Women’s health engine (Phase 7)</li>
-            <li>Passport-based security and access (cross-phase)</li>
-            <li>Public dashboards and research portals</li>
-            <li>Academic and industry research partnerships</li>
-        </ul>
-    </section>
-
-    <!-- FINAL STATEMENT -->
-    <section class="card">
-        <h2>7. Final Statement</h2>
-        <p>
-            Phase 4 is where Elisence becomes a trusted health intelligence infrastructure, not just
-            a consumer-facing app. It provides the stability, transparency, governance, and comparative
-            intelligence that governments, clinicians, and citizens need in order to rely on its outputs.
-        </p>
-        <p>
-            All advanced capabilities in later phases — from national diabetes engines to environmental
-            risk modules, women’s health, and mental health support — are built on the foundations of
-            integrity and trust created here.
-        </p>
-    </section>
-
-</main>
+    <!-- ریشهٔ ویجت Elisa (مثل index و phase2) -->
+    <div id="elisa-chat-root"></div>
 
 </body>
 </html>
