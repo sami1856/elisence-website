@@ -2,565 +2,867 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence — Phase 17: Mental Health &amp; Meditation Intelligence Engine (MHME)</title>
+    <title>Elisence – Phase 17: Mental Health & Meditation Intelligence Engine (MHME)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-        name="description"
-        content="Elisence Phase 17 — MHME: Mental Health & Meditation Intelligence Engine. Safe, multilingual emotional wellness layer designed for governments, clinicians, and families."
-    />
+
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
 
     <style>
-        :root {
-            --bg-dark: #050814;
-            --bg-card: #0d1020;
-            --accent: #ff9f7b;
-            --accent-soft: rgba(255, 159, 123, 0.08);
-            --text-main: #f5f7ff;
-            --text-muted: #a3b0d8;
-            --border-soft: rgba(255, 255, 255, 0.08);
-            --success: #4fd1c5;
-            --risk: #ff5c7a;
-        }
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-space: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            --text-main: #e8f4fc;
+            --text-soft: #cbd5f5;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-soft: #7dd3fc;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-border: rgba(56, 189, 248, 0.9);
+            --shadow-strong: 0 0 28px rgba(56, 189, 248, 0.9),
+                             0 0 52px rgba(15, 23, 42, 0.9);
         }
 
         body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                "SF Pro Text", "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #151932 0, #050814 60%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+            background: var(--bg-space);
             color: var(--text-main);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
+        /* ===== top dot + label ===== */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 900;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 900;
         }
 
-        header {
-            border-bottom: 1px solid var(--border-soft);
-            background: linear-gradient(
-                to right,
-                rgba(7, 10, 30, 0.96),
-                rgba(5, 8, 20, 0.98)
-            );
-            backdrop-filter: blur(14px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .nav-shell {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .brand-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #ff9f7b, #7f5dff 45%, #111631);
-            box-shadow: 0 0 18px rgba(255, 159, 123, 0.7);
-        }
-
-        .brand-text {
+        /* ===== side navigation ===== */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            z-index: 999;
         }
 
-        .brand-text span:first-child {
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            font-size: 0.8rem;
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top,
+                rgba(0, 130, 255, 0.45),
+                rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease,
+                padding 0.2s ease;
         }
 
-        .brand-text span:last-child {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top,
+                rgba(0, 170, 255, 0.7),
+                rgba(0, 25, 80, 1));
         }
 
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            font-size: 0.9rem;
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
         }
 
-        nav a {
-            color: var(--text-muted);
-            padding-bottom: 0.15rem;
-            border-bottom: 2px solid transparent;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
-
-        nav a.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        @media (max-width: 900px) {
-            nav {
-                display: none;
-            }
-            header {
-                position: static;
-            }
-        }
-
-        main {
-            max-width: 1120px;
+        /* ===== layout wrapper ===== */
+        .page-wrapper {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
+            padding: 96px 1.8rem 72px 1.8rem;
         }
 
-        .phase-tag {
-            display: inline-flex;
+        .hero-area {
+            margin-bottom: 2.4rem;
+        }
+
+        .phase-hero-card {
+            background: radial-gradient(circle at top left,
+                rgba(56, 189, 248, 0.28),
+                rgba(15, 23, 42, 0.98));
+            border-radius: 26px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.6rem 1.8rem;
+        }
+
+        .phase-hero-inner {
+            display: flex;
+            gap: 1.8rem;
+            align-items: stretch;
+        }
+
+        .phase-hero-logo-box {
+            flex: 0 0 290px;
+            border-radius: 22px;
+            background: radial-gradient(circle at top, #0b1220, #020617);
+            display: flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            background: var(--accent-soft);
-            border-radius: 999px;
-            padding: 0.35rem 0.9rem;
-            border: 1px solid rgba(255, 159, 123, 0.7);
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow:
+                0 0 24px rgba(15, 23, 42, 0.9),
+                0 0 40px rgba(15, 23, 42, 0.9);
         }
 
-        .phase-tag-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: var(--accent);
+        .phase-hero-logo {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 0 28px rgba(15, 23, 42, 0.95);
         }
 
-        h1 {
-            margin-top: 1.1rem;
-            font-size: 2rem;
-            letter-spacing: 0.03em;
-        }
-
-        .subtitle {
-            margin-top: 0.5rem;
-            max-width: 780px;
-            color: var(--text-muted);
-            font-size: 0.98rem;
-        }
-
-        .grid {
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-            gap: 1.75rem;
-        }
-
-        @media (max-width: 900px) {
-            .grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-        }
-
-        .card {
-            background: radial-gradient(circle at top left, #1b203d 0, #090d20 55%);
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.5rem 1.4rem;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        .card h3 {
-            margin-top: 1.3rem;
-            font-size: 1rem;
-        }
-
-        .pill-list {
+        .phase-hero-text-box {
+            flex: 1;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-top: 0.75rem;
-            margin-bottom: 0.25rem;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .pill {
+        .phase-label {
             font-size: 0.78rem;
-            padding: 0.28rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background: rgba(10, 15, 40, 0.9);
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .pill.pill-strong {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
-        }
-
-        .badge-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-        }
-
-        .badge {
-            font-size: 0.72rem;
-            padding: 0.22rem 0.55rem;
-            border-radius: 0.4rem;
-            border: 1px solid var(--border-soft);
-            color: var(--text-muted);
-        }
-
-        .badge.badge-safe {
-            border-color: var(--success);
-            color: var(--success);
-        }
-
-        .badge.badge-risk {
-            border-color: var(--risk);
-            color: var(--risk);
-        }
-
-        .section {
-            margin-top: 2rem;
-        }
-
-        .section h2 {
-            font-size: 1.05rem;
             text-transform: uppercase;
-            letter-spacing: 0.13em;
+            letter-spacing: 0.18em;
             color: var(--text-muted);
             margin-bottom: 0.3rem;
         }
 
-        .section h3 {
-            font-size: 1rem;
-            margin-top: 1.1rem;
+        .phase-title {
+            font-size: 1.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #f9fafb;
+            margin: 0 0 0.35rem 0;
+        }
+
+        .phase-subtitle {
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 0.6rem;
+        }
+
+        .phase-lead {
+            font-size: 0.98rem;
+            color: var(--text-soft);
+            margin-bottom: 0.7rem;
+        }
+
+        .phase-hero-bullets {
+            margin: 0.3rem 0 0 0;
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
+            color: #dbeafe;
+        }
+
+        .phase-hero-bullets li {
             margin-bottom: 0.2rem;
         }
 
-        .section p {
-            font-size: 0.95rem;
-            color: var(--text-main);
+        /* ===== detail cards ===== */
+        .phase-main {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .section ul {
-            margin: 0.5rem 0 0.5rem 1.2rem;
-            padding-left: 0;
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.8rem 1.7rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .info-card h2 {
+            margin-top: 0;
+            margin-bottom: 0.85rem;
+            font-size: 1.3rem;
+            color: var(--accent-soft);
+        }
+
+        .info-card h3 {
+            margin-top: 1.1rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.02rem;
+            color: #bae6fd;
+        }
+
+        .info-card p {
+            margin: 0.35rem 0;
+            font-size: 0.94rem;
+            color: #e5f2ff;
+        }
+
+        .info-card ul {
+            margin: 0.45rem 0 0.25rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.32rem;
             font-size: 0.93rem;
-            color: var(--text-muted);
         }
 
-        .section li {
-            margin-bottom: 0.25rem;
+        .tagline {
+            font-size: 0.94rem;
+            color: #93c5fd;
+            margin-bottom: 0.45rem;
         }
 
-        .footer-note {
-            margin-top: 2.5rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid var(--border-soft);
-            font-size: 0.86rem;
+        .subtle {
+            font-size: 0.88rem;
             color: var(--text-muted);
         }
 
         .highlight {
-            color: var(--accent);
-            font-weight: 500;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.9rem;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        /* ===== responsive ===== */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 1.2rem 80px 1.2rem;
+            }
+
+            .phase-hero-inner {
+                flex-direction: column;
+            }
+
+            .phase-hero-logo-box {
+                flex: 0 0 auto;
+            }
+
+            .info-card {
+                padding: 1.5rem 1.35rem;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
         }
     </style>
-<header>
-    <div class="header-inner">
-        <div class="logo-section">
-            <img src="elisence.png" alt="Elisence Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>ELISENCE</h1>
-                <p>Global Digital Health & Humanity Platform</p>
+</head>
+<body>
+
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<nav class="side-nav">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn" href="index.html#phases">Phases</a>
+    <a class="nav-btn" href="about.html">About</a>
+    <a class="nav-btn" href="story.html">Story</a>
+    <a class="nav-btn" href="video.html">Videos</a>
+    <a class="nav-btn" href="contact.html">Contact</a>
+</nav>
+
+<div class="page-wrapper">
+    <!-- HERO -->
+    <section class="hero-area">
+        <div class="phase-hero-card">
+            <div class="phase-hero-inner">
+                <div class="phase-hero-logo-box">
+                    <img src="elisence.png"
+                         alt="Elisence – Global Digital Health & Humanity Platform"
+                         class="phase-hero-logo">
+                </div>
+                <div class="phase-hero-text-box">
+                    <div class="phase-label">PHASE 17</div>
+                    <h1 class="phase-title">
+                        Mental Health &amp; Meditation Intelligence Engine (MHME)
+                    </h1>
+                    <div class="phase-subtitle">
+                        EMOTIONAL WELLNESS · MULTILINGUAL · REGULATOR-READY
+                    </div>
+                    <p class="phase-lead">
+                        Phase 17 is the <strong>Mental Health &amp; Meditation Intelligence Engine (MHME)</strong> of Elisence —
+                        a safe, multilingual companion for stress, mood and emotional wellness that
+                        integrates with all other phases while staying strictly non-diagnostic,
+                        non-therapeutic and government-grade from day zero.
+                    </p>
+                    <ul class="phase-hero-bullets">
+                        <li>Calm Now tools, breathing and meditation in 5 languages.</li>
+                        <li>Context-aware mood intelligence across sleep, hormones, disease &amp; environment.</li>
+                        <li>Zero-Trust Mental Vault and escalation rules regulators can approve.</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
 
-        <nav class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#phases">Phases</a>
-            <a href="about.html">About</a>
-            <a href="story.html">Story</a>
-            <a href="video.html">Videos</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
+    <!-- DETAIL CARDS -->
+    <main class="phase-main">
 
-<main>
-    <div class="phase-tag">
-        <span class="phase-tag-dot"></span>
-        <span>Phase 17 &mdash; Mental Health &amp; Meditation Intelligence (MHME)</span>
-    </div>
-
-    <h1>Mental Health &amp; Meditation Intelligence Engine (MHME)</h1>
-    <p class="subtitle">
-        Phase 17 is Elisence’s mental health and meditation engine. It brings calm,
-        grounding and emotional insight into the same regulated environment as diabetes,
-        nutrition, women’s health and family care &mdash; without becoming an AI therapist
-        or a diagnostic tool.
-    </p>
-
-    <div class="grid">
-        <section class="card">
-            <h2>Core Definition</h2>
-            <h3>What Phase 17 Is</h3>
+        <!-- 0. STATUS & SCOPE -->
+        <section class="info-card">
+            <h2>0. Status &amp; Scope Declaration</h2>
             <p>
-                MHME is a <span class="highlight">safe emotional wellness layer</span> inside Elisence.
-                It provides stress support, breathing and grounding tools, short meditations
-                and mood-awareness journeys in five languages, connected to the rest of the
-                health OS:
+                Phase 17 — Mental Health &amp; Meditation Intelligence Engine (MHME) is, at this moment:
             </p>
             <ul>
-                <li>Weight, sleep and lifestyle (Phase 3 &amp; 5)</li>
-                <li>Women+ hormonal and life stages (Phase 7)</li>
-                <li>Diabetes &amp; metabolic health (Phase 9)</li>
-                <li>Nutrition and fasting patterns (Phase 16)</li>
-                <li>Family and social context (Phase 10 &amp; 15)</li>
+                <li>❌ Not implemented in production.</li>
+                <li>❌ No backend code, no live UI, no pilots.</li>
+                <li>✅ Concept blueprint fully designed.</li>
+                <li>✅ Regulatory &amp; safety envelope defined.</li>
+                <li>✅ Architecture &amp; integration plan aligned with earlier Elisence phases.</li>
             </ul>
-            <p>
-                It is designed as a <em>supportive companion</em>, not a replacement for
-                psychiatrists, psychologists or counsellors.
+            <p class="subtle">
+                This page describes what Phase 17 will be, why it must exist in the Elisence ecosystem,
+                and how it has been designed to satisfy governments, regulators and investors
+                before a single line of production code is written.
             </p>
-
-            <h3>Design Anchors</h3>
-            <div class="pill-list">
-                <span class="pill pill-strong">Non-diagnostic, non-therapeutic</span>
-                <span class="pill pill-strong">Zero-Trust &amp; Mental Vault</span>
-                <span class="pill">NHS / MDR / FDA / GCC-aware</span>
-                <span class="pill">5 languages (EN / FA / AR / TR / RO)</span>
-                <span class="pill">Trauma-aware, youth-safe tone</span>
-            </div>
         </section>
 
-        <aside class="card">
-            <h2>Stakeholder View</h2>
-            <h3>Who MHME Serves</h3>
+        <!-- 1. WHAT PHASE 17 IS -->
+        <section class="info-card">
+            <h2>1. What Phase 17 Is</h2>
+            <p>
+                Phase 17 is the <strong>Mental Health &amp; Meditation Intelligence Engine</strong> of Elisence —
+                the layer that brings emotional support, meditation, grounding and mood intelligence into the same
+                safe, regulated environment as:
+            </p>
             <ul>
-                <li>Citizens under stress, poor sleep or mild anxiety</li>
-                <li>Women in cycle, pregnancy, postpartum or menopause</li>
-                <li>Teens and students facing exams or social pressure</li>
-                <li>Patients living with chronic disease burden</li>
-                <li>Governments building population-level wellbeing programmes</li>
+                <li>Phase 3 – Weight-loss and lifestyle engine</li>
+                <li>Phase 5 – Healthy Dopamine &amp; behaviour engine</li>
+                <li>Phase 7 – Women+ knowledge &amp; guidance</li>
+                <li>Phase 8 – AHE (Advanced Health Engine – biomarkers &amp; risk)</li>
+                <li>Phase 9 – Diabetes &amp; metabolic brain</li>
+                <li>Phase 10 – Social presence &amp; secure communication</li>
+                <li>Phase 16 – Global nutrition &amp; diet intelligence</li>
+            </ul>
+            <p>
+                Where other phases deal with body, data, medications and environment,
+                Phase 17 focuses on the mind — but in a way that is:
+            </p>
+            <ul>
+                <li>Non-diagnostic (no clinical labels, no pretending to be a therapist).</li>
+                <li>Non-prescriptive (no medication, no treatment plans).</li>
+                <li>Emotionally safe (trauma-aware, zero judgement).</li>
+                <li>Regulator-friendly (NHS, FDA, EU MDR, GCC/SFDA-aligned).</li>
+                <li>Zero-Trust by design (dedicated Mental Vault, WORM logs).</li>
+                <li>Five-language native (EN, FA, AR, TR, RO).</li>
+            </ul>
+            <p class="highlight">
+                Mission:
+                <br>
+                “Provide a safe, multilingual, human digital companion for stress, mood and emotional wellness —
+                helping people breathe, calm and understand their patterns, without crossing into diagnosis,
+                therapy or unsafe promises.”
+            </p>
+        </section>
+
+        <!-- 2. WHY NEEDED -->
+        <section class="info-card">
+            <h2>2. Why Phase 17 Is Needed (Strategic Rationale)</h2>
+
+            <h3>2.1 Mental Health as a Cross-Cutting Dimension</h3>
+            <p>Mental health affects, and is affected by:</p>
+            <ul>
+                <li>Sleep (insomnia, irregular sleep, sleep quality).</li>
+                <li>Nutrition &amp; blood sugar (Phase 16 &amp; Phase 9).</li>
+                <li>Hormones &amp; Women+ (Phase 7 — cycle, pregnancy, postpartum, menopause).</li>
+                <li>Chronic disease (diabetes, CKD, CVD, NAFLD, obesity).</li>
+                <li>Environment (heat, humidity, air pollution — environment/air phases).</li>
+                <li>Social context (family stress, work pressure, isolation — Phase 10).</li>
+                <li>Behaviour &amp; dopamine (Phase 5).</li>
+            </ul>
+            <p>
+                If Elisence wants to be a true health OS for families, patients and governments,
+                there must be a dedicated engine that understands and supports the emotional layer safely.
+            </p>
+
+            <h3>2.2 Why Existing Apps Are Not Enough</h3>
+            <p>The world already has meditation apps, AI chat tools and therapy platforms — but they typically:</p>
+            <ul>
+                <li>Operate as isolated apps, not integrated with physical health data.</li>
+                <li>Lack regulatory-grade safety cases for NHS / GCC Ministries.</li>
+                <li>Store sensitive psychological data in generic clouds without a Mental Vault model.</li>
+                <li>Optimise for retention/engagement, not national public-health priorities.</li>
+                <li>Rarely support EN/FA/AR/TR/RO with deep cultural design.</li>
+            </ul>
+            <p class="highlight">
+                Phase 17 is designed as a mental-health layer <strong>inside</strong> Elisence:
+                a system governments can approve and integrate, with a framework that can later be uplifted to
+                medical-device level without a full redesign.
+            </p>
+        </section>
+
+        <!-- 3. POSITION IN ROADMAP -->
+        <section class="info-card">
+            <h2>3. Position in the Elisence Roadmap</h2>
+            <p>
+                Phase 17 is intentionally placed as one of the last phases, after the hard infrastructure
+                and clinical cores have been built.
+            </p>
+            <ul>
+                <li>
+                    Earlier phases create the platform backbone:
+                    passports, security, attachments vault, stable APIs.
+                </li>
+                <li>
+                    Clinical phases (Women+, Diabetes, AHE, Nutrition) build the medical and physiological brain.
+                </li>
+                <li>
+                    Social and family phases build daily engagement and communication
+                    (Phase 10, Kids &amp; Families, Dopamine).
+                </li>
+            </ul>
+            <p>
+                Only when these foundations exist does Phase 17 activate, because:
+            </p>
+            <ul>
+                <li>It can read from all relevant sources (sleep, glucose, hormones, food, environment).</li>
+                <li>It can provide context-aware, gentle emotional support instead of generic messages.</li>
+                <li>
+                    It can be presented to ministries as part of a coherent health ecosystem,
+                    not a random wellbeing app.
+                </li>
+            </ul>
+            <p class="highlight">
+                Together with Phase 16 (Nutrition) and Phase 10 (Social),
+                Phase 17 is what finally makes Elisence a
+                <strong>“digital sanctuary for both body and mind, under full national governance.”</strong>
+            </p>
+        </section>
+
+        <!-- 4. DESIGN CONTRACT -->
+        <section class="info-card">
+            <h2>4. Design Contract — Safety, Law &amp; Ethical Guarantees</h2>
+            <p>
+                To answer the central question — “Is this safe, legal and controllable?” —
+                Phase 17 is locked under a strict design contract.
+            </p>
+
+            <h3>4.1 Non-Diagnostic, Non-Therapeutic Boundary</h3>
+            <ul>
+                <li>No diagnosis of depression, anxiety, PTSD, bipolar, ADHD or any disorder.</li>
+                <li>No replacement of psychiatrists, psychologists or counsellors.</li>
+                <li>No prescribing or suggesting medications or dosage changes.</li>
+                <li>No promises of cure, remission or clinical outcomes.</li>
+            </ul>
+            <p>
+                Instead, the engine:
+            </p>
+            <ul>
+                <li>
+                    Offers self-help tools based on CBT/DBT/mindfulness principles,
+                    simplified and clearly labelled as <em>educational</em>.
+                </li>
+                <li>
+                    Supports users with breathing, grounding, reframing, reflection and coping skills.
+                </li>
+                <li>
+                    Encourages reaching out to doctors, therapists or trusted adults when risk is high.
+                </li>
+                <li>
+                    Clearly presents itself as:
+                    “A supportive tool, not a therapist; not a replacement for professional care.”
+                </li>
             </ul>
 
-            <h3>Safety Envelope</h3>
-            <div class="badge-row">
-                <span class="badge badge-safe">Wellness &amp; emotional support only</span>
-                <span class="badge badge-safe">Helpline &amp; clinician escalation for risk</span>
-                <span class="badge badge-safe">Dedicated Mental Vault storage</span>
-                <span class="badge badge-risk">No diagnosis</span>
-                <span class="badge badge-risk">No medication or treatment advice</span>
-            </div>
-        </aside>
-    </div>
+            <h3>4.2 Global Regulatory Alignment</h3>
+            <ul>
+                <li>
+                    <strong>UK / NHS:</strong> DTAC-ready, aligned with NICE guidance for digital support,
+                    but positioned as pre-therapy support, not treatment.
+                </li>
+                <li>
+                    <strong>EU / MDR:</strong> Default = wellness &amp; lifestyle (non-medical).
+                    Architecture prepared for future MDSW uplift under strict approvals.
+                </li>
+                <li>
+                    <strong>US / FDA:</strong> Behaves like General Wellness + non-device CDS;
+                    no high-risk patient-specific clinical decisions.
+                </li>
+                <li>
+                    <strong>GCC / SFDA / Qatar / UAE:</strong> Respects local AI/SaMD guidance,
+                    data-residency laws and sensitivity of mental-health records; governments control
+                    which features and content categories are enabled.
+                </li>
+            </ul>
 
-    <section class="section">
-        <h2>Why a Mental Health Engine Inside Elisence</h2>
-        <p>
-            Sleep, blood sugar, hormones, environment and family stress are deeply connected.
-            Without a mental-health layer, a digital health OS is incomplete. MHME lets
-            Elisence understand:
-        </p>
-        <ul>
-            <li>how bad nights affect mood and self-care the next day,</li>
-            <li>how diabetes events and nutrition patterns relate to stress,</li>
-            <li>how hormonal phases influence energy and sensitivity,</li>
-            <li>how heat, pollution and digital overload shape emotional resilience.</li>
-        </ul>
-        <p>
-            Instead of launching yet another isolated meditation app, MHME lives <em>inside</em>
-            Elisence: it sees the whole person and still stays within a safe, non-medical,
-            regulator-ready envelope.
-        </p>
-    </section>
+            <h3>4.3 Zero-Trust Mental Health Data Model</h3>
+            <ul>
+                <li>All mental entries live in a dedicated <strong>Mental Vault</strong>, separate from physical data.</li>
+                <li>Encryption at rest and in transit, with separate keys for mental tables.</li>
+                <li>
+                    Explicit scopes and passports for any access:
+                    self-only, optional high-level trend view (with consent),
+                    anonymised aggregates for ministries.
+                </li>
+                <li>
+                    All high-risk interactions logged in append-only WORM audit logs,
+                    without exposing private content.
+                </li>
+            </ul>
 
-    <section class="section">
-        <h2>Design Contract &amp; Legal Boundary</h2>
-        <h3>What MHME Will Never Do</h3>
-        <ul>
-            <li>No diagnosis of depression, anxiety, PTSD, bipolar, ADHD or any disorder.</li>
-            <li>No medication suggestions, dose changes or treatment plans.</li>
-            <li>No claims of cure, remission or clinical outcomes.</li>
-            <li>No pretending to be a therapist or crisis professional.</li>
-        </ul>
-        <p>
-            MHME is positioned as <strong>emotional wellness and self-help education</strong>,
-            aligned with:
-        </p>
-        <ul>
-            <li>NHS DTAC and NICE guidance for digital support tools,</li>
-            <li>EU MDR non-MDSW “wellbeing” positioning in default mode,</li>
-            <li>FDA General Wellness &amp; non-device CDS principles,</li>
-            <li>GCC / SFDA and national mental-health sensitivity rules.</li>
-        </ul>
-    </section>
+            <h3>4.4 Five-Language &amp; Cultural Safety</h3>
+            <ul>
+                <li>Native content for EN, FA, AR, TR, RO — not just auto-translation.</li>
+                <li>
+                    Tone and phrasing adapted to:
+                    Islamic &amp; GCC cultural norms, European/UK mental-health communication,
+                    youth and family sensitivities.
+                </li>
+                <li>No English-only assumptions; all strings are curated per language.</li>
+            </ul>
 
-    <section class="section">
-        <h2>Core Capabilities</h2>
-        <h3>Calm Now &amp; Micro-Interventions</h3>
-        <p>
-            MHME will offer short, structured tools that users can trigger in moments of
-            stress:
-        </p>
-        <ul>
-            <li>30-second grounding and sensory focus</li>
-            <li>1–3 minute breathing and reset exercises</li>
-            <li>5–15 minute meditations for stress, sleep, focus and chronic illness fatigue</li>
-            <li>Simple CBT/DBT-inspired reflections and reframing, clearly marked as self-help</li>
-        </ul>
+            <h3>4.5 Ethical &amp; Trauma-Safe Design</h3>
+            <ul>
+                <li>No guilt-based messages (“you failed”, “you should be stronger”).</li>
+                <li>No pressure to perform perfect wellness or maintain punishing streaks.</li>
+                <li>No dark patterns or infinite scroll to trap users.</li>
+                <li>
+                    Clear, gentle escalation when risk appears, e.g.:
+                    “I am not able to safely support this level of distress. Please consider talking to a clinician,
+                    helpline, or someone you trust.”
+                </li>
+            </ul>
+        </section>
 
-        <h3>Daily Mood &amp; Trend Awareness</h3>
-        <p>
-            Users can log emotion and energy in a simple way (icons / 1–5 scale, optional
-            text). MHME groups this into non-clinical categories like:
-        </p>
-        <ul>
-            <li>current distress: low / moderate / high</li>
-            <li>trend: stable / improving / worsening</li>
-        </ul>
-        <p>
-            These signals power coaching and reminders, not diagnostic labels.
-        </p>
-    </section>
+        <!-- 5. SYSTEM ARCHITECTURE -->
+        <section class="info-card">
+            <h2>5. System Architecture — How Phase 17 Will Work</h2>
+            <p>Phase 17 is organised into five core layers.</p>
 
-    <section class="section">
-        <h2>Risk &amp; Escalation</h2>
-        <h3>What Happens When Risk Is High</h3>
-        <p>
-            When answers or language indicate significant distress, MHME:
-        </p>
-        <ul>
-            <li>stops normal coaching and meditation suggestions,</li>
-            <li>shows an escalation message in the user’s own language,</li>
-            <li>guides them toward helplines, clinicians or trusted people,</li>
-            <li>writes a high-level WORM audit event (without exposing private text).</li>
-        </ul>
-        <p>
-            The principle is clear: <em>Elisence does not treat crisis through AI.</em>
-            It recognises distress and gently redirects to human care.
-        </p>
-    </section>
+            <h3>5.1 Emotional State &amp; Screening Layer</h3>
+            <p><strong>Inputs:</strong></p>
+            <ul>
+                <li>
+                    Short, structured self-assessments (PHQ-style, GAD-style) in simple, non-diagnostic language.
+                </li>
+                <li>Daily mood check-ins (emoji / 1–5 scale, optional short text).</li>
+                <li>Sleep, activity and energy data from other Elisence phases.</li>
+            </ul>
+            <p><strong>Outputs:</strong></p>
+            <ul>
+                <li>Non-clinical categories like “distress: low / moderate / high”.</li>
+                <li>Trend labels: “stable / slowly improving / slowly worsening”.</li>
+                <li>
+                    Internal <code>MentalHealthEvent</code> objects with
+                    <code>severity = low|caution|escalation_suggested</code>.
+                </li>
+            </ul>
 
-    <section class="section">
-        <h2>Mental Vault &amp; Zero-Trust Model</h2>
-        <p>
-            All mental-health data sits in a dedicated <span class="highlight">Mental Vault</span>:
-        </p>
-        <ul>
-            <li>separate encrypted tables and keys,</li>
-            <li>strict scopes and passports for any access,</li>
-            <li>self-only default visibility for citizens,</li>
-            <li>optional high-level trend view for clinicians, with explicit consent,</li>
-            <li>only anonymised aggregates for ministries and public-health teams.</li>
-        </ul>
-        <p>
-            This gives governments a concrete answer to “where is the mental data, and
-            who can see it?” — without slowing down user experience.
-        </p>
-    </section>
+            <h3>5.2 Intervention Engine (Calm Now &amp; Meditation)</h3>
+            <ul>
+                <li>
+                    <strong>Calm Now tools:</strong> 30-second grounding; 1-minute breathing
+                    (e.g. box breathing, 4-7-8); 3-minute guided reset.
+                </li>
+                <li>
+                    <strong>Meditation &amp; mindfulness:</strong>
+                    5–15 minute sessions for stress, sleep, focus, parenting, Women+, chronic-illness fatigue.
+                </li>
+                <li>
+                    <strong>CBT/DBT-inspired modules:</strong>
+                    cognitive reframing, distress-tolerance, behaviour-activation micro-steps.
+                </li>
+            </ul>
+            <p class="subtle">
+                Every intervention is clearly labelled as self-help, not therapy; short, realistic and safe
+                even if the session is interrupted.
+            </p>
 
-    <section class="section">
-        <h2>Five-Language &amp; Cultural Design</h2>
-        <p>
-            MHME is designed natively for <strong>EN / FA / AR / TR / RO</strong>. Scripts,
-            voice text and UI copy are crafted for:
-        </p>
-        <ul>
-            <li>GCC and MENA cultural norms around mental health and faith,</li>
-            <li>European and UK communication styles,</li>
-            <li>family- and youth-safe language (teens, students, parents).</li>
-        </ul>
-        <p>
-            No live, machine-translated therapy claims; everything is curated and
-            reviewed for tone, clarity and safety.
-        </p>
-    </section>
+            <h3>5.3 Risk &amp; Escalation Engine</h3>
+            <p>The engine monitors:</p>
+            <ul>
+                <li>High-risk score ranges in PHQ/GAD-style tools.</li>
+                <li>Language and patterns in user text that indicate strong distress.</li>
+                <li>Sudden pattern changes (multi-day very low mood after a crisis event).</li>
+            </ul>
+            <p>When a threshold is crossed:</p>
+            <ul>
+                <li>Normal coaching stops immediately.</li>
+                <li>
+                    A dedicated escalation message appears (per country and language)
+                    with helplines, emergency options and clear “I am not a therapist” framing.
+                </li>
+                <li>A WORM audit event is created, without revealing private text.</li>
+            </ul>
+            <p class="highlight">
+                Elisence does not attempt to “treat” a user in real danger via AI.
+                It guides them toward human help and records the event for safety and quality review.
+            </p>
 
-    <section class="section">
-        <h2>Real-Life Use Cases</h2>
-        <ul>
-            <li>
-                <strong>Everyday stress &amp; burnout:</strong> citizens trigger a Calm Now
-                routine, track stress patterns and receive gentle, practical suggestions.
-            </li>
-            <li>
-                <strong>Sleep &amp; mood:</strong> MHME links short sleep and late screens to
-                next-day mood, and offers realistic wind-down ideas.
-            </li>
-            <li>
-                <strong>Women+ mood awareness:</strong> cycle-, pregnancy-, and postpartum-aware
-                explanations and calm routines, without labels or blame.
-            </li>
-            <li>
-                <strong>Teens &amp; students:</strong> quick focus resets, exam stress support,
-                conflict cool-downs, under guardian/consent rules.
-            </li>
-            <li>
-                <strong>Chronic disease burden:</strong> empathetic support when diabetes or
-                other conditions become emotionally heavy.
-            </li>
-        </ul>
-    </section>
+            <h3>5.4 Contextual Intelligence Engine</h3>
+            <p>Connects mental health with:</p>
+            <ul>
+                <li>Sleep duration &amp; quality (Phase 5).</li>
+                <li>Physical activity and weight (Phase 3).</li>
+                <li>Blood sugar and diabetes events (Phase 9).</li>
+                <li>Women+ hormonal phases &amp; pregnancy (Phase 7).</li>
+                <li>Nutrition patterns (Phase 16).</li>
+                <li>Environment (heat, humidity, AQI — environment phases).</li>
+            </ul>
+            <p>Example insights:</p>
+            <ul>
+                <li>
+                    “On days when you sleep less than 6 hours, your mood tends to drop the next day.
+                    Would you like a short wind-down routine tonight?”
+                </li>
+                <li>
+                    “During this part of your cycle, many people feel more sensitive or low-energy.
+                    A gentle walk and a 3-minute calm session might help you feel more balanced.”
+                </li>
+                <li>
+                    “Recently, on very hot and polluted days, your fatigue and stress entries increase.
+                    Try to stay hydrated, rest in cooler places, and use a short breathing exercise.”
+                </li>
+            </ul>
 
-    <section class="section">
-        <h2>Government &amp; Investor Lens</h2>
-        <h3>For Governments</h3>
-        <ul>
-            <li>Population-level view of stress, sleep and emotional trends (anonymised).</li>
-            <li>A controllable, non-diagnostic engine that can sit inside national digital health strategies.</li>
-            <li>Natural bridge to youth mental-health, chronic disease and sleep programmes.</li>
-        </ul>
+            <h3>5.5 Voice &amp; UI Integration</h3>
+            <ul>
+                <li>
+                    Voice prompts like
+                    “I’m stressed”, “I can’t sleep”, “Help me calm down”, “I feel overwhelmed”.
+                </li>
+                <li>
+                    Elisa replies with Calm Now protocols, short meditations,
+                    or escalation if risk is high.
+                </li>
+                <li>
+                    UI is calm, minimal, with an always-visible
+                    “I need help now” button leading to safety resources.
+                </li>
+                <li>
+                    Small actions (starting a calm exercise, finishing a session)
+                    are celebrated with gentle encouragement, not addictive effects.
+                </li>
+            </ul>
+        </section>
 
-        <h3>For Investors</h3>
-        <ul>
-            <li>Access to a massive mental-health and meditation market with a regulatory-first product.</li>
-            <li>Deep differentiation: mind + body + environment + multi-language + governance in one stack.</li>
-            <li>Stronger engagement and adherence across all earlier Elisence phases.</li>
-        </ul>
-    </section>
+        <!-- 6. CORE USE CASES -->
+        <section class="info-card">
+            <h2>6. Core Use Cases</h2>
 
-    <div class="footer-note">
-        <strong>Status Today:</strong> Concept, safety design, architecture and
-        five-language direction are complete; implementation, UI and pilots are
-        intentionally scheduled for post–company registration, to build MHME once,
-        correctly, at government-grade standard.<br /><br />
-        <strong>In one sentence:</strong>
-        Phase 17 turns Elisence into a <span class="highlight">digital sanctuary for
-        emotional wellness</span> — a place where citizens can breathe, calm and reflect,
-        in a way that governments can trust and investors can scale.
-    </div>
-</main>
+            <h3>6.1 Everyday Stress &amp; Burnout</h3>
+            <p>
+                Users facing work or family stress can access 1–3 minute Calm Now exercises,
+                short check-ins to monitor stress patterns, and basic guidance for breaks and rest.
+            </p>
+
+            <h3>6.2 Sleep &amp; Mood Management</h3>
+            <p>
+                Citizens who struggle with sleep see how late nights and screens affect mood,
+                receive realistic wind-down routines and breathing exercises,
+                and can build small, sustainable habits.
+            </p>
+
+            <h3>6.3 Women+ Mood Awareness</h3>
+            <p>
+                Across cycle, pregnancy and postpartum, women receive gentle explanations of
+                hormone-related mood shifts, calm-routine suggestions, and reminders to seek
+                clinical review if certain patterns persist.
+            </p>
+
+            <h3>6.4 Youth &amp; Students</h3>
+            <p>
+                Short, age-appropriate modules — “2-minute focus reset before exam”,
+                “Quick calm-down after conflict or school stress” —
+                with optional guardian oversight under strict consent rules.
+            </p>
+
+            <h3>6.5 Chronic Disease Emotional Burden</h3>
+            <p>
+                For people living with diabetes, CKD, heart disease and other chronic conditions,
+                Elisence recognises when physical events correlate with low mood and responds
+                with empathy and small, supportive suggestions rather than criticism.
+            </p>
+        </section>
+
+        <!-- 7. ROADMAP SUMMARY -->
+        <section class="info-card">
+            <h2>7. Roadmap Summary (From Design to Reality)</h2>
+            <p>Once company registration and legal cover are in place, implementation follows eight clear steps:</p>
+            <ul>
+                <li><strong>Step 1 – Lock Safety &amp; Legal Envelope:</strong> Final Safety Case, DPIA skeleton, jurisdiction-specific disclaimers.</li>
+                <li><strong>Step 2 – Build the Mental Vault:</strong> separate encrypted storage, strict scopes, WORM audit.</li>
+                <li><strong>Step 3 – Implement Screening &amp; Mood Check-ins:</strong> PHQ/GAD-inspired tools and daily entries, non-diagnostic.</li>
+                <li><strong>Step 4 – Develop Emotional Analytics Engine:</strong> basic, explainable pattern detection (sleep, stress, environment).</li>
+                <li><strong>Step 5 – Author Calm Now &amp; Meditation Content (5 languages):</strong> scripts, translations, cultural adaptation.</li>
+                <li><strong>Step 6 – Implement Risk &amp; Escalation Engine:</strong> detection, safe messaging, helpline routing, WORM logging.</li>
+                <li><strong>Step 7 – Integrate with Other Phases:</strong> AHE, Women+, Diabetes, Nutrition, Environment, Family &amp; Dopamine.</li>
+                <li><strong>Step 8 – Testing &amp; Evidence Pack:</strong> trauma-safety tests, i18n tests, end-to-end flows, ministry-grade documentation.</li>
+            </ul>
+        </section>
+
+        <!-- 8. WHY GOVERNMENTS CARE -->
+        <section class="info-card">
+            <h2>8. Why Governments Should Care</h2>
+
+            <h3>8.1 Public-Health Impact</h3>
+            <ul>
+                <li>
+                    Supports citizens in managing stress, mild anxiety, sleep problems and emotional burden
+                    of chronic disease.
+                </li>
+                <li>Encourages appropriate contact with real clinicians when needed.</li>
+                <li>
+                    Offers anonymised population-level insights such as stress and sleep patterns
+                    by region, age or disease group.
+                </li>
+            </ul>
+
+            <h3>8.2 Regulatory Compatibility</h3>
+            <ul>
+                <li>Non-diagnostic, non-therapeutic by default.</li>
+                <li>Designed for future SaMD uplift if a ministry chooses.</li>
+                <li>Strong consent model and Zero-Trust privacy controls.</li>
+            </ul>
+
+            <h3>8.3 Cultural &amp; Language Inclusivity</h3>
+            <ul>
+                <li>
+                    Mental-health support in English, Farsi, Arabic, Turkish, Romanian —
+                    serving GCC populations and multi-ethnic Europe/UK in one platform.
+                </li>
+            </ul>
+
+            <h3>8.4 Alignment with National Strategies</h3>
+            <ul>
+                <li>Fits youth mental-health, chronic-disease, sleep and stress-prevention programmes.</li>
+                <li>
+                    Integrates with Vision 2030-style digital-health and wellbeing strategies
+                    as a governed, auditable engine.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 9. WHY INVESTORS CARE -->
+        <section class="info-card">
+            <h2>9. Why Investors Should Care</h2>
+
+            <h3>9.1 Massive Market, Deep Differentiation</h3>
+            <ul>
+                <li>Mental health &amp; meditation is a huge global market.</li>
+                <li>
+                    Very few players offer a combination of:
+                    regulatory-aligned, Zero-Trust, multi-language, deeply integrated mind-body intelligence.
+                </li>
+            </ul>
+
+            <h3>9.2 Complement to Existing Elisence Phases</h3>
+            <ul>
+                <li>Increases engagement with Dopamine &amp; Social phases.</li>
+                <li>Improves adherence to diabetes, nutrition and activity plans.</li>
+                <li>Strengthens the story for national and corporate wellness contracts.</li>
+            </ul>
+
+            <h3>9.3 Risk-Controlled AI</h3>
+            <ul>
+                <li>
+                    Designed from day one to comply with emerging AI-in-health rules,
+                    especially around mental-health chat and “AI therapist” boundaries.
+                </li>
+                <li>
+                    Elisence positions itself as:
+                    “AI-supported emotional wellness, never AI therapy.”
+                </li>
+            </ul>
+
+            <h3>9.4 Long-Term Moat</h3>
+            <ul>
+                <li>
+                    Replicating this combination — mind + body + environment + multi-language + national governance —
+                    would require years of engineering, legal and cultural work for any competitor.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 10. STATUS SUMMARY & ONE SENTENCE -->
+        <section class="info-card">
+            <h2>10. Status Summary (Phase 17 Today)</h2>
+            <ul>
+                <li>✔ Conceptual blueprint: <strong>COMPLETE</strong></li>
+                <li>✔ Safety &amp; regulatory design: <strong>COMPLETE</strong></li>
+                <li>✔ Architectural plan &amp; integration map: <strong>COMPLETE</strong></li>
+                <li>✔ Five-language &amp; cultural direction: <strong>COMPLETE</strong></li>
+                <li>✖ Code implementation: <strong>NOT STARTED</strong></li>
+                <li>✖ UI/UX screens: <strong>NOT BUILT</strong></li>
+                <li>✖ Tests &amp; clinical/public pilots: <strong>NOT EXECUTED</strong></li>
+                <li>✖ Ministry onboarding &amp; approvals: <strong>PENDING company registration</strong></li>
+            </ul>
+            <p class="highlight">
+                In one sentence:<br>
+                <strong>
+                    Phase 17 will transform Elisence into a digital sanctuary for emotional wellness —
+                    for citizens, families and patients — in a way that governments can trust and investors can scale.
+                </strong>
+            </p>
+        </section>
+
+    </main>
+</div>
+
+<!-- Elisa chat widget root -->
+<div id="elisa-chat-root"></div>
+
 </body>
 </html>
