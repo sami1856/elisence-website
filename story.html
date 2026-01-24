@@ -114,25 +114,75 @@
         }
 
         @media (max-width: 900px) {
-            .side-nav {
-                right: 50%;
-                bottom: 18px;
-                top: auto;
-                transform: translateX(50%);
-                flex-direction: row;
-                gap: 8px;
-            }
+        /* منوی عمودی سمت راست – نسخه واحد برای همه صفحات */
+.side-nav {
+    position: fixed;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+}
 
-            .nav-btn {
-                padding: 10px 20px;
-                font-size: 11px;
-            }
+.nav-btn {
+    display: block;
+    padding: 13px 38px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #e3f2ff;
+    background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+    border: 1px solid rgba(90, 185, 255, 0.9);
+    box-shadow:
+        0 0 16px rgba(0, 130, 255, 0.95),
+        0 0 34px rgba(0, 40, 120, 0.95);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+}
 
-            .content-wrap {
-                margin-right: 0;
-                padding: 20px;
-            }
-        }
+.nav-btn:hover {
+    transform: translateX(-4px);
+    padding-right: 44px;
+    box-shadow:
+        0 0 22px rgba(0, 190, 255, 1),
+        0 0 46px rgba(0, 80, 200, 1);
+    background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+}
+
+.nav-btn:active {
+    transform: translateX(-2px) scale(0.99);
+}
+
+/* نسخه موبایل منو + کوچیک کردن دکمه‌ها */
+@media (max-width: 900px) {
+    .side-nav {
+        position: fixed;
+        right: 50%;
+        top: auto;
+        bottom: 18px;
+        transform: translateX(50%);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .nav-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+        letter-spacing: 0.11em;
+        max-width: 45%;
+        display: inline-flex;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    /* همین‌جا می‌تونی بلوک کوچیک‌کردن الیسا رو هم اگر خواستی کپی کنی،
+       ولی برای story.html اگر الیسا نیست، لازم نیست */
+}
     </style>
 </head>
 <body>
