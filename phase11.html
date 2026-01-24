@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence – Phase 6: Global Medication Brain (Section 11)</title>
+    <title>Elisence – Phase 11: Security & Identity Control</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Elisa chat widget script -->
@@ -60,7 +60,7 @@
             z-index: 900;
         }
 
-        /* ===== side navigation – DESKTOP (کپی از index) ===== */
+        /* ===== side navigation – DESKTOP (دقیقاً مثل index) ===== */
         .side-nav {
             position: fixed;
             right: 32px;
@@ -262,6 +262,14 @@
             color: var(--text-muted);
         }
 
+        .highlight {
+            border-left: 3px solid var(--accent);
+            padding-left: 0.9rem;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
         /* ===== responsive (مثل index) ===== */
         @media (max-width: 900px) {
             .page-wrapper {
@@ -325,21 +333,21 @@
                          class="phase-hero-logo">
                 </div>
                 <div class="phase-hero-text-box">
-                    <div class="phase-label">PHASE 6 · SECTION 11</div>
-                    <h1 class="phase-title">Global Medication Brain</h1>
+                    <div class="phase-label">PHASE 11</div>
+                    <h1 class="phase-title">Security &amp; Identity Control</h1>
                     <div class="phase-subtitle">
-                        MULTILINGUAL · ZERO-TRUST · JURISDICTION-AWARE
+                        ZERO-TRUST · PASSPORT V1 · REGULATORY BACKBONE
                     </div>
                     <p class="phase-lead">
-                        This Section 11 page presents the investor- and regulator-ready view of
-                        Elisence Phase 6 – the multilingual, jurisdiction-aware, zero-trust
-                        <strong>Global Medication Brain</strong> that safely understands and structures
-                        medication behaviour across five languages and connects into every major phase of the platform.
+                        Phase 11 is the central security, identity, access-control, and regulatory protection
+                        layer of Elisence. It ensures that every action, request, file, profile and interaction
+                        follows Zero-Trust, BBVP and sovereignty rules — turning Elisence into a secure spine that
+                        can support national-scale digital health.
                     </p>
                     <ul class="phase-hero-bullets">
-                        <li>Unified explanation of what Phase 6 is and what is already built.</li>
-                        <li>Clear roadmap, legal posture, and investor value.</li>
-                        <li>Ready to show as a standalone slide or web section.</li>
+                        <li>Single, governed passport &amp; header standard across all phases.</li>
+                        <li>Strict RS256 / kid validation, replay protection and WORM audit logging.</li>
+                        <li>Security gateway for Diabetes, Women+, Social Presence, Voice, Kids+, Nutrition and more.</li>
                     </ul>
                 </div>
             </div>
@@ -349,374 +357,319 @@
     <!-- DETAIL CARDS -->
     <main class="phase-main">
 
-        <!-- 1. WHAT PHASE 6 REALLY IS -->
+        <!-- 1. OVERVIEW -->
         <section class="info-card">
-            <h2>1. What Phase 6 Really Is (Honest, Precise)</h2>
+            <h2>1. Overview of Phase 11</h2>
             <p>
-                Phase 6 is the “Global Medication Brain” of Elisence.
-                It is not a medical diagnosis engine and not a drug-recommendation system.
-                It is a strictly controlled, zero-trust semantic engine that
-                <strong>understands</strong>, <strong>structures</strong>, and
-                <strong>sanity-checks</strong> anything users say or type about medications.
+                Phase 11 is the central security, identity, access-control, and regulatory protection layer of Elisence.
+                It is responsible for ensuring that every action, every request, every file, every profile and every
+                interaction inside Elisence follows <strong>Zero-Trust</strong>, <strong>BBVP</strong>, and
+                <strong>sovereign-compliant</strong> rules.
             </p>
             <p>
-                This phase converts natural human language (text or voice-transcribed speech)
-                into a <strong>safe, structured medication event</strong> that downstream systems can trust.
+                This phase protects the entire ecosystem — from Diabetes (Phase 9) and Women+ (Phase 7) to Social Presence
+                (Phase 10), Voice Engine (Phase 13), Kids+, Nutrition, and future modules.
             </p>
-            <p>
-                It is already fully built as a stable baseline, and is now evolving into a global
-                drug-intelligence layer that will power:
+            <p class="highlight">
+                Phase 11 forms the <strong>Security Backbone</strong> of Elisence — the layer that regulators and
+                ministries care about most when they ask: “Can we trust this platform with national health data?”
             </p>
-            <ul>
-                <li>Diabetes</li>
-                <li>Weight-Loss (GLP-1)</li>
-                <li>Women+ Health</li>
-                <li>AHE (Advanced Health Engine)</li>
-                <li>Voice / Zero-Typing (Phase 13)</li>
-                <li>Blind-Assist / Accessibility modules</li>
-                <li>Clinician dashboards (future)</li>
-            </ul>
         </section>
 
-        <!-- 2. WHAT IS ALREADY BUILT -->
+        <!-- 2. CURRENT STATUS -->
         <section class="info-card">
-            <h2>2. What Is Already Built (Verifiable Today)</h2>
+            <h2>2. Current Status (Based on the PDF Scan)</h2>
             <p>
-                The current engine in Phase 6 is a real, working baseline. It includes:
-            </p>
-
-            <h3>2.1 Multilingual Input Normalization</h3>
-            <ul>
-                <li>Works in <strong>EN, FA, AR, TR, RO</strong>.</li>
-                <li>Cleans text, fixes spacing, unifies digits, normalises casing.</li>
-                <li>Prepares tokens for downstream parsing.</li>
-            </ul>
-            <p class="subtle">Implemented &amp; tested — screenshots, code &amp; logs available.</p>
-
-            <h3>2.2 Spell-Correction &amp; Token Normalization</h3>
-            <ul>
-                <li>Advanced dictionaries for drug names (e.g., “monjaro”, “mounjaru” → “Mounjaro”).</li>
-                <li>Correction of daily language mistakes across 5 languages.</li>
-            </ul>
-            <p class="subtle">Implemented — in code.</p>
-
-            <h3>2.3 Drug Detection (Deterministic)</h3>
-            <ul>
-                <li>Recognises Mounjaro, Ozempic, Wegovy, Metformin and other GLP-1 / diabetes medications.</li>
-                <li>No hallucination; either a clear detection or <code>"no_match"</code>.</li>
-            </ul>
-            <p class="subtle">Implemented — in code.</p>
-
-            <h3>2.4 Action Detection (take / stop / miss)</h3>
-            <ul>
-                <li>Multilingual intent engine with per-language lexicons.</li>
-                <li>Negation detection (e.g., “نزنم”, “لا”, “don’t”).</li>
-                <li>Fully deterministic, no LLM involved.</li>
-            </ul>
-            <p class="subtle">Implemented — in code.</p>
-
-            <h3>2.5 Dose Parsing</h3>
-            <ul>
-                <li>Regex-based dose extraction (2.5mg, 5 mg, “دو و نیم میلی‌گرم”).</li>
-                <li>Unit normalisation (“mg” unified across languages).</li>
-            </ul>
-            <p class="subtle">Implemented — in code.</p>
-
-            <h3>2.6 Date Recognition</h3>
-            <ul>
-                <li>Recognises ISO dates, UK style, and numeric strings (YYYYMMDD).</li>
-                <li>Rejects ambiguous dates under zero-trust rules.</li>
-            </ul>
-            <p class="subtle">Implemented — in code.</p>
-
-            <h3>2.7 Semantic Medication Event</h3>
-            <p>
-                Everything above is combined into a structured object:
+                Based on the latest internal PDF scan and repository review, the following elements exist in partial or
+                minimal form:
             </p>
             <ul>
-                <li>drug_name</li>
-                <li>action</li>
-                <li>dose</li>
-                <li>date_iso</li>
-                <li>warnings</li>
-                <li>confidence</li>
-                <li>uncertainty_reason</li>
-                <li>audit / debug fields</li>
+                <li><strong>X-Passport</strong> header exists in some routes.</li>
+                <li>Some early verification logic is present.</li>
+                <li>Access control is partially recognised.</li>
+                <li>Behaviour for “bridge not configured” exists in some places.</li>
+                <li>Certain JSON 401 responses follow a near-canonical schema.</li>
+                <li>Phase 10 header/block is partially integrated.</li>
             </ul>
             <p class="subtle">
-                This semantic event backbone is already integrated as a core part of Elisence.
+                These components exist but are not yet validated, unified, or compliant with the strict, government-grade
+                requirements defined for Phase 11.
+            </p>
+        </section>
+
+        <!-- 3. NOT DONE – REQUIRED SECURITY WORK -->
+        <section class="info-card">
+            <h2>3. NOT DONE – Required Security Work (Full Breakdown)</h2>
+            <p>
+                The following items are <strong>not completed</strong> and MUST be implemented exactly in this order.
+                They come directly from the Phase 11 specification and are required for any government-level security
+                guarantee.
             </p>
 
-            <h3>2.8 Phase-Wide API (<code>smart_understand</code>)</h3>
+            <h3>A. Header Standardization — NOT VERIFIED</h3>
             <ul>
-                <li>The unified endpoint for all phases.</li>
-                <li>Used by Phase 5 (Elisa), Phase 13 (Voice), Phase 8 (AHE), Diabetes, GLP-1, Women+.</li>
+                <li>Accept <strong>only</strong> the header: <code>X-Passport</code>.</li>
+                <li>Reject all alternatives:
+                    <ul>
+                        <li><code>x-elis-passport</code></li>
+                        <li><code>Authorization</code></li>
+                        <li>any custom header</li>
+                    </ul>
+                </li>
+                <li>Enforce case-insensitive checks for the canonical header name.</li>
+                <li>Implement strict <strong>fail-closed</strong> behaviour on any mismatch.</li>
+            </ul>
+
+            <h3>B. RSA/RS256 + kid Validation — NOT DONE</h3>
+            <ul>
+                <li>Every JWT MUST be checked for:
+                    <ul>
+                        <li><code>alg ≠ RS256</code> → <strong>401</strong></li>
+                        <li>missing <code>kid</code> → <strong>401</strong></li>
+                        <li>unknown <code>kid</code> → <strong>401</strong></li>
+                        <li>corrupted key sets → <strong>401</strong></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>C. Mandatory Claims Validation — NOT DONE</h3>
+            <p>Every mandatory claim MUST be validated. Missing or incorrect claims produce a strict 401:</p>
+            <ul>
+                <li><code>ver</code>, <code>iss</code>, <code>aud</code>, <code>sub</code></li>
+                <li><code>role</code>, <code>scopes</code></li>
+                <li><code>iat</code>, <code>exp</code>, <code>jti</code></li>
             </ul>
             <p class="subtle">
-                Implemented as a stable, single source of truth for medication understanding.
-            </p>
-        </section>
-
-        <!-- 3. ROADMAP -->
-        <section class="info-card">
-            <h2>3. What Phase 6 Will Become (Realistic Roadmap)</h2>
-            <p>
-                Phase 6 is on track to evolve into a global medication intelligence engine.
+                Strict type enforcement is required (for example, <code>role</code> MUST NOT be a list).
             </p>
 
-            <h3>3.1 Ontology v1.0 (Next Step)</h3>
-            <p>
-                Introduction of a controlled drug-ontology with fields:
-            </p>
+            <h3>D. iss / aud / scopes Validation — NOT DONE</h3>
             <ul>
-                <li>drug_id, class, mechanism</li>
-                <li>adult dose ranges</li>
-                <li>regulatory categories (UK/EU/GCC)</li>
-                <li>availability per country</li>
-                <li>safety notes (never shown directly to users)</li>
-            </ul>
-            <p>
-                This will make Elisence independent from proprietary drug databases used by Omada,
-                Livongo, and Huma.
-            </p>
-
-            <h3>3.2 Sanity-Check Layer</h3>
-            <p>
-                Non-diagnostic rules to detect:
-            </p>
-            <ul>
-                <li>unrealistic doses (e.g., “50 mg Mounjaro”).</li>
-                <li>impossible frequencies.</li>
-                <li>contradictory statements.</li>
-            </ul>
-            <p>
-                Output is always safe and conservative:
-                <br />
-                → “Please review with a clinician.”
-            </p>
-
-            <h3>3.3 Candidate Drug Learning (Supervised Learning)</h3>
-            <ul>
-                <li>System detects unknown drug names mentioned repeatedly.</li>
-                <li>Stores them as candidates for clinical review.</li>
-                <li>Requires human clinical approval before activation.</li>
-            </ul>
-            <p class="subtle">Zero-Trust and BBVP-compliant.</p>
-
-            <h3>3.4 Global Class Mapping</h3>
-            <p>
-                Mapping each drug to:
-            </p>
-            <ul>
-                <li>GLP-1 class</li>
-                <li>SGLT2</li>
-                <li>Insulins</li>
-                <li>Obesity pharmacotherapy</li>
+                <li>Reject wrong <code>iss</code> (issuer).</li>
+                <li>Reject invalid <code>ver</code> (version).</li>
+                <li>Reject incorrect <code>aud</code> (audience).</li>
+                <li>Reject unauthorized <code>scopes</code>.</li>
             </ul>
             <p class="subtle">
-                General, non-diagnostic information only.
+                All such failures must return strict, canonical JSON <strong>401</strong> outputs.
             </p>
 
-            <h3>3.5 Multi-Phase Integration</h3>
+            <h3>E. Fail-Closed Bridge (503) — NOT DONE</h3>
             <p>
-                Phase 6 becomes the single medication source of truth for:
+                When a passport is required but the bridge is disabled or misconfigured, the system MUST respond with:
             </p>
+            <p><code>{"ok": false, "error": "passport_bridge_not_configured", "trace_id": "...", "message": "..."}</code></p>
+            <p class="subtle">
+                No exceptions, stack traces or framework error pages are allowed to escape in this mode.
+            </p>
+
+            <h3>F. Canonical JSON for 401 / 403 / 503 — PARTIAL</h3>
+            <p>Every error must follow an identical, canonical schema for:</p>
             <ul>
-                <li>Weight / GLP-1 engine (Phase 3)</li>
-                <li>Women+ (Phase 7)</li>
-                <li>Diabetes &amp; AHE (Phase 8)</li>
-                <li>Personality &amp; Voice (Phase 5 &amp; 13)</li>
-                <li>Accessibility &amp; Blind-Assist.</li>
+                <li><strong>503</strong> – <code>passport_bridge_not_configured</code></li>
+                <li><strong>403</strong> – <code>scope_denied</code>, <code>role_invalid</code>,
+                    <code>audience_rejected</code>, <code>replay_blocked</code></li>
+                <li><strong>401</strong> – <code>invalid_passport</code>, <code>missing_claim</code>,
+                    <code>unknown_kid</code>, etc.</li>
             </ul>
 
-            <h3>3.6 Cross-Market Regulatory Alignment</h3>
-            <ul>
-                <li>Non-Device CDS (FDA).</li>
-                <li>Wellness / information layer (EU MDR).</li>
-                <li>DCB0129 / 0160 risk controls (NHS).</li>
-                <li>PDPL / Qatar / GCC residency support.</li>
-            </ul>
+            <h3>G. Single Source of Truth (SSOT) Verifier — NOT DONE</h3>
             <p>
-                This ensures minimal regulatory friction and maximum safety.
+                There must be <strong>one – and only one</strong> passport verifier function:
+            </p>
+            <p><code>elisence_security.passport_v1.verify_passport</code></p>
+            <p>
+                All phases (8, 9, 10, 13 and beyond) MUST route verification through the same engine.
+            </p>
+
+            <h3>H. No Backdoors / No Legacy Headers — NOT DONE</h3>
+            <ul>
+                <li>No developer bypass headers.</li>
+                <li>No legacy headers kept “just for now”.</li>
+                <li>No shortcut environment variables that weaken checks.</li>
+                <li>No alternative verification path.</li>
+            </ul>
+            <p class="subtle">
+                Security must remain absolute — or the platform fails Zero-Trust.
+            </p>
+
+            <h3>I. PASSPORT_V1_REFERENCE_SPEC.md — NOT DONE</h3>
+            <p>
+                This specification file exists but must be completed with:
+            </p>
+            <ul>
+                <li>Header rules.</li>
+                <li>RS256 / <code>kid</code> rules.</li>
+                <li>Mandatory claims.</li>
+                <li><code>jti</code> replay policies.</li>
+                <li>Canonical JSON structures.</li>
+                <li>Audit chain rules.</li>
+            </ul>
+            <p class="subtle">
+                This document will be required for ministry and government review.
+            </p>
+
+            <h3>J. Phase 11 Test Suite (Verifier Tests) — NOT DONE</h3>
+            <p>Tests MUST cover at least the following cases:</p>
+            <ul>
+                <li>Malformed JWT.</li>
+                <li>Unsupported algorithm.</li>
+                <li>Missing <code>kid</code>.</li>
+                <li>Unknown <code>kid</code>.</li>
+                <li>Corrupted signature.</li>
+                <li>Wrong <code>iss</code> / <code>ver</code>.</li>
+                <li>Expired <code>exp</code> or future <code>iat</code>.</li>
+                <li>Missing mandatory claim.</li>
+                <li>Wrong claim type.</li>
+                <li>One-time <code>jti</code> replay attempt.</li>
+            </ul>
+
+            <h3>K. Key Rotation — NOT DONE</h3>
+            <ul>
+                <li>Support simultaneous validity for old <code>kid</code> + new <code>kid</code>.</li>
+                <li>Implement rotation removal tests.</li>
+                <li>Ensure audit logging for each key rotation event.</li>
+            </ul>
+
+            <h3>L. Replay Protection (jti Store) — NOT DONE</h3>
+            <ul>
+                <li>Dedicated replay store that enforces:
+                    <ul>
+                        <li>First use → OK.</li>
+                        <li>Second use → BLOCK (<strong>403 replay_blocked</strong>).</li>
+                    </ul>
+                </li>
+                <li>Full audit trail stored in WORM.</li>
+            </ul>
+
+            <h3>M. Audit Logging (WORM v2) — NOT VERIFIED</h3>
+            <p>Audit requirements:</p>
+            <ul>
+                <li>Log for valid passport.</li>
+                <li>Log for invalid passport.</li>
+                <li>Log for replay-blocked events.</li>
+                <li><strong>Do not</strong> store the raw JWT.</li>
+                <li>Logs must be append-only (WORM).</li>
+            </ul>
+
+            <h3>N. Integration with Phase 10 — NOT DONE</h3>
+            <p>Required items for Social Presence &amp; Messaging integration:</p>
+            <ul>
+                <li><code>/auth/passport/issue</code> route using <code>ELIS_ISSUER_SECRET</code>.</li>
+                <li>User registration must mint a passport.</li>
+                <li>Moments &amp; feed must be scope-protected.</li>
+                <li>Secure-links must be replay-safe.</li>
+                <li>All Phase 10 APIs must strictly rely on the SSOT verifier.</li>
+            </ul>
+
+            <h3>O. Phase 10 Integration Tests — NOT DONE</h3>
+            <ul>
+                <li><strong>503</strong> when passport is required but disabled.</li>
+                <li><strong>register → returns valid passport</strong>.</li>
+                <li>Protected endpoints → <strong>200</strong> when passport is valid.</li>
+                <li>Replay → <strong>403</strong>.</li>
+                <li>Bad config → <strong>503</strong>.</li>
+            </ul>
+
+            <h3>P. Evidence Pack — NOT DONE</h3>
+            <p>
+                The security evidence pack must include:
+            </p>
+            <ul>
+                <li>SHA256 hashes.</li>
+                <li>Manifest.</li>
+                <li>Feature flags.</li>
+                <li>Environment variables used.</li>
+                <li>Freeze declaration.</li>
+            </ul>
+            <p class="subtle">
+                This pack is mandatory for government and regulator acceptance.
             </p>
         </section>
 
-        <!-- 4. LEGAL SAFETY -->
+        <!-- 4. ALGORITHM SECTION -->
         <section class="info-card">
-            <h2>4. Why This Phase Is Legally Safe</h2>
+            <h2>4. Algorithm Section — NOT DONE (But Fully Specified)</h2>
             <p>
-                Phase 6 is intentionally designed <strong>not</strong> to cross into diagnosis or treatment.
+                The PDF clearly states that the <strong>algorithmic layer</strong> of Phase 11 is <strong>not
+                implemented yet</strong>. This refers to the analytics and telemetry components that sit on top of
+                the security and passport layer.
             </p>
-
-            <h3>4.1 NHS</h3>
+            <p>Planned scope includes:</p>
             <ul>
-                <li>Classified as a Health IT component.</li>
-                <li>No clinical decision-making.</li>
-                <li>Outputs are informational only.</li>
-                <li>Every inference is auditable.</li>
-                <li>Hazard log is maintained.</li>
+                <li>Telemetry aggregation.</li>
+                <li>Behavioural metrics.</li>
+                <li>Privacy-preserving analytics.</li>
+                <li>Population metrics.</li>
+                <li>K-anonymity rules.</li>
+                <li>Ministry dashboards.</li>
+                <li>Clinician dashboards.</li>
+                <li>Retention rules.</li>
             </ul>
-
-            <h3>4.2 FDA</h3>
+            <p class="subtle">
+                Current state: vocabulary, schema definitions and event types exist, but the following are missing:
+            </p>
             <ul>
-                <li>Falls under “Non-Device Clinical Decision Support”.</li>
-                <li>User (clinician or patient) can independently evaluate the basis of the output.</li>
-                <li>No automated treatment recommendations.</li>
+                <li>Aggregation engine.</li>
+                <li>Analytics module.</li>
+                <li>Metric calculations.</li>
+                <li>Privacy guard.</li>
+                <li>K-anonymity enforcement.</li>
+                <li>Dashboard generation.</li>
+                <li>Routing logic.</li>
+                <li>Evidence tests.</li>
             </ul>
-
-            <h3>4.3 EU MDR</h3>
-            <ul>
-                <li>No standalone medical purpose.</li>
-                <li>Does not directly influence treatment decisions.</li>
-                <li>A future professional module can be isolated with its own MDR class.</li>
-            </ul>
-
-            <h3>4.4 GCC</h3>
-            <ul>
-                <li>Data residency supported.</li>
-                <li>Strong PDPL alignment.</li>
-                <li>Non-diagnostic layer → no medical licensing required.</li>
-            </ul>
-
-            <h3>4.5 Zero-Trust</h3>
-            <ul>
-                <li>Every input is treated as untrusted.</li>
-                <li>Low-confidence cases trigger clarification.</li>
-                <li>Never “guess” a drug or dose.</li>
-                <li>No silent assumptions.</li>
-            </ul>
-
-            <h3>4.6 BBVP (Build-Back-Verify-Prove)</h3>
-            <ul>
-                <li><strong>Build</strong> – implement the feature.</li>
-                <li><strong>Back</strong> – create a rollback plan.</li>
-                <li><strong>Verify</strong> – tests, accuracy checks, fuzzing.</li>
-                <li><strong>Prove</strong> – evidence pack with SHA-256 hashes.</li>
-            </ul>
-            <p>
-                This is what makes Phase 6 regulator-ready.
+            <p class="highlight">
+                This entire Algorithm Layer MUST be implemented <strong>after</strong> the Security Layer is fully
+                completed and verified.
             </p>
         </section>
 
-        <!-- 5. VOICE SUPPORT -->
+        <!-- 5. EXECUTION ORDER -->
         <section class="info-card">
-            <h2>5. How Phase 6 Supports Voice (Phase 13)</h2>
+            <h2>5. Execution Order (Mandatory)</h2>
             <p>
-                Phase 13 handles speech-to-text and high-level intent classification.
-                Phase 6 interprets the medication content.
-            </p>
-
-            <p>
-                Together they enable:
+                The sequence of implementation is not optional. To stay compliant with Zero-Trust and BBVP,
+                work must follow this order:
             </p>
             <ul>
-                <li>“Elisa, I forgot my dose”.</li>
-                <li>“الیسا دیشب داروم رو نزدم”.</li>
-                <li>“Elisa, increase to 5 mg next week?” → flagged for clinical confirmation.</li>
-            </ul>
-
-            <p>
-                Noise handling:
-            </p>
-            <ul>
-                <li>Phase 13 provides an STT confidence score.</li>
-                <li>If confidence &lt; threshold → Phase 6 asks for confirmation.</li>
-                <li>No uncontrolled interpretations (Zero-Trust preserved).</li>
+                <li>Verifier negative tests.</li>
+                <li>RS256 / <code>kid</code> validation.</li>
+                <li>Mandatory claims enforcement.</li>
+                <li><code>iss</code> / <code>aud</code> / <code>scopes</code> logic.</li>
+                <li>Replay store implementation.</li>
+                <li>Key rotation flows.</li>
+                <li>Audit WORM tests.</li>
+                <li>Header strictness enforcement.</li>
+                <li>Issuer router and minting flows.</li>
+                <li>Registration mint flow.</li>
+                <li>Protection of Phase 10 social content.</li>
+                <li>Phase 10 integration tests.</li>
+                <li>Evidence pack (SHA256 + manifest + freeze).</li>
             </ul>
         </section>
 
-        <!-- 6. INVESTOR VALUE -->
+        <!-- 6. EXECUTIVE SUMMARY -->
         <section class="info-card">
-            <h2>6. Why This Phase Is Attractive for Investors</h2>
+            <h2>6. Executive Summary</h2>
             <p>
-                This is a realistic, infrastructure-focused value proposition — not hype.
-            </p>
-
-            <h3>6.1 Solves a Real Global Problem</h3>
-            <p>
-                Understanding medication behaviour across languages and contexts is extremely hard and
-                expensive. Phase 6 addresses this gap directly.
-            </p>
-
-            <h3>6.2 Competes With &amp; Exceeds Omada / Livongo / Huma in One Area</h3>
-            <p>
-                Most existing platforms focus on:
+                Phase 11 transforms Elisence into a:
             </p>
             <ul>
-                <li>English-only (mostly US).</li>
-                <li>Structured inputs.</li>
-                <li>Nurse-led interpretation.</li>
+                <li><strong>Zero-Trust platform</strong>.</li>
+                <li><strong>Government-grade identity system</strong>.</li>
+                <li><strong>Internationally compliant environment</strong> (NHS, EU, FDA, GCC, PDPL).</li>
+                <li><strong>Replay-protected, audit-secured ecosystem</strong>.</li>
+                <li><strong>Safe foundation for all future health engines</strong>.</li>
+                <li><strong>Secure gateway for social + clinical interactions</strong>.</li>
             </ul>
-            <p>
-                Elisence offers:
+            <p class="subtle">
+                All critical algorithmic work in this phase is currently <strong>NOT DONE</strong> and must begin
+                only after the complete Security Layer is implemented and verified.
             </p>
-            <ul>
-                <li>Five languages from day one.</li>
-                <li>Zero-typing voice support.</li>
-                <li>Automatic structuring of free-text.</li>
-                <li>Jurisdiction-aware behaviour.</li>
-                <li>BBVP + Zero-Trust medication intelligence.</li>
-            </ul>
-            <p>
-                No competitor has all of these combined in a single engine.
-            </p>
-
-            <h3>6.3 Safe for Regulators</h3>
-            <ul>
-                <li>Not a medical device.</li>
-                <li>Not diagnosis.</li>
-                <li>Not direct medical advice.</li>
-                <li>Only structured understanding → very low legal risk.</li>
-            </ul>
-
-            <h3>6.4 Essential for Future Phases</h3>
-            <p>
-                Phase 6 is the foundation for the drug-related intelligence powering:
-            </p>
-            <ul>
-                <li>AHE risk models.</li>
-                <li>GLP-1 / obesity routes.</li>
-                <li>Women+ medication cross-checking.</li>
-                <li>Voice accessibility for blind users.</li>
-                <li>Government dashboards and research tools (future).</li>
-            </ul>
-            <p>
-                Investors understand core infrastructure value.
-            </p>
-        </section>
-
-        <!-- 7. LIMITATIONS -->
-        <section class="info-card">
-            <h2>7. Limitations (Honest &amp; Transparent)</h2>
-            <p>
-                Phase 6 does <strong>not</strong> currently:
-            </p>
-            <ul>
-                <li>Classify all global drugs.</li>
-                <li>Handle all dialects in Arabic or Persian.</li>
-                <li>Detect drug–drug interactions.</li>
-                <li>Perform medical triage.</li>
-                <li>Provide automated dosing suggestions.</li>
-                <li>Replace clinicians.</li>
-            </ul>
-            <p>
-                These are intentionally excluded to avoid:
-            </p>
-            <ul>
-                <li>High-risk MDR / FDA classification.</li>
-                <li>Clinical liability.</li>
-                <li>Unsafe or overreaching behaviour.</li>
-            </ul>
-        </section>
-
-        <!-- 8. SUMMARY -->
-        <section class="info-card">
-            <h2>8. One-Sentence Summary</h2>
-            <p>
-                Phase 6 is the multilingual, jurisdiction-aware, zero-trust
-                <strong>Global Medication Brain</strong> of Elisence — a safe, auditable foundation that
-                understands and structures medication behaviour across five languages, powers every major phase
-                of the platform, and remains legally compliant across NHS, FDA, EU, and GCC markets.
+            <p class="highlight">
+                Once Phase 11 is complete, Elisence will have the security spine of a national digital health
+                infrastructure — ready to support ministries, hospitals, clinicians and citizens at scale.
             </p>
         </section>
 
