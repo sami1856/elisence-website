@@ -2,565 +2,729 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence — Phase 11: Security &amp; Identity Control</title>
+    <title>Elisence – Phase 6: Global Medication Brain (Section 11)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-        name="description"
-        content="Elisence Phase 11 — Security, Identity and Access Control. The Zero-Trust passport backbone that protects every action, profile and file in Elisence."
-    />
+
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
 
     <style>
-        :root {
-            --bg-dark: #050814;
-            --bg-card: #0d1020;
-            --accent: #4ea8ff;
-            --accent-soft: rgba(78, 168, 255, 0.1);
-            --text-main: #f5f7ff;
-            --text-muted: #a3b0d8;
-            --border-soft: rgba(255, 255, 255, 0.08);
-            --danger: #ff5c7a;
-            --success: #4fd1c5;
-        }
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-space: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            --text-main: #e8f4fc;
+            --text-soft: #cbd5f5;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-soft: #7dd3fc;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-border: rgba(56, 189, 248, 0.9);
+            --shadow-strong: 0 0 28px rgba(56, 189, 248, 0.9),
+                             0 0 52px rgba(15, 23, 42, 0.9);
         }
 
         body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #111633 0, #050814 60%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+            background: var(--bg-space);
             color: var(--text-main);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
+        /* ===== top dot + label (مثل index) ===== */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 900;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 900;
         }
 
-        /* ===== HEADER ===== */
-        header {
-            border-bottom: 1px solid var(--border-soft);
-            background: linear-gradient(
-                to right,
-                rgba(7, 12, 40, 0.95),
-                rgba(6, 10, 32, 0.98)
-            );
-            backdrop-filter: blur(14px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .nav-shell {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .brand-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #4ea8ff, #7f5dff 45%, #111631);
-            box-shadow: 0 0 18px rgba(78, 168, 255, 0.6);
-        }
-
-        .brand-text {
+        /* ===== side navigation – DESKTOP (کپی از index) ===== */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            z-index: 999;
         }
 
-        .brand-text span:first-child {
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            font-size: 0.8rem;
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top,
+                rgba(0, 130, 255, 0.45),
+                rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease,
+                padding 0.2s ease;
         }
 
-        .brand-text span:last-child {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top,
+                rgba(0, 170, 255, 0.7),
+                rgba(0, 25, 80, 1));
         }
 
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            font-size: 0.9rem;
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
         }
 
-        nav a {
-            color: var(--text-muted);
-            padding-bottom: 0.15rem;
-            border-bottom: 2px solid transparent;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
-
-        nav a.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        /* ===== MAIN ===== */
-        main {
-            max-width: 1120px;
+        /* ===== layout wrapper ===== */
+        .page-wrapper {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
+            padding: 96px 1.8rem 72px 1.8rem;
         }
 
-        .phase-tag {
-            display: inline-flex;
+        .hero-area {
+            margin-bottom: 2.4rem;
+        }
+
+        .phase-hero-card {
+            background: radial-gradient(circle at top left,
+                rgba(56, 189, 248, 0.28),
+                rgba(15, 23, 42, 0.98));
+            border-radius: 26px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.6rem 1.8rem;
+        }
+
+        .phase-hero-inner {
+            display: flex;
+            gap: 1.8rem;
+            align-items: stretch;
+        }
+
+        .phase-hero-logo-box {
+            flex: 0 0 290px;
+            border-radius: 22px;
+            background: radial-gradient(circle at top, #0b1220, #020617);
+            display: flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            background: var(--accent-soft);
-            border-radius: 999px;
-            padding: 0.35rem 0.9rem;
-            border: 1px solid rgba(78, 168, 255, 0.5);
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow:
+                0 0 24px rgba(15, 23, 42, 0.9),
+                0 0 40px rgba(15, 23, 42, 0.9);
         }
 
-        .phase-tag-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: var(--accent);
+        .phase-hero-logo {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 0 28px rgba(15, 23, 42, 0.95);
         }
 
-        h1 {
-            margin-top: 1.1rem;
-            font-size: 2rem;
-            letter-spacing: 0.03em;
-        }
-
-        .subtitle {
-            margin-top: 0.5rem;
-            max-width: 720px;
-            color: var(--text-muted);
-            font-size: 0.98rem;
-        }
-
-        .grid {
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-            gap: 1.75rem;
-        }
-
-        @media (max-width: 900px) {
-            .grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            nav {
-                display: none; /* simple mobile version for now */
-            }
-
-            header {
-                position: static;
-            }
-        }
-
-        .card {
-            background: radial-gradient(circle at top left, #1a2147 0, #090d20 55%);
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.5rem 1.4rem;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        .card h3 {
-            margin-top: 1.3rem;
-            font-size: 1rem;
-        }
-
-        .pill-list {
+        .phase-hero-text-box {
+            flex: 1;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-top: 0.75rem;
-            margin-bottom: 0.25rem;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .pill {
+        .phase-label {
             font-size: 0.78rem;
-            padding: 0.28rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background: rgba(10, 15, 40, 0.9);
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .pill.pill-strong {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
-        }
-
-        .badge-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-        }
-
-        .badge {
-            font-size: 0.72rem;
-            padding: 0.22rem 0.55rem;
-            border-radius: 0.4rem;
-            border: 1px solid var(--border-soft);
-            color: var(--text-muted);
-        }
-
-        .badge.badge-safe {
-            border-color: var(--success);
-            color: var(--success);
-        }
-
-        .badge.badge-risk {
-            border-color: var(--danger);
-            color: var(--danger);
-        }
-
-        .section {
-            margin-top: 2rem;
-        }
-
-        .section h2 {
-            font-size: 1.05rem;
             text-transform: uppercase;
-            letter-spacing: 0.13em;
+            letter-spacing: 0.18em;
             color: var(--text-muted);
             margin-bottom: 0.3rem;
         }
 
-        .section h3 {
-            font-size: 1rem;
-            margin-top: 1.1rem;
+        .phase-title {
+            font-size: 1.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #f9fafb;
+            margin: 0 0 0.35rem 0;
+        }
+
+        .phase-subtitle {
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 0.6rem;
+        }
+
+        .phase-lead {
+            font-size: 0.98rem;
+            color: var(--text-soft);
+            margin-bottom: 0.7rem;
+        }
+
+        .phase-hero-bullets {
+            margin: 0.3rem 0 0 0;
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
+            color: #dbeafe;
+        }
+
+        .phase-hero-bullets li {
             margin-bottom: 0.2rem;
         }
 
-        .section p {
-            font-size: 0.95rem;
-            color: var(--text-main);
+        /* ===== detail cards ===== */
+        .phase-main {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .section ul {
-            margin: 0.5rem 0 0.5rem 1.2rem;
-            padding-left: 0;
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.8rem 1.7rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .info-card h2 {
+            margin-top: 0;
+            margin-bottom: 0.85rem;
+            font-size: 1.3rem;
+            color: var(--accent-soft);
+        }
+
+        .info-card h3 {
+            margin-top: 1.1rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.02rem;
+            color: #bae6fd;
+        }
+
+        .info-card p {
+            margin: 0.35rem 0;
+            font-size: 0.94rem;
+            color: #e5f2ff;
+        }
+
+        .info-card ul {
+            margin: 0.45rem 0 0.25rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.32rem;
             font-size: 0.93rem;
+        }
+
+        .tagline {
+            font-size: 0.94rem;
+            color: #93c5fd;
+            margin-bottom: 0.45rem;
+        }
+
+        .subtle {
+            font-size: 0.88rem;
             color: var(--text-muted);
         }
 
-        .section li {
-            margin-bottom: 0.25rem;
-        }
+        /* ===== responsive (مثل index) ===== */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 1.2rem 80px 1.2rem;
+            }
 
-        .footer-note {
-            margin-top: 2.5rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid var(--border-soft);
-            font-size: 0.86rem;
-            color: var(--text-muted);
-        }
+            .phase-hero-inner {
+                flex-direction: column;
+            }
 
-        .highlight {
-            color: var(--accent);
-            font-weight: 500;
+            .phase-hero-logo-box {
+                flex: 0 0 auto;
+            }
+
+            .info-card {
+                padding: 1.5rem 1.35rem;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
         }
     </style>
 </head>
 <body>
-<header>
-    <div class="nav-shell">
-        <div class="brand">
-            <div class="brand-logo"></div>
-            <div class="brand-text">
-                <span>ELISENCE</span>
-                <span>Global Digital Health &amp; Humanity Platform</span>
+
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<nav class="side-nav">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn" href="index.html#phases">Phases</a>
+    <a class="nav-btn" href="about.html">About</a>
+    <a class="nav-btn" href="story.html">Story</a>
+    <a class="nav-btn" href="video.html">Videos</a>
+    <a class="nav-btn" href="contact.html">Contact</a>
+</nav>
+
+<div class="page-wrapper">
+    <!-- HERO -->
+    <section class="hero-area">
+        <div class="phase-hero-card">
+            <div class="phase-hero-inner">
+                <div class="phase-hero-logo-box">
+                    <img src="elisence.png"
+                         alt="Elisence – Global Digital Health & Humanity Platform"
+                         class="phase-hero-logo">
+                </div>
+                <div class="phase-hero-text-box">
+                    <div class="phase-label">PHASE 6 · SECTION 11</div>
+                    <h1 class="phase-title">Global Medication Brain</h1>
+                    <div class="phase-subtitle">
+                        MULTILINGUAL · ZERO-TRUST · JURISDICTION-AWARE
+                    </div>
+                    <p class="phase-lead">
+                        This Section 11 page presents the investor- and regulator-ready view of
+                        Elisence Phase 6 – the multilingual, jurisdiction-aware, zero-trust
+                        <strong>Global Medication Brain</strong> that safely understands and structures
+                        medication behaviour across five languages and connects into every major phase of the platform.
+                    </p>
+                    <ul class="phase-hero-bullets">
+                        <li>Unified explanation of what Phase 6 is and what is already built.</li>
+                        <li>Clear roadmap, legal posture, and investor value.</li>
+                        <li>Ready to show as a standalone slide or web section.</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="index.html#phases">Phases</a>
-            <a href="about.html">About</a>
-            <a href="story.html">Story</a>
-            <a href="video.html">Videos</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
+    <!-- DETAIL CARDS -->
+    <main class="phase-main">
 
-<main>
-    <div class="phase-tag">
-        <span class="phase-tag-dot"></span>
-        <span>Phase 11 &mdash; Security &amp; Identity Control</span>
-    </div>
-
-    <h1>Security Backbone, Passport &amp; Access Control</h1>
-    <p class="subtitle">
-        Phase 11 is the security spine of Elisence. It decides who may do what, from where,
-        and under which passport &mdash; and it does so under strict Zero-Trust, replay protection
-        and audit-ready rules designed for national digital health systems.
-    </p>
-
-    <div class="grid">
-        <section class="card">
-            <h2>Core Definition</h2>
-            <h3>What Phase 11 Is</h3>
+        <!-- 1. WHAT PHASE 6 REALLY IS -->
+        <section class="info-card">
+            <h2>1. What Phase 6 Really Is (Honest, Precise)</h2>
             <p>
-                Phase 11 is Elisence’s <span class="highlight">Security &amp; Identity Control Layer</span>.
-                It provides a single, consistent way to verify every request that enters the platform:
+                Phase 6 is the “Global Medication Brain” of Elisence.
+                It is not a medical diagnosis engine and not a drug-recommendation system.
+                It is a strictly controlled, zero-trust semantic engine that
+                <strong>understands</strong>, <strong>structures</strong>, and
+                <strong>sanity-checks</strong> anything users say or type about medications.
+            </p>
+            <p>
+                This phase converts natural human language (text or voice-transcribed speech)
+                into a <strong>safe, structured medication event</strong> that downstream systems can trust.
+            </p>
+            <p>
+                It is already fully built as a stable baseline, and is now evolving into a global
+                drug-intelligence layer that will power:
             </p>
             <ul>
-                <li>One canonical <span class="highlight">X-Passport</span> header for all API calls</li>
-                <li>A single RS256/JWT verifier used by all major phases</li>
-                <li>Strict claim validation for identity, role, scopes and expiry</li>
-                <li>Replay protection so passports cannot be reused</li>
-                <li>Audit logging for both valid and blocked access attempts</li>
+                <li>Diabetes</li>
+                <li>Weight-Loss (GLP-1)</li>
+                <li>Women+ Health</li>
+                <li>AHE (Advanced Health Engine)</li>
+                <li>Voice / Zero-Typing (Phase 13)</li>
+                <li>Blind-Assist / Accessibility modules</li>
+                <li>Clinician dashboards (future)</li>
             </ul>
-
-            <h3>Design Principles</h3>
-            <div class="pill-list">
-                <span class="pill pill-strong">Zero-Trust by Design</span>
-                <span class="pill pill-strong">Fail-Closed, Never Fail-Open</span>
-                <span class="pill">Single Source of Truth Verifier</span>
-                <span class="pill">No Backdoors, No Legacy Headers</span>
-                <span class="pill">Government-Grade Security Posture</span>
-                <span class="pill">Multi-jurisdiction aware (NHS / GDPR / GCC)</span>
-            </div>
         </section>
 
-        <aside class="card">
-            <h2>Stakeholder View</h2>
-            <h3>Who Depends on Phase 11?</h3>
+        <!-- 2. WHAT IS ALREADY BUILT -->
+        <section class="info-card">
+            <h2>2. What Is Already Built (Verifiable Today)</h2>
+            <p>
+                The current engine in Phase 6 is a real, working baseline. It includes:
+            </p>
+
+            <h3>2.1 Multilingual Input Normalization</h3>
             <ul>
-                <li>All core engines: Women+, Diabetes, AHE, Nutrition, Mental Health</li>
-                <li>Phase 10 social profiles, messages and attachments</li>
-                <li>Voice and accessibility flows (Phase 13 &amp; Phase 14)</li>
-                <li>Kids+, family and carer access paths</li>
-                <li>Ministry dashboards and professional portals</li>
+                <li>Works in <strong>EN, FA, AR, TR, RO</strong>.</li>
+                <li>Cleans text, fixes spacing, unifies digits, normalises casing.</li>
+                <li>Prepares tokens for downstream parsing.</li>
+            </ul>
+            <p class="subtle">Implemented &amp; tested — screenshots, code &amp; logs available.</p>
+
+            <h3>2.2 Spell-Correction &amp; Token Normalization</h3>
+            <ul>
+                <li>Advanced dictionaries for drug names (e.g., “monjaro”, “mounjaru” → “Mounjaro”).</li>
+                <li>Correction of daily language mistakes across 5 languages.</li>
+            </ul>
+            <p class="subtle">Implemented — in code.</p>
+
+            <h3>2.3 Drug Detection (Deterministic)</h3>
+            <ul>
+                <li>Recognises Mounjaro, Ozempic, Wegovy, Metformin and other GLP-1 / diabetes medications.</li>
+                <li>No hallucination; either a clear detection or <code>"no_match"</code>.</li>
+            </ul>
+            <p class="subtle">Implemented — in code.</p>
+
+            <h3>2.4 Action Detection (take / stop / miss)</h3>
+            <ul>
+                <li>Multilingual intent engine with per-language lexicons.</li>
+                <li>Negation detection (e.g., “نزنم”, “لا”, “don’t”).</li>
+                <li>Fully deterministic, no LLM involved.</li>
+            </ul>
+            <p class="subtle">Implemented — in code.</p>
+
+            <h3>2.5 Dose Parsing</h3>
+            <ul>
+                <li>Regex-based dose extraction (2.5mg, 5 mg, “دو و نیم میلی‌گرم”).</li>
+                <li>Unit normalisation (“mg” unified across languages).</li>
+            </ul>
+            <p class="subtle">Implemented — in code.</p>
+
+            <h3>2.6 Date Recognition</h3>
+            <ul>
+                <li>Recognises ISO dates, UK style, and numeric strings (YYYYMMDD).</li>
+                <li>Rejects ambiguous dates under zero-trust rules.</li>
+            </ul>
+            <p class="subtle">Implemented — in code.</p>
+
+            <h3>2.7 Semantic Medication Event</h3>
+            <p>
+                Everything above is combined into a structured object:
+            </p>
+            <ul>
+                <li>drug_name</li>
+                <li>action</li>
+                <li>dose</li>
+                <li>date_iso</li>
+                <li>warnings</li>
+                <li>confidence</li>
+                <li>uncertainty_reason</li>
+                <li>audit / debug fields</li>
+            </ul>
+            <p class="subtle">
+                This semantic event backbone is already integrated as a core part of Elisence.
+            </p>
+
+            <h3>2.8 Phase-Wide API (<code>smart_understand</code>)</h3>
+            <ul>
+                <li>The unified endpoint for all phases.</li>
+                <li>Used by Phase 5 (Elisa), Phase 13 (Voice), Phase 8 (AHE), Diabetes, GLP-1, Women+.</li>
+            </ul>
+            <p class="subtle">
+                Implemented as a stable, single source of truth for medication understanding.
+            </p>
+        </section>
+
+        <!-- 3. ROADMAP -->
+        <section class="info-card">
+            <h2>3. What Phase 6 Will Become (Realistic Roadmap)</h2>
+            <p>
+                Phase 6 is on track to evolve into a global medication intelligence engine.
+            </p>
+
+            <h3>3.1 Ontology v1.0 (Next Step)</h3>
+            <p>
+                Introduction of a controlled drug-ontology with fields:
+            </p>
+            <ul>
+                <li>drug_id, class, mechanism</li>
+                <li>adult dose ranges</li>
+                <li>regulatory categories (UK/EU/GCC)</li>
+                <li>availability per country</li>
+                <li>safety notes (never shown directly to users)</li>
+            </ul>
+            <p>
+                This will make Elisence independent from proprietary drug databases used by Omada,
+                Livongo, and Huma.
+            </p>
+
+            <h3>3.2 Sanity-Check Layer</h3>
+            <p>
+                Non-diagnostic rules to detect:
+            </p>
+            <ul>
+                <li>unrealistic doses (e.g., “50 mg Mounjaro”).</li>
+                <li>impossible frequencies.</li>
+                <li>contradictory statements.</li>
+            </ul>
+            <p>
+                Output is always safe and conservative:
+                <br />
+                → “Please review with a clinician.”
+            </p>
+
+            <h3>3.3 Candidate Drug Learning (Supervised Learning)</h3>
+            <ul>
+                <li>System detects unknown drug names mentioned repeatedly.</li>
+                <li>Stores them as candidates for clinical review.</li>
+                <li>Requires human clinical approval before activation.</li>
+            </ul>
+            <p class="subtle">Zero-Trust and BBVP-compliant.</p>
+
+            <h3>3.4 Global Class Mapping</h3>
+            <p>
+                Mapping each drug to:
+            </p>
+            <ul>
+                <li>GLP-1 class</li>
+                <li>SGLT2</li>
+                <li>Insulins</li>
+                <li>Obesity pharmacotherapy</li>
+            </ul>
+            <p class="subtle">
+                General, non-diagnostic information only.
+            </p>
+
+            <h3>3.5 Multi-Phase Integration</h3>
+            <p>
+                Phase 6 becomes the single medication source of truth for:
+            </p>
+            <ul>
+                <li>Weight / GLP-1 engine (Phase 3)</li>
+                <li>Women+ (Phase 7)</li>
+                <li>Diabetes &amp; AHE (Phase 8)</li>
+                <li>Personality &amp; Voice (Phase 5 &amp; 13)</li>
+                <li>Accessibility &amp; Blind-Assist.</li>
             </ul>
 
-            <h3>Security Guarantees</h3>
-            <div class="badge-row">
-                <span class="badge badge-safe">RS256-only JWT verification</span>
-                <span class="badge badge-safe">Strict claim &amp; scope checks</span>
-                <span class="badge badge-safe">Replay protection (jti)</span>
-                <span class="badge badge-safe">WORM audit for passport events</span>
-                <span class="badge badge-risk">No dev bypass</span>
-                <span class="badge badge-risk">No legacy auth headers</span>
-            </div>
-        </aside>
-    </div>
+            <h3>3.6 Cross-Market Regulatory Alignment</h3>
+            <ul>
+                <li>Non-Device CDS (FDA).</li>
+                <li>Wellness / information layer (EU MDR).</li>
+                <li>DCB0129 / 0160 risk controls (NHS).</li>
+                <li>PDPL / Qatar / GCC residency support.</li>
+            </ul>
+            <p>
+                This ensures minimal regulatory friction and maximum safety.
+            </p>
+        </section>
 
-    <section class="section">
-        <h2>Passport &amp; Header Rules</h2>
-        <h3>One Header, One Contract</h3>
-        <p>
-            Phase 11 standardises how identity is presented to Elisence. The platform accepts only
-            a single, well-defined header: <span class="highlight">X-Passport</span>. All other headers
-            such as <code>Authorization</code> or legacy internal names are rejected.
-        </p>
-        <p>
-            This simplifies security reviews and makes it clear for ministries and partners:
-            there is exactly one way to authenticate into Elisence, and it is fully documented and testable.
-        </p>
+        <!-- 4. LEGAL SAFETY -->
+        <section class="info-card">
+            <h2>4. Why This Phase Is Legally Safe</h2>
+            <p>
+                Phase 6 is intentionally designed <strong>not</strong> to cross into diagnosis or treatment.
+            </p>
 
-        <h3>JWT &amp; RS256 Validation</h3>
-        <p>
-            Every passport is a signed JWT using RS256 with a recognised key ID (<code>kid</code>).
-            Phase 11 defines the rules for:
-        </p>
-        <ul>
-            <li>Rejecting unsupported algorithms</li>
-            <li>Rejecting missing or unknown <code>kid</code></li>
-            <li>Rejecting corrupted signatures or broken key sets</li>
-        </ul>
-        <p>
-            If anything is wrong, the system responds with a strict 401 JSON response &mdash; never with a silent pass-through.
-        </p>
-    </section>
+            <h3>4.1 NHS</h3>
+            <ul>
+                <li>Classified as a Health IT component.</li>
+                <li>No clinical decision-making.</li>
+                <li>Outputs are informational only.</li>
+                <li>Every inference is auditable.</li>
+                <li>Hazard log is maintained.</li>
+            </ul>
 
-    <section class="section">
-        <h2>Mandatory Claims &amp; Zero-Trust Checks</h2>
-        <h3>Every Claim Must Make Sense</h3>
-        <p>
-            Phase 11 defines the minimal claims that every passport must carry: version, issuer, audience,
-            subject, role, scopes, timestamps and a unique ID. Types are enforced and missing or malformed
-            values are treated as attempts to bypass rules.
-        </p>
-        <ul>
-            <li>Wrong issuer or version &rarr; rejected</li>
-            <li>Incorrect audience or scopes &rarr; rejected</li>
-            <li>Expired or impossible timestamps &rarr; rejected</li>
-            <li>Wrong claim type (e.g. role as list) &rarr; rejected</li>
-        </ul>
-        <p>
-            In every case, responses follow a canonical JSON shape for 401/403/503, making behaviour
-            predictable and auditable for external reviewers.
-        </p>
+            <h3>4.2 FDA</h3>
+            <ul>
+                <li>Falls under “Non-Device Clinical Decision Support”.</li>
+                <li>User (clinician or patient) can independently evaluate the basis of the output.</li>
+                <li>No automated treatment recommendations.</li>
+            </ul>
 
-        <h3>Fail-Closed, Not Fail-Open</h3>
-        <p>
-            If the passport bridge is disabled, misconfigured, or under key-rotation, Phase 11 returns a
-            <em>controlled 503</em> (bridge not configured) instead of guessing or allowing access.
-            This “fail-closed” behaviour is essential for government-grade deployments.
-        </p>
-    </section>
+            <h3>4.3 EU MDR</h3>
+            <ul>
+                <li>No standalone medical purpose.</li>
+                <li>Does not directly influence treatment decisions.</li>
+                <li>A future professional module can be isolated with its own MDR class.</li>
+            </ul>
 
-    <section class="section">
-        <h2>Replay Protection, Key Rotation &amp; Audit</h2>
-        <h3>Stopping Reuse and Forged Sessions</h3>
-        <p>
-            Phase 11 introduces a dedicated replay-protection store based on the <code>jti</code> claim:
-        </p>
-        <ul>
-            <li>First use of a passport ID &rarr; accepted and logged</li>
-            <li>Second use &rarr; blocked with a 403 <em>replay_blocked</em> response</li>
-        </ul>
-        <p>
-            This protects high-value operations such as attachments, social actions or administrative changes
-            from copied links and stolen tokens.
-        </p>
+            <h3>4.4 GCC</h3>
+            <ul>
+                <li>Data residency supported.</li>
+                <li>Strong PDPL alignment.</li>
+                <li>Non-diagnostic layer → no medical licensing required.</li>
+            </ul>
 
-        <h3>Key Rotation Without Downtime</h3>
-        <p>
-            The design of Phase 11 supports overlapping keys: old and new <code>kid</code> values can be valid
-            for a period, with audit trails for rotation events. This allows ministries and partners to rotate
-            keys without breaking clinical and citizen flows.
-        </p>
+            <h3>4.5 Zero-Trust</h3>
+            <ul>
+                <li>Every input is treated as untrusted.</li>
+                <li>Low-confidence cases trigger clarification.</li>
+                <li>Never “guess” a drug or dose.</li>
+                <li>No silent assumptions.</li>
+            </ul>
 
-        <h3>WORM Audit Logging</h3>
-        <p>
-            Every critical passport event &mdash; valid, invalid or replay-blocked &mdash; is written into an
-            append-only (WORM) audit log. Raw JWTs are never stored; instead, only safe metadata is kept:
-        </p>
-        <ul>
-            <li>time, reason and outcome of the check</li>
-            <li>which system, route or phase requested access</li>
-            <li>trace IDs that link to higher-level evidence packs</li>
-        </ul>
-        <p>
-            This gives ministries and auditors a clear chain-of-custody for security decisions.
-        </p>
-    </section>
+            <h3>4.6 BBVP (Build-Back-Verify-Prove)</h3>
+            <ul>
+                <li><strong>Build</strong> – implement the feature.</li>
+                <li><strong>Back</strong> – create a rollback plan.</li>
+                <li><strong>Verify</strong> – tests, accuracy checks, fuzzing.</li>
+                <li><strong>Prove</strong> – evidence pack with SHA-256 hashes.</li>
+            </ul>
+            <p>
+                This is what makes Phase 6 regulator-ready.
+            </p>
+        </section>
 
-    <section class="section">
-        <h2>Integration With Phase 10 &amp; Social Content</h2>
-        <h3>From Login to Social Actions</h3>
-        <p>
-            Phase 11 works hand-in-hand with Phase 10 (User Profiles &amp; Social Presence). It is responsible for:
-        </p>
-        <ul>
-            <li>Accepting passports at registration and login</li>
-            <li>Protecting posts, comments, messages and feed actions via scopes</li>
-            <li>Securing attachment links so they cannot be replayed or reused</li>
-            <li>Returning clear 401/403/503 responses when something is wrong</li>
-        </ul>
-        <p>
-            In short, Phase 10 makes Elisence feel social and alive; Phase 11 makes sure that every social action
-            happens under verified, controlled identity.
-        </p>
-    </section>
+        <!-- 5. VOICE SUPPORT -->
+        <section class="info-card">
+            <h2>5. How Phase 6 Supports Voice (Phase 13)</h2>
+            <p>
+                Phase 13 handles speech-to-text and high-level intent classification.
+                Phase 6 interprets the medication content.
+            </p>
 
-    <section class="section">
-        <h2>Security Backbone for All Phases</h2>
-        <h3>Shared Verifier, Shared Rules</h3>
-        <p>
-            Instead of each phase building its own security layer, Phase 11 defines a single verifier that
-            all major engines rely on:
-        </p>
-        <ul>
-            <li>Phase 7 (Women+), Phase 8 (AHE), Phase 9 (Diabetes)</li>
-            <li>Phase 10 (Social), Phase 13 (Voice), Phase 15+ (Family, Kids+, Mental Health)</li>
-        </ul>
-        <p>
-            This single-source-of-truth approach reduces risk, simplifies audits and makes it easier to
-            certify Elisence as a whole rather than as a collection of separate apps.
-        </p>
+            <p>
+                Together they enable:
+            </p>
+            <ul>
+                <li>“Elisa, I forgot my dose”.</li>
+                <li>“الیسا دیشب داروم رو نزدم”.</li>
+                <li>“Elisa, increase to 5 mg next week?” → flagged for clinical confirmation.</li>
+            </ul>
 
-        <h3>Reference Specification</h3>
-        <p>
-            The <code>PASSPORT_V1_REFERENCE_SPEC</code> defines the contract in plain language:
-            headers, algorithms, mandatory claims, replay rules and canonical error JSON. It is written
-            to support ministry and regulator reviews and can be attached as an annex to procurement packs.
-        </p>
-    </section>
+            <p>
+                Noise handling:
+            </p>
+            <ul>
+                <li>Phase 13 provides an STT confidence score.</li>
+                <li>If confidence &lt; threshold → Phase 6 asks for confirmation.</li>
+                <li>No uncontrolled interpretations (Zero-Trust preserved).</li>
+            </ul>
+        </section>
 
-    <section class="section">
-        <h2>Algorithm &amp; Analytics Layer</h2>
-        <h3>From Security Events to Safer Systems</h3>
-        <p>
-            On top of the verification layer, Phase 11 defines an analytics layer for:
-        </p>
-        <ul>
-            <li>Telemetry about how passports and scopes are used across regions and roles</li>
-            <li>Behavioural and population-level security metrics (e.g. attack patterns, replay attempts)</li>
-            <li>Privacy-preserving dashboards built with k-anonymity rules and AKAC controls</li>
-        </ul>
-        <p>
-            This turns raw passport checks into strategic intelligence: ministries can see where abuse is rising,
-            which integrations are misbehaving and how to strengthen their own rules over time.
-        </p>
-    </section>
+        <!-- 6. INVESTOR VALUE -->
+        <section class="info-card">
+            <h2>6. Why This Phase Is Attractive for Investors</h2>
+            <p>
+                This is a realistic, infrastructure-focused value proposition — not hype.
+            </p>
 
-    <section class="section">
-        <h2>Government &amp; Investor Posture</h2>
-        <h3>Safe Foundation for a National Platform</h3>
-        <p>
-            Phase 11 is what allows Elisence to be taken seriously as national infrastructure. It is designed
-            to align with:
-        </p>
-        <ul>
-            <li>NHS DTAC and clinical safety-style requirements</li>
-            <li>GDPR / UK DPA for data protection and access control</li>
-            <li>EU MDR boundaries for non-diagnostic digital health tools</li>
-            <li>GCC, Qatar and Saudi PDPL data-residency and privacy frameworks</li>
-        </ul>
-        <p>
-            For investors, it proves that Elisence treats security and governance as first-class citizens,
-            not afterthoughts. For ministries, it offers a clear, explainable security model that can be
-            inspected, tested and trusted at scale.
-        </p>
-    </section>
+            <h3>6.1 Solves a Real Global Problem</h3>
+            <p>
+                Understanding medication behaviour across languages and contexts is extremely hard and
+                expensive. Phase 6 addresses this gap directly.
+            </p>
 
-    <div class="footer-note">
-        <strong>In one sentence:</strong><br>
-        Phase 11 turns Elisence into a <span class="highlight">Zero-Trust, government-grade identity system</span> &mdash;
-        a security backbone that protects every profile, file, message and clinical engine, and that can be audited,
-        explained and trusted at national scale.
-    </div>
-</main>
+            <h3>6.2 Competes With &amp; Exceeds Omada / Livongo / Huma in One Area</h3>
+            <p>
+                Most existing platforms focus on:
+            </p>
+            <ul>
+                <li>English-only (mostly US).</li>
+                <li>Structured inputs.</li>
+                <li>Nurse-led interpretation.</li>
+            </ul>
+            <p>
+                Elisence offers:
+            </p>
+            <ul>
+                <li>Five languages from day one.</li>
+                <li>Zero-typing voice support.</li>
+                <li>Automatic structuring of free-text.</li>
+                <li>Jurisdiction-aware behaviour.</li>
+                <li>BBVP + Zero-Trust medication intelligence.</li>
+            </ul>
+            <p>
+                No competitor has all of these combined in a single engine.
+            </p>
+
+            <h3>6.3 Safe for Regulators</h3>
+            <ul>
+                <li>Not a medical device.</li>
+                <li>Not diagnosis.</li>
+                <li>Not direct medical advice.</li>
+                <li>Only structured understanding → very low legal risk.</li>
+            </ul>
+
+            <h3>6.4 Essential for Future Phases</h3>
+            <p>
+                Phase 6 is the foundation for the drug-related intelligence powering:
+            </p>
+            <ul>
+                <li>AHE risk models.</li>
+                <li>GLP-1 / obesity routes.</li>
+                <li>Women+ medication cross-checking.</li>
+                <li>Voice accessibility for blind users.</li>
+                <li>Government dashboards and research tools (future).</li>
+            </ul>
+            <p>
+                Investors understand core infrastructure value.
+            </p>
+        </section>
+
+        <!-- 7. LIMITATIONS -->
+        <section class="info-card">
+            <h2>7. Limitations (Honest &amp; Transparent)</h2>
+            <p>
+                Phase 6 does <strong>not</strong> currently:
+            </p>
+            <ul>
+                <li>Classify all global drugs.</li>
+                <li>Handle all dialects in Arabic or Persian.</li>
+                <li>Detect drug–drug interactions.</li>
+                <li>Perform medical triage.</li>
+                <li>Provide automated dosing suggestions.</li>
+                <li>Replace clinicians.</li>
+            </ul>
+            <p>
+                These are intentionally excluded to avoid:
+            </p>
+            <ul>
+                <li>High-risk MDR / FDA classification.</li>
+                <li>Clinical liability.</li>
+                <li>Unsafe or overreaching behaviour.</li>
+            </ul>
+        </section>
+
+        <!-- 8. SUMMARY -->
+        <section class="info-card">
+            <h2>8. One-Sentence Summary</h2>
+            <p>
+                Phase 6 is the multilingual, jurisdiction-aware, zero-trust
+                <strong>Global Medication Brain</strong> of Elisence — a safe, auditable foundation that
+                understands and structures medication behaviour across five languages, powers every major phase
+                of the platform, and remains legally compliant across NHS, FDA, EU, and GCC markets.
+            </p>
+        </section>
+
+    </main>
+</div>
+
+<!-- Elisa chat widget root -->
+<div id="elisa-chat-root"></div>
+
 </body>
 </html>
