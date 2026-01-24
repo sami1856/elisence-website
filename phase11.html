@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence — Phase 11: Security & Identity Control</title>
+    <title>Elisence — Phase 11: Security &amp; Identity Control</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
         name="description"
@@ -44,6 +44,7 @@
             text-decoration: underline;
         }
 
+        /* ===== HEADER ===== */
         header {
             border-bottom: 1px solid var(--border-soft);
             background: linear-gradient(
@@ -118,6 +119,7 @@
             border-bottom-color: var(--accent);
         }
 
+        /* ===== MAIN ===== */
         main {
             max-width: 1120px;
             margin: 0 auto;
@@ -296,17 +298,19 @@
             font-weight: 500;
         }
     </style>
+</head>
+<body>
 <header>
-    <div class="header-inner">
-        <div class="logo-section">
-            <img src="elisence.png" alt="Elisence Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>ELISENCE</h1>
-                <p>Global Digital Health & Humanity Platform</p>
+    <div class="nav-shell">
+        <div class="brand">
+            <div class="brand-logo"></div>
+            <div class="brand-text">
+                <span>ELISENCE</span>
+                <span>Global Digital Health &amp; Humanity Platform</span>
             </div>
         </div>
 
-        <nav class="main-nav">
+        <nav>
             <a href="index.html">Home</a>
             <a href="index.html#phases">Phases</a>
             <a href="about.html">About</a>
@@ -479,7 +483,7 @@
             Phase 11 works hand-in-hand with Phase 10 (User Profiles &amp; Social Presence). It is responsible for:
         </p>
         <ul>
-            <li>Issuing passports at registration and login</li>
+            <li>Accepting passports at registration and login</li>
             <li>Protecting posts, comments, messages and feed actions via scopes</li>
             <li>Securing attachment links so they cannot be replayed or reused</li>
             <li>Returning clear 401/403/503 responses when something is wrong</li>
@@ -508,26 +512,26 @@
 
         <h3>Reference Specification</h3>
         <p>
-            The <code>PASSPORT_V1_REFERENCE_SPEC</code> document describes the contract in plain language:
+            The <code>PASSPORT_V1_REFERENCE_SPEC</code> defines the contract in plain language:
             headers, algorithms, mandatory claims, replay rules and canonical error JSON. It is written
-            specifically to support ministry and regulator reviews.
+            to support ministry and regulator reviews and can be attached as an annex to procurement packs.
         </p>
     </section>
 
     <section class="section">
-        <h2>Algorithm &amp; Analytics Layer (Roadmap)</h2>
+        <h2>Algorithm &amp; Analytics Layer</h2>
         <h3>From Security Events to Safer Systems</h3>
         <p>
-            On top of the security layer, Phase 11 also defines a future analytics layer for:
+            On top of the verification layer, Phase 11 defines an analytics layer for:
         </p>
         <ul>
-            <li>Telemetry about how passports and scopes are used</li>
-            <li>Behavioural and population-level security metrics</li>
-            <li>Privacy-preserving dashboards built with k-anonymity rules</li>
+            <li>Telemetry about how passports and scopes are used across regions and roles</li>
+            <li>Behavioural and population-level security metrics (e.g. attack patterns, replay attempts)</li>
+            <li>Privacy-preserving dashboards built with k-anonymity rules and AKAC controls</li>
         </ul>
         <p>
-            This algorithmic layer is deliberately treated as a <strong>next step</strong>: it will only
-            be activated once the core security and verification flows have been fully implemented and verified.
+            This turns raw passport checks into strategic intelligence: ministries can see where abuse is rising,
+            which integrations are misbehaving and how to strengthen their own rules over time.
         </p>
     </section>
 
@@ -545,13 +549,14 @@
             <li>GCC, Qatar and Saudi PDPL data-residency and privacy frameworks</li>
         </ul>
         <p>
-            For investors, it demonstrates that Elisence treats security and governance as first-class citizens,
-            not afterthoughts. For ministries, it shows a clear path to risk-managed deployment at scale.
+            For investors, it proves that Elisence treats security and governance as first-class citizens,
+            not afterthoughts. For ministries, it offers a clear, explainable security model that can be
+            inspected, tested and trusted at scale.
         </p>
     </section>
 
     <div class="footer-note">
-        <strong>In one sentence:</strong>
+        <strong>In one sentence:</strong><br>
         Phase 11 turns Elisence into a <span class="highlight">Zero-Trust, government-grade identity system</span> &mdash;
         a security backbone that protects every profile, file, message and clinical engine, and that can be audited,
         explained and trusted at national scale.
