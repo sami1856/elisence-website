@@ -361,18 +361,35 @@ document.addEventListener("DOMContentLoaded", function () {
       box-shadow: none;
     }
 
-    @media (max-width: 520px) {
+   @media (max-width: 520px) {
+      /* پنل چت روی موبایل مثل قبل */
       #elisa-chat-panel {
         right: 10px;
         left: 10px;
         width: auto;
       }
+
+      /* دکمه‌ی الیسا روی موبایل کوچیک‌تر و کمی بالاتر */
       #elisa-launcher {
         right: 10px;
-        bottom: 10px;
+        bottom: 18px;             /* کمی بالاتر از تماس */
+        padding: 4px 10px 4px 4px;/* باریک‌تر از دسکتاپ */
+      }
+
+      /* آواتار و متن‌ها هم ریزتر بشن */
+      .elisa-avatar {
+        width: 30px;
+        height: 30px;
+      }
+
+      .elisa-name {
+        font-size: 12px;
+      }
+
+      .elisa-tagline {
+        font-size: 10px;
       }
     }
-  `;
   document.head.appendChild(style);
 
   const launcher = createElisaLauncher();
