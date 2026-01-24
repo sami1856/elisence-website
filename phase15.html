@@ -2,604 +2,848 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence — Phase 15: Family Ecosystem Assistant</title>
+    <title>Elisence – Phase 15: Family Ecosystem Assistant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-        name="description"
-        content="Elisence Phase 15 — Family Ecosystem Assistant (0–18): a whole-child, whole-family wellbeing layer for health, sleep, food, learning, safety and bonding — wellness-grade, non-diagnostic, regulator-aware."
-    />
+
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
 
     <style>
-        :root {
-            --bg-dark: #050814;
-            --bg-card: #0d1020;
-            --accent: #4ea8ff;
-            --accent-soft: rgba(78, 168, 255, 0.1);
-            --text-main: #f5f7ff;
-            --text-muted: #a3b0d8;
-            --border-soft: rgba(255, 255, 255, 0.08);
-            --danger: #ff5c7a;
-            --success: #4fd1c5;
-        }
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-space: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            --text-main: #e8f4fc;
+            --text-soft: #cbd5f5;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-soft: #7dd3fc;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-border: rgba(56, 189, 248, 0.9);
+            --shadow-strong: 0 0 28px rgba(56, 189, 248, 0.9),
+                             0 0 52px rgba(15, 23, 42, 0.9);
         }
 
         body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #111633 0, #050814 60%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+            background: var(--bg-space);
             color: var(--text-main);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
+        /* ===== top dot + label ===== */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 900;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 900;
         }
 
-        header {
-            border-bottom: 1px solid var(--border-soft);
-            background: linear-gradient(
-                to right,
-                rgba(7, 12, 40, 0.95),
-                rgba(6, 10, 32, 0.98)
-            );
-            backdrop-filter: blur(14px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .nav-shell {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .brand-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #4ea8ff, #7f5dff 45%, #111631);
-            box-shadow: 0 0 18px rgba(78, 168, 255, 0.6);
-        }
-
-        .brand-text {
+        /* ===== side navigation ===== */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            z-index: 999;
         }
 
-        .brand-text span:first-child {
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            font-size: 0.8rem;
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top,
+                rgba(0, 130, 255, 0.45),
+                rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease,
+                padding 0.2s ease;
         }
 
-        .brand-text span:last-child {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top,
+                rgba(0, 170, 255, 0.7),
+                rgba(0, 25, 80, 1));
         }
 
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            font-size: 0.9rem;
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
         }
 
-        nav a {
-            color: var(--text-muted);
-            padding-bottom: 0.15rem;
-            border-bottom: 2px solid transparent;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
-
-        nav a.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        main {
-            max-width: 1120px;
+        /* ===== layout wrapper ===== */
+        .page-wrapper {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
+            padding: 96px 1.8rem 72px 1.8rem;
         }
 
-        .phase-tag {
-            display: inline-flex;
+        .hero-area {
+            margin-bottom: 2.4rem;
+        }
+
+        .phase-hero-card {
+            background: radial-gradient(circle at top left,
+                rgba(56, 189, 248, 0.28),
+                rgba(15, 23, 42, 0.98));
+            border-radius: 26px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.6rem 1.8rem;
+        }
+
+        .phase-hero-inner {
+            display: flex;
+            gap: 1.8rem;
+            align-items: stretch;
+        }
+
+        .phase-hero-logo-box {
+            flex: 0 0 290px;
+            border-radius: 22px;
+            background: radial-gradient(circle at top, #0b1220, #020617);
+            display: flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            background: var(--accent-soft);
-            border-radius: 999px;
-            padding: 0.35rem 0.9rem;
-            border: 1px solid rgba(78, 168, 255, 0.5);
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow:
+                0 0 24px rgba(15, 23, 42, 0.9),
+                0 0 40px rgba(15, 23, 42, 0.9);
         }
 
-        .phase-tag-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: var(--accent);
+        .phase-hero-logo {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 0 28px rgba(15, 23, 42, 0.95);
         }
 
-        h1 {
-            margin-top: 1.1rem;
-            font-size: 2rem;
-            letter-spacing: 0.03em;
-        }
-
-        .subtitle {
-            margin-top: 0.5rem;
-            max-width: 780px;
-            color: var(--text-muted);
-            font-size: 0.98rem;
-        }
-
-        .grid {
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-            gap: 1.75rem;
-        }
-
-        @media (max-width: 900px) {
-            .grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            nav {
-                display: none; /* simple mobile version for now */
-            }
-
-            header {
-                position: static;
-            }
-        }
-
-        .card {
-            background: radial-gradient(circle at top left, #1a2147 0, #090d20 55%);
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.5rem 1.4rem;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        .card h3 {
-            margin-top: 1.3rem;
-            font-size: 1rem;
-        }
-
-        .pill-list {
+        .phase-hero-text-box {
+            flex: 1;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-top: 0.75rem;
-            margin-bottom: 0.25rem;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .pill {
+        .phase-label {
             font-size: 0.78rem;
-            padding: 0.28rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background: rgba(10, 15, 40, 0.9);
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .pill.pill-strong {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
-        }
-
-        .badge-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-        }
-
-        .badge {
-            font-size: 0.72rem;
-            padding: 0.22rem 0.55rem;
-            border-radius: 0.4rem;
-            border: 1px solid var(--border-soft);
-            color: var(--text-muted);
-        }
-
-        .badge.badge-safe {
-            border-color: var(--success);
-            color: var(--success);
-        }
-
-        .badge.badge-risk {
-            border-color: var(--danger);
-            color: var(--danger);
-        }
-
-        .section {
-            margin-top: 2rem;
-        }
-
-        .section h2 {
-            font-size: 1.05rem;
             text-transform: uppercase;
-            letter-spacing: 0.13em;
+            letter-spacing: 0.18em;
             color: var(--text-muted);
             margin-bottom: 0.3rem;
         }
 
-        .section h3 {
-            font-size: 1rem;
-            margin-top: 1.1rem;
+        .phase-title {
+            font-size: 1.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #f9fafb;
+            margin: 0 0 0.35rem 0;
+        }
+
+        .phase-subtitle {
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 0.6rem;
+        }
+
+        .phase-lead {
+            font-size: 0.98rem;
+            color: var(--text-soft);
+            margin-bottom: 0.7rem;
+        }
+
+        .phase-hero-bullets {
+            margin: 0.3rem 0 0 0;
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
+            color: #dbeafe;
+        }
+
+        .phase-hero-bullets li {
             margin-bottom: 0.2rem;
         }
 
-        .section p {
-            font-size: 0.95rem;
-            color: var(--text-main);
+        /* ===== detail cards ===== */
+        .phase-main {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .section ul {
-            margin: 0.5rem 0 0.5rem 1.2rem;
-            padding-left: 0;
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.8rem 1.7rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .info-card h2 {
+            margin-top: 0;
+            margin-bottom: 0.85rem;
+            font-size: 1.3rem;
+            color: var(--accent-soft);
+        }
+
+        .info-card h3 {
+            margin-top: 1.1rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.02rem;
+            color: #bae6fd;
+        }
+
+        .info-card p {
+            margin: 0.35rem 0;
+            font-size: 0.94rem;
+            color: #e5f2ff;
+        }
+
+        .info-card ul {
+            margin: 0.45rem 0 0.25rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.32rem;
             font-size: 0.93rem;
-            color: var(--text-muted);
         }
 
-        .section li {
-            margin-bottom: 0.25rem;
+        .tagline {
+            font-size: 0.94rem;
+            color: #93c5fd;
+            margin-bottom: 0.45rem;
         }
 
-        .footer-note {
-            margin-top: 2.5rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid var(--border-soft);
-            font-size: 0.86rem;
+        .subtle {
+            font-size: 0.88rem;
             color: var(--text-muted);
         }
 
         .highlight {
-            color: var(--accent);
-            font-weight: 500;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.9rem;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        /* ===== responsive ===== */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 1.2rem 80px 1.2rem;
+            }
+
+            .phase-hero-inner {
+                flex-direction: column;
+            }
+
+            .phase-hero-logo-box {
+                flex: 0 0 auto;
+            }
+
+            .info-card {
+                padding: 1.5rem 1.35rem;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
         }
     </style>
-<header>
-    <div class="header-inner">
-        <div class="logo-section">
-            <img src="elisence.png" alt="Elisence Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>ELISENCE</h1>
-                <p>Global Digital Health & Humanity Platform</p>
+</head>
+<body>
+
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<nav class="side-nav">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn" href="index.html#phases">Phases</a>
+    <a class="nav-btn" href="about.html">About</a>
+    <a class="nav-btn" href="story.html">Story</a>
+    <a class="nav-btn" href="video.html">Videos</a>
+    <a class="nav-btn" href="contact.html">Contact</a>
+</nav>
+
+<div class="page-wrapper">
+    <!-- HERO -->
+    <section class="hero-area">
+        <div class="phase-hero-card">
+            <div class="phase-hero-inner">
+                <div class="phase-hero-logo-box">
+                    <img src="elisence.png"
+                         alt="Elisence – Global Digital Health & Humanity Platform"
+                         class="phase-hero-logo">
+                </div>
+                <div class="phase-hero-text-box">
+                    <div class="phase-label">PHASE 15</div>
+                    <h1 class="phase-title">Family Ecosystem Assistant</h1>
+                    <div class="phase-subtitle">
+                        0–18 FAMILY COMPANION · WELLNESS · DIGITAL SAFETY
+                    </div>
+                    <p class="phase-lead">
+                        Phase 15 is the <strong>Family Ecosystem Assistant</strong> of Elisence — a 0–18 companion
+                        that quietly connects health, sleep, nutrition, education, digital safety, family bonding,
+                        and parenting support into one integrated, regulator-aware family layer, across five
+                        languages and multiple regions.
+                    </p>
+                    <ul class="phase-hero-bullets">
+                        <li>One Family Dashboard for health, school, safety and bonding.</li>
+                        <li>Safe, age-banded spaces for kids and teens, with healthy dopamine.</li>
+                        <li>Aggregated, anonymised insight for schools and ministries — never individual child records.</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
 
-        <nav class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#phases">Phases</a>
-            <a href="about.html">About</a>
-            <a href="story.html">Story</a>
-            <a href="video.html">Videos</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
+    <!-- DETAIL CARDS -->
+    <main class="phase-main">
 
-<main>
-    <div class="phase-tag">
-        <span class="phase-tag-dot"></span>
-        <span>Phase 15 &mdash; Family Ecosystem Assistant (0&ndash;18)</span>
-    </div>
-
-    <h1>Family Ecosystem Assistant &mdash; Growing Up, Together</h1>
-    <p class="subtitle">
-        Phase 15 is the Elisence <span class="highlight">Family Ecosystem Assistant</span>:
-        a 0&ndash;18 wellbeing layer that quietly organises health, sleep, food, learning,
-        safety and bonding for each child &mdash; without diagnosing, prescribing or trying
-        to replace parents, teachers or doctors. The roadmap is fully designed; implementation
-        will follow in later waves.
-    </p>
-
-    <div class="grid">
-        <section class="card">
-            <h2>Core Definition</h2>
-            <h3>What Phase 15 Is</h3>
+        <!-- 1. WHAT THIS PHASE IS -->
+        <section class="info-card">
+            <h2>1. What This Phase Is</h2>
             <p>
-                Phase 15 is a <span class="highlight">whole-child, whole-family companion</span>.
-                It connects:
+                Phase 15 is the <strong>“Family Ecosystem Assistant”</strong> of Elisence — a 0–18 companion that
+                connects:
             </p>
             <ul>
-                <li>health, growth, sleep and nutrition,</li>
-                <li>education and cognitive development,</li>
-                <li>digital and physical safety,</li>
-                <li>family bonding and positive dopamine</li>
+                <li>health, growth, sleep, nutrition</li>
+                <li>education and cognitive development</li>
+                <li>digital safety and physical safety</li>
+                <li>family bonding, positive dopamine, and parenting support</li>
             </ul>
             <p>
-                into a single, regulator-aware family layer. It is not “just a parenting app”
-                or “another kids’ game” &mdash; it behaves like a gentle
-                <span class="highlight">family operating system</span>.
+                Instead of being “just another parenting app” or “another kids’ game”, Phase 15 acts as a
+                <strong>family operating system</strong>:
             </p>
-
-            <h3>Design Principles</h3>
-            <div class="pill-list">
-                <span class="pill pill-strong">Non-diagnostic, non-prescriptive</span>
-                <span class="pill pill-strong">General wellness / digital wellbeing</span>
-                <span class="pill">Zero-Trust &amp; BBVP for every feature</span>
-                <span class="pill">Child-grade privacy (GDPR / PDPL / GCC)</span>
-                <span class="pill">Five-language native (EN / FA / AR / TR / RO)</span>
-                <span class="pill">Ethical gamification &mdash; no dark patterns</span>
-            </div>
+            <ul>
+                <li>
+                    <strong>For parents:</strong> a single Family Dashboard to see today’s health, habits,
+                    school, safety, and emotional check-ins for each child — in seconds, not hours.
+                </li>
+                <li>
+                    <strong>For children and teens:</strong> a safe, age-banded Elisence space (Kids Mode / Teens Mode)
+                    with positive gamification and no dark patterns.
+                </li>
+                <li>
+                    <strong>For governments, schools and clinicians (later phases):</strong>
+                    aggregated, anonymised insight into family wellbeing, without exposing any child’s private data.
+                </li>
+            </ul>
+            <p>
+                This phase is strictly <strong>non-diagnostic</strong> and <strong>non-prescriptive</strong>:
+            </p>
+            <ul>
+                <li>No diagnosis of ADHD, autism, depression or any disorder.</li>
+                <li>No clinical decision or medication suggestions.</li>
+                <li>No replacement of paediatricians, psychologists, teachers, or social workers.</li>
+            </ul>
+            <p>
+                The phase is not yet implemented in code — only the design, behavioural framing and technical roadmap
+                are complete. Full implementation will be delivered in future Elisence development waves.
+            </p>
+            <p class="highlight">
+                Mission: <strong>“Follow a child and their family from birth to 18 — quietly organising health, sleep,
+                food, learning, safety and love — without ever crossing clinical boundaries.”</strong>
+            </p>
         </section>
 
-        <aside class="card">
-            <h2>Stakeholder View</h2>
-            <h3>Who Phase 15 Serves</h3>
+        <!-- 2. WHY IT MATTERS -->
+        <section class="info-card">
+            <h2>2. Why a Family Ecosystem Assistant Matters</h2>
+            <p>
+                Most of today’s “family apps” are islands:
+            </p>
             <ul>
-                <li>Parents and carers of children 0&ndash;18</li>
-                <li>Children in Kids Mode (roughly 6&ndash;11)</li>
-                <li>Teens in Teens Mode (12&ndash;18)</li>
-                <li>Schools and education partners (future waves)</li>
-                <li>Ministries of Health, Education and Digital Affairs</li>
-                <li>Paediatric and family clinicians (non-clinical dashboards later)</li>
+                <li>a sleep app for babies,</li>
+                <li>a growth tracker for weight and height,</li>
+                <li>a homework app for school,</li>
+                <li>a screen-time app for tablets,</li>
+                <li>a family calendar app for logistics.</li>
+            </ul>
+            <p>
+                Each tool sees only one angle of the child. Parents do the integration in their heads —
+                often at 1 a.m., exhausted.
+            </p>
+            <p>
+                Phase 15 exists because:
+            </p>
+            <ul>
+                <li>
+                    Health, sleep, food, learning and stress are deeply connected:
+                    late bedtime → poor sleep → low attention in school → more screen time → less movement →
+                    weight gain → parent guilt.
+                </li>
+                <li>
+                    Many families, especially in GCC and emerging markets, face extreme weather, long work hours and
+                    multi-generational households; they need tools that respect culture, language and local norms.
+                </li>
+                <li>
+                    Governments and ministries increasingly want “whole-child” and “whole-family” programmes, but
+                    current digital tools are either:
+                    <ul>
+                        <li>too medical (high regulatory burden), or</li>
+                        <li>too entertainment-driven (addictive, unsafe, or misaligned with public health).</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="highlight">
+                Elisence Phase 15 fills this gap: a family-wide, prevention-first, non-addictive ecosystem that plugs
+                into national strategies for child wellbeing, digital safety and education — without becoming a
+                medical device.
+            </p>
+        </section>
+
+        <!-- 3. DESIGN CONTRACT -->
+        <section class="info-card">
+            <h2>3. Design Contract (Regulatory &amp; Safety Locks)</h2>
+            <p>
+                To keep this phase investable, deployable and regulator-safe, a strict design contract is enforced.
+            </p>
+
+            <h3>3.1 Non-Diagnostic, Non-Prescriptive</h3>
+            <ul>
+                <li>No clinical labels like “this looks like ADHD” or “this is depression”.</li>
+                <li>No treatment or dosing suggestions.</li>
+                <li>No interpretation of vital signs as diagnosis — only “this pattern might be worth discussing with your doctor”.</li>
+                <li>No suicide risk scoring and no emergency mental-health triage inside Phase 15.</li>
             </ul>
 
-            <h3>Current Status</h3>
-            <div class="badge-row">
-                <span class="badge badge-safe">Concept &amp; behaviour framing: done</span>
-                <span class="badge badge-safe">Regulatory design contract: drafted</span>
-                <span class="badge badge-safe">0&ndash;18 system roadmap: defined</span>
-                <span class="badge badge-risk">Code not implemented</span>
-                <span class="badge badge-risk">No pilots or external trials yet</span>
-            </div>
-        </aside>
-    </div>
+            <h3>3.2 General Wellness / Digital Wellbeing Positioning</h3>
+            <ul>
+                <li>
+                    Aligned with FDA “General Wellness” and EU MDR / MHRA non-MDSW positioning:
+                    promoting healthy lifestyle, sleep, activity, learning and family relationships.
+                </li>
+                <li>
+                    Messages are framed as education and self-management support; any medical concern
+                    is escalated to “consult your doctor / local services”.
+                </li>
+            </ul>
 
-    <section class="section">
-        <h2>Why Families Need Phase 15</h2>
-        <h3>From “Islands of Apps” to One Family View</h3>
-        <p>
-            Most families juggle separate tools for sleep tracking, growth charts, homework,
-            calendars and screen-time control. Each app sees only one angle of the child;
-            parents do the integration in their heads, often late at night when they are
-            exhausted.
-        </p>
-        <p>
-            Phase 15 recognises that <strong>health, sleep, food, learning and stress are
-            deeply connected</strong> &mdash; especially in GCC and emerging markets where
-            extreme weather, long work hours and multi-generational households are common.
-            It offers:
-        </p>
-        <ul>
-            <li>one Family Dashboard for today’s health, habits, school and safety,</li>
-            <li>safe, age-banded spaces for kids and teens,</li>
-            <li>and, in future waves, anonymised population insight for ministries.</li>
-        </ul>
-    </section>
+            <h3>3.3 Child &amp; Family Data Protection (GDPR / PDPL / GCC)</h3>
+            <ul>
+                <li>Children’s data treated as highly sensitive by default.</li>
+                <li>Region-aware consent (guardian consent for underage users; age-threshold awareness).</li>
+                <li>No behavioural data sold, rented, or used for advertising — ever.</li>
+                <li>Ministries and schools receive only aggregated, anonymised indicators — never raw child records.</li>
+            </ul>
 
-    <section class="section">
-        <h2>Design Contract &amp; Safety Locks</h2>
-        <h3>Wellness-Grade, Not a Medical Device</h3>
-        <p>
-            Phase 15 is explicitly positioned as <span class="highlight">general wellness /
-            digital wellbeing</span>, not as a diagnostic or treatment tool:
-        </p>
-        <ul>
-            <li>No “this looks like ADHD”, “this is depression”, “this is autism”.</li>
-            <li>No medication or dosing advice; no emergency triage decisions.</li>
-            <li>No interpretation of vitals as a diagnosis &mdash; only
-                “this pattern might be worth discussing with your doctor”.</li>
-        </ul>
-        <p>
-            Regulatory posture is aligned with FDA General Wellness, EU MDR non-MDSW,
-            NHS digital guidance and GCC PDPL. Messages stay educational and supportive;
-            any real concern is escalated to local clinicians and services, not handled
-            inside the app.
-        </p>
+            <h3>3.4 Zero-Trust Architecture &amp; Auditability</h3>
+            <ul>
+                <li>
+                    Every API call carries: token, role (child / parent_owner / parent_viewer / school_agg / ministry_agg),
+                    feature flags, and a WORM-logged audit event.
+                </li>
+                <li>No implicit trust between modules; health, education, dopamine and safety are separated by controlled interfaces.</li>
+                <li>
+                    Every sensitive decision (e.g., “show this pattern insight”) is traceable to rules, thresholds,
+                    version and evidence.
+                </li>
+            </ul>
 
-        <h3>Child &amp; Family Data Protection</h3>
-        <p>
-            Children’s data is treated as highly sensitive by default:
-        </p>
-        <ul>
-            <li>Guardian consent and age-aware flows around 13/16/18 thresholds.</li>
-            <li>No behavioural data sold, rented or used for advertising &mdash; ever.</li>
-            <li>Ministries and schools see only anonymised aggregates, never raw child records.</li>
-        </ul>
+            <h3>3.5 Five-Language Native (EN / FA / AR / TR / RO)</h3>
+            <ul>
+                <li>All UI, messages, nudge texts, and voice scripts are key-based, not hard-coded English.</li>
+                <li>Full RTL support for FA/AR from day one.</li>
+                <li>Parenting guidance is culturally adapted, not just translated.</li>
+            </ul>
 
-        <h3>Zero-Trust &amp; Auditable Logic</h3>
-        <p>
-            Every sensitive action is designed to be traceable:
-        </p>
-        <ul>
-            <li>Token, role and feature flags checked on each call.</li>
-            <li>All cross-module calls WORM-logged with trace IDs.</li>
-            <li>No “implicit trust” between health, education, dopamine or safety modules.</li>
-        </ul>
-    </section>
+            <h3>3.6 Ethical Gamification &amp; Social Design</h3>
+            <ul>
+                <li>No infinite scroll, no loot boxes, no “dark” push notifications.</li>
+                <li>No public likes/followers for children; no open chat with strangers; no exposed leaderboards.</li>
+                <li>Rewards emphasise family collaboration, effort, and growth — not body shape, weight or popularity.</li>
+            </ul>
+        </section>
 
-    <section class="section">
-        <h2>System Architecture</h2>
-        <h3>Four Connected Layers</h3>
-        <p>Phase 15 brings together four main layers:</p>
-        <ul>
-            <li>
-                <strong>Family Core &amp; Governance:</strong>
-                family graph, roles and permissions, consent engine, multi-household support,
-                and cross-phase hooks to Phases 3, 4, 7, 8, 10 and 13.
-            </li>
-            <li>
-                <strong>Health, Growth &amp; Daily Rhythm:</strong>
-                growth curves vs WHO/NHS, sleep patterns, age-banded nutrition and hydration,
-                and a preventive calendar for vaccinations and checks.
-            </li>
-            <li>
-                <strong>Education &amp; Cognitive Development:</strong>
-                early milestones, homework and school calendar support, spaced repetition,
-                and a non-clinical “Educational Passport” that can follow the child into adulthood.
-            </li>
-            <li>
-                <strong>Safety, Dopamine &amp; Interaction:</strong>
-                physical and digital safety tools, family missions, a Memory Wall / family vault,
-                and a Healthy Dopamine Engine for ethical gamification.
-            </li>
-        </ul>
-        <p>
-            Access happens through a Parent Dashboard, Kids Mode, Teens Mode and, later, a
-            voice-first layer via the Elisence Phase 13 engine.
-        </p>
-    </section>
+        <!-- 4. ARCHITECTURE -->
+        <section class="info-card">
+            <h2>4. System Architecture (High-Level)</h2>
+            <p>
+                Phase 15 unifies four main layers:
+            </p>
 
-    <section class="section">
-        <h2>Core Use-Cases</h2>
-        <h3>10-Second Family Status</h3>
-        <p>
-            A parent opens Elisence and instantly sees which children have checked in
-            “I’m OK”, missed non-clinical meds/intakes, sleep trends, activity and homework
-            status, plus any SOS or high-priority alerts. Most actions are two taps away:
-            call, send a nudge, review a mission, adjust quiet hours.
-        </p>
+            <h3>4.1 Family Core &amp; Governance Layer</h3>
+            <ul>
+                <li>Family graph (who belongs to whom, in which household).</li>
+                <li>Roles and permissions (parent_owner, caregiver, child, teen, school_agg, ministry_agg, doctor_readonly).</li>
+                <li>Consent engine and region-aware legal policies.</li>
+                <li>Cross-phase hooks to other Elisence cores (Phase 3, 4, 7, 8, 10, 13).</li>
+            </ul>
 
-        <h3>Early Years (0&ndash;3)</h3>
-        <p>
-            Parents log growth, feeding and sleep in simple steps while the system quietly
-            monitors trends against typical ranges. When something sits outside the usual
-            pattern, it says:
-            “This is outside the usual range &mdash; please discuss this with your paediatrician,”
-            instead of trying to diagnose.
-        </p>
+            <h3>4.2 Health, Growth &amp; Daily Rhythm Layer</h3>
+            <ul>
+                <li>Growth monitoring vs WHO/NHS curves (weight, height, head circumference, BMI).</li>
+                <li>Sleep monitoring: bed/wake times, routines, environment hints.</li>
+                <li>
+                    Nutrition &amp; hydration: age-banded feeding, micronutrient focus (iron, vitamin D, calcium),
+                    GCC-aware UV/sunlight context.
+                </li>
+                <li>Preventive calendar (vaccinations, screenings, dental/vision checks) and exportable “Child Health Snapshot”.</li>
+            </ul>
 
-        <h3>Primary Years (3&ndash;12)</h3>
-        <p>
-            Children earn Health Credits for sleep, activity, hydration, kindness and homework.
-            A Family Circle view turns achievements into group wins (“Family Walk complete”),
-            so parents stop acting as “police officers” and let a friendly Elisence character
-            deliver reminders.
-        </p>
+            <h3>4.3 Education &amp; Cognitive Development Layer</h3>
+            <ul>
+                <li>Early milestones (0–5) tracking and parent education.</li>
+                <li>School-age support: homework planner, school calendar sync, spaced repetition.</li>
+                <li>Teen preparation: exam planning, soft skills, financial literacy, career exploration.</li>
+                <li>“Educational Passport” (non-clinical) that follows the child into adulthood.</li>
+            </ul>
 
-        <h3>Teens (12&ndash;18)</h3>
-        <p>
-            Teens get a private, calm space for mood and energy check-ins, study and exam
-            planning, digital hygiene reflections and soft-skills or financial literacy
-            micro-lessons. Parents see high-level wellbeing summaries and exam preparation
-            status, not private messages or inner thoughts.
-        </p>
+            <h3>4.4 Safety, Dopamine &amp; Interaction Layer</h3>
+            <ul>
+                <li>Physical safety: optional geofencing, SOS button, home safety checklists.</li>
+                <li>Digital safety: screen-time patterns, risk bands, cyberbullying/scam awareness (without reading message content).</li>
+                <li>Family bonding: shared missions, memory wall/vault, family calendar.</li>
+                <li>
+                    Healthy Dopamine Engine: missions, credits, avatars, and parenting helper logic — all explainable,
+                    non-addictive, and auditable.
+                </li>
+            </ul>
 
-        <h3>Safety &amp; SOS</h3>
-        <p>
-            Younger children can trigger a simple “I need help” signal to guardians; older
-            teens can share more context and (where legally allowed) location. Families
-            receive structured follow-up steps and a log of what happened.
-        </p>
+            <p>
+                These layers are exposed via:
+            </p>
+            <ul>
+                <li><strong>Parent UI</strong> (Family Dashboard, consent &amp; configuration).</li>
+                <li><strong>Kids Mode</strong> (6–11) and <strong>Teens Mode</strong> (12–18).</li>
+                <li>
+                    <strong>Voice-first layer</strong> via Phase 13:
+                    “How is my family today?”, “Did she finish her study mission?”
+                </li>
+            </ul>
+        </section>
 
-        <h3>Aggregated Insight for Schools &amp; Ministries</h3>
-        <p>
-            In future waves, schools and ministries will see only anonymised trends:
-            sleep quality, activity, digital hygiene and bonding indicators. No child or
-            family is individually visible, but policy-makers gain a real-time map of
-            national family wellbeing.
-        </p>
-    </section>
+        <!-- 5. CORE USE-CASES -->
+        <section class="info-card">
+            <h2>5. Core Use-Cases (For Families, Schools, Ministries)</h2>
 
-    <section class="section">
-        <h2>Roadmap &amp; Implementation Status</h2>
-        <h3>Designed Today, Built in Future Waves</h3>
-        <p>
-            Phase 15 currently exists as a <span class="highlight">complete roadmap and
-            regulatory envelope</span>. Key planned steps include:
-        </p>
-        <ul>
-            <li>Locking the wellness-grade regulatory positioning and “never do” list.</li>
-            <li>Implementing the family graph, consent engine and first Family Dashboard shell.</li>
-            <li>Standing up health monitoring and preventive calendars with non-alarmist messaging.</li>
-            <li>Building sleep, environment and nutrition engines with protective, non-shaming language.</li>
-            <li>Launching Kids Mode and Healthy Dopamine v1 with 5-language content packs.</li>
-            <li>Creating Teens Mode with digital hygiene and soft-skills modules.</li>
-            <li>Adding safety, SOS and a secure family vault aligned with the Elisence attachments model.</li>
-            <li>Delivering anonymised analytics, DPIA and a full evidence pack before declaring Phase 15 “DONE”.</li>
-        </ul>
-        <p>
-            None of these components are live in code yet; they are scheduled for future Elisence
-            development waves once earlier phases are fully stabilised.
-        </p>
-    </section>
+            <h3>5.1 “10-Second Family Status” for Parents</h3>
+            <p>
+                A parent opens Elisence and instantly sees:
+            </p>
+            <ul>
+                <li>which children have checked in “I’m OK”,</li>
+                <li>missed medications/intakes (non-clinical logging),</li>
+                <li>sleep quality trend,</li>
+                <li>activity and homework status,</li>
+                <li>any SOS or high-priority alerts.</li>
+            </ul>
+            <p>
+                They can act in two taps: call, send a nudge, review a mission, adjust quiet hours.
+            </p>
 
-    <section class="section">
-        <h2>Ethics &amp; Clinical Boundaries</h2>
-        <h3>Supporting Families, Never Judging Them</h3>
-        <p>
-            To remain safe, honest and family-friendly, Phase 15 is designed with hard boundaries:
-        </p>
-        <ul>
-            <li>No psychiatric or developmental diagnosis inside this phase.</li>
-            <li>No insulin or medication advice, no dosage changes, no emergency triage.</li>
-            <li>No “spy mode” for parents; teen privacy is respected while safety guardrails remain.</li>
-            <li>No open social networks: children interact only within their Family Circle and with Elisa.</li>
-            <li>No infinite scroll, FOMO loops or loot-box rewards.</li>
-            <li>No ads, no behavioural targeting, no commercial exploitation of family data.</li>
-        </ul>
-        <p>
-            Every significant suggestion can be traced back to transparent, documented rules,
-            making the system defensible to regulators and trustworthy for families.
-        </p>
-    </section>
+            <h3>5.2 Smart Early-Years Support (0–3)</h3>
+            <ul>
+                <li>Parents log growth, feeding and sleep in a few simple steps.</li>
+                <li>
+                    The system quietly monitors curves and routines; if trends diverge from typical percentiles, it suggests:
+                    “This is outside the usual range — please discuss this with your paediatrician.”
+                </li>
+                <li>If bedtime destabilises, it suggests gentle routine adjustments, not medication.</li>
+                <li>Parents receive short, calm micro-lessons in EN/FA/AR/TR/RO.</li>
+            </ul>
 
-    <section class="section">
-        <h2>Why Phase 15 Matters</h2>
-        <h3>Whole-Family Value, Ministry-Grade Scale</h3>
-        <p>
-            For investors and ministries, Phase 15 offers:
-        </p>
-        <ul>
-            <li>A 0&ndash;18, multi-dimensional view of health, habits, learning and safety &mdash; without crossing into diagnosis.</li>
-            <li>A multi-language, culturally aware platform suitable for GCC and international deployment.</li>
-            <li>Ministry-grade aggregated dashboards that support policy and programmes while families stay invisible at policy level.</li>
-            <li>An ethical alternative to addictive social tech: a “healthy dopamine” layer where growth, learning and kindness are what earn rewards.</li>
-            <li>
-                A foundation for future clinical and research phases, where non-clinical data
-                can feed Women+ health, NCD prevention strategies and lifestyle research under
-                strict consent and governance.
-            </li>
-        </ul>
-    </section>
+            <h3>5.3 Primary School Years (3–12): Habits, Learning &amp; Play</h3>
+            <ul>
+                <li>Children earn Health Credits for sleep, activity, hydration, kindness and homework.</li>
+                <li>
+                    A shared <strong>Family Circle</strong> shows achievements as group wins:
+                    “Family Walk complete”, “Homework finished before 8 pm”.
+                </li>
+                <li>Parents stop being “police officers”; a friendly character inside Elisence gives reminders.</li>
+            </ul>
 
-    <div class="footer-note">
-        <strong>In one sentence:</strong>
-        Phase 15 is the Elisence <span class="highlight">Family Ecosystem Assistant</span> &mdash;
-        a 0&ndash;18, whole-child, whole-family wellbeing layer that guides, protects and
-        celebrates families, without ever trying to replace parents, teachers or doctors.
-    </div>
-</main>
+            <h3>5.4 Teens (12–18): Stress, Identity &amp; Transition</h3>
+            <ul>
+                <li>Teens have their own private view: mood/energy check-ins, study planner, exam planning.</li>
+                <li>Digital hygiene reflections and gentle guidance on night-time screen use.</li>
+                <li>Soft skills and financial literacy micro-lessons.</li>
+                <li>
+                    Parents see high-level wellbeing summaries and exam preparation status — not private messages —
+                    respecting teen privacy while maintaining safety guardrails.
+                </li>
+            </ul>
+
+            <h3>5.5 Safety &amp; SOS When It Matters</h3>
+            <ul>
+                <li>
+                    Younger kids: a simple “I need help” button that alerts parents/guardians (and optionally school in future waves).
+                </li>
+                <li>
+                    Older teens: SOS can share location and context (subject to consent and law), under parent-controlled settings.
+                </li>
+                <li>Family receives structured follow-up actions and a log of what happened.</li>
+            </ul>
+
+            <h3>5.6 Aggregated Insight for Schools &amp; Ministries (Future Waves)</h3>
+            <ul>
+                <li>
+                    Schools see only aggregated, anonymised trends: sleep quality, activity, stress indicators, engagement —
+                    never “child X did Y”.
+                </li>
+                <li>
+                    Ministries see regional trendlines: activity, sleep rhythms, digital hygiene, family bonding indicators.
+                </li>
+                <li>
+                    This supports population-level planning without exposing any individual family’s story.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 6. ROADMAP -->
+        <section class="info-card">
+            <h2>6. Roadmap — What Will Be Built (Later)</h2>
+            <p class="subtle">
+                Exactly like other roadmap-only phases, everything below is designed only — no implementation has started yet.
+            </p>
+
+            <h3>Step 1 — Foundation &amp; Regulatory Envelope</h3>
+            <ul>
+                <li>Finalise regulatory positioning as general wellness / digital wellbeing, not a medical device.</li>
+                <li>
+                    Explicit “never do” list: no diagnosis, no medication suggestions, no mental-health triage.
+                </li>
+                <li>Map to FDA General Wellness, EU MDR non-MDSW reasoning, NHS guidelines, GCC PDPL principles.</li>
+                <li>
+                    Lock Zero-Trust and BBVP contract: no feature DONE without feature flag, ON/OFF tests and evidence pack.
+                </li>
+            </ul>
+
+            <h3>Step 2 — Family Core &amp; Consent Engine</h3>
+            <ul>
+                <li>Implement family graph and roles; support multi-household contexts.</li>
+                <li>Build region-aware consent flows with age thresholds and teen privacy options.</li>
+                <li>
+                    Introduce a Family Dashboard shell with “Today at a Glance” (OK / pending / alerts) in read-only mode.
+                </li>
+                <li>Produce first BBVP evidence pack (API tests, role tests, consent-path screenshots, log samples).</li>
+            </ul>
+
+            <h3>Step 3 — Health Monitoring &amp; Preventive Calendar</h3>
+            <ul>
+                <li>Stand up Health Monitor with WHO/NHS-based growth curves and non-diagnostic alerts.</li>
+                <li>Configure preventive calendars for at least UK + one GCC country.</li>
+                <li>Create “Child Health Snapshot” export (PDF/JSON) for doctors in emergencies.</li>
+                <li>Test scenarios (normal, borderline, out-of-range) with calm, doctor-centric messaging.</li>
+            </ul>
+
+            <h3>Step 4 — Sleep, Environment &amp; Nutrition Engine</h3>
+            <ul>
+                <li>Implement sleep engine (bed/wake logs, latency, environment hints).</li>
+                <li>
+                    Integrate basic environment awareness; connect hot/cold days to hydration and routines (without climate or medical claims).
+                </li>
+                <li>
+                    Launch nutrition &amp; growth module with BMI bands, hydration calculator, micronutrient awareness, allergy-aware hints.
+                </li>
+                <li>Validate that messages stay protective, not shaming or prescriptive.</li>
+            </ul>
+
+            <h3>Step 5 — Kids Mode &amp; Healthy Dopamine (6–11)</h3>
+            <ul>
+                <li>Build Kids Mode UI with a simple mission list (sleep, brushing, tidying, movement, reading).</li>
+                <li>
+                    Implement Dopamine Engine v1: rule-based events (mission_completed, family_goal, kindness_act)
+                    with rule_id, reason_code and evidence.
+                </li>
+                <li>Add Family Circle missions (family walks, device-free evenings).</li>
+                <li>
+                    Deliver 5-language content pack: missions, reward messages, parenting helpers, all culture-checked.
+                </li>
+            </ul>
+
+            <h3>Step 6 — Teens Mode, Digital Hygiene &amp; Soft Skills (12–18)</h3>
+            <ul>
+                <li>Build a calm, private Teens dashboard for mood check-ins and study planning.</li>
+                <li>Add digital hygiene insights and gentle suggestions.</li>
+                <li>
+                    Integrate soft skills and financial literacy modules via micro-lessons and challenges.
+                </li>
+                <li>
+                    Implement parent/teen visibility controls: parents see summaries and risk bands, not specific messages.
+                </li>
+            </ul>
+
+            <h3>Step 7 — Safety, SOS &amp; Family Vault</h3>
+            <ul>
+                <li>Launch physical safety features (optional geofencing, non-panic notifications).</li>
+                <li>Implement SOS pipeline from child/teen to guardians (and optionally schools/emergency contacts).</li>
+                <li>
+                    Connect Memory Wall / Family Vault with encrypted storage for milestones and important files, aligned
+                    with Elisence’s vault model.
+                </li>
+                <li>Ensure no raw media leaves the vault without explicit consent.</li>
+            </ul>
+
+            <h3>Step 8 — Analytics, Ministry Dashboards &amp; Evidence Freeze</h3>
+            <ul>
+                <li>Build aggregated dashboards for schools and ministries (anonymised metrics only).</li>
+                <li>Complete DPIA and child-rights impact assessment.</li>
+                <li>
+                    Produce a Phase 15 Evidence Pack: architecture diagrams, policy mappings, test results,
+                    multi-language checks, UX studies (no dark patterns), and sample anonymised analytics.
+                </li>
+                <li>Only then declare: <strong>Phase 15 — DONE (General Wellness Grade, Regulator-Ready).</strong></li>
+            </ul>
+        </section>
+
+        <!-- 7. ETHICAL & CLINICAL BOUNDARIES -->
+        <section class="info-card">
+            <h2>7. Ethical &amp; Clinical Boundaries</h2>
+            <p>
+                To remain safe, honest and family-friendly:
+            </p>
+            <ul>
+                <li>No psychiatric or developmental diagnosis inside Phase 15.</li>
+                <li>No insulin/medication advice, no dosage changes, no emergency triage.</li>
+                <li>
+                    No “spy mode” for parents:
+                    parents do not see teen private messages to Elisa, only patterns and wellbeing summaries.
+                </li>
+                <li>
+                    No open social networks:
+                    children interact only within their Family Circle and with Elisa; no strangers, no DMs, no public chats.
+                </li>
+                <li>No dark patterns or addiction loops (no infinite scroll, FOMO mechanics or high-frequency dopamine spikes).</li>
+                <li>No commercial exploitation: no ads, no behavioural targeting, no selling of family or child data.</li>
+                <li>Every significant suggestion is traceable to transparent, documented rules.</li>
+            </ul>
+            <p class="highlight">
+                This module is about supporting families, not judging them.
+            </p>
+        </section>
+
+        <!-- 8. WHY IT MATTERS FOR INVESTORS -->
+        <section class="info-card">
+            <h2>8. Why This Phase Matters (For Investors &amp; Ministries)</h2>
+
+            <h3>8.1 Whole-Child, Whole-Family View — Without Becoming a Medical Device</h3>
+            <p>
+                Elisence offers a 0–18, multi-dimensional view (health, sleep, food, school, safety, bonding) while
+                keeping clinical diagnosis outside this phase, making deployment faster and lower-risk.
+            </p>
+
+            <h3>8.2 Global, Multi-Language, Culturally Aware</h3>
+            <p>
+                EN / FA / AR / TR / RO from day one; GCC-ready; respectful of regional family norms, school systems
+                and ministry priorities.
+            </p>
+
+            <h3>8.3 Ministry-Grade, Not Just Consumer-Grade</h3>
+            <p>
+                Aggregated dashboards can inform national programmes for physical activity, sleep hygiene, digital
+                safety and education — while individual families remain invisible at policy level.
+            </p>
+
+            <h3>8.4 Ethical Alternative to Addictive Social Tech</h3>
+            <p>
+                Instead of trapping children in infinite feeds, Phase 15 becomes the first <strong>“healthy dopamine”</strong>
+                family platform, where growth, learning and kindness produce the rewards.
+            </p>
+
+            <h3>8.5 Foundation for Future Clinical &amp; Research Phases</h3>
+            <p>
+                Non-clinical data from Phase 15 can later feed:
+            </p>
+            <ul>
+                <li>Women+ health insights.</li>
+                <li>Future mental health engines under stricter clinical phases.</li>
+                <li>Longitudinal NCD prevention strategies.</li>
+                <li>Research on lifestyle and health — with explicit consents and strong governance.</li>
+            </ul>
+        </section>
+
+        <!-- 9. STATUS SUMMARY -->
+        <section class="info-card">
+            <h2>9. Status Summary</h2>
+            <ul>
+                <li>✔ Concept &amp; behavioural framing: <strong>Completed</strong></li>
+                <li>✔ Regulatory &amp; ethical design contract (high-level): <strong>Completed</strong></li>
+                <li>✔ High-level system architecture &amp; 0–18 roadmap: <strong>Completed</strong></li>
+                <li>✖ Implementation in code: <strong>NOT started</strong></li>
+                <li>✖ Integration with existing Elisence cores (3, 4, 7, 8, 10, 13): <strong>NOT wired</strong></li>
+                <li>✖ Tests, pilots, and external evaluations: <strong>NOT yet executed</strong></li>
+            </ul>
+            <p class="subtle">
+                Phase 15 is fully designed on paper — and ready to be scheduled into future Elisence development waves.
+            </p>
+        </section>
+
+        <!-- 10. TAGLINE -->
+        <section class="info-card">
+            <h2>10. Tagline</h2>
+            <p class="highlight">
+                <strong>“Growing up, together.”</strong><br>
+                A 0–18 family ecosystem that guides, protects and celebrates —
+                without ever replacing parents, teachers, or doctors.
+            </p>
+        </section>
+
+    </main>
+</div>
+
+<!-- Elisa chat widget root -->
+<div id="elisa-chat-root"></div>
+
 </body>
 </html>
