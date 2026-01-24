@@ -1,69 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elisence – Phase 9: Diabetes &amp; Metabolic Health Intelligence</title>
+    <meta charset="UTF-8" />
+    <title>Elisence – Phase 9: Diabetes & Metabolic Health</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Elisa chat widget script -->
     <script defer src="elisa-chat.js"></script>
 
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         :root {
             --bg-space: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
             --text-main: #e8f4fc;
-            --text-soft: #cbd5f5;
+            --text-soft: #dbefff;
             --text-muted: #94a3b8;
             --accent: #38bdf8;
             --accent-soft: #7dd3fc;
-
-            /* BLUE theme for Phase 9 */
             --card-bg: rgba(15, 23, 42, 0.96);
-            --card-border: rgba(90, 185, 255, 0.85);
-            --shadow-strong: 0 0 22px rgba(0, 140, 255, 0.9), 0 0 40px rgba(0, 40, 120, 0.9);
-        }
-
-        * {
-            box-sizing: border-box;
+            --card-border: rgba(90, 185, 255, 0.9);
         }
 
         body {
-            margin: 0;
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: var(--bg-space);
             color: var(--text-main);
+            overflow-x: hidden;
         }
 
-        /* Top dot + label (BLUE, not red) */
+        /* ===== top dot & label ===== */
         .top-dot {
             position: fixed;
-            left: 16px;
-            top: 16px;
-            width: 11px;
-            height: 11px;
-            border-radius: 999px;
-            background: #38bdf8;
-            box-shadow: 0 0 16px rgba(56, 189, 248, 0.95);
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
             z-index: 900;
         }
 
         .top-dot-label {
             position: fixed;
-            left: 36px;
-            top: 11px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            background: rgba(15, 23, 42, 0.9);
-            font-size: 0.7rem;
-            letter-spacing: 0.18em;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: #e5f2ff;
+            color: #a9d4ff;
             z-index: 900;
         }
 
-        /* Side navigation (pills) – BLUE glow */
+        /* ===== side navigation – DESKTOP (copy from index.html) ===== */
         .side-nav {
             position: fixed;
             right: 32px;
@@ -72,46 +67,52 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            z-index: 950;
+            z-index: 999;
         }
 
         .nav-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.65rem 1.5rem;
+            display: block;
+            padding: 13px 38px;
             border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.75);
-            background: radial-gradient(circle at top left,
-                rgba(56, 189, 248, 0.32),
-                rgba(15, 23, 42, 0.96));
-            color: #e2e8f0;
-            font-size: 0.78rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
             text-decoration: none;
-            box-shadow: 0 0 14px rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(12px);
-            transition: transform 0.16s ease,
-                        box-shadow 0.16s ease,
-                        border-color 0.16s ease,
-                        background 0.16s ease;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(
+                circle at top,
+                rgba(0, 130, 255, 0.45),
+                rgba(0, 10, 35, 0.97)
+            );
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease,
+                padding 0.2s ease;
         }
 
         .nav-btn:hover {
-            transform: translateX(-2px);
-            border-color: rgba(56, 189, 248, 0.95);
-            box-shadow: 0 0 22px rgba(56, 189, 248, 0.9);
-            background: radial-gradient(circle at top left,
-                rgba(56, 189, 248, 0.45),
-                rgba(15, 23, 42, 0.98));
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(
+                circle at top,
+                rgba(0, 170, 255, 0.7),
+                rgba(0, 25, 80, 1)
+            );
         }
 
         .nav-btn:active {
-            transform: translateX(-1px) translateY(1px) scale(0.99);
+            transform: translateX(-2px) scale(0.99);
         }
 
-        /* Layout wrapper */
+        /* ===== layout wrapper ===== */
         .page-wrapper {
             max-width: 1200px;
             margin: 0 auto;
@@ -123,13 +124,17 @@
         }
 
         .phase-hero-card {
-            background: radial-gradient(circle at top left,
-                rgba(56, 189, 248, 0.35),
-                rgba(15, 23, 42, 0.98));
+            background: radial-gradient(
+                circle at top left,
+                rgba(0, 156, 255, 0.35),
+                rgba(15, 23, 42, 0.98)
+            );
             border-radius: 26px;
             border: 1px solid var(--card-border);
-            box-shadow: var(--shadow-strong);
-            padding: 1.6rem 1.8rem;
+            box-shadow:
+                0 0 45px rgba(0, 170, 255, 0.85),
+                0 0 120px rgba(0, 80, 200, 0.65);
+            padding: 1.8rem 1.9rem;
         }
 
         .phase-hero-inner {
@@ -146,8 +151,9 @@
             align-items: center;
             justify-content: center;
             padding: 0.75rem;
-            box-shadow: 0 0 24px rgba(15, 23, 42, 0.9),
-                        0 0 40px rgba(15, 23, 42, 0.9);
+            box-shadow:
+                0 0 24px rgba(15, 23, 42, 0.9),
+                0 0 40px rgba(15, 23, 42, 0.9);
         }
 
         .phase-hero-logo {
@@ -185,7 +191,7 @@
             font-size: 0.95rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: var(--accent-soft);
+            color: #93c5fd;
             margin-bottom: 0.6rem;
         }
 
@@ -199,14 +205,14 @@
             margin: 0.3rem 0 0 0;
             padding-left: 1.1rem;
             font-size: 0.9rem;
-            color: #e0f2fe;
+            color: #dbefff;
         }
 
         .phase-hero-bullets li {
             margin-bottom: 0.2rem;
         }
 
-        /* Phase detail cards */
+        /* ===== detail cards ===== */
         .phase-main {
             max-width: 1100px;
             margin: 0 auto;
@@ -214,9 +220,11 @@
 
         .info-card {
             background: var(--card-bg);
-            border-radius: 18px;
+            border-radius: 20px;
             border: 1px solid var(--card-border);
-            box-shadow: var(--shadow-strong);
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
             padding: 1.8rem 1.7rem;
             margin-bottom: 1.8rem;
         }
@@ -232,7 +240,7 @@
             margin-top: 1.1rem;
             margin-bottom: 0.4rem;
             font-size: 1.02rem;
-            color: #bae6fd;
+            color: var(--accent);
         }
 
         .info-card p {
@@ -256,7 +264,7 @@
             color: var(--text-muted);
         }
 
-        /* Responsive */
+        /* ===== responsive ===== */
         @media (max-width: 900px) {
             .page-wrapper {
                 padding: 80px 1.2rem 80px 1.2rem;
@@ -270,24 +278,26 @@
                 flex: 0 0 auto;
             }
 
+            .info-card {
+                padding: 1.5rem 1.35rem;
+            }
+
             .side-nav {
+                position: fixed;
                 right: 50%;
-                bottom: 18px;
                 top: auto;
+                bottom: 18px;
                 transform: translateX(50%);
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 10px;
+                gap: 8px;
             }
 
             .nav-btn {
-                font-size: 0.7rem;
-                padding: 0.6rem 1.1rem;
-            }
-
-            .info-card {
-                padding: 1.5rem 1.35rem;
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
             }
         }
     </style>
@@ -298,12 +308,12 @@
 <div class="top-dot-label">ELISENCE</div>
 
 <nav class="side-nav">
-    <a class="nav-btn" href="index.html">Home</a>
-    <a class="nav-btn" href="index.html#phases">Phases</a>
-    <a class="nav-btn" href="about.html">About</a>
-    <a class="nav-btn" href="story.html">Story</a>
-    <a class="nav-btn" href="video.html">Videos</a>
-    <a class="nav-btn" href="contact.html">Contact</a>
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="index.html#phases" class="nav-btn">Phases</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="story.html" class="nav-btn">Story</a>
+    <a href="video.html" class="nav-btn">Videos</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
 </nav>
 
 <div class="page-wrapper">
@@ -318,20 +328,20 @@
                 </div>
                 <div class="phase-hero-text-box">
                     <div class="phase-label">PHASE 9</div>
-                    <h1 class="phase-title">Diabetes &amp; Metabolic Health Intelligence</h1>
+                    <h1 class="phase-title">Diabetes &amp; Metabolic Health</h1>
                     <div class="phase-subtitle">
-                        GLUCOSE · WEIGHT · MEDICATION · LIFESTYLE · SAFE &amp; NON-DIAGNOSTIC
+                        GLUCOSE · WEIGHT · MEDICATIONS · LIFESTYLE · NON-DIAGNOSTIC
                     </div>
                     <p class="phase-lead">
-                        Phase 9 is the Diabetes &amp; Metabolic Health brain of Elisence. It connects glucose,
-                        weight, medications and everyday life into <strong>clear, non-diagnostic, audit-ready
-                        patterns</strong> so that people, families and clinicians can understand what is really
-                        happening over time – without ever replacing a doctor.
+                        Phase 9 is the <strong>Diabetes &amp; Metabolic Health brain</strong> of Elisence.
+                        It takes glucose readings, weight trends, medication events and lifestyle signals
+                        and turns them into <strong>safe, non-diagnostic intelligence</strong> that helps
+                        people, families and clinicians understand patterns without replacing a doctor.
                     </p>
                     <ul class="phase-hero-bullets">
-                        <li>Brings glucose, weight, GLP-1 and lifestyle into one safe, unified story.</li>
-                        <li>Speaks in calm, practical language aligned with NHS / NICE style thinking.</li>
-                        <li>Built for citizens, clinicians and ministries who need trusted metabolic intelligence.</li>
+                        <li>Built on structured events, not screenshots or free text.</li>
+                        <li>Understands GLP-1, insulin and oral diabetes medications via Phase 6.</li>
+                        <li>Five-language ready: EN, FA, AR, TR, RO.</li>
                     </ul>
                 </div>
             </div>
@@ -345,215 +355,155 @@
         <section class="info-card">
             <h2>1. What Phase 9 Really Is</h2>
             <p>
-                Phase 9 is not just a “sugar tracker”. It is a structured
-                <strong>Diabetes &amp; Metabolic Health Intelligence layer</strong> that understands patterns across:
-                glucose, weight, medications, sleep, food, movement and stress.
+                Phase 9 is a structured, ethical <strong>Diabetes &amp; Metabolic Health layer</strong>.
+                It does not diagnose diabetes, choose treatments or change doses. Instead, it
+                <strong>organises</strong> what is already happening: glucose readings, weight,
+                medications, food, movement and sleep.
             </p>
             <p>
-                The purpose is simple: give people living with or at risk of diabetes a trusted companion that helps
-                them see how daily choices and treatments behave over weeks and months – while clearly reminding them
-                that medical decisions stay with qualified clinicians.
-            </p>
-            <p>
-                Phase 9 works for:
+                The engine turns this stream of events into timelines, trends and gentle insights
+                that a user – or their clinician – can understand at a glance. It gives context
+                to questions such as:
             </p>
             <ul>
-                <li>People with Type 2 diabetes who want clarity, not fear.</li>
-                <li>Those with pre-diabetes who need to see trends early.</li>
-                <li>Users on GLP-1 and other metabolic drugs who want to see real-world effect safely.</li>
-                <li>Families caring for parents or children with metabolic conditions.</li>
-                <li>Clinics and ministries that need anonymised, population-level metabolic insights.</li>
+                <li>“What happens to my glucose when I take my GLP-1 on time?”</li>
+                <li>“How does my night-time snack affect my morning readings?”</li>
+                <li>“What changed in the weeks when my weight started to move?”</li>
             </ul>
+            <p>
+                All of this is done inside a non-diagnostic perimeter, with clear reminders that
+                medical decisions belong to qualified professionals.
+            </p>
         </section>
 
-        <!-- 2. DATA & SIGNALS -->
+        <!-- 2. CORE ENGINE & EVENTS -->
         <section class="info-card">
-            <h2>2. Data &amp; Signals Phase 9 Understands</h2>
+            <h2>2. Core Engine &amp; Event Model</h2>
             <p>
-                Phase 9 brings together multiple signal streams into a single, readable picture.
+                Phase 9 is implemented as a set of well-defined events with explicit schemas:
             </p>
 
-            <h3>2.1 Glucose &amp; Laboratory Signals</h3>
+            <h3>2.1 Glucose Events</h3>
             <ul>
-                <li>Capillary glucose readings (finger-prick logs) with time-of-day and context tags.</li>
-                <li>Continuous glucose trends summarised into safe, comprehensible daily and weekly patterns.</li>
-                <li>Laboratory markers such as HbA1c, lipids and kidney function as part of a long-term view.</li>
+                <li>Fasting, pre-meal, post-meal and bedtime readings.</li>
+                <li>Manual entry or device-imported values (future integrations).</li>
+                <li>Tags for “sick day”, “travel”, “stress” to explain outliers.</li>
             </ul>
 
-            <h3>2.2 Weight, Waist &amp; Body Trends</h3>
+            <h3>2.2 Weight &amp; Body Events</h3>
             <ul>
-                <li>Weight trajectories over weeks and months to reduce focus on single-day fluctuations.</li>
-                <li>Optional waist and body-composition inputs for people and clinics who track them.</li>
-                <li>Direct connection to Phase 3 (Weight &amp; GLP-1) so users see “scale + sugar” together.</li>
+                <li>Daily or weekly weigh-ins, linked to Phase 3 weight engine.</li>
+                <li>Optional waist or body-composition entries (wellness posture).</li>
+                <li>Flags for rapid changes that should be discussed with a clinician.</li>
             </ul>
 
-            <h3>2.3 Medication &amp; Everyday Behaviour</h3>
+            <h3>2.3 Medication Events</h3>
             <ul>
-                <li>Structured logging of GLP-1, insulin, oral agents and other metabolic medications.</li>
-                <li>Patterns of meals, walking, exercise, sleep and high-stress periods.</li>
-                <li>“Before / after” windows that show how habits influence metabolic calm or volatility.</li>
+                <li>Structured medication actions from Phase 6 (take / miss / stop / change).</li>
+                <li>Support for GLP-1, insulin, Metformin and other core diabetes drugs.</li>
+                <li>Zero-Trust parsing: no guessing of drugs or doses.</li>
+            </ul>
+
+            <h3>2.4 Lifestyle Events</h3>
+            <ul>
+                <li>Food windows (not calorie counting), movement, sleep quality, stress tags.</li>
+                <li>Simple, human language — “good walk”, “heavy dinner”, “no sleep”.</li>
             </ul>
 
             <p class="subtle">
-                All of these are treated as <em>signals</em>, not diagnoses. The intelligence is in how the signals
-                are organised and explained.
+                Every event has timestamps, provenance and audit fields so trends can be trusted
+                by clinicians and ministries later.
             </p>
         </section>
 
-        <!-- 3. PATTERN ENGINE & JOURNEYS -->
+        <!-- 3. PATTERN & INSIGHT LAYER -->
         <section class="info-card">
-            <h2>3. Pattern Engine &amp; Everyday Journeys</h2>
+            <h2>3. Pattern &amp; Insight Layer (Non-Diagnostic)</h2>
             <p>
-                Phase 9 focuses on real-life journeys – how days, weeks and seasons feel – not just isolated numbers.
+                On top of the raw events, Phase 9 calculates safe, explainable patterns:
             </p>
 
-            <h3>3.1 Daily Metabolic Story</h3>
+            <h3>3.1 Daily &amp; Weekly Views</h3>
             <ul>
-                <li>Shows how mornings, afternoons and evenings typically behave for each person.</li>
-                <li>Distinguishes stable days from days with many spikes and drops.</li>
-                <li>Helps users recognise their own “good days” patterns without blame or shame.</li>
+                <li>Simple charts of glucose vs time-of-day and meals.</li>
+                <li>Weight trend lines with gentle commentary (“steady”, “slow change”).</li>
+                <li>Overview of medication adherence without blame or shame.</li>
             </ul>
 
-            <h3>3.2 Medication Context (Including GLP-1)</h3>
+            <h3>3.2 Pattern Highlights</h3>
             <ul>
-                <li>Organises data around injections, tablets and dose changes.</li>
-                <li>Highlights safe, non-diagnostic patterns such as “numbers in the weeks after dose adjustment”.</li>
-                <li>Supports better conversations between people and their care teams.</li>
+                <li>“Many high readings after late meals” – suggesting a conversation with a clinician.</li>
+                <li>“More stable readings on weeks with regular walks.”</li>
+                <li>“Large gaps in logging – would you like a reminder schedule?”</li>
             </ul>
 
-            <h3>3.3 Lifestyle &amp; Sleep</h3>
+            <h3>3.3 Safety Language</h3>
             <ul>
-                <li>Connects sleep duration, late meals, heavy days and movement with metabolic patterns.</li>
-                <li>Uses neutral, supportive language – no guilt, no moral judgement.</li>
-                <li>Encourages realistic actions: small walks, better sleep hygiene, consistent mealtimes.</li>
+                <li>No verdicts like “controlled / uncontrolled”.</li>
+                <li>Instead: “Your data shows X; please discuss options with your doctor.”</li>
+                <li>Emergency tones (very high / very low values) always push to urgent care.</li>
             </ul>
         </section>
 
-        <!-- 4. SAFETY, ETHICS & NON-DIAGNOSTIC BOUNDARIES -->
+        <!-- 4. INTEGRATION WITH OTHER PHASES -->
         <section class="info-card">
-            <h2>4. Safety, Ethics &amp; Non-Diagnostic Boundaries</h2>
+            <h2>4. Integration With Other Phases</h2>
             <p>
-                Diabetes care can be high-risk if handled carelessly. Phase 9 is designed to stay
-                <strong>honest, regulated and careful</strong> about its limits.
+                Phase 9 does not live alone – it is deeply linked to the rest of Elisence:
             </p>
 
-            <h3>4.1 Non-Diagnostic by Design</h3>
+            <h3>4.1 Phase 3 – Care &amp; Weight-Loss</h3>
             <ul>
-                <li>No statements like “you have diabetes” or “you are cured”.</li>
-                <li>Instead: “Your pattern looks like…, here are questions to discuss with your clinician.”</li>
-                <li>Risk language is gentle, specific and clearly labelled as information, not a verdict.</li>
+                <li>Shares weight, movement and check-in events.</li>
+                <li>Care teams can see both weight-loss and glucose journeys together.</li>
             </ul>
 
-            <h3>4.2 Emergency &amp; Red-Flag Behaviour</h3>
+            <h3>4.2 Phase 6 – Global Medication Brain</h3>
             <ul>
-                <li>Severe symptoms (e.g. chest pain, difficulty breathing, confusion, suspected hypo/hyper) trigger
-                    urgent, safety-first copy.</li>
-                <li>Guidance always points towards emergency services, hotlines or clinicians – never self-treatment.</li>
-                <li>No self-harm content, no crash-diet challenges, no unsafe competitions.</li>
+                <li>Uses the medication engine to understand GLP-1, insulin and oral drugs.</li>
+                <li>Supports safe, multilingual capture of medication behaviour.</li>
             </ul>
 
-            <h3>4.3 Privacy &amp; Data Protection</h3>
+            <h3>4.3 Phase 7 &amp; Phase 8</h3>
             <ul>
-                <li>No silent sharing of personal metrics with employers or insurers.</li>
-                <li>Data used for research or ministry dashboards is anonymised and k-anonymous.</li>
-                <li>People decide what to log, what to keep private and what to share with their care teams.</li>
+                <li>Women+ engine can see diabetes-related patterns around cycles (non-diagnostic).</li>
+                <li>AHE (Phase 8) receives anonymised aggregates for public-health insights.</li>
             </ul>
         </section>
 
-        <!-- 5. INTEGRATION WITH OTHER PHASES -->
+        <!-- 5. SAFETY, REGULATION & LIMITS -->
         <section class="info-card">
-            <h2>5. How Phase 9 Connects to the Rest of Elisence</h2>
+            <h2>5. Safety, Regulation &amp; Clear Limits</h2>
             <p>
-                Phase 9 sits at the centre of the metabolic story and connects deeply with other Elisence cores.
-            </p>
-
-            <h3>5.1 With Phase 3 (Weight &amp; GLP-1)</h3>
-            <ul>
-                <li>Shares understanding of weight, appetite and GLP-1 response over time.</li>
-                <li>Lets people and clinicians see weight and glucose trends together, safely.</li>
-            </ul>
-
-            <h3>5.2 With Phase 5 (Healthy Dopamine &amp; Behaviour)</h3>
-            <ul>
-                <li>Healthy Dopamine engine provides small, ethical celebrations for metabolic wins.</li>
-                <li>No addictive loops – just calm encouragement for sustainable habits.</li>
-            </ul>
-
-            <h3>5.3 With Phase 6 (Global Medication Intelligence)</h3>
-            <ul>
-                <li>Uses structured medication knowledge: GLP-1, insulin, oral agents and co-morbidities.</li>
-                <li>Organises complex regimens so conversations with clinicians become clearer.</li>
-            </ul>
-
-            <h3>5.4 With Phase 7 &amp; Phase 8</h3>
-            <ul>
-                <li>Women+ (Phase 7) can see how metabolic signals interact with cycles and life stages.</li>
-                <li>Advanced Health Engine (Phase 8) uses anonymised aggregates for public-health insights, not surveillance.</li>
-            </ul>
-
-            <h3>5.5 With Phase 10 &amp; Phase 11</h3>
-            <ul>
-                <li>Phase 10 lets people share safe achievements and milestones socially, if they choose.</li>
-                <li>Phase 11 (Security &amp; Passport) protects every API call and dashboard with Zero-Trust headers.</li>
-            </ul>
-        </section>
-
-        <!-- 6. INVESTOR & MINISTRY VALUE -->
-        <section class="info-card">
-            <h2>6. Why Phase 9 Matters for Investors &amp; Ministries</h2>
-            <p>
-                Diabetes and metabolic disease are among the biggest drivers of cost and suffering in global health.
-                Phase 9 is designed for that reality.
-            </p>
-
-            <h3>6.1 Real, Measurable Impact Space</h3>
-            <ul>
-                <li>Huge populations living with or at risk of diabetes in every country.</li>
-                <li>Strong links with cardiovascular, kidney and mental-health outcomes.</li>
-                <li>Clear cost burden on health systems, insurers and families.</li>
-            </ul>
-
-            <h3>6.2 Differentiation vs Simple Tracking Apps</h3>
-            <ul>
-                <li>Most tools show graphs but ignore safety, governance and multi-phase integration.</li>
-                <li>Elisence Phase 9 is governance-first, audit-ready and designed for ministry partnerships.</li>
-                <li>Focuses on long-term outcomes and system-level intelligence, not just step counts.</li>
-            </ul>
-
-            <h3>6.3 Regulatory-Friendly Design</h3>
-            <ul>
-                <li>Non-diagnostic posture compatible with EU MDR and FDA CDS frameworks.</li>
-                <li>Hazard logs, WORM audit and structured evidence packs for NHS / GCC style reviews.</li>
-                <li>Clear path for clinician-only decision-support modules when partners require it.</li>
-            </ul>
-        </section>
-
-        <!-- 7. LIMITATIONS -->
-        <section class="info-card">
-            <h2>7. Limitations (Clear &amp; Honest)</h2>
-            <p>
-                By design, Phase 9 does <strong>not</strong>:
+                Phase 9 is deliberately designed inside a safe regulatory boundary:
             </p>
             <ul>
-                <li>Diagnose diabetes, remission, complications or co-morbidities.</li>
-                <li>Start, stop or change any medication or insulin plan.</li>
-                <li>Provide medical triage or emergency instructions.</li>
-                <li>Replace endocrinologists, diabetologists, dietitians or primary-care teams.</li>
-                <li>Offer “miracle” diets or unsafe quick-fix challenges.</li>
+                <li><strong>NHS / DTAC style:</strong> health IT component, not a triage tool.</li>
+                <li><strong>FDA CDS:</strong> non-device clinical decision support – user can see the basis of every output.</li>
+                <li><strong>EU MDR:</strong> wellness / information posture, not an automatic treatment system.</li>
+                <li><strong>GCC / PDPL:</strong> ready for regional data-residency and privacy rules.</li>
             </ul>
             <p>
-                These limits protect citizens, clinicians and ministries, and keep Elisence inside a safe, globally
-                deployable regulatory perimeter.
+                Clear limits:
+            </p>
+            <ul>
+                <li>No diagnosis of diabetes or complications.</li>
+                <li>No adjustment of insulin or GLP-1 doses.</li>
+                <li>No replacement for endocrinologists, GPs or emergency services.</li>
+            </ul>
+            <p class="subtle">
+                The engine explains patterns and organises reality; decisions stay with humans.
             </p>
         </section>
 
-        <!-- 8. ONE-SENTENCE SUMMARY -->
+        <!-- 6. ONE-SENTENCE SUMMARY -->
         <section class="info-card">
-            <h2>8. One-Sentence Summary</h2>
+            <h2>6. One-Sentence Summary</h2>
             <p>
-                Phase 9 is the <strong>Diabetes &amp; Metabolic Health Intelligence</strong> layer of Elisence – a
-                respectful, non-diagnostic engine that organises glucose, weight, medication and lifestyle signals into
-                clear, audit-ready insights for citizens, clinicians and ministries around the world.
+                Phase 9 is the <strong>Diabetes &amp; Metabolic Health brain</strong> of Elisence –
+                a multilingual, non-diagnostic engine that organises glucose, weight, medication
+                and lifestyle signals into safe, audit-ready patterns for people, clinicians and
+                ministries around the world.
             </p>
         </section>
 
