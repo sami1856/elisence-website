@@ -2,563 +2,798 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence — Phase 12: Real-Time Voice & Video Connection</title>
+    <title>Elisence – Phase 12: Environment-Aware Diabetes Coach</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-        name="description"
-        content="Elisence Phase 12 — Real-time voice and video connection. Safe, governed calls between citizens, families, professionals and ministries, built on Zero-Trust identity and non-diagnostic rules."
-    />
+
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
 
     <style>
-        :root {
-            --bg-dark: #050814;
-            --bg-card: #0d1020;
-            --accent: #4ea8ff;
-            --accent-soft: rgba(78, 168, 255, 0.1);
-            --text-main: #f5f7ff;
-            --text-muted: #a3b0d8;
-            --border-soft: rgba(255, 255, 255, 0.08);
-            --danger: #ff5c7a;
-            --success: #4fd1c5;
-        }
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-space: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            --text-main: #e8f4fc;
+            --text-soft: #cbd5f5;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-soft: #7dd3fc;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-border: rgba(56, 189, 248, 0.9);
+            --shadow-strong: 0 0 28px rgba(56, 189, 248, 0.9),
+                             0 0 52px rgba(15, 23, 42, 0.9);
         }
 
         body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #111633 0, #050814 60%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+            background: var(--bg-space);
             color: var(--text-main);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
+        /* ===== top dot + label ===== */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 900;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 900;
         }
 
-        header {
-            border-bottom: 1px solid var(--border-soft);
-            background: linear-gradient(
-                to right,
-                rgba(7, 12, 40, 0.95),
-                rgba(6, 10, 32, 0.98)
-            );
-            backdrop-filter: blur(14px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .nav-shell {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .brand-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #4ea8ff, #7f5dff 45%, #111631);
-            box-shadow: 0 0 18px rgba(78, 168, 255, 0.6);
-        }
-
-        .brand-text {
+        /* ===== side navigation ===== */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            z-index: 999;
         }
 
-        .brand-text span:first-child {
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            font-size: 0.8rem;
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top,
+                rgba(0, 130, 255, 0.45),
+                rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease,
+                padding 0.2s ease;
         }
 
-        .brand-text span:last-child {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top,
+                rgba(0, 170, 255, 0.7),
+                rgba(0, 25, 80, 1));
         }
 
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            font-size: 0.9rem;
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
         }
 
-        nav a {
-            color: var(--text-muted);
-            padding-bottom: 0.15rem;
-            border-bottom: 2px solid transparent;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
-
-        nav a.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        main {
-            max-width: 1120px;
+        /* ===== layout wrapper ===== */
+        .page-wrapper {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
+            padding: 96px 1.8rem 72px 1.8rem;
         }
 
-        .phase-tag {
-            display: inline-flex;
+        .hero-area {
+            margin-bottom: 2.4rem;
+        }
+
+        .phase-hero-card {
+            background: radial-gradient(circle at top left,
+                rgba(56, 189, 248, 0.28),
+                rgba(15, 23, 42, 0.98));
+            border-radius: 26px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.6rem 1.8rem;
+        }
+
+        .phase-hero-inner {
+            display: flex;
+            gap: 1.8rem;
+            align-items: stretch;
+        }
+
+        .phase-hero-logo-box {
+            flex: 0 0 290px;
+            border-radius: 22px;
+            background: radial-gradient(circle at top, #0b1220, #020617);
+            display: flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            background: var(--accent-soft);
-            border-radius: 999px;
-            padding: 0.35rem 0.9rem;
-            border: 1px solid rgba(78, 168, 255, 0.5);
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow:
+                0 0 24px rgba(15, 23, 42, 0.9),
+                0 0 40px rgba(15, 23, 42, 0.9);
         }
 
-        .phase-tag-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: var(--accent);
+        .phase-hero-logo {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 0 28px rgba(15, 23, 42, 0.95);
         }
 
-        h1 {
-            margin-top: 1.1rem;
-            font-size: 2rem;
-            letter-spacing: 0.03em;
-        }
-
-        .subtitle {
-            margin-top: 0.5rem;
-            max-width: 720px;
-            color: var(--text-muted);
-            font-size: 0.98rem;
-        }
-
-        .grid {
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-            gap: 1.75rem;
-        }
-
-        @media (max-width: 900px) {
-            .grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            nav {
-                display: none; /* simple mobile version for now */
-            }
-
-            header {
-                position: static;
-            }
-        }
-
-        .card {
-            background: radial-gradient(circle at top left, #1a2147 0, #090d20 55%);
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.5rem 1.4rem;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        .card h3 {
-            margin-top: 1.3rem;
-            font-size: 1rem;
-        }
-
-        .pill-list {
+        .phase-hero-text-box {
+            flex: 1;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-top: 0.75rem;
-            margin-bottom: 0.25rem;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .pill {
+        .phase-label {
             font-size: 0.78rem;
-            padding: 0.28rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background: rgba(10, 15, 40, 0.9);
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .pill.pill-strong {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
-        }
-
-        .badge-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-        }
-
-        .badge {
-            font-size: 0.72rem;
-            padding: 0.22rem 0.55rem;
-            border-radius: 0.4rem;
-            border: 1px solid var(--border-soft);
-            color: var(--text-muted);
-        }
-
-        .badge.badge-safe {
-            border-color: var(--success);
-            color: var(--success);
-        }
-
-        .badge.badge-risk {
-            border-color: var(--danger);
-            color: var(--danger);
-        }
-
-        .section {
-            margin-top: 2rem;
-        }
-
-        .section h2 {
-            font-size: 1.05rem;
             text-transform: uppercase;
-            letter-spacing: 0.13em;
+            letter-spacing: 0.18em;
             color: var(--text-muted);
             margin-bottom: 0.3rem;
         }
 
-        .section h3 {
-            font-size: 1rem;
-            margin-top: 1.1rem;
+        .phase-title {
+            font-size: 1.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #f9fafb;
+            margin: 0 0 0.35rem 0;
+        }
+
+        .phase-subtitle {
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 0.6rem;
+        }
+
+        .phase-lead {
+            font-size: 0.98rem;
+            color: var(--text-soft);
+            margin-bottom: 0.7rem;
+        }
+
+        .phase-hero-bullets {
+            margin: 0.3rem 0 0 0;
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
+            color: #dbeafe;
+        }
+
+        .phase-hero-bullets li {
             margin-bottom: 0.2rem;
         }
 
-        .section p {
-            font-size: 0.95rem;
-            color: var(--text-main);
+        /* ===== detail cards ===== */
+        .phase-main {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .section ul {
-            margin: 0.5rem 0 0.5rem 1.2rem;
-            padding-left: 0;
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.8rem 1.7rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .info-card h2 {
+            margin-top: 0;
+            margin-bottom: 0.85rem;
+            font-size: 1.3rem;
+            color: var(--accent-soft);
+        }
+
+        .info-card h3 {
+            margin-top: 1.1rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.02rem;
+            color: #bae6fd;
+        }
+
+        .info-card p {
+            margin: 0.35rem 0;
+            font-size: 0.94rem;
+            color: #e5f2ff;
+        }
+
+        .info-card ul {
+            margin: 0.45rem 0 0.25rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.32rem;
             font-size: 0.93rem;
-            color: var(--text-muted);
         }
 
-        .section li {
-            margin-bottom: 0.25rem;
+        .tagline {
+            font-size: 0.94rem;
+            color: #93c5fd;
+            margin-bottom: 0.45rem;
         }
 
-        .footer-note {
-            margin-top: 2.5rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid var(--border-soft);
-            font-size: 0.86rem;
+        .subtle {
+            font-size: 0.88rem;
             color: var(--text-muted);
         }
 
         .highlight {
-            color: var(--accent);
-            font-weight: 500;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.9rem;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        /* ===== responsive ===== */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 1.2rem 80px 1.2rem;
+            }
+
+            .phase-hero-inner {
+                flex-direction: column;
+            }
+
+            .phase-hero-logo-box {
+                flex: 0 0 auto;
+            }
+
+            .info-card {
+                padding: 1.5rem 1.35rem;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
         }
     </style>
 </head>
-<header>
-    <div class="header-inner">
-        <div class="logo-section">
-            <img src="elisence.png" alt="Elisence Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>ELISENCE</h1>
-                <p>Global Digital Health & Humanity Platform</p>
+<body>
+
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<nav class="side-nav">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn" href="index.html#phases">Phases</a>
+    <a class="nav-btn" href="about.html">About</a>
+    <a class="nav-btn" href="story.html">Story</a>
+    <a class="nav-btn" href="video.html">Videos</a>
+    <a class="nav-btn" href="contact.html">Contact</a>
+</nav>
+
+<div class="page-wrapper">
+    <!-- HERO -->
+    <section class="hero-area">
+        <div class="phase-hero-card">
+            <div class="phase-hero-inner">
+                <div class="phase-hero-logo-box">
+                    <img src="elisence.png"
+                         alt="Elisence – Global Digital Health & Humanity Platform"
+                         class="phase-hero-logo">
+                </div>
+                <div class="phase-hero-text-box">
+                    <div class="phase-label">PHASE 12</div>
+                    <h1 class="phase-title">Environment-Aware Diabetes Coach</h1>
+                    <div class="phase-subtitle">
+                        WEATHER · AIR QUALITY · METABOLISM COMPANION
+                    </div>
+                    <p class="phase-lead">
+                        Phase 12 is the <strong>Environment-Aware Diabetes Coach</strong> of Elisence. It treats
+                        weather and air quality not as a “nice widget”, but as a continuous context engine around
+                        diabetes — connecting heat, humidity, pressure and pollution with glucose trends, hydration
+                        risk, activity patterns and stress, always in a safe, non-diagnostic way.
+                    </p>
+                    <ul class="phase-hero-bullets">
+                        <li>Connects weather &amp; air with diabetes patterns and behaviour.</li>
+                        <li>Delivers coaching and voice explanations in 5 languages (EN/FA/AR/TR/RO).</li>
+                        <li>Stays strictly non-diagnostic and non-prescriptive — education only.</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
 
-        <nav class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#phases">Phases</a>
-            <a href="about.html">About</a>
-            <a href="story.html">Story</a>
-            <a href="video.html">Videos</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
+    <!-- DETAIL CARDS -->
+    <main class="phase-main">
 
-<main>
-    <div class="phase-tag">
-        <span class="phase-tag-dot"></span>
-        <span>Phase 12 &mdash; Real-Time Voice &amp; Video Connection</span>
-    </div>
-
-    <h1>Safe Voice &amp; Video Calls for Real Lives</h1>
-    <p class="subtitle">
-        Phase 12 is the real-time communication layer of Elisence. It turns profiles, messages and care journeys
-        into live, human conversations &mdash; through secure voice and video calls that are designed for health,
-        not for social noise.
-    </p>
-
-    <div class="grid">
-        <section class="card">
-            <h2>Core Definition</h2>
-            <h3>What Phase 12 Is</h3>
+        <!-- 1. WHAT THIS PHASE IS -->
+        <section class="info-card">
+            <h2>1. What This Phase Is</h2>
             <p>
-                Phase 12 is Elisence’s <span class="highlight">real-time voice and video engine</span>. It provides:
+                This phase is the “Environment-Aware Diabetes Coach” of Elisence.
+                Instead of treating weather and air quality as a cosmetic extra, Phase 12 turns them into a
+                <strong>continuous context engine</strong> for people living with diabetes — and later, for
+                high-risk women’s health.
+            </p>
+            <p>
+                It connects:
             </p>
             <ul>
-                <li>One-to-one voice and video calls between citizens and trusted professionals</li>
-                <li>Family and carer calls around a shared health journey</li>
-                <li>Clinician-to-clinician calls for coordination, where allowed</li>
-                <li>Group sessions and webinars under ministry control</li>
+                <li>Temperature, humidity, pressure, AQI, pollution</li>
+                <li>with glucose trends, hypoglycaemia risk, dehydration, activity patterns and stress.</li>
             </ul>
             <p>
-                Technically, it is built on a WebRTC-style connectivity layer, secured by Phase 11 passports and
-                integrated with Phase 10 profiles and messaging.
+                It delivers:
             </p>
-
-            <h3>Design Principles</h3>
-            <div class="pill-list">
-                <span class="pill pill-strong">Zero-Trust, Passport-Only Access</span>
-                <span class="pill pill-strong">Non-diagnostic, Non-prescriptive</span>
-                <span class="pill">End-to-end encryption aware</span>
-                <span class="pill">Low-bandwidth and mobile-first</span>
-                <span class="pill">Culturally respectful for GCC</span>
-            </div>
+            <ul>
+                <li>Behavioural coaching and safety-oriented nudges.</li>
+                <li>Voice-first explanations in 5 languages (EN / FA / AR / TR / RO).</li>
+            </ul>
+            <p>
+                It stays strictly non-diagnostic and non-prescriptive:
+            </p>
+            <ul>
+                <li>No insulin dose changes.</li>
+                <li>No treatment decisions.</li>
+                <li>Only educational, supportive and regulator-friendly guidance.</li>
+            </ul>
+            <p class="highlight">
+                This phase is <strong>not built yet</strong>. The design, clinical framing and technical roadmap
+                are complete; full implementation will be scheduled into later development waves.
+            </p>
+            <p class="subtle">
+                Mission: “Turn weather and air into a daily diabetes companion — safely, honestly, and without
+                crossing medical decision boundaries.”
+            </p>
         </section>
 
-        <aside class="card">
-            <h2>Stakeholder View</h2>
-            <h3>Who Uses Phase 12?</h3>
+        <!-- 2. WHY ENVIRONMENT MATTERS -->
+        <section class="info-card">
+            <h2>2. Why Environment Matters in Diabetes</h2>
+            <p>
+                Modern research and clinical practice show that environment is not a side variable for diabetes;
+                it is a catalyst. Phase 12 is built on these realities:
+            </p>
+            <h3>Heat &amp; Insulin Absorption</h3>
+            <p>
+                High temperatures dilate peripheral blood vessels, which can speed up insulin absorption and
+                increase the risk of unexpected hypoglycaemia, especially in insulin-treated patients.
+            </p>
+
+            <h3>Cold &amp; Circulation</h3>
+            <p>
+                Cold environments may slow peripheral circulation, potentially delaying insulin absorption and
+                changing the timing of glucose drops.
+            </p>
+
+            <h3>Humidity, Heat Index &amp; Dehydration</h3>
+            <p>
+                Hot, humid or very dry conditions alter sweating and hydration. Dehydration can falsely elevate
+                blood glucose concentration and worsen overall control, particularly in type 1 and poorly
+                controlled type 2 diabetes.
+            </p>
+
+            <h3>Pressure &amp; Activity Behaviour</h3>
+            <p>
+                Weather fronts, low pressure and cold/rainy days often reduce physical activity. Lower activity
+                can mean poorer insulin sensitivity and higher glucose variability.
+            </p>
+
+            <h3>Pollution, Stress &amp; Glucose</h3>
+            <p>
+                High air pollution and sudden weather changes can increase physiological stress (including cortisol),
+                pushing glucose higher and worsening perceived fatigue.
+            </p>
+
+            <p class="subtle">
+                Today, most apps only report weather or AQI. Elisence’s vision is to <strong>interpret</strong> them
+                for diabetes — and eventually for women’s health — while staying fully within a safe,
+                non-diagnostic CDS boundary.
+            </p>
+        </section>
+
+        <!-- 3. DESIGN CONTRACT -->
+        <section class="info-card">
+            <h2>3. Design Contract (Regulatory &amp; Safety Locks)</h2>
+            <p>
+                To keep this phase investable, deployable and regulator-friendly, several hard locks are defined:
+            </p>
+
+            <h3>✓ Non-Diagnostic, Non-Prescriptive CDS</h3>
             <ul>
-                <li>Citizens needing voice support instead of text</li>
-                <li>Parents, teens and carers coordinating around care</li>
-                <li>Doctors, nurses, psychologists and nutritionists</li>
-                <li>Clinics and hospitals running remote sessions</li>
-                <li>Ministries running official health webinars</li>
+                <li>No insulin dose adjustments.</li>
+                <li>No medication changes.</li>
+                <li>No emergency decisions.</li>
+                <li>Only behavioural coaching, education and risk-awareness messaging.</li>
             </ul>
 
-            <h3>Safety &amp; Governance</h3>
-            <div class="badge-row">
-                <span class="badge badge-safe">Passport + role + scope required</span>
-                <span class="badge badge-safe">Recording OFF by default</span>
-                <span class="badge badge-safe">Clear consent for any recording</span>
-                <span class="badge badge-safe">No anonymous calls</span>
-                <span class="badge badge-risk">No “open hotline” style random calls</span>
-                <span class="badge badge-risk">No public video rooms</span>
-            </div>
-        </aside>
-    </div>
+            <h3>✓ Alignment with FDA / EU MDR / NHS / GCC Expectations</h3>
+            <ul>
+                <li>Positioned as low-risk, supportive CDS (clinical decision support) with clear boundaries.</li>
+                <li>Messages always include:
+                    <ul>
+                        <li>An educational framing (“this is general information”).</li>
+                        <li>A reminder to consult the user’s own care team for any treatment decisions.</li>
+                        <li>Clear escalation advice for serious symptoms (chest pain, severe shortness of breath,
+                            suspected DKA or severe hypo).</li>
+                    </ul>
+                </li>
+            </ul>
 
-    <section class="section">
-        <h2>Call Types &amp; Use Cases</h2>
-        <h3>Citizen &amp; Family Calls</h3>
-        <p>
-            For citizens and families, Phase 12 offers a simple way to speak with trusted people when text is not enough:
-        </p>
-        <ul>
-            <li>Parent and teen discussing a Women+ or mental health journey with a coach</li>
-            <li>Family member joining a remote check-in around diabetes or medication adherence</li>
-            <li>Carer speaking with a clinic about practical, non-diagnostic support</li>
-        </ul>
-        <p>
-            All calls are tied to real profiles and clear expectations: what this call can and cannot be used for.
-        </p>
+            <h3>✓ Zero-Trust Data &amp; Privacy Model</h3>
+            <ul>
+                <li>Coarse location only (city/region) — no raw GPS trails.</li>
+                <li>Weather/AQI API keys stored in secure vaults; all calls go through a hardened Environment Provider Layer with logging, throttling and provider versioning.</li>
+                <li>Environment and diabetes data joined in a pseudonymised, analytics-ready way, designed for future NHS / GCC audits.</li>
+            </ul>
 
-        <h3>Professional Calls</h3>
-        <p>
-            For clinicians and wellness professionals, Phase 12 provides a channel that is:
-        </p>
-        <ul>
-            <li>identity-verified via Phase 11 passports</li>
-            <li>connected to Elisence profiles and attachments</li>
-            <li>guarded by scopes that define which roles may call whom</li>
-        </ul>
-        <p>
-            Ministries can restrict which call types are enabled in each country or programme.
-        </p>
-    </section>
+            <h3>✓ Five-Language Native Readiness (EN / FA / AR / TR / RO)</h3>
+            <ul>
+                <li>All messages, templates and voice scripts are i18n-ready from day one.</li>
+                <li>No hard-coded English inside the engine; everything goes through keys and translation packs.</li>
+            </ul>
 
-    <section class="section">
-        <h2>How Calls Are Started</h2>
-        <h3>From Profiles and Messages</h3>
-        <p>
-            Phase 12 is not a separate app. Instead, calls appear naturally where they make sense:
-        </p>
-        <ul>
-            <li>From a professional profile in Phase 10 (if calling is enabled)</li>
-            <li>From a secure message thread when both sides agree to escalate to a call</li>
-            <li>From a family view where carers are already connected to a user’s journey</li>
-        </ul>
-        <p>
-            Every call must pass through Phase 11: passport validation, role checks, scope checks
-            and replay protection, before any media connection is attempted.
-        </p>
-    </section>
+            <h3>✓ No Clinical Overreach</h3>
+            <ul>
+                <li>No “your insulin will absorb X% faster” style claims.</li>
+                <li>No deterministic promises.</li>
+                <li>Always framed as pattern-awareness
+                    (“you have previously had more lows on very hot days”) — not hard physiology claims.</li>
+            </ul>
+        </section>
 
-    <section class="section">
-        <h2>Technical &amp; Network Architecture</h2>
-        <h3>Real-Time Engine</h3>
-        <p>
-            Under the surface, Phase 12 uses a WebRTC-style engine with:
-        </p>
-        <ul>
-            <li>STUN/TURN-like relays for difficult networks</li>
-            <li>Adaptive bitrate and resolution for low-bandwidth users</li>
-            <li>Support for voice-only mode when video is not possible or not desired</li>
-        </ul>
-        <p>
-            The goal is simple: “it just works” on typical home and mobile connections, including
-            conditions common in GCC and wider regions.
-        </p>
+        <!-- 4. SYSTEM ARCHITECTURE -->
+        <section class="info-card">
+            <h2>4. System Architecture (High-Level)</h2>
+            <p>
+                This phase combines three layers that work together as one environment-aware companion:
+            </p>
 
-        <h3>Encryption &amp; Identity</h3>
-        <p>
-            Media streams are encrypted in transit, and sessions are anchored to:
-        </p>
-        <ul>
-            <li>a valid X-Passport (Phase 11)</li>
-            <li>clear roles (citizen, teen, doctor, clinic, ministry)</li>
-            <li>scopes that define what kind of call is permitted</li>
-        </ul>
-        <p>
-            There are no anonymous or unverified calls inside Elisence.
-        </p>
-    </section>
+            <h3>Environment Layer</h3>
+            <ul>
+                <li><strong>Weather:</strong> temperature, humidity, heat index, pressure, UV, basic conditions
+                    (rain / clear / storm).</li>
+                <li><strong>Air:</strong> AQI, PM2.5, PM10, NO₂, O₃, CO
+                    (leveraging the Air-Aware Health &amp; AQI Coach roadmap).</li>
+                <li>Data source: global APIs with a provider abstraction and WORM-logged provenance.</li>
+            </ul>
 
-    <section class="section">
-        <h2>Recording, Consent &amp; Compliance</h2>
-        <h3>Recording OFF by Default</h3>
-        <p>
-            To protect privacy and reduce risk, Phase 12 treats recording as an exception, not a default:
-        </p>
-        <ul>
-            <li>Recording is OFF by default for all calls</li>
-            <li>Any recording feature must be explicitly enabled by ministries</li>
-            <li>Both sides must receive clear, visible consent prompts</li>
-            <li>Storage rules (where, how long, who can access) are governed centrally</li>
-        </ul>
+            <h3>Metabolic Context Layer</h3>
+            <ul>
+                <li>Diabetes data from Phase 9:
+                    <ul>
+                        <li>Glucose logs (manual or device).</li>
+                        <li>Medication flags (insulin / GLP-1 / oral agents).</li>
+                        <li>Meals &amp; snacks.</li>
+                        <li>Activity and steps.</li>
+                        <li>Hydration tags where available.</li>
+                    </ul>
+                </li>
+                <li>Joined with recent environment snapshots to form
+                    <strong>EnvMetabolicContext</strong> objects.</li>
+            </ul>
 
-        <h3>Non-Diagnostic Posture</h3>
-        <p>
-            Even when a doctor is on the call, Phase 12 is positioned as:
-        </p>
-        <ul>
-            <li>support, coaching and education</li>
-            <li>not a standalone clinical diagnosis engine</li>
-        </ul>
-        <p>
-            This helps keep Elisence on the safe side of regulatory boundaries while allowing value in everyday care.
-        </p>
-    </section>
+            <h3>Coaching &amp; Advice Layer</h3>
+            <ul>
+                <li>Rule-plus-pattern engine that:
+                    <ul>
+                        <li>Detects heat-related hypo patterns.</li>
+                        <li>Marks dehydration-risk days.</li>
+                        <li>Notes low-activity weather days.</li>
+                        <li>Highlights pollution/stress-linked high-glucose patterns.</li>
+                    </ul>
+                </li>
+                <li>Outputs short cards + voice messages for the Diabetes Coach and, later, Women+ flows.</li>
+            </ul>
+            <p class="subtle">
+                The result is not a separate “weather screen” but a continuous background companion that informs
+                daily diabetes coaching.
+            </p>
+        </section>
 
-    <section class="section">
-        <h2>Accessibility, Voice-First &amp; Languages</h2>
-        <h3>Voice-First Experience</h3>
-        <p>
-            Phase 12 works in harmony with the voice and zero-typing engines:
-        </p>
-        <ul>
-            <li>Users can start a call using simple voice commands</li>
-            <li>Elisa can assist before and after calls (summaries, next steps)</li>
-            <li>Voice-only calls are prioritised for users with limited bandwidth or comfort</li>
-        </ul>
+        <!-- 5. CORE USE-CASES -->
+        <section class="info-card">
+            <h2>5. Core Use-Cases (For Patients &amp; Care Teams)</h2>
 
-        <h3>Blind &amp; Low-Vision Support</h3>
-        <p>
-            Combined with accessibility phases, the call UI uses:
-        </p>
-        <ul>
-            <li>high-contrast layouts and large controls</li>
-            <li>screen-reader-friendly labels</li>
-            <li>audio cues for join/leave/mute events</li>
-        </ul>
+            <h3>Heat &amp; Hypo Awareness</h3>
+            <p>
+                “On very hot days, you’ve had more low readings within 1–2 hours after insulin.
+                Today is another hot day — drink enough water, avoid unexpected intense effort, and talk to your care team
+                if you’ve noticed more lows recently.”
+            </p>
 
-        <h3>Five-Language Foundation</h3>
-        <p>
-            System prompts, call controls and status messages are designed to work across:
-            English, Farsi, Arabic, Turkish and Romanian, with a path for future localisation.
-        </p>
-    </section>
+            <h3>Hydration &amp; Glucose Stability</h3>
+            <p>
+                “The weather is hot and humid. Dehydration can make glucose readings look higher.
+                Try to keep your water intake regular today, especially if your readings run high.”
+            </p>
 
-    <section class="section">
-        <h2>Integration With Other Phases</h2>
-        <h3>From Data to Conversation</h3>
-        <p>
-            Phase 12 does not replace other engines &mdash; it connects them:
-        </p>
-        <ul>
-            <li><strong>Phase 7 &amp; 9:</strong> complex Women+ or diabetes journeys can escalate to guided calls when needed.</li>
-            <li><strong>Phase 10:</strong> social and profile interactions can safely move into real-time conversation.</li>
-            <li><strong>Phase 11:</strong> every call is anchored in the same security passport and audit system.</li>
-            <li><strong>Phase 16 &amp; 17:</strong> nutrition and mental health support can include structured, time-boxed sessions.</li>
-        </ul>
-        <p>
-            In practice, Phase 12 gives Elisence a live heartbeat: when data is not enough, people can talk.
-        </p>
-    </section>
+            <h3>Low-Activity Weather Days</h3>
+            <p>
+                “We’ve noticed you tend to move less on rainy or cold days.
+                Would you like to switch today’s walk to a short indoor routine instead?”
+            </p>
 
-    <section class="section">
-        <h2>Government &amp; Investor View</h2>
-        <h3>Governed, Not Chaotic</h3>
-        <p>
-            Unlike generic video platforms, Phase 12 is designed to be configured by ministries:
-        </p>
-        <ul>
-            <li>which roles are allowed to call which roles</li>
-            <li>in which regions and for which programmes</li>
-            <li>whether group sessions and webinars are enabled</li>
-            <li>whether recording is allowed and under what policies</li>
-        </ul>
-        <p>
-            This allows GCC governments, hospitals and insurers to deploy real-time care safely inside a controlled ecosystem.
-        </p>
+            <h3>Pollution &amp; Stress Context</h3>
+            <p>
+                “Air pollution is high today. Some people feel more tired and see slightly higher glucose on such days.
+                If you feel unusually exhausted or your readings are higher than normal, this might be part of the picture —
+                not just your food.”
+            </p>
 
-        <h3>Strategic Value</h3>
-        <p>
-            For investors, Phase 12 is a key part of Elisence’s moat: it turns the platform from a data layer into a living
-            network of real conversations, without losing clinical and regulatory discipline.
-        </p>
-    </section>
+            <h3>Women’s Health &amp; Pregnancy (Future Integration)</h3>
+            <p>
+                “Today is very hot and humid. Because you’re pregnant and living with diabetes, stay hydrated, avoid long
+                walks under the sun, and contact your clinic if you feel unwell.”
+            </p>
 
-    <div class="footer-note">
-        <strong>In one sentence:</strong>
-        Phase 12 gives Elisence a <span class="highlight">live voice and face</span> &mdash;
-        secure voice and video calls that connect citizens, families, professionals and ministries,
-        all governed by the same Zero-Trust, passport-based architecture that protects the rest of the platform.
-    </div>
-</main>
+            <p class="subtle">
+                All messages are supportive, non-judgmental and non-prescriptive, with consistent safety framing.
+            </p>
+        </section>
+
+        <!-- 6. ROADMAP -->
+        <section class="info-card">
+            <h2>6. Roadmap — What Will Be Built (Later)</h2>
+            <p class="highlight">
+                Exactly like Phase 14, everything below is <strong>DESIGNED ONLY</strong>.
+                No implementation or wiring to the live system has been started yet.
+            </p>
+
+            <h3>PHASE ENV-D — STEP 1: Foundation &amp; Regulatory Envelope</h3>
+            <ul>
+                <li>Finalise the regulatory boundary document:
+                    <ul>
+                        <li>Classify the module as low-risk supportive CDS.</li>
+                        <li>Explicitly list “what we will never do” (no dosing, no emergency decisions).</li>
+                        <li>Cross-reference FDA CDS guidance, EU MDR borderline thinking, NHS DTAC-style requirements,
+                            GCC PDPL principles.</li>
+                    </ul>
+                </li>
+                <li>Select weather &amp; AQI providers with global coverage, health-friendly licensing and strong SLAs.</li>
+                <li>Build the Environment Provider Layer with Zero-Trust:
+                    <ul>
+                        <li>API keys in vaults.</li>
+                        <li>Rate limits.</li>
+                        <li>provider_name + version + hash in WORM logs for every call.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>PHASE ENV-D — STEP 2: Environment Snapshot &amp; Diabetes Context</h3>
+            <ul>
+                <li>Stand up an <strong>EnvSnapshot Store</strong> (coarse, city-level).</li>
+                <li>Define the <strong>MetabolicContextSnapshot</strong> schema (reusing Phase 9’s internal model).</li>
+                <li>Implement a safe join process that, at defined intervals, creates EnvMetabolicContext objects
+                    without exposing raw identifiers.</li>
+            </ul>
+
+            <h3>PHASE ENV-D — STEP 3: Rule-Based Risk &amp; Pattern Detection</h3>
+            <ul>
+                <li>Implement first-wave rules for:
+                    <ul>
+                        <li>Heat-associated hypo risk (hot days + frequent lows after insulin).</li>
+                        <li>Dehydration-risk conditions (heat + humidity + low hydration signals).</li>
+                        <li>Low-activity weather days (cold/rainy + step count drop vs baseline).</li>
+                        <li>Pollution-linked high-glucose patterns (high AQI days + higher average readings).</li>
+                    </ul>
+                </li>
+                <li>Store these as EnvMetabolicEvents with severity buckets (low / caution / educational-only).</li>
+            </ul>
+
+            <h3>PHASE ENV-D — STEP 4: Advice Template Library (5 Languages)</h3>
+            <ul>
+                <li>Build a multi-language advice catalog:
+                    <ul>
+                        <li>Short headline (for cards).</li>
+                        <li>Explanatory paragraph (for details).</li>
+                        <li>TTS-optimised script (for voice).</li>
+                        <li>All in EN / FA / AR / TR / RO.</li>
+                        <li>With clear disclaimers and “talk to your doctor” prompts where appropriate.</li>
+                    </ul>
+                </li>
+                <li>Ensure all strings are neutral, non-alarmist and culture-sensitive
+                    (e.g., heat considerations in Middle Eastern countries).</li>
+            </ul>
+
+            <h3>PHASE ENV-D — STEP 5: Coaching Engine &amp; UI/Voice Integration</h3>
+            <ul>
+                <li>Create a Contextual Coaching Engine that takes:
+                    <ul>
+                        <li>EnvMetabolicContext.</li>
+                        <li>EnvMetabolicEvents.</li>
+                        <li>User sensitivity profile (diabetes, heart, pregnancy, children in household).</li>
+                    </ul>
+                    and produces at most 1–3 carefully selected advice messages.
+                </li>
+                <li>Integrate into:
+                    <ul>
+                        <li>Phase 9 Diabetes dashboard (“Today’s Environment &amp; Diabetes Context” card).</li>
+                        <li>Detail screens with mini-charts (env vs glucose/activity over recent days).</li>
+                        <li>The Elisence Voice Engine (Phase 13) so users can ask:
+                            <ul>
+                                <li>“How is today’s weather affecting my diabetes?”</li>
+                                <li>“Is this a good day to walk outside?”</li>
+                            </ul>
+                            and receive safe, non-prescriptive answers.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>PHASE ENV-D — STEP 6: Personalisation &amp; Learning</h3>
+            <ul>
+                <li>Implement a transparent rule-plus-analytics layer (not a black-box ML) that:
+                    <ul>
+                        <li>Detects user-specific patterns (e.g., “you tend to have more lows on very hot days”).</li>
+                        <li>Explains why a given advice is shown (“we saw X pattern in your last Y days”).</li>
+                    </ul>
+                </li>
+                <li>Add user controls for:
+                    <ul>
+                        <li>Turning environment-based coaching ON/OFF.</li>
+                        <li>Choosing “gentle education only” vs “proactive alerts”.</li>
+                        <li>Selecting preferred language and tone.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>PHASE ENV-D — STEP 7: Safety, Audit &amp; Evidence Pack</h3>
+            <ul>
+                <li>Define and run test suites:
+                    <ul>
+                        <li>Rule mapping tests (weather/AQI → risk buckets → advice templates).</li>
+                        <li>Safety tests (no dosing language, no diagnostic claims).</li>
+                        <li>Localisation tests (all 5 languages present, no mixed-language artefacts).</li>
+                    </ul>
+                </li>
+                <li>Build an evidence pack for regulators &amp; ministries:
+                    <ul>
+                        <li>Architecture diagrams.</li>
+                        <li>Sample message traces (with WORM log IDs).</li>
+                        <li>Scenario walkthroughs (heat wave, pollution spike, cold spell, etc.).</li>
+                        <li>Safety analysis showing strict adherence to non-diagnostic bounds.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 7. ETHICAL & CLINICAL BOUNDARIES -->
+        <section class="info-card">
+            <h2>7. Ethical &amp; Clinical Boundaries</h2>
+            <p>To remain safe, honest and respectful, Phase 12 follows these boundaries:</p>
+            <ul>
+                <li>No insulin/medication dose recommendations.</li>
+                <li>No claims of preventing complications or guaranteeing stability.</li>
+                <li>No replacement of physician judgement; always encourage consultation.</li>
+                <li>No use of raw precise location or hidden tracking; only coarse city/region in this phase.</li>
+                <li>No black-box “AI magic explanations”; whenever a pattern is flagged, the system tells the user why.</li>
+            </ul>
+            <p class="subtle">
+                This module is about <strong>context and awareness</strong>, not control.
+            </p>
+        </section>
+
+        <!-- 8. WHY THIS PHASE MATTERS -->
+        <section class="info-card">
+            <h2>8. Why This Phase Matters (For Investors &amp; Ministries)</h2>
+
+            <h3>Beyond Logbooks: True Contextual Diabetes Support</h3>
+            <p>
+                Most digital tools stop at logging food, glucose and medication. This phase brings weather, air, heat,
+                humidity and stress into the picture in a controlled, explainable way.
+            </p>
+
+            <h3>Government &amp; Public Health Relevance</h3>
+            <p>
+                Many GCC, Middle Eastern and global cities combine high diabetes prevalence with extreme weather and
+                poor air quality. A context-aware diabetes companion aligns directly with national NCD strategies,
+                climate resilience and prevention programmes.
+            </p>
+
+            <h3>Regulatory-Ready from Day One</h3>
+            <p>
+                Boundaries are clearly set: CDS support, not medical decision-making. Zero-Trust architecture,
+                WORM logging and multi-language safety messaging make it credible to NHS, GCC and European reviewers.
+            </p>
+
+            <h3>Foundational Layer for Future Phases</h3>
+            <p>
+                Can be extended into:
+            </p>
+            <ul>
+                <li>Women+ (pregnancy &amp; environmental load).</li>
+                <li>Mental Health (fatigue &amp; mood vs weather/pollution).</li>
+                <li>GNIE (Global Nutrition Intelligence) by adjusting hydration/nutrition guidance.</li>
+            </ul>
+
+            <h3>Differentiation &amp; Commercial Value</h3>
+            <p>
+                Very few platforms treat environment as a first-class citizen in diabetes care. Elisence positions itself
+                as a whole-life companion, not just another glucose log or CGM viewer.
+            </p>
+        </section>
+
+        <!-- 9. STATUS SUMMARY -->
+        <section class="info-card">
+            <h2>9. Status Summary</h2>
+            <ul>
+                <li>✔ Clinical &amp; behavioural concept: <strong>Completed</strong></li>
+                <li>✔ Regulatory &amp; safety framing (high-level): <strong>Completed</strong></li>
+                <li>✔ High-level architecture &amp; roadmap: <strong>Completed</strong></li>
+                <li>✖ Implementation in code: <strong>NOT started</strong></li>
+                <li>✖ Integration with live Diabetes / Women+ engines: <strong>NOT wired</strong></li>
+                <li>✖ Tests, pilots, and external evaluations: <strong>NOT yet executed</strong></li>
+            </ul>
+            <p class="subtle">
+                This phase is fully designed on paper and ready to be scheduled into future Elisence development waves.
+            </p>
+        </section>
+
+        <!-- 10. TAGLINE -->
+        <section class="info-card">
+            <h2>10. Suggested Tagline</h2>
+            <p class="tagline">
+                “When the weather changes, your diabetes feels it — Elisence helps you understand it, safely and in your own language.”
+            </p>
+        </section>
+
+    </main>
+</div>
+
+<!-- Elisa chat widget root -->
+<div id="elisa-chat-root"></div>
+
 </body>
 </html>
