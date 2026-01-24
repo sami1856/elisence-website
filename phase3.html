@@ -1,320 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elisence – Phase 3: Weight-Loss & Daily Care Companion</title>
+    <meta charset="UTF-8" />
+    <title>Elisence – Phase 3 · Weight-Loss & Daily Care Companion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+        name="description"
+        content="Elisence Phase 3 – Weight-Loss & Daily Care Companion. Daily journeys, check-ins, dopamine-positive motivation and Elisa as a supportive guide."
+    />
+
+    <!-- Elisa chat widget script (همان اسکریپت صفحه اصلی) -->
+    <script defer src="elisa-chat.js"></script>
 
     <style>
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #08172a;
-            color: #e8f4fc;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
             line-height: 1.6;
         }
 
-        header {
-            background-color: #020617;
-            padding: 1.8rem 0;
-            border-bottom: 1px solid #1e293b;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        /* نقطه و برچسب بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
         }
 
-        .header-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست (مثل index) */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* شِل اصلی صفحه فاز ۳ */
+        .page-wrapper {
+            min-height: 100vh;
+            padding: 80px 40px 80px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-shell {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* جا برای منوی سمت راست در دسکتاپ */
+        }
+
+        /* کارت هیرو بالای صفحه */
+        .phase-hero-card {
+            border-radius: 26px;
+            padding: 40px 36px 32px 36px;
+            background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
+            box-shadow:
+                0 0 45px rgba(0, 170, 255, 0.85),
+                0 0 120px rgba(0, 80, 200, 0.65);
+            border: 1px solid rgba(70, 190, 255, 0.6);
+            margin-bottom: 26px;
+        }
+
+        .phase-hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr);
+            gap: 24px;
             align-items: center;
         }
 
-        .brand-block { display: flex; flex-direction: column; }
-
-        .brand-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 0.14rem;
+        /* لوگوی مستطیلی */
+        .hero-logo-container {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
         }
 
-        .brand-sub {
-            font-size: 0.85rem;
-            color: #60a5fa;
-        }
-
-        nav.main-nav {
-            display: flex;
-            gap: 1.8rem;
-        }
-
-        nav.main-nav a {
-            color: #e2e8f0;
-            text-decoration: none;
-            font-size: 0.92rem;
-            letter-spacing: 0.05rem;
-            text-transform: uppercase;
-        }
-
-        nav.main-nav a:hover {
-            color: #38bdf8;
-            text-decoration: underline;
-        }
-
-        nav.main-nav a.active {
-            color: #38bdf8;
-            font-weight: 600;
-        }
-
-        main {
-            max-width: 1100px;
-            margin: 2.4rem auto 3.2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        h1 {
-            font-size: 1.9rem;
-            margin-bottom: 0.6rem;
-            color: #38bdf8;
-        }
-
-        .lead {
-            font-size: 1rem;
-            color: #cbd5f5;
-            margin-bottom: 1.8rem;
-        }
-
-        .card {
-            background: rgba(15, 23, 42, 0.95);
+        .main-hero-logo {
+            width: 100%;
+            height: auto;
             border-radius: 18px;
-            border: 1px solid #1e293b;
-            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55);
-            padding: 1.8rem 1.9rem;
-            margin-bottom: 1.8rem;
+            animation: breathingGlow 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.6));
         }
 
-        .card h2 {
-            margin-top: 0;
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-            color: #7dd3fc;
+        @keyframes breathingGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 25px rgba(0, 160, 255, 0.5)) brightness(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(0, 200, 255, 0.9)) brightness(1.15);
+                transform: scale(1.015);
+            }
         }
 
-        .card p {
-            margin: 0.4rem 0;
-            font-size: 0.95rem;
-            color: #e5f2ff;
-        }
-
-        .card ul {
-            margin: 0.5rem 0 0.2rem 1.2rem;
-            padding-left: 0.4rem;
-        }
-
-        .card li {
-            margin-bottom: 0.4rem;
-            font-size: 0.94rem;
-        }
-
-        .phase-label {
-            font-size: 0.82rem;
+        .phase-kicker {
+            font-size: 11px;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            letter-spacing: 0.12rem;
-            color: #94a3b8;
-            margin-bottom: 0.4rem;
+            color: #a5d7ff;
+            margin-bottom: 6px;
+        }
+
+        .phase-title {
+            font-size: 26px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .phase-subtitle {
+            font-size: 13px;
+            color: #d4e8ff;
+            margin-bottom: 12px;
+        }
+
+        .phase-intro {
+            font-size: 13px;
+            color: #dbefff;
+        }
+
+        .hero-footnote {
+            margin-top: 18px;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #7fb5ff;
+        }
+
+        .hero-footnote span {
+            opacity: 0.9;
+        }
+
+        /* کارت‌های توضیح فاز */
+        .sections-column {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .info-card {
+            border-radius: 20px;
+            padding: 20px 18px;
+            background: radial-gradient(circle at top, rgba(0, 120, 255, 0.40), rgba(0, 15, 40, 0.96));
+            border: 1px solid rgba(90, 185, 255, 0.85);
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+        }
+
+        .info-title {
+            font-size: 13px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            margin-bottom: 8px;
+        }
+
+        .info-body {
+            font-size: 12.5px;
+            color: #dbefff;
+        }
+
+        .info-body ul {
+            margin-top: 8px;
+            padding-left: 18px;
+        }
+
+        .info-body li {
+            margin-bottom: 4px;
         }
 
         @media (max-width: 900px) {
-            .header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.8rem;
+            .page-wrapper {
+                padding: 80px 18px 110px 18px;
             }
 
-            nav.main-nav {
+            .content-shell {
+                margin-right: 0;
+            }
+
+            .phase-hero-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
                 flex-wrap: wrap;
-                gap: 1.1rem;
+                justify-content: center;
+                gap: 8px;
             }
 
-            main {
-                padding: 0 1.2rem;
-            }
-
-            .card {
-                padding: 1.5rem 1.4rem;
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
             }
         }
     </style>
 </head>
-
 <body>
 
-<header>
-    <div class="header-inner">
-        <div class="logo-section">
-            <img src="elisence.png" alt="Elisence Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>ELISENCE</h1>
-                <p>Global Digital Health & Humanity Platform</p>
-            </div>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html"        class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
+    </nav>
+
+    <div class="page-wrapper">
+        <div class="content-shell">
+
+            <!-- هیرو فاز ۳ -->
+            <section class="phase-hero-card">
+                <div class="phase-hero-layout">
+
+                    <!-- لوگو -->
+                    <div class="hero-logo-container">
+                        <img
+                            src="elisence.png"
+                            alt="Elisence – Global Digital Health & Humanity Platform"
+                            class="main-hero-logo"
+                        />
+                    </div>
+
+                    <!-- متن اصلی فاز ۳ -->
+                    <div>
+                        <div class="phase-kicker">Phase 3 · Weight-Loss & Daily Care Companion</div>
+                        <div class="phase-title">Daily Companion for Real Life</div>
+                        <div class="phase-subtitle">
+                            Turning weight-loss and GLP-1 journeys into a supported, human experience — powered by Elisa.
+                        </div>
+                        <p class="phase-intro">
+                            Phase 3 is where Elisence becomes a true **daily health companion**.
+                            While Phase 1 captures the data and Phase 2 organises medications and doses,
+                            Phase 3 is the layer that lives with the user – check-ins, gentle coaching,
+                            dopamine-positive motivation and context-aware explanations in everyday language.
+                        </p>
+                        <div class="hero-footnote">
+                            <span>Supportive · Non-Judgmental · Dopamine-Positive · Audit-Ready</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- کارت‌های محتوا (همان متن‌هایی که خودت نوشتی) -->
+            <section class="sections-column">
+
+                <article class="info-card">
+                    <h2 class="info-title">What Phase 3 Is</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 3 is the “care & coaching layer” of Elisence.  
+                            While Phase 1 stores the data, and Phase 2 compares medications, Phase 3 is the part that
+                            interacts directly with the user’s daily life:
+                        </p>
+                        <ul>
+                            <li>Daily check-ins and reflections</li>
+                            <li>Weight-trend coaching (normal vs concerning changes)</li>
+                            <li>Interpretation of appetite, sleep and energy patterns</li>
+                            <li>GLP-1 schedule reminders (non-medical, supportive only)</li>
+                            <li>Behavioural nudges designed around dopamine balance</li>
+                            <li>Micro-rewards and motivational messaging</li>
+                            <li>Context-aware insights powered by Elisa</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">How It Helps Users</h2>
+                    <div class="info-body">
+                        <p>
+                            Most weight-loss journeys fail because users feel lost or unsupported.
+                            Phase 3 fixes this by giving every person a personalised, human-like companion:
+                        </p>
+                        <ul>
+                            <li>“Today your weight is stable — this is completely normal.”</li>
+                            <li>“You slept poorly last night; this may increase appetite today.”</li>
+                            <li>“You walked 2,400 steps more than yesterday — great job!”</li>
+                            <li>“Side effects have decreased compared to last week.”</li>
+                        </ul>
+                        <p>
+                            Elisa never judges, never pressures, and never uses fear.  
+                            She supports, encourages, and explains — like a patient friend who understands health science deeply.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">Dopamine-Positive Behaviour Design</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 3 is built on a behavioural model that focuses on **healthy dopamine stimulation**:
+                        </p>
+                        <ul>
+                            <li>Micro-rewards (stars, gentle animations, supportive messages)</li>
+                            <li>Breaking goals into tiny, achievable steps</li>
+                            <li>Weekly and monthly progress celebrations</li>
+                            <li>Positive anticipation loops to keep motivation high</li>
+                        </ul>
+                        <p>
+                            The goal is long-term consistency – small actions every day, reinforced with positive emotion rather than guilt.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">What It Provides to Clinicians & Clinics</h2>
+                    <div class="info-body">
+                        <p>
+                            For clinicians, Phase 3 creates a structured, summarised view of daily progress:
+                        </p>
+                        <ul>
+                            <li>Weight trend &amp; stability index</li>
+                            <li>Behaviour consistency charts</li>
+                            <li>Side-effect timeline</li>
+                            <li>Medication adherence rhythm</li>
+                            <li>Sleep–appetite correlation signals</li>
+                        </ul>
+                        <p>
+                            These insights allow clinicians to make safer and faster decisions,
+                            and reduce time spent reconstructing patient history.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">AI Intelligence – Elisa’s Role</h2>
+                    <div class="info-body">
+                        <p>
+                            Elisa is the **voice and personality** of Phase 3:
+                        </p>
+                        <ul>
+                            <li>Understands patterns (sleep → appetite → energy → weight)</li>
+                            <li>Explains gently: “this is normal”, “this needs attention”, “you’re improving”</li>
+                            <li>Encourages healthy habits without pressure or fear</li>
+                            <li>Speaks in five languages (EN, FA, AR, TR, RO)</li>
+                            <li>Remembers context: “last week you walked more – let’s get back to that rhythm”</li>
+                        </ul>
+                        <p>
+                            She is the emotional support engine of the entire weight-loss journey.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">Governance, Safety & Platform Links</h2>
+                    <div class="info-body">
+                        <p>Phase 3 strictly follows regulatory rules:</p>
+                        <ul>
+                            <li><strong>Non-diagnostic</strong> – never labels or diagnoses any disease.</li>
+                            <li><strong>Non-prescriptive</strong> – never tells the user what dose to take.</li>
+                            <li><strong>Explain, not decide</strong> – clarifies patterns but leaves final actions to clinicians.</li>
+                            <li><strong>Zero-Trust privacy</strong> – encrypted logs, no external sharing without consent.</li>
+                        </ul>
+                        <p>
+                            It also connects deeply with the rest of Elisence:
+                        </p>
+                        <ul>
+                            <li><strong>Phase 1:</strong> receives metabolic data (weight, GLP-1 reactions).</li>
+                            <li><strong>Phase 2:</strong> aligns with medication and dose history.</li>
+                            <li><strong>Phase 7:</strong> respects women’s hormonal and cycle factors.</li>
+                            <li><strong>Phase 8:</strong> feeds anonymised behaviour into risk &amp; emergency patterns.</li>
+                            <li><strong>Phase 9:</strong> strengthens diabetes management through behavioural insights.</li>
+                            <li><strong>Phase 16:</strong> links progress to nutrition &amp; GNIE intelligence.</li>
+                        </ul>
+                        <p>
+                            Together, these create a circular ecosystem that improves every part of the user’s health.
+                        </p>
+                    </div>
+                </article>
+
+            </section>
+
         </div>
-
-        <nav class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#phases">Phases</a>
-            <a href="about.html">About</a>
-            <a href="story.html">Story</a>
-            <a href="video.html">Videos</a>
-            <a href="contact.html">Contact</a>
-        </nav>
     </div>
-</header>
 
-<main>
-
-    <div class="phase-label">PHASE 3</div>
-
-    <h1>Weight-Loss & Daily Care Companion (GLP-1 Friendly)</h1>
-
-    <p class="lead">
-        Phase 3 is where Elisence becomes a true daily health companion.  
-        It transforms metabolic tracking into a personalised experience powered by **Elisa** — a supportive, emotionally-aware guide that helps users build healthy routines, manage GLP-1 therapy, and achieve long-term weight stability.
-    </p>
-
-    <!-- SECTION 1 -->
-    <section class="card">
-        <h2>What Phase 3 Is</h2>
-        <p>
-            Phase 3 is the “care & coaching experience” of Elisence.  
-            While Phase 1 stores the data, and Phase 2 compares medications, Phase 3 is the layer that
-            interacts directly with the user’s daily life.
-        </p>
-
-        <ul>
-            <li>Daily check-ins</li>
-            <li>Weight-trend coaching</li>
-            <li>Appetite, sleep, and energy interpretation</li>
-            <li>GLP-1 schedule reminders (non-medical, supportive only)</li>
-            <li>Behavioural nudges designed around dopamine balance</li>
-            <li>Micro-rewards and motivational messaging</li>
-            <li>Context-aware insights powered by Elisa</li>
-        </ul>
-    </section>
-
-    <!-- SECTION 2 -->
-    <section class="card">
-        <h2>How It Helps Users</h2>
-        <p>
-            Most weight-loss journeys fail because users feel lost or unsupported.  
-            Phase 3 fixes this by giving every person a personalised, human-like companion:
-        </p>
-
-        <ul>
-            <li>“Today your weight is stable — this is completely normal.”</li>
-            <li>“You slept poorly last night; this may increase appetite today.”</li>
-            <li>“You walked 2,400 steps more than yesterday — great job!”</li>
-            <li>“Side effects have decreased compared to last week.”</li>
-        </ul>
-
-        <p>
-            Elisa never judges, never pressures, and never uses fear.  
-            She supports, encourages, and explains — like a patient friend who understands health science deeply.
-        </p>
-    </section>
-
-    <!-- SECTION 3 -->
-    <section class="card">
-        <h2>Dopamine-Positive Behaviour Design</h2>
-        <p>
-            Phase 3 is built on a unique behavioural system that focuses on healthy dopamine stimulation:
-        </p>
-
-        <ul>
-            <li>Micro-rewards (stars, gentle animations, supportive messages)</li>
-            <li>Goal-breaking into tiny, achievable steps</li>
-            <li>Progress celebration (weekly & monthly)</li>
-            <li>Positive anticipation loops to keep motivation high</li>
-        </ul>
-
-        <p>
-            The goal is long-term consistency — small actions every day, reinforced with positive emotion.
-        </p>
-    </section>
-
-    <!-- SECTION 4 -->
-    <section class="card">
-        <h2>What It Provides to Clinicians & Clinics</h2>
-        <p>
-            For clinicians, Phase 3 creates a structured, summarised view of daily progress:
-        </p>
-
-        <ul>
-            <li>Weight trend & stability index</li>
-            <li>Behaviour consistency charts</li>
-            <li>Side-effect timeline</li>
-            <li>Medication adherence rhythm</li>
-            <li>Sleep–appetite correlation signals</li>
-        </ul>
-
-        <p>
-            These insights allow clinicians to make safer and faster decisions,
-            and reduce time spent reconstructing patient history.
-        </p>
-    </section>
-
-    <!-- SECTION 5 -->
-    <section class="card">
-        <h2>AI Intelligence: Elisa’s Role</h2>
-        <p>
-            Elisa is the voice of Phase 3.
-        </p>
-        <ul>
-            <li>Understands patterns (sleep → appetite → energy → weight)</li>
-            <li>Explains gently: “this is normal”, “this needs attention”, “you’re improving”</li>
-            <li>Encourages healthy habits without pressure</li>
-            <li>Speaks in five languages (EN, FA, AR, TR, RO)</li>
-            <li>Remembers context: “last week you walked more — let’s get back to that rhythm”</li>
-        </ul>
-
-        <p>
-            She is the emotional support engine of the entire weight-loss journey.
-        </p>
-    </section>
-
-    <!-- SECTION 6 -->
-    <section class="card">
-        <h2>Governance & Safety Boundaries</h2>
-        <p>Phase 3 strictly follows regulatory rules:</p>
-        <ul>
-            <li><strong>Non-diagnostic</strong> — never labels or diagnoses any disease.</li>
-            <li><strong>Non-prescriptive</strong> — never tells the user what dose to take.</li>
-            <li><strong>Explain, not decide</strong> — clarifies patterns but leaves the final action to clinicians.</li>
-            <li><strong>Zero-trust privacy</strong> — encrypted logs, no external sharing.</li>
-        </ul>
-    </section>
-
-    <!-- SECTION 7 -->
-    <section class="card">
-        <h2>How Phase 3 Connects to the Whole Platform</h2>
-        <p>
-            Phase 3 is deeply linked to the rest of Elisence:
-        </p>
-
-        <ul>
-            <li><strong>Phase 1:</strong> receives metabolic data (weight, GLP-1 reactions)</li>
-            <li><strong>Phase 2:</strong> builds understanding for medication choice awareness</li>
-            <li><strong>Phase 7:</strong> incorporates women’s hormonal and cycle factors</li>
-            <li><strong>Phase 8:</strong> feeds anonymised behaviour into risk & emergency patterns</li>
-            <li><strong>Phase 9:</strong> strengthens diabetes management through behavioural insights</li>
-            <li><strong>Phase 16:</strong> aligns weight-loss progress with nutrition & GNIE intelligence</li>
-        </ul>
-
-        <p>
-            Together, these create a circular ecosystem that improves every part of the user’s health.
-        </p>
-    </section>
-
-</main>
+    <!-- ریشه ویجت Elisa – مثل index و phase2 -->
+    <div id="elisa-chat-root"></div>
 
 </body>
 </html>
