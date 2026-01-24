@@ -1,68 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
     <title>Elisence – Phase 8: Advanced Health Engine (AHE)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Elisa chat widget -->
     <script defer src="elisa-chat.js"></script>
 
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         :root {
-            --bg-space: radial-gradient(circle at top, #020617 0%, #020617 45%, #000000 100%);
-            --text-main: #e5f2ff;
-            --text-soft: #cbd5f5;
+            --bg-space: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            --text-main: #e8f4fc;
+            --text-soft: #dbefff;
             --text-muted: #94a3b8;
             --accent: #38bdf8;
             --accent-soft: #7dd3fc;
-            --card-bg: rgba(15, 23, 42, 0.97);
-            --card-border: rgba(56, 189, 248, 0.95);
-            --shadow-strong: 0 0 28px rgba(56, 189, 248, 0.7), 0 0 52px rgba(15, 23, 42, 0.95);
-        }
-
-        * {
-            box-sizing: border-box;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-border: rgba(90, 185, 255, 0.9);
         }
 
         body {
-            margin: 0;
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: var(--bg-space);
             color: var(--text-main);
+            overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* Top dot + label */
+        /* ===== top dot & label (مثل index) ===== */
         .top-dot {
             position: fixed;
-            left: 16px;
-            top: 16px;
-            width: 11px;
-            height: 11px;
-            border-radius: 999px;
-            background: #38bdf8;
-            box-shadow: 0 0 16px rgba(56, 189, 248, 0.95);
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
             z-index: 900;
         }
 
         .top-dot-label {
             position: fixed;
-            left: 36px;
-            top: 11px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            background: rgba(15, 23, 42, 0.9);
-            font-size: 0.7rem;
-            letter-spacing: 0.18em;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: #e5f2ff;
+            color: #a9d4ff;
             z-index: 900;
         }
 
-        /* Side navigation (pills) */
+        /* ===== side navigation – DESKTOP (کپی مستقیم از index) ===== */
         .side-nav {
             position: fixed;
             right: 32px;
@@ -71,46 +68,48 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            z-index: 950;
+            z-index: 999;
         }
 
         .nav-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.65rem 1.5rem;
+            display: block;
+            padding: 13px 38px;
             border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.75);
-            background: radial-gradient(circle at top left,
-                rgba(56, 189, 248, 0.32),
-                rgba(15, 23, 42, 0.97));
-            color: #e2e8f0;
-            font-size: 0.78rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
             text-decoration: none;
-            box-shadow: 0 0 14px rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(12px);
-            transition: transform 0.16s ease,
-                        box-shadow 0.16s ease,
-                        border-color 0.16s ease,
-                        background 0.16s ease;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top,
+                rgba(0, 130, 255, 0.45),
+                rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease,
+                padding 0.2s ease;
         }
 
         .nav-btn:hover {
-            transform: translateX(-2px);
-            border-color: rgba(56, 189, 248, 0.95);
-            box-shadow: 0 0 22px rgba(56, 189, 248, 0.9);
-            background: radial-gradient(circle at top left,
-                rgba(56, 189, 248, 0.45),
-                rgba(15, 23, 42, 0.98));
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top,
+                rgba(0, 170, 255, 0.7),
+                rgba(0, 25, 80, 1));
         }
 
         .nav-btn:active {
-            transform: translateX(-1px) translateY(1px) scale(0.99);
+            transform: translateX(-2px) scale(0.99);
         }
 
-        /* Layout wrapper */
+        /* ===== layout wrapper (هم استایل فاز ۹) ===== */
         .page-wrapper {
             max-width: 1200px;
             margin: 0 auto;
@@ -123,12 +122,14 @@
 
         .phase-hero-card {
             background: radial-gradient(circle at top left,
-                rgba(56, 189, 248, 0.32),
+                rgba(0, 156, 255, 0.35),
                 rgba(15, 23, 42, 0.98));
             border-radius: 26px;
             border: 1px solid var(--card-border);
-            box-shadow: var(--shadow-strong);
-            padding: 1.6rem 1.8rem;
+            box-shadow:
+                0 0 45px rgba(0, 170, 255, 0.85),
+                0 0 120px rgba(0, 80, 200, 0.65);
+            padding: 1.8rem 1.9rem;
         }
 
         .phase-hero-inner {
@@ -147,7 +148,7 @@
             padding: 0.75rem;
             box-shadow:
                 0 0 24px rgba(15, 23, 42, 0.9),
-                0 0 40px rgba(15, 23, 42, 0.95);
+                0 0 40px rgba(15, 23, 42, 0.9);
         }
 
         .phase-hero-logo {
@@ -185,7 +186,7 @@
             font-size: 0.95rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: #7dd3fc;
+            color: #93c5fd;
             margin-bottom: 0.6rem;
         }
 
@@ -199,14 +200,14 @@
             margin: 0.3rem 0 0 0;
             padding-left: 1.1rem;
             font-size: 0.9rem;
-            color: #e0f2fe;
+            color: #dbefff;
         }
 
         .phase-hero-bullets li {
             margin-bottom: 0.2rem;
         }
 
-        /* Phase detail cards */
+        /* ===== detail cards ===== */
         .phase-main {
             max-width: 1100px;
             margin: 0 auto;
@@ -216,7 +217,9 @@
             background: var(--card-bg);
             border-radius: 20px;
             border: 1px solid var(--card-border);
-            box-shadow: var(--shadow-strong);
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
             padding: 1.8rem 1.7rem;
             margin-bottom: 1.8rem;
         }
@@ -232,7 +235,7 @@
             margin-top: 1.1rem;
             margin-bottom: 0.4rem;
             font-size: 1.02rem;
-            color: #bae6fd;
+            color: var(--accent);
         }
 
         .info-card p {
@@ -264,6 +267,7 @@
             color: var(--text-soft);
         }
 
+        /* ===== responsive (مثل index) ===== */
         @media (max-width: 900px) {
             .page-wrapper {
                 padding: 80px 1.2rem 80px 1.2rem;
@@ -277,24 +281,26 @@
                 flex: 0 0 auto;
             }
 
+            .info-card {
+                padding: 1.5rem 1.35rem;
+            }
+
             .side-nav {
+                position: fixed;
                 right: 50%;
-                bottom: 18px;
                 top: auto;
+                bottom: 18px;
                 transform: translateX(50%);
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 10px;
+                gap: 8px;
             }
 
             .nav-btn {
-                font-size: 0.7rem;
-                padding: 0.6rem 1.1rem;
-            }
-
-            .info-card {
-                padding: 1.5rem 1.35rem;
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
             }
         }
     </style>
@@ -305,12 +311,12 @@
 <div class="top-dot-label">ELISENCE</div>
 
 <nav class="side-nav">
-    <a class="nav-btn" href="index.html">Home</a>
-    <a class="nav-btn" href="index.html#phases">Phases</a>
-    <a class="nav-btn" href="about.html">About</a>
-    <a class="nav-btn" href="story.html">Story</a>
-    <a class="nav-btn" href="video.html">Videos</a>
-    <a class="nav-btn" href="contact.html">Contact</a>
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="index.html#phases" class="nav-btn">Phases</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="story.html" class="nav-btn">Story</a>
+    <a href="video.html" class="nav-btn">Videos</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
 </nav>
 
 <div class="page-wrapper">
@@ -345,6 +351,7 @@
         </div>
     </section>
 
+    <!-- DETAIL CARDS -->
     <main class="phase-main">
 
         <!-- 1. WHAT AHE IS -->
