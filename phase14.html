@@ -2,573 +2,539 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence — Phase 14: Life Map Companion</title>
+    <title>Elisence – Phase 14: Life Map Companion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-        name="description"
-        content="Elisence Phase 14 — Life Map Companion for blind and low-vision users: voice-first, on-device spatial awareness, designed for accessibility and safety. Roadmap completed, implementation to follow."
-    />
+
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
 
     <style>
-        :root {
-            --bg-dark: #050814;
-            --bg-card: #0d1020;
-            --accent: #4ea8ff;
-            --accent-soft: rgba(78, 168, 255, 0.1);
-            --text-main: #f5f7ff;
-            --text-muted: #a3b0d8;
-            --border-soft: rgba(255, 255, 255, 0.08);
-            --danger: #ff5c7a;
-            --success: #4fd1c5;
-        }
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-space: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            --text-main: #e8f4fc;
+            --text-soft: #cbd5f5;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-soft: #7dd3fc;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-border: rgba(56, 189, 248, 0.9);
+            --shadow-strong: 0 0 28px rgba(56, 189, 248, 0.9),
+                             0 0 52px rgba(15, 23, 42, 0.9);
         }
 
         body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #111633 0, #050814 60%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+            background: var(--bg-space);
             color: var(--text-main);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
+        /* ===== top dot + label ===== */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 900;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 900;
         }
 
-        header {
-            border-bottom: 1px solid var(--border-soft);
-            background: linear-gradient(
-                to right,
-                rgba(7, 12, 40, 0.95),
-                rgba(6, 10, 32, 0.98)
-            );
-            backdrop-filter: blur(14px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .nav-shell {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .brand-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #4ea8ff, #7f5dff 45%, #111631);
-            box-shadow: 0 0 18px rgba(78, 168, 255, 0.6);
-        }
-
-        .brand-text {
+        /* ===== side navigation ===== */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            z-index: 999;
         }
 
-        .brand-text span:first-child {
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            font-size: 0.8rem;
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top,
+                rgba(0, 130, 255, 0.45),
+                rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease,
+                padding 0.2s ease;
         }
 
-        .brand-text span:last-child {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top,
+                rgba(0, 170, 255, 0.7),
+                rgba(0, 25, 80, 1));
         }
 
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            font-size: 0.9rem;
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
         }
 
-        nav a {
-            color: var(--text-muted);
-            padding-bottom: 0.15rem;
-            border-bottom: 2px solid transparent;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-        }
-
-        nav a.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        main {
-            max-width: 1120px;
+        /* ===== layout wrapper ===== */
+        .page-wrapper {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
+            padding: 96px 1.8rem 72px 1.8rem;
         }
 
-        .phase-tag {
-            display: inline-flex;
+        .hero-area {
+            margin-bottom: 2.4rem;
+        }
+
+        .phase-hero-card {
+            background: radial-gradient(circle at top left,
+                rgba(56, 189, 248, 0.28),
+                rgba(15, 23, 42, 0.98));
+            border-radius: 26px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.6rem 1.8rem;
+        }
+
+        .phase-hero-inner {
+            display: flex;
+            gap: 1.8rem;
+            align-items: stretch;
+        }
+
+        .phase-hero-logo-box {
+            flex: 0 0 290px;
+            border-radius: 22px;
+            background: radial-gradient(circle at top, #0b1220, #020617);
+            display: flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            background: var(--accent-soft);
-            border-radius: 999px;
-            padding: 0.35rem 0.9rem;
-            border: 1px solid rgba(78, 168, 255, 0.5);
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow:
+                0 0 24px rgba(15, 23, 42, 0.9),
+                0 0 40px rgba(15, 23, 42, 0.9);
         }
 
-        .phase-tag-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: var(--accent);
+        .phase-hero-logo {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 0 28px rgba(15, 23, 42, 0.95);
         }
 
-        h1 {
-            margin-top: 1.1rem;
-            font-size: 2rem;
-            letter-spacing: 0.03em;
-        }
-
-        .subtitle {
-            margin-top: 0.5rem;
-            max-width: 760px;
-            color: var(--text-muted);
-            font-size: 0.98rem;
-        }
-
-        .grid {
-            margin-top: 2rem;
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-            gap: 1.75rem;
-        }
-
-        @media (max-width: 900px) {
-            .grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            nav {
-                display: none; /* simple mobile version for now */
-            }
-
-            header {
-                position: static;
-            }
-        }
-
-        .card {
-            background: radial-gradient(circle at top left, #1a2147 0, #090d20 55%);
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-soft);
-            padding: 1.5rem 1.4rem;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        .card h3 {
-            margin-top: 1.3rem;
-            font-size: 1rem;
-        }
-
-        .pill-list {
+        .phase-hero-text-box {
+            flex: 1;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-top: 0.75rem;
-            margin-bottom: 0.25rem;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .pill {
+        .phase-label {
             font-size: 0.78rem;
-            padding: 0.28rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background: rgba(10, 15, 40, 0.9);
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .pill.pill-strong {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
-        }
-
-        .badge-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-        }
-
-        .badge {
-            font-size: 0.72rem;
-            padding: 0.22rem 0.55rem;
-            border-radius: 0.4rem;
-            border: 1px solid var(--border-soft);
-            color: var(--text-muted);
-        }
-
-        .badge.badge-safe {
-            border-color: var(--success);
-            color: var(--success);
-        }
-
-        .badge.badge-risk {
-            border-color: var(--danger);
-            color: var(--danger);
-        }
-
-        .section {
-            margin-top: 2rem;
-        }
-
-        .section h2 {
-            font-size: 1.05rem;
             text-transform: uppercase;
-            letter-spacing: 0.13em;
+            letter-spacing: 0.18em;
             color: var(--text-muted);
             margin-bottom: 0.3rem;
         }
 
-        .section h3 {
-            font-size: 1rem;
-            margin-top: 1.1rem;
+        .phase-title {
+            font-size: 1.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #f9fafb;
+            margin: 0 0 0.35rem 0;
+        }
+
+        .phase-subtitle {
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 0.6rem;
+        }
+
+        .phase-lead {
+            font-size: 0.98rem;
+            color: var(--text-soft);
+            margin-bottom: 0.7rem;
+        }
+
+        .phase-hero-bullets {
+            margin: 0.3rem 0 0 0;
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
+            color: #dbeafe;
+        }
+
+        .phase-hero-bullets li {
             margin-bottom: 0.2rem;
         }
 
-        .section p {
-            font-size: 0.95rem;
-            color: var(--text-main);
+        /* ===== detail cards ===== */
+        .phase-main {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .section ul {
-            margin: 0.5rem 0 0.5rem 1.2rem;
-            padding-left: 0;
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-strong);
+            padding: 1.8rem 1.7rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .info-card h2 {
+            margin-top: 0;
+            margin-bottom: 0.85rem;
+            font-size: 1.3rem;
+            color: var(--accent-soft);
+        }
+
+        .info-card h3 {
+            margin-top: 1.1rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.02rem;
+            color: #bae6fd;
+        }
+
+        .info-card p {
+            margin: 0.35rem 0;
+            font-size: 0.94rem;
+            color: #e5f2ff;
+        }
+
+        .info-card ul {
+            margin: 0.45rem 0 0.25rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.32rem;
             font-size: 0.93rem;
-            color: var(--text-muted);
         }
 
-        .section li {
-            margin-bottom: 0.25rem;
+        .tagline {
+            font-size: 0.94rem;
+            color: #93c5fd;
+            margin-bottom: 0.45rem;
         }
 
-        .footer-note {
-            margin-top: 2.5rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid var(--border-soft);
-            font-size: 0.86rem;
+        .subtle {
+            font-size: 0.88rem;
             color: var(--text-muted);
         }
 
         .highlight {
-            color: var(--accent);
-            font-weight: 500;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.9rem;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        /* ===== responsive ===== */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 1.2rem 80px 1.2rem;
+            }
+
+            .phase-hero-inner {
+                flex-direction: column;
+            }
+
+            .phase-hero-logo-box {
+                flex: 0 0 auto;
+            }
+
+            .info-card {
+                padding: 1.5rem 1.35rem;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
         }
     </style>
-<header>
-    <div class="header-inner">
-        <div class="logo-section">
-            <img src="elisence.png" alt="Elisence Logo" class="logo-img">
-            <div class="logo-text">
-                <h1>ELISENCE</h1>
-                <p>Global Digital Health & Humanity Platform</p>
+</head>
+<body>
+
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<nav class="side-nav">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn" href="index.html#phases">Phases</a>
+    <a class="nav-btn" href="about.html">About</a>
+    <a class="nav-btn" href="story.html">Story</a>
+    <a class="nav-btn" href="video.html">Videos</a>
+    <a class="nav-btn" href="contact.html">Contact</a>
+</nav>
+
+<div class="page-wrapper">
+    <!-- HERO -->
+    <section class="hero-area">
+        <div class="phase-hero-card">
+            <div class="phase-hero-inner">
+                <div class="phase-hero-logo-box">
+                    <img src="elisence.png"
+                         alt="Elisence – Global Digital Health & Humanity Platform"
+                         class="phase-hero-logo">
+                </div>
+                <div class="phase-hero-text-box">
+                    <div class="phase-label">PHASE 14</div>
+                    <h1 class="phase-title">Life Map Companion</h1>
+                    <div class="phase-subtitle">
+                        BLIND &amp; LOW-VISION · REAL-WORLD AWARENESS · VOICE-FIRST
+                    </div>
+                    <p class="phase-lead">
+                        Phase 14 is the <strong>Life Map Companion</strong> of Elisence — a real-time, voice-first
+                        accessibility engine for blind and low-vision users. Elisa converts the world into spoken
+                        understanding, turning rooms, people, tables and outdoor cues into safe, meaningful audio
+                        descriptions in five languages.
+                    </p>
+                    <ul class="phase-hero-bullets">
+                        <li>Room, social and dining awareness for blind &amp; low-vision users.</li>
+                        <li>On-device, privacy-first, non-navigational assistive AI.</li>
+                        <li>Designed for national-scale accessibility programmes and smart cities.</li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </section>
 
-        <nav class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#phases">Phases</a>
-            <a href="about.html">About</a>
-            <a href="story.html">Story</a>
-            <a href="video.html">Videos</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
+    <!-- DETAIL CARDS -->
+    <main class="phase-main">
 
-<main>
-    <div class="phase-tag">
-        <span class="phase-tag-dot"></span>
-        <span>Phase 14 &mdash; Life Map Companion</span>
-    </div>
-
-    <h1>Life Map Companion for Blind &amp; Low-Vision Users</h1>
-    <p class="subtitle">
-        Phase 14 is the future accessibility layer of Elisence: a voice-first, on-device
-        spatial companion that turns the world into safe, respectful descriptions for blind
-        and low-vision users. The roadmap and safety contract are fully designed; the
-        implementation will follow in later phases.
-    </p>
-
-    <div class="grid">
-        <section class="card">
-            <h2>Core Definition</h2>
-            <h3>What Phase 14 Is</h3>
+        <!-- 1. WHAT PHASE 14 IS -->
+        <section class="info-card">
+            <h2>1. What Phase 14 Is</h2>
             <p>
-                Phase 14 is the <span class="highlight">Life Map Companion</span> of Elisence.
-                Instead of showing screens, it describes the world around the user:
+                Phase 14 is a real-time <strong>“Life Map Companion”</strong> for blind and low-vision users.
+                It turns complex visual scenes into clear, concise spoken descriptions — always within a safe,
+                non-medical, non-navigational boundary.
+            </p>
+            <p>
+                Elisa converts the world into spoken understanding through:
             </p>
             <ul>
-                <li>Rooms and indoor spaces</li>
-                <li>Tables, food and menus while dining</li>
-                <li>People around the user, in a respectful way</li>
-                <li>Basic outdoor cues like curbs, crossings and obstacles</li>
+                <li><strong>Room layout &amp; furniture mapping</strong> — where doors, chairs, tables and key objects are.</li>
+                <li><strong>People &amp; social-context awareness</strong> — presence of people, group vs one-to-one, basic social cues.</li>
+                <li><strong>Dining &amp; table intelligence</strong> — what is on the table, basic item descriptions.</li>
+                <li><strong>Menu reading (OCR + LLM)</strong> — reading and summarising menus in a gentle, blind-friendly format.</li>
+                <li><strong>Indoor familiar-place guidance</strong> — descriptive orientation inside known homes/offices.</li>
+                <li><strong>Outdoor hazard cues</strong> — cars, curbs, steps, basic obstacles (descriptive, not navigational).</li>
+                <li><strong>Full voice-first interaction</strong> — EN / FA / AR / TR / RO.</li>
             </ul>
-            <p>
-                Its mission is simple and ambitious:
-                <span class="highlight">“Turn the world into words — safely, beautifully, and in real time.”</span>
+            <p class="highlight">
+                Not navigation. Not medical. 100% assistive &amp; safety-conscious.
             </p>
-
-            <h3>Design Principles</h3>
-            <div class="pill-list">
-                <span class="pill pill-strong">Safety-first, never decision-making</span>
-                <span class="pill pill-strong">On-device by default</span>
-                <span class="pill">Voice-first input and output</span>
-                <span class="pill">Five-language foundation (EN / FA / AR / TR / RO)</span>
-                <span class="pill">Accessibility-guideline aligned</span>
-            </div>
         </section>
 
-        <aside class="card">
-            <h2>Stakeholder View</h2>
-            <h3>Who Phase 14 Is For</h3>
+        <!-- 2. WHY IT MATTERS -->
+        <section class="info-card">
+            <h2>2. Why It Matters</h2>
+            <p>
+                Phase 14 gives Elisence a <strong>global competitive advantage</strong> in accessibility AI.
+            </p>
             <ul>
-                <li>Blind and low-vision users of all ages</li>
-                <li>Families and carers supporting daily independence</li>
-                <li>Orientation &amp; Mobility instructors and schools for the blind</li>
-                <li>Ministries of Health, Education and Transport</li>
-                <li>Accessibility NGOs and national AI programmes</li>
+                <li>No existing app offers <strong>ROOM + SOCIAL + DINING + OUTDOOR</strong> awareness together in one engine.</li>
+                <li>Completely voice-first — designed specifically for blind and low-vision users.</li>
+                <li>Zero-Trust, privacy-first, <strong>on-device-first</strong> architecture.</li>
+                <li>National-level impact for disability programmes in Qatar, KSA, UAE and beyond.</li>
+                <li>Strong CSR and government-alignment value — high social impact, politically visible.</li>
+                <li>Deep long-term retention for the Elisence ecosystem:
+                    <ul>
+                        <li>Daily, real-world use.</li>
+                        <li>Emotional connection and trust with Elisa as a companion.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 3. VALUE PROPOSITION -->
+        <section class="info-card">
+            <h2>3. The Value Proposition</h2>
+
+            <h3>3.1 Government-Scale Accessibility Engine</h3>
+            <p>
+                Phase 14 can operate as a <strong>national accessibility layer</strong>:
+            </p>
+            <ul>
+                <li>Smart cities (transport, public buildings, malls).</li>
+                <li>Hospitals and clinics (waiting rooms, wards, pharmacies).</li>
+                <li>Transport networks (stations, platforms, hubs — descriptive, not navigational).</li>
             </ul>
 
-            <h3>Current Status</h3>
-            <div class="badge-row">
-                <span class="badge badge-safe">Roadmap completed</span>
-                <span class="badge badge-safe">Safety contract defined</span>
-                <span class="badge">Architecture designed</span>
-                <span class="badge badge-risk">Implementation not started</span>
-                <span class="badge badge-risk">No pilots yet</span>
-            </div>
-        </aside>
-    </div>
+            <h3>3.2 High Social Impact → Strong Political Value</h3>
+            <p>
+                Countries investing in inclusion and disability rights see this as a
+                <strong>flagship project</strong>:
+            </p>
+            <ul>
+                <li>Visible improvement in independence for blind and low-vision citizens.</li>
+                <li>Strong fit with national ESG, NCD and digital transformation strategies.</li>
+            </ul>
 
-    <section class="section">
-        <h2>Design Contract &amp; Safety Locks</h2>
-        <h3>What Elisa Will Never Do</h3>
-        <p>
-            For blind and low-vision users, safety is non-negotiable. Phase 14 is built on
-            strict promises:
-        </p>
-        <ul>
-            <li>No “It is safe” / “You can cross now” statements</li>
-            <li>No navigation decisions or route guarantees</li>
-            <li>No race, ethnicity, body or beauty descriptions</li>
-            <li>No face recognition or sensitive attribute inference</li>
-        </ul>
-        <p>
-            Elisa describes what she sees, where it appears and how it might relate to the
-            user, but final decisions always stay with the person and their existing
-            mobility tools.
-        </p>
+            <h3>3.3 Monetisation Pathways</h3>
+            <ul>
+                <li>Government licensing contracts (smart-city and national rollouts).</li>
+                <li>Partnerships with NGOs &amp; disability authorities.</li>
+                <li>Premium <strong>“Rich Mode”</strong> for advanced spatial intelligence and enhanced scene descriptions.</li>
+                <li>Deep integration with:
+                    <ul>
+                        <li>Phase 13 Voice Engine (zero-typing control).</li>
+                        <li>Phase 10 Profiles (trusted accessibility profiles and verified users).</li>
+                    </ul>
+                </li>
+            </ul>
 
-        <h3>How Processing Works</h3>
-        <p>
-            The planned architecture is <span class="highlight">on-device first</span> for privacy
-            and speed, with optional hybrid cloud only when users opt in for richer captions
-            or advanced languages. All flows remain compatible with Apple and Android
-            accessibility standards such as VoiceOver and TalkBack.
-        </p>
-    </section>
+            <h3>3.4 Strategic Moat</h3>
+            <p>
+                Phase 14 is not a single feature; it is a <strong>feature ecosystem</strong>:
+            </p>
+            <ul>
+                <li>Room mapping + social cues + dining + outdoor hazard awareness.</li>
+                <li>Multilingual voice interaction.</li>
+                <li>Compliance-grade privacy and logging.</li>
+            </ul>
+            <p class="subtle">
+                This combination is extremely difficult and slow to replicate, creating a durable competitive moat.
+            </p>
+        </section>
 
-    <section class="section">
-        <h2>What Life Map Understands</h2>
-        <h3>Rooms &amp; Indoor Spaces</h3>
-        <p>
-            Phase 14 is designed to build a mental map of indoor environments:
-        </p>
-        <ul>
-            <li>Room shape and basic layout</li>
-            <li>Doors, windows, hallways and major furniture</li>
-            <li>Obstacles such as chairs, tables or steps</li>
-            <li>Approximate distances and relative positions</li>
-        </ul>
-        <p>
-            The goal is not turn-by-turn navigation, but calm, useful descriptions that help
-            users understand where they are and what surrounds them.
-        </p>
+        <!-- 4. TECHNICAL ADVANTAGE -->
+        <section class="info-card">
+            <h2>4. Technical Advantage</h2>
+            <p>
+                Phase 14 is designed on top of a modern, privacy-first AI stack:
+            </p>
+            <ul>
+                <li><strong>On-device AI (CoreML / TFLite)</strong> for low-latency and privacy.</li>
+                <li><strong>Vision-Language Models</strong> (BLIP-2 / LLaVA class) for rich scene understanding.</li>
+                <li><strong>Depth + segmentation + object detection fusion</strong> to understand rooms, tables and obstacles.</li>
+                <li><strong>Blind-friendly narration engine</strong>:
+                    <ul>
+                        <li>Short, clear sentences.</li>
+                        <li>Avoids overload and confusion.</li>
+                        <li>Tuned for screen reader and headphone usage.</li>
+                    </ul>
+                </li>
+                <li><strong>WORM-style ethical logging</strong> — only what is needed for safety, audits and debugging.</li>
+                <li><strong>GDPR / PDPL / HIPAA-safe by design</strong>:
+                    <ul>
+                        <li>Minimal data retention.</li>
+                        <li>No unnecessary face identification.</li>
+                        <li>Strict consent and privacy modes.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
 
-        <h3>Dining &amp; Food Intelligence</h3>
-        <p>
-            At home or in restaurants, the Life Map Companion is planned to:
-        </p>
-        <ul>
-            <li>Describe table layouts: plates, glasses, cutlery</li>
-            <li>Recognise common food items on plates</li>
-            <li>Read menus using on-device OCR</li>
-            <li>Offer simple, non-medical summaries like “lighter options”</li>
-        </ul>
+        <!-- 5. WHAT HAS BEEN DONE -->
+        <section class="info-card">
+            <h2>5. What Has Been Done</h2>
+            <p>
+                Phase 14 is currently at a <strong>design-complete, pre-implementation</strong> stage.
+            </p>
+            <ul>
+                <li>✔ <strong>Complete Design Contract</strong> — scope, boundaries and responsibilities clearly defined.</li>
+                <li>✔ <strong>Full Roadmap, Modules &amp; Architecture</strong> — including environment, AI stack, UX flows and safety layers.</li>
+                <li>✔ <strong>Ethics, Compliance &amp; Safety Model</strong>:
+                    <ul>
+                        <li>Non-navigational, assistive-only behaviour.</li>
+                        <li>Non-medical: no diagnosis, no dosing, no triage decisions.</li>
+                    </ul>
+                </li>
+                <li>✖ <strong>Implementation NOT started</strong> — scheduled for future development waves.</li>
+                <li>✖ <strong>Testing NOT done</strong> — will follow BBVP (Build, Backtest, Verify, Prove) once implementation begins.</li>
+            </ul>
+        </section>
 
-        <h3>Social &amp; People Awareness</h3>
-        <p>
-            The system will focus on safe social context:
-        </p>
-        <ul>
-            <li>How many people are nearby and roughly where</li>
-            <li>High-level clothing colours and styles</li>
-            <li>Atmosphere cues like “it sounds busy” or “it feels quiet”</li>
-        </ul>
-        <p>
-            It will <strong>never</strong> describe race, body shape, attractiveness or other
-            sensitive attributes.
-        </p>
+        <!-- 6. WHY INVEST NOW -->
+        <section class="info-card">
+            <h2>6. Why Invest Now</h2>
+            <p>
+                The timing and need for Phase 14 are exceptionally strong:
+            </p>
+            <ul>
+                <li>Global need: ~<strong>285 million</strong> visually impaired people worldwide.</li>
+                <li>Governments are actively funding inclusive AI and accessibility technologies.</li>
+                <li>Elisence can position itself as a <strong>world leader</strong> in “Real-World Voice Companions”.</li>
+                <li>Phase 14 strengthens:
+                    <ul>
+                        <li>The Elisence platform’s accessibility story.</li>
+                        <li>Phase 13 (Voice), Phase 10 (Profiles), Phase 7 &amp; 9 (Women+ &amp; Diabetes).</li>
+                    </ul>
+                </li>
+                <li>Opens doors to <strong>national contracts worth millions</strong> in accessibility and smart-city budgets.</li>
+            </ul>
+        </section>
 
-        <h3>Outdoor Safety Cues</h3>
-        <p>
-            Outdoors, Phase 14 is planned to spot:
-        </p>
-        <ul>
-            <li>Curbs, stairs and crosswalk markings</li>
-            <li>Parked and moving vehicles in the scene</li>
-            <li>Basic pedestrian signal states where feasible</li>
-        </ul>
-        <p>
-            All descriptions remain labelled as observations, not commands, and always
-            reinforce the importance of canes, guides and training as the primary tools.
-        </p>
-    </section>
+        <!-- 7. TAGLINE -->
+        <section class="info-card">
+            <h2>7. Tagline</h2>
+            <p class="highlight">
+                <strong>Elisa: Turning the world into words — safely, beautifully, and in real time.</strong>
+            </p>
+        </section>
 
-    <section class="section">
-        <h2>Personalisation &amp; Modes</h2>
-        <h3>Three Levels of Detail</h3>
-        <p>
-            The Life Map Companion is designed to adapt to each person’s comfort level:
-        </p>
-        <ul>
-            <li>
-                <strong>Minimal Mode:</strong> only essential cues such as doors, obstacles and
-                number of people.
-            </li>
-            <li>
-                <strong>Standard Mode:</strong> adds furniture, table layouts and basic social
-                information.
-            </li>
-            <li>
-                <strong>Rich Mode:</strong> fuller world-building, including clothing colours,
-                table maps and atmosphere.
-            </li>
-        </ul>
-        <p>
-            Users will be able to choose language, detail level, and how much social information
-            they are comfortable hearing, and to save key environments such as home, work or a
-            favourite café.
-        </p>
-    </section>
+    </main>
+</div>
 
-    <section class="section">
-        <h2>Roadmap &amp; Implementation Status</h2>
-        <h3>Designed Now, Built Later</h3>
-        <p>
-            Phase 14 currently exists as a <span class="highlight">complete roadmap and design
-            contract</span>. Planned steps include:
-        </p>
-        <ul>
-            <li>Deep research with blind and low-vision communities and O&amp;M experts</li>
-            <li>MVP for single-frame descriptions via a simple “describe this photo” flow</li>
-            <li>Spatial mapping engine for rooms, combined with spoken narratives</li>
-            <li>Dining and menu intelligence trials in real food environments</li>
-            <li>Ethical people-awareness module with strict filtering</li>
-            <li>Home mapping mode with local encrypted storage</li>
-            <li>Carefully limited outdoor cues (no navigation decisions)</li>
-            <li>Privacy, on-device defaults and WORM-style logging of key events</li>
-            <li>Pilot studies with schools, NGOs and ministries</li>
-        </ul>
-        <p>
-            None of these components are implemented yet; they are planned as a future execution
-            wave once earlier phases have stabilised.
-        </p>
-    </section>
+<!-- Elisa chat widget root -->
+<div id="elisa-chat-root"></div>
 
-    <section class="section">
-        <h2>Ethics, Privacy &amp; Compliance</h2>
-        <h3>Zero-Risk Accessibility Posture</h3>
-        <p>
-            From day one, Phase 14 is designed around a strict ethical boundary:
-        </p>
-        <ul>
-            <li>No unauthorised recording or sharing of images</li>
-            <li>No cloud processing without explicit consent</li>
-            <li>No storage of raw images beyond what is strictly needed</li>
-            <li>Encryption for all sensitive data and local maps</li>
-            <li>GDPR, UK DPA, GCC PDPL and HIPAA-safe (non-diagnostic) positioning</li>
-        </ul>
-        <p>
-            The goal is to empower users with more information about their world,
-            without creating new privacy or safety risks.
-        </p>
-    </section>
-
-    <section class="section">
-        <h2>Why Phase 14 Matters</h2>
-        <h3>National Impact &amp; Strategic Value</h3>
-        <p>
-            For countries, ministries and investors, Phase 14 represents:
-        </p>
-        <ul>
-            <li>
-                A flagship accessibility initiative that supports blind and low-vision
-                communities at scale.
-            </li>
-            <li>
-                A technology asset that combines on-device AI, depth, segmentation and
-                large-vision captioning under strict safety rules.
-            </li>
-            <li>
-                A natural partner for schools, public transport, hospitals and city planners.
-            </li>
-        </ul>
-        <p>
-            Combined with Phase 13 (Voice Engine), it positions Elisence as a truly inclusive
-            health and life companion, not just a clinical data platform.
-        </p>
-    </section>
-
-    <div class="footer-note">
-        <strong>In one sentence:</strong>
-        Phase 14 is the future <span class="highlight">Life Map Companion</span> of Elisence &mdash;
-        a voice-first, on-device accessibility layer that turns the world into words for blind and
-        low-vision users, with the roadmap fully defined today and implementation ready to begin
-        when scheduled.
-    </div>
-</main>
 </body>
 </html>
