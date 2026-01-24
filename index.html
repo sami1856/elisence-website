@@ -291,13 +291,13 @@
                 grid-template-columns: 1fr;
             }
         }
-        /* کوچک کردن دکمه Elisa در موبایل */
-        @media (max-width: 900px) {
-        #elisa-chat-root {
-        transform: scale(0.82);      /* کوچیک‌تر شدن واقعی */
+        /* در موبایل Elisa کوچک‌تر بشه و روی CONTACT نیاد */
+    @media (max-width: 900px) {
+    #elisa-chat-root {
+        transform: scale(0.72) !important;  /* کوچیک‌تر و حتمی */
         transform-origin: bottom right;
-        margin-bottom: 12px;         /* کمی فاصله از دکمه Contact */
-        margin-right: 6px;
+        margin-bottom: 20px;               /* فاصله بیشتر از پایین */
+        margin-right: 10px;                /* کمی فاصله از راست */
     }
 }
         .phase-card {
