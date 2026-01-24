@@ -1,16 +1,16 @@
 // elisa-chat.js
-// Final version – Scenario C (Elisa widget with backend call)
+// Scenario C – Final clean version (TOP-RIGHT launcher)
 
-// TODO: وقتی بک‌اند را deploy کردی، این آدرس را با آدرس واقعی خودت عوض کن:
+// TODO: بعد از آماده شدن بک‌اند، فقط این آدرس را عوض کن:
 const ELISA_API_URL = "https://YOUR-ELISA-BACKEND-DOMAIN/elisa/chat";
 
-// —————————————————————————————
-// Helpers: create DOM elements
-// —————————————————————————————
+// ----------------------------------------------------
+// DOM helpers
+// ----------------------------------------------------
 function createElisaLauncher() {
   const launcher = document.createElement("button");
   launcher.id = "elisa-launcher";
-  launcher.setAttribute("type", "button");
+  launcher.type = "button";
 
   launcher.innerHTML = `
     <div class="elisa-launcher-inner">
@@ -43,9 +43,11 @@ function createElisaChatPanel() {
         ✕
       </button>
     </div>
+
     <div class="elisa-chat-body">
       <div class="elisa-messages" id="elisa-messages"></div>
     </div>
+
     <div class="elisa-chat-footer">
       <textarea
         id="elisa-input"
@@ -63,30 +65,30 @@ function createElisaChatPanel() {
   return panel;
 }
 
-// —————————————————————————————
-// Helpers for messages
-// —————————————————————————————
+// ----------------------------------------------------
+// Message helpers
+// ----------------------------------------------------
 function addMessage(role, text) {
   const container = document.getElementById("elisa-messages");
   if (!container) return;
 
-  const wrap = document.createElement("div");
-  wrap.className = "elisa-message-row elisa-" + role;
+  const row = document.createElement("div");
+  row.className = "elisa-message-row elisa-" + role;
 
   const bubble = document.createElement("div");
   bubble.className = "elisa-bubble";
   bubble.textContent = text;
 
-  wrap.appendChild(bubble);
-  container.appendChild(wrap);
-
+  row.appendChild(bubble);
+  container.appendChild(row);
   container.scrollTop = container.scrollHeight;
 }
 
 function setTyping(isTyping) {
-  const existing = document.getElementById("elisa-typing");
   const container = document.getElementById("elisa-messages");
   if (!container) return;
+
+  const existing = document.getElementById("elisa-typing");
 
   if (isTyping) {
     if (existing) return;
@@ -106,9 +108,9 @@ function setTyping(isTyping) {
   }
 }
 
-// —————————————————————————————
-// Chat send logic (real backend call)
-// —————————————————————————————
+// ----------------------------------------------------
+// Backend call
+// ----------------------------------------------------
 let elisaSessionId = null;
 
 async function sendToElisaBackend(messageText) {
@@ -122,9 +124,7 @@ async function sendToElisaBackend(messageText) {
   try {
     const response = await fetch(ELISA_API_URL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
 
@@ -152,18 +152,19 @@ async function sendToElisaBackend(messageText) {
   }
 }
 
-// —————————————————————————————
-// Wiring everything together
-// —————————————————————————————
+// ----------------------------------------------------
+// Wire up (styles + events)
+// ----------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
-  // Inject styles
+  // Inject styles (همه صفحات)
   const style = document.createElement("style");
-  /* Launcher button – desktop default (TOP RIGHT) */
+  style.textContent = `
+    /* Launcher – DESKTOP: top right, اندازه اصلی */
     #elisa-launcher {
       position: fixed;
       right: 18px;
-      top: 18px;        /* به‌جای bottom:18px  */
-      bottom: auto;     /* مطمئن می‌شیم پایین غیرفعال است */
+      top: 18px;
+      bottom: auto;
       z-index: 1200;
       border: none;
       border-radius: 999px;
@@ -362,31 +363,16 @@ document.addEventListener("DOMContentLoaded", function () {
       box-shadow: none;
     }
 
-    /* نسخه موبایل – کوچیک کردن الیسا و جلوگیری از تداخل با CONTACT */
+    /* Mobile tweaks: فقط کمی جابه‌جایی، نه کوچک کردن */
     @media (max-width: 520px) {
       #elisa-chat-panel {
         right: 10px;
         left: 10px;
         width: auto;
       }
-
       #elisa-launcher {
         right: 10px;
-        bottom: 18px;              /* کمی بالاتر از لبه پایین */
-        padding: 4px 10px 4px 4px;  /* باریک‌تر از دسکتاپ */
-      }
-
-      .elisa-avatar {
-        width: 30px;
-        height: 30px;
-      }
-
-      .elisa-name {
-        font-size: 12px;
-      }
-
-      .elisa-tagline {
-        font-size: 10px;
+        top: 12px;
       }
     }
   `;
@@ -418,7 +404,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   launcher.addEventListener("click", openChat);
-  closeBtn.addEventListener("click", closeChat);
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeChat);
+  }
 
   function handleSend() {
     if (!input || !input.value.trim()) return;
@@ -437,17 +425,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  sendBtn.addEventListener("click", handleSend);
+  if (sendBtn) {
+    sendBtn.addEventListener("click", handleSend);
+  }
 
-  input.addEventListener("keydown", function (event) {
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault();
-      handleSend();
-    }
-  });
+  if (input) {
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        handleSend();
+      }
+    });
 
-  input.addEventListener("input", function () {
-    input.style.height = "auto";
-    input.style.height = Math.min(input.scrollHeight, 80) + "px";
-  });
+    input.addEventListener("input", function () {
+      input.style.height = "auto";
+      input.style.height = Math.min(input.scrollHeight, 80) + "px";
+    });
+  }
 });
