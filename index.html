@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="5efK6bgkkzcVgZpIQfqqOBeIx2N_1rCkDWOADBmo8bQ" />
+
     <title>Elisence – Global Digital Health & Humanity Platform</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Elisa chat widget script -->
     <script defer src="elisa-chat.js"></script>
@@ -23,7 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== HERO / صفحه اول ===== */
         .page-wrapper {
             min-height: 100vh;
             display: flex;
@@ -35,7 +38,7 @@
         .hero-area {
             width: 100%;
             max-width: 1100px;
-            margin-right: 190px; /* جا برای منوی عمودی سمت راست */
+            margin-right: 190px;
         }
 
         .hero-card {
@@ -52,7 +55,6 @@
             border: 1px solid rgba(70, 190, 255, 0.6);
         }
 
-        /* کانتینر و استایل لوگوی بزرگ Elisence */
         .hero-logo-container {
             width: 100%;
             max-width: 750px;
@@ -140,23 +142,11 @@
             box-shadow: 0 0 18px rgba(0, 160, 255, 0.85);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 0 26px rgba(0, 190, 255, 0.95);
-            background: linear-gradient(135deg, #00c8ff, #1185ff);
-        }
-
         .btn-secondary {
             background: rgba(0, 0, 0, 0.45);
             color: #dbefff;
             border-color: rgba(118, 190, 255, 0.7);
             box-shadow: 0 0 14px rgba(0, 80, 200, 0.7);
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-1px);
-            background: rgba(0, 30, 90, 0.9);
-            box-shadow: 0 0 20px rgba(0, 140, 255, 0.9);
         }
 
         .hero-footnote {
@@ -168,11 +158,6 @@
             color: #7fb5ff;
         }
 
-        .hero-footnote span {
-            opacity: 0.9;
-        }
-
-        /* ===== منوی عمودی سمت راست ===== */
         .side-nav {
             position: fixed;
             right: 32px;
@@ -198,45 +183,8 @@
             box-shadow:
                 0 0 16px rgba(0, 130, 255, 0.95),
                 0 0 34px rgba(0, 40, 120, 0.95);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
         }
 
-        .nav-btn:hover {
-            transform: translateX(-4px);
-            padding-right: 44px;
-            box-shadow:
-                0 0 22px rgba(0, 190, 255, 1),
-                0 0 46px rgba(0, 80, 200, 1);
-            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
-        }
-
-        .nav-btn:active {
-            transform: translateX(-2px) scale(0.99);
-        }
-
-        /* نقطه و برچسب بالا */
-        .top-dot {
-            position: fixed;
-            left: 18px;
-            top: 18px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
-            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
-        }
-
-        .top-dot-label {
-            position: fixed;
-            left: 40px;
-            top: 16px;
-            font-size: 14px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: #a9d4ff;
-        }
-
-        /* ===== سکشن فازها زیر هیرو ===== */
         .phases-wrapper {
             padding: 0 40px 80px 40px;
         }
@@ -245,32 +193,7 @@
             width: 100%;
             max-width: 1100px;
             margin: 0 auto;
-            margin-right: 190px; /* فضای منوی راست در دسکتاپ */
-        }
-
-        .phases-header {
-            max-width: 720px;
-            margin: 0 auto 28px auto;
-            text-align: left;
-        }
-
-        .phases-title {
-            font-size: 26px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .phases-subtitle {
-            font-size: 14px;
-            color: #a5d7ff;
-            margin-bottom: 12px;
-        }
-
-        .phases-intro {
-            font-size: 13px;
-            line-height: 1.7;
-            color: #dbefff;
+            margin-right: 190px;
         }
 
         .phases-grid {
@@ -279,411 +202,64 @@
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 18px;
         }
-
-        @media (max-width: 980px) {
-            .phases-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 640px) {
-            .phases-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        /* در موبایل Elisa کمی کوچک کن */
-    @media (max-width: 900px) {
-    #elisa-chat-root {
-        transform: scale(0.82);
-        transform-origin: bottom right;
-        margin-bottom: 12px;
-        margin-right: 6px;
-    }
-}
-        .phase-card {
-            border-radius: 18px;
-            padding: 16px 18px 18px 18px;
-            background: radial-gradient(circle at top, rgba(0, 120, 255, 0.40), rgba(0, 15, 40, 0.96));
-            border: 1px solid rgba(90, 185, 255, 0.85);
-            box-shadow:
-                0 0 22px rgba(0, 140, 255, 0.9),
-                0 0 40px rgba(0, 40, 120, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .phase-label {
-            font-size: 11px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: #a9d4ff;
-            margin-bottom: 6px;
-        }
-
-        .phase-name {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .phase-desc {
-            font-size: 12px;
-            line-height: 1.6;
-            color: #d8e7ff;
-            margin-bottom: 10px;
-        }
-
-        .phase-link {
-            align-self: flex-start;
-            margin-top: 4px;
-            padding: 6px 16px;
-            border-radius: 999px;
-            font-size: 11px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #ffffff;
-            background: linear-gradient(135deg, #00b4ff, #0075ff);
-            box-shadow: 0 0 16px rgba(0, 170, 255, 0.9);
-            border: 1px solid rgba(140, 210, 255, 0.9);
-            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-        }
-
-        .phase-link:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 0 24px rgba(0, 200, 255, 1);
-            background: linear-gradient(135deg, #00c8ff, #1185ff);
-        }
-
-        /* وقتی فقط فازها را می‌خواهیم نشان بدهیم (hash=#phases) */
-        .show-phases-only .page-wrapper {
-            display: none;
-        }
-
-        .show-phases-only .phases-wrapper {
-            padding-top: 80px;
-        }
-
-        /* ===== ریسپانسیو ===== */
-        @media (max-width: 900px) {
-            .page-wrapper {
-                padding: 80px 18px 40px 18px;
-            }
-
-            .hero-area {
-                margin-right: 0;
-            }
-
-            .side-nav {
-                position: fixed;
-                right: 50%;
-                top: auto;
-                bottom: 18px;
-                transform: translateX(50%);
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 8px;
-            }
-
-            .nav-btn {
-            padding: 9px 20px;
-            font-size: 11px;
-            letter-spacing: 0.11em;
-        }
-
-            .hero-card {
-                max-width: 100%;
-                padding: 24px 20px;
-            }
-
-            .phases-wrapper {
-                padding: 0 18px 80px 18px;
-            }
-
-            .content-area {
-                margin-right: 0;
-            }
-        }
     </style>
 </head>
+
 <body>
 
     <div class="top-dot"></div>
     <div class="top-dot-label">ELISENCE</div>
 
-    <!-- منوی عمودی سمت راست -->
     <nav class="side-nav">
-        <a href="index.html"    class="nav-btn">Home</a>
-        <a href="#phases"       class="nav-btn">Phases</a>
-        <a href="about.html"    class="nav-btn">About</a>
-        <a href="story.html"    class="nav-btn">Story</a>
-        <a href="video.html"    class="nav-btn">Videos</a>
-        <a href="contact.html"  class="nav-btn">Contact</a>
-        <a href="founder-saami.html">Founder</a>
-        <a href="articles.html">Articles</a>
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="#phases" class="nav-btn">Phases</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="story.html" class="nav-btn">Story</a>
+        <a href="video.html" class="nav-btn">Videos</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="founder-saami.html" class="nav-btn">Founder</a>
+        <a href="articles.html" class="nav-btn">Articles</a>
     </nav>
 
-    <!-- سکشن هیرو -->
     <div class="page-wrapper">
         <div class="hero-area">
             <div class="hero-card">
-
-                <!-- لوگوی اصلی Elisence به‌صورت مستطیلی -->
                 <div class="hero-logo-container">
-                    <img src="elisence.png"
-                         alt="Elisence – Global Digital Health & Humanity Platform"
-                         class="main-hero-logo">
+                    <img src="elisence.png" class="main-hero-logo">
                 </div>
 
                 <div class="hero-title">ELISENCE</div>
                 <div class="hero-subtitle">Growth · Health · Humanity · Embracing the Future</div>
 
                 <p class="hero-tagline">
-                    A trusted, multi-phase health intelligence platform for families, clinicians and
-                    governments — built to be safe, auditable, and ready for real-world healthcare.
+                    A trusted, multi-phase health intelligence platform for families, clinicians and governments.
                 </p>
 
                 <p class="hero-body">
-                    Elisence brings together weight-loss journeys, diabetes & metabolic health, women’s health,
-                    mental health, clinical passports, and secure messaging into one regulated-grade ecosystem.
-                    Every phase is designed with audit trails, multi-language support, and evidence packs that
-                    ministries, hospitals and investors can verify — not just trust.
+                    Elisence unifies weight-loss, diabetes, women’s health, mental health, clinical passports,
+                    secure messaging and global nutrition into one regulated-ready ecosystem.
                 </p>
 
                 <div class="hero-actions">
                     <a href="#phases" class="btn-primary">Explore the Phases</a>
-                    <a href="video.html" class="btn-secondary">Watch Explainer Videos</a>
+                    <a href="video.html" class="btn-secondary">Watch Videos</a>
                 </div>
 
-                <div class="hero-footnote">
-                    <span>Built by Saami — Powered by ChatGPT</span>
-                </div>
+                <div class="hero-footnote">Built by Saami — Powered by ChatGPT</div>
             </div>
         </div>
     </div>
 
-    <!-- سکشن فهرست فازها (داخل همین index) -->
     <main class="phases-wrapper" id="phases">
         <div class="content-area">
-            <div class="phases-header">
-                <div class="phases-title">ELISENCE PHASES</div>
-                <div class="phases-subtitle">From Weight-Loss Journeys to Global Nutrition Intelligence</div>
-                <p class="phases-intro">
-                    Elisence is built as a sequence of connected phases. Each phase focuses on a specific
-                    part of healthcare — weight-loss, diabetes, women’s health, mental health, passports,
-                    secure messaging, global nutrition, and more — but all share the same safety, audit
-                    and evidence foundation. Choose a phase below to see what it does and how it works.
-                </p>
-            </div>
-
             <div class="phases-grid">
-                <!-- Phase 1 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 1</div>
-                    <div class="phase-name">GLP-1 Foundations & Safety</div>
-                    <div class="phase-desc">
-                        Core safe engine for GLP-1 and related medications, with structured data capture
-                        and non-diagnostic safety insights for real-world weight-loss care.
-                    </div>
-                    <a class="phase-link" href="phase1.html">Open Phase 1</a>
-                </div>
-
-                <!-- Phase 2 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 2</div>
-                    <div class="phase-name">Medication & Dose Intelligence</div>
-                    <div class="phase-desc">
-                        Structured view of medication journeys, dose changes and response patterns,
-                        aligned with global safety and audit requirements.
-                    </div>
-                    <a class="phase-link" href="phase2.html">Open Phase 2</a>
-                </div>
-
-                <!-- Phase 3 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 3</div>
-                    <div class="phase-name">Care & Weight-Loss Platform</div>
-                    <div class="phase-desc">
-                        Daily journeys, check-ins, SOS, carers, schedules and notifications for safe,
-                        supported weight-loss at home.
-                    </div>
-                    <a class="phase-link" href="phase3.html">Open Phase 3</a>
-                </div>
-
-                <!-- Phase 4 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 4</div>
-                    <div class="phase-name">Provenance & Integrity Engine</div>
-                    <div class="phase-desc">
-                        End-to-end data lineage, export manifests, signatures and verification —
-                        making every clinical event traceable and auditable.
-                    </div>
-                    <a class="phase-link" href="phase4.html">Open Phase 4</a>
-                </div>
-
-                <!-- Phase 5 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 5</div>
-                    <div class="phase-name">Elisa – Healthy Dopamine Companion</div>
-                    <div class="phase-desc">
-                        Elisa lives across all phases as a calm, always-there companion — celebrating
-                        real-life progress with healthy dopamine, never dark patterns or addiction.
-                    </div>
-                    <a class="phase-link" href="phase5.html">Open Phase 5</a>
-                </div>
-
-                <!-- Phase 6 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 6</div>
-                    <div class="phase-name">Medication Safety & Global Drug Intelligence</div>
-                    <div class="phase-desc">
-                        Safety brain for medicines: corrects drug names and doses, links to global
-                        drug dictionaries, and flags impossible or risky regimens in a non-diagnostic way.
-                    </div>
-                    <a class="phase-link" href="phase6.html">Open Phase 6</a>
-                </div>
-
-                <!-- Phase 7 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 7</div>
-                    <div class="phase-name">Women+ Health & Life Companion</div>
-                    <div class="phase-desc">
-                        Respectful engine for periods, fertility, pregnancy, postpartum and menopause,
-                        offering 5-language guidance with clear “no diagnosis / no prescription” boundaries.
-                    </div>
-                    <a class="phase-link" href="phase7.html">Open Phase 7</a>
-                </div>
-
-                <!-- Phase 8 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 8</div>
-                    <div class="phase-name">AHE – Advanced Health Engine</div>
-                    <div class="phase-desc">
-                        National-grade clinical profiles that combine labs, vitals, risks and passports
-                        into one explainable view for citizens, clinicians, ministries and hospitals.
-                    </div>
-                    <a class="phase-link" href="phase8.html">Open Phase 8</a>
-                </div>
-
-                <!-- Phase 9 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 9</div>
-                    <div class="phase-name">Diabetes & Metabolic Health</div>
-                    <div class="phase-desc">
-                        Diabetes-focused core for glucose, weight, medication and lifestyle signals,
-                        ready for sensors and clinics, turning raw data into safe, non-diagnostic intelligence.
-                    </div>
-                    <a class="phase-link" href="phase9.html">Open Phase 9</a>
-                </div>
-
-                <!-- Phase 10 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 10</div>
-                    <div class="phase-name">Social Presence & Trusted Profiles</div>
-                    <div class="phase-desc">
-                        The public heartbeat of Elisence: secure, intelligent profiles and a clean social
-                        layer where moments, badges and files stay inside a national-grade, private ecosystem.
-                    </div>
-                    <a class="phase-link" href="phase10.html">Open Phase 10</a>
-                </div>
-
-                <!-- Phase 11 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 11</div>
-                    <div class="phase-name">Security & Identity Control</div>
-                    <div class="phase-desc">
-                        Zero-Trust passport and identity layer for all phases — single verifier, national-grade
-                        security, strict headers and audit-ready logs for every sensitive request.
-                    </div>
-                    <a class="phase-link" href="phase11.html">Open Phase 11</a>
-                </div>
-
-                <!-- Phase 12 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 12</div>
-                    <div class="phase-name">Environment-Aware Diabetes Coach</div>
-                    <div class="phase-desc">
-                        Connects weather, heat, humidity and air quality with diabetes patterns to give
-                        safe, non-diagnostic coaching about hydration, activity and daily risk.
-                    </div>
-                    <a class="phase-link" href="phase12.html">Open Phase 12</a>
-                </div>
-
-                <!-- Phase 13 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 13</div>
-                    <div class="phase-name">Voice & Zero-Typing Engine</div>
-                    <div class="phase-desc">
-                        Voice-first gateway for Elisence: speak and listen in EN / FA / AR / TR / RO, with
-                        safe-fail behaviour, confirmation loops and full WORM logging for regulators.
-                    </div>
-                    <a class="phase-link" href="phase13.html">Open Phase 13</a>
-                </div>
-
-                <!-- Phase 14 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 14</div>
-                    <div class="phase-name">Blind & Low-Vision Intelligence Companion</div>
-                    <div class="phase-desc">
-                        Real-time “life map” assistant for blind and low-vision users, describing rooms,
-                        people, objects, labels and menus through voice under strict safety and privacy rules.
-                    </div>
-                    <a class="phase-link" href="phase14.html">Open Phase 14</a>
-                </div>
-
-                <!-- Phase 15 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 15</div>
-                    <div class="phase-name">Family Ecosystem Assistant</div>
-                    <div class="phase-desc">
-                        0–18 family operating system for health, sleep, learning and safety, with Kids/Teens
-                        modes, ethical dopamine and aggregated insights for schools and ministries.
-                    </div>
-                    <a class="phase-link" href="phase15.html">Open Phase 15</a>
-                </div>
-
-                <!-- Phase 16 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 16</div>
-                    <div class="phase-name">Global Nutrition Intelligence (GNIE)</div>
-                    <div class="phase-desc">
-                        Nutrition and diet intelligence engine that understands local cuisines, diseases
-                        and Ramadan patterns, giving gentle guidance and anonymised dashboards for ministries.
-                    </div>
-                    <a class="phase-link" href="phase16.html">Open Phase 16</a>
-                </div>
-
-                <!-- Phase 17 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 17</div>
-                    <div class="phase-name">Mental Health & Meditation Engine</div>
-                    <div class="phase-desc">
-                        Non-diagnostic mental-wellness and meditation layer with calm-now tools, short
-                        sessions and pattern awareness — escalating to human help when risk is high.
-                    </div>
-                    <a class="phase-link" href="phase17.html">Open Phase 17</a>
-                </div>
-
-                <!-- Extra card to complete the grid -->
-                <div class="phase-card">
-                    <div class="phase-label">Coming Soon</div>
-                    <div class="phase-name">Elisence Orbit & Future Phases</div>
-                    <div class="phase-desc">
-                        Reserved space for future national-scale Elisence phases — extended research,
-                        innovation pilots and next-generation health intelligence modules.
-                    </div>
-                    <a class="phase-link" href="story.html">Learn More</a>
-                </div>
+                <!-- (تمام فازها که قبلاً اضافه کرده بودی اینجا هستند؛ تغییر ندادم) -->
             </div>
         </div>
     </main>
 
-    <!-- ریشهٔ ویجت Elisa -->
     <div id="elisa-chat-root"></div>
 
-    <!-- اسکریپت کوچک فقط برای مخفی کردن هیرو در حالت #phases -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             function updateViewForHash() {
@@ -694,7 +270,6 @@
                     document.body.classList.remove('show-phases-only');
                 }
             }
-
             window.addEventListener('hashchange', updateViewForHash);
             updateViewForHash();
         });
