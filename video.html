@@ -45,7 +45,7 @@
             z-index: 20;
         }
 
-        /* Vertical side navigation on the right */
+        /* Side navigation */
         .side-nav {
             position: fixed;
             right: 32px;
@@ -169,6 +169,23 @@
             text-align: center;
         }
 
+        .video-link {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #0ea5e9, #6366f1);
+            color: #0f172a;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.8);
+        }
+
+        .video-link:hover {
+            box-shadow: 0 0 26px rgba(129, 140, 248, 1);
+        }
+
         @media (max-width: 900px) {
             .page-shell {
                 padding: 80px 18px 110px 18px;
@@ -203,7 +220,7 @@
     <div class="top-dot"></div>
     <div class="top-dot-label">ELISENCE</div>
 
-    <!-- SAME SIDE NAV AS OTHER PAGES -->
+    <!-- Side navigation -->
     <nav class="side-nav">
         <a href="index.html"           class="nav-btn">Home</a>
         <a href="index.html#phases"    class="nav-btn">Phases</a>
@@ -217,250 +234,81 @@
         <main class="content-main">
             <h1>Elisence – Phase Videos Library</h1>
             <p class="intro-text">
-                This page is the official archive of Elisence videos: one main introduction
-                for the platform, plus dedicated explainers for each of the 17 phases.
-                As videos are produced, their thumbnails and links will appear here for
-                ministries, hospitals, clinics, investors and everyday users.
+                This page is the official archive of Elisence videos: one global introduction
+                for the platform, a personal story behind Elisence, a link to the full channel,
+                and dedicated explainers for each of the 17 phases. As new videos are produced,
+                they will be added here for ministries, hospitals, clinics, investors and families.
             </p>
 
             <div class="video-grid">
-                <!-- Intro -->
+                <!-- 1) For Elisa – personal story -->
+                <div class="video-card">
+                    <div class="video-tag">Story</div>
+                    <h2>For Elisa — The Story Behind Elisence</h2>
+                    <p>
+                        The true origin story of Elisence: a father’s promise to his daughter Elisa,
+                        and how love, distance and hope became a global health mission.
+                    </p>
+                    <a
+                        href="https://youtu.be/mUInzqG4HLc"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Watch “For Elisa” on YouTube
+                    </a>
+                </div>
+
+                <!-- 2) Global intro — official overview -->
                 <div class="video-card">
                     <div class="video-tag">Intro</div>
-                    <h2>What is Elisence?</h2>
+                    <h2>Elisence — The Future of Global Digital Health</h2>
                     <p>
-                        The main introduction to Elisence – why the platform exists, the real-world
-                        problems it tries to solve, and how the 17-phase roadmap fits together.
+                        Official introduction to Elisence: the 17 phases, safety philosophy,
+                        Zero-Trust design, and how the platform supports families, clinicians
+                        and ministries around the world.
+                    </p>
+                    <a
+                        href="https://youtu.be/u2Y8siPIjTs"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Watch the global intro video
+                    </a>
+                </div>
+
+                <!-- 3) Channel overview / playlists -->
+                <div class="video-card">
+                    <div class="video-tag">Channel</div>
+                    <h2>All Elisence Playlists &amp; Videos</h2>
+                    <p>
+                        Explore the full Elisence YouTube channel with playlists for every
+                        phase, demos for ministries, and future language versions.
+                    </p>
+                    <a
+                        href="https://www.youtube.com/channel/UCb11VdqgHNXU-r6d6pK4Dw"
+                        class="video-link"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Open Elisence channel
+                    </a>
+                </div>
+
+                <!-- 4) Reserved for future key video -->
+                <div class="video-card">
+                    <div class="video-tag">Highlight</div>
+                    <h2>Key Ministry / Investor Preview</h2>
+                    <p>
+                        Reserved space for the future short preview video tailored for
+                        ministries, regulators and investors — a 60–90 second overview.
                     </p>
                     <div class="video-placeholder">
-                        Coming soon – Intro video will be embedded here.
+                        Coming soon – Highlight video placeholder.
                     </div>
                 </div>
 
                 <!-- Phase 1 -->
                 <div class="video-card">
-                    <div class="video-tag">Phase 1</div>
-                    <h2>GLP-1 &amp; Weight Intelligence Core</h2>
-                    <p>
-                        Tracking weight, GLP-1 medication doses, side-effects and behaviours, and turning
-                        them into structured intelligence for users and clinics.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 1 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 2 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 2</div>
-                    <h2>Medication Choice &amp; Safety Engine</h2>
-                    <p>
-                        A structured engine for medication journeys, comparison of options and safer choices
-                        for clinicians and pharmacists – always non-diagnostic, never replacing doctors.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 2 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 3 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 3</div>
-                    <h2>Care, Check-In &amp; Weight-Loss Companion</h2>
-                    <p>
-                        A daily companion for weight-loss and care: check-ins, SOS, smart notifications and
-                        care profiles to support real people at home.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 3 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 4 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 4</div>
-                    <h2>Global-Grade Infrastructure &amp; Provenance</h2>
-                    <p>
-                        The infrastructure layer: stable servers, provenance and QA, export manifests and
-                        digital signatures that ministries and regulators can verify.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 4 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 5 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 5</div>
-                    <h2>Dopamine, Voice &amp; Behaviour Engine</h2>
-                    <p>
-                        How Elisence uses healthy rewards, voice interaction and behaviour design to
-                        encourage good habits – without addiction or dark patterns.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 5 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 6 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 6</div>
-                    <h2>Verified Profiles &amp; Pro Economy</h2>
-                    <p>
-                        Verified identities, professional economy and trust foundations for remote care,
-                        telemedicine, referrals and paid professional services.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 6 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 7 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 7</div>
-                    <h2>Women+ Health &amp; Life Companion</h2>
-                    <p>
-                        The Women+ module: period, fertility, pregnancy, postpartum and menopause support,
-                        built with safety, dignity and education at the centre.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 7 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 8 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 8</div>
-                    <h2>Blood, Risk &amp; Emergency Intelligence</h2>
-                    <p>
-                        Blood and emergency intelligence: lab results, risk signals and escalation paths
-                        that help teams react faster and more safely.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 8 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 9 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 9</div>
-                    <h2>Diabetes &amp; Metabolic Health Brain</h2>
-                    <p>
-                        The diabetes and metabolic core: glucose trends, weight, medications and lifestyle,
-                        converted into safe, non-diagnostic insights.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 9 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 10 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 10</div>
-                    <h2>ELIS – Social &amp; Identity Space</h2>
-                    <p>
-                        The social and identity layer of Elisence: profiles, social walls, secure attachments
-                        and official vitrines for clinicians and organisations.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 10 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 11 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 11</div>
-                    <h2>Safety, AHE &amp; Regulatory Backbone</h2>
-                    <p>
-                        Safety and AHE: SaMD boundaries, test harnesses, logs and evidence that make
-                        Elisence ready for regulatory review.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 11 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 12 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 12</div>
-                    <h2>Family, Kids &amp; Guardianship Layer</h2>
-                    <p>
-                        The family and kids layer: permissions, guardianship and safe collaboration around
-                        children’s health journeys.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 12 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 13 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 13</div>
-                    <h2>Global Care Teams &amp; Collaboration</h2>
-                    <p>
-                        Multi-role care teams, shared dashboards and secure collaboration across clinics,
-                        hospitals, ministries and cross-border partnerships.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 13 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 14 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 14</div>
-                    <h2>Life Map &amp; Daily Companion</h2>
-                    <p>
-                        The Life Map Companion: a long-term, voice-first map of daily life, health goals
-                        and meaningful moments – especially for vulnerable users.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 14 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 15 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 15</div>
-                    <h2>Environment, Air &amp; City-Scale Signals</h2>
-                    <p>
-                        Environmental intelligence: air quality, climate and city-scale signals, feeding
-                        into daily guidance for citizens and ministries.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 15 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 16 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 16</div>
-                    <h2>Global Nutrition Intelligence (GNIE)</h2>
-                    <p>
-                        GNIE – global nutrition and diet intelligence that respects culture, official
-                        guidelines and local rules, starting as a wellness/education engine.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 16 video placeholder.
-                    </div>
-                </div>
-
-                <!-- Phase 17 -->
-                <div class="video-card">
-                    <div class="video-tag">Phase 17</div>
-                    <h2>Future &amp; Research Layer</h2>
-                    <p>
-                        The long-term research and analytics layer: collaboration with universities,
-                        ministries and partners for governed, large-scale health insights.
-                    </p>
-                    <div class="video-placeholder">
-                        Coming soon – Phase 17 video placeholder.
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <!-- ریشهٔ ویجت Elisa -->
-    <div id="elisa-chat-root"></div>
-</body>
-</html>
+                    <div class="video-tag">Phase
