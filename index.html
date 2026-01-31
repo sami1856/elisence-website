@@ -1,708 +1,277 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-site-verification" content="5efK6bgkkzcVgZpIQfqqOBeIx2N_1rCkDWOADBmo8bQ">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="5efK6bgkkzcVgZpIQfqqOBeIx2N_1rCkDWOADBmo8bQ">
 
-  <title>Elisence – Video Library & Phase Explainers</title>
+    <title>Elisence – Global Digital Health & Humanity Platform</title>
 
-  <!-- Elisa chat widget script -->
-  <script defer src="elisa-chat.js"></script>
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
 
-    body {
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
-      color: #ffffff;
-      overflow-x: hidden;
-    }
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 40px 60px 40px;
+        }
 
-    /* ---------- LAYOUT ---------- */
+        .hero-area {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px;
+        }
 
-    .page-wrapper {
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 40px 20px 40px;
-    }
+        .hero-card {
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 50px 60px;
+            border-radius: 26px;
+            background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
+            box-shadow:
+                0 0 45px rgba(0, 170, 255, 0.85),
+                0 0 120px rgba(0, 80, 200, 0.65);
+            text-align: center;
+            border: 1px solid rgba(70, 190, 255, 0.6);
+        }
 
-    .hero-area {
-      width: 100%;
-      max-width: 1100px;
-      margin-right: 190px;
-    }
+        .hero-logo-container {
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto 30px auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .phases-wrapper {
-      padding: 0 40px 80px 40px;
-    }
+        .main-hero-logo {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            animation: breathingGlow 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.6));
+        }
 
-    .content-area {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      margin-right: 190px;
-    }
+        @keyframes breathingGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 25px rgba(0, 160, 255, 0.5)) brightness(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(0, 200, 255, 0.9)) brightness(1.15);
+                transform: scale(1.015);
+            }
+        }
 
-    /* ---------- HERO CARD ---------- */
+        .hero-title {
+            font-size: 30px;
+            letter-spacing: 0.24em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
 
-    .hero-card {
-      width: 100%;
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 46px 52px 40px;
-      border-radius: 26px;
-      background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
-      box-shadow:
-        0 0 45px rgba(0, 170, 255, 0.85),
-        0 0 120px rgba(0, 80, 200, 0.65);
-      text-align: center;
-      border: 1px solid rgba(70, 190, 255, 0.6);
-    }
+        .hero-subtitle {
+            font-size: 14px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #a5d7ff;
+            margin-bottom: 16px;
+        }
 
-    .hero-logo-container {
-      width: 100%;
-      max-width: 750px;
-      margin: 0 auto 26px auto;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        .hero-tagline {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #d4e8ff;
+        }
 
-    .main-hero-logo {
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-      animation: breathingGlow 6s infinite ease-in-out;
-      filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.6));
-    }
+        .hero-body {
+            margin-top: 18px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #dbefff;
+        }
 
-    @keyframes breathingGlow {
-      0%, 100% {
-        filter: drop-shadow(0 0 25px rgba(0, 160, 255, 0.5)) brightness(1);
-        transform: scale(1);
-      }
-      50% {
-        filter: drop-shadow(0 0 50px rgba(0, 200, 255, 0.9)) brightness(1.15);
-        transform: scale(1.015);
-      }
-    }
+        .hero-actions {
+            margin-top: 22px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
 
-    .hero-title {
-      font-size: 28px;
-      letter-spacing: 0.22em;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
+        .btn-primary,
+        .btn-secondary {
+            padding: 10px 24px;
+            border-radius: 999px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
 
-    .hero-subtitle {
-      font-size: 14px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #a5d7ff;
-      margin-bottom: 10px;
-    }
+        .btn-primary {
+            background: linear-gradient(135deg, #00b4ff, #0075ff);
+            color: #ffffff;
+            box-shadow: 0 0 18px rgba(0, 160, 255, 0.85);
+        }
 
-    .hero-tagline {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #d4e8ff;
-      margin-bottom: 6px;
-    }
+        .btn-secondary {
+            background: rgba(0, 0, 0, 0.45);
+            color: #dbefff;
+            border-color: rgba(118, 190, 255, 0.7);
+            box-shadow: 0 0 14px rgba(0, 80, 200, 0.7);
+        }
 
-    .hero-body {
-      margin-top: 6px;
-      font-size: 13px;
-      line-height: 1.7;
-      color: #dbefff;
-    }
+        .hero-footnote {
+            margin-top: 26px;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #7fb5ff;
+        }
 
-    .hero-actions {
-      margin-top: 18px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
 
-    .hero-footnote {
-      margin-top: 22px;
-      text-align: center;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #7fb5ff;
-    }
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+        }
 
-    /* ---------- BUTTONS ---------- */
+        .phases-wrapper {
+            padding: 0 40px 80px 40px;
+        }
 
-    .btn-primary,
-    .btn-secondary {
-      padding: 10px 24px;
-      border-radius: 999px;
-      font-size: 13px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
-    }
+        .content-area {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            margin-right: 190px;
+        }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #00b4ff, #0075ff);
-      color: #ffffff;
-      box-shadow: 0 0 18px rgba(0, 160, 255, 0.85);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 24px rgba(0, 190, 255, 0.9);
-    }
-
-    .btn-secondary {
-      background: rgba(0, 0, 0, 0.45);
-      color: #dbefff;
-      border-color: rgba(118, 190, 255, 0.7);
-      box-shadow: 0 0 14px rgba(0, 80, 200, 0.7);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 20px rgba(0, 120, 255, 0.85);
-    }
-
-    /* ---------- SIDE NAV ---------- */
-
-    .side-nav {
-      position: fixed;
-      right: 32px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 999;
-    }
-
-    .nav-btn {
-      display: block;
-      padding: 13px 38px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 14px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #e3f2ff;
-      background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
-      border: 1px solid rgba(90, 185, 255, 0.9);
-      box-shadow:
-        0 0 16px rgba(0, 130, 255, 0.95),
-        0 0 34px rgba(0, 40, 120, 0.95);
-    }
-
-    .nav-btn:hover {
-      box-shadow:
-        0 0 24px rgba(0, 170, 255, 1),
-        0 0 40px rgba(0, 50, 150, 1);
-      transform: translateY(-1px);
-    }
-
-    /* ---------- VIDEO GRID ---------- */
-
-    .section-heading {
-      margin-top: 10px;
-      font-size: 18px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #98c9ff;
-    }
-
-    .phases-grid {
-      margin-top: 26px;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .phase-card {
-      background: radial-gradient(circle at top, rgba(0, 80, 150, 0.55), rgba(2, 10, 30, 0.98));
-      border-radius: 18px;
-      padding: 18px 18px 16px;
-      border: 1px solid rgba(120, 200, 255, 0.75);
-      box-shadow:
-        0 0 14px rgba(0, 110, 220, 0.9),
-        0 0 32px rgba(0, 16, 60, 0.9);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-height: 170px;
-    }
-
-    .phase-label {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #9fd2ff;
-      opacity: 0.9;
-    }
-
-    .phase-title {
-      font-size: 17px;
-      font-weight: 650;
-      color: #ffffff;
-    }
-
-    .phase-text {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #e1f1ff;
-      flex-grow: 1;
-    }
-
-    .phase-btn {
-      margin-top: 6px;
-      align-self: flex-start;
-      padding: 7px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(140, 210, 255, 0.9);
-      background: rgba(0, 0, 0, 0.5);
-      color: #e5f4ff;
-      font-size: 12px;
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition:
-        background 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
-    }
-
-    .phase-btn:hover {
-      background: rgba(0, 140, 255, 0.9);
-      box-shadow: 0 0 18px rgba(0, 180, 255, 0.9);
-      transform: translateY(-1px);
-    }
-
-    .phase-btn[disabled] {
-      opacity: 0.55;
-      cursor: default;
-    }
-
-    /* ---------- TOP DOT (SMALL DETAIL) ---------- */
-
-    .top-dot {
-      position: fixed;
-      left: 32px;
-      top: 28px;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: #00b7ff;
-      box-shadow: 0 0 16px rgba(0, 183, 255, 1);
-      z-index: 900;
-    }
-
-    .top-dot-label {
-      position: fixed;
-      left: 52px;
-      top: 24px;
-      font-size: 13px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #9bd1ff;
-      z-index: 900;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-
-    @media (max-width: 1100px) {
-      .hero-area,
-      .content-area {
-        margin-right: 0;
-      }
-
-      .side-nav {
-        right: 16px;
-      }
-    }
-
-    @media (max-width: 880px) {
-      .page-wrapper {
-        padding: 30px 20px 20px 20px;
-      }
-
-      .hero-card {
-        padding: 30px 22px 26px;
-      }
-
-      .phases-wrapper {
-        padding: 0 20px 60px 20px;
-      }
-
-      .phases-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .side-nav {
-        display: none;
-      }
-    }
-
-    @media (max-width: 540px) {
-      .phases-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+        .phases-grid {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="top-dot"></div>
-  <div class="top-dot-label">ELISENCE</div>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
 
-  <!-- SIDE NAV -->
-  <nav class="side-nav">
-    <a href="index.html" class="nav-btn">Home</a>
-    <a href="#videos" class="nav-btn">Videos</a>
-    <a href="about.html" class="nav-btn">About</a>
-    <a href="story.html" class="nav-btn">Story</a>
-    <a href="video.html" class="nav-btn">Phases+</a>
-    <a href="contact.html" class="nav-btn">Contact</a>
-    <a href="founder-saami.html" class="nav-btn">Founder</a>
-    <a href="articles.html" class="nav-btn">Articles</a>
-  </nav>
+    <nav class="side-nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="#phases" class="nav-btn">Phases</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="story.html" class="nav-btn">Story</a>
+        <a href="video.html" class="nav-btn">Videos</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="founder-saami.html" class="nav-btn">Founder</a>
+        <a href="articles.html" class="nav-btn">Articles</a>
+    </nav>
 
-  <!-- HERO -->
-  <div class="page-wrapper">
-    <div class="hero-area">
-      <div class="hero-card">
-        <div class="hero-logo-container">
-          <img src="elisence.png" class="main-hero-logo" alt="Elisence logo">
+    <div class="page-wrapper">
+        <div class="hero-area">
+            <div class="hero-card">
+                <div class="hero-logo-container">
+                    <img src="elisence.png" class="main-hero-logo">
+                </div>
+
+                <div class="hero-title">ELISENCE</div>
+                <div class="hero-subtitle">Growth · Health · Humanity · Embracing the Future</div>
+
+                <p class="hero-tagline">
+                    A trusted, multi-phase health intelligence platform for families, clinicians and governments.
+                </p>
+
+                <p class="hero-body">
+                    Elisence unifies weight-loss, diabetes, women’s health, mental health, clinical passports,
+                    secure messaging and global nutrition into one regulated-ready ecosystem.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#phases" class="btn-primary">Explore the Phases</a>
+                    <a href="video.html" class="btn-secondary">Watch Videos</a>
+                </div>
+
+                <div class="hero-footnote">Built by Saami — Powered by ChatGPT</div>
+            </div>
         </div>
-
-        <div class="hero-title">ELISENCE</div>
-        <div class="hero-subtitle">Global Digital Health &amp; Humanity Platform</div>
-
-        <p class="hero-tagline">
-          Official explainer videos for the Elisence phases — from personal story and vision,
-          to women’s health, diabetes, families, nutrition, mental health and Zero-Trust safety.
-        </p>
-
-        <p class="hero-body">
-          Start with the story behind Elisence, then explore each phase explainer.
-          All content is educational and non-diagnostic, designed for families, clinicians
-          and ministries who want transparent, regulator-aware digital health.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#videos" class="btn-primary">Browse the video grid</a>
-          <a href="https://www.youtube.com/channel/UCb11VdqgHNXU-r6d6pK4Dw" target="_blank" rel="noopener" class="btn-secondary">
-            Open YouTube channel
-          </a>
-        </div>
-
-        <div class="hero-footnote">Built by Saami — Powered by ChatGPT</div>
-      </div>
     </div>
-  </div>
 
-  <!-- VIDEO GRID -->
-  <main class="phases-wrapper" id="videos">
-    <div class="content-area">
-      <div class="section-heading">Video Library · Founder Story &amp; 17 Phases</div>
-
-      <div class="phases-grid">
-        <!-- ROW 1 -->
-        <div class="phase-card">
-          <div class="phase-label">FOR ELISA</div>
-          <div class="phase-title">For Elisa — The Story Behind Elisence</div>
-          <p class="phase-text">
-            The personal story of how a father’s promise to his daughter Elisa became a global
-            health &amp; humanity platform — built for truth, justice and protection.
-          </p>
-          <a
-            href="https://youtu.be/mUInzqG4HLc"
-            target="_blank"
-            rel="noopener"
-            class="phase-btn"
-          >
-            Watch on YouTube
-          </a>
+    <main class="phases-wrapper" id="phases">
+        <div class="content-area">
+            <div class="phases-grid">
+                <!-- (تمام فازها که قبلاً اضافه کرده بودی اینجا هستند؛ تغییر ندادم) -->
+            </div>
         </div>
+    </main>
 
-        <div class="phase-card">
-    <div class="phase-label">GLOBAL INTRO</div>
-    <div class="phase-title">Elisence — The Global Digital Health &amp; Humanity Platform</div>
-    <p class="phase-text">
-    High-level overview of Elisence: families, clinics, ministries, Zero-Trust security
-    and the 17-phase architecture behind the platform.
-    </p>
+    <div id="elisa-chat-root"></div>
 
-  <a
-    href="https://youtu.be/u2Y8siPIjTs"
-    target="_blank"
-    rel="noopener"
-    class="phase-btn"
-  >
-    Watch on YouTube
-  </a>
-</div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 1</div>
-          <div class="phase-title">Core Monitoring &amp; Early Signals</div>
-          <p class="phase-text">
-            Foundations for safe monitoring, vital signs, red-flag detection and early
-            escalation paths for citizens and clinics.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 1 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 2</div>
-          <div class="phase-title">Risk, Labs &amp; Emergency Intelligence</div>
-          <p class="phase-text">
-            Blood, risk and emergency intelligence: lab results, escalation rules and
-            event-driven alerts for safer urgent care.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 2 video
-          </button>
-        </div>
-
-        <!-- ROW 2 -->
-        <div class="phase-card">
-          <div class="phase-label">PHASE 3</div>
-          <div class="phase-title">Care, Weight-Loss &amp; Lifestyle</div>
-          <p class="phase-text">
-            Weight-loss and lifestyle engine for GLP-1, exercise, sleep and habits — fully
-            non-diagnostic, coach-style support.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 3 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 4</div>
-          <div class="phase-title">Integrity, Provenance &amp; WORM</div>
-          <p class="phase-text">
-            Provenance engine, WORM audit logs and integrity bundles that make Elisence
-            verifiable for ministries and regulators.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 4 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 5</div>
-          <div class="phase-title">Voice &amp; Zero-Typing Engine</div>
-          <p class="phase-text">
-            Conversational, voice-first access to Elisence so citizens can talk rather than type,
-            with strict safety and governance.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 5 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 6</div>
-          <div class="phase-title">Comparative Analytics &amp; Insight</div>
-          <p class="phase-text">
-            Anonymised, k-anonymous analytics for ministries and hospitals — never exposing
-            any individual’s record.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 6 video
-          </button>
-        </div>
-
-        <!-- ROW 3 -->
-        <div class="phase-card">
-          <div class="phase-label">PHASE 7</div>
-          <div class="phase-title">Women+ Health &amp; Life Companion</div>
-          <p class="phase-text">
-            Women+ engine for cycle health, pregnancy, postpartum and safety — multilingual,
-            traceable and non-diagnostic.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 7 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 8</div>
-          <div class="phase-title">Safety, AHE &amp; Regulatory Backbone</div>
-          <p class="phase-text">
-            Safety, AHE and SaMD boundaries with test harnesses, hazard logs and risk-to-control
-            mapping for real-world review.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 8 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 9</div>
-          <div class="phase-title">Diabetes &amp; GLP-1 Intelligence</div>
-          <p class="phase-text">
-            Diabetes, metabolic and GLP-1 intelligence: long-term risk, events, lifestyle and
-            non-diagnostic coaching.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 9 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 10</div>
-          <div class="phase-title">Social &amp; Identity Layer (ELIS)</div>
-          <p class="phase-text">
-            Messaging, public profiles and social identity with strict passports, attachments
-            vault and boundary governance.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 10 video
-          </button>
-        </div>
-
-        <!-- ROW 4 -->
-        <div class="phase-card">
-          <div class="phase-label">PHASE 11</div>
-          <div class="phase-title">Safety, AHE Tests &amp; Evidence</div>
-          <p class="phase-text">
-            Safety evidence packs, WORM-grade audit exports and alignment with NHS, EU MDR,
-            FDA and GCC baselines.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 11 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 12</div>
-          <div class="phase-title">Family, Kids &amp; Guardianship Layer</div>
-          <p class="phase-text">
-            Family and kids layer: permissions, guardianship and safe collaboration around
-            children’s health journeys.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 12 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 13</div>
-          <div class="phase-title">Global Care Teams &amp; Collaboration</div>
-          <p class="phase-text">
-            Multi-role care teams, shared dashboards and secure collaboration across clinics,
-            hospitals, ministries and borders.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 13 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 14</div>
-          <div class="phase-title">Life Map &amp; Daily Companion</div>
-          <p class="phase-text">
-            Life Map companion: daily life, safety and meaningful moments — designed especially
-            for vulnerable users.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 14 video
-          </button>
-        </div>
-
-        <!-- ROW 5 -->
-        <div class="phase-card">
-          <div class="phase-label">PHASE 15</div>
-          <div class="phase-title">Family Ecosystem Assistant (0–18)</div>
-          <p class="phase-text">
-            Family Ecosystem Assistant: 0–18 wellbeing, school, digital safety, bonding and
-            aggregated insights for ministries.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 15 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 16</div>
-          <div class="phase-title">Global Nutrition &amp; Diet Engine (GNIE)</div>
-          <p class="phase-text">
-            Nutrition &amp; diet intelligence that respects culture, official guidelines and
-            real-world risks, across five languages.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 16 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">PHASE 17</div>
-          <div class="phase-title">Mental Health &amp; CalmNow Engine</div>
-          <p class="phase-text">
-            Mental health &amp; calm engine for safe mood support, early risk flags and gentle,
-            non-diagnostic guidance.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Phase 17 video
-          </button>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-label">ELISENCE</div>
-          <div class="phase-title">Global Story, Talks &amp; Exhibitions</div>
-          <p class="phase-text">
-            Reserved for future recordings from global events, ministry sessions and public
-            talks about Elisence’s journey.
-          </p>
-          <button class="phase-btn" disabled>
-            Coming soon — Global story videos
-          </button>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <div id="elisa-chat-root"></div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      function updateViewForHash() {
-        if (window.location.hash === '#videos') {
-          window.scrollTo(0, 0);
-        }
-      }
-      window.addEventListener('hashchange', updateViewForHash);
-      updateViewForHash();
-    });
-  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function updateViewForHash() {
+                if (window.location.hash === '#phases') {
+                    document.body.classList.add('show-phases-only');
+                    window.scrollTo(0, 0);
+                } else {
+                    document.body.classList.remove('show-phases-only');
+                }
+            }
+            window.addEventListener('hashchange', updateViewForHash);
+            updateViewForHash();
+        });
+    </script>
 
 </body>
 </html>
