@@ -1,223 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Elisence — Story</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Elisa chat widget script -->
-    <script defer src="elisa-chat.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <title>Why I Built Elisence — The Human Story</title>
+  <meta name="description" content="The true human story behind Elisence — built from love, pain, resilience, and a father’s determination to create a global health intelligence ecosystem for every family.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            min-height: 100vh;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
-            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
-            color: #ffffff;
-            overflow-x: hidden;
-            padding: 80px 40px;
-        }
-
-        /* نقطه و لوگوی بالا */
-        .top-dot {
-            position: fixed;
-            left: 18px;
-            top: 18px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
-            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
-            z-index: 20;
-        }
-
-        .top-dot-label {
-            position: fixed;
-            left: 40px;
-            top: 16px;
-            font-size: 14px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: #a9d4ff;
-            z-index: 20;
-        }
-
-        /* منوی عمودی سمت راست */
-        .side-nav {
-            position: fixed;
-            right: 32px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            z-index: 999;
-        }
-
-        .nav-btn {
-            display: block;
-            padding: 13px 38px;
-            border-radius: 999px;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: #e3f2ff;
-            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
-            border: 1px solid rgba(90, 185, 255, 0.9);
-            box-shadow:
-                0 0 16px rgba(0, 130, 255, 0.95),
-                0 0 34px rgba(0, 40, 120, 0.95);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-        }
-
-        .nav-btn:hover {
-            transform: translateX(-4px);
-            box-shadow:
-                0 0 22px rgba(0, 190, 255, 1),
-                0 0 46px rgba(0, 80, 200, 1);
-            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
-        }
-
-        .content-wrap {
-            max-width: 880px;
-            margin-right: 200px;
-            margin-left: auto;
-            padding-top: 40px;
-        }
-
-        h1 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #7dd3fc;
-            text-align: left;
-        }
-
-        p {
-            font-size: 17px;
-            color: #e8f7ff;
-            margin-bottom: 18px;
-            line-height: 1.75;
-        }
-
-        a {
-            color: #5fc5ff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 900px) {
-        /* منوی عمودی سمت راست – نسخه واحد برای همه صفحات */
-.side-nav {
-    position: fixed;
-    right: 32px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    z-index: 999;
-}
-
-.nav-btn {
-    display: block;
-    padding: 13px 38px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #e3f2ff;
-    background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
-    border: 1px solid rgba(90, 185, 255, 0.9);
-    box-shadow:
-        0 0 16px rgba(0, 130, 255, 0.95),
-        0 0 34px rgba(0, 40, 120, 0.95);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
-}
-
-.nav-btn:hover {
-    transform: translateX(-4px);
-    padding-right: 44px;
-    box-shadow:
-        0 0 22px rgba(0, 190, 255, 1),
-        0 0 46px rgba(0, 80, 200, 1);
-    background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
-}
-
-.nav-btn:active {
-    transform: translateX(-2px) scale(0.99);
-}
-
-/* نسخه موبایل منو + کوچیک کردن دکمه‌ها */
-@media (max-width: 900px) {
-    .side-nav {
-        position: fixed;
-        right: 50%;
-        top: auto;
-        bottom: 18px;
-        transform: translateX(50%);
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
+  <style>
+    body {
+      font-family: Inter, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f9fb;
+      color: #111;
+      line-height: 1.75;
     }
-
-    .nav-btn {
-        padding: 8px 16px;
-        font-size: 12px;
-        letter-spacing: 0.11em;
-        max-width: 45%;
-        display: inline-flex;
-        justify-content: center;
-        white-space: nowrap;
+    .hero {
+      background: #0E6FFF;
+      color: white;
+      padding: 70px 20px;
+      text-align: center;
     }
-
-    /* همین‌جا می‌تونی بلوک کوچیک‌کردن الیسا رو هم اگر خواستی کپی کنی،
-       ولی برای story.html اگر الیسا نیست، لازم نیست */
-}
-    </style>
+    .hero h1 {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 700;
+    }
+    .hero p {
+      margin-top: 10px;
+      font-size: 20px;
+      opacity: 0.95;
+    }
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px 80px;
+    }
+    h2 {
+      font-size: 28px;
+      color: #0E6FFF;
+      margin-top: 40px;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+  </style>
 </head>
+
 <body>
 
-    <div class="top-dot"></div>
-    <div class="top-dot-label">ELISENCE</div>
+<div class="hero">
+  <h1>Why I Built Elisence</h1>
+  <p>The Human Story Behind a Global Health Intelligence Ecosystem</p>
+</div>
 
-    <nav class="side-nav">
-        <a href="index.html" class="nav-btn">Home</a>
-        <a href="index.html#phases" class="nav-btn">Phases</a>
-        <a href="about.html" class="nav-btn">About</a>
-        <a href="story.html" class="nav-btn">Story</a>
-        <a href="videos.html" class="nav-btn">Videos</a>
-        <a href="contact.html" class="nav-btn">Contact</a>
-    </nav>
+<div class="container">
 
-    <div class="content-wrap">
-        <h1>The Story of Elisence</h1>
+  <h2>Born from Love</h2>
+  <p>
+    Elisence did not begin as a company. It began as love — a father’s love for his daughter, Elisa.
+    Every dream I had for her was built around knowledge, curiosity, science, kindness, and becoming
+    a strong, independent human being.
+  </p>
+  <p>
+    We watched NASA videos together, explored ideas, solved problems, learned about people, science,
+    discipline, forgiveness, and growth. I wanted her to learn how to think — not just what to think.
+  </p>
 
-        <p>
-            This page is reserved for the official story behind the creation of Elisence — from the early
-            challenges and turning points, to the long-term vision that shaped a global digital health
-            and humanity ecosystem built across 17 phases.
-        </p>
+  <h2>Born from Pain</h2>
+  <p>
+    Life, however, took a painful turn. A separation, distance, and a long, harsh legal journey could
+    have broken anyone. But instead of breaking me, the pain transformed into purpose.
+  </p>
+  <p>
+    From that pain, <strong>Elisence</strong> was born — a platform built to give every child, every family,
+    and every human the support, clarity, education, and safety I wished I could always give her directly.
+  </p>
 
-        <p>
-            The full historical narrative, including the origins of the platform, the real-world motivations,
-            and the evolution of each major phase, will be added here soon.
-        </p>
+  <h2>The Moment Everything Changed</h2>
+  <p>
+    I realised that technology can either drain us… or lift us.  
+    It can either distract… or empower.  
+    It can either numb people… or wake their minds up.
+  </p>
+  <p>
+    So I decided: technology must serve humanity — not the other way around.
+  </p>
 
-        <p>
-            <a href="index.html">← Back to Home</a>
-        </p>
-    </div>
-    <!-- ریشهٔ ویجت Elisa -->
-    <div id="elisa-chat-root"></div>
+  <h2>What Elisence Stands For</h2>
+  <p>
+    Elisence is built as the <strong>first fully human-centred global health intelligence system</strong>.
+    A platform where:
+  </p>
+
+  <ul>
+    <li>health becomes clear, simple, visual, and personalised</li>
+    <li>families and children grow emotionally and intellectually</li>
+    <li>Zero-Trust privacy protects every user</li>
+    <li>science and safety guide every recommendation</li>
+    <li>AI helps you become healthier — not more addicted to screens</li>
+  </ul>
+
+  <h2>The Human Engine Behind the Technology</h2>
+  <p>
+    Elisence is not just a health app. It is a living ecosystem combining:
+  </p>
+
+  <ul>
+    <li><strong>Healthy Dopamine Engine</strong> — rewarding real healthy behaviour</li>
+    <li><strong>GLP-1 & Diabetes Intelligence</strong> — analysing results, dosing, outcomes</li>
+    <li><strong>Women+ Health</strong> — cycle, pregnancy, postpartum, long-term wellness</li>
+    <li><strong>Family & Kids Mode (0–18)</strong> — safe digital habits and life-skills</li>
+    <li><strong>Sleep, nutrition, mental health, and emotional balance</strong></li>
+    <li><strong>AI companion “Elisa”</strong> — a coach that guides, encourages, and inspires</li>
+  </ul>
+
+  <h2>A Safe World for Children</h2>
+  <p>
+    In the Family & Kids Mode, children learn how to eat better, sleep better, move more, and
+    think more positively — without ads, without manipulation, and without unsafe content.
+  </p>
+  <p>
+    Parents can track progress, create family challenges, and help build healthy habits together.
+  </p>
+
+  <h2>A Platform with Global Purpose</h2>
+  <p>
+    Elisence is designed not only for individuals, but for families, schools, governments,
+    clinicians, and global research teams.
+  </p>
+  <p>
+    The goal is to unite:
+  </p>
+  <ul>
+    <li>science</li>
+    <li>AI</li>
+    <li>public health</li>
+    <li>and humanity</li>
+  </ul>
+  <p>
+    …into one platform that can evolve for decades.
+  </p>
+
+  <h2>Built for Elisa — and for Everyone</h2>
+  <p>
+    At its heart, Elisence carries the story of a father who refused to break.
+    Instead, he turned love and pain into innovation and service.
+  </p>
+  <p>
+    Elisence is for my daughter.  
+    Elisence is for truth.  
+    Elisence is for justice.  
+    And ultimately — Elisence is for everyone.
+  </p>
+
+  <p><strong>🕊️ Elisence — Growth, Health, Humanity.</strong></p>
+
+</div>
+
 </body>
 </html>
