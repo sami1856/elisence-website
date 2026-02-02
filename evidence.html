@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Product Evidence (Videos, UI & Storyboards)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Product evidence for Elisence – live videos, website UI, private mockups and storyboards for ministries, clinics and investors.">
+    <!-- Elisa chat widget -->
+    <script defer src="elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* نقطه و لوگوی بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست – هماهنگ با governments / technical-evidence */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* وضعیت فعال برای Product Evidence */
+        .nav-btn.product-active {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.85), rgba(8, 47, 73, 0.98));
+            border-color: rgba(125, 211, 252, 0.95);
+            box-shadow:
+                0 0 22px rgba(56, 189, 248, 1),
+                0 0 50px rgba(37, 99, 235, 0.95);
+        }
+
+        /* محتوای اصلی صفحه */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #e1eeff;
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.6rem;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.8);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e0f2fe;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.35rem;
+            font-size: 0.93rem;
+            color: #dceafe;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        .link-inline {
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+
+        .link-inline:hover {
+            text-decoration: underline;
+        }
+
+        .button-link {
+            display: inline-block;
+            margin-top: 0.9rem;
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.95);
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #e0f2fe;
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.4), rgba(15, 23, 42, 0.95));
+        }
+
+        .button-link:hover {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.7), rgba(15, 23, 42, 1));
+        }
+
+        .closing-note {
+            font-size: 0.93rem;
+            color: #dbeafe;
+            margin-top: 1.6rem;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html"            class="nav-btn">Home</a>
+        <a href="index.html#phases"     class="nav-btn">Phases</a>
+        <a href="governments.html"      class="nav-btn">Governments</a>
+        <a href="download.html"         class="nav-btn">Downloads</a>
+        <a href="technical-evidence.html" class="nav-btn">Evidence</a>
+        <a href="product-evidence.html" class="nav-btn product-active">Product Evidence</a>
+        <a href="about.html"            class="nav-btn">About</a>
+        <a href="story.html"            class="nav-btn">Story</a>
+        <a href="video.html"            class="nav-btn">Videos</a>
+        <a href="contact.html"          class="nav-btn">Contact</a>
+        <a href="founder-saami.html"    class="nav-btn">Founder</a>
+        <a href="articles.html"         class="nav-btn">Articles</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <h1>Product Evidence – Videos, UI &amp; Storyboards</h1>
+
+            <p class="lead">
+                This page summarises the <span class="highlight">product-side evidence</span> for Elisence:
+                live videos, live website UI, and private mockups and storyboards that can be shared with
+                ministries, clinics and investors on request.
+            </p>
+
+            <p class="tagline">
+                We keep the public website <strong>clean and lightweight</strong>. Instead of filling it with
+                screenshots and heavy assets, we use the live site and the dedicated Videos page as the primary
+                proof of the product – and provide deeper product packs privately when needed.
+            </p>
+
+            <div class="pill-row">
+                <span class="pill">Live Videos</span>
+                <span class="pill">Real Website UI</span>
+                <span class="pill">Private Mockups</span>
+                <span class="pill">Phase Storyboards</span>
+                <span class="pill">Ministry &amp; QDB Ready</span>
+            </div>
+
+            <!-- 5. Product videos -->
+            <section class="card">
+                <h2>5. Product Videos (Live on the Website)</h2>
+                <p>
+                    Elisence already has a dedicated <span class="highlight">Videos</span> page on the live website.
+                    Each major phase (for example Phases 4, 7, 8, 9, 10, 15, 16) has – or will have – its own short video,
+                    hosted on YouTube and embedded via this page.
+                </p>
+                <ul>
+                    <li>The videos show <strong>real screens, real logic and real journeys</strong>, not concept art.</li>
+                    <li>Each video is tightly aligned with the technical reality described on the Technical Evidence page.</li>
+                    <li>New videos can be added without changing this Product Evidence structure.</li>
+                </ul>
+                <p>
+                    For ministries and investors, the Videos page is the primary place to see working demos
+                    without needing any special access or logins.
+                </p>
+                <a href="video.html" class="button-link">Open the Videos Page</a>
+            </section>
+
+            <!-- 6. Live website instead of screenshots -->
+            <section class="card">
+                <h2>6. Live Website &amp; Product Screens</h2>
+                <p>
+                    The live Elisence website itself is a key part of the product evidence. It already exposes:
+                </p>
+                <ul>
+                    <li>The overall story and positioning of Elisence.</li>
+                    <li>The multi-phase roadmap and status (Phases 1–17).</li>
+                    <li>The Governments hub – including dedicated pages such as <span class="highlight">Qatar</span>.</li>
+                    <li>The Downloads page – with public PDFs such as the Qatar summary pack.</li>
+                    <li>The Elisa chat widget, demonstrating the companion on the public site.</li>
+                </ul>
+                <p>
+                    For day-to-day evaluation, the <strong>live website is stronger evidence than screenshots</strong>:
+                    it shows that the product is already coherent, navigable and ready to present to ministries and clinics.
+                </p>
+                <p>
+                    We deliberately do <strong>not</strong> fill this page with static screenshots. Instead:
+                </p>
+                <ul>
+                    <li>The live website is the primary “screen evidence”.</li>
+                    <li>For <strong>offline</strong> or internal reviews (for example, inside a ministry, QDB or a clinic),
+                        we can provide a curated set of high-resolution screenshots inside a PDF evidence pack.</li>
+                </ul>
+                <p class="closing-note">
+                    High-resolution screenshots of key flows (home, phases, governments/Qatar, downloads, videos, etc.)
+                    are available on request as part of a private product evidence pack.
+                </p>
+            </section>
+
+            <!-- 7. UI mockups -->
+            <section class="card">
+                <h2>7. UI Mockups (Ministry, Clinic &amp; Citizen Views)</h2>
+                <p>
+                    In addition to the live website and videos, Elisence maintains a set of
+                    <span class="highlight">high-fidelity UI mockups</span> for:
+                </p>
+                <ul>
+                    <li>Ministry and public-health dashboards.</li>
+                    <li>Clinician panels (AHE, labs, diabetes, women+ signals).</li>
+                    <li>Citizen and family apps (weight, diabetes, women+, mental health, family ecosystem).</li>
+                </ul>
+                <p>
+                    These mockups are used in design reviews, UX workshops and closed evaluation sessions
+                    with ministries, clinics and serious investors.
+                </p>
+                <p>
+                    To keep the public website lightweight and controlled, <strong>we do not publish all mockups publicly</strong>.
+                    Instead, they can be shared:
+                </p>
+                <ul>
+                    <li>Privately during evaluation sessions (for example with a ministry team or QDB Digital Health unit).</li>
+                    <li>Under NDA or as part of a structured due-diligence process.</li>
+                </ul>
+                <p class="closing-note">
+                    Detailed UI mockups for ministry dashboards, clinician panels and citizen/family views
+                    are therefore part of the <strong>private Product Evidence Pack</strong>, not the public website.
+                </p>
+            </section>
+
+            <!-- 8. Storyboards -->
+            <section class="card">
+                <h2>8. Storyboards for Key Phases</h2>
+                <p>
+                    For key phases – such as Phase 4 (ECI / WORM / Provenance), Phase 7 (Women+),
+                    Phase 8 (AHE), Phase 9 (Diabetes), Phase 10 (Social Identity / Messaging),
+                    Phase 15 (Family Ecosystem) and Phase 16 (Global Nutrition Engine) – Elisence
+                    has <span class="highlight">structured storyboards</span> that describe:
+                </p>
+                <ul>
+                    <li>What a citizen, clinician or ministry user sees on each screen.</li>
+                    <li>Which questions they ask and which answers Elisence provides.</li>
+                    <li>How safety, non-diagnostic boundaries and consent are communicated.</li>
+                    <li>How the experience unfolds over time (for example: first visit, follow-up, escalation).</li>
+                </ul>
+                <p>
+                    These storyboards are the bridge between engines and real experiences:
+                    they inform the videos on the Videos page and guide the design of future UI components.
+                </p>
+                <p>
+                    Full storyboard documents (scene-by-scene) are not published on the public site.
+                    Instead, they are available as part of the internal Product Evidence Pack and can be
+                    shared with ministries, clinics or investors when needed.
+                </p>
+            </section>
+
+            <!-- Closing summary -->
+            <section class="card">
+                <h2>Summary – Public vs Private Product Evidence</h2>
+                <p>
+                    Not every internal asset (videos, screenshots, mockups, storyboards) is published publicly.
+                    This is intentional: it keeps the public-facing surface of Elisence clean, fast and focused,
+                    while still allowing deep evaluation when required.
+                </p>
+                <ul>
+                    <li><strong>Public:</strong> live website, Governments/Qatar pages, Downloads (high-level PDFs), Videos page, Elisa widget.</li>
+                    <li><strong>Private on request:</strong> curated screenshots, high-fidelity mockups, detailed storyboards and combined Product Evidence PDFs.</li>
+                </ul>
+                <p class="closing-note">
+                    For ministries, regulators, clinics or investors who need a deeper Product Evidence Pack,
+                    we can share private materials (for example under NDA or as part of QDB/QFC/QSTP or ministry evaluations).
+                    The contact point is the same as for Technical Evidence: use the
+                    <a href="contact.html" class="link-inline">contact page</a> or email
+                    <span class="highlight">contact@elisence.com</span>.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
+</body>
+</html>
