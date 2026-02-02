@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <title>Elisence – Governments & National Programs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="How Elisence works with governments, ministries and national programs – including Qatar and future GCC, UK and EU deployments.">
+    <meta name="description"
+          content="How Elisence works with governments, ministries and national programs – including Qatar and future GCC, UK and EU deployments.">
     <!-- Elisa chat widget -->
     <script defer src="elisa-chat.js"></script>
 
@@ -74,7 +75,8 @@
             box-shadow:
                 0 0 16px rgba(0, 130, 255, 0.95),
                 0 0 34px rgba(0, 40, 120, 0.95);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease,
+                        background 0.2s ease, padding 0.2s ease;
         }
 
         .nav-btn:hover {
@@ -83,16 +85,20 @@
             box-shadow:
                 0 0 22px rgba(0, 190, 255, 1),
                 0 0 46px rgba(0, 80, 200, 1);
-            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+            background: radial-gradient(circle at top,
+                        rgba(0, 170, 255, 0.7),
+                        rgba(0, 25, 80, 1));
         }
 
         .nav-btn:active {
             transform: translateX(-2px) scale(0.99);
         }
 
-        /* وضعیت فعال Governments (اختیاری) */
+        /* وضعیت فعال Governments */
         .nav-btn.gov-active {
-            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.85), rgba(8, 47, 73, 0.98));
+            background: radial-gradient(circle at top,
+                        rgba(56, 189, 248, 0.85),
+                        rgba(8, 47, 73, 0.98));
             border-color: rgba(125, 211, 252, 0.95);
             box-shadow:
                 0 0 22px rgba(56, 189, 248, 1),
@@ -111,7 +117,7 @@
         .content-main {
             width: 100%;
             max-width: 1100px;
-            margin-right: 190px;
+            margin-right: 190px; /* فضای منوی سمت راست */
         }
 
         h1 {
@@ -134,7 +140,7 @@
             max-width: 900px;
         }
 
-        /* Pills */
+        /* Pills – یکسان با بقیه صفحات + هاله‌ی آبی ملایم */
         .pill-row {
             display: flex;
             flex-wrap: wrap;
@@ -151,6 +157,9 @@
             text-transform: uppercase;
             color: #e0f2fe;
             background: rgba(15, 23, 42, 0.9);
+            box-shadow:
+                0 0 14px rgba(56, 189, 248, 0.85),
+                0 0 26px rgba(15, 23, 42, 0.9);
         }
 
         /* Cards */
@@ -194,6 +203,7 @@
             font-weight: 600;
         }
 
+        /* کارت کشورها */
         .country-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -243,7 +253,9 @@
             color: #f9fafb;
             background: linear-gradient(135deg, #0ea5e9, #1d4ed8);
             box-shadow: 0 0 16px rgba(56, 189, 248, 0.9);
-            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+            transition: transform 0.18s ease,
+                        box-shadow 0.18s ease,
+                        background 0.18s ease;
         }
 
         .btn-small:hover {
@@ -296,162 +308,167 @@
 </head>
 <body>
 
-    <div class="top-dot"></div>
-    <div class="top-dot-label">ELISENCE</div>
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
 
-    <!-- منوی عمودی سمت راست -->
-    <nav class="side-nav">
-        <a href="index.html"        class="nav-btn">Home</a>
-        <a href="index.html#phases" class="nav-btn">Phases</a>
-        <a href="governments.html"  class="nav-btn gov-active">Governments</a>
-        <a href="about.html"        class="nav-btn">About</a>
-        <a href="story.html"        class="nav-btn">Story</a>
-        <a href="video.html"        class="nav-btn">Videos</a>
-        <a href="contact.html"      class="nav-btn">Contact</a>
-        <a href="founder-saami.html" class="nav-btn">Founder</a>
-        <a href="articles.html"     class="nav-btn">Articles</a>
-        <a href="download.html"     class="nav-btn">Downloads</a>
-    </nav>
+<!-- منوی عمودی سمت راست -->
+<nav class="side-nav">
+    <a href="index.html"        class="nav-btn">Home</a>
+    <a href="index.html#phases" class="nav-btn">Phases</a>
+    <a href="governments.html"  class="nav-btn gov-active">Governments</a>
+    <a href="about.html"        class="nav-btn">About</a>
+    <a href="story.html"        class="nav-btn">Story</a>
+    <a href="video.html"        class="nav-btn">Videos</a>
+    <a href="contact.html"      class="nav-btn">Contact</a>
+    <a href="founder-saami.html" class="nav-btn">Founder</a>
+    <a href="articles.html"     class="nav-btn">Articles</a>
+    <a href="download.html"     class="nav-btn">Downloads</a>
+</nav>
 
-    <div class="page-shell">
-        <main class="content-main">
-            <h1>Governments &amp; National Programs</h1>
+<div class="page-shell">
+    <main class="content-main">
+        <h1>Governments &amp; National Programs</h1>
 
-            <p class="lead">
-                Elisence is a multi-phase Digital Health &amp; AI infrastructure designed to work directly with
-                ministries, public health teams, hospitals and national innovation programs – starting in Qatar
-                and expanding across the GCC, UK and EU.
+        <p class="lead">
+            Elisence is a multi-phase Digital Health &amp; AI infrastructure designed to work directly with
+            ministries, public health teams, hospitals and national innovation programs – starting in Qatar
+            and expanding across the GCC, UK and EU.
+        </p>
+
+        <p class="tagline">
+            This page gives a high-level view of how Elisence fits government strategies, and highlights the
+            first focus country: Qatar.
+        </p>
+
+        <!-- کشورهای هدف – دو ردیف چهار‌تایی -->
+        <div class="pill-row">
+            <span class="pill" style="font-weight:600;">
+                QATAR · FIRST FOCUS COUNTRY
+            </span>
+            <span class="pill">
+                SAUDI ARABIA · COMING SOON
+            </span>
+            <span class="pill">
+                UNITED ARAB EMIRATES · COMING SOON
+            </span>
+            <span class="pill">
+                KUWAIT · COMING SOON
+            </span>
+        </div>
+
+        <div class="pill-row">
+            <span class="pill">
+                OMAN · COMING SOON
+            </span>
+            <span class="pill">
+                BAHRAIN · COMING SOON
+            </span>
+            <span class="pill">
+                UK · FUTURE EXPANSION
+            </span>
+            <span class="pill">
+                EU · FUTURE EXPANSION
+            </span>
+        </div>
+
+        <!-- 1. How Elisence Works With Governments -->
+        <section class="card">
+            <h2>1. How Elisence Works With Governments</h2>
+            <p>
+                Elisence is not just an app. It is a <span class="highlight">multi-phase infrastructure</span>
+                that can be deployed as a national platform for diabetes, women+ health, mental wellness,
+                nutrition (GNIE), family wellbeing and population dashboards.
+            </p>
+            <ul>
+                <li>
+                    <span class="highlight">Non-diagnostic, safety-first intelligence</span> – Elisence does not replace
+                    doctors or issue clinical orders; it structures data, highlights patterns and supports safer decisions.
+                </li>
+                <li>
+                    <span class="highlight">Zero-Trust security &amp; WORM audit</span> – every critical event can be traced,
+                    exported and verified, with clear logs for ministries and regulators.
+                </li>
+                <li>
+                    <span class="highlight">Five-language design (EN / AR / FA / TR / RO)</span> – built for GCC, MENA, UK and EU,
+                    respecting local language, culture and privacy expectations.
+                </li>
+                <li>
+                    <span class="highlight">Phase-based architecture</span> – governments can start with the most urgent domains
+                    (for example diabetes, women’s health and family wellbeing) and expand step by step.
+                </li>
+            </ul>
+        </section>
+
+        <!-- 2. Current Focus Country: Qatar -->
+        <section class="card">
+            <h2>2. Current Focus Country: Qatar</h2>
+            <p>
+                Qatar is the first GCC country where Elisence is being positioned as a <span class="highlight">
+                HealthTech &amp; AI platform</span> for citizens, clinics and ministries – aligned with national
+                strategies in diabetes, innovation and digital health.
+            </p>
+            <p>
+                For Qatar, Elisence already has dedicated materials and documentation:
             </p>
 
-            <p class="tagline">
-                This page gives a high-level view of how Elisence fits government strategies, and highlights the
-                first focus country: Qatar.
-            </p>
-
-            <div class="pill-row">
-    <span class="pill" style="font-weight:600;">
-        QATAR · FIRST FOCUS COUNTRY
-    </span>
-
-    <span class="pill">
-        SAUDI ARABIA · COMING SOON
-    </span>
-
-    <span class="pill">
-        UNITED ARAB EMIRATES · COMING SOON
-    </span>
-
-    <span class="pill">
-        KUWAIT · COMING SOON
-    </span>
-
-    <span class="pill">
-        OMAN & BAHRAIN · COMING SOON
-    </span>
-
-    <span class="pill">
-        UK & EU · FUTURE EXPANSION
-    </span>
-</div>
-
-            <!-- 1. How Elisence Works With Governments -->
-            <section class="card">
-                <h2>1. How Elisence Works With Governments</h2>
-                <p>
-                    Elisence is not just an app. It is a <span class="highlight">multi-phase infrastructure</span>
-                    that can be deployed as a national platform for diabetes, women+ health, mental wellness, 
-                    nutrition (GNIE), family wellbeing and population dashboards.
-                </p>
-                <ul>
-                    <li>
-                        <span class="highlight">Non-diagnostic, safety-first intelligence</span> – Elisence does not replace
-                        doctors or issue clinical orders; it structures data, highlights patterns and supports safer decisions.
-                    </li>
-                    <li>
-                        <span class="highlight">Zero-Trust security &amp; WORM audit</span> – every critical event can be traced,
-                        exported and verified, with clear logs for ministries and regulators.
-                    </li>
-                    <li>
-                        <span class="highlight">Five-language design (EN / AR / FA / TR / RO)</span> – built for GCC, MENA, UK and EU,
-                        respecting local language, culture and privacy expectations.
-                    </li>
-                    <li>
-                        <span class="highlight">Phase-based architecture</span> – governments can start with the most urgent domains
-                        (for example diabetes, women’s health and family wellbeing) and expand step by step.
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 2. Current Focus Country: Qatar -->
-            <section class="card">
-                <h2>2. Current Focus Country: Qatar</h2>
-                <p>
-                    Qatar is the first GCC country where Elisence is being positioned as a <span class="highlight">
-                    HealthTech &amp; AI platform</span> for citizens, clinics and ministries – aligned with national
-                    strategies in diabetes, innovation and digital health.
-                </p>
-                <p>
-                    For Qatar, Elisence already has dedicated materials and documentation:
-                </p>
-
-                <div class="country-grid">
-                    <div class="country-card">
-                        <div class="country-name">Qatar – Overview</div>
-                        <div class="country-tagline">
-                            Short, ministry-ready summary of how Elisence fits Qatar’s HealthTech, AI and innovation priorities.
-                        </div>
-                        <div class="btn-row">
-                            <a href="qatar-summary.html" class="btn-small">View Summary Page</a>
-                            <a href="Elisence_Qatar_Summary.pdf" class="btn-small" download>Download PDF</a>
-                        </div>
+            <div class="country-grid">
+                <div class="country-card">
+                    <div class="country-name">Qatar – Overview</div>
+                    <div class="country-tagline">
+                        Short, ministry-ready summary of how Elisence fits Qatar’s HealthTech, AI and innovation priorities.
                     </div>
-
-                    <div class="country-card">
-                        <div class="country-name">Qatar – Full Detail</div>
-                        <div class="country-tagline">
-                            In-depth explanation of sectors, safety model, multi-language design and ministry use-cases.
-                        </div>
-                        <div class="btn-row">
-                            <a href="qatar.html" class="btn-small">Open Full Qatar Page</a>
-                            <a href="download.html" class="btn-small">All Documents</a>
-                        </div>
+                    <div class="btn-row">
+                        <a href="qatar-summary.html" class="btn-small">View Summary Page</a>
+                        <a href="Elisence_Qatar_Summary.pdf" class="btn-small" download>Download PDF</a>
                     </div>
                 </div>
-            </section>
 
-            <!-- 3. Other Regions & Roadmap -->
-            <section class="card">
-                <h2>3. Other Regions &amp; Roadmap</h2>
-                <p>
-                    While Qatar is the first GCC focus country, Elisence is intentionally designed to support 
-                    multiple regions under the same safety and technical standards:
-                </p>
-                <ul>
-                    <li><span class="highlight">GCC</span> – Saudi Arabia, UAE, Oman, Bahrain, Kuwait</li>
-                    <li><span class="highlight">UK</span> – alignment with NHS digital and clinical safety expectations</li>
-                    <li><span class="highlight">EU</span> – GDPR, MDR-aware, audit-ready architecture</li>
-                </ul>
-                <p>
-                    As formal partnerships are established, each region can receive its own detailed country page,
-                    summary pack and regulatory alignment documents, following the same pattern used for Qatar.
-                </p>
-            </section>
+                <div class="country-card">
+                    <div class="country-name">Qatar – Full Detail</div>
+                    <div class="country-tagline">
+                        In-depth explanation of sectors, safety model, multi-language design and ministry use-cases.
+                    </div>
+                    <div class="btn-row">
+                        <a href="qatar.html" class="btn-small">Open Full Qatar Page</a>
+                        <a href="download.html" class="btn-small">All Documents</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <!-- 4. Contact for Government Programs -->
-            <section class="card">
-                <h2>4. Contact for Government &amp; National Programs</h2>
-                <p>
-                    For ministries, public health teams, regulators and national innovation programs interested in Elisence:
-                </p>
-                <p class="contact-block">
-                    Please use the <a href="contact.html">contact page</a> or email:<br />
-                    <span class="highlight">contact@elisence.com</span>
-                </p>
-            </section>
-        </main>
-    </div>
+        <!-- 3. Other Regions & Roadmap -->
+        <section class="card">
+            <h2>3. Other Regions &amp; Roadmap</h2>
+            <p>
+                While Qatar is the first GCC focus country, Elisence is intentionally designed to support
+                multiple regions under the same safety and technical standards:
+            </p>
+            <ul>
+                <li><span class="highlight">GCC</span> – Saudi Arabia, UAE, Oman, Bahrain, Kuwait</li>
+                <li><span class="highlight">UK</span> – alignment with NHS digital and clinical safety expectations</li>
+                <li><span class="highlight">EU</span> – GDPR- and MDR-aware, audit-ready architecture</li>
+            </ul>
+            <p>
+                As formal partnerships are established, each region can receive its own detailed country page,
+                summary pack and regulatory alignment documents, following the same pattern used for Qatar.
+            </p>
+        </section>
 
-    <!-- ریشهٔ ویجت Elisa -->
-    <div id="elisa-chat-root"></div>
+        <!-- 4. Contact for Government Programs -->
+        <section class="card">
+            <h2>4. Contact for Government &amp; National Programs</h2>
+            <p>
+                For ministries, public health teams, regulators and national innovation programs interested in Elisence:
+            </p>
+            <p class="contact-block">
+                Please use the <a href="contact.html">contact page</a> or email:<br />
+                <span class="highlight">contact@elisence.com</span>
+            </p>
+        </section>
+    </main>
+</div>
+
+<!-- ریشهٔ ویجت Elisa -->
+<div id="elisa-chat-root"></div>
 </body>
 </html>
