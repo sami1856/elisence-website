@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Elisence is a global digital health & humanity platform designed by Saami Salami Asl (also written as Sami Salami Asl, Saami Salami or Sami Salami), combining 17 phases of trusted health intelligence and AI for families, clinicians and ministries across GCC, MENA, UK and EU.">
 
-    <!-- deploy-bump-2026-02-02-01 -->
+    <!-- deploy-bump-2026-02-02-02 -->
 
     <!-- Privacy-friendly analytics by Plausible -->
     <script async src="https://plausible.io/js/pa-Z-XrwGrQb_ocV5UnngIA.js"></script>
@@ -708,8 +708,23 @@
                     </div>
                     <a class="phase-link" href="phase17.html">Open Phase 17</a>
                 </div>
+            </div>
+        </div>
+    </main>
 
-                <!-- Extra card to keep grid multiple-of-3 -->
-                <div class="phase-card">
-                    <div class="phase-label">Next</div>
-                    <div
+    <!-- اسکریپت کوچک برای نمایش فقط فازها وقتی hash = #phases باشد -->
+    <script>
+      (function () {
+        function applyHashMode() {
+          if (window.location.hash === "#phases") {
+            document.body.classList.add("show-phases-only");
+          } else {
+            document.body.classList.remove("show-phases-only");
+          }
+        }
+        window.addEventListener("hashchange", applyHashMode);
+        applyHashMode();
+      })();
+    </script>
+</body>
+</html>
