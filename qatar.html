@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence & Qatar – HealthTech, AI & GCC Readiness</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="How Elisence fits Qatar and GCC: a Digital Health & AI platform aligned with HealthTech, AI & Innovation priorities, designed for ministries, clinics and families across GCC, MENA, UK and EU.">
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* نقطه و لوگوی بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست (هم‌استایل با index/about) */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* وضعیت فعال برای Qatar (اختیاری اما قشنگ) */
+        .nav-btn.qatar-active {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.85), rgba(8, 47, 73, 0.98));
+            border-color: rgba(125, 211, 252, 0.95);
+            box-shadow:
+                0 0 22px rgba(56, 189, 248, 1),
+                0 0 50px rgba(37, 99, 235, 0.95);
+        }
+
+        /* محتوای اصلی صفحه Qatar */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* فضای منوی عمودی سمت راست */
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #e1eeff;
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.6rem;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.8);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e0f2fe;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow:
+                0 18px 55px rgba(0, 0, 0, 0.6),
+                0 0 38px rgba(56, 189, 248, 0.55); /* هاله آبی زیر باکس‌ها */
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.4rem;
+            font-size: 0.94rem;
+            color: #dceafe;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        .contact-block {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-block a {
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+
+        .contact-block a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html"        class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="qatar.html"        class="nav-btn qatar-active">Qatar</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <h1>Elisence &amp; Qatar</h1>
+
+            <p class="lead">
+                Elisence is a multi-phase Digital Health &amp; AI ecosystem that matches Qatar’s ambition
+                for safe, explainable, population-scale health innovation – from family journeys at home
+                to ministry-grade dashboards and evidence packs.
+            </p>
+
+            <p class="tagline">
+                This page explains how Elisence fits Qatar and the wider GCC region, which sectors it belongs to,
+                and what is already built today.
+            </p>
+
+            <div class="pill-row">
+                <span class="pill">HealthTech</span>
+                <span class="pill">Digital Health &amp; AI</span>
+                <span class="pill">Family &amp; Women’s Health</span>
+                <span class="pill">Nutrition &amp; Diabetes</span>
+                <span class="pill">Education Intelligence (EdTech)</span>
+                <span class="pill">Zero-Trust &amp; Compliance</span>
+            </div>
+
+            <!-- 1. Why Qatar -->
+            <section class="card">
+                <h2>1. Why Qatar &amp; GCC</h2>
+                <p>
+                    Qatar is investing heavily in <span class="highlight">digital health, AI, and innovation</span> –
+                    from national strategies and incubators to startup investment programs. Elisence is designed
+                    from the ground up to live inside this kind of ecosystem:
+                </p>
+                <ul>
+                    <li>A single platform that can support <strong>citizens, clinicians, hospitals and ministries</strong></li>
+                    <li>Multi-language by default (EN / AR / FA / TR / RO) with GCC cultural sensitivity</li>
+                    <li>Population-level dashboards, WORM audit logs and evidence packs for ministries</li>
+                    <li>Non-diagnostic, non-prescriptive posture that respects local clinical rules</li>
+                </ul>
+                <p>
+                    Our goal is to build Elisence as a <span class="highlight">Qatar-based HealthTech &amp; AI company</span>
+                    that can scale across GCC, MENA, UK and EU.
+                </p>
+            </section>
+
+            <!-- 2. Sector Fit for Qatar -->
+            <section class="card">
+                <h2>2. Sector Fit for Qatar Programs</h2>
+                <p>
+                    Elisence fits directly inside the core sectors typically prioritised by Qatar’s startup and
+                    innovation programs:
+                </p>
+                <ul>
+                    <li><span class="highlight">HealthTech / Digital Health</span> – multi-phase engines for GLP-1, diabetes, women’s health, blood intelligence, mental health and family wellbeing</li>
+                    <li><span class="highlight">AI &amp; Data Intelligence</span> – explainable AI layers on top of structured health data, always running through safety guards and WORM audit logs</li>
+                    <li><span class="highlight">Digital Innovation &amp; Platforms</span> – a reusable, national-grade infrastructure rather than a single consumer app</li>
+                    <li><span class="highlight">Education &amp; Behaviour Change</span> – structured educational coaching for families, women, diabetes and nutrition (EdTech component)</li>
+                </ul>
+                <p>
+                    This combination means Elisence can sit naturally inside HealthTech calls, AI &amp; Digital
+                    Innovation tracks, and programs that value both <span class="highlight">clinical safety</span>
+                    and <span class="highlight">citizen education</span>.
+                </p>
+            </section>
+
+            <!-- 3. What Is Already Built -->
+            <section class="card">
+                <h2>3. What Is Already Built Today</h2>
+                <p>
+                    Elisence is not just a concept. Several phases already have working backends, tests and
+                    user interfaces that can be demonstrated:
+                </p>
+                <ul>
+                    <li>Core GLP-1 and weight-loss engines with safety tests and audit logging</li>
+                    <li>Women+ Health, diabetes and mental health modules with non-diagnostic guidance</li>
+                    <li>Advanced Health Engine (AHE) concepts for labs, risks and passports</li>
+                    <li>ELIS social identity and messaging layer for safe, in-ecosystem communication</li>
+                    <li>Global Nutrition Intelligence (GNIE) design ready for implementation</li>
+                    <li>Website, explainer videos and English-language documentation for partners and ministries</li>
+                </ul>
+                <p>
+                    Each of these pieces is built with the same foundation: <span class="highlight">Zero-Trust security,
+                    WORM audit, multi-language support, and clear “no diagnosis / no prescription” boundaries</span>.
+                </p>
+            </section>
+
+            <!-- 4. What Elisence Seeks in Qatar -->
+            <section class="card">
+                <h2>4. What Elisence Seeks in Qatar</h2>
+                <p>
+                    In Qatar, Elisence is looking for partners and programs that can help turn this regulated-ready
+                    foundation into a deployed, real-world system:
+                </p>
+                <ul>
+                    <li>Incorporation and incubation as a <span class="highlight">Qatar-based HealthTech &amp; AI company</span></li>
+                    <li>Support with <strong>clinical and regulatory pathways</strong> in collaboration with local experts</li>
+                    <li>Pilot projects with clinics, hospitals and ministries to validate the platform</li>
+                    <li>Investment and co-development in phases that are most relevant for Qatar (e.g. diabetes, nutrition, women’s health, family wellbeing)</li>
+                </ul>
+                <p>
+                    Elisence is designed to be a <strong>long-term partner</strong> for national health systems,
+                    not a short-term consumer app.
+                </p>
+            </section>
+
+            <!-- 5. How to Engage -->
+            <section class="card">
+                <h2>5. How to Engage With Elisence</h2>
+                <p>
+                    We welcome conversations with:
+                </p>
+                <ul>
+                    <li>Qatar Development Bank, Qatar Financial Centre and innovation programs</li>
+                    <li>Ministry of Public Health and national health strategy teams</li>
+                    <li>Hospitals, clinics and academic partners interested in pilots</li>
+                    <li>Investors focused on HealthTech, AI and regulated digital platforms</li>
+                </ul>
+                <p class="contact-block">
+                    To discuss opportunities or request a detailed demo pack, please use the
+                    <a href="contact.html">contact page</a> or email:
+                    <br />
+                    <strong>contact@elisence.com</strong>
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
+</body>
+</html>
