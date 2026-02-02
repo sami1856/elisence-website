@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Elisence – Global Digital Health & Humanity Platform</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Elisence is a global digital health & humanity platform designed by Saami Salami Asl (also written as Sami Salami Asl, Saami Salami or Sami Salami), combining 17 phases of trusted health intelligence for families, clinicians and ministries.">
+    <meta name="description" content="Elisence is a global digital health & humanity platform designed by Saami Salami Asl (also written as Sami Salami Asl, Saami Salami or Sami Salami), combining 17 phases of trusted health intelligence and AI for families, clinicians and ministries across GCC, MENA, UK and EU.">
 
     
     <!-- deploy-bump-2026-02-02-01 -->
@@ -19,7 +19,7 @@
         plausible.o = i || {}
       }
       plausible.init()
-</script>
+    </script>
     <!-- Elisa chat widget script -->
     <script defer src="elisa-chat.js"></script>
 
@@ -111,6 +111,19 @@
             text-transform: uppercase;
             color: #a5d7ff;
             margin-bottom: 16px;
+        }
+
+        /* Sector positioning banner زیر ساب‌تایتل */
+        .sector-banner {
+            margin: 0 auto 18px auto;
+            max-width: 720px;
+            padding: 14px 18px;
+            background: #0b1730;
+            border-left: 4px solid #3b82ff;
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #e1eeff;
         }
 
         .hero-tagline {
@@ -424,6 +437,7 @@
     <nav class="side-nav">
         <a href="index.html"        class="nav-btn">Home</a>
         <a href="#phases"           class="nav-btn">Phases</a>
+        <a href="qatar.html"        class="nav-btn">Qatar</a>
         <a href="about.html"        class="nav-btn">About</a>
         <a href="story.html"        class="nav-btn">Story</a>
         <a href="video.html"        class="nav-btn">Videos</a>
@@ -447,6 +461,12 @@
                 <div class="hero-title">ELISENCE</div>
                 <div class="hero-subtitle">Growth · Health · Humanity · Embracing the Future</div>
 
+                <div class="sector-banner">
+                    Elisence is a multi-phase Digital Health &amp; AI platform,
+                    combining HealthTech, Family Wellbeing, Nutrition,
+                    and Education Intelligence — built for GCC, MENA, UK and EU.
+                </div>
+
                 <p class="hero-tagline">
                     A trusted, multi-phase health intelligence platform for families, clinicians and
                     governments — built to be safe, auditable, and ready for real-world healthcare.
@@ -454,7 +474,7 @@
 
                 <p class="hero-body">
                     Elisence brings together weight-loss journeys, diabetes &amp; metabolic health, women’s health,
-                    mental health, clinical passports, and secure messaging into one regulated-grade ecosystem.
+                    mental health, clinical passports, and secure messaging into one AI-enabled, regulated-grade ecosystem.
                     Every phase is designed with audit trails, multi-language support, and evidence packs that
                     ministries, hospitals and investors can verify — not just trust.
                 </p>
@@ -486,7 +506,7 @@
                 <p class="phases-intro">
                     Elisence is built as a sequence of connected phases. Each phase focuses on a specific
                     part of healthcare — weight-loss, diabetes, women’s health, mental health, passports,
-                    secure messaging, global nutrition, and more — but all share the same safety, audit
+                    secure messaging, global nutrition, and more — but all share the same safety, audit, AI
                     and evidence foundation. Choose a phase below to see what it does and how it works.
                 </p>
             </div>
@@ -637,81 +657,4 @@
 
                 <!-- Phase 14 -->
                 <div class="phase-card">
-                    <div class="phase-label">Phase 14</div>
-                    <div class="phase-name">Blind &amp; Low-Vision Intelligence Companion</div>
-                    <div class="phase-desc">
-                        Real-time “life map” assistant for blind and low-vision users, describing rooms,
-                        people, objects, labels and menus through voice under strict safety and privacy rules.
-                    </div>
-                    <a class="phase-link" href="phase14.html">Open Phase 14</a>
-                </div>
-
-                <!-- Phase 15 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 15</div>
-                    <div class="phase-name">Family Ecosystem Assistant</div>
-                    <div class="phase-desc">
-                        0–18 family operating system for health, sleep, learning and safety, with Kids/Teens
-                        modes, ethical dopamine and aggregated insights for schools and ministries.
-                    </div>
-                    <a class="phase-link" href="phase15.html">Open Phase 15</a>
-                </div>
-
-                <!-- Phase 16 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 16</div>
-                    <div class="phase-name">Global Nutrition Intelligence (GNIE)</div>
-                    <div class="phase-desc">
-                        Nutrition and diet intelligence engine that understands local cuisines, diseases
-                        and Ramadan patterns, giving gentle guidance and anonymised dashboards for ministries.
-                    </div>
-                    <a class="phase-link" href="phase16.html">Open Phase 16</a>
-                </div>
-
-                <!-- Phase 17 -->
-                <div class="phase-card">
-                    <div class="phase-label">Phase 17</div>
-                    <div class="phase-name">Mental Health &amp; Meditation Engine</div>
-                    <div class="phase-desc">
-                        Non-diagnostic mental-wellness and meditation layer with calm-now tools, short
-                        sessions and pattern awareness — escalating to human help when risk is high.
-                    </div>
-                    <a class="phase-link" href="phase17.html">Open Phase 17</a>
-                </div>
-
-                <!-- Extra card to complete the grid -->
-                <div class="phase-card">
-                    <div class="phase-label">Coming Soon</div>
-                    <div class="phase-name">Elisence Orbit &amp; Future Phases</div>
-                    <div class="phase-desc">
-                        Reserved space for future national-scale Elisence phases — extended research,
-                        innovation pilots and next-generation health intelligence modules.
-                    </div>
-                    <a class="phase-link" href="story.html">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- ریشهٔ ویجت Elisa -->
-    <div id="elisa-chat-root"></div>
-
-    <!-- اسکریپت کوچک فقط برای مخفی کردن هیرو در حالت #phases -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            function updateViewForHash() {
-                if (window.location.hash === '#phases') {
-                    document.body.classList.add('show-phases-only');
-                    window.scrollTo(0, 0);
-                } else {
-                    document.body.classList.remove('show-phases-only');
-                }
-            }
-
-            window.addEventListener('hashchange', updateViewForHash);
-            updateViewForHash();
-        });
-    </script>
-
-</body>
-</html>
+                    <div class="phase-label">
