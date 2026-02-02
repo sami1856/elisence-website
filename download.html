@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Download Center & Evidence Packs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Official download center for Elisence: executive summaries, ministry packs, phase reports, technical evidence and brand assets for ministries, investors and partners.">
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* نقطه و لوگوی بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* حالت active برای Download */
+        .nav-btn.download-active {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.85), rgba(8, 47, 73, 0.98));
+            border-color: rgba(125, 211, 252, 0.95);
+            box-shadow:
+                0 0 22px rgba(56, 189, 248, 1),
+                0 0 50px rgba(37, 99, 235, 0.95);
+        }
+
+        /* محتوای اصلی صفحه Download */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* فضای منوی عمودی سمت راست */
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #e1eeff;
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+
+            /* Glow یکسان با index / about / qatar */
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.4rem;
+            font-size: 0.94rem;
+            color: #dceafe;
+        }
+
+        .doc-title {
+            font-weight: 600;
+            color: #e0f2fe;
+        }
+
+        .doc-meta {
+            display: block;
+            font-size: 0.82rem;
+            color: #9fb5dd;
+        }
+
+        .doc-link {
+            display: inline-block;
+            margin-top: 0.25rem;
+            font-size: 0.82rem;
+            text-decoration: none;
+            color: #7dd3fc;
+        }
+
+        .doc-link:hover {
+            text-decoration: underline;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html"        class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="qatar.html"        class="nav-btn">Qatar</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
+        <a href="download.html"     class="nav-btn download-active">Download</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <h1>Download Center &amp; Evidence Packs</h1>
+
+            <p class="lead">
+                This is the official download center for Elisence. All executive summaries, phase reports,
+                technical evidence packs and ministry-ready documents will be available here as PDFs or links.
+            </p>
+
+            <p class="tagline">
+                Documents in this section are designed for ministries, hospitals, regulators, investors and
+                partners who need a clear, verifiable view of what Elisence is and what has already been built.
+            </p>
+
+            <!-- 1. Executive & Ministry Packs -->
+            <section class="card">
+                <h2>1. Executive &amp; Ministry Packs</h2>
+                <p>
+                    High-level documents for decision-makers who need a fast but complete overview of the platform,
+                    its phases and its regulatory posture.
+                </p>
+                <ul>
+                    <li>
+                        <span class="doc-title">Elisence – Executive Summary (2026)</span>
+                        <span class="doc-meta">PDF · 8–12 pages · Overview of the 17-phase ecosystem, vision and roadmap.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Ministry Overview Pack – Health Systems &amp; Population Impact</span>
+                        <span class="doc-meta">PDF · For Ministries of Health &amp; national strategy teams.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Qatar &amp; GCC Fit – Policy &amp; Strategy Brief</span>
+                        <span class="doc-meta">PDF · How Elisence aligns with GCC digital health, AI and data policies.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 2. Phase Reports & Technical Evidence -->
+            <section class="card">
+                <h2>2. Phase Reports &amp; Technical Evidence</h2>
+                <p>
+                    Detailed, phase-specific documents that describe architecture, safety, tests and implementation
+                    status for each major Elisence phase.
+                </p>
+                <ul>
+                    <li>
+                        <span class="doc-title">Phase 7 – Women+ Health &amp; Life Companion (Evidence Pack)</span>
+                        <span class="doc-meta">PDF · Engine design, safety gates, tests, i18n and regulatory notes.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Phase 8 – AHE (Advanced Health Engine) – Blood &amp; Hematology Core</span>
+                        <span class="doc-meta">PDF · Clinical profile engine, WORM audit v2, risk buckets and evidence paths.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Phase 9 – Diabetes &amp; Metabolic Health – Full Report</span>
+                        <span class="doc-meta">PDF · GLP-1, glucose, weight, risk models, tests and ministry-facing views.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Phase 10 – ELIS Social &amp; Messaging – Messaging &amp; UI Evidence</span>
+                        <span class="doc-meta">PDF · Secure messaging, profiles, UI routing and zero-trust boundaries.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Phase 16 – Global Nutrition Intelligence Engine (GNIE) – Design Dossier</span>
+                        <span class="doc-meta">PDF · Nutrition passport, local cuisines, Ramadan patterns and ministry dashboards.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 3. Technical Architecture & Compliance -->
+            <section class="card">
+                <h2>3. Technical Architecture &amp; Compliance</h2>
+                <p>
+                    Documents focused on security, governance and compliance – especially for regulators,
+                    hospital IT and due-diligence teams.
+                </p>
+                <ul>
+                    <li>
+                        <span class="doc-title">Zero-Trust &amp; Security Architecture Overview</span>
+                        <span class="doc-meta">PDF · Identity, passports, tokens, headers, audit and abuse prevention.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">WORM Audit &amp; Provenance – Governance Pack</span>
+                        <span class="doc-meta">PDF · WORM event logs, export formats, signatures and trace IDs.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Regulatory &amp; Safety Positioning (NHS, EU, GCC)</span>
+                        <span class="doc-meta">PDF · Non-diagnostic posture, safety gates, language rules and escalation flows.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 4. Pitch Decks & Media -->
+            <section class="card">
+                <h2>4. Pitch Decks &amp; Media</h2>
+                <p>
+                    Presentation materials for investors, accelerators, conferences and media partners.
+                </p>
+                <ul>
+                    <li>
+                        <span class="doc-title">Elisence – Investor Pitch Deck</span>
+                        <span class="doc-meta">PDF · Product, traction, market, business model and roadmap.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Elisence – Ministry / Government Pitch Deck</span>
+                        <span class="doc-meta">PDF · National-scale use cases, dashboards, safety and impact.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Explainer Videos &amp; Storyboards</span>
+                        <span class="doc-meta">Links · YouTube explainer videos and storyboard scripts for key phases.</span>
+                        <a class="doc-link" href="video.html">
+                            View explainer videos on the Videos page.
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 5. Brand & Contact -->
+            <section class="card">
+                <h2>5. Brand Assets &amp; Contact</h2>
+                <p>
+                    For media, conferences and partners who need official logos, colours and basic brand guidance.
+                </p>
+                <ul>
+                    <li>
+                        <span class="doc-title">Elisence Logo Pack</span>
+                        <span class="doc-meta">PNG / SVG · Official logos for print and digital.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                    <li>
+                        <span class="doc-title">Brand &amp; Messaging Basics</span>
+                        <span class="doc-meta">PDF · Core messages, tone, and how to describe Elisence.</span>
+                        <a class="doc-link" href="#">
+                            Download link will be published here.
+                        </a>
+                    </li>
+                </ul>
+                <p>
+                    If you need a specific document or a custom pack for your organisation, please use the
+                    <a href="contact.html" class="doc-link">contact page</a> or email:
+                    <br />
+                    <span class="highlight">contact@elisence.com</span>
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
+</body>
+</html>
