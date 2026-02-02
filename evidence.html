@@ -48,7 +48,7 @@
             z-index: 20;
         }
 
-        /* منوی عمودی سمت راست – استایل یکسان با سایر صفحات */
+        /* منوی عمودی سمت راست – استایل یکسان با سایر صفحات اصلی */
         .side-nav {
             position: fixed;
             right: 32px;
@@ -263,9 +263,9 @@
             </p>
 
             <p class="tagline">
-                Instead of publishing every internal file publicly, we provide a clean hub:
-                live technical status, product demonstrations and PDF packs that can be shared
-                privately with QDB, QFC, QSTP or ministries when needed.
+                Instead of publishing every internal file publicly, we keep the website clean and use this hub
+                to show what is already real today – and how deeper PDF packs can be shared privately with
+                QDB, QFC, QSTP or ministries when needed.
             </p>
 
             <div class="pill-row">
@@ -282,17 +282,28 @@
                 <h2>B1 — Technical Evidence Pack (Backend)</h2>
                 <p>
                     The Technical Evidence Pack shows what is actually built inside Elisence:
-                    engines, safety gates, WORM audit logs, tests and APIs, phase by phase.
+                    engines, files, safety gates and tests, <strong>phase by phase</strong>.
                 </p>
                 <ul>
-                    <li>Phase-by-phase technical status across 17 phases (what is built, files and artefacts).</li>
-                    <li>Safety layers including WORM audit logs, provenance and export manifests.</li>
-                    <li>Pytest summaries for Women+, AHE, Diabetes, Mental Health Core-4 and more.</li>
-                    <li>Real FastAPI services with live <code>/docs</code> and <code>/openapi.json</code>.</li>
+                    <li>Phase-by-phase technical status across 17 phases (what is built, which files and artefacts exist).</li>
+                    <li>Safety layers including WORM audit logs, provenance exports and health / integrity checks.</li>
+                    <li>
+                        Screenshots and extracts from:
+                        <ul>
+                            <li>Real UI in running backends,</li>
+                            <li>WORM JSONL logs,</li>
+                            <li>pytest results (passed / skipped focus),</li>
+                            <li>FastAPI <code>/docs</code> and <code>/openapi.json</code> views.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        For QDB, QFC, QSTP or ministries, these items can be bundled into a
+                        <strong>PDF Technical Evidence Pack</strong> for internal/legal review.
+                    </li>
                 </ul>
                 <p>
-                    For ministries and regulators, this is where the <strong>engines and tests</strong>
-                    of Elisence are documented.
+                    On the website, the live technical status is summarised on a dedicated page.
+                    Deeper logs and screenshots stay private and are shared only on request.
                 </p>
                 <div class="link-row">
                     <a href="technical-evidence.html">Open Technical Evidence →</a>
@@ -304,20 +315,37 @@
                 <h2>B2 — Product Evidence Pack</h2>
                 <p>
                     The Product Evidence Pack focuses on how Elisence looks and behaves for real people:
-                    citizens, clinicians, ministries and families – across the key phases that are already built.
+                    citizens, clinicians, ministries and families – especially in the key phases already built.
                 </p>
                 <ul>
-                    <li>Links to real product videos for key phases (Women+, AHE, Diabetes, ELIS messaging, Family, GNIE).</li>
-                    <li>Live website pages as product evidence (Phases, Governments/Qatar, Story, Founder, Articles).</li>
-                    <li>UI mockups for ministry dashboards, clinician panels and family/citizen apps (shared privately).</li>
-                    <li>Storyboard documents for core phases (e.g. Phases 4, 7, 8, 9, 10, 15, 16) – scene-by-scene flows.</li>
+                    <li>
+                        <strong>Links to YouTube product videos</strong> for major phases
+                        (including Diabetes – Phase 9, Women+ – Phase 7, Family – Phase 15,
+                        Global Nutrition – Phase 16, and others) via the public Videos page.
+                    </li>
+                    <li>
+                        <strong>Web pages as live evidence:</strong> Home, Phases overview,
+                        Governments &amp; Qatar, Story, Founder and Articles – all part of the
+                        working product surface, not just design mockups.
+                    </li>
+                    <li>
+                        <strong>UI mockups</strong> for ministry dashboards, clinician panels and
+                        family / citizen apps, prepared for review sessions (kept private or under NDA).
+                    </li>
+                    <li>
+                        <strong>Storyboards</strong> for key phases (for example Phases 9, 7, 15, 16)
+                        showing scene-by-scene flows of how a citizen, a clinician and a ministry
+                        actually interact with Elisence.
+                    </li>
                 </ul>
                 <p>
-                    Only a subset of this is public on the website. Full product packs (screenshots, mockups,
-                    storyboards) can be shared privately under NDA or during evaluation.
+                    Only the live website and videos are public. Full product packs
+                    (screenshots, UI mockups, storyboard PDFs) are shared privately with ministries
+                    and investors as part of the Evidence Pack.
                 </p>
                 <div class="link-row">
                     <a href="product-evidence.html">Open Product Evidence →</a>
+                    <a href="video.html">Go to Videos page →</a>
                 </div>
             </section>
 
@@ -325,17 +353,18 @@
             <section class="card">
                 <h2>Downloads — PDFs &amp; Whitepapers</h2>
                 <p>
-                    For QDB/QFC/QSTP or ministry applications, some elements of the Evidence Pack are
-                    provided as PDFs: Qatar 1-pager, Qatar summary, technical overviews and executive summaries.
+                    Some parts of the Evidence Pack must be available as downloadable PDFs:
+                    short summaries for Qatar, technical overviews and executive briefs that
+                    can be attached to applications or shared internally.
                 </p>
                 <ul>
-                    <li>Qatar Summary PDF and other one-pagers.</li>
-                    <li>High-level technical and product overviews.</li>
-                    <li>Selected evidence extracts for internal archives.</li>
+                    <li>Qatar Summary / 1-pager and related Qatar PDFs.</li>
+                    <li>High-level technical and product overviews for Elisence.</li>
+                    <li>Selected extracts from technical and product evidence for internal archives.</li>
                 </ul>
                 <p>
-                    These documents are accessible from the Downloads page and can be extended as more
-                    phases move into fully documented status.
+                    These documents are maintained on a dedicated downloads page and can be extended
+                    as more phases reach fully documented status.
                 </p>
                 <div class="link-row">
                     <a href="download.html">Go to Downloads →</a>
@@ -346,20 +375,65 @@
             <section class="card">
                 <h2>B3 — Ministry Compatibility Evidence (Summary)</h2>
                 <p>
-                    Ministry compatibility is not only about features – it is about <strong>safety,
-                    regulations and alignment</strong> with Qatar and GCC priorities.
+                    Ministry compatibility is about more than features. It is about
+                    <strong>safety, regulation and alignment</strong> with Qatar and GCC priorities.
+                    This section mirrors the B3 checklist used in the Qatar roadmap.
                 </p>
                 <ul>
-                    <li><strong>Non-diagnostic posture:</strong> Elisence does not replace doctors; it structures data, flags risk and guides citizens to care.</li>
-                    <li><strong>Ministry &amp; clinic usage:</strong> Designed for use by ministries, public hospitals, clinics and schools, not just consumer app stores.</li>
-                    <li><strong>Data sovereignty:</strong> Architecture aligned with GCC data-sovereignty and privacy expectations (Qatar, KSA, UAE, etc.).</li>
-                    <li><strong>Five-language backbone:</strong> EN / FA / AR / TR / RO – ready for GCC + wider international deployment.</li>
-                    <li><strong>Governance &amp; safety:</strong> Zero-Trust, consent-first, WORM audit logs, privacy-by-design.</li>
+                    <li>
+                        <strong>Non-diagnostic posture:</strong> Elisence is not a medical device
+                        and does not replace doctors. It structures data, flags risk and guides
+                        citizens towards care.
+                    </li>
+                    <li>
+                        <strong>Usable by ministries &amp; public health systems:</strong>
+                        Designed for ministries of health, public hospitals, clinics and schools –
+                        not only for direct-to-consumer app stores.
+                    </li>
+                    <li>
+                        <strong>Data-sovereignty:</strong> Architecture designed to respect
+                        national data-sovereignty and localisation requirements in Qatar, KSA,
+                        UAE and other GCC countries.
+                    </li>
+                    <li>
+                        <strong>Five-language backbone:</strong> EN / FA / AR / TR / RO –
+                        giving a ready base for GCC deployment and wider regions.
+                    </li>
+                    <li>
+                        <strong>Governance &amp; Safety:</strong> Zero-Trust model, WORM audit,
+                        consent-first flows and privacy-by-design as core principles.
+                    </li>
                 </ul>
                 <p>
-                    A deeper ministry-focused Evidence Pack (B3) can be shared privately – including
-                    policy mappings, data-flow diagrams, and governance documentation for ministries
-                    and regulators in Qatar and the GCC.
+                    A deeper ministry-focused Evidence Pack can include detailed policy mappings,
+                    data-flow diagrams and governance documents, shared privately with ministries
+                    and regulators in Qatar and the wider GCC.
+                </p>
+            </section>
+
+            <!-- Qatar Export Kit – connection to full roadmap -->
+            <section class="card">
+                <h2>Qatar Export Kit – How This Evidence Is Used</h2>
+                <p>
+                    In the A→Z roadmap for Qatar, this Evidence Hub feeds directly into the
+                    <strong>Final Qatar Preparation Pack (Export Kit)</strong> that can be
+                    submitted to QDB, QFC, QSTP or similar programmes.
+                </p>
+                <ul>
+                    <li>Qatar 1-pager and “Why Qatar?” page.</li>
+                    <li>Qatar company registration summary (QFC / QDB / QSTP path).</li>
+                    <li>Full Evidence Pack (B1 technical + B2 product + B3 ministry compatibility).</li>
+                    <li>Live website links and YouTube product videos.</li>
+                    <li>Contact details and executive summary PDF.</li>
+                    <li>
+                        Two Qatar Pitch Decks (ministry version + investor version) prepared
+                        from the same evidence base.
+                    </li>
+                </ul>
+                <p>
+                    Once sections A–E of the roadmap are complete, this export kit can be
+                    assembled quickly from the verified website, engines and PDFs described
+                    on this page.
                 </p>
             </section>
         </main>
