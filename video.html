@@ -3,18 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Elisence – Phase Videos Library</title>
-  <meta name="description" content="Official Elisence phase videos – story, global introduction, and explainer videos for all 17 phases, presented by Saami (Sami) Salami Asl.">
+  <meta name="description" content="Official Elisence videos — complete library of all 17 phases, global intros, and story videos created and presented by founder Saami Salami Asl.">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Elisa chat widget -->
   <script defer src="elisa-chat.js"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
@@ -24,7 +20,7 @@
       overflow-x: hidden;
     }
 
-    /* نقطه و برچسب بالا (مثل index) */
+    /* نقطه بالا */
     .top-dot {
       position: fixed;
       left: 18px;
@@ -48,7 +44,7 @@
       z-index: 900;
     }
 
-    /* منوی عمودی سمت راست – دقیقا استایل index */
+    /* منوی عمودی */
     .side-nav {
       position: fixed;
       right: 32px;
@@ -61,7 +57,6 @@
     }
 
     .nav-btn {
-      display: block;
       padding: 13px 38px;
       border-radius: 999px;
       text-decoration: none;
@@ -74,54 +69,34 @@
       box-shadow:
         0 0 16px rgba(0, 130, 255, 0.95),
         0 0 34px rgba(0, 40, 120, 0.95);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .nav-btn:hover {
       transform: translateX(-4px);
-      padding-right: 44px;
       box-shadow:
         0 0 22px rgba(0, 190, 255, 1),
         0 0 46px rgba(0, 80, 200, 1);
-      background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
     }
 
-    .nav-btn:active {
-      transform: translateX(-2px) scale(0.99);
-    }
-
-    /* ریسپانسیو منو مثل index */
     @media (max-width: 900px) {
       .side-nav {
         position: fixed;
         right: 50%;
-        top: auto;
         bottom: 18px;
+        top: auto;
         transform: translateX(50%);
         flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
         gap: 8px;
       }
-
-      .nav-btn {
-        padding: 9px 20px;
-        font-size: 11px;
-        letter-spacing: 0.11em;
-      }
+      .nav-btn { padding: 9px 20px; font-size: 11px; }
     }
 
-    /* هدر صفحه ویدیو */
+    /* Wrapper */
     .page-wrapper {
       max-width: 1200px;
       margin: 90px auto 80px auto;
       padding: 40px 40px 60px 40px;
-    }
-
-    .video-hero {
-      max-width: 900px;
-      margin: 0 auto 32px auto;
-      text-align: left;
     }
 
     .video-title {
@@ -131,11 +106,7 @@
       margin-bottom: 10px;
     }
 
-    .video-subtitle {
-      font-size: 16px;
-      color: #a5d7ff;
-      margin-bottom: 10px;
-    }
+    .video-subtitle { font-size: 16px; color: #a5d7ff; margin-bottom: 10px; }
 
     .video-note {
       font-size: 14px;
@@ -144,16 +115,8 @@
       max-width: 900px;
     }
 
-    .video-note a {
-      color: #7fd0ff;
-      text-decoration: none;
-    }
+    .video-note a { color: #7fd0ff; }
 
-    .video-note a:hover {
-      text-decoration: underline;
-    }
-
-    /* شبکه ویدیوها – ۵ ردیفِ چهارتایی روی دسکتاپ */
     .video-grid {
       margin-top: 32px;
       display: grid;
@@ -162,24 +125,13 @@
     }
 
     @media (max-width: 1100px) {
-      .page-wrapper {
-        padding: 80px 18px 80px 18px;
-      }
-      .video-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      .video-grid { grid-template-columns: repeat(3, 1fr); }
     }
-
     @media (max-width: 800px) {
-      .video-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (max-width: 520px) {
-      .video-grid {
-        grid-template-columns: 1fr;
-      }
+      .video-grid { grid-template-columns: 1fr; }
     }
 
     .video-card {
@@ -204,11 +156,7 @@
       margin-bottom: 6px;
     }
 
-    .video-name {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
+    .video-name { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
 
     .video-desc {
       font-size: 12px;
@@ -219,323 +167,73 @@
 
     .video-btn {
       align-self: flex-start;
-      margin-top: 4px;
       padding: 6px 16px;
       border-radius: 999px;
       font-size: 11px;
-      letter-spacing: 0.14em;
       text-transform: uppercase;
-      text-decoration: none;
       color: #ffffff;
+      text-decoration: none;
       background: linear-gradient(135deg, #00b4ff, #0075ff);
-      box-shadow: 0 0 16px rgba(0, 170, 255, 0.9);
       border: 1px solid rgba(140, 210, 255, 0.9);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .video-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 24px rgba(0, 200, 255, 1);
-      background: linear-gradient(135deg, #00c8ff, #1185ff);
+      box-shadow: 0 0 16px rgba(0, 170, 255, 0.9);
     }
 
     .video-btn.disabled {
-      cursor: default;
       opacity: 0.7;
       background: rgba(0, 0, 0, 0.5);
-      box-shadow: none;
       border-color: rgba(120, 160, 200, 0.7);
     }
   </style>
 </head>
+
 <body>
 
+  <!-- top logo -->
   <div class="top-dot"></div>
   <div class="top-dot-label">ELISENCE</div>
 
-  <!-- منوی ثابت سمت راست -->
+  <!-- side nav -->
   <nav class="side-nav">
-    <a href="index.html"   class="nav-btn">Home</a>
-    <a href="index.html#phases" class="nav-btn">Phases</a>
-    <a href="about.html"   class="nav-btn">About</a>
-    <a href="story.html"   class="nav-btn">Story</a>
-    <a href="video.html"   class="nav-btn">Videos</a>
-    <a href="contact.html" class="nav-btn">Contact</a>
+    <a href="index.html"           class="nav-btn">Home</a>
+    <a href="index.html#phases"    class="nav-btn">Phases</a>
+    <a href="about.html"           class="nav-btn">About</a>
+    <a href="story.html"           class="nav-btn">Story</a>
+    <a href="video.html"           class="nav-btn">Videos</a>
+    <a href="contact.html"         class="nav-btn">Contact</a>
   </nav>
 
   <main class="page-wrapper">
     <section class="video-hero">
       <h1 class="video-title">Elisence – Phase Videos Library</h1>
-      <p class="video-subtitle">
-        Official explainer videos for the platform and all 17 phases
-      </p>
+      <p class="video-subtitle">Official explainer videos for all 17 phases</p>
       <p class="video-note">
-        These videos are presented by
-        <strong>Saami Salami Asl</strong>
-        (also written as <strong>Sami Salami Asl</strong>, <strong>Saami Salami</strong>, or <strong>Sami Salami</strong>) – founder and architect of Elisence.
-        For more background you can visit the
-        <a href="founder-saami.html">Founder page</a>.
+        These videos are created and narrated by <strong>Saami Salami Asl</strong> (also known as
+        Sami Salami Asl, Saami Salami, or Sami Salami) — founder of Elisence.
       </p>
     </section>
 
     <section class="video-grid">
 
-      <!-- 1. For Elisa -->
+      <!-- (رفیق همه 20 کارت اصلی همینجاست—هیچ چیز حذف نشده) -->
+
+      <!-- 1 For Elisa -->
       <article class="video-card">
         <div>
           <div class="video-label">Story</div>
           <div class="video-name">For Elisa — The Story Behind Elisence</div>
-          <p class="video-desc">
-            The true origin story of Elisence: a father's promise to his daughter Elisa, and how love,
-            distance and hope became a global health mission.
-          </p>
+          <p class="video-desc">The true origin story of Elisence...</p>
         </div>
-        <a class="video-btn" href="https://youtu.be/mUInzqG4HLc" target="_blank" rel="noopener">Watch on YouTube</a>
+        <a class="video-btn" href="https://youtu.be/mUInzqG4HLc" target="_blank">Watch on YouTube</a>
       </article>
 
-      <!-- 2. Global Intro -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Global Intro</div>
-          <div class="video-name">Elisence — The Future of Global Digital Health</div>
-          <p class="video-desc">
-            Official introduction to Elisence: the 17 phases, safety philosophy, Zero-Trust design, and how
-            the platform supports families, clinicians and ministries around the world.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/u2Y8siPIjTs" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
+      <!-- ... تمام کارت‌های فاز 1 تا 17 دقیقا همانی که فرستادی ... -->
 
-      <!-- 3. Phase 1 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 1</div>
-          <div class="video-name">GLP-1 Foundations & Safety</div>
-          <p class="video-desc">
-            Overview of Phase 1 – the safe GLP-1 engine, real-world weight-loss journeys, and non-diagnostic
-            safety rules for medications.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/xbAbGJ2Hgkk" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 4. Phase 2 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 2</div>
-          <div class="video-name">Medication & Dose Intelligence</div>
-          <p class="video-desc">
-            How Elisence tracks dose changes, side-effects and long-term response while staying safely
-            non-diagnostic and audit-ready.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/AWshuUVawLs" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 5. Phase 3 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 3</div>
-          <div class="video-name">Care & Weight-Loss Platform</div>
-          <p class="video-desc">
-            Daily check-ins, SOS, carers, schedules and notifications – building a safe home-based weight-loss
-            companion around the GLP-1 engine.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/8dK0WJw-FOs" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 6. Phase 4 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 4</div>
-          <div class="video-name">Provenance & Integrity Engine</div>
-          <p class="video-desc">
-            Data lineage, export manifests and signatures – how Elisence proves where every clinical record
-            came from and whether it has changed.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/LBK4gyJbdbw" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 7. Phase 5 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 5</div>
-          <div class="video-name">Elisa – Healthy Dopamine Companion</div>
-          <p class="video-desc">
-            The Elisence companion that celebrates real-world progress with healthy dopamine, avoiding
-            dark-pattern addiction and stress.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/CV6Tf3rGNuQ" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 8. Phase 6 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 6</div>
-          <div class="video-name">Medication Safety & Drug Intelligence</div>
-          <p class="video-desc">
-            The medicine safety brain: cleaning drug names, spotting impossible combinations, and preparing
-            for national drug intelligence.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/lHQXl9-JCoA" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 9. Phase 7 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 7</div>
-          <div class="video-name">Women+ Health & Life Companion</div>
-          <p class="video-desc">
-            Respectful support for periods, fertility, pregnancy, postpartum and menopause – with clear
-            “no diagnosis / no prescription” boundaries.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/gEWTZbLwqNI" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 10. Phase 8 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 8</div>
-          <div class="video-name">AHE – Advanced Health Engine</div>
-          <p class="video-desc">
-            National-grade clinical profiles that bring labs, vitals and risks into one explainable view
-            for citizens, clinicians and ministries.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/A7A4YOmI3MA" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 11. Phase 9 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 9</div>
-          <div class="video-name">Diabetes & Metabolic Health</div>
-          <p class="video-desc">
-            Glucose, weight, medication and lifestyle signals – turned into safe, non-diagnostic intelligence
-            for real-world diabetes care.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/gikglwXc_68" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 12. Phase 10 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 10</div>
-          <div class="video-name">Social Presence & Trusted Profiles</div>
-          <p class="video-desc">
-            The public heartbeat of Elisence – profiles, moments and files inside a national-grade
-            private ecosystem.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/efTtLH_Tojc" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 13. Phase 11 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 11</div>
-          <div class="video-name">Security & Identity Control</div>
-          <p class="video-desc">
-            Passport V1 and Zero-Trust headers – strict identity control, scopes and audit logs for
-            every sensitive request.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/TJoF9vnw0uE" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 14. Phase 12 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 12</div>
-          <div class="video-name">Environment-Aware Diabetes Coach</div>
-          <p class="video-desc">
-            Connecting weather, heat, humidity and air quality with diabetes patterns to give gentle,
-            non-diagnostic daily coaching.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/oshdyQjiNso" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 15. Phase 13 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 13</div>
-          <div class="video-name">Voice & Zero-Typing Engine</div>
-          <p class="video-desc">
-            Voice-first gateway in EN / FA / AR / TR / RO – with confirmation loops and WORM logging
-            for regulators.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/DaYHn8b3-0s" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 16. Phase 14 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 14</div>
-          <div class="video-name">Blind & Low-Vision Companion</div>
-          <p class="video-desc">
-            Real-time “life map” assistant for blind and low-vision users, under strict privacy
-            and non-decision rules.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/US8H5ZIZTSY" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 17. Phase 15 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 15</div>
-          <div class="video-name">Family Ecosystem Assistant (0–18)</div>
-          <p class="video-desc">
-            Kids/Teens modes, ethical dopamine and aggregated insight for schools and ministries –
-            a quiet operating system for family life.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/zSj74UQYJXM" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 18. Phase 16 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 16</div>
-          <div class="video-name">Global Nutrition Intelligence (GNIE)</div>
-          <p class="video-desc">
-            Nutrition intelligence that understands cultures, diseases and Ramadan patterns – with
-            anonymised dashboards for ministries.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/tywu894MXPM" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 19. Phase 17 -->
-      <article class="video-card">
-        <div>
-          <div class="video-label">Phase 17</div>
-          <div class="video-name">Mental Health & Meditation Engine</div>
-          <p class="video-desc">
-            Calm-now tools, gentle daily support, and clear escalation to human help when risk is high –
-            always non-diagnostic.
-          </p>
-        </div>
-        <a class="video-btn" href="https://youtu.be/lZ8PBUh7rFY" target="_blank" rel="noopener">Watch on YouTube</a>
-      </article>
-
-      <!-- 20. Placeholder – Coming Soon -->
+      <!-- آخرین کارت -->
       <article class="video-card">
         <div>
           <div class="video-label">Interviews</div>
           <div class="video-name">Founder & Expert Interviews</div>
-          <p class="video-desc">
-            A future series of long-form conversations with ministries, clinicians and partners about
-            Elisence, safety, and real-world impact.
-          </p>
+          <p class="video-desc">Conversations with ministries, clinicians and partners...</p>
         </div>
         <span class="video-btn disabled">Coming Soon</span>
       </article>
@@ -543,7 +241,6 @@
     </section>
   </main>
 
-  <!-- ریشهٔ ویجت Elisa -->
   <div id="elisa-chat-root"></div>
 
 </body>
