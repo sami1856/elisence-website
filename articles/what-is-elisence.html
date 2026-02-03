@@ -1,76 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>What is Elisence? — Global Health Intelligence Platform</title>
-  <meta name="description" content="An introduction to Elisence, the global health intelligence ecosystem that connects women’s health, diabetes, families, mental health, nutrition, and national healthcare systems in one privacy-first platform.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      font-family: Inter, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f9fb;
-      color: #111;
-      line-height: 1.7;
-    }
-    .hero {
-      background: #0E6FFF;
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 36px;
-      font-weight: 700;
-    }
-    .hero p {
-      margin: 0;
-      font-size: 18px;
-      opacity: 0.95;
-    }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px 40px;
-    }
-    h2 {
-      font-size: 26px;
-      color: #0E6FFF;
-      margin-top: 30px;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 18px;
-      margin-bottom: 12px;
-    }
-    ul {
-      font-size: 18px;
-      padding-left: 20px;
-      margin-bottom: 16px;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    .back-link {
-      margin-top: 30px;
-      font-size: 16px;
-    }
-    .back-link a {
-      color: #0E6FFF;
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <meta charset="UTF-8" />
-    <title>Elisence: Sovereign Digital Health Infrastructure | 17-Phase Health Ecosystem</title>
+    <title>What Is Elisence? — Sovereign Digital Health & Humanity Platform</title>
 
     <!-- Core SEO Meta -->
     <meta
@@ -83,10 +15,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- OPTIONAL: اگر استایل عمومی داری و اسمش چیز دیگه‌ای است، مسیرش را عوض کن -->
-    <!-- <link rel="stylesheet" href="../assets/styles.css" /> -->
-
-    <!-- JSON-LD: Brand + Article برای Knowledge Graph -->
+    <!-- JSON-LD: Article Schema for Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -109,187 +38,430 @@
       ]
     }
     </script>
+
+    <!-- Elisa chat widget (مسیر از فولدر articles یک لِول بالاتره) -->
+    <script defer src="../elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* نقطه و لوگوی بالا (هماهنگ با سایر صفحات سینماتیک) */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست (مثل index/about/story/qatar) */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* صفحه اصلی مقاله */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* جا برای منوی عمودی */
+        }
+
+        .page-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #7dd3fc;
+            background: rgba(56, 189, 248, 0.16);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(56, 189, 248, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .page-tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #38bdf8;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.6rem;
+            color: #7dd3fc;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: #cbd5f5;
+            margin-bottom: 1.6rem;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #dbeafe;
+            margin-bottom: 1.6rem;
+            max-width: 900px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.25rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.6rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.35rem;
+            font-size: 0.94rem;
+            color: #dceafe;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            border-top: 1px solid #1e293b;
+            margin-top: 1.8rem;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: #cbd5f5;
+        }
+
+        .footer-links a {
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <main style="max-width: 900px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6;">
-        <header style="margin-bottom: 32px;">
-            <p style="margin: 0; font-size: 14px; opacity: 0.7;">
-                Elisence Platform · Sovereign Digital Health Infrastructure
-            </p>
-            <h1 style="margin: 8px 0 12px; font-size: 32px;">
-                What Is Elisence?<br />
-                The Sovereign Digital Health & Humanity Platform
-            </h1>
-            <p style="margin: 0; font-size: 14px; opacity: 0.7;">
-                By <strong>Saami Salami Asl</strong>, Founder of Elisence
-            </p>
-        </header>
 
-        <section style="margin-bottom: 24px;">
-            <p>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست (از داخل /articles باید مسیرها یک لِول بالاتر برن) -->
+    <nav class="side-nav">
+        <a href="../index.html"        class="nav-btn">Home</a>
+        <a href="../index.html#phases" class="nav-btn">Phases</a>
+        <a href="../qatar.html"        class="nav-btn">Qatar</a>
+        <a href="../about.html"        class="nav-btn">About</a>
+        <a href="../story.html"        class="nav-btn">Story</a>
+        <a href="../video.html"        class="nav-btn">Videos</a>
+        <a href="../contact.html"      class="nav-btn">Contact</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <div class="page-tag">
+                <span class="page-tag-dot"></span>
+                <span>Elisence Knowledge · Article</span>
+            </div>
+
+            <h1>What Is Elisence?<br />The Sovereign Digital Health &amp; Humanity Platform</h1>
+            <div class="article-meta">
+                By <span class="highlight">Saami Salami Asl</span>, Founder of Elisence
+            </div>
+
+            <p class="lead">
                 <strong>Elisence</strong> is a
-                <strong>Sovereign Digital Health Infrastructure</strong> and a
-                <strong>17-phase health ecosystem</strong> designed for countries, ministries, hospitals and families.
-                It is not a typical wellness or calorie-counting app.
-                Elisence AI acts as a <strong>multilingual health intelligence platform</strong> that connects metabolic
+                <span class="highlight">Sovereign Digital Health Infrastructure</span>
+                and a
+                <span class="highlight">17-phase health ecosystem</span>
+                designed for countries, ministries, hospitals and families.  
+                It is not a typical wellness or calorie-counting app. Elisence AI acts as a
+                <span class="highlight">multilingual health intelligence platform</span> that connects metabolic
                 health, diabetes, women’s health, mental wellness, nutrition, family life, environment and accessibility
                 into one secure, non-diagnostic system.
             </p>
-            <p>
-                From day one, Elisence has been architected with
-                <strong>Zero-Trust Health AI</strong>,
-                <strong>Sovereign Health Data Architecture</strong>, and a clear commitment to
-                <strong>Non-Diagnostic Behavioral AI</strong> so that regulators and governments can safely adopt it
-                without taking on medical liability.
-            </p>
-        </section>
 
-        <section style="margin-bottom: 32px;">
-            <h2>1. Built as a Sovereign Digital Health Infrastructure</h2>
-            <p>
-                Elisence is built as a <strong>national-grade platform</strong>, not as a consumer app. All health
-                data is designed to stay <strong>inside the host country</strong>, under local law and local control.
-            </p>
-            <ul>
-                <li>Data residency aligned with Qatar PDPL and global regulations (GDPR, HIPAA-style safeguards).</li>
-                <li>
-                    <strong>Zero-Trust Health AI</strong>: every access request is checked, logged and restricted by
-                    role, scope and purpose.
-                </li>
-                <li>
-                    <strong>WORM (Write-Once-Read-Many) ledgers</strong> provide tamper-evident audit trails for
-                    regulators, ministries and clinical partners.
-                </li>
-                <li>
-                    The architecture is explicitly described as
-                    <strong>“Sovereign Health Data Architecture”</strong> so that regulators clearly see the difference
-                    between Elisence and normal wellness apps.
-                </li>
-            </ul>
-        </section>
+            <section class="card">
+                <h2>1. Built as a Sovereign Digital Health Infrastructure</h2>
+                <p>
+                    Elisence is built as a <span class="highlight">national-grade platform</span>, not as a consumer app.
+                    All health data is designed to stay <span class="highlight">inside the host country</span>,
+                    under local law and local control.
+                </p>
+                <ul>
+                    <li>Data residency aligned with Qatar PDPL and global regulations (GDPR, HIPAA-style safeguards).</li>
+                    <li>
+                        <span class="highlight">Zero-Trust Health AI</span> – every access request is checked, logged
+                        and restricted by role, scope and purpose.
+                    </li>
+                    <li>
+                        <span class="highlight">WORM (Write-Once-Read-Many) ledgers</span> provide tamper-evident audit
+                        trails for regulators, ministries and clinical partners.
+                    </li>
+                    <li>
+                        The architecture is explicitly described as
+                        <span class="highlight">Sovereign Health Data Architecture</span> so that regulators clearly
+                        see the difference between Elisence and normal wellness apps.
+                    </li>
+                </ul>
+            </section>
 
-        <section style="margin-bottom: 32px;">
-            <h2>2. Elisence AI: A 17-Phase Health Ecosystem</h2>
-            <p>
-                <strong>Elisence AI</strong> is structured as a
-                <strong>17-phase health ecosystem</strong>. Each phase is a dedicated engine that focuses on a specific
-                domain of life and health.
-            </p>
-            <ul>
-                <li>Metabolic & GLP-1 intelligence for weight, appetite and long-term risk.</li>
-                <li>Women+ health across cycle, pregnancy, postpartum and menopause.</li>
-                <li>Diabetes intelligence for GLP-1, insulin, oral therapy and long-term complications.</li>
-                <li>Environment & heat (Phase 12) for countries like Qatar, where climate affects daily health.</li>
-                <li>Global Nutrition (Phase 16) for culture-aware, disease-aware food intelligence.</li>
-                <li>Family, children, mental health, accessibility and more in later phases.</li>
-            </ul>
-            <p>
-                11 of these phases have already been architected and implemented at engine level, making Elisence a
-                <strong>ready-to-scale health ecosystem</strong> rather than a concept.
-            </p>
-        </section>
+            <section class="card">
+                <h2>2. Elisence AI — A 17-Phase Health Ecosystem</h2>
+                <p>
+                    <span class="highlight">Elisence AI</span> is structured as a
+                    <span class="highlight">17-phase health ecosystem</span>. Each phase is a dedicated engine that
+                    focuses on a specific domain of life and health.
+                </p>
+                <ul>
+                    <li>Metabolic &amp; GLP-1 intelligence for weight, appetite and long-term risk.</li>
+                    <li>Women+ health across cycle, pregnancy, postpartum and menopause.</li>
+                    <li>Diabetes intelligence for GLP-1, insulin, oral therapy and long-term complications.</li>
+                    <li>Environment &amp; heat (Phase 12) for countries like Qatar, where climate affects daily health.</li>
+                    <li>Global Nutrition (Phase 16) for culture-aware, disease-aware food intelligence.</li>
+                    <li>Family, children, mental health, accessibility and more in later phases.</li>
+                </ul>
+                <p>
+                    11 of these phases have already been architected and implemented at engine level, making Elisence a
+                    <span class="highlight">ready-to-scale health ecosystem</span> rather than a concept.
+                </p>
+            </section>
 
-        <section style="margin-bottom: 32px;">
-            <h2>3. Non-Diagnostic Behavioral AI with BBVP Methodology</h2>
-            <p>
-                Elisence is intentionally <strong>non-diagnostic</strong>. It does not replace doctors, clinics or
-                emergency care. Instead, it uses <strong>Non-Diagnostic Behavioral AI</strong> to support lifestyle,
-                adherence, patterns and early signals.
-            </p>
-            <ul>
-                <li>
-                    All engines follow the <strong>BBVP methodology</strong>:
-                    <em>Build → Back → Verify → Prove</em>.
-                </li>
-                <li>
-                    Every insight can be traced back to its inputs and rules, giving regulators and ministries full
-                    transparency.
-                </li>
-                <li>
-                    Risk language is carefully designed to be <strong>supportive, non-alarming and non-clinical</strong>.
-                </li>
-                <li>
-                    Final decisions always remain with clinicians and health authorities — Elisence is an intelligence
-                    layer, not a diagnostic machine.
-                </li>
-            </ul>
-        </section>
+            <section class="card">
+                <h2>3. Non-Diagnostic Behavioral AI with BBVP Methodology</h2>
+                <p>
+                    Elisence is intentionally <span class="highlight">non-diagnostic</span>. It does not replace doctors,
+                    clinics or emergency care. Instead, it uses
+                    <span class="highlight">Non-Diagnostic Behavioral AI</span>
+                    to support lifestyle, adherence, patterns and early signals.
+                </p>
+                <ul>
+                    <li>
+                        All engines follow the <span class="highlight">BBVP methodology</span>:
+                        <em>Build → Back → Verify → Prove</em>.
+                    </li>
+                    <li>
+                        Every insight can be traced back to its inputs and rules, giving regulators and ministries full
+                        transparency.
+                    </li>
+                    <li>
+                        Risk language is carefully designed to be
+                        <span class="highlight">supportive, non-alarming and non-clinical</span>.
+                    </li>
+                    <li>
+                        Final decisions always remain with clinicians and health authorities – Elisence is an
+                        intelligence layer, not a diagnostic machine.
+                    </li>
+                </ul>
+            </section>
 
-        <section style="margin-bottom: 32px;">
-            <h2>4. Elisence Platform: Multilingual Health Intelligence</h2>
-            <p>
-                The <strong>Elisence Platform</strong> is a
-                <strong>multilingual health intelligence</strong> system built from day one for global diversity.
-            </p>
-            <ul>
-                <li>Five core languages: English, Arabic, Farsi, Turkish and Romanian.</li>
-                <li>
-                    Voice, UI and explanations are designed to respect local culture, health beliefs and
-                    communication styles.
-                </li>
-                <li>
-                    National deployments (for example in Qatar) can enable or disable specific languages as they expand
-                    regionally.
-                </li>
-                <li>
-                    Content and risk messaging are aligned with trusted clinical frameworks (NHS, WHO, GCC guidelines).
-                </li>
-            </ul>
-        </section>
+            <section class="card">
+                <h2>4. Elisence Platform — Multilingual Health Intelligence</h2>
+                <p>
+                    The <span class="highlight">Elisence Platform</span> is a
+                    <span class="highlight">multilingual health intelligence</span> system built from day one
+                    for global diversity.
+                </p>
+                <ul>
+                    <li>Five core languages: English, Arabic, Farsi, Turkish and Romanian.</li>
+                    <li>
+                        Voice, UI and explanations are designed to respect local culture, health beliefs and
+                        communication styles.
+                    </li>
+                    <li>
+                        National deployments (for example in Qatar) can enable or disable specific languages as they
+                        expand regionally.
+                    </li>
+                    <li>
+                        Content and risk messaging are aligned with trusted clinical frameworks (NHS, WHO, GCC guidelines).
+                    </li>
+                </ul>
+            </section>
 
-        <section style="margin-bottom: 32px;">
-            <h2>5. Designed for Governments, Hospitals and Families</h2>
-            <p>
-                Elisence is built so that *one single ecosystem* can serve different stakeholders at the same time:
-                ministries, hospitals, insurers, clinicians and ordinary families.
-            </p>
-            <ul>
-                <li>
-                    <strong>Ministries & regulators:</strong> sovereign dashboards, trendlines, adherence and population
-                    risk signals with full auditability.
-                </li>
-                <li>
-                    <strong>Hospitals & insurers:</strong> structured, anonymised analytics and adherence intelligence
-                    instead of raw data.
-                </li>
-                <li>
-                    <strong>Citizens & families:</strong> a friendly, daily companion that helps with sleep, movement,
-                    medication timing, environment and emotional support.
-                </li>
-                <li>
-                    <strong>Founders & partners:</strong> a long-term, sovereign asset that builds local technical and
-                    clinical capacity.
-                </li>
-            </ul>
-        </section>
+            <section class="card">
+                <h2>5. Designed for Governments, Hospitals and Families</h2>
+                <p>
+                    Elisence is built so that <em>one single ecosystem</em> can serve different stakeholders at the same
+                    time: ministries, hospitals, insurers, clinicians and ordinary families.
+                </p>
+                <ul>
+                    <li>
+                        <span class="highlight">Ministries &amp; regulators:</span>
+                        sovereign dashboards, trendlines, adherence and population risk signals with full auditability.
+                    </li>
+                    <li>
+                        <span class="highlight">Hospitals &amp; insurers:</span>
+                        structured, anonymised analytics and adherence intelligence instead of raw data.
+                    </li>
+                    <li>
+                        <span class="highlight">Citizens &amp; families:</span>
+                        a friendly, daily companion that helps with sleep, movement, medication timing, environment and
+                        emotional support.
+                    </li>
+                    <li>
+                        <span class="highlight">Founders &amp; partners:</span>
+                        a long-term, sovereign asset that builds local technical and clinical capacity.
+                    </li>
+                </ul>
+            </section>
 
-        <section style="margin-bottom: 40px;">
-            <h2>Conclusion: A New Category of Sovereign Digital Health</h2>
-            <p>
-                Elisence introduces a new category:
-                <strong>Sovereign Digital Health Infrastructure</strong> — a regulated-ready, non-diagnostic,
-                multilingual, 17-phase health ecosystem that can be safely adopted by governments and health systems.
-            </p>
-            <p>
-                For Qatar and other forward-looking nations, Elisence is an opportunity to combine
-                <strong>Zero-Trust Health AI</strong>,
-                <strong>Sovereign Health Data Architecture</strong> and
-                <strong>Non-Diagnostic Behavioral AI</strong> into one coherent, human-centered platform.
-            </p>
-            <p>
-                Founded and architected by <strong>Saami Salami Asl</strong>, Elisence is built to serve people,
-                protect dignity and help countries secure the future of their citizens’ health.
-            </p>
-        </section>
+            <section class="card">
+                <h2>Conclusion — A New Category of Sovereign Digital Health</h2>
+                <p>
+                    Elisence introduces a new category:
+                    <span class="highlight">Sovereign Digital Health Infrastructure</span> – a regulated-ready,
+                    non-diagnostic, multilingual, 17-phase health ecosystem that can be safely adopted by governments
+                    and health systems.
+                </p>
+                <p>
+                    For Qatar and other forward-looking nations, Elisence is an opportunity to combine
+                    <span class="highlight">Zero-Trust Health AI</span>,
+                    <span class="highlight">Sovereign Health Data Architecture</span> and
+                    <span class="highlight">Non-Diagnostic Behavioral AI</span>
+                    into one coherent, human-centered platform.
+                </p>
+                <p>
+                    Founded and architected by <span class="highlight">Saami Salami Asl</span>, Elisence is built
+                    to serve people, protect dignity and help countries secure the future of their citizens’ health.
+                </p>
+            </section>
 
-        <footer style="border-top: 1px solid #eee; padding-top: 16px; font-size: 14px; opacity: 0.8;">
-            <p style="margin: 0;">
+            <div class="footer-links">
                 Learn more:
-                <a href="/articles.html">All Elisence Articles</a> ·
-                <a href="/phases.html">Explore the 17 Phases</a> ·
-                <a href="/videos.html">Watch Elisence Videos</a>
-            </p>
-        </footer>
-    </main>
+                <a href="../articles.html">All Elisence Articles</a> ·
+                <a href="../index.html#phases">Explore the 17 Phases</a> ·
+                <a href="../video.html">Watch Elisence Videos</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
+
 </body>
 </html>
