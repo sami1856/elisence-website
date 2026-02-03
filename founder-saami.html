@@ -1,213 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Saami (Sami) Salami — Founder of Elisence</title>
-  <meta name="description" content="Saami (Sami) Salami — Founder & Architect of Elisence, the global health intelligence ecosystem built on safety, Zero-Trust, and multi-language medical support.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Saami Salami Asl — Founder of Elisence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="Meet Saami Salami Asl — founder of Elisence, the global 17-phase health & humanity platform shaping the future of trusted digital health across GCC, UK, EU and beyond." />
+
+  <!-- Elisa Widget -->
+  <script defer src="elisa-chat.js"></script>
 
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: Inter, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f9fb;
-      color: #111;
-      line-height: 1.6;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+      line-height: 1.75;
     }
-    .hero {
-      background: #0E6FFF;
-      color: white;
-      padding: 70px 20px;
-      text-align: center;
+
+    /* Top Dot */
+    .top-dot {
+      position: fixed;
+      left: 18px;
+      top: 18px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+      box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+      z-index: 900;
     }
-    .hero img {
-      width: 160px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+
+    .top-dot-label {
+      position: fixed;
+      left: 40px;
+      top: 16px;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a9d4ff;
+      z-index: 900;
     }
-    .hero h1 {
-      font-size: 40px;
-      margin: 0 0 8px;
-      font-weight: 700;
+
+    /* Side Navigation */
+    .side-nav {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
     }
-    .hero p {
-      margin: 0;
-      font-size: 18px;
-      opacity: 0.95;
-    }
-    .container {
-      max-width: 950px;
-      margin: 40px auto 60px;
-      padding: 0 20px;
-    }
-    h2 {
-      font-weight: 700;
-      margin-top: 40px;
-      font-size: 26px;
-      color: #0E6FFF;
-    }
-    p { font-size: 18px; margin-bottom: 14px; }
-    ul { font-size: 18px; padding-left: 22px; }
-    li { margin-bottom: 8px; }
-    a {
-      color: #0E6FFF;
+
+    .nav-btn {
+      padding: 13px 38px;
+      border-radius: 999px;
       text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e3f2ff;
+      background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+      border: 1px solid rgba(90, 185, 255, 0.9);
+      box-shadow:
+        0 0 16px rgba(0, 130, 255, 0.95),
+        0 0 34px rgba(0, 40, 120, 0.95);
+      transition: 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateX(-4px);
+      box-shadow:
+        0 0 22px rgba(0, 190, 255, 1),
+        0 0 46px rgba(0, 80, 200, 1);
+    }
+
+    @media (max-width: 900px) {
+      .side-nav {
+        position: fixed;
+        right: 50%;
+        bottom: 18px;
+        top: auto;
+        transform: translateX(50%);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .nav-btn { padding: 9px 20px; font-size: 11px; }
+    }
+
+    .page-wrapper {
+      max-width: 1150px;
+      margin: 100px auto 80px auto;
+      padding: 0 40px 60px;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      letter-spacing: 0.06em;
+      color: #7dd3fc;
+      margin-bottom: 1rem;
+    }
+
+    .founder-subtitle {
+      color: #c7ddff;
+      font-size: 1rem;
+      margin-bottom: 2.2rem;
+      max-width: 800px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.9rem;
+      margin-bottom: 1.8rem;
+      box-shadow:
+        0 0 22px rgba(0, 140, 255, 0.9),
+        0 0 40px rgba(0, 40, 120, 0.9);
+    }
+
+    .card h2 {
+      color: #7dd3fc;
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card p {
+      margin-bottom: 0.8rem;
+      font-size: 0.97rem;
+      color: #e9f4ff;
+    }
+
+    .highlight {
       font-weight: 600;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .link-list li {
-      margin-bottom: 6px;
+      color: #7dd3fc;
     }
   </style>
-
-  <!-- SEO / Schema.org Person for Saami / Sami Salami -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Saami Salami",
-    "alternateName": [
-      "Saami",
-      "Sami",
-      "Sami Salami",
-      "Saami Salami Asl",
-      "Sami Salami Asl"
-    ],
-    "jobTitle": "Founder & Architect of Elisence",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Elisence"
-    },
-    "url": "https://www.elisence.com/founder-saami.html",
-    "sameAs": [
-      "https://www.elisence.com/saami-salami.html",
-      "https://www.elisence.com/sami-salami.html",
-      "https://www.elisence.com/sami-profile.html",
-      "https://www.elisence.com/saami/bio.html",
-      "https://www.elisence.com/saami/interviews.html",
-      "https://www.youtube.com/channel/UCb11VdqgHNXU-r6d6pK4Dw",
-      "https://www.instagram.com/elisence.ai",
-      "https://www.tiktok.com/@elisence.official"
-    ]
-  }
-  </script>
 </head>
 
 <body>
 
-  <div class="hero">
-    <!-- اگر بعداً عکس دیگری خواستی، فقط آدرس را عوض کن -->
-    <img src="/assets/images/founder-saami.jpg" alt="Saami (Sami) Salami — Founder of Elisence">
-    <h1>Saami (Sami) Salami — Founder of Elisence</h1>
-    <p>The Architect Behind the Global Health Intelligence Ecosystem</p>
-  </div>
+  <div class="top-dot"></div>
+  <div class="top-dot-label">ELISENCE</div>
 
-  <div class="container">
+  <nav class="side-nav">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="index.html#phases" class="nav-btn">Phases</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="story.html" class="nav-btn">Story</a>
+    <a href="video.html" class="nav-btn">Videos</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
+  </nav>
 
-    <h2>Names Used Online</h2>
-    <p>
-      In different platforms my name may appear as <strong>Saami</strong>,
-      <strong>Sami</strong>, <strong>Saami Salami</strong>,
-      <strong>Sami Salami</strong>, <strong>Saami Salami Asl</strong>, or
-      <strong>Sami Salami Asl</strong>. All of these spellings refer to the same person —
-      the founder and architect of <strong>Elisence</strong>.
-    </p>
-    <p>
-      For clarification you can also visit:
-      <br>
-      • <a href="saami-salami.html">Saami Salami — official name page</a><br>
-      • <a href="sami-salami.html">Sami Salami — alias clarification page</a><br>
-      • <a href="sami-profile.html">Sami Salami — short professional profile</a>
+  <main class="page-wrapper">
+
+    <h1>Saami Salami Asl — Founder of Elisence</h1>
+    <p class="founder-subtitle">
+      Engineer, lawyer, builder, father — creating a global digital health platform designed around trust,
+      humanity, and long-term impact.
     </p>
 
-    <h2>Why Elisence Was Created</h2>
-    <p>
-      Elisence was created to make health information clear, safe, and accessible — for every
-      family, every clinic, and every country. It is a 17+ phase ecosystem designed to respect
-      medical safety, legal governance, and human dignity at the same time.
-    </p>
-    <p>
-      I lead the architecture of Elisence’s multi-phase system combining medical safety,
-      clinical governance, <strong>Zero-Trust security</strong>, intelligent companion modules,
-      and full multi-language support.
-    </p>
+    <section class="card">
+      <h2>The Beginning</h2>
+      <p>
+        Before building Elisence, I studied <span class="highlight">Electrical Engineering</span>.
+        That foundation shaped the way I think: structured, logical, and based on systems that must work
+        under pressure.
+      </p>
+      <p>
+        Later, I became a <span class="highlight">lawyer</span> — and learned how to navigate complexity,
+        evidence, truth, institutions, and the importance of protecting people.
+      </p>
+      <p>
+        These two worlds — engineering and law — became the blueprint for Elisence:
+        a platform that must be technically strong, human-centered, and legally clear.
+      </p>
+    </section>
 
-    <h2>The Vision</h2>
-    <p>
-      The long-term vision is to build the world’s first global, integrated,
-      privacy-first health ecosystem — serving women, families, children 0–18, chronic
-      conditions, mental health, and national healthcare systems, while staying clearly
-      non-diagnostic and regulator-ready.
-    </p>
+    <section class="card">
+      <h2>The Human Story</h2>
+      <p>
+        Elisence wasn’t born in a boardroom.  
+        It was born in real life — through love, pain, distance, resilience, and responsibility.
+      </p>
+      <p>
+        As a father, I wanted to build a world where people — especially children — have tools that guide
+        them safely through life.  
+        Tools that teach discipline, thinking, emotional strength, and health.
+      </p>
+      <p>
+        Elisence became that world.
+      </p>
+    </section>
 
-    <h2>Key Pillars of Elisence</h2>
-    <ul>
-      <li>Women+ Health &amp; Life Companion (Phase 7)</li>
-      <li>Diabetes &amp; GLP-1 Intelligence (Phase 9)</li>
-      <li>Family Ecosystem 0–18 (Phase 15)</li>
-      <li>Global Nutrition &amp; Diet Intelligence (Phase 16)</li>
-      <li>Mental Health &amp; CalmNow Companion (Phase 17)</li>
-      <li>Zero-Trust Security &amp; Passport Layer (Phase 8)</li>
-      <li>Elisence Core Infrastructure &amp; Provenance (Phase 4+)</li>
-    </ul>
+    <section class="card">
+      <h2>The Vision</h2>
+      <p>
+        Elisence is a <span class="highlight">17-phase global platform</span> designed to connect:
+      </p>
 
-    <h2>Founder Interviews</h2>
-    <p>
-      A collection of official interviews with <strong>Saami / Sami Salami</strong> is available here:
-      <br>
-      <a href="saami/interviews.html">Interviews with Saami (Sami) Salami</a>
-    </p>
-    <p>Selected interviews:</p>
-    <ul class="link-list">
-      <li><a href="saami/interview-elisence-vision.html">Interview 1 — The Vision Behind Elisence</a></li>
-      <li><a href="saami/interview-weight-intelligence.html">Interview 2 — Weight Intelligence &amp; GLP-1 (Phase 3)</a></li>
-      <li><a href="saami/interview-women-health-phase7.html">Interview 3 — Women+ Health (Phase 7)</a></li>
-      <li><a href="saami/interview-phase10-social-layer.html">Interview 4 — Phase 10: Social Layer &amp; Security</a></li>
-      <li><a href="saami/interview-family-0-18-phase15.html">Interview 5 — Family Ecosystem 0–18 (Phase 15)</a></li>
-      <li><a href="saami/interview-founder-saami-salami.html">Interview 6 — The Founder: Saami (Sami) Salami</a></li>
-    </ul>
+      <ul style="margin-left: 1.2rem; color: #dbeaff;">
+        <li>Families</li>
+        <li>Clinicians</li>
+        <li>Hospitals & Ministries</li>
+        <li>Researchers & Partners</li>
+      </ul>
 
-    <h2>More About Saami / Sami Salami</h2>
-    <ul class="link-list">
-      <li><a href="saami/bio.html">Full Professional Biography</a></li>
-      <li><a href="saami/timeline.html">Elisence Timeline &amp; Milestones</a></li>
-      <li><a href="saami/achievements.html">Selected Achievements</a></li>
-      <li><a href="saami/articles.html">Articles written by Saami / Sami Salami</a></li>
-      <li><a href="saami/linkedin-summary.html">LinkedIn-style Professional Summary</a></li>
-      <li><a href="saami/press-kit.html">Press &amp; Media Kit</a></li>
-      <li><a href="saami/youtube.html">YouTube Channel &amp; Video Series</a></li>
-      <li><a href="saami/message.html">A Personal Message from Saami</a></li>
-    </ul>
+      <p>
+        It is built on <span class="highlight">Zero-Trust security</span>,
+        <span class="highlight">WORM logging</span>,
+        <span class="highlight">health intelligence</span>,
+        and <span class="highlight">non-diagnostic AI</span> that respects human boundaries.
+      </p>
+    </section>
 
-    <h2>Connect</h2>
-    <p>
-      Official website:
-      <a href="https://www.elisence.com" target="_blank" rel="noopener">
-        www.elisence.com
-      </a>
-      <br>
-      YouTube:
-      <a href="https://www.youtube.com/channel/UCb11VdqgHNXU-r6d6pK4Dw" target="_blank" rel="noopener">
-        Elisence Official Channel
-      </a>
-      <br>
-      Instagram:
-      <a href="https://www.instagram.com/elisence.ai" target="_blank" rel="noopener">
-        @elisence.ai
-      </a>
-      <br>
-      TikTok:
-      <a href="https://www.tiktok.com/@elisence.official" target="_blank" rel="noopener">
-        @elisence.official
-      </a>
-      <br>
-      Social &amp; professional profiles are listed in the Press Kit and LinkedIn Summary pages above.
-    </p>
+    <section class="card">
+      <h2>Why I Continue Building</h2>
+      <p>
+        Because millions of people deserve better health guidance.  
+        Because families deserve tools that don’t manipulate them.  
+        Because governments deserve trusted, honest, auditable health intelligence.  
+        Because children deserve a world designed for their wellbeing, not for addiction.
+      </p>
+      <p>
+        And because my daughter deserves to grow up in a world where technology
+        loves humanity — not replaces it.
+      </p>
+    </section>
 
-  </div>
+    <section class="card">
+      <h2>In One Sentence</h2>
+      <p>
+        Elisence is my life’s work — a platform built from heart, science, engineering,
+        and a father’s promise.
+      </p>
+    </section>
+
+  </main>
+
+  <div id="elisa-chat-root"></div>
 
 </body>
 </html>
