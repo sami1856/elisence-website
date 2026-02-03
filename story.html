@@ -2,163 +2,303 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Why I Built Elisence — The Human Story</title>
-  <meta name="description" content="The true human story behind Elisence — built from love, pain, resilience, and a father’s determination to create a global health intelligence ecosystem for every family.">
+  <title>Why I Built Elisence — The Human Story Behind a Sovereign Health Platform</title>
+  <meta name="description" content="The true human story behind Elisence — created by Saami Salami Asl (also written as Sami Salami Asl or Saami Salami). A sovereign, 17-phase global health intelligence ecosystem born from love, pain, resilience, and a mission to transform the future of digital health for families, clinicians and governments.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
   <style>
-    body {
-      font-family: Inter, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f9fb;
-      color: #111;
-      line-height: 1.75;
-    }
-    .hero {
-      background: #0E6FFF;
-      color: white;
-      padding: 70px 20px;
-      text-align: center;
-    }
-    .hero h1 {
-      margin: 0;
-      font-size: 40px;
-      font-weight: 700;
-    }
-    .hero p {
-      margin-top: 10px;
-      font-size: 20px;
-      opacity: 0.95;
-    }
-    .container {
-      max-width: 900px;
-      margin: 50px auto;
-      padding: 0 20px 80px;
-    }
-    h2 {
-      font-size: 28px;
-      color: #0E6FFF;
-      margin-top: 40px;
-      margin-bottom: 12px;
-    }
-    p {
-      font-size: 18px;
-      margin-bottom: 16px;
-    }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+          min-height: 100vh;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+          color: #ffffff;
+          overflow-x: hidden;
+          line-height: 1.65;
+      }
+
+      .top-dot {
+          position: fixed;
+          left: 18px;
+          top: 18px;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+          box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+          z-index: 20;
+      }
+
+      .top-dot-label {
+          position: fixed;
+          left: 40px;
+          top: 16px;
+          font-size: 14px;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: #a9d4ff;
+          z-index: 20;
+      }
+
+      .side-nav {
+          position: fixed;
+          right: 32px;
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          z-index: 999;
+      }
+
+      .nav-btn {
+          display: block;
+          padding: 13px 38px;
+          border-radius: 999px;
+          text-decoration: none;
+          font-size: 14px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #e3f2ff;
+          background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+          border: 1px solid rgba(90, 185, 255, 0.9);
+          box-shadow:
+              0 0 16px rgba(0, 130, 255, 0.95),
+              0 0 34px rgba(0, 40, 120, 0.95);
+          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+      }
+
+      .nav-btn:hover {
+          transform: translateX(-4px);
+          padding-right: 44px;
+          box-shadow:
+              0 0 22px rgba(0, 190, 255, 1),
+              0 0 46px rgba(0, 80, 200, 1);
+          background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+      }
+
+      .nav-btn.story-active {
+          background: radial-gradient(circle at top, rgba(56, 189, 248, 0.85), rgba(8, 47, 73, 0.98));
+          border-color: rgba(125, 211, 252, 0.95);
+          box-shadow:
+              0 0 22px rgba(56, 189, 248, 1),
+              0 0 50px rgba(37, 99, 235, 0.95);
+      }
+
+      .page-shell {
+          min-height: 100vh;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          padding: 80px 40px;
+      }
+
+      .content-main {
+          width: 100%;
+          max-width: 1100px;
+          margin-right: 190px;
+      }
+
+      h1 {
+          color: #38bdf8;
+          font-size: 2rem;
+          margin-bottom: 1rem;
+      }
+
+      .lead {
+          max-width: 900px;
+          font-size: 1rem;
+          color: #cbd5f5;
+          margin-bottom: 2rem;
+      }
+
+      .card {
+          background: rgba(15, 23, 42, 0.95);
+          border-radius: 18px;
+          border: 1px solid #1e293b;
+          padding: 1.8rem 1.9rem;
+          margin-bottom: 1.8rem;
+          box-shadow:
+              0 0 22px rgba(0, 140, 255, 0.9),
+              0 0 40px rgba(0, 40, 120, 0.9);
+      }
+
+      .card h2 {
+          font-size: 1.3rem;
+          color: #7dd3fc;
+          margin-bottom: 0.8rem;
+      }
+
+      .card p, .card li {
+          font-size: 0.95rem;
+          color: #e5f2ff;
+      }
+
+      .card ul { margin-left: 1.2rem; }
+      .card li { margin-bottom: 0.4rem; }
+
+      @media (max-width: 900px) {
+          .content-main { margin-right: 0; }
+          .side-nav {
+              right: 50%;
+              top: auto;
+              bottom: 18px;
+              transform: translateX(50%);
+              flex-direction: row;
+              gap: 8px;
+          }
+          .nav-btn {
+              padding: 9px 20px;
+              font-size: 11px;
+          }
+      }
   </style>
 </head>
 
 <body>
 
-<div class="hero">
-  <h1>Why I Built Elisence</h1>
-  <p>The Human Story Behind a Global Health Intelligence Ecosystem</p>
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<nav class="side-nav">
+    <a href="index.html"        class="nav-btn">Home</a>
+    <a href="index.html#phases" class="nav-btn">Phases</a>
+    <a href="qatar.html"        class="nav-btn">Qatar</a>
+    <a href="about.html"        class="nav-btn">About</a>
+    <a href="story.html"        class="nav-btn story-active">Story</a>
+    <a href="video.html"        class="nav-btn">Videos</a>
+    <a href="contact.html"      class="nav-btn">Contact</a>
+</nav>
+
+<div class="page-shell">
+<main class="content-main">
+
+    <h1>Why I Built Elisence</h1>
+
+    <p class="lead">
+        Elisence was not born from business plans or market opportunities —  
+        it was born from **love**, shaped by **pain**, and forged through **resilience**.  
+        It came from a father, <strong>Saami Salami Asl</strong> (also written as <strong>Sami Salami Asl</strong> or <strong>Saami Salami</strong>),  
+        who refused to let life break him and instead transformed hardship into a platform designed  
+        to protect, educate and empower millions of families.
+    </p>
+
+    <section class="card">
+        <h2>Born from Love</h2>
+        <p>
+            Elisence began with my daughter, Elisa.  
+            From the day she was born, I wanted her to grow with clarity, science, reasoning,  
+            curiosity, kindness and emotional strength.  
+            We learned together — about NASA, biology, space, people, discipline, critical thinking.
+        </p>
+        <p>
+            My dream was simple:  
+            <strong>help her understand life, health and humanity in the safest and smartest way.</strong>
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>Born from Pain</h2>
+        <p>
+            Life took a harsh turn — a painful separation, distance, years of legal battle,  
+            and the feeling of being far away from someone you love more than anything.
+        </p>
+        <p>
+            Instead of letting pain destroy me,  
+            I turned it into purpose:  
+            <strong>to build a platform that gives every child, every parent and every family  
+            the safety, clarity and support I wished I could always give her.</strong>
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>The Turning Point</h2>
+        <p>
+            I realised something powerful:  
+            technology can either manipulate and distract people…  
+            or it can **heal, guide and elevate them**.
+        </p>
+        <p>
+            I chose a new mission:  
+            <strong>technology must serve humanity — never replace it.</strong>
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>The Birth of Elisence</h2>
+        <p>
+            Elisence became the first platform built not as an “app”,  
+            but as a <strong>Sovereign Digital Health Infrastructure</strong> —  
+            a 17-phase ecosystem for citizens, clinicians, hospitals and governments.
+        </p>
+
+        <ul>
+            <li>Zero-Trust Health AI</li>
+            <li>Non-diagnostic, safe guidance</li>
+            <li>Women+ Health, Diabetes, Nutrition, Mental Health</li>
+            <li>Family & Kids Mode (0–18)</li>
+            <li>Emergency engines & environment intelligence</li>
+            <li>Medical evidence packs & WORM audit logs</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>A Safe World for Children & Families</h2>
+        <p>
+            Elisence protects vulnerable people — especially children.  
+            No ads, no manipulation, no dark patterns.  
+            Just safe, science-based guidance for eating, sleeping, growing,  
+            learning and developing emotional balance.
+        </p>
+        <p>
+            Parents and caregivers can support their children  
+            through structured challenges, insights and family dashboards.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>A Platform With Global Purpose</h2>
+        <p>
+            Elisence is built not just for individuals —  
+            but for <strong>governments, hospitals, clinicians, researchers and entire nations.</strong>
+        </p>
+        <p>
+            The goal is to unify:
+        </p>
+        <ul>
+            <li>science</li>
+            <li>AI</li>
+            <li>public health</li>
+            <li>and humanity</li>
+        </ul>
+        <p>
+            …into one sovereign system that can evolve for decades.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>Built for Elisa — and for Everyone</h2>
+        <p>
+            At its core, Elisence carries the truth of a father  
+            who refused to give up, who refused to break,  
+            and who transformed love, pain and resilience  
+            into a platform for millions.
+        </p>
+        <p>
+            Elisence is for my daughter.  
+            Elisence is for families.  
+            Elisence is for truth.  
+            Elisence is for humanity.
+        </p>
+
+        <p><strong>🕊️ Elisence — Growth. Health. Humanity.</strong></p>
+    </section>
+
+</main>
 </div>
 
-<div class="container">
-
-  <h2>Born from Love</h2>
-  <p>
-    Elisence did not begin as a company. It began as love — a father’s love for his daughter, Elisa.
-    Every dream I had for her was built around knowledge, curiosity, science, kindness, and becoming
-    a strong, independent human being.
-  </p>
-  <p>
-    We watched NASA videos together, explored ideas, solved problems, learned about people, science,
-    discipline, forgiveness, and growth. I wanted her to learn how to think — not just what to think.
-  </p>
-
-  <h2>Born from Pain</h2>
-  <p>
-    Life, however, took a painful turn. A separation, distance, and a long, harsh legal journey could
-    have broken anyone. But instead of breaking me, the pain transformed into purpose.
-  </p>
-  <p>
-    From that pain, <strong>Elisence</strong> was born — a platform built to give every child, every family,
-    and every human the support, clarity, education, and safety I wished I could always give her directly.
-  </p>
-
-  <h2>The Moment Everything Changed</h2>
-  <p>
-    I realised that technology can either drain us… or lift us.  
-    It can either distract… or empower.  
-    It can either numb people… or wake their minds up.
-  </p>
-  <p>
-    So I decided: technology must serve humanity — not the other way around.
-  </p>
-
-  <h2>What Elisence Stands For</h2>
-  <p>
-    Elisence is built as the <strong>first fully human-centred global health intelligence system</strong>.
-    A platform where:
-  </p>
-
-  <ul>
-    <li>health becomes clear, simple, visual, and personalised</li>
-    <li>families and children grow emotionally and intellectually</li>
-    <li>Zero-Trust privacy protects every user</li>
-    <li>science and safety guide every recommendation</li>
-    <li>AI helps you become healthier — not more addicted to screens</li>
-  </ul>
-
-  <h2>The Human Engine Behind the Technology</h2>
-  <p>
-    Elisence is not just a health app. It is a living ecosystem combining:
-  </p>
-
-  <ul>
-    <li><strong>Healthy Dopamine Engine</strong> — rewarding real healthy behaviour</li>
-    <li><strong>GLP-1 & Diabetes Intelligence</strong> — analysing results, dosing, outcomes</li>
-    <li><strong>Women+ Health</strong> — cycle, pregnancy, postpartum, long-term wellness</li>
-    <li><strong>Family & Kids Mode (0–18)</strong> — safe digital habits and life-skills</li>
-    <li><strong>Sleep, nutrition, mental health, and emotional balance</strong></li>
-    <li><strong>AI companion “Elisa”</strong> — a coach that guides, encourages, and inspires</li>
-  </ul>
-
-  <h2>A Safe World for Children</h2>
-  <p>
-    In the Family & Kids Mode, children learn how to eat better, sleep better, move more, and
-    think more positively — without ads, without manipulation, and without unsafe content.
-  </p>
-  <p>
-    Parents can track progress, create family challenges, and help build healthy habits together.
-  </p>
-
-  <h2>A Platform with Global Purpose</h2>
-  <p>
-    Elisence is designed not only for individuals, but for families, schools, governments,
-    clinicians, and global research teams.
-  </p>
-  <p>
-    The goal is to unite:
-  </p>
-  <ul>
-    <li>science</li>
-    <li>AI</li>
-    <li>public health</li>
-    <li>and humanity</li>
-  </ul>
-  <p>
-    …into one platform that can evolve for decades.
-  </p>
-
-  <h2>Built for Elisa — and for Everyone</h2>
-  <p>
-    At its heart, Elisence carries the story of a father who refused to break.
-    Instead, he turned love and pain into innovation and service.
-  </p>
-  <p>
-    Elisence is for my daughter.  
-    Elisence is for truth.  
-    Elisence is for justice.  
-    And ultimately — Elisence is for everyone.
-  </p>
-
-  <p><strong>🕊️ Elisence — Growth, Health, Humanity.</strong></p>
-
-</div>
+<div id="elisa-chat-root"></div>
 
 </body>
 </html>
