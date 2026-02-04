@@ -1,268 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Elisence — Building the Future of Safe, Intelligent, Human-Centered Digital Health</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Elisence is a multi-phase global digital health and humanity platform built with zero-trust architecture, regulatory-grade evidence and multi-language intelligence."
-  />
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    <meta charset="UTF-8" />
+    <title>Elisence — Building the Future of Safe, Intelligent, Human-Centered Digital Health</title>
+
+    <!-- Core SEO -->
+    <meta
+        name="description"
+        content="Elisence is a multi-phase global digital health and humanity platform built with zero-trust architecture, regulatory-grade evidence and multi-language intelligence."
+    />
+    <meta
+        name="keywords"
+        content="Elisence, global digital health platform, zero-trust health AI, non-diagnostic behavioral AI, sovereign health data, multi-language health intelligence, Qatar digital health, regulated digital health ecosystem"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- JSON-LD Article Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Elisence — Building the Future of Safe, Intelligent, Human-Centered Digital Health",
+      "description": "Elisence is a multi-phase global digital health and humanity platform built with zero-trust architecture, regulatory-grade evidence and multi-language intelligence.",
+      "author": {
+        "@type": "Person",
+        "name": "Saami Salami Asl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Elisence",
+        "url": "https://elisence.com"
+      },
+      "about": [
+        "Global digital health platform",
+        "Zero-trust health AI",
+        "Non-diagnostic behavioral AI",
+        "Multi-language health intelligence"
+      ]
     }
+    </script>
 
-    body {
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
-      color: #ffffff;
-      overflow-x: hidden;
-    }
+    <!-- Elisa chat widget (از داخل فولدر articles) -->
+    <script defer src="../elisa-chat.js"></script>
 
-    .top-nav {
-      width: 100%;
-      padding: 14px 24px;
-      display: flex;
-      justify-content: flex-start;
-      gap: 18px;
-      font-size: 13px;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .top-nav a {
-      color: #a9d4ff;
-      text-decoration: none;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 11px;
-    }
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
 
-    .top-nav a:hover {
-      text-decoration: underline;
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    .page-wrapper {
-      min-height: calc(100vh - 60px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 18px 60px 18px;
-    }
+        a:hover {
+            text-decoration: underline;
+        }
 
-    .hero-card {
-      width: 100%;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 32px 26px 34px 26px;
-      border-radius: 24px;
-      background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
-      box-shadow:
-        0 0 40px rgba(0, 170, 255, 0.82),
-        0 0 110px rgba(0, 80, 200, 0.6);
-      border: 1px solid rgba(70, 190, 255, 0.6);
-    }
+        /* نقطه و لیبل بالا چپ */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
 
-    .article-label {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #a9d4ff;
-      margin-bottom: 6px;
-    }
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
 
-    .article-title {
-      font-size: 22px;
-      line-height: 1.4;
-      margin-bottom: 10px;
-    }
+        /* منوی عمودی سمت راست */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
 
-    .article-meta {
-      font-size: 12px;
-      color: #c1dcff;
-      margin-bottom: 18px;
-    }
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
 
-    .article-meta span {
-      opacity: 0.9;
-    }
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
 
-    .article-body {
-      font-size: 14px;
-      line-height: 1.85;
-      color: #e0efff;
-    }
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
 
-    .article-body h2 {
-      font-size: 17px;
-      margin-top: 20px;
-      margin-bottom: 8px;
-      color: #ffffff;
-    }
+        /* شِل صفحه */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
 
-    .article-body p {
-      margin-bottom: 10px;
-    }
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* فضای منو */
+        }
 
-    .article-body ul {
-      margin: 6px 0 14px 20px;
-      padding-left: 6px;
-    }
+        .page-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #bfdbfe;
+            background: rgba(37, 99, 235, 0.18);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(59, 130, 246, 0.8);
+            margin-bottom: 1rem;
+        }
 
-    .article-body li {
-      margin-bottom: 4px;
-    }
+        .page-tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #60a5fa;
+        }
 
-    @media (max-width: 640px) {
-      .hero-card {
-        padding: 22px 18px 24px 18px;
-      }
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.5rem;
+            color: #dbeafe;
+        }
 
-      .article-title {
-        font-size: 19px;
-      }
+        .subtitle {
+            font-size: 0.95rem;
+            color: #a5b4fc;
+            margin-bottom: 1.4rem;
+            max-width: 880px;
+        }
 
-      .article-body {
-        font-size: 13px;
-      }
-    }
-  </style>
+        .article-meta {
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            margin-bottom: 1.6rem;
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(5, 10, 35, 0.98));
+            border-radius: 18px;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            padding: 1.6rem 1.7rem;
+            margin-bottom: 1.6rem;
+            box-shadow:
+                0 0 22px rgba(37, 99, 235, 0.55),
+                0 0 40px rgba(15, 23, 42, 0.95);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            color: #bfdbfe;
+        }
+
+        .card p {
+            font-size: 0.94rem;
+            color: #e5e7eb;
+            margin-bottom: 0.7rem;
+        }
+
+        .card ul {
+            margin: 0.3rem 0 0.4rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .card li {
+            font-size: 0.93rem;
+            color: #e5e7eb;
+            margin-bottom: 0.35rem;
+        }
+
+        .highlight {
+            color: #93c5fd;
+            font-weight: 500;
+        }
+
+        .footer-block {
+            margin-top: 1.8rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.45);
+            font-size: 0.86rem;
+            color: #e5e7eb;
+        }
+
+        .footer-block a {
+            color: #7dd3fc;
+        }
+
+        .channels {
+            margin-top: 0.8rem;
+            font-size: 0.84rem;
+        }
+
+        .channels-title {
+            font-weight: 600;
+            color: #e0f2fe;
+            margin-bottom: 0.3rem;
+        }
+
+        .channels-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .channels-list li {
+            margin-bottom: 0.2rem;
+        }
+
+        .back-link {
+            margin-top: 1.0rem;
+            font-size: 0.84rem;
+        }
+
+        .back-link a {
+            color: #bfdbfe;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-  <header class="top-nav">
-    <a href="../index.html">Home</a>
-    <a href="../articles.html">Articles</a>
-  </header>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
 
-  <main class="page-wrapper">
-    <article class="hero-card">
-      <div class="article-label">Elisence · Global Digital Health</div>
-      <h1 class="article-title">Elisence — Building the Future of Safe, Intelligent, Human-Centered Digital Health</h1>
-      <div class="article-meta">
-        <span>By Saami Salami Asl — Founder of Elisence</span>
-      </div>
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="../index.html"        class="nav-btn">Home</a>
+        <a href="../index.html#phases" class="nav-btn">Phases</a>
+        <a href="../qatar.html"        class="nav-btn">Qatar</a>
+        <a href="../about.html"        class="nav-btn">About</a>
+        <a href="../story.html"        class="nav-btn">Story</a>
+        <a href="../video.html"        class="nav-btn">Videos</a>
+        <a href="../contact.html"      class="nav-btn">Contact</a>
+    </nav>
 
-      <div class="article-body">
-        <h2>1. Introduction: A New Era of Digital Health</h2>
-        <p>
-          The world is entering a new phase of healthcare — one where families, clinicians, governments, and AI systems
-          must work together under strict safety, transparency and public trust.
-        </p>
-        <p>
-          Yet most digital-health platforms rely on fragmented data, third-party databases, and limited intelligence
-          models that cannot scale to real-world complexity.
-        </p>
-        <p><strong>Elisence is built to change that.</strong></p>
-        <p>
-          Elisence is a multi-phase global ecosystem designed from scratch with:
-        </p>
-        <ul>
-          <li>Zero-Trust architecture</li>
-          <li>Regulatory-grade evidence</li>
-          <li>Multi-language intelligence (EN / FA / AR / TR / RO)</li>
-          <li>Family-centered design</li>
-          <li>Clinical safety boundaries</li>
-          <li>Full auditability and explainability</li>
-        </ul>
-        <p>
-          Elisence is not “another health app.” It is an
-          <strong>end-to-end digital health and humanity platform.</strong>
-        </p>
+    <div class="page-shell">
+        <main class="content-main">
+            <div class="page-tag">
+                <span class="page-tag-dot"></span>
+                <span>Global Digital Health · Elisence Platform</span>
+            </div>
 
-        <h2>2. A Platform Built Across 17 Phases</h2>
-        <p>
-          Elisence is developed in sequential phases — each a complete engine with its own tests, safety checks, and
-          user experience.
-        </p>
-        <p>Some of the major phases include:</p>
-        <ul>
-          <li><strong>Phase 1–3:</strong> GLP-1 foundations, medication safety, weight-loss &amp; daily care</li>
-          <li><strong>Phase 7:</strong> Women+ Health — periods, fertility, pregnancy, postpartum</li>
-          <li><strong>Phase 9:</strong> Diabetes &amp; Metabolic Intelligence</li>
-          <li><strong>Phase 10:</strong> Trusted Social Profiles, Messaging &amp; Secure Media</li>
-          <li><strong>Phase 15:</strong> Family Ecosystem (0–18)</li>
-          <li><strong>Phase 16:</strong> Global Nutrition Intelligence (GNIE)</li>
-          <li><strong>Phase 17:</strong> Mental Health &amp; Calm Support</li>
-        </ul>
-        <p>
-          Each phase stands alone, but together they form a <strong>national-grade health engine.</strong>
-        </p>
+            <h1>Elisence — Building the Future of Safe, Intelligent, Human-Centered Digital Health</h1>
+            <p class="subtitle">
+                How Elisence is built as a multi-phase, sovereign digital health and humanity platform with zero-trust
+                architecture, regulatory-grade evidence and multi-language intelligence.
+            </p>
+            <p class="article-meta">
+                By <strong>Saami Salami Asl</strong>, Founder of Elisence
+            </p>
 
-        <h2>3. A Platform with Its Own Data Standards</h2>
-        <p>
-          Unlike many digital-health services that depend heavily on NHS or third-party data, Elisence has its own
-          structured, safe and compliant data models.
-        </p>
-        <p>We built:</p>
-        <ul>
-          <li>Clinical passports</li>
-          <li>Secure profiles</li>
-          <li>Global medication dictionaries</li>
-          <li>Nutrition &amp; culture-aware datasets</li>
-          <li>Women+ physiology models</li>
-          <li>Diabetes patterns &amp; environmental correlations</li>
-          <li>Multi-language safety libraries</li>
-        </ul>
-        <p>
-          All with regulatory documentation and full transparency.
-        </p>
+            <!-- SECTION 1 -->
+            <section class="card">
+                <h2>1. Introduction: A New Era of Digital Health</h2>
+                <p>
+                    The world is entering a new phase of healthcare — one where families, clinicians, governments and AI systems
+                    must work together under strict safety, transparency and public trust.
+                </p>
+                <p>
+                    Yet most digital health platforms rely on fragmented data, third-party databases and limited intelligence
+                    models that cannot scale to real-world complexity.
+                </p>
+                <p><span class="highlight">Elisence is built to change that.</span></p>
+                <p>
+                    Elisence is a multi-phase global ecosystem designed from scratch with:
+                </p>
+                <ul>
+                    <li>Zero-Trust architecture</li>
+                    <li>Regulatory-grade evidence</li>
+                    <li>Multi-language intelligence (EN / FA / AR / TR / RO)</li>
+                    <li>Family-centered design</li>
+                    <li>Clinical safety boundaries</li>
+                    <li>Full auditability and explainability</li>
+                </ul>
+                <p>
+                    Elisence is not “another health app.” It is an
+                    <strong>end-to-end digital health and humanity platform.</strong>
+                </p>
+            </section>
 
-        <h2>4. The Human Philosophy Behind the Platform</h2>
-        <p>
-          Elisence is not about algorithms replacing doctors. It is about <strong>intelligence supporting real people</strong>:
-        </p>
-        <ul>
-          <li>Clear non-diagnostic boundaries</li>
-          <li>Transparent guidance</li>
-          <li>No dark patterns</li>
-          <li>Healthy dopamine</li>
-          <li>Privacy-first design</li>
-          <li>Culturally aware care</li>
-          <li>Full family inclusion</li>
-          <li>Empowering — not overwhelming</li>
-        </ul>
-        <p>
-          Every message, score and insight is explainable, safe and human.
-        </p>
+            <!-- SECTION 2 -->
+            <section class="card">
+                <h2>2. A Platform Built Across 17 Phases</h2>
+                <p>
+                    Elisence is developed in sequential phases — each a complete engine with its own tests, safety checks and
+                    user experience.
+                </p>
+                <p>Some of the major phases include:</p>
+                <ul>
+                    <li><strong>Phase 1–3:</strong> GLP-1 foundations, medication safety, weight-loss &amp; daily care</li>
+                    <li><strong>Phase 7:</strong> Women+ Health — periods, fertility, pregnancy, postpartum</li>
+                    <li><strong>Phase 9:</strong> Diabetes &amp; Metabolic Intelligence</li>
+                    <li><strong>Phase 10:</strong> Trusted Social Profiles, Messaging &amp; Secure Media</li>
+                    <li><strong>Phase 15:</strong> Family Ecosystem (0–18)</li>
+                    <li><strong>Phase 16:</strong> Global Nutrition Intelligence (GNIE)</li>
+                    <li><strong>Phase 17:</strong> Mental Health &amp; Calm Support</li>
+                </ul>
+                <p>
+                    Each phase stands alone, but together they form a <strong>national-grade health engine.</strong>
+                </p>
+            </section>
 
-        <h2>5. Built for Countries, Not Just Users</h2>
-        <p>
-          Elisence is designed for large-scale deployment:
-        </p>
-        <ul>
-          <li>Ministries of Health</li>
-          <li>Hospitals &amp; clinics</li>
-          <li>Schools</li>
-          <li>Public health teams</li>
-          <li>Diabetes &amp; obesity programs</li>
-          <li>Women’s health initiatives</li>
-          <li>National nutrition campaigns</li>
-        </ul>
-        <p>
-          We offer population-level dashboards <em>without exposing any individual data</em>.
-        </p>
-        <p>
-          This is what real digital health should look like.
-        </p>
+            <!-- SECTION 3 -->
+            <section class="card">
+                <h2>3. A Platform with Its Own Data Standards</h2>
+                <p>
+                    Unlike many digital-health services that depend heavily on NHS or third-party data, Elisence has its own
+                    structured, safe and compliant data models.
+                </p>
+                <p>We built:</p>
+                <ul>
+                    <li>Clinical passports</li>
+                    <li>Secure profiles</li>
+                    <li>Global medication dictionaries</li>
+                    <li>Nutrition &amp; culture-aware datasets</li>
+                    <li>Women+ physiology models</li>
+                    <li>Diabetes patterns &amp; environmental correlations</li>
+                    <li>Multi-language safety libraries</li>
+                </ul>
+                <p>
+                    All with regulatory documentation and full transparency.
+                </p>
+            </section>
 
-        <h2>6. Conclusion: A Vision For Global Health</h2>
-        <p>
-          As lifestyle diseases rise worldwide, countries need safe, intelligent, multilingual systems that respect
-          culture, privacy and human complexity.
-        </p>
-        <p><strong>Elisence is built exactly for that future.</strong></p>
-        <p>
-          A global platform. A safe platform. A human platform.
-        </p>
-        <p>
-          And this is only the beginning.
-        </p>
-      </div>
-    </article>
-  </main>
+            <!-- SECTION 4 -->
+            <section class="card">
+                <h2>4. The Human Philosophy Behind the Platform</h2>
+                <p>
+                    Elisence is not about algorithms replacing doctors. It is about
+                    <strong>intelligence supporting real people</strong>:
+                </p>
+                <ul>
+                    <li>Clear non-diagnostic boundaries</li>
+                    <li>Transparent guidance</li>
+                    <li>No dark patterns</li>
+                    <li>Healthy dopamine</li>
+                    <li>Privacy-first design</li>
+                    <li>Culturally aware care</li>
+                    <li>Full family inclusion</li>
+                    <li>Empowering — not overwhelming</li>
+                </ul>
+                <p>
+                    Every message, score and insight is explainable, safe and human.
+                </p>
+            </section>
 
+            <!-- SECTION 5 -->
+            <section class="card">
+                <h2>5. Built for Countries, Not Just Users</h2>
+                <p>
+                    Elisence is designed for large-scale deployment:
+                </p>
+                <ul>
+                    <li>Ministries of Health</li>
+                    <li>Hospitals &amp; clinics</li>
+                    <li>Schools</li>
+                    <li>Public health teams</li>
+                    <li>Diabetes &amp; obesity programs</li>
+                    <li>Women’s health initiatives</li>
+                    <li>National nutrition campaigns</li>
+                </ul>
+                <p>
+                    We offer population-level dashboards <em>without exposing any individual data</em>.
+                </p>
+                <p>
+                    This is what real digital health should look like.
+                </p>
+            </section>
+
+            <!-- SECTION 6 -->
+            <section class="card">
+                <h2>6. Conclusion: A Vision for Global Health</h2>
+                <p>
+                    As lifestyle diseases rise worldwide, countries need safe, intelligent, multilingual systems that respect
+                    culture, privacy and human complexity.
+                </p>
+                <p><span class="highlight"><strong>Elisence is built exactly for that future.</strong></span></p>
+                <p>
+                    A global platform. A safe platform. A human platform.
+                </p>
+                <p>
+                    And this is only the beginning.
+                </p>
+            </section>
+
+            <!-- FOOTER: BACK + CHANNELS -->
+            <div class="footer-block">
+                <p class="back-link">
+                    <a href="../articles.html">&larr; Back to Elisence Knowledge Center</a>
+                </p>
+                <p>
+                    Explore more:
+                    <a href="what-is-elisence.html">What Is Elisence?</a> ·
+                    <a href="ai-safety-non-diagnostic-elisence.html">AI Safety &amp; Non-Diagnostic Architecture</a> ·
+                    <a href="elisence-qatar-vision-2030.html">Elisence &amp; Qatar Vision 2030</a>
+                </p>
+
+                <div class="channels">
+                    <div class="channels-title">Official Elisence Channels</div>
+                    <ul class="channels-list">
+                        <li>Website: <a href="https://elisence.com" target="_blank" rel="noopener">https://elisence.com</a></li>
+                        <li>YouTube: <a href="https://www.youtube.com/@Elisence_saami_salami_as" target="_blank" rel="noopener">@Elisence_saami_salami_as</a></li>
+                        <li>Instagram: <a href="https://www.instagram.com/elisence.ai" target="_blank" rel="noopener">@elisence.ai</a></li>
+                        <li>TikTok: <a href="https://www.tiktok.com/@elisence.official" target="_blank" rel="noopener">@elisence.official</a></li>
+                        <li>LinkedIn: <a href="https://www.linkedin.com/company/elisence-official" target="_blank" rel="noopener">Elisence Official</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
 </body>
 </html>
