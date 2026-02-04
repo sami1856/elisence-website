@@ -1,165 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Women+ Health — Why It Matters | Elisence</title>
-  <meta name="description" content="An educational overview of Women+ Health in Elisence: cycle awareness, pregnancy, postpartum, emotional well-being, and safety-first digital support.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <title>Women+ Health — Why It Matters | Elisence</title>
 
-  <style>
-    body {
-      font-family: Inter, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f9fb;
-      color: #111;
-      line-height: 1.7;
+    <!-- Core SEO -->
+    <meta
+        name="description"
+        content="Women+ Health in Elisence (Phase 7): a safe, non-diagnostic companion for cycle awareness, pregnancy, postpartum recovery, mood, pain patterns and emotional well-being — built on sovereign, Zero-Trust digital health infrastructure."
+    />
+    <meta
+        name="keywords"
+        content="Elisence, Women+ Health, Phase 7, menstrual health, pregnancy support, postpartum recovery, non-diagnostic women health app, Zero-Trust Health AI, sovereign digital health, Qatar digital health, emotional well-being"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- JSON-LD Article Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Women+ Health — Why It Matters",
+      "description": "Educational overview of Women+ Health in Elisence Phase 7: cycle awareness, pregnancy, postpartum, emotional well-being, and safety-first digital support in a sovereign, non-diagnostic platform.",
+      "author": {
+        "@type": "Person",
+        "name": "Saami Salami Asl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Elisence",
+        "url": "https://elisence.com"
+      },
+      "about": [
+        "Women+ Health",
+        "Menstrual health",
+        "Pregnancy and postpartum support",
+        "Non-diagnostic digital health",
+        "Zero-Trust Health AI"
+      ]
     }
-    .hero {
-      background: #0E6FFF;
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 34px;
-      font-weight: 700;
-    }
-    .hero p {
-      margin: 0;
-      font-size: 18px;
-      opacity: 0.96;
-    }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px 40px;
-    }
-    h2 {
-      font-size: 24px;
-      color: #0E6FFF;
-      margin-top: 28px;
-      margin-bottom: 8px;
-    }
-    p {
-      font-size: 18px;
-      margin-bottom: 12px;
-    }
-    ul {
-      font-size: 18px;
-      padding-left: 20px;
-      margin-bottom: 16px;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    .note {
-      font-size: 16px;
-      background: #e6f0ff;
-      padding: 12px 14px;
-      border-radius: 8px;
-      margin: 18px 0;
-    }
-    .back-link {
-      margin-top: 30px;
-      font-size: 16px;
-    }
-    .back-link a {
-      color: #0E6FFF;
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
+    </script>
+
+    <!-- Elisa chat widget (مسیر از داخل فولدر articles) -->
+    <script defer src="../elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* نقطه و برچسب بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* شِل صفحه */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* فضای منو */
+        }
+
+        .page-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #f9a8d4;
+            background: rgba(236, 72, 153, 0.16);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(236, 72, 153, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .page-tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #f472b6;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.5rem;
+            color: #fce7f3;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #f9a8d4;
+            margin-bottom: 1.4rem;
+            max-width: 880px;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            margin-bottom: 1.6rem;
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, rgba(24, 24, 48, 0.96), rgba(5, 10, 40, 0.98));
+            border-radius: 18px;
+            border: 1px solid rgba(248, 187, 208, 0.4);
+            padding: 1.6rem 1.7rem;
+            margin-bottom: 1.6rem;
+            box-shadow:
+                0 0 22px rgba(236, 72, 153, 0.55),
+                0 0 40px rgba(15, 23, 42, 0.95);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            color: #f9a8d4;
+        }
+
+        .card p {
+            font-size: 0.94rem;
+            color: #fee2e2;
+            margin-bottom: 0.7rem;
+        }
+
+        .card ul {
+            margin: 0.3rem 0 0.4rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .card li {
+            font-size: 0.93rem;
+            color: #ffe4e6;
+            margin-bottom: 0.35rem;
+        }
+
+        .note-card {
+            border-color: rgba(248, 250, 252, 0.6);
+            background: radial-gradient(circle at top right, rgba(248, 250, 252, 0.08), rgba(15, 23, 42, 0.98));
+        }
+
+        .highlight {
+            color: #f9a8d4;
+            font-weight: 500;
+        }
+
+        .footer-block {
+            margin-top: 1.8rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.45);
+            font-size: 0.86rem;
+            color: #e5e7eb;
+        }
+
+        .footer-block a {
+            color: #7dd3fc;
+        }
+
+        .channels {
+            margin-top: 0.8rem;
+            font-size: 0.84rem;
+        }
+
+        .channels-title {
+            font-weight: 600;
+            color: #e0f2fe;
+            margin-bottom: 0.3rem;
+        }
+
+        .channels-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .channels-list li {
+            margin-bottom: 0.2rem;
+        }
+
+        .back-link {
+            margin-top: 1.2rem;
+            font-size: 0.84rem;
+        }
+
+        .back-link a {
+            color: #f9a8d4;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="hero">
-  <h1>Women+ Health — Why It Matters</h1>
-  <p>How Elisence supports women’s journeys with education, structure, and safety-first intelligence.</p>
-</div>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
 
-<div class="container">
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="../index.html"        class="nav-btn">Home</a>
+        <a href="../index.html#phases" class="nav-btn">Phases</a>
+        <a href="../qatar.html"        class="nav-btn">Qatar</a>
+        <a href="../about.html"        class="nav-btn">About</a>
+        <a href="../story.html"        class="nav-btn">Story</a>
+        <a href="../video.html"        class="nav-btn">Videos</a>
+        <a href="../contact.html"      class="nav-btn">Contact</a>
+    </nav>
 
-  <div class="note">
-    <strong>Important:</strong> This article is educational only. Elisence does not provide diagnosis, emergency advice,
-    or medical prescriptions. For any urgent or worrying symptom, users should contact a doctor or emergency service.
-  </div>
+    <div class="page-shell">
+        <main class="content-main">
+            <div class="page-tag">
+                <span class="page-tag-dot"></span>
+                <span>Phase 7 · Women+ Health Companion</span>
+            </div>
 
-  <h2>Why Women+ Health Needs a Dedicated Space</h2>
-  <p>
-    Women’s health is often split across many apps and systems: one for periods, another for pregnancy,
-    a separate place for mood tracking, and different records in clinics and hospitals.
-    Important details can be lost, repeated, or misunderstood.
-  </p>
-  <p>
-    Elisence treats <strong>Women+ Health</strong> as a core, first-class domain.  
-    Phase 7 of Elisence is devoted to helping women understand their own data and patterns in a way that is:
-    respectful, non-judgmental, multi-language, and always safety-first.
-  </p>
+            <h1>Women+ Health — Why It Matters</h1>
+            <p class="subtitle">
+                How Elisence Phase 7 supports women’s journeys with education, structure and safety-first intelligence —
+                from cycle patterns to pregnancy, postpartum and emotional well-being.
+            </p>
+            <p class="article-meta">
+                By <strong>Saami Salami Asl</strong>, Founder of Elisence · Non-Diagnostic · Safety-First · Multilingual
+            </p>
 
-  <h2>What Women+ Health Covers in Elisence</h2>
-  <p>
-    The Women+ module in Elisence is designed to support a wide range of life stages and topics, including:
-  </p>
-  <ul>
-    <li>Cycle awareness and pattern tracking (regular, irregular, heavy, light)</li>
-    <li>PMS and emotional impact, with gentle educational support</li>
-    <li>Pregnancy journeys and postpartum recovery (non-diagnostic, supportive guidance)</li>
-    <li>Pain, bleeding, or other symptoms that may need medical attention, with clear “red-flag” awareness messages</li>
-    <li>Energy, mood, sleep, and stress around hormonal changes</li>
-  </ul>
+            <!-- NOTE / DISCLAIMER -->
+            <section class="card note-card">
+                <h2>Important Safety Note</h2>
+                <p>
+                    This article — and the entire Women+ module in Elisence — is
+                    <span class="highlight">educational only</span>.
+                    Elisence does <strong>not</strong> provide diagnosis, emergency advice or medical prescriptions.
+                </p>
+                <p>
+                    If any symptom feels <strong>urgent, severe or frightening</strong>, users should contact a doctor
+                    or emergency service immediately. Elisence is a companion and organiser — not a replacement for
+                    professional care.
+                </p>
+            </section>
 
-  <h2>How Elisence Supports Women Safely</h2>
-  <p>
-    Elisence does not replace doctors, midwives, or emergency care.  
-    Instead, it helps women:
-  </p>
-  <ul>
-    <li>Organise and remember what is happening over time</li>
-    <li>See patterns that may be important to discuss with a professional</li>
-    <li>Receive educational messages written in clear, human language</li>
-    <li>Access the same ideas in multiple languages, for families and communities</li>
-  </ul>
+            <!-- SECTION 1 -->
+            <section class="card">
+                <h2>1. Why Women+ Health Needs a Dedicated Space</h2>
+                <p>
+                    Women’s health is often split across many places: one app for periods, another for pregnancy,
+                    a different space for mood tracking, and separate clinic or hospital records.
+                    Important details can be lost, repeated or misunderstood.
+                </p>
+                <p>
+                    Elisence treats <span class="highlight">Women+ Health</span> as a core, first-class domain.
+                    <strong>Phase 7</strong> is devoted to helping women understand their own data and patterns in a way that is:
+                    respectful, non-judgmental, multi-language and always safety-first.
+                </p>
+            </section>
 
-  <p>
-    Behind the scenes, Women+ Health in Elisence is carefully aligned with safety principles and public clinical
-    guidance (such as NHS/NICE style thinking), so that the language stays educational and supportive,
-    not diagnostic or prescriptive.
-  </p>
+            <!-- SECTION 2 -->
+            <section class="card">
+                <h2>2. What Women+ Health Covers in Elisence</h2>
+                <p>
+                    The Women+ module is designed to support a wide range of life stages and topics, including:
+                </p>
+                <ul>
+                    <li>Cycle awareness and pattern tracking (regular, irregular, heavy, light)</li>
+                    <li>PMS and emotional impact, with gentle educational support</li>
+                    <li>Pregnancy journeys and postpartum recovery (non-diagnostic, supportive guidance)</li>
+                    <li>
+                        Pain, bleeding, or other symptoms that may need medical attention — with clear
+                        <span class="highlight">“red-flag” awareness</span> messages encouraging users to seek real care
+                    </li>
+                    <li>Energy, mood, sleep and stress around hormonal changes</li>
+                </ul>
+            </section>
 
-  <h2>Privacy and Respect</h2>
-  <p>
-    Women’s health information is deeply personal. Elisence is built so that:
-  </p>
-  <ul>
-    <li>Data is minimised and protected wherever possible</li>
-    <li>Users keep control over what is stored, shared, or deleted</li>
-    <li>Any sensitive analytics or national insights use anonymised, aggregated patterns</li>
-    <li>Feature-flags can keep advanced functions off until the right governance is in place</li>
-  </ul>
+            <!-- SECTION 3 -->
+            <section class="card">
+                <h2>3. How Elisence Supports Women Safely</h2>
+                <p>
+                    Elisence does not replace doctors, midwives or emergency care.
+                    Instead, it helps women:
+                </p>
+                <ul>
+                    <li>Organise and remember what is happening over time</li>
+                    <li>See patterns that may be important to discuss with a professional</li>
+                    <li>Receive educational messages written in clear, human language</li>
+                    <li>Access the same ideas in multiple languages, for families and communities</li>
+                </ul>
+                <p>
+                    Behind the scenes, Women+ Health in Elisence is aligned with
+                    <span class="highlight">public clinical guidance</span> (NHS-style thinking and similar frameworks),
+                    so that the language stays educational and supportive —
+                    not diagnostic, prescriptive or alarming.
+                </p>
+            </section>
 
-  <h2>Why This Matters for Families, Clinics, and Ministries</h2>
-  <p>
-    When Women+ Health data is safely structured, it can help in three ways:
-  </p>
-  <ul>
-    <li><strong>For individuals</strong> — better understanding of their own body, mood, and cycles.</li>
-    <li><strong>For clinics</strong> — clearer timelines and patterns to support professional judgement.</li>
-    <li><strong>For ministries &amp; public health</strong> — high-level, anonymised signals about needs,
-        pressure points, and gaps in services, without exposing personal details.</li>
-  </ul>
+            <!-- SECTION 4 -->
+            <section class="card">
+                <h2>4. Privacy, Dignity &amp; Respect</h2>
+                <p>
+                    Women’s health information is deeply personal. Elisence is built so that:
+                </p>
+                <ul>
+                    <li><strong>Data is minimised</strong> — only what is needed for patterns and guidance is stored.</li>
+                    <li>
+                        <strong>Users stay in control</strong> of what is stored, shared or deleted inside the ecosystem.
+                    </li>
+                    <li>
+                        Any sensitive analytics or national insights use
+                        <span class="highlight">anonymised, aggregated patterns</span> — not identifiable data.
+                    </li>
+                    <li>
+                        Feature-flags allow ministries and regulators to keep advanced functions
+                        <strong>OFF</strong> until the right governance is in place.
+                    </li>
+                </ul>
+                <p>
+                    This combination is designed to protect both individual dignity and national-level trust.
+                </p>
+            </section>
 
-  <p>
-    Elisence Phase 7 is designed to become a trusted reference layer for Women+ Health —  
-    not by replacing healthcare, but by connecting everyday experience with safer, clearer information.
-  </p>
+            <!-- SECTION 5 -->
+            <section class="card">
+                <h2>5. Why This Matters for Families, Clinics &amp; Ministries</h2>
+                <p>
+                    When Women+ Health data is safely structured, it can help in three ways:
+                </p>
+                <ul>
+                    <li>
+                        <strong>For individuals</strong> — better understanding of their own body, mood and cycles,
+                        with a quiet companion instead of a noisy social feed.
+                    </li>
+                    <li>
+                        <strong>For clinics</strong> — clearer timelines and patterns that support professional judgement
+                        and reduce repeated explanations.
+                    </li>
+                    <li>
+                        <strong>For ministries &amp; public health</strong> — high-level, anonymised signals about needs,
+                        pressure points and gaps in services, without exposing personal details.
+                    </li>
+                </ul>
+                <p>
+                    Elisence Phase 7 is designed to become a trusted reference layer for Women+ Health —
+                    not by replacing healthcare, but by connecting everyday experience with safer, clearer information.
+                </p>
+            </section>
 
-  <div class="back-link">
-    <a href="../articles.html">&larr; Back to Elisence Knowledge Center</a>
-  </div>
+            <!-- FOOTER: BACK + CHANNELS -->
+            <div class="footer-block">
+                <p class="back-link">
+                    <a href="../articles.html">&larr; Back to Elisence Knowledge Center</a>
+                </p>
+                <p>
+                    Explore more:
+                    <a href="what-is-elisence.html">What Is Elisence?</a> ·
+                    <a href="ai-safety-non-diagnostic-elisence.html">AI Safety &amp; Non-Diagnostic Architecture</a> ·
+                    <a href="../video.html">Women+ Phase Videos</a>
+                </p>
 
-</div>
+                <div class="channels">
+                    <div class="channels-title">Official Elisence Channels</div>
+                    <ul class="channels-list">
+                        <li>Website: <a href="https://elisence.com" target="_blank" rel="noopener">https://elisence.com</a></li>
+                        <li>YouTube: <a href="https://www.youtube.com/@Elisence_saami_salami_as" target="_blank" rel="noopener">@Elisence_saami_salami_as</a></li>
+                        <li>Instagram: <a href="https://www.instagram.com/elisence.ai" target="_blank" rel="noopener">@elisence.ai</a></li>
+                        <li>TikTok: <a href="https://www.tiktok.com/@elisence.official" target="_blank" rel="noopener">@elisence.official</a></li>
+                        <li>LinkedIn: <a href="https://www.linkedin.com/company/elisence-official" target="_blank" rel="noopener">Elisence Official</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
 
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
 </body>
 </html>
