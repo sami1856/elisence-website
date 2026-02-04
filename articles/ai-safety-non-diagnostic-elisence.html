@@ -39,125 +39,442 @@
       ]
     }
     </script>
+
+    <!-- Elisa chat widget (مسیر از داخل فولدر articles) -->
+    <script defer src="../elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* نقطه و برچسب بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* شل صفحه */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* فضای منوی عمودی */
+        }
+
+        .page-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #7dd3fc;
+            background: rgba(56, 189, 248, 0.16);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(56, 189, 248, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .page-tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #38bdf8;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.5rem;
+            color: #e0f2fe;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #cbd5f5;
+            margin-bottom: 1.4rem;
+            max-width: 880px;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 1.6rem;
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            padding: 1.6rem 1.7rem;
+            margin-bottom: 1.6rem;
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.55),
+                0 0 40px rgba(15, 23, 42, 0.95);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            font-size: 0.94rem;
+            color: #e5f2ff;
+            margin-bottom: 0.7rem;
+        }
+
+        .card ul {
+            margin: 0.3rem 0 0.4rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .card li {
+            font-size: 0.93rem;
+            color: #dbeafe;
+            margin-bottom: 0.35rem;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+            font-weight: 500;
+        }
+
+        .footer-block {
+            margin-top: 1.8rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.45);
+            font-size: 0.86rem;
+            color: #cbd5f5;
+        }
+
+        .footer-block a {
+            color: #7dd3fc;
+        }
+
+        .channels {
+            margin-top: 0.8rem;
+            font-size: 0.84rem;
+        }
+
+        .channels-title {
+            font-weight: 600;
+            color: #e0f2fe;
+            margin-bottom: 0.3rem;
+        }
+
+        .channels-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .channels-list li {
+            margin-bottom: 0.2rem;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <main style="max-width: 900px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6;">
-        
-        <header style="margin-bottom: 32px;">
-            <p style="margin: 0; font-size: 14px; opacity: 0.7;">
-                Elisence AI · Zero-Trust · Non-Diagnostic · Qatar-Ready
-            </p>
-            <h1 style="margin: 8px 0 12px; font-size: 30px;">
-                AI Safety in Elisence<br />
-                Non-Diagnostic Behavioral AI &amp; Zero-Trust Health Architecture
-            </h1>
-            <p style="margin: 0; font-size: 14px; opacity: 0.8;">
-                By <strong>Saami Salami Asl</strong>, Founder of Elisence
-            </p>
-        </header>
 
-        <!-- INTRO -->
-        <section style="margin-bottom: 24px;">
-            <p>
-                Artificial Intelligence in healthcare is powerful — but it must be <strong>safe, controlled and transparent</strong>.
-                Elisence is one of the first global platforms built on a <strong>Non-Diagnostic Behavioral AI</strong> model:
-                meaning it never gives medical decisions and never replaces doctors.
-            </p>
-            <p>
-                Instead, Elisence provides <strong>wellness guidance, early behavioral signals, adherence patterns, lifestyle
-                intelligence and environmental context</strong> — all fully traceable through the <strong>BBVP framework</strong>.
-            </p>
-        </section>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
 
-        <!-- SECTION 1 -->
-        <section style="margin-bottom: 32px;">
-            <h2>1. Non-Diagnostic Behavioral AI</h2>
-            <p>
-                Elisence never crosses the boundary of clinical diagnosis. This protects:
-            </p>
-            <ul>
-                <li>Users → no false alarm or dangerous reassurance</li>
-                <li>Clinicians → no conflicting recommendations</li>
-                <li>Regulators → zero medical liability</li>
-            </ul>
-            <p>
-                Every insight is framed as <strong>guidance, behavior, signal, pattern or trend</strong> — never as medical instruction.
-            </p>
-        </section>
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="../index.html"        class="nav-btn">Home</a>
+        <a href="../index.html#phases" class="nav-btn">Phases</a>
+        <a href="../qatar.html"        class="nav-btn">Qatar</a>
+        <a href="../about.html"        class="nav-btn">About</a>
+        <a href="../story.html"        class="nav-btn">Story</a>
+        <a href="../video.html"        class="nav-btn">Videos</a>
+        <a href="../contact.html"      class="nav-btn">Contact</a>
+    </nav>
 
-        <!-- SECTION 2 -->
-        <section style="margin-bottom: 32px;">
-            <h2>2. BBVP Methodology (Build → Back → Verify → Prove)</h2>
-            <p>
-                The BBVP framework makes every AI output <strong>auditable, explainable and evidence-backed</strong>.
-            </p>
-            <ul>
-                <li><strong>Build:</strong> The AI creates an insight using validated logic.</li>
-                <li><strong>Back:</strong> The system records the exact inputs that generated the result.</li>
-                <li><strong>Verify:</strong> The platform checks correctness, consistency and safety.</li>
-                <li><strong>Prove:</strong> An audit trail is created for ministries and regulators.</li>
-            </ul>
-        </section>
+    <div class="page-shell">
+        <main class="content-main">
+            <div class="page-tag">
+                <span class="page-tag-dot"></span>
+                <span>Elisence AI · Safety & Governance</span>
+            </div>
 
-        <!-- SECTION 3 -->
-        <section style="margin-bottom: 32px;">
-            <h2>3. Zero-Trust Health AI</h2>
-            <p>
-                Elisence operates on a <strong>Zero-Trust</strong> architecture — every access requires explicit verification.
+            <h1>AI Safety in Elisence – Non-Diagnostic Behavioral AI &amp; Zero-Trust Health Architecture</h1>
+            <p class="subtitle">
+                How Elisence uses Non-Diagnostic Behavioral AI, Zero-Trust Health AI, BBVP methodology and sovereign data
+                controls to protect citizens, clinicians, hospitals and regulators.
             </p>
-            <ul>
-                <li>Strict user-role permissions</li>
-                <li>Purpose-based access control</li>
-                <li>Encrypted logs for every AI operation</li>
-                <li>WORM-based immutable audit records</li>
-            </ul>
-            <p>
-                No engine, module or external system is trusted by default.
+            <p class="article-meta">
+                By <strong>Saami Salami Asl</strong>, Founder of Elisence · Zero-Trust · Non-Diagnostic · Qatar-Ready
             </p>
-        </section>
 
-        <!-- SECTION 4 -->
-        <section style="margin-bottom: 32px;">
-            <h2>4. Sovereign Health Data Architecture</h2>
-            <p>
-                Elisence is designed for national deployments. All citizen data stays within the host nation — such as
-                <strong>inside Qatar</strong> under Qatari PDPL law.
-            </p>
-            <ul>
-                <li>Local hosting in-country</li>
-                <li>Regulator-controlled feature toggles</li>
-                <li>FHIR-native integration with hospital systems</li>
-                <li>Culture-aware and multilingual for GCC, MENA and European regions</li>
-            </ul>
-        </section>
+            <!-- INTRO -->
+            <section class="card">
+                <h2>0. Why AI Safety Is the First Rule in Elisence</h2>
+                <p>
+                    Artificial Intelligence in healthcare is powerful — but it must be
+                    <span class="highlight">safe, controlled and transparent</span>.
+                    Elisence is one of the first global platforms built on a
+                    <span class="highlight">Non-Diagnostic Behavioral AI</span> model:
+                    it never gives medical decisions and never replaces doctors.
+                </p>
+                <p>
+                    Instead, Elisence focuses on
+                    <span class="highlight">wellness guidance, early behavioral signals, adherence patterns,
+                    lifestyle intelligence and environmental context</span> —
+                    all fully traceable through the <span class="highlight">BBVP framework</span>.
+                </p>
+            </section>
 
-        <!-- SECTION 5 -->
-        <section style="margin-bottom: 40px;">
-            <h2>5. AI Safety for Ministries, Hospitals &amp; Citizens</h2>
-            <p>
-                Elisence is one of the few global systems that treats AI safety as a <strong>first-class architecture rule</strong>.
-            </p>
-            <ul>
-                <li>Non-Diagnostic → Zero clinical liability</li>
-                <li>BBVP → Transparent, auditable AI logic</li>
-                <li>Zero-Trust → No implicit access, ever</li>
-                <li>WORM → Tamper-proof logs for regulators</li>
-                <li>Five-language intelligence → Accessible to everyone</li>
-            </ul>
-            <p>
-                This makes Elisence a safe, sovereign and future-proof platform for nations.
-            </p>
-        </section>
+            <!-- SECTION 1 -->
+            <section class="card">
+                <h2>1. Non-Diagnostic Behavioral AI</h2>
+                <p>
+                    Elisence never crosses the boundary of clinical diagnosis. This protects:
+                </p>
+                <ul>
+                    <li><strong>Users</strong> → no false alarm or dangerous reassurance</li>
+                    <li><strong>Clinicians</strong> → no conflicting recommendations</li>
+                    <li><strong>Regulators &amp; ministries</strong> → zero medical liability from the AI layer</li>
+                </ul>
+                <p>
+                    Every insight is framed as
+                    <span class="highlight">guidance, behaviour, signal, pattern or trend</span> —
+                    never as medical instruction or a clinical verdict.
+                </p>
+            </section>
 
-        <footer style="border-top: 1px solid #eee; padding-top: 16px; font-size: 14px; opacity: 0.8;">
-            <p style="margin: 0;">
-                Explore more:
-                <a href="/articles/what-is-elisence.html">What Is Elisence?</a> ·
-                <a href="/articles/elisence-qatar-vision-2030.html">Elisence & Qatar Vision 2030</a> ·
-                <a href="/videos.html">Elisence Videos</a>
-            </p>
-        </footer>
-    </main>
+            <!-- SECTION 2 -->
+            <section class="card">
+                <h2>2. BBVP Methodology (Build → Back → Verify → Prove)</h2>
+                <p>
+                    The <span class="highlight">BBVP framework</span> makes every AI output
+                    <span class="highlight">auditable, explainable and evidence-backed</span>.
+                    Instead of “black box” AI, Elisence provides a
+                    deterministic trail regulators can inspect.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Build:</strong> The AI creates an insight using validated logic, rules and clinical
+                        references.
+                    </li>
+                    <li>
+                        <strong>Back:</strong> The system records the exact inputs, ranges and assumptions that
+                        generated the result.
+                    </li>
+                    <li>
+                        <strong>Verify:</strong> Safety layers check consistency, thresholds, language and clinical limits.
+                    </li>
+                    <li>
+                        <strong>Prove:</strong> A WORM-secured audit trail is created for ministries, hospitals and regulators.
+                    </li>
+                </ul>
+                <p>
+                    This means any ministry can ask “why did the system say this?” — and Elisence can
+                    <span class="highlight">prove the answer step by step</span>.
+                </p>
+            </section>
+
+            <!-- SECTION 3 -->
+            <section class="card">
+                <h2>3. Zero-Trust Health AI</h2>
+                <p>
+                    Elisence operates on a <span class="highlight">Zero-Trust</span> architecture — every access requires
+                    explicit verification, even inside the platform itself.
+                </p>
+                <ul>
+                    <li>Strict user-role and scope-based permissions for every engine</li>
+                    <li>Purpose-based access control (why are we reading this data?)</li>
+                    <li>Encrypted logs for every sensitive AI operation</li>
+                    <li>WORM-based immutable audit records for long-term review</li>
+                </ul>
+                <p>
+                    No engine, module or external system is trusted by default — everything is
+                    <span class="highlight">“verify first, then act”</span>.
+                </p>
+            </section>
+
+            <!-- SECTION 4 -->
+            <section class="card">
+                <h2>4. Sovereign Health Data Architecture</h2>
+                <p>
+                    Elisence is designed for national deployments. All citizen data stays within the host nation —
+                    for example <span class="highlight">inside Qatar</span> under Qatari PDPL law and local regulators.
+                </p>
+                <ul>
+                    <li>Local hosting in-country with sovereign control</li>
+                    <li>Regulator-controlled feature toggles for each engine and phase</li>
+                    <li>FHIR-native integration with hospital systems (e.g. Cerner, Epic)</li>
+                    <li>Culture-aware and multilingual for GCC, MENA and European regions</li>
+                </ul>
+                <p>
+                    This is not a consumer wellness app hosted abroad — it is a
+                    <span class="highlight">sovereign health infrastructure</span>.
+                </p>
+            </section>
+
+            <!-- SECTION 5 -->
+            <section class="card">
+                <h2>5. AI Safety for Ministries, Hospitals &amp; Citizens</h2>
+                <p>
+                    Elisence treats AI safety as a <span class="highlight">first-class architecture rule</span>, not a
+                    marketing slogan. The combination looks like this:
+                </p>
+                <ul>
+                    <li><strong>Non-Diagnostic:</strong> zero clinical diagnosis, zero prescription, zero medical orders.</li>
+                    <li><strong>BBVP:</strong> transparent, audit-ready AI logic and decision traces.</li>
+                    <li><strong>Zero-Trust:</strong> no implicit access — every request is checked and logged.</li>
+                    <li><strong>WORM:</strong> tamper-proof logs that can stand up to regulator and court scrutiny.</li>
+                    <li><strong>Five-language intelligence:</strong> EN / AR / FA / TR / RO for inclusive, safe messaging.</li>
+                </ul>
+                <p>
+                    Together, these pillars make Elisence a
+                    <span class="highlight">safe, sovereign and future-proof platform</span> for ministries, hospitals and
+                    citizens.
+                </p>
+            </section>
+
+            <!-- Footer / Navigation + Channels -->
+            <div class="footer-block">
+                <p>
+                    Explore more:
+                    <a href="what-is-elisence.html">What Is Elisence?</a> ·
+                    <a href="elisence-qatar-vision-2030.html">Elisence &amp; Qatar Vision 2030</a> ·
+                    <a href="../video.html">Elisence Phase Videos</a>
+                </p>
+
+                <div class="channels">
+                    <div class="channels-title">Official Elisence Channels</div>
+                    <ul class="channels-list">
+                        <li>Website: <a href="https://elisence.com" target="_blank" rel="noopener">https://elisence.com</a></li>
+                        <li>YouTube: <a href="https://www.youtube.com/@Elisence_saami_salami_as" target="_blank" rel="noopener">@Elisence_saami_salami_as</a></li>
+                        <li>Instagram: <a href="https://www.instagram.com/elisence.ai" target="_blank" rel="noopener">@elisence.ai</a></li>
+                        <li>TikTok: <a href="https://www.tiktok.com/@elisence.official" target="_blank" rel="noopener">@elisence.official</a></li>
+                        <li>LinkedIn: <a href="https://www.linkedin.com/company/elisence-official" target="_blank" rel="noopener">Elisence Official</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
 </body>
 </html>
