@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
   <!-- SEO Title -->
   <title>Elisence Knowledge Center | Sovereign Digital Health Articles</title>
 
   <!-- Meta Description -->
-  <meta name="description" content="Elisence Knowledge Center — A sovereign digital health platform with Zero-Trust AI, non-diagnostic behavioral intelligence, Qatar Vision 2030 alignment, diabetes intelligence, Women+ health, family care, and global nutrition guidance.">
+  <meta
+    name="description"
+    content="Elisence Knowledge Center — A sovereign digital health platform with Zero-Trust AI, non-diagnostic behavioral intelligence, Qatar Vision 2030 alignment, diabetes intelligence, Women+ health, family care, and global nutrition guidance."
+  />
 
   <!-- SEO Keywords -->
-  <meta name="keywords" content="Elisence, Sovereign Digital Health, Zero-Trust Health AI, Non-Diagnostic Behavioral AI, Qatar Vision 2030, Health Intelligence, Diabetes Engine, Women+ Health, Family Health, Multilingual Health AI, Global Nutrition">
+  <meta
+    name="keywords"
+    content="Elisence, Sovereign Digital Health, Zero-Trust Health AI, Non-Diagnostic Behavioral AI, Qatar Vision 2030, Health Intelligence, Diabetes Engine, Women+ Health, Family Health, Multilingual Health AI, Global Nutrition"
+  />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- JSON-LD Schema -->
+  <!-- JSON-LD Schema: CollectionPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,120 +39,447 @@
   }
   </script>
 
+  <!-- Elisa chat widget script -->
+  <script defer src="elisa-chat.js"></script>
+
   <style>
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background: #f7f9fb;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      color: #111;
     }
-    .hero {
-      background: #0E6FFF;
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+      line-height: 1.6;
     }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
-    h1 { font-size: 40px; margin-bottom: 10px; font-weight: 700; }
-    h2 { font-size: 26px; margin-top: 0; color:#0E6FFF; }
-    p { font-size: 18px; line-height: 1.6; }
+
+    /* نقطه و برچسب بالا (مثل index / about / story / founder) */
+    .top-dot {
+      position: fixed;
+      left: 18px;
+      top: 18px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+      box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+      z-index: 20;
+    }
+
+    .top-dot-label {
+      position: fixed;
+      left: 40px;
+      top: 16px;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a9d4ff;
+      z-index: 20;
+    }
+
+    /* منوی عمودی سمت راست – هماهنگ با بقیه صفحات */
+    .side-nav {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    .nav-btn {
+      display: block;
+      padding: 13px 38px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e3f2ff;
+      background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+      border: 1px solid rgba(90, 185, 255, 0.9);
+      box-shadow:
+        0 0 16px rgba(0, 130, 255, 0.95),
+        0 0 34px rgba(0, 40, 120, 0.95);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateX(-4px);
+      padding-right: 44px;
+      box-shadow:
+        0 0 22px rgba(0, 190, 255, 1),
+        0 0 46px rgba(0, 80, 200, 1);
+      background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+    }
+
+    .nav-btn:active {
+      transform: translateX(-2px) scale(0.99);
+    }
+
+    /* شِل صفحه اصلی Knowledge Center */
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 80px 40px 80px 40px;
+    }
+
+    .content-main {
+      width: 100%;
+      max-width: 1100px;
+      margin-right: 190px; /* جا برای منوی عمودی */
+    }
+
+    .page-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.16);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(56, 189, 248, 0.7);
+      margin-bottom: 1rem;
+    }
+
+    .page-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #38bdf8;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+      color: #e0f2fe;
+    }
+
+    .subtitle {
+      font-size: 0.96rem;
+      color: #cbd5f5;
+      margin-bottom: 1.6rem;
+      max-width: 880px;
+    }
+
+    /* شبکه کارت‌ها */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 960px) {
+      .page-shell {
+        padding: 80px 18px 100px 18px;
+      }
+
+      .content-main {
+        margin-right: 0;
+      }
+
+      .articles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-nav {
+        position: fixed;
+        right: 50%;
+        top: auto;
+        bottom: 18px;
+        transform: translateX(50%);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .nav-btn {
+        padding: 9px 20px;
+        font-size: 11px;
+        letter-spacing: 0.11em;
+      }
+    }
+
     .article-card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 25px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1.4rem 1.5rem 1.5rem 1.5rem;
+      box-shadow:
+        0 0 22px rgba(0, 140, 255, 0.55),
+        0 0 40px rgba(15, 23, 42, 0.95);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
-    a { text-decoration: none; color: #0E6FFF; font-weight: 600; }
-    .label {
-      font-size: 13px;
-      background: #e8f0ff;
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 6px;
-      margin-bottom: 8px;
+
+    .article-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #bfdbfe;
+      background: rgba(30, 64, 175, 0.35);
+      border-radius: 999px;
+      padding: 0.24rem 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .article-label-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #38bdf8;
+    }
+
+    .article-title {
+      font-size: 1.02rem;
       font-weight: 600;
-      color:#0E6FFF;
+      color: #e5f2ff;
+    }
+
+    .article-title a {
+      color: #e5f2ff;
+    }
+
+    .article-title a:hover {
+      text-decoration: underline;
+    }
+
+    .article-desc {
+      font-size: 0.9rem;
+      color: #cbd5f5;
+    }
+
+    .article-meta-line {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 0.3rem;
+    }
+
+    .article-meta-line span {
+      color: #7dd3fc;
     }
   </style>
 </head>
-
 <body>
 
-<!-- HERO SECTION -->
-<div class="hero">
-  <h1>Elisence Knowledge Center</h1>
-  <p>Evidence-Based · Sovereign Digital Health · Zero-Trust · Non-Diagnostic AI</p>
-</div>
+  <div class="top-dot"></div>
+  <div class="top-dot-label">ELISENCE</div>
 
-<!-- MAIN ARTICLE LIST -->
-<div class="container">
+  <!-- منوی عمودی سمت راست -->
+  <nav class="side-nav">
+    <a href="index.html"        class="nav-btn">Home</a>
+    <a href="index.html#phases" class="nav-btn">Phases</a>
+    <a href="qatar.html"        class="nav-btn">Qatar</a>
+    <a href="about.html"        class="nav-btn">About</a>
+    <a href="story.html"        class="nav-btn">Story</a>
+    <a href="video.html"        class="nav-btn">Videos</a>
+    <a href="contact.html"      class="nav-btn">Contact</a>
+  </nav>
 
-  <!-- ARTICLE 1 -->
-  <div class="article-card">
-    <div class="label">Core Article</div>
-    <h2><a href="/articles/what-is-elisence.html">What Is Elisence?</a></h2>
-    <p>An introduction to Elisence as a sovereign, multi-phase digital health ecosystem with Zero-Trust AI and national data governance.</p>
+  <div class="page-shell">
+    <main class="content-main">
+      <div class="page-tag">
+        <span class="page-tag-dot"></span>
+        <span>Elisence Knowledge Center</span>
+      </div>
+
+      <h1>Knowledge Center — Sovereign Health Intelligence Library</h1>
+      <p class="subtitle">
+        Curated, non-diagnostic educational articles from the Elisence ecosystem — covering sovereign digital health,
+        AI safety, Qatar Vision 2030 alignment, diabetes intelligence, Women+ health, family care, and global nutrition.
+      </p>
+
+      <section class="articles-grid">
+
+        <!-- ARTICLE 1: Core Intro -->
+        <article class="article-card">
+          <div class="article-label">
+            <span class="article-label-dot"></span>
+            <span>Core Article</span>
+          </div>
+          <h2 class="article-title">
+            <a href="articles/what-is-elisence.html">What Is Elisence?</a>
+          </h2>
+          <p class="article-desc">
+            Introduction to Elisence as a sovereign, multi-phase digital health ecosystem with Zero-Trust AI,
+            non-diagnostic behavioral intelligence, and national-grade data governance.
+          </p>
+          <div class="article-meta-line">
+            Part of the <span>Global Platform &amp; Governance</span> series.
+          </div>
+        </article>
+
+        <!-- ARTICLE 2: Qatar 2030 -->
+        <article class="article-card">
+          <div class="article-label">
+            <span class="article-label-dot"></span>
+            <span>Qatar 2030</span>
+          </div>
+          <h2 class="article-title">
+            <a href="articles/elisence-qatar-vision-2030.html">Elisence &amp; Qatar Vision 2030</a>
+          </h2>
+          <p class="article-desc">
+            How Elisence maps to Qatar’s national strategy via sovereignty, PDPL data residency, ICV,
+            and regulated digital health infrastructure for citizens and ministries.
+          </p>
+          <div class="article-meta-line">
+            Focus: <span>Policy, Sovereignty, ICV</span>.
+          </div>
+        </article>
+
+        <!-- ARTICLE 3: AI Safety -->
+        <article class="article-card">
+          <div class="article-label">
+            <span class="article-label-dot"></span>
+            <span>AI Safety</span>
+          </div>
+          <h2 class="article-title">
+            <a href="articles/ai-safety-non-diagnostic-elisence.html">AI Safety &amp; Non-Diagnostic Architecture</a>
+          </h2>
+          <p class="article-desc">
+            Why Elisence uses Non-Diagnostic Behavioral AI, Zero-Trust security, WORM auditing
+            and BBVP methodology to stay safe for ministries, clinicians and citizens.
+          </p>
+          <div class="article-meta-line">
+            Focus: <span>Zero-Trust, BBVP, WORM</span>.
+          </div>
+        </article>
+
+        <!-- ARTICLE 4: Women+ -->
+        <article class="article-card">
+          <div class="article-label">
+            <span class="article-label-dot"></span>
+            <span>Women+</span>
+          </div>
+          <h2 class="article-title">
+            <a href="articles/women-health.html">Women+ Health — Why It Matters</a>
+          </h2>
+          <p class="article-desc">
+            Cycle health, fertility, pregnancy, postpartum and menopause — explained in a safe,
+            non-diagnostic educational framework for women, families and ministries.
+          </p>
+          <div class="article-meta-line">
+            Part of <span>Phase 7 – Women+ Health</span>.
+          </div>
+        </article>
+
+        <!-- ARTICLE 5: Digital Health Zero-Trust -->
+        <article class="article-card">
+          <div class="article-label">
+            <span class="article-label-dot"></span>
+            <span>Digital Health</span>
+          </div>
+          <h2 class="article-title">
+            <a href="articles/digital-health-zero-trust.html">Zero-Trust in Digital Health</a>
+          </h2>
+          <p class="article-desc">
+            Understanding Zero-Trust Health AI, WORM auditing, privacy, and why modern
+            digital health platforms must follow strict safety-first architecture.
+          </p>
+          <div class="article-meta-line">
+            Focus: <span>Security &amp; Governance</span>.
+          </div>
+        </article>
+
+        <!-- ARTICLE 6: Diabetes Intelligence (overview) -->
+        <article class="article-card">
+          <div class="article-label">
+            <span class="article-label-dot"></span>
+            <span>Diabetes · Phase 9</span>
+          </div>
+          <h2 class="article-title">
+            <a href="articles/diabetes-intelligence.html">The Future of Diabetes Intelligence</a>
+          </h2>
+          <p class="article-desc">
+            GLP-1 logic, metabolic modelling, adherence patterns and lifestyle insight — how
+            Elisence transforms diabetes journeys into structured, non-diagnostic intelligence.
+          </p>
+          <div class="article-meta-line">
+            Part of <span>Phase 9 – Diabetes &amp; Metabolic Health</span>.
+          </div>
+        </article>
+
+        <!-- ARTICLE 7: Family 0–18 -->
+        <article class="article-card">
+          <div class="article-label">
+            <span class="article-label-dot"></span>
+            <span>Family</span>
+          </div>
+          <h2 class="article-title">
+            <a href="articles/family-0-18.html">Family Ecosystem (0–18)</a>
+          </h2>
+          <p class="article-desc">
+            Children’s growth, sleep, digital safety, emotional stability and bonding — the
+            foundation of Elisence’s long-term family and education vision.
+          </p>
+          <div class="article-meta-line">
+            Part of <span>Phase 15 – Family &amp; Children</span>.
+          </div>
+        </article>
+
+        <!-- ARTICLE 8: Global Platform Overview -->
+        <article class="article-card">
+          <div class="article-label">
+            <span class="article-label-dot"></span>
+            <span>Global Platform</span>
+          </div>
+          <h2 class="article-title">
+            <a href="articles/elisence-global-platform.html">Elisence — Global Digital Health Platform</a>
+          </h2>
+          <p class="article-desc">
+            Full overview of Elisence as a multi-phase, global, zero-trust digital health ecosystem
+            connecting GLP-1, diabetes, women’s health, environment and mental health.
+          </p>
+          <div class="article-meta-line">
+            Focus: <span>Architecture &amp; Global Vision</span>.
+          </div>
+        </article>
+
+        <!-- ARTICLE 9: Phase 9 Deep Dive -->
+        <article class="article-card">
+          <div class="article-label">
+            <span class="article-label-dot"></span>
+            <span>Phase 9 Deep Dive</span>
+          </div>
+          <h2 class="article-title">
+            <a href="articles/phase9-diabetes-intelligence.html">Diabetes &amp; Metabolic Intelligence Engine</a>
+          </h2>
+          <p class="article-desc">
+            Deep breakdown of Phase 9 — connecting glucose, food, sleep, stress and environment
+            into a coherent, sovereign diabetes intelligence engine.
+          </p>
+          <div class="article-meta-line">
+            Technical deep dive for <span>ministries, clinicians and investors</span>.
+          </div>
+        </article>
+
+      </section>
+    </main>
   </div>
 
-  <!-- ARTICLE 2 -->
-  <div class="article-card">
-    <div class="label">Qatar 2030</div>
-    <h2><a href="/articles/elisence-qatar-vision-2030.html">Elisence & Qatar Vision 2030</a></h2>
-    <p>How Elisence maps to Qatar’s national strategy through sovereignty, data residency, ICV, and regulated digital health.</p>
-  </div>
-
-  <!-- ARTICLE 3 -->
-  <div class="article-card">
-    <div class="label">AI Safety</div>
-    <h2><a href="/articles/ai-safety-non-diagnostic-elisence.html">AI Safety & Non-Diagnostic Architecture</a></h2>
-    <p>Why Elisence uses Non-Diagnostic Behavioral AI, Zero-Trust security, WORM auditing and BBVP methodology to stay safe for ministries.</p>
-  </div>
-
-  <!-- EXISTING ARTICLES (your earlier structure) -->
-  <div class="article-card">
-    <div class="label">Women+</div>
-    <h2><a href="/articles/women-health.html">Women+ Health — Why It Matters</a></h2>
-    <p>Cycle health, pregnancy, postpartum, emotional wellness — all in a safe non-diagnostic educational framework.</p>
-  </div>
-
-  <div class="article-card">
-    <div class="label">Digital Health</div>
-    <h2><a href="/articles/digital-health-zero-trust.html">Zero-Trust in Digital Health</a></h2>
-    <p>Understanding Zero-Trust, WORM auditing, privacy, and why modern health platforms must follow strict safety-first architecture.</p>
-  </div>
-
-  <div class="article-card">
-    <div class="label">Diabetes · Phase 9</div>
-    <h2><a href="/articles/diabetes-intelligence.html">The Future of Diabetes Intelligence</a></h2>
-    <p>GLP-1 logic, metabolic modeling, adherence patterns, lifestyle insights — all built safely inside Elisence Phase 9.</p>
-  </div>
-
-  <div class="article-card">
-    <div class="label">Family</div>
-    <h2><a href="/articles/family-0-18.html">Family Ecosystem (0–18)</a></h2>
-    <p>A guide to children’s growth, sleep, digital safety, emotional stability, and bonding — a core block of the Elisence ecosystem.</p>
-  </div>
-
-  <!-- NEW 2026 ARTICLES -->
-  <div class="article-card">
-    <div class="label">Global Platform</div>
-    <h2><a href="/articles/elisence-global-platform.html">Elisence — Global Digital Health Platform</a></h2>
-    <p>Full overview of Elisence as a multi-phase, global, zero-trust digital-health ecosystem.</p>
-  </div>
-
-  <div class="article-card">
-    <div class="label">Phase 9 Deep Dive</div>
-    <h2><a href="/articles/phase9-diabetes-intelligence.html">Diabetes & Metabolic Intelligence Engine</a></h2>
-    <p>Deep breakdown of Phase 9 — connecting glucose, food, sleep, stress and environment with national safety rules.</p>
-  </div>
-
-</div>
+  <!-- ریشهٔ ویجت Elisa -->
+  <div id="elisa-chat-root"></div>
 
 </body>
 </html>
