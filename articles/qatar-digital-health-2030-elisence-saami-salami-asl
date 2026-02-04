@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Elisence & Qatar Vision 2030 | Saami Salami Asl — Sovereign Digital Health</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="How Elisence supports Qatar Vision 2030 through sovereign, zero-trust, multi-language digital health architecture designed by Saami Salami Asl. Built for ministries, families, clinics, and national public health teams."
+  />
+
+  <meta
+    name="keywords"
+    content="Qatar Vision 2030 digital health, Elisence Qatar, Saami Salami Asl Qatar, sovereign health AI, GCC digital health, Qatar national AI ecosystem, regulated digital health Qatar"
+  />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Elisence & Qatar Vision 2030 — Sovereign Digital Health Infrastructure",
+    "description": "How Elisence aligns with Qatar Vision 2030 using a sovereign, non-diagnostic, zero-trust architecture designed by founder Saami Salami Asl.",
+    "author": { "@type": "Person", "name": "Saami Salami Asl" },
+    "publisher": { "@type": "Organization", "name": "Elisence" },
+    "about": [
+      "Qatar Vision 2030",
+      "National Health Transformation",
+      "Sovereign Digital Health",
+      "Zero-Trust AI",
+      "GCC Health Strategy"
+    ]
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #04101f, #02040a 45%, #000000 100%);
+      color: #ffffff;
+    }
+    .top-nav {
+      padding: 14px 24px;
+      display: flex;
+      gap: 18px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    .top-nav a { color: #a9d4ff; text-decoration: none; }
+    .page-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 40px 18px 70px;
+    }
+    .hero-card {
+      width: 100%;
+      max-width: 860px;
+      padding: 32px 26px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(0,156,255,0.32), rgba(0,12,40,0.96));
+      border: 1px solid rgba(70,190,255,0.6);
+      box-shadow: 0 0 40px rgba(0,170,255,0.8), 0 0 120px rgba(0,80,200,0.5);
+    }
+    .article-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a9d4ff;
+      margin-bottom: 6px;
+    }
+    .article-title {
+      font-size: 22px;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .article-meta {
+      color: #c1dcff;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+    .article-body {
+      font-size: 14px;
+      color: #e0efff;
+      line-height: 1.9;
+    }
+    .article-body h2 {
+      font-size: 17px;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+    .article-body p { margin-bottom: 12px; }
+    .article-body ul {
+      margin: 6px 0 14px 20px;
+    }
+    .article-body li { margin-bottom: 4px; }
+  </style>
+</head>
+
+<body>
+
+<header class="top-nav">
+  <a href="../index.html">Home</a>
+  <a href="../articles.html">Articles</a>
+</header>
+
+<main class="page-wrapper">
+  <article class="hero-card">
+    <div class="article-label">Elisence · Qatar Vision 2030</div>
+
+    <h1 class="article-title">
+      Elisence & Qatar Vision 2030  
+      — Sovereign Digital Health Infrastructure
+    </h1>
+
+    <div class="article-meta">
+      By Saami Salami Asl — Founder of Elisence
+    </div>
+
+    <div class="article-body">
+
+      <h2>1. Why Qatar Is Building the Future of Health</h2>
+      <p>
+        Qatar Vision 2030 establishes a national ambition:  
+        *world-leading health, human development, and digital transformation.*  
+      </p>
+      <p>
+        Elisence was designed specifically to align with these pillars —  
+        as a <strong>sovereign, multilingual, zero-trust digital health ecosystem</strong>.
+      </p>
+
+      <h2>2. Sovereign by Architecture</h2>
+      <p>
+        Qatar requires platforms that keep:
+      </p>
+      <ul>
+        <li>data inside Qatar, under Qatari PDPL law</li>
+        <li>full ministry control over AI features</li>
+        <li>no third-party data dependencies</li>
+        <li>health insights without breaching privacy</li>
+      </ul>
+      <p>
+        Elisence was engineered for exactly this purpose.
+      </p>
+
+      <h2>3. Multilingual Intelligence for Qatar’s Population</h2>
+      <p>
+        Qatar’s population speaks many languages.  
+        Elisence operates in:
+      </p>
+      <ul>
+        <li>English</li>
+        <li>Arabic</li>
+        <li>Farsi</li>
+        <li>Turkish</li>
+        <li>Romanian</li>
+      </ul>
+      <p>
+        This makes it suitable for citizens, expatriates, and regional partnerships across GCC.
+      </p>
+
+      <h2>4. Aligned With National Health Priorities</h2>
+      <p>Elisence supports Qatar’s priority areas:</p>
+      <ul>
+        <li>Diabetes & obesity reduction (Phase 9)</li>
+        <li>Women’s health modernization (Phase 7)</li>
+        <li>Family health & youth development (Phase 15)</li>
+        <li>Environmental health intelligence (Phase 12)</li>
+        <li>Nutrition transformation (Phase 16)</li>
+      </ul>
+      <p>
+        Each phase is safe, non-diagnostic, and ministry-controlled.
+      </p>
+
+      <h2>5. National-Scale Intelligence Without Exposing Individuals</h2>
+      <p>
+        Ministries receive high-level, anonymised dashboards:
+      </p>
+      <ul>
+        <li>risk trends</li>
+        <li>population-level patterns</li>
+        <li>seasonal signals</li>
+        <li>environment-linked health stress</li>
+      </ul>
+      <p>
+        — with **no personal data revealed**.
+      </p>
+
+      <h2>6. A Long-Term Partner for Qatar</h2>
+      <p>
+        Elisence is not a consumer app.  
+        It is a long-term health intelligence infrastructure built to grow with Qatar until 2030 and beyond.
+      </p>
+      <p>
+        Built by <strong>Saami Salami Asl</strong>, it combines technology, human-centered philosophy, and regulatory alignment —  
+        ready for ministries, hospitals, and national adoption.
+      </p>
+
+      <p><strong>Qatar is building the future. Elisence is built for that future.</strong></p>
+
+    </div>
+  </article>
+</main>
+
+</body>
+</html>
