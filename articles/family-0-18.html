@@ -1,177 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Family Ecosystem (0–18) | Elisence</title>
-  <meta name="description" content="An educational overview of the Elisence Family Ecosystem (0–18): growth, sleep, school, digital safety, emotions, and family bonding in one safe layer.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Elisence Family Ecosystem (0–18) | Growth · Safety · Emotions · Digital Balance</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Elisence Family Ecosystem (0–18): a safe, non-diagnostic intelligence layer for growth, sleep, school signals, digital safety, emotional well-being and family bonding — designed for parents, carers, and young people.">
+  <meta name="keywords" content="Elisence, Family Ecosystem, Children Health, Digital Safety, Teen Mental Wellbeing, Parenting AI, Sleep Patterns, School Signals, Emotional Check-ins, Non-Diagnostic Health AI, Qatar digital health">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Elisence Family Ecosystem (0–18)",
+    "description": "A safe, non-diagnostic educational layer covering growth, sleep, school, digital safety, emotions and family bonding.",
+    "author": {
+      "@type": "Person",
+      "name": "Saami Salami Asl"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Elisence",
+      "url": "https://elisence.com"
+    },
+    "about": [
+      "Family Health Intelligence",
+      "Digital Safety for Children",
+      "Sleep and School Signals",
+      "Youth Emotional Well-being",
+      "Non-Diagnostic Parenting Support"
+    ]
+  }
+  </script>
+
+  <!-- Elisa Chat -->
+  <script defer src="../elisa-chat.js"></script>
 
   <style>
     body {
-      font-family: Inter, Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f7f9fb;
-      color: #111;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #031427, #020813, #000000);
+      color: #e8f0ff;
       line-height: 1.7;
+      overflow-x: hidden;
     }
-    .hero {
-      background: #0E6FFF;
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
+
+    /* Top Dot */
+    .top-dot {
+      position: fixed;
+      left: 18px;
+      top: 18px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+      box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+      z-index: 20;
     }
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 34px;
-      font-weight: 700;
+    .top-dot-label {
+      position: fixed;
+      left: 40px; top: 16px;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a9d4ff;
+      z-index: 20;
     }
-    .hero p {
-      margin: 0;
-      font-size: 18px;
-      opacity: 0.96;
+
+    /* Side Menu */
+    .side-nav {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
     }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px 40px;
+    .nav-btn {
+      display: block;
+      padding: 12px 34px;
+      border-radius: 999px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e3f2ff;
+      text-decoration: none;
+      background: radial-gradient(circle at top, rgba(0, 130, 255, 0.55), rgba(0, 10, 35, 0.96));
+      border: 1px solid rgba(70, 190, 255, 0.9);
+      box-shadow:
+        0 0 18px rgba(0, 160, 255, 0.9),
+        0 0 40px rgba(0, 60, 190, 0.8);
+      transition: 0.22s ease;
+    }
+    .nav-btn:hover {
+      transform: translateX(-5px);
+      box-shadow:
+        0 0 24px rgba(0, 190, 255, 1),
+        0 0 55px rgba(0, 80, 200, 1);
+    }
+
+    /* Page Shell */
+    .page-shell {
+      padding: 100px 40px 80px 40px;
+      display: flex;
+      justify-content: center;
+    }
+    .content {
+      max-width: 1100px;
+      width: 100%;
+      margin-right: 190px;
+    }
+
+    /* Tags */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 1rem;
+      background: rgba(0, 140, 255, 0.2);
+      border-radius: 999px;
+      border: 1px solid rgba(70, 190, 255, 0.8);
+      color: #c9e6ff;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 13px;
+      margin-bottom: 1.2rem;
+    }
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #58b8ff;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+      color: #ffffff;
+    }
+    .subtitle {
+      color: #b9d8ff;
+      font-size: 1rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .block {
+      border-radius: 16px;
+      border: 1px solid rgba(80, 150, 255, 0.45);
+      background: radial-gradient(circle at top left, rgba(20, 38, 78, 0.98), rgba(5, 12, 28, 0.98));
+      padding: 1.6rem 1.7rem;
+      margin-bottom: 1.6rem;
+      box-shadow:
+        0 0 22px rgba(20, 110, 255, 0.55),
+        0 0 40px rgba(10, 20, 40, 0.95);
     }
     h2 {
-      font-size: 24px;
-      color: #0E6FFF;
-      margin-top: 28px;
-      margin-bottom: 8px;
-    }
-    p {
-      font-size: 18px;
-      margin-bottom: 12px;
+      margin-top: 0;
+      color: #cde6ff;
+      font-size: 1.25rem;
     }
     ul {
-      font-size: 18px;
-      padding-left: 20px;
-      margin-bottom: 16px;
+      margin: 8px 0 12px 20px;
     }
     li {
       margin-bottom: 6px;
     }
-    .note {
-      font-size: 16px;
-      background: #e6f0ff;
-      padding: 12px 14px;
-      border-radius: 8px;
-      margin: 18px 0;
+
+    .footer-links {
+      padding-top: 1rem;
+      border-top: 1px solid rgba(150, 160, 180, 0.4);
+      margin-top: 2rem;
+      font-size: 0.9rem;
     }
-    .back-link {
-      margin-top: 30px;
-      font-size: 16px;
-    }
-    .back-link a {
-      color: #0E6FFF;
+    .footer-links a {
+      color: #9ed7ff;
       text-decoration: none;
-      font-weight: 600;
     }
   </style>
 </head>
+
 <body>
 
-<div class="hero">
-  <h1>Family Ecosystem (0–18)</h1>
-  <p>Connecting health, growth, school, digital safety, and emotions in one safe layer.</p>
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<!-- Navigation -->
+<nav class="side-nav">
+  <a href="../index.html" class="nav-btn">Home</a>
+  <a href="../index.html#phases" class="nav-btn">Phases</a>
+  <a href="../qatar.html" class="nav-btn">Qatar</a>
+  <a href="../about.html" class="nav-btn">About</a>
+  <a href="../story.html" class="nav-btn">Story</a>
+  <a href="../video.html" class="nav-btn">Videos</a>
+  <a href="../contact.html" class="nav-btn">Contact</a>
+</nav>
+
+<div class="page-shell">
+  <main class="content">
+
+    <div class="tag">
+      <div class="tag-dot"></div>
+      Family Ecosystem · Ages 0–18
+    </div>
+
+    <h1>Elisence Family Ecosystem (0–18)</h1>
+    <p class="subtitle">
+      A safe, educational intelligence layer connecting growth, sleep, school signals,
+      digital safety, emotional well-being, and family bonding.
+    </p>
+
+    <!-- Educational Notice -->
+    <div class="block" style="border-color:#ffffffaa;">
+      <h2>Educational Only — Not Diagnostic</h2>
+      <p>
+        This module is designed to support families with clearer understanding.
+        It does <strong>not</strong> diagnose, predict illness, or replace paediatric or emergency care.
+      </p>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="block">
+      <h2>1. Families Need a Joined-Up View</h2>
+      <p>
+        Families often juggle multiple systems: school portals, sleep trackers, growth charts,
+        digital platforms, and emotional check-in tools.
+      </p>
+      <p>
+        The Elisence Family Ecosystem brings these signals together —
+        in one safe, non-diagnostic, privacy-respecting layer.
+      </p>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="block">
+      <h2>2. What the Family Ecosystem Covers</h2>
+      <ul>
+        <li>Growth & basic health indicators (trend-based, not diagnostic)</li>
+        <li>Sleep patterns & daily routines</li>
+        <li>School & learning signals</li>
+        <li>Digital safety & screen balance</li>
+        <li>Emotional check-ins & stress patterns</li>
+        <li>Family bonding & shared moments</li>
+      </ul>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="block">
+      <h2>3. Digital Safety & Healthy Dopamine</h2>
+      <ul>
+        <li>Daily usage windows (morning, night, school hours)</li>
+        <li>Patterns showing imbalance between rest, school & screens</li>
+        <li>Educational content for healthier digital habits</li>
+      </ul>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="block">
+      <h2>4. Emotional & Mental Well-Being</h2>
+      <p>
+        For young people, emotions shift quickly.
+        Elisence offers safe, age-appropriate reflection tools:
+      </p>
+      <ul>
+        <li>Mood & stress check-ins</li>
+        <li>Conversation starters for families</li>
+        <li>Guidance on when to consider professional support</li>
+      </ul>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="block">
+      <h2>5. Respecting Privacy & Autonomy</h2>
+      <ul>
+        <li>Minimised, purpose-limited data</li>
+        <li>Clear visibility for families</li>
+        <li>More autonomy for older teens</li>
+        <li>Aggregated, anonymised trends for schools & ministries</li>
+      </ul>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="block">
+      <h2>6. Population Insights — Without Exposing Children</h2>
+      <p>
+        Ministries and schools can use anonymised patterns —
+        such as sleep stress or digital balance — to improve support systems
+        without exposing individual children.
+      </p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-links">
+      <p><a href="../articles.html">&larr; Back to Elisence Knowledge Center</a></p>
+      <p>
+        Explore more:
+        <a href="women-health.html">Women+ Health</a> ·
+        <a href="phase9-diabetes.html">Diabetes Intelligence (Phase 9)</a> ·
+        <a href="what-is-elisence.html">What is Elisence?</a>
+      </p>
+    </div>
+
+  </main>
 </div>
 
-<div class="container">
-
-  <div class="note">
-    <strong>Educational only:</strong>
-    This article describes how Elisence organises information for families.
-    It is not a diagnostic tool and does not replace paediatric, psychological,
-    or emergency care.
-  </div>
-
-  <h2>Families Need a Joined-Up View</h2>
-  <p>
-    Many families use different tools and systems for different parts of a child’s life:
-    a school portal, a growth chart, a separate app for sleep, another place for mental health,
-    and various social media and messaging channels.
-  </p>
-  <p>
-    The <strong>Family Ecosystem (0–18)</strong> in Elisence is designed to bring key elements together
-    in one, safer place — for parents, carers, and (where appropriate) young people themselves.
-  </p>
-
-  <h2>What the Family Ecosystem Covers</h2>
-  <p>
-    The Elisence Family module focuses on:
-  </p>
-  <ul>
-    <li>Growth and basic health indicators (non-diagnostic, trend-focused)</li>
-    <li>Sleep patterns and routines</li>
-    <li>School and learning signals (such as attendance or focus)</li>
-    <li>Digital safety and screen-time patterns</li>
-    <li>Emotional check-ins and stress indicators</li>
-    <li>Family bonding activities and shared moments</li>
-  </ul>
-
-  <h2>Digital Safety and Healthy Dopamine</h2>
-  <p>
-    Children and teenagers spend many hours online.
-    The goal of Elisence is not to monitor every click,
-    but to give families a clearer view of patterns:
-  </p>
-  <ul>
-    <li>Rough usage windows (for example: late-night, during school hours)</li>
-    <li>Signs that balance between rest, school, and screens may be off</li>
-    <li>Educational guidance on healthy, sustainable digital habits</li>
-  </ul>
-
-  <h2>Emotional and Mental Well-Being</h2>
-  <p>
-    For younger people, emotions can change quickly.
-    Elisence offers gentle ways to log and reflect on mood,
-    energy, and stress — always as education and support,
-    never as a clinical diagnosis.
-  </p>
-  <p>
-    Parents can be supported with:
-  </p>
-  <ul>
-    <li>Simple, age-appropriate explanations</li>
-    <li>Ideas to open conversations at home</li>
-    <li>Guidance on when to consider speaking with a professional</li>
-  </ul>
-
-  <h2>Respecting Privacy and Autonomy</h2>
-  <p>
-    Information about children and teenagers must be handled with care.
-    Elisence is designed so that:
-  </p>
-  <ul>
-    <li>Data is minimised and protected</li>
-    <li>Families can see what is being stored and why</li>
-    <li>Young people’s privacy expectations grow as they become older</li>
-    <li>Any aggregated insights for schools or ministries are anonymised</li>
-  </ul>
-
-  <h2>From Families to Systems — Without Exposing Individuals</h2>
-  <p>
-    At a higher level, the Family Ecosystem can support anonymised insights:
-    for example, trends in sleep, stress, or digital balance across age groups.
-  </p>
-  <p>
-    These signals can help schools, communities, and ministries design better support,
-    without revealing any individual child’s identity or private story.
-  </p>
-
-  <p>
-    Elisence’s Family Ecosystem aims to be a quiet, trustworthy layer under family life —
-    helping parents and carers feel less alone, and helping systems respond more intelligently.
-  </p>
-
-  <div class="back-link">
-    <a href="../articles.html">&larr; Back to Elisence Knowledge Center</a>
-  </div>
-
-</div>
-
+<div id="elisa-chat-root"></div>
 </body>
 </html>
