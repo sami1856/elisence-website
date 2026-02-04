@@ -1,160 +1,482 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Zero-Trust in Digital Health | Elisence</title>
-  <meta name="description" content="A clear, non-technical explanation of Zero-Trust in digital health and how Elisence uses it to protect people, clinics, and ministries.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <title>Zero-Trust in Digital Health | Elisence Sovereign Health Security</title>
 
-  <style>
-    body {
-      font-family: Inter, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f9fb;
-      color: #111;
-      line-height: 1.7;
+    <!-- Core SEO -->
+    <meta
+        name="description"
+        content="Zero-Trust in digital health explained in clear language. How Elisence treats every request as untrusted, uses role-based permissions, WORM audit logs, and sovereign architecture to protect people, clinics and ministries."
+    />
+    <meta
+        name="keywords"
+        content="Elisence, Zero-Trust, Zero-Trust Health AI, digital health security, sovereign health data, WORM audit logs, Qatar digital health, regulated digital health, health AI security, national health infrastructure"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- JSON-LD Article Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Zero-Trust in Digital Health — How Elisence Protects People and Systems",
+      "description": "A clear, non-technical explanation of Zero-Trust in digital health and how Elisence uses it to protect people, clinics and ministries through sovereign, non-diagnostic architecture.",
+      "author": {
+        "@type": "Person",
+        "name": "Saami Salami Asl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Elisence",
+        "url": "https://elisence.com"
+      },
+      "about": [
+        "Zero-Trust in Digital Health",
+        "Zero-Trust Health AI",
+        "Sovereign Health Data Architecture",
+        "National Health Security"
+      ]
     }
-    .hero {
-      background: #0E6FFF;
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 34px;
-      font-weight: 700;
-    }
-    .hero p {
-      margin: 0;
-      font-size: 18px;
-      opacity: 0.96;
-    }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px 40px;
-    }
-    h2 {
-      font-size: 24px;
-      color: #0E6FFF;
-      margin-top: 28px;
-      margin-bottom: 8px;
-    }
-    p {
-      font-size: 18px;
-      margin-bottom: 12px;
-    }
-    ul {
-      font-size: 18px;
-      padding-left: 20px;
-      margin-bottom: 16px;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    .note {
-      font-size: 16px;
-      background: #e6f0ff;
-      padding: 12px 14px;
-      border-radius: 8px;
-      margin: 18px 0;
-    }
-    .back-link {
-      margin-top: 30px;
-      font-size: 16px;
-    }
-    .back-link a {
-      color: #0E6FFF;
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
+    </script>
+
+    <!-- Elisa chat widget (از داخل فولدر articles) -->
+    <script defer src="../elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #020617 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* نقطه و لیبل بالا چپ */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* شِل صفحه */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* فضای منو */
+        }
+
+        .page-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #bfdbfe;
+            background: rgba(37, 99, 235, 0.18);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(59, 130, 246, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .page-tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #60a5fa;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.5rem;
+            color: #dbeafe;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #a5b4fc;
+            margin-bottom: 1.4rem;
+            max-width: 880px;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            margin-bottom: 1.6rem;
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(5, 10, 35, 0.98));
+            border-radius: 18px;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            padding: 1.6rem 1.7rem;
+            margin-bottom: 1.6rem;
+            box-shadow:
+                0 0 22px rgba(37, 99, 235, 0.55),
+                0 0 40px rgba(15, 23, 42, 0.95);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            color: #bfdbfe;
+        }
+
+        .card p {
+            font-size: 0.94rem;
+            color: #e5e7eb;
+            margin-bottom: 0.7rem;
+        }
+
+        .card ul {
+            margin: 0.3rem 0 0.4rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .card li {
+            font-size: 0.93rem;
+            color: #e5e7eb;
+            margin-bottom: 0.35rem;
+        }
+
+        .note-card {
+            border-color: rgba(248, 250, 252, 0.65);
+            background: radial-gradient(circle at top right, rgba(248, 250, 252, 0.06), rgba(15, 23, 42, 0.98));
+        }
+
+        .highlight {
+            color: #93c5fd;
+            font-weight: 500;
+        }
+
+        .footer-block {
+            margin-top: 1.8rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.45);
+            font-size: 0.86rem;
+            color: #e5e7eb;
+        }
+
+        .footer-block a {
+            color: #7dd3fc;
+        }
+
+        .channels {
+            margin-top: 0.8rem;
+            font-size: 0.84rem;
+        }
+
+        .channels-title {
+            font-weight: 600;
+            color: #e0f2fe;
+            margin-bottom: 0.3rem;
+        }
+
+        .channels-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .channels-list li {
+            margin-bottom: 0.2rem;
+        }
+
+        .back-link {
+            margin-top: 1.0rem;
+            font-size: 0.84rem;
+        }
+
+        .back-link a {
+            color: #bfdbfe;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="hero">
-  <h1>Zero-Trust in Digital Health</h1>
-  <p>Why Elisence treats every request as untrusted — and how that protects real people and systems.</p>
-</div>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
 
-<div class="container">
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="../index.html"        class="nav-btn">Home</a>
+        <a href="../index.html#phases" class="nav-btn">Phases</a>
+        <a href="../qatar.html"        class="nav-btn">Qatar</a>
+        <a href="../about.html"        class="nav-btn">About</a>
+        <a href="../story.html"        class="nav-btn">Story</a>
+        <a href="../video.html"        class="nav-btn">Videos</a>
+        <a href="../contact.html"      class="nav-btn">Contact</a>
+    </nav>
 
-  <div class="note">
-    <strong>In simple terms:</strong> Zero-Trust means “never trust by default”.  
-    Every request, device, and connection must prove who it is and what it is allowed to do.
-  </div>
+    <div class="page-shell">
+        <main class="content-main">
+            <div class="page-tag">
+                <span class="page-tag-dot"></span>
+                <span>Security · Zero-Trust Health Architecture</span>
+            </div>
 
-  <h2>Why Traditional Trust Models Are Not Enough</h2>
-  <p>
-    Many older health systems were built on the idea of an internal “safe network”.
-    Once a user or system was inside the network, it was assumed to be trusted.
-    In modern healthcare, this assumption is no longer safe:
-  </p>
-  <ul>
-    <li>People access systems from many locations and devices</li>
-    <li>Cloud services, APIs, and mobile apps all interact with sensitive data</li>
-    <li>Cyber attacks and misuse can come from both outside and inside a network</li>
-  </ul>
+            <h1>Zero-Trust in Digital Health</h1>
+            <p class="subtitle">
+                Why Elisence treats every request as untrusted — and how that protects real people, clinics
+                and ministries inside a sovereign health ecosystem.
+            </p>
+            <p class="article-meta">
+                By <strong>Saami Salami Asl</strong>, Founder of Elisence · Zero-Trust · WORM Audit · Sovereign Security
+            </p>
 
-  <p>
-    For a platform like Elisence — which serves families, clinics, and ministries —
-    a stronger, more modern security posture is required.
-  </p>
+            <!-- INTRO / SIMPLE NOTE -->
+            <section class="card note-card">
+                <h2>In Simple Terms: “Never Trust by Default”</h2>
+                <p>
+                    In Elisence, <span class="highlight">Zero-Trust</span> means: every request, device and connection
+                    must <strong>prove who it is and what it is allowed to do</strong>.
+                </p>
+                <p>
+                    There is no “safe internal zone” where everything is automatically trusted.
+                    This protects families, clinics and ministries from both external attacks and internal mistakes.
+                </p>
+            </section>
 
-  <h2>What Zero-Trust Means in Elisence</h2>
-  <p>
-    In Elisence, Zero-Trust is not a slogan. It is a practical rule set:
-  </p>
-  <ul>
-    <li>Every request is checked, even if it comes from a “known” device or user</li>
-    <li>Permissions are specific to each action, not “all or nothing” access</li>
-    <li>Data paths are minimised so that only what is needed is shared</li>
-    <li>High-risk actions can be logged in WORM-style audit trails</li>
-  </ul>
+            <!-- SECTION 1 -->
+            <section class="card">
+                <h2>1. Why Old Trust Models Are No Longer Enough</h2>
+                <p>
+                    Many older health systems were built around a “safe internal network”.
+                    Once a user or system was inside, it was treated as trusted.
+                    In modern digital health, that assumption is no longer safe:
+                </p>
+                <ul>
+                    <li>People access systems from many locations, Wi-Fi networks and devices.</li>
+                    <li>Cloud services, APIs and mobile apps all interact with sensitive health data.</li>
+                    <li>Cyber attacks, misconfigurations or misuse can come from both outside and inside.</li>
+                </ul>
+                <p>
+                    For a platform like <span class="highlight">Elisence</span> — serving citizens, clinics and
+                    ministries — a stronger, modern security posture is required.
+                </p>
+            </section>
 
-  <p>
-    This approach reduces the impact of stolen passwords, misconfigured systems,
-    or technical mistakes. A single weak point is less able to compromise the whole system.
-  </p>
+            <!-- SECTION 2 -->
+            <section class="card">
+                <h2>2. What Zero-Trust Means Inside Elisence</h2>
+                <p>
+                    In Elisence, Zero-Trust is not a slogan; it is a concrete rule set across all 17 phases:
+                </p>
+                <ul>
+                    <li>Every request is checked, even from a “known” user or device.</li>
+                    <li>
+                        Permissions are <strong>action-specific</strong> — not “all or nothing” access once you log in.
+                    </li>
+                    <li>
+                        Data paths are minimised so that only what is truly needed is shared for that action.
+                    </li>
+                    <li>
+                        High-risk actions can be recorded in <span class="highlight">WORM-style audit trails</span>
+                        (Write Once, Read Many).
+                    </li>
+                </ul>
+                <p>
+                    This drastically reduces the impact of stolen passwords, misconfigured systems or human error.
+                    A single weak point is less able to compromise the whole ecosystem.
+                </p>
+            </section>
 
-  <h2>Working Together with Governance and Privacy</h2>
-  <p>
-    Security on its own is not enough for digital health.  
-    Elisence combines Zero-Trust with:
-  </p>
-  <ul>
-    <li><strong>Governance</strong> — clear rules about what each module is allowed to do</li>
-    <li><strong>Privacy</strong> — data minimisation and user control wherever possible</li>
-    <li><strong>Auditability</strong> — the ability to review important actions when needed</li>
-    <li><strong>Feature-flags</strong> — keeping advanced functions off until frameworks are ready</li>
-  </ul>
+            <!-- SECTION 3 -->
+            <section class="card">
+                <h2>3. Working Together with Governance &amp; Privacy</h2>
+                <p>
+                    Security alone is not enough for digital health.
+                    Elisence combines Zero-Trust with clear rules around <strong>governance and privacy</strong>:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Governance:</strong> every engine and module has defined rules about what it can see and do.
+                    </li>
+                    <li>
+                        <strong>Privacy:</strong> data minimisation and user control wherever possible; no unnecessary data flows.
+                    </li>
+                    <li>
+                        <strong>Auditability:</strong> important actions can be reconstructed and reviewed when needed.
+                    </li>
+                    <li>
+                        <strong>Feature-flags:</strong> advanced functions stay <strong>OFF</strong> until frameworks,
+                        contracts and regulators are ready.
+                    </li>
+                </ul>
+                <p>
+                    This makes Zero-Trust in Elisence not just a technical pattern, but a full
+                    <span class="highlight">governance posture</span>.
+                </p>
+            </section>
 
-  <h2>Why It Matters for People, Clinics, and Ministries</h2>
-  <p>
-    For individuals, Zero-Trust means their data is not simply “open” once they log in;
-    the platform respects boundaries around each part of their health story.
-  </p>
-  <p>
-    For clinics and hospitals, it supports safer integrations and clearer separation
-    between different types of information and roles.
-  </p>
-  <p>
-    For ministries and public health bodies, it builds confidence
-    that national-level intelligence can be generated without lowering security expectations.
-  </p>
+            <!-- SECTION 4 -->
+            <section class="card">
+                <h2>4. Why Zero-Trust Matters for People, Clinics &amp; Ministries</h2>
+                <p>
+                    For individuals, Zero-Trust means their health information is never simply “open” after login —
+                    boundaries around each part of their health story are respected.
+                </p>
+                <p>
+                    For clinics and hospitals, it supports safer integrations and clear separation between:
+                </p>
+                <ul>
+                    <li>clinical data vs. wellness data,</li>
+                    <li>frontline roles vs. admin roles,</li>
+                    <li>internal systems vs. external partners and apps.</li>
+                </ul>
+                <p>
+                    For ministries and public health bodies, Zero-Trust builds confidence that
+                    <span class="highlight">national-level intelligence</span> can be generated without lowering
+                    security expectations or sovereignty.
+                </p>
+                <p>
+                    Elisence treats Zero-Trust as a baseline for <strong>every phase</strong> —
+                    from Women+ Health and Diabetes to Families, Mental Health, Environment and beyond.
+                </p>
+            </section>
 
-  <p>
-    Elisence treats Zero-Trust as a baseline requirement —  
-    a foundation for every phase, from Women+ Health to Diabetes, Families, Mental Health, and beyond.
-  </p>
+            <!-- FOOTER: BACK + CHANNELS -->
+            <div class="footer-block">
+                <p class="back-link">
+                    <a href="../articles.html">&larr; Back to Elisence Knowledge Center</a>
+                </p>
+                <p>
+                    Explore more:
+                    <a href="what-is-elisence.html">What Is Elisence?</a> ·
+                    <a href="ai-safety-non-diagnostic-elisence.html">AI Safety &amp; Non-Diagnostic Architecture</a> ·
+                    <a href="elisence-qatar-vision-2030.html">Elisence &amp; Qatar Vision 2030</a>
+                </p>
 
-  <div class="back-link">
-    <a href="../articles.html">&larr; Back to Elisence Knowledge Center</a>
-  </div>
+                <div class="channels">
+                    <div class="channels-title">Official Elisence Channels</div>
+                    <ul class="channels-list">
+                        <li>Website: <a href="https://elisence.com" target="_blank" rel="noopener">https://elisence.com</a></li>
+                        <li>YouTube: <a href="https://www.youtube.com/@Elisence_saami_salami_as" target="_blank" rel="noopener">@Elisence_saami_salami_as</a></li>
+                        <li>Instagram: <a href="https://www.instagram.com/elisence.ai" target="_blank" rel="noopener">@elisence.ai</a></li>
+                        <li>TikTok: <a href="https://www.tiktok.com/@elisence.official" target="_blank" rel="noopener">@elisence.official</a></li>
+                        <li>LinkedIn: <a href="https://www.linkedin.com/company/elisence-official" target="_blank" rel="noopener">Elisence Official</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
 
-</div>
-
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
 </body>
 </html>
