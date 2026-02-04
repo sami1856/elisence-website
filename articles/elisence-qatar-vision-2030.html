@@ -39,190 +39,480 @@
       ]
     }
     </script>
+
+    <!-- Elisa chat widget (مسیر از داخل فولدر articles) -->
+    <script defer src="../elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* نقطه و برچسب بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست (هماهنگ با صفحات اصلی) */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* شل صفحه */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* فضای منوی عمودی */
+        }
+
+        .page-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #7dd3fc;
+            background: rgba(56, 189, 248, 0.16);
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid rgba(56, 189, 248, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .page-tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #38bdf8;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.5rem;
+            color: #e0f2fe;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #cbd5f5;
+            margin-bottom: 1.4rem;
+            max-width: 880px;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 1.6rem;
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            padding: 1.6rem 1.7rem;
+            margin-bottom: 1.6rem;
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.55),
+                0 0 40px rgba(15, 23, 42, 0.95);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            font-size: 0.94rem;
+            color: #e5f2ff;
+            margin-bottom: 0.7rem;
+        }
+
+        .card ul {
+            margin: 0.3rem 0 0.4rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .card li {
+            font-size: 0.93rem;
+            color: #dbeafe;
+            margin-bottom: 0.35rem;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+            font-weight: 500;
+        }
+
+        .footer-block {
+            margin-top: 1.8rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.45);
+            font-size: 0.86rem;
+            color: #cbd5f5;
+        }
+
+        .footer-block a {
+            color: #7dd3fc;
+        }
+
+        .channels {
+            margin-top: 0.8rem;
+            font-size: 0.84rem;
+        }
+
+        .channels-title {
+            font-weight: 600;
+            color: #e0f2fe;
+            margin-bottom: 0.3rem;
+        }
+
+        .channels-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .channels-list li {
+            margin-bottom: 0.2rem;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <main style="max-width: 900px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6;">
-        <header style="margin-bottom: 32px;">
-            <p style="margin: 0; font-size: 14px; opacity: 0.7;">
-                Elisence AI · Regulated Digital Health for Qatar
-            </p>
-            <h1 style="margin: 8px 0 12px; font-size: 30px;">
-                Elisence &amp; Qatar Vision 2030<br />
-                Sovereign Digital Health Infrastructure for the Future of Qatar
-            </h1>
-            <p style="margin: 0; font-size: 14px; opacity: 0.8;">
-                By <strong>Saami Salami Asl</strong>, Founder of Elisence
-            </p>
-        </header>
 
-        <section style="margin-bottom: 24px;">
-            <p>
-                Qatar has a clear and ambitious roadmap for the future: <strong>Qatar National Vision 2030</strong>.
-                At the heart of this vision are four pillars — human, social, economic and environmental development.
-            </p>
-            <p>
-                <strong>Elisence AI</strong> is designed specifically to support this vision as a
-                <strong>Sovereign Digital Health Infrastructure</strong>:
-                a 17-phase, multilingual health intelligence ecosystem that keeps data inside Qatar,
-                uses <strong>Zero-Trust Health AI</strong>, and remains fully
-                <strong>Non-Diagnostic</strong> and regulator-controlled.
-            </p>
-        </section>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
 
-        <section style="margin-bottom: 32px;">
-            <h2>1. Supporting the Human Development Pillar</h2>
-            <p>
-                Human development in Qatar Vision 2030 focuses on building a healthy, educated and productive population.
-                Elisence directly supports this pillar by creating a
-                <strong>regulated digital health platform for Qatar</strong> that:
-            </p>
-            <ul>
-                <li>
-                    Helps citizens manage weight, diabetes, sleep, stress and family health through
-                    <strong>Non-Diagnostic Behavioral AI</strong>.
-                </li>
-                <li>
-                    Provides long-term lifestyle guidance instead of short-term “diet app” solutions.
-                </li>
-                <li>
-                    Delivers national-level insights on adherence, risk trends and wellness patterns without exposing any
-                    individual’s identity.
-                </li>
-                <li>
-                    Works in multiple languages (EN / AR / FA / TR / RO) to include expatriates and local communities.
-                </li>
-            </ul>
-        </section>
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="../index.html"        class="nav-btn">Home</a>
+        <a href="../index.html#phases" class="nav-btn">Phases</a>
+        <a href="../qatar.html"        class="nav-btn">Qatar</a>
+        <a href="../about.html"        class="nav-btn">About</a>
+        <a href="../story.html"        class="nav-btn">Story</a>
+        <a href="../video.html"        class="nav-btn">Videos</a>
+        <a href="../contact.html"      class="nav-btn">Contact</a>
+    </nav>
 
-        <section style="margin-bottom: 32px;">
-            <h2>2. Sovereign Health Data Architecture for Qatar</h2>
-            <p>
-                For Qatar, data sovereignty is not just a technical detail — it is a strategic requirement.
-                Elisence is built as a <strong>Sovereign Health Data Architecture</strong>:
-            </p>
-            <ul>
-                <li>All citizen data is hosted inside Qatar under Qatari jurisdiction.</li>
-                <li>
-                    <strong>Zero-Trust Health AI</strong> ensures that every access is checked, logged and restricted by
-                    role and purpose.
-                </li>
-                <li>
-                    WORM ledgers create tamper-evident logs that regulators and ministries can audit at any time.
-                </li>
-                <li>
-                    Integrations with hospital systems (Cerner, Epic and others) are based on open FHIR standards, not
-                    proprietary locks.
-                </li>
-            </ul>
-            <p>
-                This makes Elisence a <strong>Regulated Digital Health Qatar</strong> platform from day one — not an
-                imported consumer app.
-            </p>
-        </section>
+    <div class="page-shell">
+        <main class="content-main">
+            <div class="page-tag">
+                <span class="page-tag-dot"></span>
+                <span>Qatar Vision 2030 · Elisence AI</span>
+            </div>
 
-        <section style="margin-bottom: 32px;">
-            <h2>3. Economic & Innovation Value – Building Local Capacity</h2>
-            <p>
-                Qatar Vision 2030 emphasises diversification of the economy and building local knowledge industries.
-                Elisence is designed to create <strong>real in-country value (ICV)</strong>:
+            <h1>Elisence &amp; Qatar Vision 2030 – Sovereign Digital Health Infrastructure for Qatar</h1>
+            <p class="subtitle">
+                How Elisence AI acts as a sovereign digital health infrastructure for Qatar – aligning with the human,
+                social, economic and environmental pillars of Qatar National Vision 2030.
             </p>
-            <ul>
-                <li>
-                    Establishing Elisence’s global headquarters in Doha as a long-term digital health innovation hub.
-                </li>
-                <li>
-                    Hiring and training 30–50 specialists in AI, data engineering, clinical analytics and security
-                    within Qatar.
-                </li>
-                <li>
-                    Creating new opportunities for collaboration with Qatari universities, hospitals and research
-                    centres.
-                </li>
-                <li>
-                    Offering Qatar an exportable, sovereign health platform that can be licensed to other countries in
-                    the GCC and beyond.
-                </li>
-            </ul>
-        </section>
+            <p class="article-meta">
+                By <strong>Saami Salami Asl</strong>, Founder of Elisence · Regulated Digital Health for Qatar
+            </p>
 
-        <section style="margin-bottom: 32px;">
-            <h2>4. Environment & Health – Heat, Air Quality and Phase 12</h2>
-            <p>
-                The environmental pillar of Qatar Vision 2030 also connects directly with health. Heat, humidity and air
-                quality are critical risk factors for citizens with diabetes, cardiovascular disease or respiratory
-                conditions.
-            </p>
-            <p>
-                <strong>Phase 12</strong> of Elisence focuses on
-                <strong>Environment &amp; Air-Aware Health Intelligence</strong>:
-            </p>
-            <ul>
-                <li>
-                    Combining temperature, humidity, air quality index and UV levels with metabolic and medication data.
-                </li>
-                <li>Sending context-aware alerts to citizens (e.g., high heat + insulin timing + dehydration risk).</li>
-                <li>
-                    Giving ministries a live, anonymised view of environment-linked health stress across the country.
-                </li>
-            </ul>
-            <p>
-                This turns climate data into actionable, non-diagnostic health guidance for the people of Qatar.
-            </p>
-        </section>
+            <!-- 1. Intro / Human Development -->
+            <section class="card">
+                <h2>1. Supporting the Human Development Pillar</h2>
+                <p>
+                    Qatar has a clear and ambitious roadmap for the future:
+                    <span class="highlight">Qatar National Vision 2030</span>.
+                    At the heart of this vision are four pillars — human, social, economic and environmental development.
+                </p>
+                <p>
+                    <span class="highlight">Elisence AI</span> is designed specifically to support this vision as a
+                    <span class="highlight">Sovereign Digital Health Infrastructure</span>:
+                    a 17-phase, multilingual health intelligence ecosystem that keeps data inside Qatar,
+                    uses <span class="highlight">Zero-Trust Health AI</span>, and remains fully
+                    <span class="highlight">Non-Diagnostic</span> and regulator-controlled.
+                </p>
+                <p>
+                    Human development in Qatar Vision 2030 focuses on building a healthy, educated and productive population.
+                    Elisence directly supports this pillar by creating a
+                    <span class="highlight">regulated digital health platform for Qatar</span> that:
+                </p>
+                <ul>
+                    <li>
+                        Helps citizens manage weight, diabetes, sleep, stress and family health through
+                        <span class="highlight">Non-Diagnostic Behavioral AI</span>.
+                    </li>
+                    <li>
+                        Provides long-term lifestyle guidance instead of short-term “diet app” solutions.
+                    </li>
+                    <li>
+                        Delivers national-level insights on adherence, risk trends and wellness patterns without exposing any
+                        individual’s identity.
+                    </li>
+                    <li>
+                        Works in multiple languages (EN / AR / FA / TR / RO) to include expatriates and local communities.
+                    </li>
+                </ul>
+            </section>
 
-        <section style="margin-bottom: 32px;">
-            <h2>5. A Safe, Non-Diagnostic Platform Regulators Can Trust</h2>
-            <p>
-                One of the biggest concerns in digital health is liability. Elisence was built from the beginning to be
-                <strong>Non-Diagnostic</strong> and regulator-friendly:
-            </p>
-            <ul>
-                <li>
-                    No medical diagnosis, no prescription, no replacement of clinical judgement — ever.
-                </li>
-                <li>
-                    <strong>Non-Diagnostic Behavioral AI</strong> focuses on lifestyle, adherence, patterns and early
-                    wellness signals.
-                </li>
-                <li>
-                    The Ministry and regulators can choose which engines are active and at what level — full control
-                    stays with Qatar.
-                </li>
-                <li>
-                    All engines follow BBVP (Build–Back–Verify–Prove), allowing every output to be explained and
-                    defended.
-                </li>
-            </ul>
-        </section>
+            <!-- 2. Sovereign Health Data Architecture -->
+            <section class="card">
+                <h2>2. Sovereign Health Data Architecture for Qatar</h2>
+                <p>
+                    For Qatar, data sovereignty is not just a technical detail — it is a strategic requirement.
+                    Elisence is built as a <span class="highlight">Sovereign Health Data Architecture</span>:
+                </p>
+                <ul>
+                    <li>All citizen data is hosted inside Qatar under Qatari jurisdiction.</li>
+                    <li>
+                        <span class="highlight">Zero-Trust Health AI</span> ensures that every access is checked, logged and restricted by
+                        role and purpose.
+                    </li>
+                    <li>
+                        WORM ledgers create tamper-evident logs that regulators and ministries can audit at any time.
+                    </li>
+                    <li>
+                        Integrations with hospital systems (Cerner, Epic and others) are based on open FHIR standards, not
+                        proprietary locks.
+                    </li>
+                </ul>
+                <p>
+                    This makes Elisence a <span class="highlight">Regulated Digital Health Qatar</span> platform from day one —
+                    not an imported consumer app.
+                </p>
+            </section>
 
-        <section style="margin-bottom: 40px;">
-            <h2>Conclusion: Elisence as a Strategic Asset for Qatar 2030</h2>
-            <p>
-                Elisence is more than a health app. It is a
-                <strong>Sovereign Digital Health Infrastructure</strong> built to support Qatar Vision 2030 across human,
-                social, economic and environmental pillars.
-            </p>
-            <p>
-                With <strong>Zero-Trust Health AI</strong>,
-                <strong>Sovereign Health Data Architecture</strong>,
-                <strong>Regulated Digital Health Qatar</strong> design and
-                <strong>Non-Diagnostic Behavioral AI</strong>, Elisence offers Qatar a safe, future-proof and exportable
-                platform that can lead the region in digital health.
-            </p>
-            <p>
-                Founded and architected by <strong>Saami Salami Asl</strong>, Elisence is ready to become part of
-                Qatar’s long-term digital health story.
-            </p>
-        </section>
+            <!-- 3. Economic & Innovation Value -->
+            <section class="card">
+                <h2>3. Economic &amp; Innovation Value – Building Local Capacity</h2>
+                <p>
+                    Qatar Vision 2030 emphasises diversification of the economy and building local knowledge industries.
+                    Elisence is designed to create <span class="highlight">real in-country value (ICV)</span>:
+                </p>
+                <ul>
+                    <li>
+                        Establishing Elisence’s global headquarters in Doha as a long-term digital health innovation hub.
+                    </li>
+                    <li>
+                        Hiring and training 30–50 specialists in AI, data engineering, clinical analytics and security
+                        within Qatar.
+                    </li>
+                    <li>
+                        Creating new opportunities for collaboration with Qatari universities, hospitals and research
+                        centres.
+                    </li>
+                    <li>
+                        Offering Qatar an exportable, sovereign health platform that can be licensed to other countries in
+                        the GCC and beyond.
+                    </li>
+                </ul>
+            </section>
 
-        <footer style="border-top: 1px solid #eee; padding-top: 16px; font-size: 14px; opacity: 0.8;">
-            <p style="margin: 0;">
-                Learn more:
-                <a href="/articles/what-is-elisence.html">What Is Elisence?</a> ·
-                <a href="/phases.html">Explore the 17 Phases</a> ·
-                <a href="/videos.html">Watch Elisence Videos</a>
-            </p>
-        </footer>
-    </main>
+            <!-- 4. Environment & Phase 12 -->
+            <section class="card">
+                <h2>4. Environment &amp; Health – Heat, Air Quality and Phase 12</h2>
+                <p>
+                    The environmental pillar of Qatar Vision 2030 also connects directly with health. Heat, humidity and air
+                    quality are critical risk factors for citizens with diabetes, cardiovascular disease or respiratory
+                    conditions.
+                </p>
+                <p>
+                    <span class="highlight">Phase 12</span> of Elisence focuses on
+                    <span class="highlight">Environment &amp; Air-Aware Health Intelligence</span>:
+                </p>
+                <ul>
+                    <li>
+                        Combining temperature, humidity, air quality index and UV levels with metabolic and medication data.
+                    </li>
+                    <li>Sending context-aware alerts to citizens (e.g., high heat + insulin timing + dehydration risk).</li>
+                    <li>
+                        Giving ministries a live, anonymised view of environment-linked health stress across the country.
+                    </li>
+                </ul>
+                <p>
+                    This turns climate data into actionable, non-diagnostic health guidance for the people of Qatar.
+                </p>
+            </section>
+
+            <!-- 5. Safety & Non-Diagnostic Design -->
+            <section class="card">
+                <h2>5. A Safe, Non-Diagnostic Platform Regulators Can Trust</h2>
+                <p>
+                    One of the biggest concerns in digital health is liability. Elisence was built from the beginning to be
+                    <span class="highlight">Non-Diagnostic</span> and regulator-friendly:
+                </p>
+                <ul>
+                    <li>
+                        No medical diagnosis, no prescription, no replacement of clinical judgement — ever.
+                    </li>
+                    <li>
+                        <span class="highlight">Non-Diagnostic Behavioral AI</span> focuses on lifestyle, adherence, patterns and early
+                        wellness signals.
+                    </li>
+                    <li>
+                        The Ministry and regulators can choose which engines are active and at what level — full control
+                        stays with Qatar.
+                    </li>
+                    <li>
+                        All engines follow BBVP (Build–Back–Verify–Prove), allowing every output to be explained and
+                        defended.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="card">
+                <h2>Conclusion: Elisence as a Strategic Asset for Qatar 2030</h2>
+                <p>
+                    Elisence is more than a health app. It is a
+                    <span class="highlight">Sovereign Digital Health Infrastructure</span> built to support Qatar Vision 2030
+                    across human, social, economic and environmental pillars.
+                </p>
+                <p>
+                    With <span class="highlight">Zero-Trust Health AI</span>,
+                    <span class="highlight">Sovereign Health Data Architecture</span>,
+                    <span class="highlight">Regulated Digital Health Qatar</span> design and
+                    <span class="highlight">Non-Diagnostic Behavioral AI</span>, Elisence offers Qatar a safe, future-proof and exportable
+                    platform that can lead the region in digital health.
+                </p>
+                <p>
+                    Founded and architected by <span class="highlight">Saami Salami Asl</span>, Elisence is ready to become part of
+                    Qatar’s long-term digital health story.
+                </p>
+            </section>
+
+            <!-- Footer / Navigation + Channels -->
+            <div class="footer-block">
+                <p>
+                    Learn more:
+                    <a href="what-is-elisence.html">What Is Elisence?</a> ·
+                    <a href="../video.html">Elisence Phase Videos</a> ·
+                    <a href="../qatar.html">Qatar Page</a>
+                </p>
+
+                <div class="channels">
+                    <div class="channels-title">Official Elisence Channels</div>
+                    <ul class="channels-list">
+                        <li>Website: <a href="https://elisence.com" target="_blank" rel="noopener">https://elisence.com</a></li>
+                        <li>YouTube: <a href="https://www.youtube.com/@Elisence_saami_salami_as" target="_blank" rel="noopener">@Elisence_saami_salami_as</a></li>
+                        <li>Instagram: <a href="https://www.instagram.com/elisence.ai" target="_blank" rel="noopener">@elisence.ai</a></li>
+                        <li>TikTok: <a href="https://www.tiktok.com/@elisence.official" target="_blank" rel="noopener">@elisence.official</a></li>
+                        <li>LinkedIn: <a href="https://www.linkedin.com/company/elisence-official" target="_blank" rel="noopener">Elisence Official</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
 </body>
 </html>
