@@ -3,11 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <title>Phase 9 — Diabetes & Metabolic Health Intelligence Engine | Elisence</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Core SEO -->
   <meta
     name="description"
-    content="Phase 9 of Elisence is a safe, non-diagnostic intelligence engine for diabetes and metabolic health, connecting glucose, lifestyle, environment and culture."
+    content="Phase 9 of Elisence is a sovereign, non-diagnostic diabetes & metabolic health intelligence engine. It connects glucose, GLP-1, lifestyle, sleep, environment, Ramadan patterns and culture into a safe, explainable layer for people, clinics and ministries."
   />
+  <meta
+    name="keywords"
+    content="Elisence, Phase 9, Diabetes Intelligence, Metabolic Health Engine, GLP-1, Non-Diagnostic Behavioral AI, Zero-Trust Health AI, Qatar diabetes, Ramadan glucose, sovereign digital health, national diabetes platform"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- JSON-LD Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Phase 9 — Diabetes & Metabolic Health Intelligence Engine",
+    "description": "Phase 9 of Elisence is a sovereign, non-diagnostic diabetes and metabolic health intelligence engine that connects glucose, medication, lifestyle, sleep, environment and culture into one safe, explainable layer.",
+    "author": {
+      "@type": "Person",
+      "name": "Saami Salami Asl"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Elisence",
+      "url": "https://elisence.com"
+    },
+    "about": [
+      "Diabetes Intelligence",
+      "Metabolic Health Engine",
+      "Non-Diagnostic Behavioral AI",
+      "Zero-Trust Health AI",
+      "Sovereign Digital Health Infrastructure"
+    ],
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Elisence 17-Phase Health Ecosystem"
+    }
+  }
+  </script>
+
+  <!-- Elisa chat widget (از داخل فولدر articles) -->
+  <script defer src="../elisa-chat.js"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -21,245 +61,453 @@
       background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
       color: #ffffff;
       overflow-x: hidden;
+      line-height: 1.7;
     }
 
-    .top-nav {
-      width: 100%;
-      padding: 14px 24px;
-      display: flex;
-      justify-content: flex-start;
-      gap: 18px;
-      font-size: 13px;
-    }
-
-    .top-nav a {
-      color: #a9d4ff;
+    a {
+      color: inherit;
       text-decoration: none;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 11px;
     }
 
-    .top-nav a:hover {
+    a:hover {
       text-decoration: underline;
     }
 
-    .page-wrapper {
-      min-height: calc(100vh - 60px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 18px 60px 18px;
+    /* نقطه و لیبل بالا چپ */
+    .top-dot {
+      position: fixed;
+      left: 18px;
+      top: 18px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+      box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+      z-index: 20;
     }
 
-    .hero-card {
-      width: 100%;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 32px 26px 34px 26px;
-      border-radius: 24px;
-      background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
-      box-shadow:
-        0 0 40px rgba(0, 170, 255, 0.82),
-        0 0 110px rgba(0, 80, 200, 0.6);
-      border: 1px solid rgba(70, 190, 255, 0.6);
-    }
-
-    .article-label {
-      font-size: 11px;
-      letter-spacing: 0.2em;
+    .top-dot-label {
+      position: fixed;
+      left: 40px;
+      top: 16px;
+      font-size: 14px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: #a9d4ff;
-      margin-bottom: 6px;
+      z-index: 20;
     }
 
-    .article-title {
-      font-size: 22px;
-      line-height: 1.4;
-      margin-bottom: 10px;
+    /* منوی عمودی سمت راست */
+    .side-nav {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    .nav-btn {
+      display: block;
+      padding: 13px 38px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e3f2ff;
+      background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+      border: 1px solid rgba(90, 185, 255, 0.9);
+      box-shadow:
+        0 0 16px rgba(0, 130, 255, 0.95),
+        0 0 34px rgba(0, 40, 120, 0.95);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateX(-4px);
+      padding-right: 44px;
+      box-shadow:
+        0 0 22px rgba(0, 190, 255, 1),
+        0 0 46px rgba(0, 80, 200, 1);
+      background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+    }
+
+    .nav-btn:active {
+      transform: translateX(-2px) scale(0.99);
+    }
+
+    /* شِل صفحه */
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 80px 40px 80px 40px;
+    }
+
+    .content-main {
+      width: 100%;
+      max-width: 1100px;
+      margin-right: 190px; /* فضای منو */
+    }
+
+    .page-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #bfdbfe;
+      background: rgba(37, 99, 235, 0.18);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(59, 130, 246, 0.8);
+      margin-bottom: 1rem;
+    }
+
+    .page-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #60a5fa;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.5rem;
+      color: #dbeafe;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #a5b4fc;
+      margin-bottom: 1.4rem;
+      max-width: 880px;
     }
 
     .article-meta {
-      font-size: 12px;
-      color: #c1dcff;
-      margin-bottom: 18px;
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      margin-bottom: 1.6rem;
     }
 
-    .article-meta span {
-      opacity: 0.9;
+    .card {
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(5, 10, 35, 0.98));
+      border-radius: 18px;
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      padding: 1.6rem 1.7rem;
+      margin-bottom: 1.6rem;
+      box-shadow:
+        0 0 22px rgba(37, 99, 235, 0.55),
+        0 0 40px rgba(15, 23, 42, 0.95);
     }
 
-    .article-body {
-      font-size: 14px;
-      line-height: 1.85;
-      color: #e0efff;
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 0.7rem;
+      font-size: 1.1rem;
+      color: #bfdbfe;
     }
 
-    .article-body h2 {
-      font-size: 17px;
-      margin-top: 20px;
-      margin-bottom: 8px;
-      color: #ffffff;
+    .card p {
+      font-size: 0.94rem;
+      color: #e5e7eb;
+      margin-bottom: 0.7rem;
     }
 
-    .article-body p {
-      margin-bottom: 10px;
+    .card ul {
+      margin: 0.3rem 0 0.4rem 1.2rem;
+      padding-left: 0.3rem;
     }
 
-    .article-body ul {
-      margin: 6px 0 14px 20px;
-      padding-left: 6px;
+    .card li {
+      font-size: 0.93rem;
+      color: #e5e7eb;
+      margin-bottom: 0.35rem;
     }
 
-    .article-body li {
-      margin-bottom: 4px;
+    .note-card {
+      border-color: rgba(248, 250, 252, 0.65);
+      background: radial-gradient(circle at top right, rgba(248, 250, 252, 0.06), rgba(15, 23, 42, 0.98));
     }
 
-    @media (max-width: 640px) {
-      .hero-card {
-        padding: 22px 18px 24px 18px;
+    .highlight {
+      color: #93c5fd;
+      font-weight: 500;
+    }
+
+    .footer-block {
+      margin-top: 1.8rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.45);
+      font-size: 0.86rem;
+      color: #e5e7eb;
+    }
+
+    .footer-block a {
+      color: #7dd3fc;
+    }
+
+    .channels {
+      margin-top: 0.8rem;
+      font-size: 0.84rem;
+    }
+
+    .channels-title {
+      font-weight: 600;
+      color: #e0f2fe;
+      margin-bottom: 0.3rem;
+    }
+
+    .channels-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .channels-list li {
+      margin-bottom: 0.2rem;
+    }
+
+    .back-link {
+      margin-top: 1.0rem;
+      font-size: 0.84rem;
+    }
+
+    .back-link a {
+      color: #bfdbfe;
+    }
+
+    @media (max-width: 900px) {
+      .page-shell {
+        padding: 80px 18px 100px 18px;
       }
 
-      .article-title {
-        font-size: 19px;
+      .content-main {
+        margin-right: 0;
       }
 
-      .article-body {
-        font-size: 13px;
+      .side-nav {
+        position: fixed;
+        right: 50%;
+        top: auto;
+        bottom: 18px;
+        transform: translateX(50%);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .nav-btn {
+        padding: 9px 20px;
+        font-size: 11px;
+        letter-spacing: 0.11em;
       }
     }
   </style>
 </head>
+
 <body>
 
-  <header class="top-nav">
-    <a href="../index.html">Home</a>
-    <a href="../articles.html">Articles</a>
-  </header>
+  <div class="top-dot"></div>
+  <div class="top-dot-label">ELISENCE</div>
 
-  <main class="page-wrapper">
-    <article class="hero-card">
-      <div class="article-label">Elisence · Phase 9</div>
-      <h1 class="article-title">Phase 9 — A New Generation of Diabetes &amp; Metabolic Health Intelligence</h1>
-      <div class="article-meta">
-        <span>By Saami Salami Asl — Founder of Elisence</span>
+  <!-- منوی عمودی سمت راست -->
+  <nav class="side-nav">
+    <a href="../index.html"        class="nav-btn">Home</a>
+    <a href="../index.html#phases" class="nav-btn">Phases</a>
+    <a href="../qatar.html"        class="nav-btn">Qatar</a>
+    <a href="../about.html"        class="nav-btn">About</a>
+    <a href="../story.html"        class="nav-btn">Story</a>
+    <a href="../video.html"        class="nav-btn">Videos</a>
+    <a href="../contact.html"      class="nav-btn">Contact</a>
+  </nav>
+
+  <div class="page-shell">
+    <main class="content-main">
+      <div class="page-tag">
+        <span class="page-tag-dot"></span>
+        <span>Phase 9 · Diabetes &amp; Metabolic Health Intelligence Engine</span>
       </div>
 
-      <div class="article-body">
+      <h1>Phase 9 — A New Generation of Diabetes &amp; Metabolic Health Intelligence</h1>
+      <p class="subtitle">
+        Phase 9 of Elisence is a sovereign, non-diagnostic intelligence engine for diabetes and metabolic health.
+        It connects glucose, medication, food, sleep, stress, environment and culture into one safe, explainable layer
+        for citizens, clinicians and ministries.
+      </p>
+      <p class="article-meta">
+        By <strong>Saami Salami Asl</strong>, Founder of Elisence · Non-Diagnostic Behavioral AI · Zero-Trust Health AI
+      </p>
+
+      <!-- INTRO / WHY WE BUILT PHASE 9 -->
+      <section class="card note-card">
         <h2>1. Why We Built Phase 9</h2>
         <p>
-          Diabetes is not just a condition — it is a daily battle of glucose, food, medication, sleep, stress, weather,
-          and lifestyle. Most apps only track numbers; they do not truly understand the person behind those numbers.
+          Diabetes is not just a condition — it is a daily battle of
+          <span class="highlight">glucose, food, medication, sleep, stress, weather and lifestyle</span>.
+          Most apps only track numbers; they do not truly understand the person behind those numbers.
         </p>
         <p>
-          Phase 9 of Elisence changes this.
-        </p>
-        <p>
-          It is a <strong>safe, non-diagnostic intelligence engine</strong> that connects:
+          Phase 9 of Elisence changes this. It is a
+          <span class="highlight">safe, non-diagnostic intelligence engine</span> that connects:
         </p>
         <ul>
-          <li>Glucose patterns</li>
-          <li>Medication journeys</li>
-          <li>Food and hydration</li>
-          <li>Weather &amp; environment</li>
-          <li>Activity &amp; sleep</li>
-          <li>Culture and daily habits</li>
-          <li>Stress, mood and routines</li>
-          <li>Risk signals and early flags</li>
+          <li>Glucose patterns and long-term trends</li>
+          <li>Medication journeys (including GLP-1, insulin and oral therapy)</li>
+          <li>Food and hydration routines</li>
+          <li>Weather &amp; environment (heat, humidity, air quality)</li>
+          <li>Activity &amp; sleep rhythms</li>
+          <li>Culture and daily habits (including Ramadan patterns)</li>
+          <li>Stress, mood and micro-routines</li>
+          <li>Soft risk signals and early flags</li>
         </ul>
         <p>
-          Not to diagnose — but to <strong>support</strong>.
+          Not to diagnose — but to <strong>support</strong> people and health systems with better intelligence.
         </p>
+      </section>
 
-        <h2>2. A Safe Intelligence Layer</h2>
+      <!-- SAFE INTELLIGENCE LAYER -->
+      <section class="card">
+        <h2>2. A Safe, Non-Diagnostic Intelligence Layer</h2>
         <p>
-          Phase 9 uses the Elisence Zero-Trust model:
+          Phase 9 is built on the Elisence <span class="highlight">Zero-Trust Health AI</span> model:
         </p>
         <ul>
-          <li>No medical decisions</li>
-          <li>No prescriptions</li>
-          <li>No diagnosis</li>
-          <li>No unsafe advice</li>
-          <li>Full explanation for every insight</li>
-          <li>Fully auditable (WORM logs)</li>
-          <li>Multi-language output (EN / FA / AR / TR / RO)</li>
+          <li>No medical decisions or triage.</li>
+          <li>No prescriptions and no change to treatment plans.</li>
+          <li>No diagnosis or disease confirmation.</li>
+          <li>No unsafe “do this / don’t do this” instructions.</li>
+          <li>Every insight can be explained and traced back to its inputs.</li>
+          <li>Fully auditable using WORM-style logs for regulators.</li>
+          <li>Multi-language output (EN / FA / AR / TR / RO) by design.</li>
         </ul>
         <p>
-          It gives <em>“what I see”</em>, not <em>“what you should do.”</em>  
-          This keeps the user safe while still delivering real value.
+          Phase 9 speaks in terms of <span class="highlight">“what I see”</span> — not “what you must do”.
+          This keeps citizens safe while still delivering real, day-to-day value.
         </p>
+      </section>
 
-        <h2>3. Engine Components</h2>
-        <p>Phase 9 includes:</p>
+      <!-- ENGINE COMPONENTS -->
+      <section class="card">
+        <h2>3. Engine Components Inside Phase 9</h2>
+        <p>Under the hood, Phase 9 includes multiple engines that work together:</p>
         <ul>
-          <li>Glucose trend evaluator</li>
-          <li>Meal-response model</li>
-          <li>Heat-risk calculator</li>
-          <li>Hydration awareness engine</li>
-          <li>Cycle-interaction model (for Women+ users)</li>
-          <li>Sleep &amp; stress interaction patterns</li>
-          <li>Cultural meal recognition (e.g., Ramadan patterns)</li>
-          <li>Daily safety checks</li>
-          <li>Standardized diabetes passports</li>
+          <li>Glucose trend evaluator for short- and long-term patterns.</li>
+          <li>Meal-response model to see how different foods affect glucose.</li>
+          <li>Heat- and environment-risk calculator for hot climates.</li>
+          <li>Hydration awareness engine for safer daily routines.</li>
+          <li>Cycle-interaction model for Women+ users (linking Phases 7 &amp; 9).</li>
+          <li>Sleep &amp; stress interaction patterns for real-world life.</li>
+          <li>Cultural meal recognition, including Ramadan and local cuisines.</li>
+          <li>Daily safety checks and soft risk flags.</li>
+          <li>Standardised “Diabetes Passports” for structured, sharable summaries.</li>
         </ul>
         <p>
-          It can run on its own or as part of the full Elisence ecosystem.
+          Phase 9 can operate on its own or as part of the full
+          <span class="highlight">Elisence 17-Phase Health Ecosystem</span>.
         </p>
+      </section>
 
-        <h2>4. Ready for Sensors &amp; Clinics</h2>
+      <!-- SENSORS & CLINICS -->
+      <section class="card">
+        <h2>4. Ready for Sensors, Home Devices &amp; Clinics</h2>
         <p>
-          Phase 9 is constructed for real-world integration:
+          Phase 9 is constructed for real-world integration, not just theory:
         </p>
         <ul>
-          <li>Continuous Glucose Monitoring (CGM)</li>
-          <li>Smart watches and wearables</li>
-          <li>Home testing devices</li>
-          <li>Clinic dashboards</li>
-          <li>Ministry-level monitoring (anonymised)</li>
+          <li>Continuous Glucose Monitoring (CGM) devices.</li>
+          <li>Smart watches and wearables for steps, sleep and heart rate.</li>
+          <li>Home testing devices and manual logs.</li>
+          <li>Clinic dashboards and professional portals.</li>
+          <li>Ministry-level monitoring in anonymised, aggregated form.</li>
         </ul>
         <p>
-          Patients keep full privacy — but population trends help ministries and health systems plan.
+          Individual patients keep privacy and control — while population-level trends help ministries,
+          insurers and health systems plan services and prevention strategies.
         </p>
+      </section>
 
+      <!-- REAL PEOPLE IMPACT -->
+      <section class="card">
         <h2>5. How Phase 9 Helps Real People</h2>
-        <p>In practice, Phase 9 can help:</p>
+        <p>In practice, Phase 9 can support real life in many ways, for example:</p>
         <ul>
           <li>
-            A user see how heat waves affect their glucose and hydration needs throughout the day.
+            Helping a user see how <span class="highlight">heat waves</span> affect glucose, dehydration risk
+            and daily energy — in simple, non-technical language.
           </li>
           <li>
-            A woman understand how her cycle might influence daily metabolism and energy.
+            Supporting a woman to understand how her cycle (Phase 7) interacts with daily metabolism and mood.
           </li>
           <li>
-            Families monitor routines more safely, without anxiety or over-monitoring.
+            Giving families a calmer, structured way to watch routines — without anxiety or over-monitoring.
           </li>
           <li>
-            Clinicians receive structured, explainable event streams rather than raw data.
+            Providing clinicians with structured, explainable event streams instead of raw, noisy data exports.
           </li>
           <li>
-            Ministries see population trends in an anonymised, privacy-preserving way.
+            Allowing ministries to see anonymised trends in adherence, environment stress and lifestyle patterns
+            at national scale.
           </li>
         </ul>
         <p>
-          This is not just about numbers — it is about real life translated into intelligence.
+          This is not just about numbers; it is about
+          <span class="highlight">real life translated into safe intelligence</span>.
         </p>
+      </section>
 
-        <h2>6. The Future of Diabetes Care</h2>
+      <!-- FUTURE OF DIABETES CARE -->
+      <section class="card">
+        <h2>6. The Future of Diabetes &amp; Metabolic Care</h2>
         <p>
           Diabetes rates are rising worldwide. Phase 9 is built to help countries respond with:
         </p>
         <ul>
-          <li>Culturally precise guidance</li>
-          <li>Multilingual intelligence</li>
-          <li>Safe, auditable pattern recognition</li>
-          <li>Human-centered support</li>
+          <li>Culturally precise, non-diagnostic guidance.</li>
+          <li>Multilingual intelligence across GCC, MENA and Europe.</li>
+          <li>Safe, auditable pattern recognition with BBVP methodology.</li>
+          <li>Human-centered support around sleep, stress, food and movement.</li>
         </ul>
         <p>
-          It is one of the most important engines inside Elisence — and one of the most needed in global health today.
+          Phase 9 is one of the most important engines inside Elisence —
+          and one of the most urgently needed in global health today.
         </p>
-      </div>
-    </article>
-  </main>
+      </section>
 
+      <!-- FOOTER: BACK + CHANNELS -->
+      <div class="footer-block">
+        <p class="back-link">
+          <a href="../articles.html">&larr; Back to Elisence Knowledge Center</a>
+        </p>
+        <p>
+          Explore more:
+          <a href="what-is-elisence.html">What Is Elisence?</a> ·
+          <a href="ai-safety-non-diagnostic-elisence.html">AI Safety &amp; Non-Diagnostic Architecture</a> ·
+          <a href="elisence-qatar-vision-2030.html">Elisence &amp; Qatar Vision 2030</a> ·
+          <a href="women-health.html">Women+ Health — Why It Matters</a>
+        </p>
+
+        <div class="channels">
+          <div class="channels-title">Official Elisence Channels</div>
+          <ul class="channels-list">
+            <li>Website: <a href="https://elisence.com" target="_blank" rel="noopener">https://elisence.com</a></li>
+            <li>YouTube: <a href="https://www.youtube.com/@Elisence_saami_salami_as" target="_blank" rel="noopener">@Elisence_saami_salami_as</a></li>
+            <li>Instagram: <a href="https://www.instagram.com/elisence.ai" target="_blank" rel="noopener">@elisence.ai</a></li>
+            <li>TikTok: <a href="https://www.tiktok.com/@elisence.official" target="_blank" rel="noopener">@elisence.official</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/company/elisence-official" target="_blank" rel="noopener">Elisence Official</a></li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ریشهٔ ویجت Elisa -->
+  <div id="elisa-chat-root"></div>
 </body>
 </html>
