@@ -39,6 +39,7 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -46,6 +47,7 @@
       color: #ffffff;
       overflow-x: hidden;
     }
+
     .top-nav {
       width: 100%;
       padding: 14px 24px;
@@ -53,6 +55,7 @@
       justify-content: flex-start;
       gap: 18px;
     }
+
     .top-nav a {
       color: #a9d4ff;
       text-decoration: none;
@@ -60,6 +63,7 @@
       text-transform: uppercase;
       font-size: 11px;
     }
+
     .page-wrapper {
       min-height: calc(100vh - 60px);
       display: flex;
@@ -67,6 +71,7 @@
       justify-content: center;
       padding: 40px 18px;
     }
+
     .hero-card {
       max-width: 860px;
       width: 100%;
@@ -78,6 +83,7 @@
         0 0 40px rgba(0,170,255,0.8),
         0 0 120px rgba(0,80,200,0.5);
     }
+
     .article-label {
       color: #a9d4ff;
       letter-spacing: 0.2em;
@@ -85,145 +91,86 @@
       margin-bottom: 6px;
       text-transform: uppercase;
     }
+
     .article-title {
       font-size: 22px;
       margin-bottom: 10px;
       line-height: 1.4;
     }
+
     .article-meta {
       color: #c1dcff;
       font-size: 12px;
       margin-bottom: 18px;
     }
+
     .article-body {
       color: #e0efff;
       line-height: 1.85;
       font-size: 14px;
     }
+
     .article-body h2 {
       margin-top: 20px;
       margin-bottom: 8px;
       font-size: 17px;
     }
+
     .article-body p { margin-bottom: 10px; }
+
     .article-body ul { margin: 6px 0 14px 20px; }
+
     .article-body li { margin-bottom: 4px; }
-  </style>
-</head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Who Is Saami Salami Asl? | Founder of Elisence</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta
-    name="description"
-    content="Who is Saami Salami Asl? Founder of Elisence — a 17-phase global digital health and humanity platform built with zero-trust, non-diagnostic AI, and national-grade safety architecture."
-  />
+    /* 🔵 Right-side neon menu (همون منوی صفحه اصلی) */
+    .side-menu {
+      position: fixed;
+      top: 100px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 999;
+    }
 
-  <meta
-    name="keywords"
-    content="Saami Salami Asl, Sami Salami, Saami Salami, Elisence Founder, Digital Health Qatar, Health AI Founder, Elisence, Global Digital Health"
-  />
-
-  <!-- JSON-LD Person Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Saami Salami Asl",
-    "alternateName": ["Sami Salami", "Saami Salami"],
-    "description": "Founder and Chief Architect of Elisence, a global digital health ecosystem built across 17 phases.",
-    "jobTitle": "Founder of Elisence",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Elisence"
-    },
-    "sameAs": [
-      "https://elisence.com",
-      "https://www.instagram.com/elisence.ai",
-      "https://www.youtube.com/@Elisence_saami_salami_as",
-      "https://www.linkedin.com/company/elisence-official"
-    ]
-  }
-  </script>
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+    .side-menu a {
+      width: 140px;
+      padding: 12px 0;
+      text-align: center;
+      background: rgba(0, 150, 255, 0.25);
+      border-radius: 40px;
       color: #ffffff;
-      overflow-x: hidden;
-    }
-    .top-nav {
-      width: 100%;
-      padding: 14px 24px;
-      display: flex;
-      justify-content: flex-start;
-      gap: 18px;
-    }
-    .top-nav a {
-      color: #a9d4ff;
+      font-size: 13px;
       text-decoration: none;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 11px;
-    }
-    .page-wrapper {
-      min-height: calc(100vh - 60px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 18px;
-    }
-    .hero-card {
-      max-width: 860px;
-      width: 100%;
-      padding: 32px 26px;
-      border-radius: 24px;
-      background: radial-gradient(circle at top, rgba(0,156,255,0.32), rgba(0,12,40,0.96));
-      border: 1px solid rgba(70,190,255,0.6);
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(0, 180, 255, 0.5);
       box-shadow:
-        0 0 40px rgba(0,170,255,0.8),
-        0 0 120px rgba(0,80,200,0.5);
+        0 0 12px rgba(0, 180, 255, 0.7),
+        inset 0 0 12px rgba(0, 130, 255, 0.3);
+      transition: all 0.25s ease;
     }
-    .article-label {
-      color: #a9d4ff;
-      letter-spacing: 0.2em;
-      font-size: 11px;
-      margin-bottom: 6px;
-      text-transform: uppercase;
+
+    .side-menu a:hover {
+      background: rgba(0, 150, 255, 0.45);
+      box-shadow:
+        0 0 20px rgba(0, 180, 255, 1),
+        inset 0 0 20px rgba(0, 130, 255, 0.5);
     }
-    .article-title {
-      font-size: 22px;
-      margin-bottom: 10px;
-      line-height: 1.4;
-    }
-    .article-meta {
-      color: #c1dcff;
-      font-size: 12px;
-      margin-bottom: 18px;
-    }
-    .article-body {
-      color: #e0efff;
-      line-height: 1.85;
-      font-size: 14px;
-    }
-    .article-body h2 {
-      margin-top: 20px;
-      margin-bottom: 8px;
-      font-size: 17px;
-    }
-    .article-body p { margin-bottom: 10px; }
-    .article-body ul { margin: 6px 0 14px 20px; }
-    .article-body li { margin-bottom: 4px; }
   </style>
 </head>
 
 <body>
+
+  <!-- 🔵 Right-side menu -->
+  <div class="side-menu">
+    <a href="../index.html">HOME</a>
+    <a href="../phases.html">PHASES</a>
+    <a href="../qatar.html">QATAR</a>
+    <a href="../about.html">ABOUT</a>
+    <a href="../story.html">STORY</a>
+    <a href="../videos.html">VIDEOS</a>
+    <a href="../contact.html">CONTACT</a>
+  </div>
 
   <header class="top-nav">
     <a href="../index.html">Home</a>
@@ -244,9 +191,9 @@
 
         <h2>1. Early Background</h2>
         <p>
-          Saami Salami Asl originally studied **Electrical Engineering**, before later moving into **Law**.
-          This rare combination — technical depth and legal understanding — eventually shaped
-          the architectural foundations of Elisence.
+          Saami Salami Asl originally studied <strong>Electrical Engineering</strong>, before later moving into
+          <strong>Law</strong>. This rare combination — technical depth and legal understanding —
+          eventually shaped the architectural foundations of Elisence.
         </p>
 
         <h2>2. Professional Path</h2>
@@ -266,14 +213,14 @@
 
         <h2>3. Founding Elisence</h2>
         <p>
-          In 2023, Saami began designing **Elisence** — a 17-phase global digital health and humanity platform
-          built from the ground up with:
+          In 2023, Saami began designing <strong>Elisence</strong> — a 17-phase global digital health
+          and humanity platform built from the ground up with:
         </p>
         <ul>
           <li>zero-trust architecture</li>
           <li>non-diagnostic, explainable AI</li>
           <li>evidence-based engineering</li>
-          <li>national-grade privacy & safety rules</li>
+          <li>national-grade privacy &amp; safety rules</li>
           <li>multi-language cultural intelligence</li>
         </ul>
         <p>
@@ -295,103 +242,7 @@
           Elisence reflects a belief that technology should amplify care — not replace it.
         </p>
 
-        <h2>5. Today & The Road Ahead</h2>
-        <p>
-          Today, Saami leads Elisence across:
-        </p>
-        <ul>
-          <li>Qatar</li>
-          <li>UK</li>
-          <li>GCC expansion</li>
-          <li>global regulatory alignment</li>
-          <li>17 interconnected phases of health intelligence</li>
-        </ul>
-        <p>
-          The long-term vision is a global platform that connects health, family,
-          environment, safety and human well-being into one trusted ecosystem.
-        </p>
-
-        <p><strong>Elisence is more than a product — it is a mission.</strong></p>
-
-      </div>
-    </article>
-  </main>
-
-</body>
-</html>
-<body>
-
-  <header class="top-nav">
-    <a href="../index.html">Home</a>
-    <a href="../articles.html">Articles</a>
-  </header>
-
-  <main class="page-wrapper">
-    <article class="hero-card">
-
-      <div class="article-label">Elisence · Founder</div>
-      <h1 class="article-title">Who Is Saami Salami Asl?</h1>
-
-      <div class="article-meta">
-        An independent founder building a multi-phase global digital health ecosystem.
-      </div>
-
-      <div class="article-body">
-
-        <h2>1. Early Background</h2>
-        <p>
-          Saami Salami Asl originally studied **Electrical Engineering**, before later moving into **Law**.
-          This rare combination — technical depth and legal understanding — eventually shaped
-          the architectural foundations of Elisence.
-        </p>
-
-        <h2>2. Professional Path</h2>
-        <p>
-          Before building Elisence, Saami worked across diverse environments:
-        </p>
-        <ul>
-          <li>care homes and solitary care environments</li>
-          <li>home-care settings supporting vulnerable people</li>
-          <li>working alongside nurses, clinicians and medical teams</li>
-          <li>deep involvement with families navigating complex health journeys</li>
-        </ul>
-        <p>
-          These experiences created a clear understanding of what real families, carers,
-          and health systems struggle with on a daily basis.
-        </p>
-
-        <h2>3. Founding Elisence</h2>
-        <p>
-          In 2023, Saami began designing **Elisence** — a 17-phase global digital health and humanity platform
-          built from the ground up with:
-        </p>
-        <ul>
-          <li>zero-trust architecture</li>
-          <li>non-diagnostic, explainable AI</li>
-          <li>evidence-based engineering</li>
-          <li>national-grade privacy & safety rules</li>
-          <li>multi-language cultural intelligence</li>
-        </ul>
-        <p>
-          The vision is a platform that protects people, supports clinicians,
-          and gives countries the intelligence they need — without ever crossing clinical boundaries.
-        </p>
-
-        <h2>4. A Philosophy of Human-Centered Digital Health</h2>
-        <p>
-          Saami’s approach is rooted in:
-        </p>
-        <ul>
-          <li>protecting vulnerable populations</li>
-          <li>designing safe behavioural AI</li>
-          <li>building transparent, sovereign systems</li>
-          <li>integrating families, women, chronic conditions and environment</li>
-        </ul>
-        <p>
-          Elisence reflects a belief that technology should amplify care — not replace it.
-        </p>
-
-        <h2>5. Today & The Road Ahead</h2>
+        <h2>5. Today &amp; The Road Ahead</h2>
         <p>
           Today, Saami leads Elisence across:
         </p>
