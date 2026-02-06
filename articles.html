@@ -2,52 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Who Is Saami Salami Asl? | Founder of Elisence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- SEO Title -->
-  <title>Elisence Knowledge Center | Sovereign Digital Health Articles</title>
-
-  <!-- Meta Description -->
   <meta
     name="description"
-    content="Elisence Knowledge Center — A sovereign digital health platform with Zero-Trust AI, non-diagnostic behavioral intelligence, Qatar Vision 2030 alignment, diabetes intelligence, Women+ health, family care, and global nutrition guidance."
+    content="Who is Saami Salami Asl? Founder of Elisence — a 17-phase global digital health and humanity platform built with zero-trust, non-diagnostic AI, and national-grade safety architecture."
   />
 
-  <!-- SEO Keywords -->
   <meta
     name="keywords"
-    content="Elisence, Sovereign Digital Health, Zero-Trust Health AI, Non-Diagnostic Behavioral AI, Qatar Vision 2030, Health Intelligence, Diabetes Engine, Women+ Health, Family Health, Multilingual Health AI, Global Nutrition"
+    content="Saami Salami Asl, Sami Salami, Saami Salami, Elisence Founder, Digital Health Qatar, Health AI Founder, Elisence, Global Digital Health"
   />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- JSON-LD Schema: CollectionPage -->
+  <!-- JSON-LD Person Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Elisence Knowledge Center",
-    "description": "Educational health intelligence library built on Elisence’s sovereign, non-diagnostic, Zero-Trust architecture.",
-    "publisher": {
+    "@type": "Person",
+    "name": "Saami Salami Asl",
+    "alternateName": ["Sami Salami", "Saami Salami"],
+    "description": "Founder and Chief Architect of Elisence, a global digital health ecosystem built across 17 phases.",
+    "jobTitle": "Founder of Elisence",
+    "affiliation": {
       "@type": "Organization",
-      "name": "Elisence",
-      "url": "https://elisence.com"
+      "name": "Elisence"
     },
-    "author": {
-      "@type": "Person",
-      "name": "Saami Salami Asl"
-    }
+    "sameAs": [
+      "https://elisence.com",
+      "https://www.instagram.com/elisence.ai",
+      "https://www.youtube.com/@Elisence_saami_salami_as",
+      "https://www.linkedin.com/company/elisence-official"
+    ]
   }
   </script>
 
-  <!-- Elisa chat widget script -->
-  <script defer src="elisa-chat.js"></script>
-
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
@@ -55,625 +46,223 @@
       background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
       color: #ffffff;
       overflow-x: hidden;
-      line-height: 1.6;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* نقطه و برچسب بالا */
-    .top-dot {
-      position: fixed;
-      left: 18px;
-      top: 18px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
-      box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
-      z-index: 20;
-    }
-
-    .top-dot-label {
-      position: fixed;
-      left: 40px;
-      top: 16px;
-      font-size: 14px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #a9d4ff;
-      z-index: 20;
-    }
-
-    /* منوی عمودی سمت راست */
-    .side-nav {
-      position: fixed;
-      right: 32px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 999;
-    }
-
-    .nav-btn {
-      display: block;
-      padding: 13px 38px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 14px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #e3f2ff;
-      background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
-      border: 1px solid rgba(90, 185, 255, 0.9);
-      box-shadow:
-        0 0 16px rgba(0, 130, 255, 0.95),
-        0 0 34px rgba(0, 40, 120, 0.95);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
-    }
-
-    .nav-btn:hover {
-      transform: translateX(-4px);
-      padding-right: 44px;
-      box-shadow:
-        0 0 22px rgba(0, 190, 255, 1),
-        0 0 46px rgba(0, 80, 200, 1);
-      background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
-    }
-
-    .nav-btn:active {
-      transform: translateX(-2px) scale(0.99);
-    }
-
-    /* شِل صفحه اصلی Knowledge Center */
-    .page-shell {
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 80px 40px 80px 40px;
-    }
-
-    .content-main {
+    .top-nav {
       width: 100%;
-      max-width: 1100px;
-      margin-right: 190px; /* جا برای منوی عمودی */
-    }
-
-    .page-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #7dd3fc;
-      background: rgba(56, 189, 248, 0.16);
-      border-radius: 999px;
-      padding: 0.35rem 0.9rem;
-      border: 1px solid rgba(56, 189, 248, 0.7);
-      margin-bottom: 1rem;
-    }
-
-    .page-tag-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #38bdf8;
-    }
-
-    h1 {
-      font-size: 1.9rem;
-      margin-bottom: 0.4rem;
-      color: #e0f2fe;
-    }
-
-    .subtitle {
-      font-size: 0.96rem;
-      color: #cbd5f5;
-      margin-bottom: 1.6rem;
-      max-width: 880px;
-    }
-
-    /* شبکه کارت‌ها */
-    .articles-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 14px 24px;
+      display: flex;
+      justify-content: flex-start;
       gap: 18px;
     }
 
-    @media (max-width: 960px) {
-      .page-shell {
-        padding: 80px 18px 100px 18px;
-      }
-
-      .content-main {
-        margin-right: 0;
-      }
-
-      .articles-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .side-nav {
-        position: fixed;
-        right: 50%;
-        top: auto;
-        bottom: 18px;
-        transform: translateX(50%);
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-      }
-
-      .nav-btn {
-        padding: 9px 20px;
-        font-size: 11px;
-        letter-spacing: 0.11em;
-      }
+    .top-nav a {
+      color: #a9d4ff;
+      text-decoration: none;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 11px;
     }
 
-    .article-card {
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 1.4rem 1.5rem 1.5rem 1.5rem;
-      box-shadow:
-        0 0 22px rgba(0, 140, 255, 0.55),
-        0 0 40px rgba(15, 23, 42, 0.95);
+    .page-wrapper {
+      min-height: calc(100vh - 60px);
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 18px;
+    }
+
+    .hero-card {
+      max-width: 860px;
+      width: 100%;
+      padding: 32px 26px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(0,156,255,0.32), rgba(0,12,40,0.96));
+      border: 1px solid rgba(70,190,255,0.6);
+      box-shadow:
+        0 0 40px rgba(0,170,255,0.8),
+        0 0 120px rgba(0,80,200,0.5);
     }
 
     .article-label {
-      font-size: 0.72rem;
+      color: #a9d4ff;
+      letter-spacing: 0.2em;
+      font-size: 11px;
+      margin-bottom: 6px;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #bfdbfe;
-      background: rgba(30, 64, 175, 0.35);
-      border-radius: 999px;
-      padding: 0.24rem 0.7rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .article-label-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #38bdf8;
     }
 
     .article-title {
-      font-size: 1.02rem;
-      font-weight: 600;
-      color: #e5f2ff;
+      font-size: 22px;
+      margin-bottom: 10px;
+      line-height: 1.4;
     }
 
-    .article-title a {
-      color: #e5f2ff;
+    .article-meta {
+      color: #c1dcff;
+      font-size: 12px;
+      margin-bottom: 18px;
     }
 
-    .article-title a:hover {
-      text-decoration: underline;
+    .article-body {
+      color: #e0efff;
+      line-height: 1.85;
+      font-size: 14px;
     }
 
-    .article-desc {
-      font-size: 0.9rem;
-      color: #cbd5f5;
+    .article-body h2 {
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-size: 17px;
     }
 
-    .article-meta-line {
-      font-size: 0.8rem;
-      color: #94a3b8;
-      margin-top: 0.3rem;
+    .article-body p { margin-bottom: 10px; }
+
+    .article-body ul { margin: 6px 0 14px 20px; }
+
+    .article-body li { margin-bottom: 4px; }
+
+    /* 🔵 Right-side neon menu (همون منوی صفحه اصلی) */
+    .side-menu {
+      position: fixed;
+      top: 100px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 999;
     }
 
-    .article-meta-line span {
-      color: #7dd3fc;
+    .side-menu a {
+      width: 140px;
+      padding: 12px 0;
+      text-align: center;
+      background: rgba(0, 150, 255, 0.25);
+      border-radius: 40px;
+      color: #ffffff;
+      font-size: 13px;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(0, 180, 255, 0.5);
+      box-shadow:
+        0 0 12px rgba(0, 180, 255, 0.7),
+        inset 0 0 12px rgba(0, 130, 255, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .side-menu a:hover {
+      background: rgba(0, 150, 255, 0.45);
+      box-shadow:
+        0 0 20px rgba(0, 180, 255, 1),
+        inset 0 0 20px rgba(0, 130, 255, 0.5);
     }
   </style>
 </head>
+
 <body>
 
-  <div class="top-dot"></div>
-  <div class="top-dot-label">ELISENCE</div>
-
-  <!-- منوی عمودی سمت راست -->
-  <nav class="side-nav">
-    <a href="index.html"        class="nav-btn">Home</a>
-    <a href="index.html#phases" class="nav-btn">Phases</a>
-    <a href="qatar.html"        class="nav-btn">Qatar</a>
-    <a href="about.html"        class="nav-btn">About</a>
-    <a href="story.html"        class="nav-btn">Story</a>
-    <a href="video.html"        class="nav-btn">Videos</a>
-    <a href="contact.html"      class="nav-btn">Contact</a>
-  </nav>
-
-  <div class="page-shell">
-    <main class="content-main">
-      <div class="page-tag">
-        <span class="page-tag-dot"></span>
-        <span>Elisence Knowledge Center</span>
-      </div>
-
-      <h1>Knowledge Center — Sovereign Health Intelligence Library</h1>
-      <p class="subtitle">
-        Curated, non-diagnostic educational articles from the Elisence ecosystem — covering sovereign digital health,
-        AI safety, Qatar Vision 2030 alignment, diabetes intelligence, Women+ health, family care, founder philosophy, and global nutrition.
-      </p>
-
-      <section class="articles-grid">
-
-        <!-- ARTICLE 1: Core Intro -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Core Article</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/what-is-elisence.html">What Is Elisence?</a>
-          </h2>
-          <p class="article-desc">
-            Introduction to Elisence as a sovereign, multi-phase digital health ecosystem with Zero-Trust AI,
-            non-diagnostic behavioral intelligence, and national-grade data governance.
-          </p>
-          <div class="article-meta-line">
-            Part of the <span>Global Platform &amp; Governance</span> series.
-          </div>
-        </article>
-
-        <!-- ARTICLE 2: Elisence Intro (Story-style) -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Intro</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/elisence-intro.html">Elisence — Safe, Intelligent, Human-Centered Digital Health</a>
-          </h2>
-          <p class="article-desc">
-            A narrative introduction to why Elisence was created, how the 17 phases fit together, and what makes
-            this platform different from traditional health apps.
-          </p>
-          <div class="article-meta-line">
-            Focus: <span>Vision &amp; Origin Story</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 3: Qatar 2030 -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Qatar 2030</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/elisence-qatar-vision-2030.html">Elisence &amp; Qatar Vision 2030</a>
-          </h2>
-          <p class="article-desc">
-            How Elisence maps to Qatar’s national strategy via sovereignty, PDPL data residency, ICV,
-            and regulated digital health infrastructure for citizens and ministries.
-          </p>
-          <div class="article-meta-line">
-            Focus: <span>Policy, Sovereignty, ICV</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 4: Qatar Digital Health 2030 (Founder View) -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Qatar · Founder</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/qatar-digital-health-2030-elisence-saami-salami-asl.html">
-              Qatar Digital Health 2030 — Elisence &amp; Saami Salami Asl
-            </a>
-          </h2>
-          <p class="article-desc">
-            Founder-level analysis on how Qatar can build sovereign digital health infrastructure, powered by Elisence,
-            while remaining fully aligned with Vision 2030.
-          </p>
-          <div class="article-meta-line">
-            Strategic note for <span>Qatar ministries &amp; partners</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 5: AI Safety – Core Non-Diagnostic -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>AI Safety</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/ai-safety-non-diagnostic-elisence.html">AI Safety &amp; Non-Diagnostic Architecture</a>
-          </h2>
-          <p class="article-desc">
-            Why Elisence uses Non-Diagnostic Behavioral AI, Zero-Trust security, WORM auditing
-            and BBVP methodology to stay safe for ministries, clinicians and citizens.
-          </p>
-          <div class="article-meta-line">
-            Focus: <span>Zero-Trust, BBVP, WORM</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 6: AI Safety – Architecture Deep Dive -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>AI Safety · Tech</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/ai-safety-non-diagnostic-architecture-elisence.html">
-              Inside the Elisence AI Safety Architecture
-            </a>
-          </h2>
-          <p class="article-desc">
-            Technical yet accessible breakdown of how Elisence constrains AI behavior, logs events,
-            and separates wellness guidance from any clinical decision-making.
-          </p>
-          <div class="article-meta-line">
-            For <span>technical teams &amp; regulators</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 7: Digital Health Zero-Trust -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Digital Health</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/digital-health-zero-trust.html">Zero-Trust in Digital Health</a>
-          </h2>
-          <p class="article-desc">
-            Understanding Zero-Trust Health AI, WORM auditing, privacy, and why modern
-            digital health platforms must follow strict safety-first architecture.
-          </p>
-          <div class="article-meta-line">
-            Focus: <span>Security &amp; Governance</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 8: Zero-Trust Future of Digital Health -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Zero-Trust</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/zero-trust-future-of-digital-health.html">The Zero-Trust Future of Digital Health</a>
-          </h2>
-          <p class="article-desc">
-            A forward-looking view on how Zero-Trust, sovereign data and explainable AI will shape
-            the next decade of healthcare systems worldwide.
-          </p>
-          <div class="article-meta-line">
-            Part of <span>Future Systems &amp; Policy</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 9: Safety in Digital Health – Elisence Model -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Safety Model</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/safety-in-digital-health-elisence-model.html">
-              Safety in Digital Health — The Elisence Model
-            </a>
-          </h2>
-          <p class="article-desc">
-            How Elisence combines feature flags, audit trails, i18n safety libraries and strict boundaries
-            between wellness, mental health support and clinical domains.
-          </p>
-          <div class="article-meta-line">
-            Focus: <span>Operational Safety</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 10: Global Platform Overview -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Global Platform</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/elisence-global-platform.html">Elisence — Global Digital Health Platform</a>
-          </h2>
-          <p class="article-desc">
-            Full overview of Elisence as a multi-phase, global, zero-trust digital health ecosystem
-            connecting GLP-1, diabetes, women’s health, environment and mental health.
-          </p>
-          <div class="article-meta-line">
-            Focus: <span>Architecture &amp; Global Vision</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 11: Why the World Needs Elisence -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Why Elisence</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/why-the-world-needs-elisence.html">Why the World Needs Elisence</a>
-          </h2>
-          <p class="article-desc">
-            Explaining, in simple language, why existing health apps are not enough and why
-            sovereign, multilingual, explainable intelligence is now essential.
-          </p>
-          <div class="article-meta-line">
-            For <span>citizens, media &amp; investors</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 12: Women+ -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Women+</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/women-health.html">Women+ Health — Why It Matters</a>
-          </h2>
-          <p class="article-desc">
-            Cycle health, fertility, pregnancy, postpartum and menopause — explained in a safe,
-            non-diagnostic educational framework for women, families and ministries.
-          </p>
-          <div class="article-meta-line">
-            Part of <span>Phase 7 – Women+ Health</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 13: Diabetes Intelligence (overview) -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Diabetes · Overview</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/diabetes-intelligence.html">The Future of Diabetes Intelligence</a>
-          </h2>
-          <p class="article-desc">
-            GLP-1 logic, metabolic modelling, adherence patterns and lifestyle insight — how
-            Elisence transforms diabetes journeys into structured, non-diagnostic intelligence.
-          </p>
-          <div class="article-meta-line">
-            Part of <span>Phase 9 – Diabetes &amp; Metabolic Health</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 14: Phase 9 Deep Dive -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Phase 9 Deep Dive</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/phase9-diabetes-intelligence.html">Diabetes &amp; Metabolic Intelligence Engine</a>
-          </h2>
-          <p class="article-desc">
-            Deep breakdown of Phase 9 — connecting glucose, food, sleep, stress and environment
-            into a coherent, sovereign diabetes intelligence engine.
-          </p>
-          <div class="article-meta-line">
-            Technical deep dive for <span>ministries, clinicians and investors</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 15: Family 0–18 -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Family</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/family-0-18.html">Family Ecosystem (0–18)</a>
-          </h2>
-          <p class="article-desc">
-            Children’s growth, sleep, digital safety, emotional stability and bonding — the
-            foundation of Elisence’s long-term family and education vision.
-          </p>
-          <div class="article-meta-line">
-            Part of <span>Phase 15 – Family &amp; Children</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 16: Founder Profile -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Founder</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/who-is-saami-salami-asl-elisence-founder.html">
-              Who Is Saami Salami Asl? — Elisence Founder
-            </a>
-          </h2>
-          <p class="article-desc">
-            Personal and professional background of Saami Salami Asl, and why his journey in law,
-            engineering and health led to the creation of Elisence.
-          </p>
-          <div class="article-meta-line">
-            Focus: <span>Founder Profile &amp; Story</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 17: Founder Philosophy (short) -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Founder · Philosophy</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/founder-philosophy-saami-salami-asl.html">
-              Founder Philosophy — Care, Justice &amp; Technology
-            </a>
-          </h2>
-          <p class="article-desc">
-            How lived experience, family, and years of legal work shaped the core philosophy behind
-            Elisence as a human-first health intelligence platform.
-          </p>
-          <div class="article-meta-line">
-            Part of <span>Founder Thought Series</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 18: Founder Philosophy (Elisence-focused) -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>Founder · Elisence</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/saami-salami-asl-founder-philosophy-elisence.html">
-              Why I Built Elisence — Founder Philosophy
-            </a>
-          </h2>
-          <p class="article-desc">
-            A direct message from Saami Salami Asl on what Elisence stands for, who it is built to serve,
-            and how it must behave towards patients, families and clinicians.
-          </p>
-          <div class="article-meta-line">
-            For <span>investors, ministries &amp; partners</span>.
-          </div>
-        </article>
-
-        <!-- ARTICLE 19: National Health Intelligence -->
-        <article class="article-card">
-          <div class="article-label">
-            <span class="article-label-dot"></span>
-            <span>National Intelligence</span>
-          </div>
-          <h2 class="article-title">
-            <a href="articles/national-health-intelligence-saami-salami-asl.html">
-              The Future of National Health Intelligence — Founder Perspective
-            </a>
-          </h2>
-          <p class="article-desc">
-            Strategic founder-level analysis on how nations can build safe, multilingual,
-            sovereign health intelligence systems aligned with global digital health needs.
-          </p>
-          <div class="article-meta-line">
-            Part of <span>Founder · Global Health Intelligence</span>.
-          </div>
-        </article>
-
-      </section>
-    </main>
+  <!-- 🔵 Right-side menu -->
+  <div class="side-menu">
+    <a href="../index.html">HOME</a>
+    <a href="../phases.html">PHASES</a>
+    <a href="../qatar.html">QATAR</a>
+    <a href="../about.html">ABOUT</a>
+    <a href="../story.html">STORY</a>
+    <a href="../videos.html">VIDEOS</a>
+    <a href="../contact.html">CONTACT</a>
   </div>
 
-  <!-- ریشهٔ ویجت Elisa -->
-  <div id="elisa-chat-root"></div>
+  <header class="top-nav">
+    <a href="../index.html">Home</a>
+    <a href="../articles.html">Articles</a>
+  </header>
+
+  <main class="page-wrapper">
+    <article class="hero-card">
+
+      <div class="article-label">Elisence · Founder</div>
+      <h1 class="article-title">Who Is Saami Salami Asl?</h1>
+
+      <div class="article-meta">
+        An independent founder building a multi-phase global digital health ecosystem.
+      </div>
+
+      <div class="article-body">
+
+        <h2>1. Early Background</h2>
+        <p>
+          Saami Salami Asl originally studied <strong>Electrical Engineering</strong>, before later moving into
+          <strong>Law</strong>. This rare combination — technical depth and legal understanding —
+          eventually shaped the architectural foundations of Elisence.
+        </p>
+
+        <h2>2. Professional Path</h2>
+        <p>
+          Before building Elisence, Saami worked across diverse environments:
+        </p>
+        <ul>
+          <li>care homes and solitary care environments</li>
+          <li>home-care settings supporting vulnerable people</li>
+          <li>working alongside nurses, clinicians and medical teams</li>
+          <li>deep involvement with families navigating complex health journeys</li>
+        </ul>
+        <p>
+          These experiences created a clear understanding of what real families, carers,
+          and health systems struggle with on a daily basis.
+        </p>
+
+        <h2>3. Founding Elisence</h2>
+        <p>
+          In 2023, Saami began designing <strong>Elisence</strong> — a 17-phase global digital health
+          and humanity platform built from the ground up with:
+        </p>
+        <ul>
+          <li>zero-trust architecture</li>
+          <li>non-diagnostic, explainable AI</li>
+          <li>evidence-based engineering</li>
+          <li>national-grade privacy &amp; safety rules</li>
+          <li>multi-language cultural intelligence</li>
+        </ul>
+        <p>
+          The vision is a platform that protects people, supports clinicians,
+          and gives countries the intelligence they need — without ever crossing clinical boundaries.
+        </p>
+
+        <h2>4. A Philosophy of Human-Centered Digital Health</h2>
+        <p>
+          Saami’s approach is rooted in:
+        </p>
+        <ul>
+          <li>protecting vulnerable populations</li>
+          <li>designing safe behavioural AI</li>
+          <li>building transparent, sovereign systems</li>
+          <li>integrating families, women, chronic conditions and environment</li>
+        </ul>
+        <p>
+          Elisence reflects a belief that technology should amplify care — not replace it.
+        </p>
+
+        <h2>5. Today &amp; The Road Ahead</h2>
+        <p>
+          Today, Saami leads Elisence across:
+        </p>
+        <ul>
+          <li>Qatar</li>
+          <li>UK</li>
+          <li>GCC expansion</li>
+          <li>global regulatory alignment</li>
+          <li>17 interconnected phases of health intelligence</li>
+        </ul>
+        <p>
+          The long-term vision is a global platform that connects health, family,
+          environment, safety and human well-being into one trusted ecosystem.
+        </p>
+
+        <p><strong>Elisence is more than a product — it is a mission.</strong></p>
+
+      </div>
+    </article>
+  </main>
 
 </body>
 </html>
