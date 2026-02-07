@@ -1,53 +1,408 @@
-<div class="hero">
-  <h1>Elisence — Sovereign Digital Health & Humanity Platform</h1>
-  <p>
-    Elisence is a global, sovereign digital health infrastructure designed and founded by 
-    <strong>Saami Salami Asl</strong> (also written as <strong>Sami Salami Asl</strong> or <strong>Saami Salami</strong>).
-    It is a 17-phase, multilingual health intelligence ecosystem built on Zero-Trust AI, 
-    non-diagnostic behavioral models, and national-grade data governance.
-  </p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Elisence – Sovereign Digital Health & Humanity Platform</title>
 
-<div class="container">
-  <h2>Our Mission</h2>
-  <p>
-    Elisence aims to create the world’s safest and most intelligent health ecosystem — one that 
-    supports users, clinicians, hospitals, ministries, families, and vulnerable populations 
-    across GCC, MENA, UK, and EU. Our platform is designed as a <strong>Sovereign Digital Health Infrastructure</strong>
-    that governments can trust and scale.
-  </p>
-    <p>Learn more about the Elisence platform here: <a href="elisence.html">Elisence – The Global Digital Health Platform</a></p>
-  <h2>The 17-Phase Architecture</h2>
-  <p>
-    Every component of Elisence — from Women+ Health and Diabetes Intelligence to Accessibility, 
-    Mental Health, Family (0–18), Environment (Phase 12), and Global Nutrition (Phase 16) — is 
-    modular, feature-flagged, clinically compliant, and built for national deployment.
-  </p>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Elisence is a sovereign, multi-phase digital health and humanity platform founded by Saami Salami Asl. It combines Zero-Trust AI, non-diagnostic behavioral intelligence, and national-grade governance across 17 phases."
+  />
+  <meta
+    name="keywords"
+    content="Elisence, About Elisence, Saami Salami Asl, Sovereign Digital Health, Zero-Trust Health AI, Qatar Vision 2030, Women+ Health, Diabetes Intelligence, National Health Intelligence"
+  />
 
-  <h2>Why Governments Trust Elisence</h2>
-  <ul>
-    <li>Zero-Trust Health AI</li>
-    <li>WORM-ledger audit layer</li>
-    <li>National data residency & sovereignty (Qatar-ready)</li>
-    <li>Non-diagnostic, safe, patient-first architecture</li>
-    <li>5-language intelligence (EN, AR, FA, TR, RO)</li>
-    <li>Integration-ready for Cerner, Epic and FHIR systems</li>
-  </ul>
+  <!-- JSON-LD: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Elisence",
+    "url": "https://www.elisence.com",
+    "description": "Sovereign digital health and humanity platform built across 17 phases with Zero-Trust AI and non-diagnostic behavioral intelligence.",
+    "founder": {
+      "@type": "Person",
+      "name": "Saami Salami Asl"
+    }
+  }
+  </script>
 
-  <h2>About the Founder — Saami Salami Asl</h2>
-  <p>
-    Saami Salami Asl (Sami Salami Asl) is the founder and architect of Elisence. 
-    He combines a background in engineering, law, digital health, AI safety, and 
-    large-scale system design. His personal mission has always been to build 
-    a health ecosystem that protects people, empowers families, and gives 
-    governments the tools to run modern health infrastructures safely.
-  </p>
+  <!-- Elisa chat widget -->
+  <script defer src="elisa-chat.js"></script>
 
-  <h2>Our Global Vision</h2>
-  <p>
-    Elisence is designed as a universal, sovereign platform that can serve as the 
-    foundation of national digital health strategies across GCC and beyond — a 
-    platform where safety, privacy, culture, and intelligence work together in one 
-    unified system.
-  </p>
-</div>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ───────────────────────────
+       Top mini-nav (Home / Phases / About ...)
+       ─────────────────────────── */
+    .top-nav {
+      width: 100%;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 18px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .top-nav a {
+      color: #a9d4ff;
+    }
+
+    /* ───────────────────────────
+       Right-side neon menu (همان استایل مشترک)
+       ─────────────────────────── */
+    .side-nav {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    .nav-btn {
+      display: block;
+      padding: 13px 38px;
+      border-radius: 999px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e3f2ff;
+      background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+      border: 1px solid rgba(90, 185, 255, 0.9);
+      box-shadow:
+        0 0 16px rgba(0, 130, 255, 0.95),
+        0 0 34px rgba(0, 40, 120, 0.95);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+      text-align: center;
+    }
+
+    .nav-btn:hover {
+      transform: translateX(-4px);
+      padding-right: 44px;
+      box-shadow:
+        0 0 22px rgba(0, 190, 255, 1),
+        0 0 46px rgba(0, 80, 200, 1);
+      background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+    }
+
+    .nav-btn:active {
+      transform: translateX(-2px) scale(0.99);
+    }
+
+    /* ───────────────────────────
+       Main layout
+       ─────────────────────────── */
+    .page-shell {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 40px 80px 40px;
+    }
+
+    .content-main {
+      width: 100%;
+      max-width: 1100px;
+      margin-right: 190px; /* جا برای منوی سمت راست */
+    }
+
+    .hero-panel {
+      width: 100%;
+      border-radius: 26px;
+      padding: 28px 26px 26px 26px;
+      background: radial-gradient(circle at top left, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
+      border: 1px solid rgba(70, 190, 255, 0.6);
+      box-shadow:
+        0 0 34px rgba(0, 170, 255, 0.9),
+        0 0 110px rgba(0, 80, 200, 0.5);
+      margin-bottom: 26px;
+    }
+
+    .hero-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #a9d4ff;
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      font-size: 24px;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      color: #e0f2fe;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: #cbd5ff;
+      max-width: 760px;
+    }
+
+    .hero-subtitle strong {
+      color: #ffffff;
+    }
+
+    .sections-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .section-panel {
+      border-radius: 20px;
+      padding: 18px 18px 20px 18px;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow:
+        0 0 22px rgba(0, 140, 255, 0.55),
+        0 0 40px rgba(15, 23, 42, 0.95);
+      font-size: 14px;
+      color: #e2f0ff;
+      line-height: 1.8;
+    }
+
+    .section-panel h2 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #e5f3ff;
+    }
+
+    .section-panel p {
+      margin-bottom: 10px;
+    }
+
+    .section-panel ul {
+      margin: 4px 0 4px 18px;
+    }
+
+    .section-panel li {
+      margin-bottom: 4px;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #93c5fd;
+      margin-bottom: 6px;
+    }
+
+    .link-inline a {
+      color: #7dd3fc;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .page-shell {
+        padding: 80px 18px 110px 18px;
+      }
+
+      .content-main {
+        margin-right: 0;
+      }
+
+      .sections-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-nav {
+        position: fixed;
+        right: 50%;
+        top: auto;
+        bottom: 18px;
+        transform: translateX(50%);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .nav-btn {
+        padding: 9px 20px;
+        font-size: 11px;
+        letter-spacing: 0.11em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Right-side neon menu -->
+  <nav class="side-nav">
+    <a href="index.html"         class="nav-btn">Home</a>
+    <a href="phases.html"        class="nav-btn">Phases</a>
+    <a href="governments.html"   class="nav-btn">Governments</a>
+    <a href="about.html"         class="nav-btn">About</a>
+    <a href="story.html"         class="nav-btn">Story</a>
+    <a href="video.html"         class="nav-btn">Videos</a>
+    <a href="contact.html"       class="nav-btn">Contact</a>
+    <a href="founder-saami.html" class="nav-btn">Founder</a>
+    <a href="articles.html"      class="nav-btn">Articles</a>
+    <a href="evidence.html"      class="nav-btn">Evidence</a>
+  </nav>
+
+  <!-- Top mini-nav -->
+  <header class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="phases.html">Phases</a>
+    <a href="about.html">About</a>
+  </header>
+
+  <div class="page-shell">
+    <main class="content-main">
+
+      <!-- HERO -->
+      <section class="hero-panel">
+        <div class="hero-kicker">About · Elisence Platform</div>
+        <h1 class="hero-title">Elisence — Sovereign Digital Health &amp; Humanity Platform</h1>
+        <p class="hero-subtitle">
+          Elisence is a global, sovereign digital health infrastructure designed and founded by
+          <strong>Saami Salami Asl</strong> (also written as <strong>Sami Salami Asl</strong> or
+          <strong>Saami Salami</strong>). It is a 17-phase, multilingual health intelligence ecosystem
+          built on Zero-Trust AI, non-diagnostic behavioral models, and national-grade data governance.
+        </p>
+      </section>
+
+      <!-- MAIN SECTIONS -->
+      <section class="sections-grid">
+
+        <!-- Mission -->
+        <article class="section-panel">
+          <div class="section-tag">Mission</div>
+          <h2>1. Our Mission</h2>
+          <p>
+            Elisence aims to create the world’s safest and most intelligent health ecosystem — one that
+            supports users, clinicians, hospitals, ministries, families, and vulnerable populations
+            across GCC, MENA, UK, and EU.
+          </p>
+          <p>
+            The platform is designed as a <strong>sovereign digital health infrastructure</strong>
+            that governments can trust and scale, with clear boundaries between wellness intelligence
+            and regulated clinical care.
+          </p>
+          <p class="link-inline">
+            Learn more in the platform overview:
+            <a href="elisence.html">Elisence – The Global Digital Health Platform</a>.
+          </p>
+        </article>
+
+        <!-- 17 Phases -->
+        <article class="section-panel">
+          <div class="section-tag">Architecture</div>
+          <h2>2. The 17-Phase Architecture</h2>
+          <p>
+            Every component of Elisence — from Women+ Health and Diabetes Intelligence to Accessibility,
+            Mental Health, Family (0–18), Environment (Phase 12), and Global Nutrition (Phase 16) —
+            is modular, feature-flagged, clinically aware and built for ministry-grade deployment.
+          </p>
+          <ul>
+            <li>Each phase can be turned ON/OFF via feature flags.</li>
+            <li>Non-diagnostic, explainable AI is used across the system.</li>
+            <li>Data flows are designed for WORM auditing and national governance.</li>
+          </ul>
+        </article>
+
+        <!-- Governments -->
+        <article class="section-panel">
+          <div class="section-tag">Governments &amp; Regulators</div>
+          <h2>3. Why Governments Trust Elisence</h2>
+          <p>
+            Elisence has been engineered for governments, regulators and ministries who demand
+            auditable, sovereign and culturally aware technology.
+          </p>
+          <ul>
+            <li>Zero-Trust Health AI with strict guardrails and event logging.</li>
+            <li>WORM-ledger audit layer for every critical interaction.</li>
+            <li>National data residency &amp; sovereignty (Qatar-ready design).</li>
+            <li>Non-diagnostic, patient-first architecture.</li>
+            <li>Five-language intelligence (EN, AR, FA, TR, RO).</li>
+            <li>Integration-ready for Cerner, Epic and FHIR-based systems.</li>
+          </ul>
+        </article>
+
+        <!-- Founder -->
+        <article class="section-panel">
+          <div class="section-tag">Founder</div>
+          <h2>4. About the Founder — Saami Salami Asl</h2>
+          <p>
+            Saami Salami Asl is the founder and architect of Elisence. He combines a background in
+            engineering, law, digital health, AI safety and large-scale system design.
+          </p>
+          <p>
+            His personal mission is to build a health ecosystem that protects people, empowers families
+            and gives governments the tools needed to run modern health infrastructures safely — without
+            sacrificing human dignity, privacy or cultural values.
+          </p>
+          <p class="link-inline">
+            For more, visit the dedicated founder page:
+            <a href="founder-saami.html">Founder – Saami Salami Asl</a>.
+          </p>
+        </article>
+
+        <!-- Global Vision -->
+        <article class="section-panel">
+          <div class="section-tag">Global Vision</div>
+          <h2>5. Our Global Vision</h2>
+          <p>
+            Elisence is designed as a universal, sovereign platform that can serve as the foundation of
+            national digital health strategies across GCC, Europe and beyond — a platform where safety,
+            privacy, culture and intelligence work together in one unified system.
+          </p>
+          <p>
+            Whether deployed for a single hospital network or at national scale, the core principle
+            remains the same: <strong>health technology must protect humans first</strong> and stay
+            explainable to clinicians, regulators and families.
+          </p>
+        </article>
+
+        <!-- Humanity & Families -->
+        <article class="section-panel">
+          <div class="section-tag">Humanity &amp; Families</div>
+          <h2>6. Built for Real People, Not Just Systems</h2>
+          <p>
+            Behind every phase of Elisence there is a human story — parents, children, caregivers,
+            clinicians and vulnerable people whose lives are affected by health decisions every day.
+          </p>
+          <p>
+            Elisence is built not only as infrastructure, but as a <strong>humanity platform</strong>:
+            a space where Women+, Diabetes, Mental Health, Kids &amp; Teens, Environment and Nutrition
+            are all treated as connected parts of the same real life.
+          </p>
+        </article>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- Elisa chat root -->
+  <div id="elisa-chat-root"></div>
+
+</body>
+</html>
