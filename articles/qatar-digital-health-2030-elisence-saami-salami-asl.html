@@ -36,12 +36,51 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #04101f, #02040a 45%, #000000 100%);
       color: #ffffff;
+      overflow-x: hidden;
     }
+
+    /* 🔵 Right-side vertical menu */
+    .side-nav {
+      position: fixed;
+      top: 100px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 999;
+    }
+
+    .nav-btn {
+      width: 150px;
+      padding: 12px 0;
+      text-align: center;
+      background: rgba(0, 150, 255, 0.25);
+      border-radius: 40px;
+      color: #ffffff;
+      font-size: 13px;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(0, 180, 255, 0.5);
+      box-shadow:
+        0 0 12px rgba(0, 180, 255, 0.7),
+        inset 0 0 12px rgba(0, 130, 255, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .nav-btn:hover {
+      background: rgba(0, 150, 255, 0.45);
+      box-shadow:
+        0 0 20px rgba(0, 180, 255, 1),
+        inset 0 0 20px rgba(0, 130, 255, 0.5);
+    }
+
+    /* Header */
     .top-nav {
       padding: 14px 24px;
       display: flex;
@@ -50,12 +89,19 @@
       text-transform: uppercase;
       letter-spacing: 0.14em;
     }
-    .top-nav a { color: #a9d4ff; text-decoration: none; }
+
+    .top-nav a {
+      color: #a9d4ff;
+      text-decoration: none;
+    }
+
+    /* Page layout */
     .page-wrapper {
       display: flex;
       justify-content: center;
       padding: 40px 18px 70px;
     }
+
     .hero-card {
       width: 100%;
       max-width: 860px;
@@ -65,6 +111,7 @@
       border: 1px solid rgba(70,190,255,0.6);
       box-shadow: 0 0 40px rgba(0,170,255,0.8), 0 0 120px rgba(0,80,200,0.5);
     }
+
     .article-label {
       font-size: 11px;
       letter-spacing: 0.2em;
@@ -72,51 +119,60 @@
       color: #a9d4ff;
       margin-bottom: 6px;
     }
+
     .article-title {
       font-size: 22px;
       line-height: 1.4;
       margin-bottom: 10px;
     }
+
     .article-meta {
       color: #c1dcff;
       font-size: 12px;
       margin-bottom: 18px;
     }
+
     .article-body {
       font-size: 14px;
       color: #e0efff;
       line-height: 1.9;
     }
+
     .article-body h2 {
       font-size: 17px;
       margin-top: 20px;
       margin-bottom: 8px;
     }
+
     .article-body p { margin-bottom: 12px; }
+
     .article-body ul {
       margin: 6px 0 14px 20px;
     }
+
     .article-body li { margin-bottom: 4px; }
   </style>
 </head>
-<!-- منوی عمودی سمت راست -->
-    <nav class="side-nav">
-        <a href="index.html"         class="nav-btn">Home</a>
-        <a href="#phases"            class="nav-btn">Phases</a>
-        <a href="governments.html"   class="nav-btn">Governments</a>
-        <a href="about.html"         class="nav-btn">About</a>
-        <a href="story.html"         class="nav-btn">Story</a>
-        <a href="video.html"         class="nav-btn">Videos</a>
-        <a href="contact.html"       class="nav-btn">Contact</a>
-        <a href="founder-saami.html" class="nav-btn">Founder</a>
-        <a href="articles.html"      class="nav-btn">Articles</a>
-        <a href="evidence.html"      class="nav-btn">Evidence</a>
-    </nav>
+
 <body>
 
+  <!-- 🔵 Right-side vertical menu (correct placement) -->
+  <nav class="side-nav">
+      <a href="index.html"         class="nav-btn">Home</a>
+      <a href="phases.html"        class="nav-btn">Phases</a>
+      <a href="governments.html"   class="nav-btn">Governments</a>
+      <a href="about.html"         class="nav-btn">About</a>
+      <a href="story.html"         class="nav-btn">Story</a>
+      <a href="video.html"         class="nav-btn">Videos</a>
+      <a href="contact.html"       class="nav-btn">Contact</a>
+      <a href="founder-saami.html" class="nav-btn">Founder</a>
+      <a href="articles.html"      class="nav-btn">Articles</a>
+      <a href="evidence.html"      class="nav-btn">Evidence</a>
+  </nav>
+
 <header class="top-nav">
-  <a href="../index.html">Home</a>
-  <a href="../articles.html">Articles</a>
+  <a href="index.html">Home</a>
+  <a href="articles.html">Articles</a>
 </header>
 
 <main class="page-wrapper">
@@ -136,33 +192,25 @@
 
       <h2>1. Why Qatar Is Building the Future of Health</h2>
       <p>
-        Qatar Vision 2030 establishes a national ambition:  
-        *world-leading health, human development, and digital transformation.*  
+        Qatar Vision 2030 establishes a national ambition:
+        <em>world-leading health, human development, and digital transformation.</em>
       </p>
       <p>
-        Elisence was designed specifically to align with these pillars —  
+        Elisence was designed specifically to align with these pillars —
         as a <strong>sovereign, multilingual, zero-trust digital health ecosystem</strong>.
       </p>
 
       <h2>2. Sovereign by Architecture</h2>
-      <p>
-        Qatar requires platforms that keep:
-      </p>
+      <p>Qatar requires platforms that keep:</p>
       <ul>
         <li>data inside Qatar, under Qatari PDPL law</li>
         <li>full ministry control over AI features</li>
         <li>no third-party data dependencies</li>
         <li>health insights without breaching privacy</li>
       </ul>
-      <p>
-        Elisence was engineered for exactly this purpose.
-      </p>
 
       <h2>3. Multilingual Intelligence for Qatar’s Population</h2>
-      <p>
-        Qatar’s population speaks many languages.  
-        Elisence operates in:
-      </p>
+      <p>Elisence operates in:</p>
       <ul>
         <li>English</li>
         <li>Arabic</li>
@@ -170,12 +218,8 @@
         <li>Turkish</li>
         <li>Romanian</li>
       </ul>
-      <p>
-        This makes it suitable for citizens, expatriates, and regional partnerships across GCC.
-      </p>
 
       <h2>4. Aligned With National Health Priorities</h2>
-      <p>Elisence supports Qatar’s priority areas:</p>
       <ul>
         <li>Diabetes & obesity reduction (Phase 9)</li>
         <li>Women’s health modernization (Phase 7)</li>
@@ -183,32 +227,20 @@
         <li>Environmental health intelligence (Phase 12)</li>
         <li>Nutrition transformation (Phase 16)</li>
       </ul>
-      <p>
-        Each phase is safe, non-diagnostic, and ministry-controlled.
-      </p>
 
       <h2>5. National-Scale Intelligence Without Exposing Individuals</h2>
-      <p>
-        Ministries receive high-level, anonymised dashboards:
-      </p>
+      <p>Ministries receive anonymised dashboards:</p>
       <ul>
         <li>risk trends</li>
         <li>population-level patterns</li>
         <li>seasonal signals</li>
         <li>environment-linked health stress</li>
       </ul>
-      <p>
-        — with **no personal data revealed**.
-      </p>
 
       <h2>6. A Long-Term Partner for Qatar</h2>
       <p>
         Elisence is not a consumer app.  
-        It is a long-term health intelligence infrastructure built to grow with Qatar until 2030 and beyond.
-      </p>
-      <p>
-        Built by <strong>Saami Salami Asl</strong>, it combines technology, human-centered philosophy, and regulatory alignment —  
-        ready for ministries, hospitals, and national adoption.
+        It is a long-term health intelligence infrastructure designed to grow with Qatar.
       </p>
 
       <p><strong>Qatar is building the future. Elisence is built for that future.</strong></p>
