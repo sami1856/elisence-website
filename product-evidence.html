@@ -184,20 +184,40 @@
         }
 
         .link-row {
-            margin-top: 0.8rem;
+            margin-top: 0.9rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
+        /* Button-style links (مثل کلیدهای Evidence) */
         .link-row a {
             display: inline-block;
-            margin-right: 12px;
-            margin-top: 6px;
-            font-size: 0.9rem;
-            color: #7dd3fc;
+            padding: 10px 16px;
+            border-radius: 999px;
             text-decoration: none;
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 14px rgba(0, 130, 255, 0.85),
+                0 0 26px rgba(0, 40, 120, 0.85);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
 
         .link-row a:hover {
-            text-decoration: underline;
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 18px rgba(0, 190, 255, 1),
+                0 0 36px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .link-row a:active {
+            transform: translateY(0px) scale(0.99);
         }
 
         @media (max-width: 900px) {
@@ -226,6 +246,11 @@
                 font-size: 11px;
                 letter-spacing: 0.11em;
             }
+
+            .link-row a {
+                padding: 9px 14px;
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -234,7 +259,7 @@
     <div class="top-dot"></div>
     <div class="top-dot-label">ELISENCE</div>
 
-    <!-- منوی عمودی سمت راست -->
+    <!-- Right-side nav -->
     <nav class="side-nav">
         <a href="index.html"         class="nav-btn">Home</a>
         <a href="index.html#phases"  class="nav-btn">Phases</a>
@@ -253,14 +278,14 @@
             <h1>Product Evidence Pack – Live Product, Not Just Slides</h1>
 
             <p class="lead">
-                B2 is the Product Evidence Pack of Elisence. این بخش نشان می‌دهد که
-                Elisence همین امروز یک محصول واقعی است: وبسایت زنده، ۱۷ فاز، ویدیوهای
-                آماده در یوتیوب و صفحه‌های جدا برای هر فاز.
+                B2 is the Product Evidence Pack of Elisence. It demonstrates that Elisence is already a real,
+                live product today: a public website, a 17-phase platform surface, ready-to-watch YouTube videos,
+                and dedicated pages per phase — not a concept deck.
             </p>
 
             <p class="tagline">
-                B1 دربارهٔ کد و تست‌هاست؛ B3 دربارهٔ قوانین و وزارتخانه‌ها.  
-                B2 دقیقاً چیزی است که یک وزارت یا سرمایه‌گذار می‌تواند همین حالا در مرورگر ببیند و نگاه کند.
+                B1 is about code, tests and technical evidence. B3 is about governance and ministry readiness.
+                B2 is what a ministry, evaluator or investor can open in a browser right now and verify visually.
             </p>
 
             <div class="pill-row">
@@ -275,19 +300,19 @@
             <section class="card">
                 <h2>1. Explainer &amp; Product Videos (All 17 Phases)</h2>
                 <p>
-                    برای هر ۱۷ فاز Elisence یک ویدیو ساخته شده، در یوتیوب آپلود شده و
-                    داخل وبسایت قابل پخش است. هیچ‌کدام «در حال ساخت» نیستند – همه آماده‌اند.
+                    Elisence has published a video for every phase — uploaded to YouTube and playable through the
+                    website. These are not “coming soon” placeholders. They are available now.
                 </p>
                 <ul>
-                    <li>یک صفحهٔ مرکزی <strong>Videos</strong> که همهٔ ویدیوها را فهرست می‌کند.</li>
-                    <li>برای هر فاز، یک صفحهٔ اختصاصی در وبسایت که همان ویدیو را نشان می‌دهد.</li>
-                    <li>ویدیوهای توضیحی بلند که خود Saami در آن‌ها کل داستان Elisence و فازها را توضیح می‌دهد.</li>
+                    <li>A central <strong>Videos</strong> page listing all phase videos.</li>
+                    <li>Dedicated phase pages that feature the relevant video and a short explanation.</li>
+                    <li>Long-form explainer videos where Saami presents the end-to-end Elisence story and roadmap.</li>
                 </ul>
                 <p>
-                    برای دیدن ویدیوها، کافی است به صفحهٔ Videos بروید و فاز مورد نظر را انتخاب کنید.
+                    Use the Videos page to browse and open any phase instantly.
                 </p>
                 <div class="link-row">
-                    <a href="video.html">Open Videos Page →</a>
+                    <a href="video.html">Open Videos Page</a>
                 </div>
             </section>
 
@@ -295,25 +320,25 @@
             <section class="card">
                 <h2>2. Live Website – The Main Product Evidence</h2>
                 <p>
-                    خود وبسایت رسمی Elisence مهم‌ترین مدرک محصول است.  
-                    هر صفحه، یک «اسکرین‌شات زنده» است که هر لحظه می‌توان آن را در مرورگر دید.
+                    The official Elisence website is the strongest product evidence. Every page is a live artifact
+                    that can be opened, inspected and referenced at any time.
                 </p>
                 <ul>
-                    <li><strong>Home &amp; Phases:</strong> معرفی کلی و شبکهٔ ۱۷ فاز روی <code>index.html#phases</code>.</li>
-                    <li><strong>Governments:</strong> توضیح جایگاه Elisence برای قطر، GCC و وزارت‌ها.</li>
-                    <li><strong>About &amp; Story:</strong> مأموریت، فلسفه و لایهٔ AI &amp; Safety.</li>
-                    <li><strong>Founder &amp; Articles:</strong> معرفی بنیان‌گذار و متن‌های تحلیلی و توضیحی.</li>
+                    <li><strong>Home &amp; Phases:</strong> a live 17-phase overview at <code>index.html#phases</code>.</li>
+                    <li><strong>Governments:</strong> positioning for Qatar, GCC and public-sector deployment.</li>
+                    <li><strong>About &amp; Story:</strong> mission, philosophy, and safety-first AI posture.</li>
+                    <li><strong>Founder &amp; Articles:</strong> founder profile and long-form written materials.</li>
                 </ul>
                 <p>
-                    برای QDB / QFC / QSTP، لینک مستقیم همین وبسایت کافی است تا نشان دهد
-                    محصول در سطح عمومی وجود دارد و فقط یک پاورپوینت نیست.
+                    For QDB / QFC / QSTP and ministry reviewers, the website link itself shows a live product surface,
+                    not just a pitch deck.
                 </p>
                 <div class="link-row">
-                    <a href="index.html#phases">Phases Overview →</a>
-                    <a href="governments.html">Governments &amp; Qatar →</a>
-                    <a href="about.html">About Elisence →</a>
-                    <a href="story.html">Story &amp; Vision →</a>
-                    <a href="founder-saami.html">Founder Profile →</a>
+                    <a href="index.html#phases">Open Phases Overview</a>
+                    <a href="governments.html">Open Governments &amp; Qatar</a>
+                    <a href="about.html">Open About Elisence</a>
+                    <a href="story.html">Open Story &amp; Vision</a>
+                    <a href="founder-saami.html">Open Founder Profile</a>
                 </div>
             </section>
 
@@ -321,20 +346,20 @@
             <section class="card">
                 <h2>3. Phase Pages &amp; Live UI</h2>
                 <p>
-                    علاوه بر صفحهٔ اصلی، برای فازهای کلیدی، صفحه‌های جداگانه طراحی شده است.
-                    این صفحه‌ها نشان می‌دهند UI و منطق هر فاز چه‌طور به‌صورت واقعی برای کاربر دیده می‌شود.
+                    Beyond the homepage, Elisence maintains dedicated pages for key phases. These pages show how each
+                    phase is presented to real users — combining narrative, visual design and video evidence.
                 </p>
                 <ul>
-                    <li>صفحه‌های جدا برای فازهای وزن، دیابت، زنان، AHE، پیام‌رسانی، خانواده، GNIE و …</li>
-                    <li>هر صفحه، متن رسمی، خلاصهٔ فنی و لینک ویدیوی همان فاز را در خود دارد.</li>
-                    <li>این ترکیب (متن + ویدیو + طراحی) به‌تنهایی یک Product Evidence کامل برای هر فاز است.</li>
+                    <li>Dedicated pages for major phases such as Women+ (Phase 7), AHE (Phase 8), Diabetes (Phase 9),
+                        ELIS Messaging (Phase 10), Family (Phase 15) and GNIE (Phase 16).</li>
+                    <li>Each phase page contains: official description, a structured summary, and the relevant phase video.</li>
+                    <li>This “page + video + design” combination functions as a complete product evidence artifact per phase.</li>
                 </ul>
                 <p>
-                    چون وبسایت زنده است، نیازی به فایل جداگانهٔ اسکرین‌شات نیست؛  
-                    مرورگر خود وزارت یا سرمایه‌گذار همان لحظه UI واقعی را نشان می‌دهد.
+                    Because the website is live, reviewers do not need static screenshots: their browser is the proof.
                 </p>
                 <div class="link-row">
-                    <a href="index.html#phases">Browse Phase List →</a>
+                    <a href="index.html#phases">Browse All Phase Pages</a>
                 </div>
             </section>
 
@@ -342,9 +367,9 @@
             <section class="card">
                 <h2>4. Storyboards for Key Phases</h2>
                 <p>
-                    برای فازهای مهم، استوری‌بوردهای متنی کامل نوشته شده است؛ همین متن‌ها
-                    مبنای ساخت ویدیوهای فعلی بوده‌اند و می‌توانند به‌عنوان ضمیمهٔ PDF برای
-                    QDB / QFC ارائه شوند.
+                    Elisence also maintains structured storyboards for key phases. These storyboards are the blueprint
+                    behind the current videos and can be exported as PDF appendices for QDB / QFC submissions or
+                    internal ministry review.
                 </p>
                 <ul>
                     <li>Phase 4 – Provenance &amp; Integrity Engine.</li>
@@ -352,31 +377,36 @@
                     <li>Phase 8 – AHE (Advanced Health Engine).</li>
                     <li>Phase 9 – Diabetes &amp; Metabolic Health.</li>
                     <li>Phase 10 – ELIS Social / Messaging.</li>
-                    <li>Phase 15 &amp; 16 – Family Ecosystem و GNIE.</li>
+                    <li>Phase 15 &amp; 16 – Family Ecosystem and GNIE.</li>
                 </ul>
                 <p>
-                    نسخه‌های PDF و متنی این استوری‌بوردها در کنار سایر مدارک، داخل پک‌های دانلودی نگه‌داری می‌شوند.
+                    PDF versions can be shared privately as part of an Evidence Pack (for serious evaluations).
                 </p>
                 <div class="link-row">
-                    <a href="download.html">Open Downloads &amp; PDFs →</a>
+                    <a href="download.html">Open Downloads &amp; PDFs</a>
                 </div>
             </section>
 
             <!-- 5. How B2 Connects to B1 and B3 -->
             <section class="card">
-                <h2>5. How B2 Sits Next to B1 and B3</h2>
+                <h2>5. How B2 Connects to B1 and B3</h2>
                 <p>
-                    با این صفحه، B2 به‌طور رسمی کامل است:
+                    With this page, B2 is formally complete as a product-level evidence layer:
                 </p>
                 <ul>
-                    <li><strong>B1 – Technical Evidence Pack:</strong> کد، تست‌ها، لاگ‌های WORM و مانيفست‌ها.</li>
-                    <li><strong>B2 – Product Evidence Pack:</strong> وبسایت زنده، صفحه‌های فازها و ویدیوهای ۱۷ فاز.</li>
-                    <li><strong>B3 – Ministry Compatibility Evidence:</strong> هم‌راستایی با قطر، GCC، قوانین و داده‌حاکمیتی.</li>
+                    <li><strong>B1 – Technical Evidence Pack:</strong> code, tests, WORM logs, manifests and SHA-256 anchors.</li>
+                    <li><strong>B2 – Product Evidence Pack:</strong> live website, per-phase pages, and the full 17-phase video library.</li>
+                    <li><strong>B3 – Ministry Compatibility Evidence:</strong> non-diagnostic posture, sovereignty, Zero-Trust governance and policy alignment.</li>
                 </ul>
                 <p>
-                    با این سه لایه، هر وزارت یا سرمایه‌گذار می‌تواند هم «پشت‌صحنه» را ببیند (B1)،
-                    هم «محصول واقعی» را لمس کند (B2)، و هم مطمئن شود که با قوانین و سیاست‌ها هماهنگ است (B3).
+                    Together, these three layers allow reviewers to inspect the “engineering reality” (B1),
+                    the “live product surface” (B2), and the “governance readiness” (B3) — consistently and transparently.
                 </p>
+                <div class="link-row">
+                    <a href="evidence.html">Back to Evidence Hub</a>
+                    <a href="technical-evidence.html">Open B1 Technical Evidence</a>
+                    <a href="governments.html">Open B3 Ministry Readiness</a>
+                </div>
             </section>
         </main>
     </div>
