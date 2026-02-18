@@ -652,22 +652,28 @@
                                 <td>UI + APIs live; WORM logs and test runs captured as part of B1 technical pack.</td>
                             </tr>
                             <tr>
-                                <td>Phase 7</td>
-                                <td>Women+ Health &amp; Safety Engine</td>
-                                <td><span class="badge badge-pending">Golden tests</span></td>
-                                <td>Context &amp; safety engines complete; golden test snapshots &amp; evidence packs under consolidation.</td>
-                            </tr>
-                            <tr>
-                                <td>Phase 8</td>
-                                <td>Advanced Haematology &amp; Emergencies (AHE)</td>
-                                <td><span class="badge badge-pending">Core engine live</span></td>
-                                <td>Blood engine, WORM audit v2 and risk-engine tests in green; scaling and dashboards in progress.</td>
-                            </tr>
-                            <tr class="phase-highlight">
-                                <td>Phase 9</td>
-                                <td>Diabetes Engine</td>
-                                <td><span class="badge badge-success">SEAL: Final – 95/95 tests passed</span></td>
-                                <td>Public SEAL repository, SHA-256 manifest and full BBVP-grade evidence (see section below).</td>
+                               <td>Phase 7</td>
+                                <tr>
+                                    <td>Phase 7</td>
+                                    <td>Women+ Health &amp; Safety Engine</td>
+                                    <td><span class="badge badge-success">SEAL: FINAL – 423 TESTS PASSED</span></td>
+                                    <td>
+                                        Public SEAL repository, SHA-256 anchored manifest, WORM audit declaration and full
+                                        BBVP-grade governance evidence (see detailed section below).
+                                    </td>
+                                </tr>
+                                    
+                                    <tr>
+                                    <td>Phase 8</td>
+                                    <td>Advanced Haematology &amp; Emergencies (AHE)</td>
+                                    <td><span class="badge badge-pending">Core engine live</span></td>
+                                    <td>Blood engine, WORM audit v2 and risk-engine tests in green; scaling and dashboards in progress.</td>
+                                    </tr>
+                                    <tr class="phase-highlight">
+                                    <td>Phase 9</td>
+                                    <td>Diabetes Engine</td>
+                                    <td><span class="badge badge-success">SEAL: Final – 95/95 tests passed</span></td>
+                                    <td>Public SEAL repository, SHA-256 manifest and full BBVP-grade evidence (see section below).</td>
                             </tr>
                             <tr>
                                 <td>Phase 10</td>
@@ -737,7 +743,74 @@
                     test reports and legal notes) can be shared as a PDF bundle, built directly from this SEAL repo.
                 </p>
             </section>
+            <!-- FEATURED PHASE CARD – PHASE 7 SEAL -->
+<section class="card">
+    <h2>Phase 7 – Women+ Health & Safety Engine (SEAL Package)</h2>
+    <p>
+        Phase 7 is the first large-scale behavioural and safety intelligence engine inside Elisence.
+        It structures women’s health, hormonal, reproductive and lifecycle data into safe,
+        non-diagnostic intelligence for citizens, clinicians and ministries — under a strict
+        BBVP-governed evidence model.
+    </p>
 
+    <ul>
+        <li>Core Women+ engine logic in <code>main_phase7_base.py</code>.</li>
+        <li>Deterministic safety & risk-tag inference layer (rule-based, explainable).</li>
+        <li>Non-diagnostic boundary enforcement (no prescriptions, no diagnoses, no dosage advice).</li>
+        <li>Zero-Trust feature-flag matrix with OFF=503 and ON=200 semantics.</li>
+        <li>WORM v2 audit logging (append-only JSONL) for governance-grade traceability.</li>
+        <li>Full pytest suite (423 tests) covering OFF/ON, safety gates, trace IDs and regression matrix.</li>
+        <li>Five-language backbone (EN / FA / AR / TR / RO) with RTL-ready support.</li>
+        <li>Clinical boundary lock aligned with NHS-style governance logic and GCC PDPL expectations.</li>
+    </ul>
+
+    <p>
+        The complete Phase 7 Women+ module is published as dedicated public SEAL repositories,
+        allowing ministries, regulators, technical reviewers and investors to inspect both
+        the engine and its formal Evidence Pack.
+    </p>
+
+    <div class="link-row">
+
+        <a href="https://github.com/sami1856/Elisence_Phase7_WomenPlus_SEAL"
+           target="_blank" rel="noopener">
+            Open Phase 7 SEAL repository →
+        </a>
+
+        <a href="https://github.com/sami1856/Elisence_Phase7_WomenPlus_EVIDENCE"
+           target="_blank" rel="noopener">
+            Open Phase 7 Evidence Pack repository →
+        </a>
+
+        <a href="https://github.com/sami1856/Elisence_Phase7_WomenPlus_EVIDENCE/releases/tag/v1.0"
+           target="_blank" rel="noopener">
+            View Phase 7 SEAL Release v1.0 →
+        </a>
+
+        <a href="https://github.com/sami1856/Elisence_Phase7_WomenPlus_EVIDENCE/blob/master/MASTER_MANIFEST_v1.txt"
+           target="_blank" rel="noopener">
+            View MASTER_MANIFEST_v1.txt →
+        </a>
+
+        <a href="https://github.com/sami1856/Elisence_Phase7_WomenPlus_EVIDENCE/blob/master/SHA256_SUMMARY.txt"
+           target="_blank" rel="noopener">
+            View SHA256 Summary →
+        </a>
+
+        <!-- لینک داخلی سایت -->
+        <a href="phase7-evidence-card.html">
+            Open Phase 7 Evidence Card →
+        </a>
+
+    </div>
+
+    <p>
+        For QDB, QFC, QSTP or ministries, a deeper Phase 7 Evidence Pack
+        (including regression matrices, WORM excerpts, trace validation reports,
+        policy bundles and governance notes) can be delivered as a structured PDF bundle,
+        generated directly from the SEAL repositories.
+    </p>
+</section>
             <!-- B1 – TECHNICAL EVIDENCE PACK -->
             <section class="card">
                 <h2>B1 — Technical Evidence Pack (Backend)</h2>
