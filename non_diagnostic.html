@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Non-Diagnostic Health Intelligence Policy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+          content="Elisence non-diagnostic policy – how the platform provides education, probabilities and safety guidance without diagnoses, prescriptions or dosing advice.">
+
+    <!-- Elisa chat widget -->
+    <script defer src="elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #e1eeff;
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.6rem;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.8);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e0f2fe;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.35rem;
+            font-size: 0.93rem;
+            color: #dceafe;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .badge-allowed {
+            background: rgba(22, 163, 74, 0.18);
+            border: 1px solid rgba(74, 222, 128, 0.7);
+            color: #bbf7d0;
+        }
+
+        .badge-blocked {
+            background: rgba(185, 28, 28, 0.18);
+            border: 1px solid rgba(248, 113, 113, 0.8);
+            color: #fecaca;
+        }
+
+        .link-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 0.9rem;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 14px rgba(0, 130, 255, 0.75),
+                0 0 28px rgba(0, 40, 120, 0.75);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 20px rgba(0, 190, 255, 0.95),
+                0 0 44px rgba(0, 80, 200, 0.95);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.65), rgba(0, 25, 80, 1));
+        }
+
+        .link-btn:active {
+            transform: translateY(0px) scale(0.99);
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <nav class="side-nav">
+        <a href="index.html"         class="nav-btn">Home</a>
+        <a href="index.html#phases"  class="nav-btn">Phases</a>
+        <a href="governments.html"   class="nav-btn">Governments</a>
+        <a href="evidence.html"      class="nav-btn">Evidence</a>
+        <a href="about.html"         class="nav-btn">About</a>
+        <a href="story.html"         class="nav-btn">Story</a>
+        <a href="video.html"         class="nav-btn">Videos</a>
+        <a href="contact.html"       class="nav-btn">Contact</a>
+        <a href="founder-saami.html" class="nav-btn">Founder</a>
+        <a href="articles.html"      class="nav-btn">Articles</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <h1>Non-Diagnostic Health Intelligence Policy</h1>
+
+            <p class="lead">
+                Elisence is a <strong>non-diagnostic</strong> platform. It never replaces a doctor,
+                it never makes medical diagnoses, and it never gives prescriptions or drug dosing advice.
+                Instead, it offers education, probabilities and safety guidance in clear, human language.
+            </p>
+
+            <p class="tagline">
+                This page explains how the non-diagnostic boundary works across Women+, Diabetes, Nutrition,
+                Family and all other phases – for citizens, ministries, regulators and clinical partners.
+            </p>
+
+            <div class="pill-row">
+                <span class="pill">Non-Diagnostic</span>
+                <span class="pill">Education-Only Guidance</span>
+                <span class="pill">Safety First</span>
+                <span class="pill">No Prescriptions</span>
+                <span class="pill">No Diagnoses</span>
+                <span class="pill">Explainable Rules</span>
+            </div>
+
+            <section class="card">
+                <h2>1. What “Non-Diagnostic” Means in Elisence</h2>
+                <p>
+                    When Elisence talks to a user – in text, in voice, or inside a demo – it always stays
+                    within a strict education-only boundary.
+                </p>
+                <ul>
+                    <li><strong>No diagnosis:</strong> the system never says “you have X” or “this means diabetes / cancer / depression.”</li>
+                    <li><strong>No prescriptions:</strong> the system never recommends specific drugs or changes to dose, timing or combinations.</li>
+                    <li><strong>No medical orders:</strong> the system never tells users to stop or start medicines on its own.</li>
+                    <li><strong>Education and safety:</strong> the system explains patterns, probabilities and when to seek human help.</li>
+                </ul>
+                <p>
+                    The goal is to <strong>support</strong> clinicians and ministries, not to replace them.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>2. Language Boundaries – Allowed vs Blocked Phrases</h2>
+                <p>
+                    The Elisence engines use safety rules to control how messages are written. Some
+                    styles of message are allowed; others are blocked by design.
+                </p>
+                <ul>
+                    <li>
+                        <span class="badge badge-allowed">Allowed</span>
+                        “Your readings look higher than usual. Please speak to your doctor or diabetes nurse for a proper clinical assessment.”
+                    </li>
+                    <li>
+                        <span class="badge badge-allowed">Allowed</span>
+                        “These symptoms can sometimes be a sign of something important. If you feel worse, contact your local emergency services.”
+                    </li>
+                    <li>
+                        <span class="badge badge-allowed">Allowed</span>
+                        “This is educational information, not a diagnosis. It does not replace your doctor.”
+                    </li>
+                    <li>
+                        <span class="badge badge-blocked">Blocked</span>
+                        “You have diabetes type 2. Start taking 850 mg metformin twice a day.”
+                    </li>
+                    <li>
+                        <span class="badge badge-blocked">Blocked</span>
+                        “Stop taking your current medicine. You do not need it anymore.”
+                    </li>
+                    <li>
+                        <span class="badge badge-blocked">Blocked</span>
+                        “You definitely do not need to see a doctor for this.”
+                    </li>
+                </ul>
+                <p>
+                    These boundaries are enforced inside the engines and verified by automated tests.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>3. How This Works in Women+, Diabetes and Nutrition</h2>
+                <p>
+                    The non-diagnostic policy applies across all phases, with special attention in:
+                </p>
+                <ul>
+                    <li><strong>Women+ (Phase 7):</strong> cycle, pain, pregnancy and mental wellbeing modules give
+                        clear education and safety messages but never label a user with a clinical diagnosis.</li>
+                    <li><strong>Diabetes & Metabolic (Phase 9):</strong> the engine can describe patterns (for example,
+                        “your readings are often above your target range”) and advise users to see their clinician,
+                        but it never changes treatment plans or gives dosing advice.</li>
+                    <li><strong>Nutrition (Phase 16):</strong> GNIE suggests balanced, culturally appropriate meal
+                        ideas and risk-aware tips, but it does not prescribe therapeutic diets in place of a nutritionist.</li>
+                </ul>
+                <p>
+                    In every case, Elisence points back to <strong>real clinicians</strong> for decisions.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>4. How Users See the Non-Diagnostic Boundary</h2>
+                <p>
+                    For citizens, the boundary is visible and explicit, not hidden in legal text.
+                    The interface and voice companion Elisa regularly remind users that:
+                </p>
+                <ul>
+                    <li>Elisence is for education, tracking and support.</li>
+                    <li>It does not replace doctors, nurses or emergency services.</li>
+                    <li>Urgent or worrying symptoms must be discussed with a human clinician.</li>
+                    <li>Emergency situations require local emergency numbers, not the app.</li>
+                </ul>
+                <p>
+                    This is reflected in the wording of messages, the design of buttons, and the
+                    way alerts are framed in Women+, Diabetes, Family and other modules.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>5. Regulatory Alignment (NHS, EU, GCC, Qatar)</h2>
+                <p>
+                    The non-diagnostic posture is part of Elisence’s alignment with multiple frameworks:
+                </p>
+                <ul>
+                    <li><strong>NHS &amp; EU:</strong> clear separation from diagnostic devices, avoiding medical claims.</li>
+                    <li><strong>FDA CDS principles:</strong> keeping the human clinician in control of decisions.</li>
+                    <li><strong>GCC &amp; Qatar PDPL:</strong> treating health intelligence as sensitive, regulated data.</li>
+                    <li><strong>Global deployment:</strong> being safe to use across jurisdictions without conflicting claims.</li>
+                </ul>
+                <p>
+                    Ministries and regulators can combine this policy with the technical evidence in the
+                    <strong>Evidence Hub</strong> to see how these rules are implemented in code and tests.
+                </p>
+                <div class="link-buttons">
+                    <a class="link-btn" href="evidence.html">
+                        Open Evidence Hub
+                    </a>
+                    <a class="link-btn" href="governments.html">
+                        Go to Governments Page
+                    </a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>6. Engine-Level Enforcement &amp; Traceability</h2>
+                <p>
+                    Non-diagnostic behaviour is not just a promise; it is part of the engine design.
+                    Each response can carry internal metadata (for example: rule_id, trace_id, safety_level)
+                    so that outputs can be traced back to the exact rule that generated them.
+                </p>
+                <ul>
+                    <li><strong>Rule-based responses:</strong> engines use curated rule sets for messages.</li>
+                    <li><strong>Safety levels:</strong> responses are tagged (for example: general, attention, emergency-advice-to-call-services).</li>
+                    <li><strong>WORM audit:</strong> critical events can be written into append-only logs for later review.</li>
+                    <li><strong>Test coverage:</strong> automated tests verify that high-risk patterns never produce diagnostic or prescriptive text.</li>
+                </ul>
+                <p>
+                    This makes the non-diagnostic boundary <strong>auditable</strong> – an important part of working
+                    with ministries and hospitals.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>7. Demo &amp; Synthetic Journeys</h2>
+                <p>
+                    In the protected demo environment, the non-diagnostic rules are still fully active.
+                    In addition, all journeys are <strong>synthetic</strong> – based on scripted examples, not real patients.
+                </p>
+                <ul>
+                    <li>Visitors see realistic scenarios, but no real personal data.</li>
+                    <li>Every scenario is clearly marked as a demonstration only.</li>
+                    <li>The same language rules apply: no diagnoses, no prescriptions, no dosing advice.</li>
+                </ul>
+                <p>
+                    Together with Zero-Trust and Cloudflare Access, this creates a safe space where
+                    ministries, investors and partners can explore the platform without clinical risk.
+                </p>
+                <div class="link-buttons">
+                    <a class="link-btn" href="zero_trust.html">
+                        Read Zero-Trust Policy
+                    </a>
+                    <a class="link-btn" href="synthetic_journeys.html">
+                        Read Synthetic Journeys Policy
+                    </a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>8. Summary</h2>
+                <p>
+                    Elisence is built to support people, families, clinicians and ministries – not to replace them.
+                    By staying strictly non-diagnostic, the platform can safely scale across countries, languages
+                    and health systems while respecting clinical boundaries and legal frameworks.
+                </p>
+                <p>
+                    For deeper technical evidence, including tests and WORM logs, visit the Evidence Hub
+                    or contact the Elisence team for a private demo invite.
+                </p>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="elisa-chat-root"></div>
+</body>
+</html>
