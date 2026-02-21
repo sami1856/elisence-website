@@ -10,7 +10,6 @@
     <script defer src="elisa-chat.js"></script>
 
     <style>
-        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -128,8 +127,46 @@
         .tagline {
             font-size: 0.95rem;
             color: #e1eeff;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.0rem;
             max-width: 900px;
+        }
+
+        /* سه دکمه‌ی Zero-Trust / Non-Diagnostic / Synthetic */
+        .evidence-mini-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 10px;
+            margin: 0.8rem 0 1.6rem 0;
+        }
+
+        .evidence-mini-links a {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0,130,255,0.45), rgba(0,10,35,0.97));
+            border: 1px solid rgba(90,185,255,0.9);
+            box-shadow:
+                0 0 14px rgba(0,130,255,0.80),
+                0 0 28px rgba(0,40,120,0.80);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .evidence-mini-links a:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 20px rgba(0,190,255,0.95),
+                0 0 44px rgba(0,80,200,0.95);
+            background: radial-gradient(circle at top, rgba(0,170,255,0.65), rgba(0,25,80,1));
+        }
+
+        .evidence-mini-links a:active {
+            transform: translateY(0px) scale(0.99);
         }
 
         .pill-row {
@@ -140,14 +177,32 @@
         }
 
         .pill {
-            padding: 6px 14px;
-            border-radius: 999px;
-            border: 1px solid rgba(125, 211, 252, 0.8);
-            font-size: 0.8rem;
-            letter-spacing: 0.12em;
+            display: inline-block;
+            padding: 12px 28px;
+            margin: 4px 0;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
             text-transform: uppercase;
-            color: #e0f2fe;
-            background: rgba(15, 23, 42, 0.9);
+            letter-spacing: 0.6px;
+            color: #e6f4ff;
+            background: rgba(0, 60, 120, 0.35);
+            border: 1px solid rgba(0, 150, 255, 0.75);
+            box-shadow:
+                0 0 12px rgba(0,140,255,0.55),
+                inset 0 0 8px rgba(0,120,255,0.45);
+            backdrop-filter: blur(4px);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .pill:hover {
+            transform: scale(1.06);
+            color: #ffffff;
+            box-shadow:
+                0 0 22px rgba(0,190,255,0.95),
+                inset 0 0 10px rgba(0,160,255,0.8);
+            border-color: rgba(0,190,255,1);
         }
 
         .card {
@@ -305,41 +360,6 @@
                 letter-spacing: 0.11em;
             }
         }
-        .evidence-mini-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 1rem;
-}
-
-.evidence-mini-links a {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #e3f2ff;
-  background: radial-gradient(circle at top, rgba(0,130,255,0.45), rgba(0,10,35,0.97));
-  border: 1px solid rgba(90,185,255,0.9);
-  box-shadow:
-    0 0 14px rgba(0,130,255,0.80),
-    0 0 28px rgba(0,40,120,0.80);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.evidence-mini-links a:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 0 20px rgba(0,190,255,0.95),
-    0 0 44px rgba(0,80,200,0.95);
-  background: radial-gradient(circle at top, rgba(0,170,255,0.65), rgba(0,25,80,1));
-}
-
-.evidence-mini-links a:active {
-  transform: translateY(0px) scale(0.99);
-}
     </style>
 </head>
 
@@ -361,19 +381,27 @@
     </nav>
 
     <div class="page-shell">
-        < class="content-">
+        <main class="content-">
+
             <h1>Evidence Hub – Technical, Product &amp; Ministry Readiness</h1>
 
             <p class="lead">
                 This page is the central entry point for the full <strong>Evidence Pack</strong> of Elisence:
-                technical engines and tests (B1), product-level evidence (B2), and ministry compatibility
-                (B3) for Qatar, GCC and global partners.
+                technical engines and tests (B1), product-level evidence (B2), and ministry compatibility (B3)
+                for Qatar, GCC and global partners.
             </p>
 
             <p class="tagline">
                 This hub keeps the public website clean while providing verified, review-ready links.
                 Deeper PDF bundles can be shared privately with QDB, QFC, QSTP or ministries on request.
             </p>
+
+            <!-- سه کلید اصلی سیاست‌ها -->
+            <div class="evidence-mini-links">
+                <a href="zero-trust.html">Zero-Trust · Cloudflare</a>
+                <a href="non_diagnostic.html">Non-Diagnostic Policy</a>
+                <a href="synthetic_journeys.html">Synthetic Journeys Only</a>
+            </div>
 
             <div class="pill-row">
                 <span class="pill">Technical Engines</span>
@@ -384,6 +412,7 @@
                 <span class="pill">Zero-Trust &amp; WORM</span>
             </div>
 
+            <!-- معماری کلی B1/B2/B3 -->
             <section class="card">
                 <h2>Evidence Architecture – B1, B2 and B3</h2>
                 <p>
@@ -397,11 +426,12 @@
                 </ul>
             </section>
 
+            <!-- جدول وضعیت فازها -->
             <section class="card">
                 <h2>Phase Evidence Status – 17-Phase Roadmap</h2>
                 <p>
                     Not every phase is sealed yet; this table shows current high-level evidence status.
-                    As more phases are sealed, add rows using the same pattern.
+                    As more phases are sealed, rows will be added using the same pattern.
                 </p>
 
                 <div class="status-table-wrapper">
@@ -461,7 +491,7 @@
                                 <td>Other Phases</td>
                                 <td>Voice, Mental Health, Nutrition, National Identity and more</td>
                                 <td><span class="badge badge-pending">In progress</span></td>
-                                <td>Specifications and prototypes active; evidence rows will be added here as each phase is sealed.</td>
+                                <td>Specifications and prototypes active; evidence rows will be added as each phase is sealed.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -472,6 +502,7 @@
                 </p>
             </section>
 
+            <!-- فاز ۹ -->
             <section class="card">
                 <h2>Phase 9 – Diabetes Engine (SEAL Package)</h2>
                 <p>
@@ -515,6 +546,7 @@
                 </p>
             </section>
 
+            <!-- فاز ۷ -->
             <section class="card">
                 <h2>Phase 7 – Women+ Health &amp; Safety Engine (SEAL Package)</h2>
                 <p>
@@ -553,13 +585,13 @@
                     </a>
 
                     <a class="link-btn"
-                       href="https://raw.githubusercontent.com/sami1856/Elisence_Phase7_WomenPlus_EVIDENCE//phase7_women_plus_full_freeze_v1/MASTERMANIFEST_PHASE7_WOMEN_PLUS_FULL_FREEZE_V1.md"
+                       href="https://raw.githubusercontent.com/sami1856/Elisence_Phase7_WomenPlus_EVIDENCE/refs/heads/main/phase7_women_plus_full_freeze_v1/MASTERMANIFEST_PHASE7_WOMEN_PLUS_FULL_FREEZE_V1.md"
                        target="_blank" rel="noopener">
                         View Master Manifest (Raw)
                     </a>
 
                     <a class="link-btn"
-                       href="https://raw.githubusercontent.com/sami1856/Elisence_Phase7_WomenPlus_EVIDENCE//phase7_women_plus_full_freeze_v1/SHA256_REGISTRY_W7_SERIES7_v1.md"
+                       href="https://raw.githubusercontent.com/sami1856/Elisence_Phase7_WomenPlus_EVIDENCE/refs/heads/main/phase7_women_plus_full_freeze_v1/SHA256_REGISTRY_W7_SERIES7_v1.md"
                        target="_blank" rel="noopener">
                         View SHA-256 Registry (Raw)
                     </a>
@@ -574,6 +606,7 @@
                 </p>
             </section>
 
+            <!-- B1 -->
             <section class="card">
                 <h2>B1 — Technical Evidence Pack (Backend)</h2>
                 <p>
@@ -590,6 +623,7 @@
                 </div>
             </section>
 
+            <!-- B2 -->
             <section class="card">
                 <h2>B2 — Product Evidence Pack</h2>
                 <p>
@@ -606,11 +640,8 @@
                     <a class="link-btn" href="video.html">Go to Videos</a>
                 </div>
             </section>
-            <div class="link-buttons">
-            <a class="link-btn" href="product-evidence.html">Open Product Evidence</a>
-            <a class="link-btn" href="video.html">Go to Videos</a>
-        </div>
-    </section>
+
+            <!-- Downloads -->
             <section class="card">
                 <h2>Downloads — PDFs &amp; Whitepapers</h2>
                 <p>
@@ -622,6 +653,7 @@
                 </div>
             </section>
 
+            <!-- B3 -->
             <section class="card">
                 <h2>B3 — Ministry Compatibility Evidence (Qatar &amp; GCC Ready)</h2>
                 <p>
@@ -638,6 +670,7 @@
                 </ul>
             </section>
 
+            <!-- Qatar Export Kit -->
             <section class="card">
                 <h2>Qatar Export Kit – How This Evidence Is Used</h2>
                 <p>
@@ -651,33 +684,36 @@
                     <li>Live website links and product videos.</li>
                 </ul>
             </section>
-            <section class="card">
-    <h2>Phase 7 — Women+ Global Evidence (WHO / UN / SDG)</h2>
-    <p>
-        This section provides the global-facing evidence for Phase 7 Women+, prepared specifically for
-        WHO, UN agencies, ministers of health, and international reviewers. It includes the policy brief,
-        AI safety note, SDG alignment (SDG 3 & 5), and the partnership one-pager — all designed in the same
-        Elisence visual identity.
-    </p>
 
-    <div class="link-buttons">
-        <a class="link-btn" href="global/women_plus_global_evidence.html">
-            Open Women+ Global Evidence Hub
-        </a>
-    </div>
-</section>
-
+            <!-- Women+ Global Evidence -->
             <section class="card">
-                <h2>Global Investor Evidence – Pitch Decks & Founder Profile</h2>
+                <h2>Phase 7 — Women+ Global Evidence (WHO / UN / SDG)</h2>
+                <p>
+                    This section provides the global-facing evidence for Phase 7 Women+, prepared specifically for
+                    WHO, UN agencies, ministers of health, and international reviewers. It includes the policy brief,
+                    AI safety note, SDG alignment (SDG 3 &amp; 5), and the partnership one-pager — all designed in the same
+                    Elisence visual identity.
+                </p>
+
+                <div class="link-buttons">
+                    <a class="link-btn" href="global/women_plus_global_evidence.html">
+                        Open Women+ Global Evidence Hub
+                    </a>
+                </div>
+            </section>
+
+            <!-- Investor Evidence -->
+            <section class="card">
+                <h2>Global Investor Evidence – Pitch Decks &amp; Founder Profile</h2>
                 <p>
                     These documents provide a compact, investor-grade view of Elisence for Qatar and global partners:
-                    the full 17-phase Master Pitch Deck, the QDB-focused Pitch Deck, and the detailed Funder Profile
+                    the full 17-phase Master Pitch Deck, the QDB-focused Pitch Deck, and the detailed Founder Profile
                     for Saami Salami Asl as founder and chief architect.
                 </p>
                 <ul>
                     <li><strong>Master Pitch Deck:</strong> full 17-phase Elisence ecosystem, probability engine and global roadmap.</li>
                     <li><strong>QDB Pitch Deck:</strong> focused version aligned with Qatar Startup and QDB expectations.</li>
-                    <li><strong>Funder Profile:</strong> founder background, execution track record and Qatar relocation story.</li>
+                    <li><strong>Founder Profile:</strong> founder background, execution track record and Qatar relocation story.</li>
                 </ul>
 
                 <div class="link-buttons">
@@ -696,7 +732,7 @@
                     <a class="link-btn"
                        href="https://raw.githubusercontent.com/sami1856/Elisence_Phase7_WomenPlus_EVIDENCE/main/global/funder_profile_saami_salami_asl.html"
                        target="_blank" rel="noopener">
-                        Open Funder Profile
+                        Open Founder Profile
                     </a>
                 </div>
             </section>
