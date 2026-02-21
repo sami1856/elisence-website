@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Zero-Trust &amp; Cloudflare Access</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+          content="Elisence Zero-Trust & Cloudflare Access – how demo.elisence.com and evidence portals are protected with invite-only, audited access and strict non-diagnostic rules.">
+
+    <!-- Elisa chat widget -->
+    <script defer src="elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* اگر خواستی این صفحه را هایلایت کنی، می‌توانی روی یکی از دکمه‌ها این کلاس را اضافه کنی */
+        .nav-btn.zero-active {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.85), rgba(8, 47, 73, 0.98));
+            border-color: rgba(125, 211, 252, 0.95);
+            box-shadow:
+                0 0 22px rgba(56, 189, 248, 1),
+                0 0 50px rgba(37, 99, 235, 0.95);
+        }
+
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #e1eeff;
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.6rem;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.8);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e0f2fe;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.35rem;
+            font-size: 0.93rem;
+            color: #dceafe;
+        }
+
+        .link-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 0.9rem;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 14px rgba(0, 130, 255, 0.75),
+                0 0 28px rgba(0, 40, 120, 0.75);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 20px rgba(0, 190, 255, 0.95),
+                0 0 44px rgba(0, 80, 200, 0.95);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.65), rgba(0, 25, 80, 1));
+        }
+
+        .link-btn:active {
+            transform: translateY(0px) scale(0.99);
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <nav class="side-nav">
+        <a href="index.html"         class="nav-btn">Home</a>
+        <a href="index.html#phases"  class="nav-btn">Phases</a>
+        <a href="governments.html"   class="nav-btn">Governments</a>
+        <a href="evidence.html"      class="nav-btn">Evidence</a>
+        <a href="about.html"         class="nav-btn">About</a>
+        <a href="story.html"         class="nav-btn">Story</a>
+        <a href="video.html"         class="nav-btn">Videos</a>
+        <a href="contact.html"       class="nav-btn">Contact</a>
+        <a href="founder-saami.html" class="nav-btn">Founder</a>
+        <a href="articles.html"      class="nav-btn">Articles</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <h1>Zero-Trust Access &amp; Cloudflare Protection</h1>
+
+            <p class="lead">
+                Elisence runs behind a strict <strong>Zero-Trust</strong> security model. Demo portals,
+                evidence views and future admin consoles are never open to the public – they are
+                wrapped by Cloudflare Access, short-lived sessions, and full audit trails.
+            </p>
+
+            <p class="tagline">
+                This page explains, in plain language for ministries, regulators and partners,
+                how <strong>demo.elisence.com</strong> and related portals are protected, how invites
+                are issued, and how every visit can be traced and revoked safely.
+            </p>
+
+            <div class="pill-row">
+                <span class="pill">Zero-Trust</span>
+                <span class="pill">Cloudflare Access</span>
+                <span class="pill">Invite-Only Demo</span>
+                <span class="pill">Short-Lived Sessions</span>
+                <span class="pill">Audit Trail</span>
+                <span class="pill">Evidence-Grade Security</span>
+            </div>
+
+            <section class="card">
+                <h2>1. What Zero-Trust Means in Elisence</h2>
+                <p>
+                    In Elisence, Zero-Trust means that no part of the system is trusted by default –
+                    not the network, not the browser, not even a known IP address. Every sensitive
+                    surface must be explicitly allowed, authenticated and logged.
+                </p>
+                <ul>
+                    <li><strong>No open admin URLs:</strong> there are no “secret links” that anyone can guess.</li>
+                    <li><strong>No anonymous demo:</strong> every serious demo is invite-only, tied to an email identity.</li>
+                    <li><strong>Least privilege:</strong> guests only see non-diagnostic, synthetic journeys.</li>
+                    <li><strong>Full revocation:</strong> access can be cut off instantly if needed.</li>
+                </ul>
+
+                <div class="link-buttons">
+                    <a class="link-btn" href="https://demo.elisence.com" target="_blank" rel="noopener">
+                        Open Demo Portal (Protected)
+                    </a>
+                    <a class="link-btn" href="evidence.html">
+                        Go to Evidence Hub
+                    </a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>2. Cloudflare Access – How the Demo Is Protected</h2>
+                <p>
+                    The public demo at <strong>demo.elisence.com</strong> sits behind Cloudflare Access.
+                    This means that even before the Elisence app sees a request, Cloudflare has already
+                    checked the visitor’s identity and session.
+                </p>
+                <ul>
+                    <li><strong>Email-based invite:</strong> guests receive a secure link or one-time code.</li>
+                    <li><strong>Session control:</strong> access is time-limited; idle sessions expire by design.</li>
+                    <li><strong>Device and IP rules:</strong> rules can be tightened for ministries or internal pilots.</li>
+                    <li><strong>Access logs:</strong> every attempt, success or failure is written to an audit trail.</li>
+                </ul>
+                <p>
+                    For ministries, this means there is always a <strong>clear chain</strong> from
+                    “who was invited” to “what they saw” to “when they connected.”
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>3. Invite-Only Evidence &amp; SEAL Packs</h2>
+                <p>
+                    While the public website shows a high-level view of Elisence, deeper technical
+                    evidence – including SEAL repositories and WORM logs – is never indexed or openly
+                    searchable. Instead, it is shared in one of three controlled ways:
+                </p>
+                <ul>
+                    <li><strong>Invite to demo.elisence.com</strong> with pre-configured synthetic journeys.</li>
+                    <li><strong>Private GitHub links</strong> to SEAL repositories for Women+ and Diabetes.</li>
+                    <li><strong>On-request PDF bundles</strong> for QDB, QFC, QSTP or ministries under NDA.</li>
+                </ul>
+                <p>
+                    This keeps intellectual property safe while still giving reviewers everything they
+                    need to verify tests, manifests and SHA-256 anchors.
+                </p>
+                <div class="link-buttons">
+                    <a class="link-btn" href="contact.html">
+                        Request Evidence Access
+                    </a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>4. What Ministries and Regulators Can Verify</h2>
+                <p>
+                    The Zero-Trust layer is not just a technical choice; it is part of Elisence’s
+                    <strong>governance story</strong>. Ministries and regulators can verify:
+                </p>
+                <ul>
+                    <li>Who received a demo invite and at which email address.</li>
+                    <li>When they logged in and which synthetic journeys were used.</li>
+                    <li>That all content stays non-diagnostic and education-only.</li>
+                    <li>That no production clinical data is exposed in the demo environment.</li>
+                </ul>
+                <p>
+                    Combined with SEAL and WORM evidence, this creates a complete path from
+                    <strong>architecture → security → behaviour → audit logs</strong>.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>5. Relationship to Non-Diagnostic &amp; Synthetic Journeys</h2>
+                <p>
+                    Zero-Trust in Elisence is tightly linked to two other safety pillars:
+                </p>
+                <ul>
+                    <li><strong>Non-Diagnostic:</strong> even after passing Cloudflare Access, the demo never
+                        provides diagnoses, prescriptions or drug dosing advice. It shows education and probabilities only.</li>
+                    <li><strong>Synthetic Journeys:</strong> all examples in the demo are based on scripted,
+                        synthetic scenarios – not real patient data – so there is no risk to citizen privacy.</li>
+                </ul>
+                <p>
+                    These three parts – Zero-Trust, Non-Diagnostic, Synthetic – form a consistent safety
+                    boundary for every visitor, from investors to ministries.
+                </p>
+                <div class="link-buttons">
+                    <a class="link-btn" href="non_diagnostic.html">
+                        Read Non-Diagnostic Policy
+                    </a>
+                    <a class="link-btn" href="synthetic_journeys.html">
+                        Read Synthetic Journeys Policy
+                    </a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>6. Roadmap: From Demo to National Deployment</h2>
+                <p>
+                    As Elisence moves from demo to pilot and then to national deployment,
+                    the same Zero-Trust logic scales with it:
+                </p>
+                <ul>
+                    <li><strong>Citizen access:</strong> identity checks and consent flows at the app layer.</li>
+                    <li><strong>Clinician and ministry access:</strong> Passport V1 roles and Cloudflare policies combined.</li>
+                    <li><strong>Multi-region control:</strong> rules per country or institution, without changing the core engine.</li>
+                    <li><strong>Audit-ready posture:</strong> every step remains visible, reviewable and reversible.</li>
+                </ul>
+                <p>
+                    This is how Elisence can support Qatar, GCC and other regions as a
+                    <strong>sovereign, controllable health intelligence layer</strong>, not just another app.
+                </p>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="elisa-chat-root"></div>
+</body>
+</html>
