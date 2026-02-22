@@ -747,32 +747,33 @@
                 </div>
             </div>
         </div>
-      <div class="phase-card">
-            <div class="phase-label">Next</div>
-            <div class="phase-name">Future Phases &amp; National Scale</div>
-            <div class="phase-desc">
-                As more phases are sealed, new national-scale engines (e.g. ministries,
-                registries and research dashboards) will be added here with the same
-                evidence-first, non-diagnostic rules.
-            </div>
-            <a class="phase-link" href="contact.html">Talk to us about future phases</a>
-        </div>
-    </main>
+    <div class="phase-card">
+    <div class="phase-label">Next</div>
+    <div class="phase-name">Future Phases &amp; National Scale</div>
+    <div class="phase-desc">
+        As more phases are sealed, new national-scale engines (e.g. ministries,
+        registries and research dashboards) will be added here with the same
+        evidence-first, non-diagnostic rules.
+    </div>
+    <a class="phase-link" href="contact.html">Talk to us about future phases</a>
+</div>
 
-    <!-- اسکریپت کوچک برای نمایش فقط فازها وقتی hash = #phases باشد -->
-    <script>
-      (function () {
-        function applyHashMode() {
-          if (window.location.hash === "#phases") {
-            document.body.classList.add("show-phases-only");
-          } else {
-            document.body.classList.remove("show-phases-only");
-          }
-        }
-        window.addEventListener("hashchange", applyHashMode);
-        applyHashMode();
-      })();
-    </script>
+</main>
+
+<!-- اسکریپت کوچک برای نمایش فقط فازها وقتی hash = #phases باشد -->
+<script>
+  (function () {
+    function applyHashMode() {
+      if (window.location.hash === "#phases") {
+        document.body.classList.add("show-phases-only");
+      } else {
+        document.body.classList.remove("show-phases-only");
+      }
+    }
+    window.addEventListener("hashchange", applyHashMode);
+    applyHashMode();
+  })();
+</script>
     
 </body>
 </html>
