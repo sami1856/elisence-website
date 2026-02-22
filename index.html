@@ -99,21 +99,24 @@
 
       /* کانتینر و استایل لوگوی بزرگ Elisence */
       .hero-logo-container {
-    width: 100%;
-    max-width: 1100px;   /* از 750 → به 1100 تغییر بده */
-    margin: 0 auto 35px auto;
-    position: relative;
-}
-
-      .main-hero-logo {
-    width: 100%;
-    height: auto;       
-    border-radius: 20px;
-    filter: drop-shadow(0 0 25px rgba(0,160,255,0.55)) brightness(1);
-    animation: breathingGlow 6s infinite ease-in-out;
-}
-
-      @keyframes breathingGlow {
+          width: 100%;
+          max-width: 1100px;   /* از 750 → به 1100 تغییر بده */
+          margin: 0 auto 35px auto;
+          position: relative;
+      }
+      
+        .hero-logo-container {
+          max-width: 1200px;      /* پهن‌تر از قبل */
+          height: auto;           /* اجازه بده با محتوا کش بیاد */
+          margin: 40px auto;      /* وسط + فاصله بالا/پایین */
+          padding: 20px 30px;     /* فضای داخلی */
+          border-radius: 35px;    /* گردی گوشه‌ها */
+          background: rgba(0, 0, 0, 0.45);  /* پس‌زمینه تیره زیبا */
+          box-shadow: 
+              0 0 40px rgba(0, 150, 255, 0.25),
+              0 0 120px rgba(0, 150, 255, 0.15);
+      }
+            @keyframes breathingGlow {
           0%, 100% {
               filter: drop-shadow(0 0 25px rgba(0, 160, 255, 0.5)) brightness(1);
               transform: scale(1);
