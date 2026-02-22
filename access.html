@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Elisence – Secure Demo Portal Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Invite-only secure demo portal for Elisence. Request a one-time email code and explore deterministic, synthetic journeys for ministries, regulators and investors.">
+
+  <!-- Elisa chat widget -->
+  <script defer src="elisa-chat.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .top-dot {
+      position: fixed;
+      left: 18px;
+      top: 18px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+      box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+      z-index: 20;
+    }
+
+    .top-dot-label {
+      position: fixed;
+      left: 40px;
+      top: 16px;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a9d4ff;
+      z-index: 20;
+    }
+
+    .side-nav {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    .nav-btn {
+      display: block;
+      padding: 13px 38px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e3f2ff;
+      background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+      border: 1px solid rgba(90, 185, 255, 0.9);
+      box-shadow:
+        0 0 16px rgba(0, 130, 255, 0.95),
+        0 0 34px rgba(0, 40, 120, 0.95);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateX(-4px);
+      padding-right: 44px;
+      box-shadow:
+        0 0 22px rgba(0, 190, 255, 1),
+        0 0 46px rgba(0, 80, 200, 1);
+      background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+    }
+
+    .nav-btn:active {
+      transform: translateX(-2px) scale(0.99);
+    }
+
+    .nav-btn.demo-active {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.85), rgba(8, 47, 73, 0.98));
+      border-color: rgba(125, 211, 252, 0.95);
+      box-shadow:
+        0 0 22px rgba(56, 189, 248, 1),
+        0 0 50px rgba(37, 99, 235, 0.95);
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 40px;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 900px;
+      margin-right: 190px;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.98), rgba(3, 7, 18, 0.98));
+      border-radius: 26px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow:
+        0 0 32px rgba(56, 189, 248, 0.75),
+        0 0 70px rgba(8, 47, 73, 0.9);
+      padding: 2.4rem 2.7rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.16), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+      color: #38bdf8;
+    }
+
+    .lead {
+      font-size: 1rem;
+      color: #e2e8f0;
+      margin-bottom: 1.2rem;
+      max-width: 760px;
+    }
+
+    .highlight {
+      font-size: 0.92rem;
+      color: #a5b4fc;
+      margin-bottom: 1.4rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 1.3rem;
+    }
+
+    .pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(125, 211, 252, 0.8);
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #e0f2fe;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .demo-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 0.8rem;
+    }
+
+    .demo-btn-primary {
+      display: inline-block;
+      padding: 13px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #0b1120;
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      box-shadow:
+        0 0 20px rgba(56, 189, 248, 0.9),
+        0 0 40px rgba(16, 185, 129, 0.9);
+      border: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .demo-btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow:
+        0 0 26px rgba(56, 189, 248, 1),
+        0 0 52px rgba(16, 185, 129, 1);
+    }
+
+    .demo-btn-primary:active {
+      transform: translateY(0px) scale(0.99);
+    }
+
+    .demo-caption {
+      font-size: 0.82rem;
+      color: #bfdbfe;
+      max-width: 420px;
+    }
+
+    .footnote {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .footnote strong {
+      color: #e5e7eb;
+    }
+
+    ul.demo-points {
+      margin: 0.4rem 0 0.3rem 1.1rem;
+      padding-left: 0.2rem;
+      font-size: 0.9rem;
+      color: #dbeafe;
+    }
+
+    @media (max-width: 900px) {
+      .page-shell {
+        padding: 80px 18px 100px 18px;
+      }
+
+      .content {
+        margin-right: 0;
+      }
+
+      .side-nav {
+        position: fixed;
+        right: 50%;
+        top: auto;
+        bottom: 18px;
+        transform: translateX(50%);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .nav-btn {
+        padding: 9px 20px;
+        font-size: 11px;
+        letter-spacing: 0.11em;
+      }
+
+      .hero-card {
+        padding: 1.9rem 1.6rem 2.2rem;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-dot"></div>
+  <div class="top-dot-label">ELISENCE</div>
+
+  <!-- Side navigation (with Demo Portal highlighted) -->
+  <nav class="side-nav">
+    <a href="index.html"         class="nav-btn">Home</a>
+    <a href="index.html#phases"  class="nav-btn">Phases</a>
+    <a href="governments.html"   class="nav-btn">Governments</a>
+    <a href="demo-access.html"   class="nav-btn demo-active">Demo Portal</a>
+    <a href="evidence.html"      class="nav-btn">Evidence</a>
+    <a href="about.html"         class="nav-btn">About</a>
+    <a href="story.html"         class="nav-btn">Story</a>
+    <a href="video.html"         class="nav-btn">Videos</a>
+    <a href="contact.html"       class="nav-btn">Contact</a>
+    <a href="founder-saami.html" class="nav-btn">Founder</a>
+    <a href="articles.html"      class="nav-btn">Articles</a>
+  </nav>
+
+  <div class="page-shell">
+    <main class="content">
+      <section class="hero-card">
+        <div class="hero-inner">
+          <h1>Secure Demo Portal – Invite-Only Access</h1>
+
+          <p class="lead">
+            This demo environment is designed for ministries, regulators and selected investors.  
+            Access is <strong>invite-only</strong>: you enter an authorised email address and receive a
+            one-time code to explore the Elisence demo for a limited time window.
+          </p>
+
+          <p class="highlight">
+            All journeys inside the demo are <strong>synthetic</strong>, <strong>non-diagnostic</strong> and
+            <strong>fully auditable</strong>. No real patient data is used.
+          </p>
+
+          <div class="pill-row">
+            <span class="pill">Zero-Trust · Cloudflare</span>
+            <span class="pill">Email one-time code</span>
+            <span class="pill">Synthetic journeys only</span>
+            <span class="pill">Non-diagnostic safety boundary</span>
+          </div>
+
+          <ul class="demo-points">
+            <li>Preview Women+ (Phase 7) and Diabetes (Phase 9) deterministic scenarios.</li>
+            <li>See how non-diagnostic language, safety gates and WORM audit behave in practice.</li>
+            <li>Use any <strong>authorised email</strong> (whitelisted by Elisence) to request your access code.</li>
+          </ul>
+
+          <div class="demo-btn-row">
+            <a class="demo-btn-primary"
+               href="https://demo.elisence.com">
+              Enter Secure Demo
+            </a>
+
+            <p class="demo-caption">
+              You will be redirected to a Cloudflare Zero Trust login screen.  
+              Enter your authorised email address and the one-time code you receive.
+            </p>
+          </div>
+
+          <p class="footnote">
+            <strong>Security note:</strong> demo access is monitored and time-limited.<br />
+            Elisence never uses real patient data in this environment. All flows are synthetic and education-only.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="elisa-chat-root"></div>
+</body>
+</html>
