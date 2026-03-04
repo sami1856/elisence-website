@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence – Phase 4 · Stability, Integrity & Comparative Intelligence</title>
+    <title>Elisence – Phase 4 + GHX · Global Analytics, Evidence & Interoperability</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
         name="description"
-        content="Elisence Phase 4 – Stability, Integrity & Comparative Intelligence Layer. WORM ledger, FHIR interoperability, provenance, AKAC and global medical intelligence."
+        content="Elisence Phase 4 + GHX – Government-grade global analytics, evidence, provenance, WORM audit, privacy guardrails, and FHIR interoperability. BBVP, Zero-Trust, five-language, PDF-ready."
     />
 
-    <!-- Elisa chat widget script (مثل index و phase2) -->
     <script defer src="elisa-chat.js"></script>
 
     <style>
@@ -28,7 +27,6 @@
             line-height: 1.6;
         }
 
-        /* نقطه و برچسب بالا */
         .top-dot {
             position: fixed;
             left: 18px;
@@ -52,7 +50,6 @@
             z-index: 20;
         }
 
-        /* منوی عمودی سمت راست (هم‌استایل index/phase2) */
         .side-nav {
             position: fixed;
             right: 32px;
@@ -94,7 +91,6 @@
             transform: translateX(-2px) scale(0.99);
         }
 
-        /* شِل اصلی صفحه */
         .page-wrapper {
             min-height: 100vh;
             padding: 80px 40px 80px 40px;
@@ -105,10 +101,9 @@
         .content-shell {
             width: 100%;
             max-width: 1100px;
-            margin-right: 190px; /* جا برای منوی راست روی دسکتاپ */
+            margin-right: 190px;
         }
 
-        /* کارت هیرو بالا (مثل فاز ۲) */
         .hero-card {
             border-radius: 26px;
             padding: 34px 34px 30px 34px;
@@ -180,14 +175,56 @@
         }
 
         .hero-footnote {
-            margin-top: 16px;
+            margin-top: 14px;
             font-size: 11px;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: #7fb5ff;
         }
 
-        /* کارت‌های پایین (grid مثل دو جدول فاز۲، ولی بیشتر کارت) */
+        /* NEW: action buttons inside hero (keeps same glow style) */
+        .hero-actions {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .hero-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 14px rgba(0, 130, 255, 0.9),
+                0 0 26px rgba(0, 40, 120, 0.9);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .hero-action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 20px rgba(0, 190, 255, 1),
+                0 0 44px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .hero-action-primary {
+            background: radial-gradient(circle at top, rgba(0, 190, 255, 0.70), rgba(0, 25, 80, 1));
+            border: 1px solid rgba(120, 220, 255, 1);
+            box-shadow:
+                0 0 18px rgba(0, 200, 255, 1),
+                0 0 56px rgba(0, 90, 220, 1);
+        }
+
         .card-grid {
             margin-top: 10px;
             display: grid;
@@ -228,6 +265,11 @@
                 padding: 9px 20px;
                 font-size: 11px;
                 letter-spacing: 0.11em;
+            }
+
+            .hero-action-btn {
+                padding: 9px 14px;
+                font-size: 11px;
             }
         }
 
@@ -284,7 +326,6 @@
     <div class="top-dot"></div>
     <div class="top-dot-label">ELISENCE</div>
 
-    <!-- منوی عمودی سمت راست -->
     <nav class="side-nav">
         <a href="index.html"        class="nav-btn">Home</a>
         <a href="index.html#phases" class="nav-btn">Phases</a>
@@ -297,11 +338,9 @@
     <div class="page-wrapper">
         <div class="content-shell">
 
-            <!-- هیرو فاز ۴ -->
             <section class="hero-card">
                 <div class="hero-layout">
 
-                    <!-- لوگو -->
                     <div class="hero-logo-container">
                         <img
                             src="elisence.png"
@@ -310,306 +349,221 @@
                         />
                     </div>
 
-                    <!-- متن خلاصه -->
                     <div>
-                        <div class="phase-label">Phase 4 · Stability, Integrity & Comparative Intelligence Layer</div>
-                        <div class="hero-title">From App to Health Infrastructure</div>
+                        <div class="phase-label">Phase 4 + GHX · Global Analytics, Evidence & Interoperability</div>
+                        <div class="hero-title">Phase 4 + GHX</div>
+
                         <p class="hero-tagline">
-                            Phase 4 transforms Elisence from a single application into a governance-grade,
-                            audit-ready health intelligence infrastructure for ministries, hospitals and regulators.
+                            Phase 4 is Elisence’s government-grade evidence engine. GHX is the interoperability and governance exchange
+                            that makes those outputs exportable, auditable, and integration-ready for real health systems.
                         </p>
+
                         <p class="hero-body">
-                            It is the layer where **every number, model and comparison is traceable**.
-                            WORM audit logs, FHIR interoperability, advanced provenance and AKAC privacy
-                            controls ensure that real-world evidence is safe, verifiable and compatible
-                            with national healthcare standards across the UK, EU, US and GCC regions.
+                            This layer exists to answer one question with absolute clarity:
+                            <span class="highlight">“Can a ministry, hospital, regulator, or university trust these numbers?”</span>
+                            Phase 4 turns operational signals (usage, adherence, satisfaction, side-effects, outcomes) into population-level evidence,
+                            with strict privacy guardrails and full traceability. GHX then packages the same outputs into standards-ready,
+                            policy-bound exports (including audit trails, provenance, and integration contracts).
                         </p>
+
+                        <p class="hero-body">
+                            Today, Phase 4 has evolved into a complete BBVP and Zero-Trust system:
+                            <span class="highlight">400+ tests passing</span>, five-language readiness (EN / FA / AR / TR / RO),
+                            PDF evidence reporting, and a fully tested GHX exchange designed for national scale.
+                        </p>
+
                         <div class="hero-footnote">
-                            <span>Stable · Auditable · Privacy-First · Comparative Intelligence</span>
+                            <span>BBVP · Zero-Trust · Five-Language · PDF Evidence · GHX Interoperability</span>
+                        </div>
+
+                        <!-- HERO ACTION BUTTONS (edit href as you wish) -->
+                        <div class="hero-actions">
+                            <a class="hero-action-btn hero-action-primary" href="phase4_analytics_demo.html">
+                                Open Locked Demo (Phase 4)
+                            </a>
+                            <a class="hero-action-btn" href="phase4_ghx_demo.html">
+                                Open Locked Demo (GHX)
+                            </a>
+                            <a class="hero-action-btn" href="phase4_report.pdf" target="_blank" rel="noopener noreferrer">
+                                Open Phase 4 PDF
+                            </a>
+                            <a class="hero-action-btn" href="https://github.com/sami1856/Elisence_Phase4_GlobalAnalytics_EVIDENCE" target="_blank" rel="noopener noreferrer">
+                                View Evidence Repo
+                            </a>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- کارت‌های جزئیات (کامل، بدون خلاصه‌نویسی) -->
             <section class="card-grid">
 
-                <!-- کارت ۱: Vision + Core Engine -->
                 <article class="info-card">
-                    <h2 class="info-title">1. Vision – Why Phase 4 Exists</h2>
+                    <h2 class="info-title">1. What Phase 4 + GHX Is</h2>
                     <div class="info-body">
                         <p>
-                            Phase 4 establishes the foundation where governments, clinicians and citizens
-                            can trust Elisence’s conclusions at **national scale**. It guarantees that:
+                            <span class="highlight">Phase 4</span> is the Global Analytics & Evidence Engine of Elisence.
+                            It produces privacy-safe, non-diagnostic, population-level KPIs and insights that can be used by
+                            ministries, hospitals, universities, and regulators.
+                        </p>
+                        <p>
+                            <span class="highlight">GHX</span> (Governance & Health eXchange) is the interoperability and governance layer that ensures
+                            every export is policy-bound, traceable, standards-ready, and audit-proof.
                         </p>
                         <ul>
-                            <li>All real-world evidence (RWE) is traceable from input to output.</li>
-                            <li>Every analytical result is backed by immutable logs and QA.</li>
-                            <li>Privacy and clinical safety are enforced by design, not by policy only.</li>
+                            <li><span class="highlight">Phase 4</span> answers: “What is happening at population level?”</li>
+                            <li><span class="highlight">GHX</span> answers: “Can this be exported, integrated, audited, and trusted?”</li>
                         </ul>
                         <p>
-                            This is the layer that prepares Elisence for **formal evaluation** by ministries of health,
-                            national health services and global partners.
-                        </p>
-
-                        <h3 class="info-subtitle">2. Core Engine – Four Technical Pillars</h3>
-                        <p class="info-subtitle">
-                            WORM Ledger · FHIR Interoperability · Provenance Engine · AKAC
-                        </p>
-
-                        <p class="highlight">2.1 WORM Ledger — Immutable Audit Trails</p>
-                        <p>
-                            A cryptographically enforced, append-only ledger that stores:
-                        </p>
-                        <ul>
-                            <li>Dataset fingerprints and hashes.</li>
-                            <li>Model version identifiers and configuration snapshots.</li>
-                            <li>QA digests and full test outcomes.</li>
-                            <li>Export hashes, signatures and delivery timestamps.</li>
-                            <li>Archive and snapshot timestamps.</li>
-                        </ul>
-                        <p>
-                            <strong>Why it matters:</strong> regulators and hospitals can reconstruct
-                            exactly how a conclusion was produced. There are **no silent edits**, no hidden changes,
-                            and no trust gaps.
-                        </p>
-
-                        <p class="highlight">2.2 FHIR Integration — Global Interoperability</p>
-                        <p>
-                            Phase 4 harmonises medication and usage data with global medical standards:
-                        </p>
-                        <ul>
-                            <li>FHIR resources: <em>Medication</em>, <em>MedicationRequest</em>, <em>MedicationStatement</em>.</li>
-                            <li>RxNorm / ATC codes for drug identification.</li>
-                            <li>MedDRA for adverse event and side-effect coding.</li>
-                            <li>SNOMED CT / ICD-10 for conditions and diagnoses.</li>
-                        </ul>
-                        <p>
-                            <strong>Why it matters:</strong> ministries, hospitals and health systems can integrate Elisence
-                            without rebuilding their infrastructure. FHIR makes Elisence **“plug-into-the-health-system ready.”**
+                            Both layers operate as <span class="highlight">non-diagnostic infrastructure</span>:
+                            no patient-level diagnosis, no treatment recommendation, and no unsafe exposure of identifiable data.
                         </p>
                     </div>
                 </article>
 
-                <!-- کارت ۲: ادامه Core Engine (Provenance + AKAC) -->
                 <article class="info-card">
-                    <h2 class="info-title">2. Core Engine (continued) – Provenance & AKAC</h2>
+                    <h2 class="info-title">2. Why It Exists and Why It Matters</h2>
                     <div class="info-body">
-                        <p class="highlight">2.3 Provenance Engine — End-to-End Traceability</p>
                         <p>
-                            Every analysis, chart, comparison or export carries embedded provenance metadata:
+                            Digital health systems fail when evidence is not defensible. Phase 4 + GHX exists to remove doubt:
+                            every metric must be reproducible, every comparison must be traceable, and every export must be auditable.
                         </p>
                         <ul>
-                            <li>Data sources and ingestion paths.</li>
-                            <li>Transformations, filters and quality checks applied.</li>
-                            <li>Model parameters, training lineage and runtime versions.</li>
-                            <li>Timestamps, environment and execution context.</li>
-                            <li>Digital signatures, QA status and reviewer information.</li>
-                            <li>AKAC privacy level and cohort size used.</li>
+                            <li><span class="highlight">For ministries:</span> policy-grade KPIs and public health intelligence.</li>
+                            <li><span class="highlight">For hospitals:</span> governance-ready safety and outcome monitoring.</li>
+                            <li><span class="highlight">For universities:</span> research-grade evidence with clear methodology.</li>
+                            <li><span class="highlight">For regulators:</span> audit logs, provenance, and controlled releases.</li>
                         </ul>
                         <p>
-                            This provides true real-world evidence transparency, aligned with
-                            UK / EU / US / GCC expectations for medical data and pharmacovigilance.
-                        </p>
-
-                        <p class="highlight">2.4 AKAC — Adaptive Knowledge Access Control</p>
-                        <p>
-                            AKAC is a dynamic privacy supervisor that:
-                        </p>
-                        <ul>
-                            <li>Adjusts anonymisation thresholds based on cohort size.</li>
-                            <li>Applies k-anonymity and safe aggregation rules.</li>
-                            <li>Blocks unsafe slices, drill-downs or high-risk combinations.</li>
-                            <li>Ensures aggregate reports cannot deanonymise individuals.</li>
-                        </ul>
-                        <p>
-                            <strong>Why it matters:</strong> citizens gain confidence that their identity is protected;
-                            regulators gain formal proof of compliance; clinicians still receive **useful, safe insights**.
+                            This is the moment Elisence becomes <span class="highlight">health infrastructure</span>, not just an application.
                         </p>
                     </div>
                 </article>
 
-                <!-- کارت ۳: Intelligence & Analytics -->
                 <article class="info-card">
-                    <h2 class="info-title">3. Intelligence & Analytics</h2>
+                    <h2 class="info-title">3. BBVP and Zero-Trust Posture</h2>
                     <div class="info-body">
-                        <p>
-                            Phase 4 houses the analytical brain of Elisence, converting raw usage data into
-                            trusted insight for **public health, clinical practice and national decision-making**.
-                        </p>
-
-                        <p class="highlight">3.1 Drug Effectiveness Intelligence</p>
-                        <p>The engine computes, with QA and provenance on each metric:</p>
+                        <p class="highlight">BBVP (Build · Back · Verify · Prove)</p>
                         <ul>
-                            <li>Mean effectiveness metrics and improvement scores.</li>
-                            <li>Response rates across cohorts and sub-populations.</li>
-                            <li>Δ-change metrics (before / after treatment windows).</li>
-                            <li>Net Benefit Index (NBI) combining benefit and safety.</li>
-                            <li>Cohort-specific performance curves over time.</li>
+                            <li><span class="highlight">Build:</span> feature-flagged, clean analytics contracts and deterministic outputs.</li>
+                            <li><span class="highlight">Back:</span> unit + integration + safety tests for every KPI and rule.</li>
+                            <li><span class="highlight">Verify:</span> repeatable runs, reproducible outputs, and strict quality gates.</li>
+                            <li><span class="highlight">Prove:</span> evidence packs, hashes, manifests, and audit references.</li>
                         </ul>
-
-                        <p class="highlight">3.2 Side-Effect Intelligence</p>
-                        <p>
-                            Integrated safety analytics using:
-                        </p>
+                        <p class="highlight">Zero-Trust</p>
                         <ul>
-                            <li>MedDRA-coded adverse events with severity grading.</li>
-                            <li>Proportional Reporting Ratios (PRR) and ROR calculations.</li>
-                            <li>Temporal patterns – onset, duration and recurrence.</li>
-                            <li>Geo-demographic risk variations and clusters.</li>
-                        </ul>
-                        <p>
-                            This produces contextualised safety profiles for public health and for
-                            clinician governance boards.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- کارت ۴: Comparative Engine + Global Medical Intelligence -->
-                <article class="info-card">
-                    <h2 class="info-title">3. Comparative & Global Medical Intelligence</h2>
-                    <div class="info-body">
-                        <p class="highlight">3.3 Comparative Intelligence Engine</p>
-                        <p>
-                            The flagship capability of Phase 4, enabling:
-                        </p>
-                        <ul>
-                            <li>Drug-vs-drug comparisons across matched cohorts.</li>
-                            <li>Cohort matching and propensity-score weighting.</li>
-                            <li>Benefit–risk scoring, ranking and scenario exploration.</li>
-                            <li>
-                                Multilingual narrative generation (EN / FA / AR / TR / RO)
-                                explaining results in plain language.
-                            </li>
-                        </ul>
-                        <p>
-                            <strong>Narrative example:</strong><br />
-                            “Drug&nbsp;B showed substantially higher effectiveness and fewer severe adverse
-                            events than Drug&nbsp;A in this cohort, based on anonymised real-world data.”
-                        </p>
-                        <p>
-                            This allows clinicians and ministries to compare therapeutic options
-                            **without guesswork or black-box behaviour**.
-                        </p>
-
-                        <p class="highlight">3.4 Global Medical-Intelligence Layer</p>
-                        <p>
-                            A unified intelligence fabric that powers:
-                        </p>
-                        <ul>
-                            <li>National health and utilisation reports.</li>
-                            <li>Population-level analytics and trend detection.</li>
-                            <li>Ministry dashboards and oversight tools.</li>
-                            <li>High-level, non-diagnostic risk–benefit summaries for citizens.</li>
-                        </ul>
-                        <p>
-                            This layer turns Elisence from an app into a **real health-system intelligence backbone**.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- کارت ۵: Safety & Governance -->
-                <article class="info-card">
-                    <h2 class="info-title">4. Safety, Governance & Compliance</h2>
-                    <div class="info-body">
-                        <p class="highlight">4.1 QA Gates – No Output Without Evidence</p>
-                        <p>
-                            No analytical output is released unless it passes a chain of QA gates:
-                        </p>
-                        <ul>
-                            <li>Completeness and coverage checks.</li>
-                            <li>Recency and freshness of data.</li>
-                            <li>Duplicate and outlier detection.</li>
-                            <li>Internal consistency and plausibility checks.</li>
-                            <li>Cohort safety and minimum-size thresholds.</li>
-                            <li>Privacy and AKAC compliance checks.</li>
-                        </ul>
-                        <p>
-                            If any gate fails → the output is **blocked, flagged and not shown** to end users.
-                        </p>
-
-                        <p class="highlight">4.2 Governance of Effectiveness & Adverse Intelligence</p>
-                        <ul>
-                            <li>Transparent, documented statistical methodology.</li>
-                            <li>Versioned models with full changelog and review trail.</li>
-                            <li>Clear statement of assumptions and known limitations.</li>
-                            <li>Clinical-grade metrics and validation procedures.</li>
-                            <li>Multilingual narratives for global clinical and policy use.</li>
+                            <li>No implicit trust. Inputs are validated. Outputs are gated.</li>
+                            <li>No silent changes. Every release is traceable via logs and evidence artifacts.</li>
+                            <li>Privacy and safety are enforced by design, not by documentation only.</li>
                         </ul>
                     </div>
                 </article>
 
-                <!-- کارت ۶: Compliance frameworks + Stakeholder impact & Scaling -->
                 <article class="info-card">
-                    <h2 class="info-title">5. Compliance, Impact & Scalability</h2>
+                    <h2 class="info-title">4. Five-Language and Reporting Outputs</h2>
                     <div class="info-body">
-                        <p class="highlight">4.3 Trust Compliance Framework</p>
                         <p>
-                            Phase 4 aligns with the operational expectations of:
+                            Phase 4 + GHX is designed for global rollouts and multi-lingual public environments:
+                            <span class="highlight">EN / FA / AR (RTL) / TR / RO</span>.
                         </p>
                         <ul>
-                            <li>GDPR and the UK Data Protection Act.</li>
-                            <li>NHS DTAC principles for digital health.</li>
-                            <li>EU MDR-aligned non-diagnostic AI behaviour.</li>
-                            <li>HIPAA-style de-identification expectations.</li>
-                            <li>GCC / Qatar / UAE PDPL-style privacy requirements.</li>
-                            <li>ENCePP, STROBE and RECORD-PE for real-world evidence.</li>
+                            <li>Five-language readiness across UI narratives and evidence outputs.</li>
+                            <li>RTL-safe language behavior for Persian and Arabic.</li>
+                            <li>Multi-language <span class="highlight">PDF reporting</span> for ministries, hospitals, and universities.</li>
                         </ul>
                         <p>
-                            Outcome: Elisence becomes eligible for **formal evaluation** by healthcare authorities,
-                            ethics boards and national partners.
+                            Outputs remain <span class="highlight">non-diagnostic</span> and explainable, and are structured to support
+                            governmental and institutional decision-making without exposing identifiable data.
                         </p>
+                    </div>
+                </article>
 
-                        <p class="highlight">5.1 Stakeholder Impact</p>
-                        <p><strong>Governments & Ministries of Health</strong></p>
-                        <ul>
-                            <li>National-scale monitoring of drug safety and effectiveness.</li>
-                            <li>Immutable WORM logs for compliance and investigations.</li>
-                            <li>Real-world comparative intelligence for formulary and policy decisions.</li>
-                            <li>Audit-ready provenance for every aggregate metric.</li>
-                            <li>Privacy-by-design architecture backed by AKAC and anonymisation.</li>
-                        </ul>
-
-                        <p><strong>Hospitals, Clinics & Medical Networks</strong></p>
-                        <ul>
-                            <li>Evidence-backed medication comparisons at population and service level.</li>
-                            <li>Safety signals and adverse-event intelligence for governance boards.</li>
-                            <li>Transparent QA and methodology reports.</li>
-                            <li>Multilingual clinical narratives for diverse populations.</li>
-                            <li>Interoperability with existing EHR / FHIR systems.</li>
-                        </ul>
-
-                        <p><strong>Citizens & Families</strong></p>
-                        <ul>
-                            <li>Trust that identifiable data is never exposed in analytics.</li>
-                            <li>Assurance that outputs are QA-checked and evidence-based.</li>
-                            <li>Clear, human-friendly explanations of high-level patterns.</li>
-                            <li>Future personalised coaching powered by aggregated RWE.</li>
-                            <li>Strong privacy using AKAC, anonymisation and (later) differential privacy.</li>
-                        </ul>
-
-                        <p class="highlight">5.2 Scalability & Performance</p>
-                        <ul>
-                            <li>Pre-computed aggregates targeting &lt; 200&nbsp;ms API latency.</li>
-                            <li>Optimised ETL and caching strategies for national workloads.</li>
-                            <li>Archiving and snapshot systems for long-term reliability.</li>
-                            <li>Partitioned analytics structures and safe cohorting.</li>
-                            <li>WORM-integrated distributed ledger for durable audit history.</li>
-                        </ul>
-
+                <article class="info-card">
+                    <h2 class="info-title">5. Phase 4 – Global Analytics Engine</h2>
+                    <div class="info-body">
                         <p>
-                            Phase 4 prepares Elisence for later expansions – diabetes intelligence (Phase&nbsp;9),
-                            Women+ engines (Phase&nbsp;7), passports and access layers, public dashboards
-                            and research portals – all resting on the same integrity and trust created here.
+                            Phase 4 computes population-level evidence using strict privacy rules and QA gates.
+                            Typical analytics families include:
                         </p>
-
-                        <p class="highlight">7. Final Statement</p>
+                        <ul>
+                            <li><span class="highlight">Utilisation and adherence:</span> adoption trends, stability, schedule compliance.</li>
+                            <li><span class="highlight">Satisfaction and experience:</span> program-level feedback, not individual scoring.</li>
+                            <li><span class="highlight">Safety signal analytics:</span> MedDRA-coded adverse-event patterns.</li>
+                            <li><span class="highlight">Effectiveness signals:</span> aggregate outcomes (activated only when data is available).</li>
+                            <li><span class="highlight">Privacy guards:</span> k-anonymity thresholds and safe aggregation behavior.</li>
+                        </ul>
                         <p>
-                            Phase 4 is the moment Elisence becomes **infrastructure**, not just an app.
-                            It provides the stability, transparency, governance and comparative intelligence
-                            that governments, clinicians and citizens need in order to rely on its outputs.
-                            All advanced capabilities in later phases are built on this foundation.
+                            No KPI is released without passing quality gates. If safety or privacy thresholds are not met,
+                            the engine blocks output rather than risking exposure.
                         </p>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">6. GHX – Governance and Interoperability Exchange</h2>
+                    <div class="info-body">
+                        <p>
+                            GHX turns Phase 4 outputs into integration-ready, policy-bound exports.
+                            It is the layer that makes analytics <span class="highlight">deployable and auditable</span>.
+                        </p>
+                        <ul>
+                            <li><span class="highlight">Policy Registry:</span> country and region policy packs, versioned and traceable.</li>
+                            <li><span class="highlight">Consent and access posture:</span> role-bound visibility and export scope controls.</li>
+                            <li><span class="highlight">FHIR transformation:</span> standards-ready packaging (where applicable).</li>
+                            <li><span class="highlight">WORM audit trails:</span> append-only logs with reproducible evidence references.</li>
+                            <li><span class="highlight">Provenance metadata:</span> sources, transforms, QA state, and export lineage.</li>
+                        </ul>
+                        <p>
+                            The result is an exchange layer suitable for ministries and institutions that require
+                            documented governance, controlled exports, and standards compatibility.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">7. Evidence, Tests, and PDF Packs</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 4 + GHX is not a “promise-based” system. It is evidence-backed and test-driven.
+                        </p>
+                        <ul>
+                            <li><span class="highlight">400+ tests passing</span> across contracts, QA gates, privacy checks, and exports.</li>
+                            <li>Deterministic outputs for locked demos and audit reproduction.</li>
+                            <li>Evidence packs with manifests, hashes, and traceable artifacts.</li>
+                            <li><span class="highlight">PDF reporting</span> designed for ministries, regulators, and universities.</li>
+                        </ul>
+                        <p>
+                            This foundation is what allows Elisence to be evaluated formally by institutional partners
+                            without requiring them to “trust the team” blindly.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">8. Who Uses It and How</h2>
+                    <div class="info-body">
+                        <p class="highlight">Ministries and Public Health Authorities</p>
+                        <ul>
+                            <li>National dashboards and program oversight using aggregate-only evidence.</li>
+                            <li>Audit-friendly exports with provenance, policy, and WORM trace references.</li>
+                        </ul>
+
+                        <p class="highlight">Hospitals and Clinical Governance Boards</p>
+                        <ul>
+                            <li>Safety and outcome monitoring at service level without exposing identities.</li>
+                            <li>Standards-ready packaging and controlled exports for integration.</li>
+                        </ul>
+
+                        <p class="highlight">Universities and Research Institutions</p>
+                        <ul>
+                            <li>Research-grade evidence outputs with stable methodology and reproducible runs.</li>
+                            <li>Traceable lineage and structured evidence packs for ethics review.</li>
+                        </ul>
+
+                        <p class="highlight">Citizens and Families (Indirect Benefit)</p>
+                        <ul>
+                            <li>Confidence that analytics does not expose identity or sensitive details.</li>
+                            <li>Trust that public insights are QA-checked and policy-governed.</li>
+                        </ul>
                     </div>
                 </article>
 
@@ -618,7 +572,6 @@
         </div>
     </div>
 
-    <!-- ریشهٔ ویجت Elisa (مثل index و phase2) -->
     <div id="elisa-chat-root"></div>
 
 </body>
