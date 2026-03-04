@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Elisence – Phase 4 + GHX · Global Analytics, Evidence & Interoperability</title>
+    <title>Elisence – Phase 4 · Global Analytics, Integrity & GHX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
         name="description"
-        content="Elisence Phase 4 + GHX – Government-grade global analytics, evidence, provenance, WORM audit, privacy guardrails, and FHIR interoperability. BBVP, Zero-Trust, five-language, PDF-ready."
+        content="Elisence Phase 4 – Global Analytics, Provenance & Integrity Engine. Government-grade evidence, auditability, and integration-ready governance. Phase 4 + GHX available as a dedicated layer."
     />
 
     <script defer src="elisa-chat.js"></script>
@@ -112,7 +112,7 @@
                 0 0 45px rgba(0, 170, 255, 0.85),
                 0 0 120px rgba(0, 80, 200, 0.65);
             border: 1px solid rgba(70, 190, 255, 0.6);
-            margin-bottom: 26px;
+            margin-bottom: 18px;
         }
 
         .hero-layout {
@@ -182,15 +182,54 @@
             color: #7fb5ff;
         }
 
-        /* NEW: action buttons inside hero (keeps same glow style) */
-        .hero-actions {
-            margin-top: 16px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        .card-grid {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
         }
 
-        .hero-action-btn {
+        .info-card {
+            border-radius: 20px;
+            padding: 18px 18px 18px 18px;
+            background: radial-gradient(circle at top, rgba(0, 120, 255, 0.40), rgba(0, 15, 40, 0.96));
+            border: 1px solid rgba(90, 185, 255, 0.85);
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+        }
+
+        .info-title {
+            font-size: 13px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            margin-bottom: 8px;
+        }
+
+        .info-body {
+            font-size: 12.5px;
+            color: #dbefff;
+        }
+
+        .info-body p {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #7dd3fc;
+        }
+
+        .mini-actions {
+            margin-top: 12px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -209,7 +248,7 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
 
-        .hero-action-btn:hover {
+        .action-btn:hover {
             transform: translateY(-1px);
             box-shadow:
                 0 0 20px rgba(0, 190, 255, 1),
@@ -217,19 +256,8 @@
             background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
         }
 
-        .hero-action-primary {
-            background: radial-gradient(circle at top, rgba(0, 190, 255, 0.70), rgba(0, 25, 80, 1));
-            border: 1px solid rgba(120, 220, 255, 1);
-            box-shadow:
-                0 0 18px rgba(0, 200, 255, 1),
-                0 0 56px rgba(0, 90, 220, 1);
-        }
-
-        .card-grid {
-            margin-top: 10px;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
+        .action-btn:active {
+            transform: translateY(0) scale(0.99);
         }
 
         @media (max-width: 900px) {
@@ -267,57 +295,14 @@
                 letter-spacing: 0.11em;
             }
 
-            .hero-action-btn {
+            .action-btn {
                 padding: 9px 14px;
                 font-size: 11px;
             }
-        }
 
-        .info-card {
-            border-radius: 20px;
-            padding: 18px 18px 18px 18px;
-            background: radial-gradient(circle at top, rgba(0, 120, 255, 0.40), rgba(0, 15, 40, 0.96));
-            border: 1px solid rgba(90, 185, 255, 0.85);
-            box-shadow:
-                0 0 22px rgba(0, 140, 255, 0.9),
-                0 0 40px rgba(0, 40, 120, 0.9);
-        }
-
-        .info-title {
-            font-size: 13px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: #a9d4ff;
-            margin-bottom: 8px;
-        }
-
-        .info-subtitle {
-            font-size: 12px;
-            color: #93c5fd;
-            margin-bottom: 6px;
-        }
-
-        .info-body {
-            font-size: 12.5px;
-            color: #dbefff;
-        }
-
-        .info-body p {
-            margin-bottom: 6px;
-        }
-
-        .info-body ul {
-            margin: 4px 0 6px 18px;
-            padding-left: 0;
-        }
-
-        .info-body li {
-            margin-bottom: 4px;
-        }
-
-        .highlight {
-            font-weight: 600;
-            color: #7dd3fc;
+            .mini-actions {
+                justify-content: flex-start;
+            }
         }
     </style>
 </head>
@@ -338,6 +323,7 @@
     <div class="page-wrapper">
         <div class="content-shell">
 
+            <!-- MAIN HERO (Phase 4 overall) -->
             <section class="hero-card">
                 <div class="hero-layout">
 
@@ -350,220 +336,74 @@
                     </div>
 
                     <div>
-                        <div class="phase-label">Phase 4 + GHX · Global Analytics, Evidence & Interoperability</div>
-                        <div class="hero-title">Phase 4 + GHX</div>
+                        <div class="phase-label">Phase 4 · Global Analytics, Provenance & Integrity</div>
+                        <div class="hero-title">Phase 4</div>
 
                         <p class="hero-tagline">
-                            Phase 4 is Elisence’s government-grade evidence engine. GHX is the interoperability and governance exchange
-                            that makes those outputs exportable, auditable, and integration-ready for real health systems.
+                            Phase 4 is the point where Elisence becomes evidence-grade infrastructure: stable analytics,
+                            strict integrity, and audit-ready outputs suitable for ministries, hospitals, regulators, and universities.
                         </p>
 
                         <p class="hero-body">
-                            This layer exists to answer one question with absolute clarity:
-                            <span class="highlight">“Can a ministry, hospital, regulator, or university trust these numbers?”</span>
-                            Phase 4 turns operational signals (usage, adherence, satisfaction, side-effects, outcomes) into population-level evidence,
-                            with strict privacy guardrails and full traceability. GHX then packages the same outputs into standards-ready,
-                            policy-bound exports (including audit trails, provenance, and integration contracts).
+                            This layer exists to answer a single question with full transparency:
+                            <span class="highlight">Can independent reviewers trust these numbers at national scale?</span>
+                            Phase 4 enforces verifiable integrity across the full journey: data ingestion, quality gates,
+                            analytics computation, provenance metadata, and controlled exports. Every result is non-diagnostic,
+                            privacy-safe, and designed for governance.
                         </p>
 
                         <p class="hero-body">
-                            Today, Phase 4 has evolved into a complete BBVP and Zero-Trust system:
-                            <span class="highlight">400+ tests passing</span>, five-language readiness (EN / FA / AR / TR / RO),
-                            PDF evidence reporting, and a fully tested GHX exchange designed for national scale.
+                            Phase 4 is implemented under BBVP and Zero-Trust posture, with five-language readiness (EN / FA / AR / TR / RO),
+                            evidence packs, and PDF reporting designed for institutional review.
                         </p>
 
                         <div class="hero-footnote">
-                            <span>BBVP · Zero-Trust · Five-Language · PDF Evidence · GHX Interoperability</span>
-                        </div>
-
-                        <!-- HERO ACTION BUTTONS (edit href as you wish) -->
-                        <div class="hero-actions">
-                            <a class="hero-action-btn hero-action-primary" href="phase4_analytics_demo.html">
-                                Open Locked Demo (Phase 4)
-                            </a>
-                            <a class="hero-action-btn" href="phase4_ghx_demo.html">
-                                Open Locked Demo (GHX)
-                            </a>
-                            <a class="hero-action-btn" href="phase4_report.pdf" target="_blank" rel="noopener noreferrer">
-                                Open Phase 4 PDF
-                            </a>
-                            <a class="hero-action-btn" href="https://github.com/sami1856/Elisence_Phase4_GlobalAnalytics_EVIDENCE" target="_blank" rel="noopener noreferrer">
-                                View Evidence Repo
-                            </a>
+                            <span>BBVP · Zero-Trust · Five-Language · Audit-Ready · Evidence & PDF</span>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- TWO SUB-BOXES -->
             <section class="card-grid">
 
                 <article class="info-card">
-                    <h2 class="info-title">1. What Phase 4 + GHX Is</h2>
+                    <h2 class="info-title">Phase 4 — Provenance & Integrity Engine</h2>
                     <div class="info-body">
                         <p>
-                            <span class="highlight">Phase 4</span> is the Global Analytics & Evidence Engine of Elisence.
-                            It produces privacy-safe, non-diagnostic, population-level KPIs and insights that can be used by
-                            ministries, hospitals, universities, and regulators.
+                            This section covers the internal trust layer of Phase 4: provenance, integrity, quality gates,
+                            and audit foundations that ensure no result can be produced without traceable evidence.
                         </p>
                         <p>
-                            <span class="highlight">GHX</span> (Governance & Health eXchange) is the interoperability and governance layer that ensures
-                            every export is policy-bound, traceable, standards-ready, and audit-proof.
+                            Reviewers can inspect how Phase 4 enforces deterministic behaviour, policy-bound outputs,
+                            and reproducible evidence for every KPI and report.
                         </p>
-                        <ul>
-                            <li><span class="highlight">Phase 4</span> answers: “What is happening at population level?”</li>
-                            <li><span class="highlight">GHX</span> answers: “Can this be exported, integrated, audited, and trusted?”</li>
-                        </ul>
-                        <p>
-                            Both layers operate as <span class="highlight">non-diagnostic infrastructure</span>:
-                            no patient-level diagnosis, no treatment recommendation, and no unsafe exposure of identifiable data.
-                        </p>
+
+                        <div class="mini-actions">
+                            <a class="action-btn" href="phase4_provenance.html">
+                                Open Integrity Page
+                            </a>
+                        </div>
                     </div>
                 </article>
 
                 <article class="info-card">
-                    <h2 class="info-title">2. Why It Exists and Why It Matters</h2>
+                    <h2 class="info-title">Phase 4 + GHX</h2>
                     <div class="info-body">
                         <p>
-                            Digital health systems fail when evidence is not defensible. Phase 4 + GHX exists to remove doubt:
-                            every metric must be reproducible, every comparison must be traceable, and every export must be auditable.
+                            GHX is the governance and exchange layer that makes Phase 4 outputs exportable, integration-ready,
+                            and institution-compatible. It focuses on controlled exports, interoperability packaging, and audit-grade delivery.
                         </p>
-                        <ul>
-                            <li><span class="highlight">For ministries:</span> policy-grade KPIs and public health intelligence.</li>
-                            <li><span class="highlight">For hospitals:</span> governance-ready safety and outcome monitoring.</li>
-                            <li><span class="highlight">For universities:</span> research-grade evidence with clear methodology.</li>
-                            <li><span class="highlight">For regulators:</span> audit logs, provenance, and controlled releases.</li>
-                        </ul>
                         <p>
-                            This is the moment Elisence becomes <span class="highlight">health infrastructure</span>, not just an application.
+                            This section explains how GHX connects Phase 4 evidence to external stakeholders with strict policy boundaries
+                            and standards-aware structures.
                         </p>
-                    </div>
-                </article>
 
-                <article class="info-card">
-                    <h2 class="info-title">3. BBVP and Zero-Trust Posture</h2>
-                    <div class="info-body">
-                        <p class="highlight">BBVP (Build · Back · Verify · Prove)</p>
-                        <ul>
-                            <li><span class="highlight">Build:</span> feature-flagged, clean analytics contracts and deterministic outputs.</li>
-                            <li><span class="highlight">Back:</span> unit + integration + safety tests for every KPI and rule.</li>
-                            <li><span class="highlight">Verify:</span> repeatable runs, reproducible outputs, and strict quality gates.</li>
-                            <li><span class="highlight">Prove:</span> evidence packs, hashes, manifests, and audit references.</li>
-                        </ul>
-                        <p class="highlight">Zero-Trust</p>
-                        <ul>
-                            <li>No implicit trust. Inputs are validated. Outputs are gated.</li>
-                            <li>No silent changes. Every release is traceable via logs and evidence artifacts.</li>
-                            <li>Privacy and safety are enforced by design, not by documentation only.</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="info-card">
-                    <h2 class="info-title">4. Five-Language and Reporting Outputs</h2>
-                    <div class="info-body">
-                        <p>
-                            Phase 4 + GHX is designed for global rollouts and multi-lingual public environments:
-                            <span class="highlight">EN / FA / AR (RTL) / TR / RO</span>.
-                        </p>
-                        <ul>
-                            <li>Five-language readiness across UI narratives and evidence outputs.</li>
-                            <li>RTL-safe language behavior for Persian and Arabic.</li>
-                            <li>Multi-language <span class="highlight">PDF reporting</span> for ministries, hospitals, and universities.</li>
-                        </ul>
-                        <p>
-                            Outputs remain <span class="highlight">non-diagnostic</span> and explainable, and are structured to support
-                            governmental and institutional decision-making without exposing identifiable data.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="info-card">
-                    <h2 class="info-title">5. Phase 4 – Global Analytics Engine</h2>
-                    <div class="info-body">
-                        <p>
-                            Phase 4 computes population-level evidence using strict privacy rules and QA gates.
-                            Typical analytics families include:
-                        </p>
-                        <ul>
-                            <li><span class="highlight">Utilisation and adherence:</span> adoption trends, stability, schedule compliance.</li>
-                            <li><span class="highlight">Satisfaction and experience:</span> program-level feedback, not individual scoring.</li>
-                            <li><span class="highlight">Safety signal analytics:</span> MedDRA-coded adverse-event patterns.</li>
-                            <li><span class="highlight">Effectiveness signals:</span> aggregate outcomes (activated only when data is available).</li>
-                            <li><span class="highlight">Privacy guards:</span> k-anonymity thresholds and safe aggregation behavior.</li>
-                        </ul>
-                        <p>
-                            No KPI is released without passing quality gates. If safety or privacy thresholds are not met,
-                            the engine blocks output rather than risking exposure.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="info-card">
-                    <h2 class="info-title">6. GHX – Governance and Interoperability Exchange</h2>
-                    <div class="info-body">
-                        <p>
-                            GHX turns Phase 4 outputs into integration-ready, policy-bound exports.
-                            It is the layer that makes analytics <span class="highlight">deployable and auditable</span>.
-                        </p>
-                        <ul>
-                            <li><span class="highlight">Policy Registry:</span> country and region policy packs, versioned and traceable.</li>
-                            <li><span class="highlight">Consent and access posture:</span> role-bound visibility and export scope controls.</li>
-                            <li><span class="highlight">FHIR transformation:</span> standards-ready packaging (where applicable).</li>
-                            <li><span class="highlight">WORM audit trails:</span> append-only logs with reproducible evidence references.</li>
-                            <li><span class="highlight">Provenance metadata:</span> sources, transforms, QA state, and export lineage.</li>
-                        </ul>
-                        <p>
-                            The result is an exchange layer suitable for ministries and institutions that require
-                            documented governance, controlled exports, and standards compatibility.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="info-card">
-                    <h2 class="info-title">7. Evidence, Tests, and PDF Packs</h2>
-                    <div class="info-body">
-                        <p>
-                            Phase 4 + GHX is not a “promise-based” system. It is evidence-backed and test-driven.
-                        </p>
-                        <ul>
-                            <li><span class="highlight">400+ tests passing</span> across contracts, QA gates, privacy checks, and exports.</li>
-                            <li>Deterministic outputs for locked demos and audit reproduction.</li>
-                            <li>Evidence packs with manifests, hashes, and traceable artifacts.</li>
-                            <li><span class="highlight">PDF reporting</span> designed for ministries, regulators, and universities.</li>
-                        </ul>
-                        <p>
-                            This foundation is what allows Elisence to be evaluated formally by institutional partners
-                            without requiring them to “trust the team” blindly.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="info-card">
-                    <h2 class="info-title">8. Who Uses It and How</h2>
-                    <div class="info-body">
-                        <p class="highlight">Ministries and Public Health Authorities</p>
-                        <ul>
-                            <li>National dashboards and program oversight using aggregate-only evidence.</li>
-                            <li>Audit-friendly exports with provenance, policy, and WORM trace references.</li>
-                        </ul>
-
-                        <p class="highlight">Hospitals and Clinical Governance Boards</p>
-                        <ul>
-                            <li>Safety and outcome monitoring at service level without exposing identities.</li>
-                            <li>Standards-ready packaging and controlled exports for integration.</li>
-                        </ul>
-
-                        <p class="highlight">Universities and Research Institutions</p>
-                        <ul>
-                            <li>Research-grade evidence outputs with stable methodology and reproducible runs.</li>
-                            <li>Traceable lineage and structured evidence packs for ethics review.</li>
-                        </ul>
-
-                        <p class="highlight">Citizens and Families (Indirect Benefit)</p>
-                        <ul>
-                            <li>Confidence that analytics does not expose identity or sensitive details.</li>
-                            <li>Trust that public insights are QA-checked and policy-governed.</li>
-                        </ul>
+                        <div class="mini-actions">
+                            <a class="action-btn" href="phase4_ghx.html">
+                                Open GHX Page
+                            </a>
+                        </div>
                     </div>
                 </article>
 
