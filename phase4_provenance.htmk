@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Phase 4 · Provenance & Integrity Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+        name="description"
+        content="Elisence Phase 4 Provenance & Integrity Engine. BBVP, Zero-Trust, QA gates, WORM audit, manifests, signatures, reproducible analytics and evidence-grade exports."
+    />
+
+    <script defer src="elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            padding: 80px 40px 80px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-shell {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px;
+        }
+
+        .hero-card {
+            border-radius: 26px;
+            padding: 34px 34px 30px 34px;
+            background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
+            box-shadow:
+                0 0 45px rgba(0, 170, 255, 0.85),
+                0 0 120px rgba(0, 80, 200, 0.65);
+            border: 1px solid rgba(70, 190, 255, 0.6);
+            margin-bottom: 18px;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.9fr);
+            gap: 26px;
+            align-items: center;
+        }
+
+        .hero-logo-container {
+            width: 100%;
+            max-width: 430px;
+            margin: 0 auto;
+        }
+
+        .main-hero-logo {
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+            animation: breathingGlow 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.6));
+        }
+
+        @keyframes breathingGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 25px rgba(0, 160, 255, 0.5)) brightness(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(0, 200, 255, 0.9)) brightness(1.15);
+                transform: scale(1.015);
+            }
+        }
+
+        .phase-label {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #a5d7ff;
+            margin-bottom: 6px;
+        }
+
+        .hero-title {
+            font-size: 26px;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .hero-tagline {
+            font-size: 13px;
+            color: #d4e8ff;
+            margin-bottom: 10px;
+        }
+
+        .hero-body {
+            font-size: 13px;
+            color: #dbefff;
+            margin-bottom: 10px;
+        }
+
+        .hero-footnote {
+            margin-top: 14px;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #7fb5ff;
+        }
+
+        .hero-actions {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 14px rgba(0, 130, 255, 0.9),
+                0 0 26px rgba(0, 40, 120, 0.9);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 20px rgba(0, 190, 255, 1),
+                0 0 44px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .action-btn:active {
+            transform: translateY(0) scale(0.99);
+        }
+
+        .card-grid {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .info-card {
+            border-radius: 20px;
+            padding: 18px 18px 18px 18px;
+            background: radial-gradient(circle at top, rgba(0, 120, 255, 0.40), rgba(0, 15, 40, 0.96));
+            border: 1px solid rgba(90, 185, 255, 0.85);
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+        }
+
+        .info-title {
+            font-size: 13px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            margin-bottom: 8px;
+        }
+
+        .info-subtitle {
+            font-size: 12px;
+            color: #93c5fd;
+            margin-bottom: 8px;
+        }
+
+        .info-body {
+            font-size: 12.5px;
+            color: #dbefff;
+        }
+
+        .info-body p {
+            margin-bottom: 10px;
+        }
+
+        .info-body ul {
+            margin: 8px 0 10px 18px;
+            padding-left: 0;
+        }
+
+        .info-body li {
+            margin-bottom: 6px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #7dd3fc;
+        }
+
+        .mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 12px;
+            color: #cde8ff;
+        }
+
+        .note {
+            border-radius: 16px;
+            padding: 14px 14px;
+            margin-top: 10px;
+            background: radial-gradient(circle at top, rgba(0, 160, 255, 0.22), rgba(0, 10, 35, 0.92));
+            border: 1px solid rgba(80, 180, 255, 0.55);
+            box-shadow:
+                0 0 18px rgba(0, 140, 255, 0.65),
+                0 0 32px rgba(0, 60, 180, 0.55);
+        }
+
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 18px 110px 18px;
+            }
+
+            .content-shell {
+                margin-right: 0;
+            }
+
+            .hero-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .card-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+
+            .action-btn {
+                padding: 9px 14px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <nav class="side-nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="story.html" class="nav-btn">Story</a>
+        <a href="video.html" class="nav-btn">Videos</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+    </nav>
+
+    <div class="page-wrapper">
+        <div class="content-shell">
+
+            <section class="hero-card">
+                <div class="hero-layout">
+
+                    <div class="hero-logo-container">
+                        <img
+                            src="elisence.png"
+                            alt="Elisence – Global Digital Health & Humanity Platform"
+                            class="main-hero-logo"
+                        />
+                    </div>
+
+                    <div>
+                        <div class="phase-label">Phase 4 · Provenance & Integrity Engine</div>
+                        <div class="hero-title">Provenance + Integrity</div>
+
+                        <p class="hero-tagline">
+                            This page explains the trust layer behind Phase 4: how Elisence proves that every KPI, chart,
+                            and exported insight is reproducible, policy-bound, and audit-ready under BBVP and Zero-Trust.
+                        </p>
+
+                        <p class="hero-body">
+                            Phase 4 is designed for situations where evidence must stand up to independent review:
+                            ministries, hospitals, regulators, research partners, and governance boards.
+                            The system answers one question with absolute clarity:
+                            <span class="highlight">"Can we trust these outputs, and can we prove how they were produced?"</span>
+                        </p>
+
+                        <p class="hero-body">
+                            The result is an evidence-grade engine where every output can be traced back to a controlled input set,
+                            a versioned rule/policy pack, deterministic analytics, documented QA gates, and immutable audit records.
+                            No silent edits. No hidden assumptions. No untraceable numbers.
+                        </p>
+
+                        <div class="hero-footnote">
+                            BBVP · Zero-Trust · QA Gates · WORM Audit · Manifests & Signatures · Five-Language Ready
+                        </div>
+
+                        <div class="hero-actions">
+                            <a class="action-btn" href="phase4.html">Back to Phase 4</a>
+                            <a class="action-btn" href="phase4_ghx.html">Open GHX Page</a>
+                            <a class="action-btn" href="demo-access.html">Open Locked Demo Portal</a>
+                            <a class="action-btn" href="download.html">Open Downloads</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="card-grid">
+
+                <article class="info-card">
+                    <h2 class="info-title">1. What “Provenance” Means in Phase 4</h2>
+                    <div class="info-body">
+                        <p>
+                            In Elisence, provenance is not a document or a promise. It is a <span class="highlight">machine-enforced chain of custody</span>
+                            for every analytic outcome. For each KPI or exported bundle, Phase 4 records:
+                        </p>
+                        <ul>
+                            <li><span class="highlight">Input fingerprints</span> (dataset hashes, cohort definitions, time windows).</li>
+                            <li><span class="highlight">Transformation lineage</span> (filters, normalisation rules, aggregation steps).</li>
+                            <li><span class="highlight">Method identity</span> (metric definitions, statistical rules, computation mode).</li>
+                            <li><span class="highlight">Policy context</span> (country policy pack, privacy thresholds, AKAC decisions).</li>
+                            <li><span class="highlight">Runtime identity</span> (engine version, configuration snapshot, environment context).</li>
+                            <li><span class="highlight">QA evidence</span> (quality-gate results, test digests, acceptance checks).</li>
+                            <li><span class="highlight">Export proof</span> (manifest, signature, delivery timestamp, archive reference).</li>
+                        </ul>
+
+                        <div class="note">
+                            <p class="mono">
+                                Principle: If an output cannot be proven, it must not be shipped.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">2. What “Integrity” Means in Phase 4</h2>
+                    <div class="info-body">
+                        <p>
+                            Integrity is the guarantee that no one can quietly change evidence after the fact. Phase 4 achieves this with
+                            immutable records, cryptographic fingerprints, and strict release gates.
+                        </p>
+                        <p class="highlight">Integrity is enforced at four levels:</p>
+                        <ul>
+                            <li><span class="highlight">Data integrity</span>: inputs are hashed; cohort slices are policy-bound; unsafe cohorts are blocked.</li>
+                            <li><span class="highlight">Computation integrity</span>: deterministic analytics; versioned rules; reproducible runs.</li>
+                            <li><span class="highlight">Evidence integrity</span>: manifests, signatures, and immutable audit references for exports.</li>
+                            <li><span class="highlight">Operational integrity</span>: BBVP test discipline, no skips, no warnings ignored, no silent fallbacks.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p>
+                                For ministries and regulators, this means the analytics layer can be reviewed like an engineering system:
+                                the same inputs and versions must reproduce the same outputs, and any change leaves an audit trace.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">3. QA Gates – No Output Without Evidence</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 4 does not treat quality as a dashboard feature. It treats quality as a release condition.
+                            Before an output can be displayed or exported, it must pass a chain of gates.
+                        </p>
+
+                        <p class="highlight">Typical gate families include:</p>
+                        <ul>
+                            <li><span class="highlight">Completeness</span>: required fields present; expected coverage; missingness thresholds.</li>
+                            <li><span class="highlight">Consistency</span>: internal plausibility checks; bounds and range validation; unit consistency.</li>
+                            <li><span class="highlight">Freshness</span>: time window checks; stale data rejection; recency policies.</li>
+                            <li><span class="highlight">Cohort safety</span>: minimum cohort size; safe aggregation rules; k-anonymity thresholds.</li>
+                            <li><span class="highlight">Policy compliance</span>: country rules; AKAC access decisions; allowed drill-down restrictions.</li>
+                            <li><span class="highlight">Release discipline</span>: test suites; evidence generation; manifest updates.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p class="mono">
+                                Gate rule: if any QA gate fails, the output is blocked and cannot be exported as evidence.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">4. WORM Audit – Immutable History</h2>
+                    <div class="info-body">
+                        <p>
+                            WORM (Write Once, Read Many) is the backbone of Phase 4 auditability. It is an append-only record that makes
+                            post-hoc tampering detectable. Phase 4 stores audit events such as:
+                        </p>
+                        <ul>
+                            <li>Data ingests, dataset fingerprints, and execution timestamps.</li>
+                            <li>Quality gate outcomes (pass/fail) with deterministic identifiers.</li>
+                            <li>Export events: manifest hash, signature reference, delivery metadata.</li>
+                            <li>Policy decisions that affected output visibility (e.g., blocked cohort slices).</li>
+                            <li>Version changes: engine version, policy pack version, schema version.</li>
+                        </ul>
+
+                        <p>
+                            This matters because institutional evidence must survive scrutiny months later:
+                            auditors should be able to reconstruct what was done, when, under which policy and version.
+                        </p>
+
+                        <div class="note">
+                            <p class="mono">
+                                WORM posture: append-only, integrity-first, reconstructable, reviewable.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">5. Manifests, Hashes, and Signatures</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 4 exports are not “files”. They are <span class="highlight">evidence bundles</span>.
+                            Every bundle includes a manifest that lists:
+                        </p>
+                        <ul>
+                            <li>Each included file path.</li>
+                            <li>Each file SHA-256 hash.</li>
+                            <li>Bundle metadata: policy version, engine version, schema version, timestamps.</li>
+                            <li>QA digest: which gates ran and their results.</li>
+                            <li>Export identity: bundle ID and audit references.</li>
+                        </ul>
+
+                        <p>
+                            Optionally, bundles can be signed. The signature allows external reviewers to validate that the evidence was
+                            produced by a known release process and was not modified after export.
+                        </p>
+
+                        <div class="note">
+                            <p class="mono">
+                                Export rule: a bundle without a manifest is not an evidence export.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">6. AKAC and Privacy-First Analytics</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 4 is population-level and non-diagnostic. It must protect citizens from re-identification risk
+                            while still producing useful evidence for institutions. This is enforced through policy-bound access
+                            and AKAC-style controls.
+                        </p>
+
+                        <p class="highlight">The system enforces:</p>
+                        <ul>
+                            <li><span class="highlight">Safe aggregation</span>: no unsafe small cohorts; no risky combinations.</li>
+                            <li><span class="highlight">Policy isolation</span>: outputs are tied to a policy pack version (country/region).</li>
+                            <li><span class="highlight">Release restrictions</span>: drill-downs are blocked if they increase re-identification risk.</li>
+                            <li><span class="highlight">Export discipline</span>: what can be exported is explicitly governed and logged.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p>
+                                For ministries and hospitals, this produces evidence that is defensible.
+                                For citizens, it ensures analytics cannot expose identity through slicing.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">7. BBVP – Build, Back, Verify, Prove</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 4 is built under BBVP discipline:
+                            every capability is implemented cleanly, then backed by tests, verified through deterministic runs,
+                            and proven via evidence pack outputs. This is what separates a demo dashboard from a governance-grade engine.
+                        </p>
+
+                        <p class="highlight">Phase 4 proof discipline typically includes:</p>
+                        <ul>
+                            <li>Unit tests for schemas, policies, validators, and gates.</li>
+                            <li>Integration tests for analytics outputs and export manifests.</li>
+                            <li>OFF/ON behaviour validation for feature flags.</li>
+                            <li>Evidence pack snapshots that can be re-validated externally.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p class="mono">
+                                Operational rule: no skipped tests and no ignored warnings in release paths.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">8. Who Uses This and How</h2>
+                    <div class="info-body">
+                        <p class="highlight">Ministries and Regulators</p>
+                        <ul>
+                            <li>Review population-level KPIs and trend intelligence under strict privacy policies.</li>
+                            <li>Validate the provenance trail for any published KPI or comparison.</li>
+                            <li>Audit export manifests and confirm evidence integrity.</li>
+                        </ul>
+
+                        <p class="highlight">Hospitals and Governance Boards</p>
+                        <ul>
+                            <li>Inspect safety and outcome signals at service and cohort level.</li>
+                            <li>Use policy-bound exports for governance discussions and reporting.</li>
+                            <li>Trace every metric back to its evidence chain when challenged.</li>
+                        </ul>
+
+                        <p class="highlight">Universities and Research Partners</p>
+                        <ul>
+                            <li>Consume synthetic or anonymised evidence bundles for methodological review.</li>
+                            <li>Re-run validations against the manifest and reproduce published outcomes.</li>
+                            <li>Compare cohorts with documented assumptions and QA gates.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p>
+                                This engine is built to support institutional review: clear artefacts, reproducible outputs,
+                                and defensible integrity posture across regions (UK/EU/US/GCC).
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+
+            <section style="margin-top: 18px;">
+                <div class="info-card">
+                    <h2 class="info-title">Final Statement</h2>
+                    <div class="info-body">
+                        <p>
+                            Phase 4 Provenance & Integrity is the trust layer that makes Elisence evidence-grade.
+                            It ensures that analytics are not just visually convincing, but <span class="highlight">auditable, reproducible, and policy-bound</span>.
+                            This is the foundation required before any national-scale rollout, institutional adoption, or formal evaluation.
+                        </p>
+                        <p>
+                            For the governance layer that packages and exports Phase 4 evidence in integration-ready form,
+                            see the dedicated GHX page.
+                        </p>
+
+                        <div class="hero-actions" style="margin-top: 10px;">
+                            <a class="action-btn" href="phase4.html">Back to Phase 4</a>
+                            <a class="action-btn" href="phase4_ghx.html">Open GHX Page</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <div id="elisa-chat-root"></div>
+
+</body>
+</html>
