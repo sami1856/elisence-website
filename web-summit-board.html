@@ -956,15 +956,18 @@ const items = [
     question:"How do you handle AI hallucination in chats, analysis, or biological health outputs?",
     keywords:["hallucination control","human-in-the-loop","guardrails","quality control"],
     answer:[
-      "Healthcare AI must be handled very carefully because wrong confidence can be dangerous.",
-      "Elisence is designed not to act as an autonomous diagnostic authority.",
-      "We use safety boundaries, structured prompts, restricted health claims, evidence-aware logic, clear uncertainty, and escalation to human or clinical review where appropriate.",
-      "The goal is to support understanding and navigation, not to replace doctors or create unsafe confidence."
+      "Hallucination is a real concern in healthcare, and we think pretending otherwise would be irresponsible.",
+      "That is exactly why Elisence is not designed to behave like an autonomous doctor or diagnosis engine.",
+      "We try to reduce risk through multiple safety layers — including structured logic, trusted rules, clinical boundaries, escalation paths, uncertainty-aware responses, and human or professional review where appropriate.",
+      "In higher-risk situations, the goal is not for AI to sound confident. The safer behaviour is often to slow down, acknowledge uncertainty, and guide people toward appropriate professional care or specialist support.",
+      "We also aim to ground healthcare experiences in trusted frameworks and evidence-informed approaches inspired by standards and practices such as NHS, NICE, FDA, MDR, GCC healthcare expectations, and other clinically responsible guidance where relevant.",
+      "In many areas, structured systems, safety rules, and trusted logic should come before generative AI — using AI where it adds value rather than where certainty is required.",
+      "The goal is not to replace doctors or pretend certainty. The goal is to help people understand, navigate, and make safer decisions with clearer support."
     ],
     followups:[
       {
         q:"What happens when the AI is unsure?",
-        a:"It should say that clearly, avoid pretending certainty, provide safe educational context, and guide the user toward appropriate professional advice where the question is clinical or high risk."
+        a:"It should say so clearly. In healthcare, false confidence can be more dangerous than uncertainty. Elisence is designed to prefer safe guidance, clear limits, and escalation toward professional support rather than overconfident answers."
       }
     ]
   },
