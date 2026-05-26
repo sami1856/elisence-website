@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elisence — Web Summit Founder Board</title>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #061936 0%, #020816 48%, #000 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .board {
+      width: 100vw;
+      height: 100vh;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header {
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    .brand {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 0.28em;
+      color: #ffffff;
+      text-shadow: 0 0 28px rgba(0,180,255,.9);
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      font-size: 17px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8edcff;
+    }
+
+    .grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid rgba(95, 205, 255, .75);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(0,190,255,.34), transparent 45%),
+        linear-gradient(145deg, rgba(8,34,85,.96), rgba(4,12,34,.98));
+      box-shadow:
+        0 0 22px rgba(0, 160, 255, .65),
+        inset 0 0 20px rgba(255,255,255,.04);
+      padding: 16px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow:
+        0 0 34px rgba(0, 210, 255, .95),
+        0 0 70px rgba(80, 80, 255, .45);
+    }
+
+    .num {
+      font-size: 17px;
+      font-weight: 900;
+      color: #55d9ff;
+      letter-spacing: .12em;
+    }
+
+    .q {
+      font-size: clamp(20px, 1.55vw, 30px);
+      line-height: 1.08;
+      font-weight: 900;
+      color: #ffffff;
+      text-shadow: 0 0 18px rgba(0,170,255,.5);
+    }
+
+    .tag {
+      font-size: 13px;
+      font-weight: 800;
+      color: #b8e9ff;
+      opacity: .95;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 34px;
+      background: rgba(0, 0, 0, .82);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal.show { display: flex; }
+
+    .panel {
+      width: min(1500px, 96vw);
+      height: min(850px, 92vh);
+      border-radius: 34px;
+      border: 1px solid rgba(110, 220, 255, .9);
+      background:
+        radial-gradient(circle at top, rgba(0,160,255,.28), transparent 42%),
+        linear-gradient(145deg, #06193a, #020716 72%);
+      box-shadow:
+        0 0 55px rgba(0,190,255,.8),
+        0 0 140px rgba(90,80,255,.45);
+      padding: 34px 42px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      overflow: hidden;
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex: 0 0 auto;
+    }
+
+    .modal-title {
+      font-size: clamp(34px, 3.2vw, 58px);
+      line-height: 1;
+      font-weight: 950;
+      color: #fff;
+    }
+
+    .close {
+      font-size: 34px;
+      font-weight: 900;
+      color: #fff;
+      background: rgba(0,180,255,.18);
+      border: 1px solid rgba(120,220,255,.85);
+      border-radius: 18px;
+      padding: 8px 18px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,190,255,.55);
+    }
+
+    .answer {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 8px;
+      font-size: clamp(28px, 2.15vw, 42px);
+      line-height: 1.32;
+      font-weight: 650;
+      color: #eaf8ff;
+    }
+
+    .answer p { margin-bottom: 22px; }
+
+    .keywords {
+      flex: 0 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(120,210,255,.24);
+    }
+
+    .chip {
+      font-size: 20px;
+      font-weight: 850;
+      padding: 9px 16px;
+      border-radius: 999px;
+      color: #07101f;
+      background: linear-gradient(135deg, #63e8ff, #9d78ff);
+    }
+
+    @media (max-width: 1100px) {
+      body { overflow-y: auto; }
+      .board { height: auto; min-height: 100vh; }
+      .grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .card { min-height: 150px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="board">
+    <header class="header">
+      <div class="brand">ELISENCE</div>
+      <div class="subtitle">Web Summit Founder Quick Board</div>
+    </header>
+
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="panel">
+      <div class="modal-top">
+        <div class="modal-title" id="modalTitle"></div>
+        <button class="close" onclick="closeModal()">×</button>
+      </div>
+      <div class="answer" id="modalAnswer"></div>
+      <div class="keywords" id="modalKeywords"></div>
+    </div>
+  </div>
+
+  <script>
+    const items = [
+      {
+        n:"01",
+        title:"Elevator Pitch",
+        tag:"What is Elisence?",
+        keywords:["global health AI","secure platform","prevention","digital health"],
+        answer:[
+          "Elisence is a global, next-generation health AI platform.",
+          "We are building a highly secure and modular system that brings together different parts of digital health — from advanced blood and metabolic analytics to social health networking.",
+          "Our goal is to give people clear, data-driven insights for preventative health, while making sure everything we create meets high international safety and digital health standards."
+        ]
+      },
+      {
+        n:"02",
+        title:"Disconnected Health Tools",
+        tag:"Why Elisence?",
+        keywords:["fragmented apps","one platform","big picture","seamless care"],
+        answer:[
+          "Today, digital health tools are disconnected.",
+          "People often have to use different apps for body analytics, medical tracking, medication management, and social health support. Because these tools do not talk to each other, health data becomes scattered and the bigger picture is missing.",
+          "Elisence fixes this by bringing these separate tools into one complete platform — connecting personal wellness, social support, and medical-grade safety in one seamless health ecosystem."
+        ]
+      },
+      {
+        n:"03",
+        title:"Target Audience & Impact",
+        tag:"Who is this for?",
+        keywords:["people first","health systems","prevention","less pressure"],
+        answer:[
+          "Our main audience is everyday people who want better support in understanding, managing, and navigating their health — especially people dealing with ongoing health challenges, prevention, care journeys, or simply trying to live healthier lives.",
+          "Our focus is people first. We want to help people feel more supported, better informed, and less alone while making healthcare easier to understand and manage.",
+          "At the same time, Elisence is designed to support healthcare systems in the long term by helping organize high-quality, structured, and privacy-conscious health information.",
+          "The impact we want to make is simple: healthcare should feel less confusing, less isolating, and easier to navigate — while helping reduce pressure on healthcare systems through prevention, continuity, and earlier support."
+        ]
+      },
+      {
+        n:"04",
+        title:"Product Stage",
+        tag:"MVP / prototype",
+        keywords:["working app","tested systems","demos","step by step"],
+        answer:[
+          "Elisence is already in an active build stage.",
+          "We have a working app, tested core systems, and demos prepared for different real-life scenarios.",
+          "Multiple parts of the platform have already been developed and tested. Right now, we are gradually bringing these systems into the app step by step, starting with healthcare experiences, continuity features, and medication intelligence.",
+          "At the center of Elisence is a social health network app, because we believe health should not feel isolating. This acts as the main experience layer while other healthcare systems are gradually integrated around it."
+        ]
+      },
+      {
+        n:"05",
+        title:"Key Features",
+        tag:"How does it work?",
+        keywords:["social health","continuity","AI support","health intelligence"],
+        answer:[
+          "Elisence combines healthcare support, continuity, and intelligent assistance in one connected platform.",
+          "At the center is a social health network experience, because we believe health should not feel isolating.",
+          "Key features include healthcare continuity, medication intelligence, health information management, AI-powered support, prevention, women’s health, and long-term health support.",
+          "Elisence is designed for both people and healthcare systems — helping individuals manage health while building a trusted health intelligence layer for better prevention and decision-making."
+        ]
+      },
+      {
+        n:"06",
+        title:"Compliance & Reliability",
+        tag:"Safety and trust",
+        keywords:["safety-first","privacy","no diagnosis","responsible AI"],
+        answer:[
+          "Elisence is designed with a safety-first and compliance-aware approach.",
+          "We do not position ourselves as a diagnostic or autonomous medical decision system. Instead, we focus on prevention, education, continuity, and responsible digital health support.",
+          "We use clear data structures, safe AI logic, privacy-conscious design, and strict guardrails to reduce the risk of unsafe or misleading information.",
+          "Our long-term goal is to follow international standards and build technology that individuals, healthcare systems, governments, and research organizations can trust."
+        ]
+      },
+      {
+        n:"07",
+        title:"Unique Value Proposition",
+        tag:"Why different?",
+        keywords:["not fragmented","connected ecosystem","trust","real healthcare"],
+        answer:[
+          "Many health apps focus on one problem at a time — for example fitness, medications, women’s health, or messaging.",
+          "Elisence is different because we are building one connected platform where healthcare support, continuity, intelligent assistance, and social health experiences work together.",
+          "We also focus strongly on trust, privacy, and real healthcare usability, because we want people to feel supported while making healthcare easier to manage and understand."
+        ]
+      },
+      {
+        n:"08",
+        title:"Market Scope",
+        tag:"Local or global?",
+        keywords:["global vision","local systems","languages","regulation"],
+        answer:[
+          "We are building a global product, but we believe healthcare must adapt to local systems, regulations, and cultures.",
+          "Our vision is global, but our approach is practical.",
+          "We start market by market, adapting to local healthcare environments while keeping one connected platform and experience."
+        ]
+      },
+      {
+        n:"09",
+        title:"Defensibility",
+        tag:"Why hard to copy?",
+        keywords:["trust","healthcare complexity","execution","ecosystem"],
+        answer:[
+          "Technology can always be copied to some extent, but what is harder to copy is the combination of trust, healthcare understanding, infrastructure, and long-term execution.",
+          "Elisence is not just one feature or one app. We are building a connected ecosystem around healthcare continuity, intelligent support, social health experiences, privacy, and real healthcare usability.",
+          "It takes time to make these systems work together and to build trust around them."
+        ]
+      },
+      {
+        n:"10",
+        title:"Founder & Team",
+        tag:"Who is behind it?",
+        keywords:["founder-led","legal","business","care"],
+        answer:[
+          "I am the founder and primary architect of Elisence.",
+          "My background is in legal, business, and care services, including home and domiciliary care. Through both professional and personal experiences, I saw how difficult healthcare can feel for many people — fragmented, stressful, and hard to navigate.",
+          "Elisence is also deeply personal to me. It is named after and inspired by my daughter, Elisa, with a long-term vision to build a safer and healthier world.",
+          "Right now, Elisence is founder-led and built with a very hands-on approach, focused on creating a trusted health ecosystem step by step."
+        ]
+      },
+      {
+        n:"11",
+        title:"Why Web Summit?",
+        tag:"Why attend?",
+        keywords:["learning","feedback","connections","ecosystem"],
+        answer:[
+          "We want to attend Web Summit because Elisence is at a stage where learning, feedback, and meaningful connections matter.",
+          "We want to meet founders, healthcare innovators, investors, and people building the future of technology and healthcare.",
+          "For us, this is an opportunity to learn, challenge our thinking, introduce Elisence to a wider ecosystem, and build relationships that can help us create something meaningful and trusted in healthcare."
+        ]
+      },
+      {
+        n:"12",
+        title:"Maximizing the Event",
+        tag:"How use the opportunity?",
+        keywords:["learn","connect","feedback","relationships"],
+        answer:[
+          "If selected, we would focus on learning, meaningful connections, and honest feedback.",
+          "We would want to speak with founders, healthcare innovators, investors, and people working at the intersection of technology and healthcare.",
+          "We would also use the opportunity to introduce Elisence, learn from real conversations, challenge our assumptions, and build long-term relationships that help us create trusted and impactful healthcare solutions."
+        ]
+      },
+      {
+        n:"13",
+        title:"Closing Statement",
+        tag:"Anything else?",
+        keywords:["genuine mission","not just app","long-term","responsible"],
+        answer:[
+          "Elisence comes from a very genuine place.",
+          "We are trying to build something meaningful in healthcare — something more connected, supportive, trustworthy, and easier for people to understand and navigate.",
+          "For us, this is not about building another app. It is about creating something that can genuinely make a difference for people while also supporting healthcare systems in a better way.",
+          "Regardless of where the journey goes, we are committed to building it thoughtfully and responsibly."
+        ]
+      },
+      {
+        n:"14",
+        title:"Why Now?",
+        tag:"Timing",
+        keywords:["healthcare pressure","fragmentation","AI maturity","prevention"],
+        answer:[
+          "We believe this is the right time because healthcare is becoming more complex, more fragmented, and under increasing pressure.",
+          "People are also expected to manage more of their health themselves.",
+          "At the same time, technology and AI are becoming much more capable of helping people understand, manage, and navigate healthcare in a more proactive and personalized way.",
+          "For us, Elisence sits at the intersection of those needs."
+        ]
+      },
+      {
+        n:"15",
+        title:"Why You?",
+        tag:"Founder fit",
+        keywords:["legal","business","care experience","personal mission"],
+        answer:[
+          "I believe I am the right person to build Elisence because my background combines legal, business, and care services, including home and domiciliary care.",
+          "That gave me a practical understanding of how difficult and fragmented healthcare can feel for people and families.",
+          "Elisence also comes from a personal motivation to make healthcare easier to understand, more connected, and more supportive.",
+          "Healthcare requires trust, patience, and responsibility, and we are building Elisence step by step with that mindset."
+        ]
+      },
+      {
+        n:"16",
+        title:"Biggest Challenge",
+        tag:"Right now",
+        keywords:["complexity","simplicity","trust","execution"],
+        answer:[
+          "Our biggest challenge right now is balancing complexity with simplicity.",
+          "Healthcare is complex, but the user experience should not feel complex.",
+          "We are building step by step to make Elisence trustworthy, practical, and easy to use while bringing different healthcare experiences into one connected platform.",
+          "For us, it is important to build responsibly rather than move too quickly in a space where trust matters."
+        ]
+      },
+      {
+        n:"17",
+        title:"2–5 Year Success",
+        tag:"Future vision",
+        keywords:["trusted platform","everyday healthcare","prevention","systems impact"],
+        answer:[
+          "In the next two to five years, success for Elisence means building something people genuinely trust and find useful in everyday healthcare.",
+          "We want to grow into a connected healthcare platform that helps people better understand and manage their health.",
+          "At the same time, we hope Elisence can contribute to healthcare systems by supporting prevention, better health understanding, and reducing pressure through more proactive care."
+        ]
+      },
+      {
+        n:"18",
+        title:"Traction & Validation",
+        tag:"Tested?",
+        keywords:["working app","technical traction","tested systems","demos"],
+        answer:[
+          "We are still in an active build and validation stage.",
+          "So far, our traction is mainly product and development traction — we already have a working app, tested core systems, functional prototypes, and demos built around real healthcare scenarios.",
+          "We are actively testing and validating different product experiences as we bring systems into the app step by step.",
+          "Because healthcare requires trust and reliability, we prefer a thoughtful approach rather than rushing to release something incomplete."
+        ]
+      },
+      {
+        n:"19",
+        title:"Business Model",
+        tag:"How make money?",
+        keywords:["long-term","premium experiences","partners","trust first"],
+        answer:[
+          "We see Elisence as a long-term healthcare platform with multiple possible revenue paths.",
+          "For individuals, this could include premium health experiences and advanced support features over time.",
+          "For healthcare systems, organizations, and partners, we see opportunities around trusted healthcare tools, healthcare intelligence, and services that help improve prevention, continuity, and better health understanding.",
+          "But for us, trust comes first. We want to build something genuinely useful and trusted before scaling the business side."
+        ]
+      },
+      {
+        n:"20",
+        title:"Biggest Lesson",
+        tag:"What learned?",
+        keywords:["healthcare complex","simple UX","trust","patience"],
+        answer:[
+          "One of the biggest lessons for us has been that healthcare is much more complex than it first appears — but complexity should not become the user experience.",
+          "We have learned that trust, reliability, and usability matter just as much as innovation.",
+          "In healthcare, it is not enough to build something technically impressive. It also needs to feel practical, trustworthy, and genuinely helpful for people.",
+          "We have also learned the importance of building step by step, listening, testing, and staying patient in a space where responsibility matters."
+        ]
+      }
+    ];
+
+    const grid = document.getElementById("grid");
+
+    items.forEach((item, index) => {
+      const card = document.createElement("button");
+      card.className = "card";
+      card.onclick = () => openModal(index);
+      card.innerHTML = `
+        <div class="num">${item.n}</div>
+        <div class="q">${item.title}</div>
+        <div class="tag">${item.tag}</div>
+      `;
+      grid.appendChild(card);
+    });
+
+    function openModal(index) {
+      const item = items[index];
+      document.getElementById("modalTitle").textContent = item.n + " — " + item.title;
+      document.getElementById("modalAnswer").innerHTML = item.answer.map(p => `<p>${p}</p>`).join("");
+      document.getElementById("modalKeywords").innerHTML = item.keywords.map(k => `<span class="chip">${k}</span>`).join("");
+      document.getElementById("modal").classList.add("show");
+    }
+
+    function closeModal() {
+      document.getElementById("modal").classList.remove("show");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+</body>
+</html>
