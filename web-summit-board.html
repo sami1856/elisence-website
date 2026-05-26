@@ -1332,6 +1332,198 @@ const items = [
         a:"Possibly over time, with the right evidence, safety case, and alignment to NHS priorities — but that is a long game. Near term we focus on pilots and proof, not assuming commissioning on day one."
       }
     ]
+  },
+  {
+    n:"61",
+    title:"Country Compliance Engine",
+    short:"How do you adapt to countries?",
+    question:"How does Elisence adapt to different countries' laws, medical standards, and healthcare rules?",
+    keywords:["country compliance","localization","healthcare law","GCC","MDR","UK","traveller mode","regional rules","residency","jurisdiction","country adaptation","medical standards"],
+    answer:[
+      "Elisence is designed to be country-aware rather than one-size-fits-all.",
+      "The platform can understand location, declared country, and residency context, and adapt to country-specific health rules, medication vocabularies, privacy expectations, and regulated features.",
+      "Users can override this when travelling or disable automatic adaptation if needed.",
+      "Modules can be enabled or restricted country-by-country without affecting the rest of the platform."
+    ],
+    followups:[
+      {
+        q:"What if someone travels?",
+        a:"Elisence can detect travel context or allow manual override so healthcare logic follows the user appropriately without forcing the wrong country model."
+      },
+      {
+        q:"What if a country blocks something?",
+        a:"Elisence is modular and can disable country-restricted features without breaking the wider platform."
+      }
+    ]
+  },
+  {
+    n:"62",
+    title:"Data Access & Governance",
+    short:"Who sees my data?",
+    question:"Who can access health data, under what permissions, and who controls it?",
+    keywords:["data access","governance","consent","permissions","privacy","revoke access","least privilege","audit trail","control","sharing"],
+    answer:[
+      "Elisence follows a consent-first and least-privilege approach.",
+      "Users control access to sensitive information and can grant or revoke permissions.",
+      "Access can be scoped by role, purpose, and time, with audit visibility and clear boundaries around who sees what."
+    ],
+    followups:[
+      {
+        q:"Can anyone see my health data?",
+        a:"No. Access is permission-based and intentionally limited rather than open by default."
+      },
+      {
+        q:"Can access be revoked?",
+        a:"Yes. Permission models are designed to be controlled and reversible."
+      }
+    ]
+  },
+  {
+    n:"63",
+    title:"Security & Health Identity",
+    short:"How is identity secured?",
+    question:"How do you secure identity, authentication, and trusted health access?",
+    keywords:["security","passport","identity","authentication","health identity","verification","device trust","trusted access","account security","zero trust"],
+    answer:[
+      "Elisence is designed around trusted identity, strong authentication, device awareness, verification layers, and auditability.",
+      "Sensitive actions can require higher trust or verification, while identity and access are treated as security-first rather than convenience-first."
+    ],
+    followups:[
+      {
+        q:"What if someone steals an account?",
+        a:"High-risk actions can require additional trust or verification rather than assuming access should always be allowed."
+      }
+    ]
+  },
+  {
+    n:"64",
+    title:"Modular Architecture & Failure Isolation",
+    short:"What if part of Elisence fails?",
+    question:"What happens if one module, engine, or country-specific system fails?",
+    keywords:["modular","engine","module","resilience","failure isolation","low coupling","architecture","graceful degradation","independent runtime"],
+    answer:[
+      "Elisence is intentionally modular.",
+      "Hundreds of engines and modules can work together while remaining isolated.",
+      "If one component fails, slows down, or becomes unavailable, it should not take down the wider platform.",
+      "Country-specific systems can also be enabled or disabled independently."
+    ],
+    followups:[
+      {
+        q:"Can one broken feature crash everything?",
+        a:"No. Elisence is designed so systems can fail independently rather than collapse together."
+      },
+      {
+        q:"Can countries disable features?",
+        a:"Yes. Regional features can be adapted independently without breaking the platform."
+      }
+    ]
+  },
+  {
+    n:"65",
+    title:"Zero Trust Philosophy",
+    short:"What does zero trust mean?",
+    question:"You mention Zero Trust — what does that practically mean?",
+    keywords:["zero trust","security","fail closed","least privilege","audit","permissions","verification","contextual access"],
+    answer:[
+      "In Elisence, trust is earned rather than assumed.",
+      "Access is permission-based, sensitive actions are verified, systems default toward fail-closed behavior, and every action is scoped, contextual, and auditable."
+    ],
+    followups:[
+      {
+        q:"Why does this matter in health?",
+        a:"Health data is highly sensitive, so trust and access must be explicit rather than assumed."
+      }
+    ]
+  },
+  {
+    n:"66",
+    title:"Scientific & Regulatory Sources",
+    short:"What informed Elisence?",
+    question:"What scientific, regulatory, and institutional sources informed Elisence?",
+    keywords:["NHS","FDA","MDR","GCC","MHRA","scientific sources","academic","medical standards","healthcare framework","evidence"],
+    answer:[
+      "Elisence is informed by scientific literature, academic thinking, healthcare standards, and trusted health systems rather than informal internet content.",
+      "Design considerations include sources such as NHS frameworks, FDA guidance, MDR thinking, GCC healthcare systems, medication standards, and academic research."
+    ],
+    followups:[
+      {
+        q:"Did you just invent everything?",
+        a:"No. Elisence combines original architecture with established medical, scientific, and regulatory thinking."
+      }
+    ]
+  },
+  {
+    n:"67",
+    title:"IP & Copyright Protection",
+    short:"How do you protect Elisence?",
+    question:"How do you protect Elisence from copying, and how do you manage copyright?",
+    keywords:["copyright","IP","intellectual property","provenance","ownership","timestamps","versioning","protection","originality"],
+    answer:[
+      "Elisence combines original architecture, documented development history, provenance, versioned work, and formal ownership practices.",
+      "At the same time, Elisence respects external intellectual property and avoids unsafe copying of protected content."
+    ],
+    followups:[
+      {
+        q:"What stops someone copying you?",
+        a:"Technology can be copied, but architecture, execution, trust, and ecosystem integration are harder to reproduce."
+      }
+    ]
+  },
+  {
+    n:"68",
+    title:"Scaling to Millions",
+    short:"What if millions use Elisence?",
+    question:"What happens if Elisence scales to millions of users?",
+    keywords:["scaling","millions of users","performance","reliability","infrastructure","resilience","distributed","load","scale"],
+    answer:[
+      "Elisence is designed with modularity and resilience in mind.",
+      "Systems can scale independently rather than forcing everything into one dependency chain, helping reduce single points of failure and improving operational flexibility as usage grows."
+    ],
+    followups:[
+      {
+        q:"Will it crash under load?",
+        a:"The goal is controlled scaling and isolated systems rather than one overloaded dependency affecting everything."
+      }
+    ]
+  },
+  {
+    n:"69",
+    title:"Testing & Validation",
+    short:"How will Elisence be tested?",
+    question:"How will Elisence be clinically, technically, and academically validated?",
+    keywords:["validation","testing","university","academic","pilot","Egypt","safety","evidence","feedback","technical testing"],
+    answer:[
+      "Validation is expected to happen in stages through technical testing, controlled pilots, academic collaboration, user feedback, and safety-focused evaluation rather than assuming claims without evidence."
+    ],
+    followups:[
+      {
+        q:"Who may test it?",
+        a:"Pilot environments, academic collaboration, and structured user testing are expected to play a role."
+      }
+    ]
+  },
+  {
+    n:"70",
+    title:"Team & Operating Model",
+    short:"Who is behind Elisence?",
+    question:"Who is building Elisence, and how is expertise handled?",
+    keywords:["team","founder","self funded","AI collaboration","medical expertise","architecture","specialists","execution"],
+    answer:[
+      "Elisence is founder-led and architected with a highly focused operating model.",
+      "I am the sole founder and primary architect, while using modern AI collaboration tools to accelerate research, architecture, and technical execution.",
+      "Medical, scientific, and domain input are treated seriously and expected to expand through specialist collaboration over time.",
+      "To date, development has been self-funded."
+    ],
+    followups:[
+      {
+        q:"Are you doing this alone?",
+        a:"I lead the vision and architecture, while using modern AI collaboration and specialist input where needed."
+      },
+      {
+        q:"Who pays for Elisence?",
+        a:"To date, development has been founder-funded."
+      }
+    ]
   }
 ];
 
