@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Elisence — Web Summit Founder Board</title>
+  <title>Elisence ÔÇö Web Summit Founder Board</title>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -218,6 +218,189 @@
       background: linear-gradient(135deg, #63e8ff, #9d78ff);
     }
 
+    .search-section {
+      flex: 0 0 auto;
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-height: 62px;
+      padding: 16px 22px;
+      font-size: clamp(20px, 1.55vw, 28px);
+      font-weight: 650;
+      color: #fff;
+      border-radius: 20px;
+      border: 1px solid rgba(110, 220, 255, .85);
+      background:
+        radial-gradient(circle at top left, rgba(0,190,255,.22), transparent 50%),
+        rgba(4, 18, 48, .92);
+      box-shadow:
+        0 0 24px rgba(0, 170, 255, .45),
+        inset 0 0 16px rgba(255,255,255,.03);
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: rgba(160, 220, 255, .72);
+    }
+
+    .search-input:focus {
+      border-color: rgba(0, 220, 255, 1);
+      box-shadow:
+        0 0 32px rgba(0, 210, 255, .75),
+        inset 0 0 16px rgba(255,255,255,.05);
+    }
+
+    .voice-btn {
+      flex: 0 0 auto;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 1px solid rgba(120, 220, 255, .9);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(0,220,255,.45), transparent 55%),
+        linear-gradient(145deg, rgba(8,40,95,.98), rgba(3,14,36,.98));
+      color: #7ee8ff;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 0 26px rgba(0, 190, 255, .6);
+      transition: .2s ease;
+    }
+
+    .voice-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 36px rgba(0, 220, 255, .9);
+    }
+
+    .voice-btn.listening {
+      animation: voicePulse 1.2s ease-in-out infinite;
+      border-color: #5dffb8;
+      color: #b8ffe0;
+      box-shadow: 0 0 40px rgba(93, 255, 184, .85);
+    }
+
+    @keyframes voicePulse {
+      0%, 100% { box-shadow: 0 0 28px rgba(93, 255, 184, .55); }
+      50% { box-shadow: 0 0 48px rgba(93, 255, 184, 1); }
+    }
+
+    .clear-btn {
+      flex: 0 0 auto;
+      min-height: 52px;
+      padding: 12px 20px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #dff5ff;
+      border-radius: 16px;
+      border: 1px solid rgba(120, 210, 255, .65);
+      background: rgba(0, 120, 200, .2);
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(0, 160, 255, .35);
+    }
+
+    .clear-btn:hover {
+      background: rgba(0, 160, 255, .32);
+    }
+
+    .voice-help {
+      font-size: 14px;
+      line-height: 1.4;
+      color: rgba(150, 210, 255, .82);
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .voice-status {
+      font-size: clamp(17px, 1.2vw, 22px);
+      font-weight: 750;
+      color: #5dffb8;
+      text-align: center;
+      text-shadow: 0 0 16px rgba(93, 255, 184, .5);
+    }
+
+    .voice-unsupported {
+      font-size: clamp(16px, 1.1vw, 20px);
+      font-weight: 650;
+      color: #ffb86b;
+      text-align: center;
+      padding: 8px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 184, 107, .45);
+      background: rgba(255, 140, 40, .08);
+    }
+
+    .suggestions {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      max-height: min(340px, 40vh);
+      overflow-y: auto;
+      padding: 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(100, 210, 255, .75);
+      background:
+        radial-gradient(circle at top, rgba(0,150,255,.18), transparent 55%),
+        rgba(3, 12, 32, .94);
+      box-shadow: 0 0 28px rgba(0, 170, 255, .45);
+      backdrop-filter: blur(10px);
+    }
+
+    .suggestions.show { display: flex; }
+
+    .suggestion {
+      text-align: left;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(80, 190, 255, .35);
+      background: rgba(0, 80, 140, .15);
+      cursor: pointer;
+      transition: .15s ease;
+    }
+
+    .suggestion:hover {
+      border-color: rgba(0, 220, 255, .9);
+      background: rgba(0, 120, 200, .28);
+      box-shadow: 0 0 18px rgba(0, 190, 255, .4);
+    }
+
+    .suggestion-num {
+      font-size: 15px;
+      font-weight: 900;
+      color: #55d9ff;
+      letter-spacing: .1em;
+      margin-bottom: 4px;
+    }
+
+    .suggestion-short {
+      font-size: clamp(18px, 1.25vw, 24px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+    }
+
+    .suggestion-q {
+      margin-top: 6px;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 650;
+      color: rgba(180, 230, 255, .88);
+    }
+
     @media (max-width: 1100px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
       .card { min-height: 150px; }
@@ -232,6 +415,25 @@
       <div class="subtitle">Web Summit Founder Quick Board</div>
     </header>
 
+    <section class="search-section" aria-label="Founder search">
+      <div class="search-bar">
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search by voice, keyword, question, or topic..."
+          autocomplete="off"
+          enterkeyhint="search"
+        />
+        <button type="button" id="voiceBtn" class="voice-btn" aria-label="Voice search" title="Voice search">&#127908;</button>
+        <button type="button" id="clearBtn" class="clear-btn" hidden>Clear</button>
+      </div>
+      <p class="voice-help">Voice search uses your selected microphone. For Zoom audio on the same device, use Stereo Mix or a virtual audio cable.</p>
+      <p class="voice-status" id="voiceStatus" hidden></p>
+      <p class="voice-unsupported" id="voiceUnsupported" hidden></p>
+      <div class="suggestions" id="suggestions" role="listbox" aria-label="Search suggestions"></div>
+    </section>
+
     <section class="grid" id="grid"></section>
   </main>
 
@@ -239,7 +441,7 @@
     <div class="panel">
       <div class="modal-top">
         <div class="modal-title" id="modalTitle"></div>
-        <button class="close" onclick="closeModal()">×</button>
+        <button class="close" onclick="closeModal()">├ù</button>
       </div>
       <div class="answer" id="modalAnswer"></div>
       <div class="keywords" id="modalKeywords"></div>
@@ -256,7 +458,7 @@ const items = [
     keywords:["global health AI","secure platform","prevention","digital health"],
     answer:[
       "Elisence is a global, next-generation health AI platform.",
-      "We are building a highly secure and modular system that brings together different parts of digital health — from advanced health analytics to social health networking, medication intelligence, continuity, and prevention.",
+      "We are building a highly secure and modular system that brings together different parts of digital health ÔÇö from advanced health analytics to social health networking, medication intelligence, continuity, and prevention.",
       "Our goal is to give people clearer, safer, and more connected support for understanding and managing their health, while building responsibly around privacy, trust, and international healthcare standards."
     ],
     followups:[
@@ -275,7 +477,7 @@ const items = [
     answer:[
       "Today, digital health tools are disconnected.",
       "People often have to use different apps for health tracking, medication management, care support, and social health connection. Because these tools do not talk to each other, health data becomes scattered and the bigger picture is missing.",
-      "Elisence fixes this by bringing these separate experiences into one connected platform — combining personal health support, prevention, continuity, and trusted intelligence in one health ecosystem."
+      "Elisence fixes this by bringing these separate experiences into one connected platform ÔÇö combining personal health support, prevention, continuity, and trusted intelligence in one health ecosystem."
     ],
     followups:[
       {
@@ -291,10 +493,10 @@ const items = [
     question:"Who is your target audience, and what impact do you aim to make?",
     keywords:["people first","health systems","prevention","less pressure"],
     answer:[
-      "Our main audience is everyday people who want better support in understanding, managing, and navigating their health — especially people dealing with ongoing health challenges, prevention, care journeys, or simply trying to live healthier lives.",
+      "Our main audience is everyday people who want better support in understanding, managing, and navigating their health ÔÇö especially people dealing with ongoing health challenges, prevention, care journeys, or simply trying to live healthier lives.",
       "Our focus is people first. We want to help people feel more supported, better informed, and less alone while making healthcare easier to understand and manage.",
       "At the same time, Elisence is designed to support healthcare systems in the long term by helping organize high-quality, structured, and privacy-conscious health information.",
-      "The impact we want to make is simple: healthcare should feel less confusing, less isolating, and easier to navigate — while helping reduce pressure on healthcare systems through prevention, continuity, and earlier support."
+      "The impact we want to make is simple: healthcare should feel less confusing, less isolating, and easier to navigate ÔÇö while helping reduce pressure on healthcare systems through prevention, continuity, and earlier support."
     ]
   },
   {
@@ -312,7 +514,7 @@ const items = [
     followups:[
       {
         q:"Are you already live with users?",
-        a:"We are still in a careful build and validation stage. Because this is healthcare, we prefer to validate responsibly rather than rush an incomplete product into people’s hands."
+        a:"We are still in a careful build and validation stage. Because this is healthcare, we prefer to validate responsibly rather than rush an incomplete product into peopleÔÇÖs hands."
       }
     ]
   },
@@ -325,8 +527,8 @@ const items = [
     answer:[
       "Elisence combines healthcare support, continuity, and intelligent assistance in one connected platform.",
       "At the center is a social health network experience, because we believe health should not feel isolating.",
-      "Key features include healthcare continuity, medication intelligence, health information management, AI-powered support, prevention, women’s health, and long-term health support.",
-      "Elisence is designed for both people and healthcare systems — helping individuals manage health while building a trusted health intelligence layer for better prevention and decision-making."
+      "Key features include healthcare continuity, medication intelligence, health information management, AI-powered support, prevention, womenÔÇÖs health, and long-term health support.",
+      "Elisence is designed for both people and healthcare systems ÔÇö helping individuals manage health while building a trusted health intelligence layer for better prevention and decision-making."
     ]
   },
   {
@@ -355,7 +557,7 @@ const items = [
     question:"How are you different from your competitors?",
     keywords:["not fragmented","connected ecosystem","trust","real healthcare"],
     answer:[
-      "Many health apps focus on one problem at a time — for example fitness, medications, women’s health, or messaging.",
+      "Many health apps focus on one problem at a time ÔÇö for example fitness, medications, womenÔÇÖs health, or messaging.",
       "Elisence is different because we are building one connected platform where healthcare support, continuity, intelligent assistance, and social health experiences work together.",
       "We also focus strongly on trust, privacy, and real healthcare usability, because we want people to feel supported while making healthcare easier to manage and understand."
     ]
@@ -404,7 +606,7 @@ const items = [
     keywords:["founder-led","legal","business","care","AI collaboration"],
     answer:[
       "I am the sole founder and primary architect of Elisence.",
-      "My background is in legal, business, and care services, including home and domiciliary care. Through both professional and personal experiences, I saw how difficult healthcare can feel for many people — fragmented, stressful, and hard to navigate.",
+      "My background is in legal, business, and care services, including home and domiciliary care. Through both professional and personal experiences, I saw how difficult healthcare can feel for many people ÔÇö fragmented, stressful, and hard to navigate.",
       "Elisence is also deeply personal to me. It is named after and inspired by my daughter, Elisa, with a long-term vision to build a safer and healthier world.",
       "I use modern AI collaboration tools to accelerate research, architecture, product thinking, and development workflows, while keeping the vision, direction, and responsibility with me.",
       "This has allowed me to build in a lean and highly focused way, but the long-term goal is to grow with the right team and partners."
@@ -444,11 +646,11 @@ const items = [
     n:"13",
     title:"Closing Statement",
     short:"Anything else?",
-    question:"Is there anything else you’d like us to know before we wrap up?",
+    question:"Is there anything else youÔÇÖd like us to know before we wrap up?",
     keywords:["genuine mission","not just app","long-term","responsible"],
     answer:[
       "Elisence comes from a very genuine place.",
-      "We are trying to build something meaningful in healthcare — something more connected, supportive, trustworthy, and easier for people to understand and navigate.",
+      "We are trying to build something meaningful in healthcare ÔÇö something more connected, supportive, trustworthy, and easier for people to understand and navigate.",
       "For us, this is not about building another app. It is about creating something that can genuinely make a difference for people while also supporting healthcare systems in a better way.",
       "Regardless of where the journey goes, we are committed to building it thoughtfully and responsibly."
     ]
@@ -494,7 +696,7 @@ const items = [
   },
   {
     n:"17",
-    title:"2–5 Year Success",
+    title:"2ÔÇô5 Year Success",
     short:"Future vision?",
     question:"Where do you see Elisence in the future?",
     keywords:["trusted platform","everyday healthcare","prevention","systems impact"],
@@ -512,7 +714,7 @@ const items = [
     keywords:["working app","technical traction","tested systems","demos"],
     answer:[
       "We are still in an active build and validation stage.",
-      "So far, our traction is mainly product and development traction — we already have a working app, tested core systems, functional prototypes, and demos built around real healthcare scenarios.",
+      "So far, our traction is mainly product and development traction ÔÇö we already have a working app, tested core systems, functional prototypes, and demos built around real healthcare scenarios.",
       "We are actively testing and validating different product experiences as we bring systems into the app step by step.",
       "Because healthcare requires trust and reliability, we prefer a thoughtful approach rather than rushing to release something incomplete."
     ],
@@ -543,7 +745,7 @@ const items = [
     question:"What have you learned so far?",
     keywords:["healthcare complex","simple UX","trust","patience"],
     answer:[
-      "One of the biggest lessons for us has been that healthcare is much more complex than it first appears — but complexity should not become the user experience.",
+      "One of the biggest lessons for us has been that healthcare is much more complex than it first appears ÔÇö but complexity should not become the user experience.",
       "We have learned that trust, reliability, and usability matter just as much as innovation.",
       "In healthcare, it is not enough to build something technically impressive. It also needs to feel practical, trustworthy, and genuinely helpful for people.",
       "We have also learned the importance of building step by step, listening, testing, and staying patient in a space where responsibility matters."
@@ -635,7 +837,7 @@ const items = [
   {
     n:"28",
     title:"What If It Fails?",
-    short:"What if it doesn’t work?",
+    short:"What if it doesnÔÇÖt work?",
     question:"What if Elisence does not work as planned?",
     keywords:["adaptation","learning","long-term","value"],
     answer:[
@@ -733,7 +935,7 @@ const items = [
     answer:[
       "Healthcare is not only technical; it is cultural, regulatory, and system-specific.",
       "Elisence is designed to adapt market by market, including language, user expectations, medical pathways, professional roles, local guidance, and cultural context.",
-      "The goal is not to copy one country’s healthcare experience everywhere.",
+      "The goal is not to copy one countryÔÇÖs healthcare experience everywhere.",
       "The goal is to keep one strong platform foundation while localizing the healthcare logic, content, safety rules, and user experience for each market."
     ]
   },
@@ -1134,46 +1336,442 @@ const items = [
 ];
 
 const grid = document.getElementById("grid");
+const searchInput = document.getElementById("searchInput");
+const voiceBtn = document.getElementById("voiceBtn");
+const clearBtn = document.getElementById("clearBtn");
+const voiceStatus = document.getElementById("voiceStatus");
+const voiceUnsupported = document.getElementById("voiceUnsupported");
+const suggestionsEl = document.getElementById("suggestions");
+const modalEl = document.getElementById("modal");
 
-items.forEach((item, index) => {
-  const card = document.createElement("button");
-  card.className = "card";
-  card.onclick = () => openModal(index);
-  card.innerHTML = `
-    <div class="num">${item.n}</div>
-    <div class="q">${item.short}</div>
-    <div class="tag">${item.question}</div>
-  `;
-  grid.appendChild(card);
-});
+let lastSearchResults = [];
+let speechRecognition = null;
+let voiceListening = false;
+
+const SpeechRecognitionCtor =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const ALIAS_RULES = [
+  { triggers: ["hall", "halucination", "hallucinat", "hallucination"], expand: ["hallucination", "hallucinat", "unsafe", "mistake"], boost: [31, 45] },
+  { triggers: ["ai mistake", "ai wrong", "unsafe ai"], expand: ["hallucination", "liability", "unsafe", "harm"], boost: [31, 45] },
+  { triggers: ["api", "model", "foundation", "own model", "models"], expand: ["foundation", "models", "api", "ip"], boost: [30] },
+  { triggers: ["data", "privacy", "gdpr", "residency", "gulf", "provenance", "dmd"], expand: ["data", "residency", "privacy", "quality", "governance"], boost: [30, 32, 53] },
+  { triggers: ["doctor", "doctors", "specialist", "biologist", "clinician"], expand: ["doctor", "doctors", "professional", "specialist", "clinician"], boost: [35, 44, 56] },
+  { triggers: ["apple", "google", "copy", "big tech", "copies"], expand: ["apple", "google", "big tech", "competition"], boost: [37] },
+  { triggers: ["cost", "compute", "margin", "profit", "unit economics"], expand: ["cost", "compute", "margin", "pricing", "economics"], boost: [36, 46] },
+  { triggers: ["fund", "funding", "investment", "raise", "investor"], expand: ["fund", "funding", "investment", "raise"], boost: [26, 50] },
+  { triggers: ["trust", "privacy"], expand: ["trust", "privacy", "user trust"], boost: [25, 5] },
+  { triggers: ["compliance", "security", "reliability"], expand: ["compliance", "security", "reliability"], boost: [5, 32] },
+  { triggers: ["medical device", "samd", "mhra", "regulated", "regulation"], expand: ["medical device", "samd", "mhra", "regulatory"], boost: [41] },
+  { triggers: ["proof", "evidence", "validation"], expand: ["proof", "evidence", "validation", "pilot"], boost: [42, 44, 18] },
+  { triggers: ["pilot", "beta", "first users"], expand: ["pilot", "beta", "users"], boost: [44, 42] },
+  { triggers: ["price", "pricing", "arpu", "subscription", "charge"], expand: ["price", "pricing", "subscription", "premium"], boost: [46] },
+  { triggers: ["insurer", "insurance", "payer", "reimbursement", "commissioning"], expand: ["insurer", "insurance", "payer", "reimbursement"], boost: [59] },
+  { triggers: ["pitch", "stage", "40 words", "40 word", "three minute", "3 minute"], expand: ["pitch", "stage", "words", "minute"], boost: [40, 55] },
+  { triggers: ["demo", "showcase", "live product"], expand: ["demo", "showcase", "live"], boost: [57] },
+  { triggers: ["liability", "liable", "harm", "legal"], expand: ["liability", "harm", "legal", "disclaimers"], boost: [45] }
+];
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function normalizeText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\w\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function expandAliases(query) {
+  const normalized = normalizeText(query);
+  if (!normalized) return "";
+  const words = new Set(normalized.split(/\s+/).filter(Boolean));
+  words.add(normalized);
+
+  ALIAS_RULES.forEach((rule) => {
+    const hit = rule.triggers.some((trigger) => {
+      const t = normalizeText(trigger);
+      if (!t) return false;
+      if (normalized.includes(t)) return true;
+      return normalized.split(/\s+/).some((w) => w.startsWith(t) || t.startsWith(w));
+    });
+    if (hit) {
+      rule.expand.forEach((term) => words.add(normalizeText(term)));
+    }
+  });
+
+  return Array.from(words).join(" ");
+}
+
+function getAliasBoostIndices(query) {
+  const normalized = normalizeText(query);
+  const boosts = new Map();
+  if (!normalized) return boosts;
+
+  ALIAS_RULES.forEach((rule) => {
+    const hit = rule.triggers.some((trigger) => {
+      const t = normalizeText(trigger);
+      if (!t) return false;
+      if (normalized.includes(t)) return true;
+      return normalized.split(/\s+/).some((w) => w.startsWith(t) || t.startsWith(w));
+    });
+    if (hit && rule.boost) {
+      rule.boost.forEach((idx) => {
+        boosts.set(idx, (boosts.get(idx) || 0) + 120);
+      });
+    }
+  });
+
+  return boosts;
+}
+
+function buildSearchText(item) {
+  const parts = [
+    item.n,
+    item.title,
+    item.short,
+    item.question,
+    ...(item.keywords || []),
+    ...(item.answer || [])
+  ];
+  if (item.followups) {
+    item.followups.forEach((f) => {
+      parts.push(f.q, f.a);
+    });
+  }
+  return normalizeText(parts.join(" "));
+}
+
+function scoreField(text, queryWords, fullPhrase, weight) {
+  const norm = normalizeText(text);
+  if (!norm) return 0;
+
+  let score = 0;
+  if (fullPhrase.length >= 2 && norm.includes(fullPhrase)) {
+    score += weight * 0.55;
+  }
+
+  let matchedWords = 0;
+  queryWords.forEach((word) => {
+    if (word.length < 2 && !/^\d+$/.test(word)) return;
+    if (norm.includes(word)) {
+      score += weight * 0.18;
+      matchedWords += 1;
+    }
+    norm.split(/\s+/).forEach((token) => {
+      if (token.startsWith(word) && word.length >= 2) {
+        score += weight * 0.12;
+      }
+    });
+  });
+
+  if (queryWords.length > 1 && matchedWords === queryWords.length) {
+    score += weight * 0.22;
+  }
+
+  return score;
+}
+
+function scoreItem(item, index, query) {
+  const fullPhrase = normalizeText(query);
+  if (!fullPhrase) return 0;
+
+  const expanded = expandAliases(query);
+  const queryWords = Array.from(
+    new Set(
+      expanded
+        .split(/\s+/)
+        .concat(fullPhrase.split(/\s+/))
+        .filter((w) => w.length > 0)
+    )
+  );
+
+  let score = 0;
+  score += scoreField(item.short, queryWords, fullPhrase, 100);
+  score += scoreField(item.title, queryWords, fullPhrase, 80);
+  score += scoreField(item.question, queryWords, fullPhrase, 70);
+  score += scoreField((item.keywords || []).join(" "), queryWords, fullPhrase, 60);
+  score += scoreField((item.answer || []).join(" "), queryWords, fullPhrase, 40);
+
+  if (item.followups) {
+    item.followups.forEach((f) => {
+      score += scoreField(f.q + " " + f.a, queryWords, fullPhrase, 40);
+    });
+  }
+
+  const nNorm = item.n.replace(/^0+/, "") || item.n;
+  queryWords.forEach((word) => {
+    if (word === nNorm || word === item.n) {
+      score += 200;
+    }
+    if (/^\d+$/.test(word) && (nNorm === word || item.n === word.padStart(2, "0"))) {
+      score += 200;
+    }
+  });
+
+  const aliasBoosts = getAliasBoostIndices(query);
+  if (aliasBoosts.has(index)) {
+    score += aliasBoosts.get(index);
+  }
+
+  const corpus = buildSearchText(item);
+  if (corpus.includes(fullPhrase)) {
+    score += 35;
+  }
+
+  return score;
+}
+
+function getSearchResults(query) {
+  const trimmed = (query || "").trim();
+  if (!trimmed) {
+    return items.map((item, index) => ({ index, item, score: 0 }));
+  }
+
+  const scored = items
+    .map((item, index) => ({
+      index,
+      item,
+      score: scoreItem(item, index, trimmed)
+    }))
+    .filter((row) => row.score > 0)
+    .sort((a, b) => b.score - a.score || Number(a.item.n) - Number(b.item.n));
+
+  return scored;
+}
+
+function isStrongSingleResult(results) {
+  if (!results.length) return false;
+  if (results.length === 1) return results[0].score >= 35;
+  const top = results[0].score;
+  const second = results[1].score;
+  return top >= 50 && top >= second * 1.4 && top - second >= 12;
+}
+
+function renderGrid(results) {
+  grid.innerHTML = "";
+  const list = results && results.length
+    ? results
+    : items.map((item, index) => ({ index, item, score: 0 }));
+
+  list.forEach(({ index, item }) => {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "card";
+    card.onclick = () => openModal(index);
+    card.innerHTML = `
+      <div class="num">${escapeHtml(item.n)}</div>
+      <div class="q">${escapeHtml(item.short)}</div>
+      <div class="tag">${escapeHtml(item.question)}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderSuggestions(results) {
+  suggestionsEl.innerHTML = "";
+  if (!results.length || !searchInput.value.trim()) {
+    suggestionsEl.classList.remove("show");
+    return;
+  }
+
+  results.slice(0, 8).forEach((row) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "suggestion";
+    btn.setAttribute("role", "option");
+    btn.innerHTML = `
+      <div class="suggestion-num">${escapeHtml(row.item.n)}</div>
+      <div class="suggestion-short">${escapeHtml(row.item.short)}</div>
+      <div class="suggestion-q">${escapeHtml(row.item.question)}</div>
+    `;
+    btn.onclick = () => {
+      openModal(row.index);
+    };
+    suggestionsEl.appendChild(btn);
+  });
+
+  suggestionsEl.classList.add("show");
+}
+
+function applySearch(query, options = {}) {
+  const { openTopIfStrong = false, openTopOnEnter = false } = options;
+  const trimmed = (query || "").trim();
+
+  clearBtn.hidden = !trimmed;
+
+  if (!trimmed) {
+    lastSearchResults = items.map((item, index) => ({ index, item, score: 0 }));
+    renderGrid(lastSearchResults);
+    renderSuggestions([]);
+    return lastSearchResults;
+  }
+
+  lastSearchResults = getSearchResults(trimmed);
+  renderGrid(lastSearchResults);
+  renderSuggestions(lastSearchResults);
+
+  if (openTopOnEnter || openTopIfStrong) {
+    if (lastSearchResults.length && (openTopOnEnter || isStrongSingleResult(lastSearchResults))) {
+      openModal(lastSearchResults[0].index);
+    }
+  }
+
+  return lastSearchResults;
+}
+
+function clearSearch() {
+  searchInput.value = "";
+  clearBtn.hidden = true;
+  stopVoiceSearch();
+  voiceStatus.hidden = true;
+  lastSearchResults = items.map((item, index) => ({ index, item, score: 0 }));
+  renderGrid(lastSearchResults);
+  renderSuggestions([]);
+  searchInput.focus();
+}
 
 function openModal(index) {
   const item = items[index];
+  if (!item) return;
 
-  const mainAnswer = item.answer.map(p => `<p>${p}</p>`).join("");
+  const mainAnswer = item.answer.map((p) => `<p>${escapeHtml(p)}</p>`).join("");
 
   const followups = item.followups
-    ? item.followups.map(f => `
+    ? item.followups.map((f) => `
         <div class="followup">
-          <div class="followup-q">Possible follow-up: ${f.q}</div>
-          <div class="followup-a">${f.a}</div>
+          <div class="followup-q">Possible follow-up: ${escapeHtml(f.q)}</div>
+          <div class="followup-a">${escapeHtml(f.a)}</div>
         </div>
       `).join("")
     : "";
 
   document.getElementById("modalTitle").textContent = item.n + " — " + item.title;
   document.getElementById("modalAnswer").innerHTML = mainAnswer + followups;
-  document.getElementById("modalKeywords").innerHTML = item.keywords.map(k => `<span class="chip">${k}</span>`).join("");
-  document.getElementById("modal").classList.add("show");
+  document.getElementById("modalKeywords").innerHTML = item.keywords
+    .map((k) => `<span class="chip">${escapeHtml(k)}</span>`)
+    .join("");
+  modalEl.classList.add("show");
 }
 
 function closeModal() {
-  document.getElementById("modal").classList.remove("show");
+  modalEl.classList.remove("show");
 }
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
+function initVoiceSearch() {
+  if (!SpeechRecognitionCtor) {
+    voiceUnsupported.hidden = false;
+    voiceUnsupported.textContent =
+      "Voice search is not supported on this browser. Please type a few words.";
+    voiceBtn.disabled = true;
+    voiceBtn.style.opacity = "0.55";
+    return;
+  }
+
+  speechRecognition = new SpeechRecognitionCtor();
+  speechRecognition.continuous = false;
+  speechRecognition.interimResults = false;
+  speechRecognition.lang = "en-GB";
+
+  speechRecognition.onstart = () => {
+    voiceListening = true;
+    voiceBtn.classList.add("listening");
+    voiceStatus.hidden = false;
+    voiceStatus.textContent = "Listening...";
+    voiceUnsupported.hidden = true;
+  };
+
+  speechRecognition.onresult = (event) => {
+    const transcript = Array.from(event.results)
+      .map((r) => r[0].transcript)
+      .join(" ")
+      .trim();
+    if (transcript) {
+      searchInput.value = transcript;
+      applySearch(transcript, { openTopIfStrong: true });
+    }
+  };
+
+  speechRecognition.onerror = () => {
+    stopVoiceSearch();
+    voiceStatus.textContent = "Voice input ended. Try again or type your search.";
+  };
+
+  speechRecognition.onend = () => {
+    stopVoiceSearch();
+  };
+}
+
+function startVoiceSearch() {
+  if (!SpeechRecognitionCtor) {
+    voiceUnsupported.hidden = false;
+    voiceUnsupported.textContent =
+      "Voice search is not supported on this browser. Please type a few words.";
+    return;
+  }
+
+  if (!speechRecognition) initVoiceSearch();
+
+  try {
+    if (voiceListening) {
+      stopVoiceSearch();
+      return;
+    }
+    speechRecognition.start();
+  } catch (err) {
+    voiceStatus.hidden = false;
+    voiceStatus.textContent = "Could not start microphone. Please type your search.";
+    stopVoiceSearch();
+  }
+}
+
+function stopVoiceSearch() {
+  voiceListening = false;
+  voiceBtn.classList.remove("listening");
+  if (speechRecognition) {
+    try {
+      speechRecognition.stop();
+    } catch (err) {
+      /* ignore */
+    }
+  }
+}
+
+searchInput.addEventListener("input", () => {
+  applySearch(searchInput.value);
 });
+
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    applySearch(searchInput.value, { openTopOnEnter: true });
+  }
+});
+
+clearBtn.addEventListener("click", clearSearch);
+voiceBtn.addEventListener("click", startVoiceSearch);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  if (modalEl.classList.contains("show")) {
+    closeModal();
+    return;
+  }
+  if (searchInput.value.trim()) {
+    clearSearch();
+  }
+});
+
+renderGrid(items.map((item, index) => ({ index, item, score: 0 })));
+initVoiceSearch();
   </script>
   <!-- force rebuild -->
 </body>
