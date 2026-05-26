@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence — Contact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+        name="description"
+        content="Contact Elisence — Global Digital Health & Humanity Platform. Get in touch for partnerships, pilots, and support."
+    />
+
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
+    <style>
+        :root {
+            --bg-dark: #050814;
+            --bg-card: #0d1020;
+            --accent: #4ea8ff;
+            --accent-soft: rgba(78, 168, 255, 0.1);
+            --text-main: #f5f7ff;
+            --text-muted: #a3b0d8;
+            --border-soft: rgba(255, 255, 255, 0.08);
+            --danger: #ff5c7a;
+            --success: #4fd1c5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #111633 0, #050814 60%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow: 0 0 16px rgba(0, 130, 255, 0.95),
+                        0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease,
+                        background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow: 0 0 22px rgba(0, 190, 255, 1),
+                        0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7),
+                        rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active { transform: translateX(-2px) scale(0.99); }
+
+        main {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-shell { margin-right: 190px; }
+
+        .page-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-radius: 999px;
+            padding: .35rem .9rem;
+            border: 1px solid rgba(78,168,255,0.5);
+        }
+
+        .page-tag-dot {
+            width: 7px; height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        h1 {
+            margin-top: 1.1rem;
+            font-size: 2rem;
+            letter-spacing: .03em;
+        }
+
+        .subtitle {
+            margin-top: .5rem;
+            max-width: 720px;
+            color: var(--text-muted);
+            font-size: .98rem;
+        }
+
+        .grid {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            gap: 1.75rem;
+        }
+
+        @media (max-width: 900px) {
+            main { padding: 80px 18px 100px 18px; }
+            .content-shell { margin-right: 0; }
+            .grid { grid-template-columns: minmax(0,1fr); }
+
+            .side-nav {
+                right: 50%; top: auto; bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap; gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, #1a2147 0, #090d20 55%);
+            border-radius: 1.25rem;
+            border: 1px solid var(--border-soft);
+            padding: 1.6rem 1.5rem;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.05rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: .8rem;
+        }
+
+        .contact-list { list-style: none; padding: 0; margin: 0; }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: .9rem;
+            padding: .75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-item:last-child { border-bottom: none; }
+
+        .contact-label {
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            color: var(--text-muted);
+            min-width: 110px;
+        }
+
+        .contact-value { font-size: .96rem; }
+
+        .pill-row {
+            margin-top: 1.2rem;
+            display: flex; flex-wrap: wrap;
+            gap: .45rem;
+        }
+
+        .pill {
+            font-size: .78rem;
+            padding: .28rem .7rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            background: rgba(10,15,40,0.9);
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .pill-strong {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .note {
+            margin-top: 1.2rem;
+            font-size: .86rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <nav class="side-nav">
+        <a href="index.html"        class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
+    </nav>
+
+    <main>
+        <div class="content-shell">
+            <div class="page-tag">
+                <span class="page-tag-dot"></span>
+                <span>Contact Elisence</span>
+            </div>
+
+            <h1>Contact & Partnership</h1>
+            <p class="subtitle">
+                Elisence is building a trusted, global digital health and humanity platform.
+                Use the details below to reach our London team for partnerships, pilots,
+                investment discussions, media enquiries, general user questions or any other topic.
+            </p>
+
+            <div class="grid">
+
+                <section class="card">
+                    <h2>How to Reach Us</h2>
+
+                    <ul class="contact-list">
+
+                        <li class="contact-item">
+                            <div class="contact-label">Phone (UK)</div>
+                            <div class="contact-value">
+                                <strong>+44 20 3538 5825</strong><br />
+                                London business line — answered during office hours (GMT).
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-label">WhatsApp</div>
+                            <div class="contact-value">
+                                <strong>+44 7405 682377</strong><br />
+                                Fast channel for questions, demos and coordination.
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value">
+                                <a href="mailto:contact@elisence.com">
+                                    <strong>contact@elisence.com</strong>
+                                </a><br />
+                                For formal enquiries, RFPs, pilots and partnership requests.
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-label">Website</div>
+                            <div class="contact-value">
+                                <a href="https://www.elisence.com" target="_blank" rel="noopener">
+                                    www.elisence.com
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-label">Address</div>
+                            <div class="contact-value">
+                                <strong>194–196 Finchley Road</strong><br />
+                                London, NW3 6BX<br />
+                                United Kingdom
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="pill-row">
+                        <span class="pill pill-strong">Government &amp; Ministry Partnerships</span>
+                        <span class="pill">Hospitals &amp; Health Systems</span>
+                        <span class="pill">Clinics &amp; Physicians</span>
+                        <span class="pill">Investors &amp; Strategic Partners</span>
+                        <span class="pill">Research Collaborations</span>
+                        <span class="pill">Individuals &amp; Families</span>
+                    </div>
+
+                    <p class="note">
+                        For sensitive discussions (national deployments, regulatory reviews,
+                        pilots with ministries or major hospital groups), please mention this
+                        in the subject line so we can route your message to the appropriate
+                        Elisence leadership group.
+                    </p>
+                </section>
+
+                <!-- Right side stays unchanged -->
+                <aside class="card">
+                    <h2>Send Us a Message</h2>
+                    <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0;">
+                        This form will open your email application with a pre-filled message
+                        to <strong>contact@elisence.com</strong> (CC:
+                        <strong>Sami1856@yahoo.co.uk</strong>). You can review and send it there.
+                    </p>
+
+                    <form id="contact-form">
+                        <div class="field-group">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" placeholder="Your full name" />
+                        </div>
+
+                        <div class="field-group">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com" />
+                        </div>
+
+                        <div class="field-group">
+                            <label for="org">Organisation</label>
+                            <input id="org" name="org" type="text" placeholder="Ministry, hospital, clinic, investor, individual, etc." />
+                        </div>
+
+                        <div class="field-group">
+                            <label for="topic">Topic</label>
+                            <select id="topic" name="topic">
+                                <option value="">Select an option</option>
+                                <option>Individual / family user question</option>
+                                <option>Government / Ministry partnership</option>
+                                <option>Hospital / clinic deployment</option>
+                                <option>Investor / funding enquiry</option>
+                                <option>Technology / integration question</option>
+                                <option>Media / press</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="message">Message</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="Tell us briefly how you would like to work with Elisence, or what you need help with."
+                            ></textarea>
+                        </div>
+
+                        <div class="button-row">
+                            <button type="submit">Send Message</button>
+                        </div>
+                    </form>
+
+                    <p class="note">
+                        By contacting Elisence you agree that we may use your details to
+                        follow up on your enquiry. Elisence follows Zero-Trust, GDPR/UK DPA
+                        and GCC PDPL principles for all communications.
+                    </p>
+                </aside>
+
+            </div>
+
+            <div class="footer-note">
+                <strong>In one sentence:</strong>
+                Elisence is building a <span class="highlight">trusted global digital health
+                and humanity platform</span> — this contact channel connects you directly
+                with the core team behind every phase of that vision.
+            </div>
+        </div>
+    </main>
+
+    <div id="elisa-chat-root"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('contact-form');
+            if (!form) return;
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                var name    = document.getElementById('name').value.trim();
+                var email   = document.getElementById('email').value.trim();
+                var org     = document.getElementById('org').value.trim();
+                var topic   = document.getElementById('topic').value;
+                var message = document.getElementById('message').value.trim();
+
+                var subjectTopic = topic || 'General enquiry';
+                var subject = 'Elisence contact – ' + subjectTopic;
+
+                var bodyLines = [];
+                if (name) bodyLines.push('Name: ' + name);
+                if (email) bodyLines.push('Email: ' + email);
+                if (org) bodyLines.push('Organisation: ' + org);
+                if (topic) bodyLines.push('Topic: ' + topic);
+
+                bodyLines.push('');
+                bodyLines.push('Message:');
+                bodyLines.push(message || '(no message provided)');
+
+                var body = bodyLines.join('\n');
+
+                var mailtoLink =
+                    'mailto:contact@elisence.com' +
+                    '?cc=' + encodeURIComponent('Sami1856@yahoo.co.uk') +
+                    '&subject=' + encodeURIComponent(subject) +
+                    '&body=' + encodeURIComponent(body);
+
+                window.location.href = mailtoLink;
+            });
+        });
+    </script>
+
+</body>
+</html>

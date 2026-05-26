@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Phase 8: Advanced Health Engine (AHE)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Elisa chat widget -->
+    <script defer src="elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-space: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            --text-main: #e8f4fc;
+            --text-soft: #dbefff;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-soft: #7dd3fc;
+            --card-bg: rgba(15, 23, 42, 0.96);
+            --card-border: rgba(90, 185, 255, 0.9);
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg-space);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== top dot & label (مثل index) ===== */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 900;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 900;
+        }
+
+        /* ===== side navigation – DESKTOP (کپی مستقیم از index) ===== */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top,
+                rgba(0, 130, 255, 0.45),
+                rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease,
+                padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top,
+                rgba(0, 170, 255, 0.7),
+                rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* ===== layout wrapper (هم استایل فاز ۹) ===== */
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 96px 1.8rem 72px 1.8rem;
+        }
+
+        .hero-area {
+            margin-bottom: 2.4rem;
+        }
+
+        .phase-hero-card {
+            background: radial-gradient(circle at top left,
+                rgba(0, 156, 255, 0.35),
+                rgba(15, 23, 42, 0.98));
+            border-radius: 26px;
+            border: 1px solid var(--card-border);
+            box-shadow:
+                0 0 45px rgba(0, 170, 255, 0.85),
+                0 0 120px rgba(0, 80, 200, 0.65);
+            padding: 1.8rem 1.9rem;
+        }
+
+        .phase-hero-inner {
+            display: flex;
+            gap: 1.8rem;
+            align-items: stretch;
+        }
+
+        .phase-hero-logo-box {
+            flex: 0 0 290px;
+            border-radius: 22px;
+            background: radial-gradient(circle at top, #0b1220, #020617);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow:
+                0 0 24px rgba(15, 23, 42, 0.9),
+                0 0 40px rgba(15, 23, 42, 0.9);
+        }
+
+        .phase-hero-logo {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 0 28px rgba(15, 23, 42, 0.95);
+        }
+
+        .phase-hero-text-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .phase-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .phase-title {
+            font-size: 1.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #f9fafb;
+            margin: 0 0 0.35rem 0;
+        }
+
+        .phase-subtitle {
+            font-size: 0.95rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 0.6rem;
+        }
+
+        .phase-lead {
+            font-size: 0.98rem;
+            color: var(--text-soft);
+            margin-bottom: 0.7rem;
+        }
+
+        .phase-hero-bullets {
+            margin: 0.3rem 0 0 0;
+            padding-left: 1.1rem;
+            font-size: 0.9rem;
+            color: #dbefff;
+        }
+
+        .phase-hero-bullets li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* ===== detail cards ===== */
+        .phase-main {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+            padding: 1.8rem 1.7rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .info-card h2 {
+            margin-top: 0;
+            margin-bottom: 0.85rem;
+            font-size: 1.3rem;
+            color: var(--accent-soft);
+        }
+
+        .info-card h3 {
+            margin-top: 1.1rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.02rem;
+            color: var(--accent);
+        }
+
+        .info-card p {
+            margin: 0.35rem 0;
+            font-size: 0.94rem;
+            color: #e5f2ff;
+        }
+
+        .info-card ul {
+            margin: 0.45rem 0 0.25rem 1.2rem;
+            padding-left: 0.3rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.32rem;
+            font-size: 0.93rem;
+        }
+
+        .subtle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .highlight {
+            border-left: 3px solid var(--accent);
+            padding-left: 0.9rem;
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+        }
+
+        /* ===== responsive (مثل index) ===== */
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 1.2rem 80px 1.2rem;
+            }
+
+            .phase-hero-inner {
+                flex-direction: column;
+            }
+
+            .phase-hero-logo-box {
+                flex: 0 0 auto;
+            }
+
+            .info-card {
+                padding: 1.5rem 1.35rem;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<nav class="side-nav">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="index.html#phases" class="nav-btn">Phases</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="story.html" class="nav-btn">Story</a>
+    <a href="video.html" class="nav-btn">Videos</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
+</nav>
+
+<div class="page-wrapper">
+    <!-- HERO -->
+    <section class="hero-area">
+        <div class="phase-hero-card">
+            <div class="phase-hero-inner">
+                <div class="phase-hero-logo-box">
+                    <img src="elisence.png"
+                         alt="Elisence – Global Digital Health & Humanity Platform"
+                         class="phase-hero-logo">
+                </div>
+                <div class="phase-hero-text-box">
+                    <div class="phase-label">PHASE 8</div>
+                    <h1 class="phase-title">Advanced Health Engine (AHE)</h1>
+                    <div class="phase-subtitle">
+                        GOVERNED MEDICAL INTELLIGENCE · NATIONAL HEALTH INFRASTRUCTURE
+                    </div>
+                    <p class="phase-lead">
+                        Phase 8 is the governed medical intelligence layer of Elisence – the point where Elisence
+                        stops being an app and becomes <strong>health infrastructure</strong>. It unifies signals from
+                        women’s health, blood, diabetes, behaviour, devices and environment into safe, non-diagnostic
+                        intelligence for citizens, clinicians, hospitals and ministries.
+                    </p>
+                    <ul class="phase-hero-bullets">
+                        <li>Multi-core health engine, OFF-by-default for high-risk features.</li>
+                        <li>Role- and country-aware governance from day one.</li>
+                        <li>Built to satisfy cautious regulators and demanding investors.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAIL CARDS -->
+    <main class="phase-main">
+
+        <!-- 1. WHAT AHE IS -->
+        <section class="info-card">
+            <h2>1. What Phase 8 Actually Is</h2>
+            <p>
+                Phase 8 (AHE – Advanced Health Engine) is not a single score and not a monolithic “AI brain”.
+                It is a <strong>governed, multi-core health engine</strong> that:
+            </p>
+            <ul>
+                <li>Collects signals from women’s health, blood tests, diabetes, behaviour, devices and environment.</li>
+                <li>Normalises and interprets them in a safe, non-diagnostic, explainable way.</li>
+                <li>Produces calm, human-readable guidance for citizens and structured, auditable risk views for
+                    clinicians and ministries.</li>
+                <li>Runs high-risk medical features OFF by default, activatable only via explicit feature flags
+                    and governance.</li>
+            </ul>
+            <p class="highlight">
+                Mission: reduce pressure on health systems by catching risk earlier, educating citizens better,
+                and turning raw data into structured, trustworthy intelligence instead of noise.
+            </p>
+        </section>
+
+        <!-- 2. SEVEN-CORE MODEL -->
+        <section class="info-card">
+            <h2>2. Seven-Core Architecture</h2>
+            <p>
+                AHE is deliberately split into seven Cores. Each Core has its own risk profile, feature flags and
+                governance. A problem in one Core never silently contaminates the others.
+            </p>
+
+            <h3>Core-1 — Women (11K)</h3>
+            <ul>
+                <li>Women’s contextual health signals (cycle, symptoms, pregnancy, menopause).</li>
+                <li>Powered by Women AHE 11K with separate citizen, clinician and ministry views.</li>
+            </ul>
+
+            <h3>Core-2 — Blood / Hematology</h3>
+            <ul>
+                <li>Unified blood profile (<code>AHE_Blood_Profile_v1</code>) used across Women+, Diabetes, GLP-1
+                    and the Risk Engine.</li>
+                <li>Non-diagnostic hints around anaemia, bleeding, Rh-negative pregnancy and other safety-relevant patterns.</li>
+            </ul>
+
+            <h3>Core-3 — Diabetes &amp; Metabolic</h3>
+            <ul>
+                <li>Signals from glucose/A1c, weight, GLP-1 response and adherence.</li>
+                <li>Patterns surfaced to clinicians and ministries; no automated prescribing.</li>
+            </ul>
+
+            <h3>Core-4 — Mental Health &amp; Wellbeing</h3>
+            <ul>
+                <li>Mood, energy and sleep signals tied into the Dopamine Engine.</li>
+                <li>Safety rules for worrying combinations; always escalation, never diagnosis.</li>
+            </ul>
+
+            <h3>Core-5 — Kids &amp; Family</h3>
+            <ul>
+                <li>Family context and child-safe signals, governed by guardians.</li>
+                <li>Connects motherhood journeys with Phase 10 (Kids+).</li>
+            </ul>
+
+            <h3>Core-6 — Environment / Context</h3>
+            <ul>
+                <li>Non-clinical context (heat, air quality, seasonality) that modulates risk interpretation.</li>
+            </ul>
+
+            <h3>Core-7 — Charts &amp; Intelligence</h3>
+            <ul>
+                <li>Population-level dashboards, cohort views and AE radar for ministries and providers.</li>
+                <li>Fully governed; only anonymised, k-anonymous data leaves clinical scope.</li>
+            </ul>
+
+            <p class="subtle">
+                Each Core has independent switches, audit trails and evidence packs. Countries can enable only the
+                Cores they are comfortable with.
+            </p>
+        </section>
+
+        <!-- 3. GOVERNANCE & SECURITY -->
+        <section class="info-card">
+            <h2>3. Governance &amp; Security — Per Country, Per Role, Per Feature</h2>
+            <p>
+                Phase 8 carries the heaviest security and governance layer in the Elisence architecture.
+            </p>
+
+            <h3>3.1 Country-Level Control</h3>
+            <ul>
+                <li>Every request carries a Session Passport / IdP token with
+                    <code>user_id</code>, <code>role_v8</code>, <code>org_id</code>, <code>country_code</code>,
+                    <code>access_tier</code>, <code>auth_strength</code>.</li>
+                <li><code>country_code + access_tier</code> define which Cores and dashboards are allowed.</li>
+                <li>Qatar, Saudi and other markets can run different activation mixes on the same engine.</li>
+            </ul>
+
+            <h3>3.2 Role-Based Security</h3>
+            <ul>
+                <li>Formal roles: citizen, clinician, clinic_admin, hospital_admin, ministry, research_partner.</li>
+                <li>Citizens see calm explanations; clinicians see structured risk; ministries see aggregates only.</li>
+                <li>Higher roles require stronger authentication (MFA, hardware keys, VPN).</li>
+            </ul>
+
+            <h3>3.3 Zero-Trust by Default</h3>
+            <ul>
+                <li>Gateway validates token signature, issuer, audience and expiry for every call.</li>
+                <li>Minimal claims forwarded as headers (e.g. <code>X-Elisence-UserRole</code>, <code>X-Elisence-Country</code>).</li>
+                <li>Any inconsistency → request rejected before touching clinical logic.</li>
+            </ul>
+            <p class="subtle">
+                Result: regulators control who sees what, where and when — and they can turn features off in hours, not years.
+            </p>
+        </section>
+
+        <!-- 4. WOMEN+ & BLOOD BACKBONE -->
+        <section class="info-card">
+            <h2>4. Women+ &amp; Blood as Strategic Backbones</h2>
+            <p>
+                Women’s health and blood are treated as first-class, not secondary signals.
+            </p>
+
+            <h3>4.1 Women AHE 11K</h3>
+            <ul>
+                <li>Citizen view: respectful, non-diagnostic explanations, always pushing towards professional review.</li>
+                <li>Clinician view: structured risk flags, patterns and checklist-style prompts.</li>
+                <li>Ministry view: population-level patterns (e.g. heavy bleeding, anaemia in pregnancy), anonymised.</li>
+            </ul>
+
+            <h3>4.2 Unified Blood Profile</h3>
+            <ul>
+                <li><code>AHE_Blood_Profile_v1</code> is the single schema used across Women+, Diabetes,
+                    GLP-1 and Risk Engine.</li>
+                <li>Non-diagnostic hints only, such as “this pattern may be consistent with low blood count – discuss with a clinician”.</li>
+                <li>Blood dashboards and cohort tools exist but are OFF by default, waiting for national governance.</li>
+            </ul>
+        </section>
+
+        <!-- 5. RISK ENGINE -->
+        <section class="info-card">
+            <h2>5. Risk Engine — Explainable, Not Black-Box</h2>
+            <p>
+                The Phase 8 Risk Engine is our own explainable method, influenced by open frameworks
+                (e.g. cardiovascular risk scores) but not a copy of any proprietary model.
+            </p>
+
+            <h3>5.1 Clinical Logic</h3>
+            <ul>
+                <li>Focus on cardiovascular, metabolic, kidney and chronic disease risk.</li>
+                <li>Combines demographics, long-term factors, symptoms, blood and behaviour into a governed risk picture.</li>
+                <li>Outputs for clinicians: structured risk levels with “why” and “which signals drove this”.</li>
+            </ul>
+
+            <h3>5.2 Citizen vs Clinician Outputs</h3>
+            <ul>
+                <li><strong>Clinicians / ministries</strong> see structured risk and cohorts.</li>
+                <li><strong>Citizens</strong> see no “10-year risk” numbers – only gentle prompts about lifestyle, check-ups
+                    and speaking to a doctor.</li>
+            </ul>
+            <p class="subtle">
+                This keeps AHE clinically meaningful while remaining outside high-risk device classes in most markets.
+            </p>
+        </section>
+
+        <!-- 6. CHARTS & INTELLIGENCE -->
+        <section class="info-card">
+            <h2>6. Charts &amp; Intelligence — Core-7 as National Radar</h2>
+            <p>
+                Core-7 turns AHE into a “national radar” for chronic disease and Women+ health.
+            </p>
+            <ul>
+                <li>Dashboards for diabetes, cardiovascular and kidney risk trends.</li>
+                <li>Women+ dashboards for heavy bleeding, pelvic pain, pregnancy signals (aggregated only).</li>
+                <li>Cohort comparisons by region, age, gender, BMI and medication type.</li>
+                <li>Impact evaluation of interventions (campaigns, clinics, new protocols).</li>
+                <li>Strict k-anonymity rules: small cohorts are hidden to prevent re-identification.</li>
+            </ul>
+            <p class="subtle">
+                Built as compliance-first analytics, suitable for ministries, not as a flashy consumer BI toy.
+            </p>
+        </section>
+
+        <!-- 7. DATA & VAULT -->
+        <section class="info-card">
+            <h2>7. Data Handling &amp; Unified Encrypted Vault</h2>
+            <p>
+                AHE assumes a single encrypted health vault instead of scattered databases.
+            </p>
+            <ul>
+                <li>Encryption in transit and at rest; TLS everywhere.</li>
+                <li>Unified profiles linking blood, Women+, diabetes, behaviour, devices and risk outputs.</li>
+                <li>WORM audit logging for ingest, risk evaluations and dashboard access.</li>
+                <li>Separation of identifiers and clinical content for GDPR / PDPL compliance.</li>
+                <li>Export modes limited to anonymised, k-anonymous aggregates for research and public-health policy.</li>
+            </ul>
+        </section>
+
+        <!-- 8. STAKEHOLDER MODES -->
+        <section class="info-card">
+            <h2>8. Stakeholder Views &amp; Use Cases</h2>
+
+            <h3>8.1 Citizens</h3>
+            <ul>
+                <li>Use Elisence as a calm companion for Women+, GLP-1, sleep, mood and activity.</li>
+                <li>Get simple explanations and nudges to seek help sooner.</li>
+                <li>Keep full control over what is logged and what is shared.</li>
+            </ul>
+
+            <h3>8.2 Clinicians &amp; Clinics</h3>
+            <ul>
+                <li>Receive structured pre-visit context and risk, not unstructured chatter.</li>
+                <li>See trends that are difficult to reconstruct inside a 10-minute appointment.</li>
+            </ul>
+
+            <h3>8.3 Hospitals</h3>
+            <ul>
+                <li>Use AHE dashboards to identify high-risk groups and prevent readmissions.</li>
+                <li>Target specialist resources where impact is highest.</li>
+            </ul>
+
+            <h3>8.4 Ministries &amp; Governments</h3>
+            <ul>
+                <li>Deploy AHE as a national radar for chronic disease and Women+ health.</li>
+                <li>Choose which Cores and dashboards are enabled in which regions.</li>
+                <li>Run staged pilots before full national roll-out.</li>
+            </ul>
+        </section>
+
+        <!-- 9. REGULATORY POSTURE -->
+        <section class="info-card">
+            <h2>9. Regulatory Posture &amp; Modes</h2>
+            <p>
+                AHE is designed for regulators who prefer caution and evidence.
+            </p>
+
+            <h3>9.1 Non-Medical Default Mode</h3>
+            <ul>
+                <li>Wellbeing and education only; no diagnoses, no dosing, no treatment plans.</li>
+                <li>Safe lifestyle guidance and general explanations.</li>
+            </ul>
+
+            <h3>9.2 Medical-Adjacent Mode (Restricted)</h3>
+            <ul>
+                <li>Structured risk intelligence and dashboards for clinicians and ministries.</li>
+                <li>High-risk modules (advanced Women 11K, stroke-like signals, blood heatmaps) behind feature flags.</li>
+                <li>Fail-closed behaviour: if governance isn’t set, features return controlled 503 with roadmap text.</li>
+            </ul>
+
+            <p class="subtle">
+                This keeps Elisence deployable today while leaving a clear path to higher MDR / FDA classes
+                when countries are ready.
+            </p>
+        </section>
+
+        <!-- 10. LIMITS & PROMISES -->
+        <section class="info-card">
+            <h2>10. Clear Limits &amp; Honest Promises</h2>
+            <p>
+                AHE deliberately does <strong>not</strong>:
+            </p>
+            <ul>
+                <li>Replace doctors, clinics or hospitals.</li>
+                <li>Give autonomous diagnoses or prescriptions.</li>
+                <li>Offer emergency triage as a stand-alone service.</li>
+                <li>Guarantee clinical outcomes.</li>
+            </ul>
+            <p class="subtle">
+                Instead, Phase 8 is a governed, explainable intelligence layer that sits beside health systems,
+                reduces noise, and makes it easier for professionals and ministries to do their job.
+            </p>
+        </section>
+
+        <!-- 11. ONE-SENTENCE SUMMARY -->
+        <section class="info-card">
+            <h2>11. One-Sentence Summary</h2>
+            <p>
+                Phase 8 – Advanced Health Engine (AHE) is Elisence’s multi-core, governed medical intelligence
+                layer: a zero-trust, multi-language, regulator-friendly engine that turns fragmented signals from
+                women’s health, blood, diabetes, behaviour and environment into safe guidance for citizens and
+                structured intelligence for clinicians and ministries — without ever pretending to replace a doctor.
+            </p>
+        </section>
+
+    </main>
+</div>
+
+<!-- Elisa chat widget root -->
+<div id="elisa-chat-root"></div>
+
+</body>
+</html>

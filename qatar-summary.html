@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Qatar Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Short summary of Elisence for Qatar, GCC and global partners – Digital Health, AI, multi-language, safe non-diagnostic infrastructure.">
+    <script defer src="elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* Navigation */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgb(0, 190, 255),
+                0 0 46px rgb(0, 80, 200);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        /* Page layout */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 950px;
+            margin-right: 190px;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            color: #38bdf8;
+            margin-bottom: 0.7rem;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.4rem;
+        }
+
+        /* Pills */
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.6rem;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.9);
+            font-size: 0.8rem;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            color: #e0f2fe;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            padding: 1.7rem 1.8rem;
+            margin-bottom: 1.6rem;
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.88),
+                0 0 40px rgba(0, 40, 120, 0.88);
+        }
+
+        .card h2 {
+            margin-bottom: 0.7rem;
+            font-size: 1.25rem;
+            color: #7dd3fc;
+        }
+
+        .card p,
+        .card li {
+            font-size: 0.95rem;
+            color: #e5f2ff;
+            margin-bottom: 0.4rem;
+        }
+
+        .card ul {
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        /* Contact */
+        .contact-block {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-block a {
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+
+        .contact-block a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .content-main {
+                margin-right: 0;
+            }
+            .side-nav {
+                right: 50%;
+                bottom: 18px;
+                top: auto;
+                transform: translateX(50%);
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="top-dot"></div>
+<div class="top-dot-label">ELISENCE</div>
+
+<nav class="side-nav">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="qatar-summary.html" class="nav-btn" style="background:rgba(0,150,255,0.5); border-color:#7dd3fc;">Summary</a>
+    <a href="qatar.html" class="nav-btn">Qatar</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="story.html" class="nav-btn">Story</a>
+    <a href="video.html" class="nav-btn">Videos</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
+</nav>
+
+<div class="page-shell">
+    <main class="content-main">
+
+        <h1>Elisence – Qatar Summary</h1>
+        <p class="lead">
+            A short, ministry-ready summary of Elisence for Qatar, GCC and global partners.
+        </p>
+
+        <div class="pill-row">
+            <span class="pill">HealthTech</span>
+            <span class="pill">AI & Digital Health</span>
+            <span class="pill">EdTech & Behaviour</span>
+            <span class="pill">Multi-Language</span>
+            <span class="pill">National Scale</span>
+        </div>
+
+        <!-- 1. What Elisence Is -->
+        <section class="card">
+            <h2>1. What Elisence Is</h2>
+            <p>
+                Elisence is a <span class="highlight">multi-phase Digital Health & AI infrastructure</span> 
+                built across 17 phases — not just an app.  
+            </p>
+            <p>
+                It connects GLP-1, diabetes, women’s health, mental health, nutrition, family wellbeing and 
+                national-scale dashboards into one ecosystem, fully non-diagnostic and safety-first.
+            </p>
+        </section>
+
+        <!-- 2. Why It Fits Qatar & GCC -->
+        <section class="card">
+            <h2>2. Why It Fits Qatar & GCC</h2>
+            <p>Elisence is already aligned with regional priorities:</p>
+            <ul>
+                <li><span class="highlight">Diabetes & metabolic health</span> (Phase 9)</li>
+                <li><span class="highlight">Women+ health & family wellbeing</span> (Phases 7 & 15)</li>
+                <li><span class="highlight">Nutrition intelligence</span> (Phase 16)</li>
+                <li>Multi-language: EN / AR / FA / TR / RO</li>
+                <li>Safe, non-diagnostic AI with Zero-Trust security</li>
+                <li>Dashboards suitable for Ministries & public health teams</li>
+            </ul>
+        </section>
+
+        <!-- 3. What Is Already Built -->
+        <section class="card">
+            <h2>3. What Is Already Built</h2>
+            <ul>
+                <li>Backend engines + safety tests (GLP-1, Women+, Diabetes, AHE)</li>
+                <li>WORM audit log (Phase 4) + provenance export</li>
+                <li>Phase 10 Social layer (messaging, profiles, identity)</li>
+                <li>Website + videos + full documentation</li>
+            </ul>
+        </section>
+
+        <!-- 4. Opportunities in Qatar -->
+        <section class="card">
+            <h2>4. What Elisence Seeks in Qatar</h2>
+            <ul>
+                <li>Incorporation & incubation as a Qatar-based HealthTech company</li>
+                <li>Pilot projects with clinics and ministries</li>
+                <li>Investment under HealthTech / AI / Digital Innovation</li>
+                <li>National strategy alignment (diabetes, women’s health, nutrition)</li>
+            </ul>
+        </section>
+
+        <!-- 5. Contact -->
+        <section class="card">
+            <h2>5. Contact</h2>
+            <p>To request the full documentation pack or a ministry-ready demo:</p>
+            <p class="contact-block">
+                Email: <span class="highlight">contact@elisence.com</span><br>
+                Website: <a href="https://elisence.com">www.elisence.com</a>
+            </p>
+        </section>
+
+    </main>
+</div>
+
+<div id="elisa-chat-root"></div>
+
+</body>
+</html>

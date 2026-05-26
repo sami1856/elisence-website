@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elisence — Web Summit Founder Board</title>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #061936 0%, #020816 48%, #000 100%);
+      color: #fff;
+      overflow-y: auto;
+    }
+
+    .board {
+      width: 100vw;
+      min-height: 100vh;
+      padding: 18px 22px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header {
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    .brand {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 0.28em;
+      color: #ffffff;
+      text-shadow: 0 0 28px rgba(0,180,255,.9);
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      font-size: 17px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8edcff;
+    }
+
+    .grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid rgba(95, 205, 255, .75);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(0,190,255,.34), transparent 45%),
+        linear-gradient(145deg, rgba(8,34,85,.96), rgba(4,12,34,.98));
+      box-shadow:
+        0 0 22px rgba(0,160,255,.65),
+        inset 0 0 20px rgba(255,255,255,.04);
+      padding: 16px;
+      min-height: 150px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow:
+        0 0 34px rgba(0, 210, 255, .95),
+        0 0 70px rgba(80, 80, 255, .45);
+    }
+
+    .num {
+      font-size: 17px;
+      font-weight: 900;
+      color: #55d9ff;
+      letter-spacing: .12em;
+      text-align: center;
+    }
+
+    .q {
+      font-size: clamp(16px, 1.18vw, 23px);
+      line-height: 1.06;
+      font-weight: 900;
+      color: #ffffff;
+      text-align: center;
+      text-shadow: 0 0 18px rgba(0,170,255,.5);
+    }
+
+    .tag {
+      margin-top: 12px;
+      font-size: 13.5px;
+      line-height: 1.35;
+      font-weight: 650;
+      color: rgba(180, 230, 255, .9);
+      opacity: .94;
+      text-align: center;
+      letter-spacing: .01em;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 34px;
+      background: rgba(0, 0, 0, .82);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal.show { display: flex; }
+
+    .panel {
+      width: min(1500px, 96vw);
+      height: min(850px, 92vh);
+      border-radius: 34px;
+      border: 1px solid rgba(110, 220, 255, .9);
+      background:
+        radial-gradient(circle at top, rgba(0,160,255,.28), transparent 42%),
+        linear-gradient(145deg, #06193a, #020716 72%);
+      box-shadow:
+        0 0 55px rgba(0,190,255,.8),
+        0 0 140px rgba(90,80,255,.45);
+      padding: 34px 42px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      overflow: hidden;
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex: 0 0 auto;
+    }
+
+    .modal-title {
+      font-size: clamp(34px, 3.2vw, 58px);
+      line-height: 1;
+      font-weight: 950;
+      color: #fff;
+    }
+
+    .close {
+      font-size: 34px;
+      font-weight: 900;
+      color: #fff;
+      background: rgba(0,180,255,.18);
+      border: 1px solid rgba(120,220,255,.85);
+      border-radius: 18px;
+      padding: 8px 18px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,190,255,.55);
+    }
+
+    .answer {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 8px;
+      font-size: clamp(28px, 2.15vw, 42px);
+      line-height: 1.32;
+      font-weight: 650;
+      color: #eaf8ff;
+    }
+
+    .answer p { margin-bottom: 22px; }
+
+    .followup {
+      margin-top: 30px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 85, 105, .42);
+    }
+
+    .followup-q {
+      font-size: clamp(20px, 1.45vw, 30px);
+      line-height: 1.22;
+      font-weight: 950;
+      color: #ff5b6e;
+      margin-bottom: 12px;
+      text-shadow: 0 0 18px rgba(255,40,80,.3);
+    }
+
+    .followup-a {
+      font-size: clamp(21px, 1.55vw, 32px);
+      line-height: 1.35;
+      font-weight: 620;
+      color: #dff5ff;
+    }
+
+    .keywords {
+      flex: 0 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(120,210,255,.24);
+    }
+
+    .chip {
+      font-size: 20px;
+      font-weight: 850;
+      padding: 9px 16px;
+      border-radius: 999px;
+      color: #07101f;
+      background: linear-gradient(135deg, #63e8ff, #9d78ff);
+    }
+
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .card { min-height: 150px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="board">
+    <header class="header">
+      <div class="brand">ELISENCE</div>
+      <div class="subtitle">Web Summit Founder Quick Board</div>
+    </header>
+
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="panel">
+      <div class="modal-top">
+        <div class="modal-title" id="modalTitle"></div>
+        <button class="close" onclick="closeModal()">×</button>
+      </div>
+      <div class="answer" id="modalAnswer"></div>
+      <div class="keywords" id="modalKeywords"></div>
+    </div>
+  </div>
+
+  <script>
+const items = [
+  {
+    n:"01",
+    title:"Elevator Pitch",
+    short:"What is Elisence?",
+    question:"What is your startup all about?",
+    keywords:["global health AI","secure platform","prevention","digital health"],
+    answer:[
+      "Elisence is a global, next-generation health AI platform.",
+      "We are building a highly secure and modular system that brings together different parts of digital health — from advanced health analytics to social health networking, medication intelligence, continuity, and prevention.",
+      "Our goal is to give people clearer, safer, and more connected support for understanding and managing their health, while building responsibly around privacy, trust, and international healthcare standards."
+    ],
+    followups:[
+      {
+        q:"Is Elisence a medical diagnosis system?",
+        a:"No. Elisence is not positioned as an autonomous diagnostic system. It is designed for prevention, education, continuity, and responsible support, with clear safety boundaries and human review where appropriate."
+      }
+    ]
+  },
+  {
+    n:"02",
+    title:"Elevator Pitch",
+    short:"Give me the pitch",
+    question:"Can you give me your elevator pitch?",
+    keywords:["fragmented apps","one platform","big picture","seamless care"],
+    answer:[
+      "Today, digital health tools are disconnected.",
+      "People often have to use different apps for health tracking, medication management, care support, and social health connection. Because these tools do not talk to each other, health data becomes scattered and the bigger picture is missing.",
+      "Elisence fixes this by bringing these separate experiences into one connected platform — combining personal health support, prevention, continuity, and trusted intelligence in one health ecosystem."
+    ],
+    followups:[
+      {
+        q:"Why does this need to be one ecosystem?",
+        a:"Because health is not one isolated event. People need continuity across information, support, care journeys, medication, lifestyle, and trusted guidance. The value comes from connecting those parts safely."
+      }
+    ]
+  },
+  {
+    n:"03",
+    title:"Target Audience & Impact",
+    short:"Who is this for?",
+    question:"Who is your target audience, and what impact do you aim to make?",
+    keywords:["people first","health systems","prevention","less pressure"],
+    answer:[
+      "Our main audience is everyday people who want better support in understanding, managing, and navigating their health — especially people dealing with ongoing health challenges, prevention, care journeys, or simply trying to live healthier lives.",
+      "Our focus is people first. We want to help people feel more supported, better informed, and less alone while making healthcare easier to understand and manage.",
+      "At the same time, Elisence is designed to support healthcare systems in the long term by helping organize high-quality, structured, and privacy-conscious health information.",
+      "The impact we want to make is simple: healthcare should feel less confusing, less isolating, and easier to navigate — while helping reduce pressure on healthcare systems through prevention, continuity, and earlier support."
+    ]
+  },
+  {
+    n:"04",
+    title:"Product Stage",
+    short:"What stage are you at?",
+    question:"What stage of development is your product at?",
+    keywords:["working app","tested systems","demos","step by step"],
+    answer:[
+      "Elisence is already in an active build stage.",
+      "We have a working app, tested core systems, and demos prepared for different real-life healthcare scenarios.",
+      "Multiple parts of the platform have already been developed and tested. Right now, we are gradually bringing these systems into the app step by step, starting with healthcare experiences, continuity features, and medication intelligence.",
+      "At the center of Elisence is a social health network app, because we believe health should not feel isolating. This acts as the main experience layer while other healthcare systems are gradually integrated around it."
+    ],
+    followups:[
+      {
+        q:"Are you already live with users?",
+        a:"We are still in a careful build and validation stage. Because this is healthcare, we prefer to validate responsibly rather than rush an incomplete product into people’s hands."
+      }
+    ]
+  },
+  {
+    n:"05",
+    title:"Key Features",
+    short:"What are the key features?",
+    question:"What are the key features of your platform and how do they work?",
+    keywords:["social health","continuity","AI support","health intelligence"],
+    answer:[
+      "Elisence combines healthcare support, continuity, and intelligent assistance in one connected platform.",
+      "At the center is a social health network experience, because we believe health should not feel isolating.",
+      "Key features include healthcare continuity, medication intelligence, health information management, AI-powered support, prevention, women’s health, and long-term health support.",
+      "Elisence is designed for both people and healthcare systems — helping individuals manage health while building a trusted health intelligence layer for better prevention and decision-making."
+    ]
+  },
+  {
+    n:"06",
+    title:"Compliance & Reliability",
+    short:"How do you handle compliance?",
+    question:"Since this is a health AI project, how do you handle security and compliance?",
+    keywords:["safety-first","privacy","no diagnosis","responsible AI"],
+    answer:[
+      "Elisence is designed with a safety-first and compliance-aware approach.",
+      "We do not position ourselves as a diagnostic or autonomous medical decision system. Instead, we focus on prevention, education, continuity, and responsible digital health support.",
+      "We use clear data structures, safe AI logic, privacy-conscious design, and strict guardrails to reduce the risk of unsafe or misleading information.",
+      "Our long-term goal is to follow international standards and build technology that individuals, healthcare systems, governments, and research organizations can trust."
+    ],
+    followups:[
+      {
+        q:"How do you avoid unsafe AI outputs?",
+        a:"We use safety boundaries, structured logic, evidence-aware design, and human review paths for sensitive areas. The AI should support understanding, not replace clinical responsibility."
+      }
+    ]
+  },
+  {
+    n:"07",
+    title:"Unique Value Proposition",
+    short:"How are you different?",
+    question:"How are you different from your competitors?",
+    keywords:["not fragmented","connected ecosystem","trust","real healthcare"],
+    answer:[
+      "Many health apps focus on one problem at a time — for example fitness, medications, women’s health, or messaging.",
+      "Elisence is different because we are building one connected platform where healthcare support, continuity, intelligent assistance, and social health experiences work together.",
+      "We also focus strongly on trust, privacy, and real healthcare usability, because we want people to feel supported while making healthcare easier to manage and understand."
+    ]
+  },
+  {
+    n:"08",
+    title:"Market Scope",
+    short:"Local or global?",
+    question:"Is your target market local or are you building a global product?",
+    keywords:["global vision","local systems","languages","regulation"],
+    answer:[
+      "We are building a global product, but we believe healthcare must adapt to local systems, regulations, and cultures.",
+      "Our vision is global, but our approach is practical.",
+      "We start market by market, adapting to local healthcare environments while keeping one connected platform and experience."
+    ],
+    followups:[
+      {
+        q:"Which markets matter first?",
+        a:"The UK is an important foundation because of its strong healthcare and regulatory environment. Over time, we also see strong relevance in the Middle East and Gulf markets, where digital health transformation is moving quickly."
+      }
+    ]
+  },
+  {
+    n:"09",
+    title:"Defensibility",
+    short:"What stops copying?",
+    question:"What stops a competitor from easily copying what you are building?",
+    keywords:["trust","healthcare complexity","execution","ecosystem"],
+    answer:[
+      "Technology can always be copied to some extent, but what is harder to copy is the combination of trust, healthcare understanding, infrastructure, and long-term execution.",
+      "Elisence is not just one feature or one app. We are building a connected ecosystem around healthcare continuity, intelligent support, social health experiences, privacy, and real healthcare usability.",
+      "It takes time to make these systems work together and to build trust around them."
+    ],
+    followups:[
+      {
+        q:"What is your moat?",
+        a:"Our moat is the connected architecture, healthcare-specific workflows, safety logic, structured data approach, product vision, and the trust layer we are building around the whole ecosystem."
+      }
+    ]
+  },
+  {
+    n:"10",
+    title:"Founder & Team",
+    short:"Who is behind it?",
+    question:"Tell me about your background. Who is behind the project?",
+    keywords:["founder-led","legal","business","care","AI collaboration"],
+    answer:[
+      "I am the sole founder and primary architect of Elisence.",
+      "My background is in legal, business, and care services, including home and domiciliary care. Through both professional and personal experiences, I saw how difficult healthcare can feel for many people — fragmented, stressful, and hard to navigate.",
+      "Elisence is also deeply personal to me. It is named after and inspired by my daughter, Elisa, with a long-term vision to build a safer and healthier world.",
+      "I use modern AI collaboration tools to accelerate research, architecture, product thinking, and development workflows, while keeping the vision, direction, and responsibility with me.",
+      "This has allowed me to build in a lean and highly focused way, but the long-term goal is to grow with the right team and partners."
+    ],
+    followups:[
+      {
+        q:"Can one founder really build something this big?",
+        a:"The vision is large, but the execution is step by step. I am using modern tools to move faster, but I also understand that scaling Elisence will require the right team, advisors, clinical partners, and strategic support."
+      }
+    ]
+  },
+  {
+    n:"11",
+    title:"Why Web Summit?",
+    short:"Why Web Summit?",
+    question:"Why do you want to attend Web Summit this year?",
+    keywords:["learning","feedback","connections","ecosystem"],
+    answer:[
+      "We want to attend Web Summit because Elisence is at a stage where learning, feedback, and meaningful connections matter.",
+      "We want to meet founders, healthcare innovators, investors, and people building the future of technology and healthcare.",
+      "For us, this is an opportunity to learn, challenge our thinking, introduce Elisence to a wider ecosystem, and build relationships that can help us create something meaningful and trusted in healthcare."
+    ]
+  },
+  {
+    n:"12",
+    title:"Maximizing the Event",
+    short:"How will you use it?",
+    question:"If selected for the Startups Programme, how will you maximize your impact?",
+    keywords:["learn","connect","feedback","relationships"],
+    answer:[
+      "If selected, we would focus on learning, meaningful connections, and honest feedback.",
+      "We would want to speak with founders, healthcare innovators, investors, and people working at the intersection of technology and healthcare.",
+      "We would also use the opportunity to introduce Elisence, learn from real conversations, challenge our assumptions, and build long-term relationships that help us create trusted and impactful healthcare solutions."
+    ]
+  },
+  {
+    n:"13",
+    title:"Closing Statement",
+    short:"Anything else?",
+    question:"Is there anything else you’d like us to know before we wrap up?",
+    keywords:["genuine mission","not just app","long-term","responsible"],
+    answer:[
+      "Elisence comes from a very genuine place.",
+      "We are trying to build something meaningful in healthcare — something more connected, supportive, trustworthy, and easier for people to understand and navigate.",
+      "For us, this is not about building another app. It is about creating something that can genuinely make a difference for people while also supporting healthcare systems in a better way.",
+      "Regardless of where the journey goes, we are committed to building it thoughtfully and responsibly."
+    ]
+  },
+  {
+    n:"14",
+    title:"Why Now?",
+    short:"Why now?",
+    question:"Why is now the right time for Elisence?",
+    keywords:["healthcare pressure","fragmentation","AI maturity","prevention"],
+    answer:[
+      "We believe this is the right time because healthcare is becoming more complex, more fragmented, and under increasing pressure.",
+      "People are also expected to manage more of their health themselves.",
+      "At the same time, technology and AI are becoming much more capable of helping people understand, manage, and navigate healthcare in a more proactive and personalized way.",
+      "For us, Elisence sits at the intersection of those needs."
+    ]
+  },
+  {
+    n:"15",
+    title:"Why You?",
+    short:"Why are you right?",
+    question:"Why are you the right person or team to build this?",
+    keywords:["legal","business","care experience","personal mission"],
+    answer:[
+      "I believe I am the right person to build Elisence because my background combines legal, business, and care services, including home and domiciliary care.",
+      "That gave me a practical understanding of how difficult and fragmented healthcare can feel for people and families.",
+      "Elisence also comes from a personal motivation to make healthcare easier to understand, more connected, and more supportive.",
+      "Healthcare requires trust, patience, and responsibility, and we are building Elisence step by step with that mindset."
+    ]
+  },
+  {
+    n:"16",
+    title:"Biggest Challenge",
+    short:"Biggest challenge?",
+    question:"What is your biggest challenge right now?",
+    keywords:["complexity","simplicity","trust","execution"],
+    answer:[
+      "Our biggest challenge right now is balancing complexity with simplicity.",
+      "Healthcare is complex, but the user experience should not feel complex.",
+      "We are building step by step to make Elisence trustworthy, practical, and easy to use while bringing different healthcare experiences into one connected platform.",
+      "For us, it is important to build responsibly rather than move too quickly in a space where trust matters."
+    ]
+  },
+  {
+    n:"17",
+    title:"2–5 Year Success",
+    short:"Future vision?",
+    question:"Where do you see Elisence in the future?",
+    keywords:["trusted platform","everyday healthcare","prevention","systems impact"],
+    answer:[
+      "In the next two to five years, success for Elisence means building something people genuinely trust and find useful in everyday healthcare.",
+      "We want to grow into a connected healthcare platform that helps people better understand and manage their health.",
+      "At the same time, we hope Elisence can contribute to healthcare systems by supporting prevention, better health understanding, and reducing pressure through more proactive care."
+    ]
+  },
+  {
+    n:"18",
+    title:"Traction & Validation",
+    short:"What traction so far?",
+    question:"What traction do you have so far? Have you tested this with users?",
+    keywords:["working app","technical traction","tested systems","demos"],
+    answer:[
+      "We are still in an active build and validation stage.",
+      "So far, our traction is mainly product and development traction — we already have a working app, tested core systems, functional prototypes, and demos built around real healthcare scenarios.",
+      "We are actively testing and validating different product experiences as we bring systems into the app step by step.",
+      "Because healthcare requires trust and reliability, we prefer a thoughtful approach rather than rushing to release something incomplete."
+    ],
+    followups:[
+      {
+        q:"Why not launch faster?",
+        a:"Because healthcare trust is difficult to rebuild if you damage it early. We prefer careful validation, safety, and reliability before wider release."
+      }
+    ]
+  },
+  {
+    n:"19",
+    title:"Business Model",
+    short:"How do you make money?",
+    question:"How do you plan to make money?",
+    keywords:["long-term","premium experiences","partners","trust first"],
+    answer:[
+      "We see Elisence as a long-term healthcare platform with multiple possible revenue paths.",
+      "For individuals, this could include premium health experiences and advanced support features over time.",
+      "For healthcare systems, organizations, and partners, we see opportunities around trusted healthcare tools, healthcare intelligence, and services that help improve prevention, continuity, and better health understanding.",
+      "But for us, trust comes first. We want to build something genuinely useful and trusted before scaling the business side."
+    ]
+  },
+  {
+    n:"20",
+    title:"Biggest Lesson",
+    short:"What have you learned?",
+    question:"What have you learned so far?",
+    keywords:["healthcare complex","simple UX","trust","patience"],
+    answer:[
+      "One of the biggest lessons for us has been that healthcare is much more complex than it first appears — but complexity should not become the user experience.",
+      "We have learned that trust, reliability, and usability matter just as much as innovation.",
+      "In healthcare, it is not enough to build something technically impressive. It also needs to feel practical, trustworthy, and genuinely helpful for people.",
+      "We have also learned the importance of building step by step, listening, testing, and staying patient in a space where responsibility matters."
+    ]
+  },
+  {
+    n:"21",
+    title:"Problem",
+    short:"What problem are you solving?",
+    question:"What problem are you solving, and why does it matter?",
+    keywords:["fragmentation","support","continuity","intelligent assistance"],
+    answer:[
+      "Healthcare is fragmented.",
+      "People often use disconnected apps, struggle to understand their health, and feel unsupported when managing care.",
+      "Elisence brings healthcare support, continuity, and intelligent assistance into one connected experience, making health easier to understand and navigate."
+    ]
+  },
+  {
+    n:"22",
+    title:"User Trust",
+    short:"Why should users trust you?",
+    question:"Why should users trust Elisence with health-related information?",
+    keywords:["trust","privacy","user control","responsible AI"],
+    answer:[
+      "Trust is fundamental in healthcare.",
+      "Elisence is built with a safety-first and privacy-conscious approach.",
+      "We focus on responsible AI, user control, clear boundaries, and careful development rather than rushing.",
+      "Our aim is to build technology people can genuinely trust over time."
+    ]
+  },
+  {
+    n:"23",
+    title:"Competitors",
+    short:"Who are your competitors?",
+    question:"Who do you compete with, and how do you compare?",
+    keywords:["fragmented tools","ecosystem","continuity","social health"],
+    answer:[
+      "We see many fragmented solutions in digital health.",
+      "Some focus on tracking, some on community, some on medication, and some on wellness.",
+      "Elisence is different because we are not building one isolated tool.",
+      "We are building a connected ecosystem where healthcare support, continuity, social health, and intelligent assistance work together."
+    ]
+  },
+  {
+    n:"24",
+    title:"Why Will It Succeed?",
+    short:"Why will it succeed?",
+    question:"Why do you believe Elisence can succeed?",
+    keywords:["fragmentation","prevention","trust","usability"],
+    answer:[
+      "We believe Elisence can succeed because healthcare is fragmented, people need better support, and healthcare systems are under pressure.",
+      "A connected, prevention-focused, privacy-conscious platform can create value for individuals and healthcare systems over time.",
+      "We are building carefully, step by step, with trust and usability at the center."
+    ]
+  },
+  {
+    n:"25",
+    title:"One Sentence",
+    short:"Explain it in one sentence",
+    question:"Can you explain Elisence in one sentence?",
+    keywords:["connected health AI","prevention","continuity","healthcare systems"],
+    answer:[
+      "Elisence is a connected health AI platform that helps people better understand, manage, and navigate healthcare while supporting prevention, continuity, and smarter healthcare systems."
+    ]
+  },
+  {
+    n:"26",
+    title:"Funding",
+    short:"Are you raising funding?",
+    question:"Are you raising investment or looking for funding?",
+    keywords:["strategic funding","validation","long-term","responsible growth"],
+    answer:[
+      "We are focused on building thoughtfully and validating the platform step by step.",
+      "We are open to strategic conversations with people who share a long-term healthcare vision, especially where support can help us build responsibly, test properly, and grow in the right direction."
+    ]
+  },
+  {
+    n:"27",
+    title:"What Worries You?",
+    short:"What worries you most?",
+    question:"What keeps you awake at night as a founder?",
+    keywords:["responsibility","trust","innovation","impact"],
+    answer:[
+      "What matters most to us is building responsibly in healthcare.",
+      "Moving too fast can damage trust, but moving too slowly can limit impact.",
+      "Our focus is balancing innovation with responsibility, so Elisence becomes useful, safe, and genuinely trusted."
+    ]
+  },
+  {
+    n:"28",
+    title:"What If It Fails?",
+    short:"What if it doesn’t work?",
+    question:"What if Elisence does not work as planned?",
+    keywords:["adaptation","learning","long-term","value"],
+    answer:[
+      "We are building step by step and learning continuously.",
+      "Even if parts of the roadmap change, the systems, insights, technology, and healthcare understanding we are building create value.",
+      "The mission is long term, and we are prepared to adapt while staying focused on trust, prevention, and better healthcare support."
+    ]
+  },
+  {
+    n:"29",
+    title:"Healthcare AI Risk",
+    short:"What are the risks?",
+    question:"What worries you most about healthcare AI?",
+    keywords:["safety","no diagnosis","boundaries","responsible AI"],
+    answer:[
+      "The biggest risk in healthcare AI is giving people unsafe confidence or unclear guidance.",
+      "That is why Elisence does not position itself as an autonomous diagnostic system.",
+      "We focus on prevention, education, responsible support, safety boundaries, and clear human-centered design."
+    ]
+  },
+  {
+    n:"30",
+    title:"Why Choose Elisence?",
+    short:"Why choose Elisence?",
+    question:"Why would users choose Elisence over other health apps?",
+    keywords:["one experience","support","prevention","less isolated"],
+    answer:[
+      "People will choose Elisence because it brings support, continuity, prevention, and intelligent assistance into one connected experience.",
+      "Instead of using many disconnected tools, users can feel more supported, better informed, and less alone while managing their health."
+    ]
+  },
+  {
+    n:"31",
+    title:"Foundation Models & IP",
+    short:"Own models or APIs?",
+    question:"Do you train your own foundation models or use commercial APIs? What is your proprietary data strategy?",
+    keywords:["IP","modular architecture","proprietary logic","data strategy"],
+    answer:[
+      "We are pragmatic about AI infrastructure.",
+      "At this stage, Elisence can use existing AI capabilities where appropriate, but the core value is not simply calling a commercial API.",
+      "Our IP is in the healthcare architecture, modular systems, structured data design, safety layers, decision boundaries, workflow logic, and the way different health experiences connect together.",
+      "Over time, the proprietary value grows through domain-specific data structures, governed knowledge layers, user experience, and healthcare-specific intelligence that is built around safety and trust."
+    ],
+    followups:[
+      {
+        q:"So what is defensible if you use external AI models?",
+        a:"The defensibility is in the system around the model: the data architecture, safety logic, healthcare workflows, localization, compliance design, and the connected product experience. The model is one component, not the whole company."
+      }
+    ]
+  },
+  {
+    n:"32",
+    title:"AI Hallucination Controls",
+    short:"How do you stop hallucination?",
+    question:"How do you handle AI hallucination in chats, analysis, or biological health outputs?",
+    keywords:["hallucination control","human-in-the-loop","guardrails","quality control"],
+    answer:[
+      "Healthcare AI must be handled very carefully because wrong confidence can be dangerous.",
+      "Elisence is designed not to act as an autonomous diagnostic authority.",
+      "We use safety boundaries, structured prompts, restricted health claims, evidence-aware logic, clear uncertainty, and escalation to human or clinical review where appropriate.",
+      "The goal is to support understanding and navigation, not to replace doctors or create unsafe confidence."
+    ],
+    followups:[
+      {
+        q:"What happens when the AI is unsure?",
+        a:"It should say that clearly, avoid pretending certainty, provide safe educational context, and guide the user toward appropriate professional advice where the question is clinical or high risk."
+      }
+    ]
+  },
+  {
+    n:"33",
+    title:"Data Residency",
+    short:"Where is data stored?",
+    question:"With GDPR and Middle East data sovereignty rules, where do you store and process user data?",
+    keywords:["GDPR","data residency","Gulf markets","regional compliance"],
+    answer:[
+      "Our approach is to design Elisence with regional compliance in mind from the beginning.",
+      "Health data is sensitive, so we cannot treat every country the same.",
+      "The long-term architecture should support local or regional data residency, clear separation of environments, strong access control, encryption, auditability, and compliance with local laws such as GDPR in Europe and relevant data sovereignty rules in the Gulf.",
+      "We want Elisence to be globally scalable, but locally responsible."
+    ],
+    followups:[
+      {
+        q:"Would you move Gulf user data outside the region?",
+        a:"The correct approach is to respect local regulation. For markets with strict data sovereignty expectations, Elisence should support regional storage and processing strategies rather than forcing one global data location."
+      }
+    ]
+  },
+  {
+    n:"34",
+    title:"Localization",
+    short:"How do you localize healthcare?",
+    question:"How do you handle cultural and medical-standard differences between the UK and Middle East markets?",
+    keywords:["localization","clinical standards","culture","market adaptation"],
+    answer:[
+      "Healthcare is not only technical; it is cultural, regulatory, and system-specific.",
+      "Elisence is designed to adapt market by market, including language, user expectations, medical pathways, professional roles, local guidance, and cultural context.",
+      "The goal is not to copy one country’s healthcare experience everywhere.",
+      "The goal is to keep one strong platform foundation while localizing the healthcare logic, content, safety rules, and user experience for each market."
+    ]
+  },
+  {
+    n:"35",
+    title:"Social Health Boundary",
+    short:"Social or clinical?",
+    question:"Where is the boundary between the interactive network and the clinical platform, and how do you prevent medical misinformation?",
+    keywords:["social health","clinical boundary","UGC control","misinformation"],
+    answer:[
+      "Elisence can include social and interactive health experiences, but the clinical boundary must be clear.",
+      "User-generated content should not become unverified medical advice.",
+      "The platform should separate social support from clinical guidance, use moderation and safety rules, restrict risky health claims, and clearly label educational or community content.",
+      "The goal is to make health feel less isolating without turning the platform into a source of medical misinformation."
+    ],
+    followups:[
+      {
+        q:"Can users give each other medical advice?",
+        a:"They can share experiences and support, but Elisence should not allow unverified user content to present itself as clinical advice. Sensitive claims need boundaries, moderation, and clear context."
+      }
+    ]
+  },
+  {
+    n:"36",
+    title:"Professional Network",
+    short:"How do you get doctors?",
+    question:"How will you attract the first doctors, specialists, or biologists to the platform?",
+    keywords:["professionals","GTM","two-sided platform","trusted partners"],
+    answer:[
+      "We would not try to build the professional side randomly.",
+      "The early strategy should focus on trusted pilots, specialist partners, advisors, and healthcare professionals who understand the need for prevention, continuity, and better patient support.",
+      "We can start with focused use cases where the value is clear, then grow from there.",
+      "The goal is to build trust and usefulness first, rather than trying to create a large marketplace before the product has proven value."
+    ],
+    followups:[
+      {
+        q:"How do you solve the chicken-and-egg problem?",
+        a:"Start with focused value, not a generic marketplace. Build tools professionals actually need, validate with a small trusted group, and use that proof to attract more users and partners."
+      }
+    ]
+  },
+  {
+    n:"37",
+    title:"Compute Costs",
+    short:"How do costs work?",
+    question:"What are your AI compute costs per user, and how do you keep the model profitable?",
+    keywords:["unit economics","compute efficiency","scalable architecture","profitability"],
+    answer:[
+      "AI compute cost is a real concern, especially in healthcare.",
+      "Our strategy is to avoid using expensive AI for every interaction when it is not necessary.",
+      "Elisence can use a layered architecture: structured data, rules, cached intelligence, lightweight logic, and AI only where it adds real value.",
+      "That helps control cost while keeping the experience intelligent, safe, and scalable.",
+      "Profitability comes from designing the system efficiently from the beginning, not adding cost control later."
+    ],
+    followups:[
+      {
+        q:"Would high AI usage destroy your margins?",
+        a:"Not if the architecture is designed properly. The goal is to route tasks intelligently, use structured logic where possible, and reserve heavier AI for moments where it creates meaningful value."
+      }
+    ]
+  },
+  {
+    n:"38",
+    title:"Big Tech Competition",
+    short:"What if Apple copies you?",
+    question:"What if Apple, Google, or another large technology company copies your core features?",
+    keywords:["focus","speed","trust","health ecosystem"],
+    answer:[
+      "Large companies can copy features, but they cannot instantly copy focus, trust, product depth, and the specific healthcare ecosystem we are building.",
+      "Our response would not be to say they cannot compete.",
+      "Our response is to move faster, stay closer to users, focus on specific healthcare needs, build strong partnerships, and keep improving the connected experience.",
+      "In healthcare, execution, trust, and depth matter as much as technology."
+    ]
+  },
+  {
+    n:"39",
+    title:"Wrong Assumption",
+    short:"What did you get wrong?",
+    question:"What was your biggest wrong assumption about Elisence in the past year, and how did you pivot?",
+    keywords:["learning","humility","pivot","data-driven"],
+    answer:[
+      "One important lesson was that building healthcare technology is not just about adding more features.",
+      "At first, it is easy to think that more capability automatically means more value.",
+      "But in healthcare, trust, simplicity, safety, and clarity are just as important as innovation.",
+      "So the direction became more disciplined: build step by step, validate carefully, and make sure each part is useful, safe, and understandable before moving too fast."
+    ],
+    followups:[
+      {
+        q:"What does that say about you as a founder?",
+        a:"It shows that I am willing to learn, adjust, and make the product safer and clearer rather than forcing the original idea. Healthcare needs that kind of discipline."
+      }
+    ]
+  },
+  {
+    n:"40",
+    title:"Contrarian Truth",
+    short:"What do you believe differently?",
+    question:"What do you believe about health or AI that most people disagree with?",
+    keywords:["contrarian truth","human support","AI boundaries","future healthcare"],
+    answer:[
+      "I believe the future of healthcare AI is not about replacing doctors or making people depend on chatbots.",
+      "The real opportunity is helping people understand their health earlier, feel supported between appointments, and navigate healthcare more safely.",
+      "Many people focus on AI as a dramatic replacement technology.",
+      "I believe the stronger future is AI as a trusted support layer — connected to prevention, continuity, human care, and responsible healthcare systems."
+    ]
+  }
+];
+
+const grid = document.getElementById("grid");
+
+items.forEach((item, index) => {
+  const card = document.createElement("button");
+  card.className = "card";
+  card.onclick = () => openModal(index);
+  card.innerHTML = `
+    <div class="num">${item.n}</div>
+    <div class="q">${item.short}</div>
+    <div class="tag">${item.question}</div>
+  `;
+  grid.appendChild(card);
+});
+
+function openModal(index) {
+  const item = items[index];
+
+  const mainAnswer = item.answer.map(p => `<p>${p}</p>`).join("");
+
+  const followups = item.followups
+    ? item.followups.map(f => `
+        <div class="followup">
+          <div class="followup-q">Possible follow-up: ${f.q}</div>
+          <div class="followup-a">${f.a}</div>
+        </div>
+      `).join("")
+    : "";
+
+  document.getElementById("modalTitle").textContent = item.n + " — " + item.title;
+  document.getElementById("modalAnswer").innerHTML = mainAnswer + followups;
+  document.getElementById("modalKeywords").innerHTML = item.keywords.map(k => `<span class="chip">${k}</span>`).join("");
+  document.getElementById("modal").classList.add("show");
+}
+
+function closeModal() {
+  document.getElementById("modal").classList.remove("show");
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+  </script>
+  <!-- force rebuild -->
+</body>
+</html>

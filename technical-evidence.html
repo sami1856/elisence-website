@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Technical Evidence (Engines, Safety & Tests)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Technical evidence for Elisence – engines, safety layers, WORM audit logs, tests and real UI/API evidence across 17 phases.">
+    <!-- Elisa chat widget -->
+    <script defer src="elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* نقطه و لوگوی بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست – استایل یکسان با governments / about / qatar */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* وضعیت فعال برای Technical Evidence */
+        .nav-btn.evidence-active {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.85), rgba(8, 47, 73, 0.98));
+            border-color: rgba(125, 211, 252, 0.95);
+            box-shadow:
+                0 0 22px rgba(56, 189, 248, 1),
+                0 0 50px rgba(37, 99, 235, 0.95);
+        }
+
+        /* محتوای اصلی صفحه */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #e1eeff;
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.6rem;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.8);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e0f2fe;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.35rem;
+            font-size: 0.93rem;
+            color: #dceafe;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        .phase-list {
+            list-style: none;
+            margin: 0.4rem 0 0;
+            padding: 0;
+        }
+
+        .phase-item {
+            margin-bottom: 1.1rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+        }
+
+        .phase-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .phase-title {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #bae6fd;
+            margin-bottom: 0.25rem;
+        }
+
+        .phase-meta {
+            font-size: 0.9rem;
+            color: #e0f2fe;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            margin-left: 6px;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(125, 211, 252, 0.8);
+            color: #e0f2fe;
+        }
+
+        .badge-done {
+            background: rgba(22, 163, 74, 0.2);
+            border-color: rgba(34, 197, 94, 0.9);
+            color: #bbf7d0;
+        }
+
+        .badge-core {
+            background: rgba(234, 179, 8, 0.12);
+            border-color: rgba(250, 204, 21, 0.85);
+            color: #fef9c3;
+        }
+
+        .badge-planned {
+            background: rgba(148, 163, 184, 0.16);
+            border-color: rgba(148, 163, 184, 0.85);
+            color: #e5e7eb;
+        }
+
+        .contact-block {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-block a {
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+
+        .contact-block a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html"        class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="governments.html"  class="nav-btn">Governments</a>
+        <a href="download.html"     class="nav-btn">Downloads</a>
+        <a href="technical-evidence.html" class="nav-btn evidence-active">Evidence</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
+        <a href="founder-saami.html" class="nav-btn">Founder</a>
+        <a href="articles.html"     class="nav-btn">Articles</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <h1>Technical Evidence – Engines, Safety &amp; Tests</h1>
+
+            <p class="lead">
+                This page summarises the <span class="highlight">real technical backbone</span> of Elisence:
+                what is already built and tested across 17 phases, where WORM &amp; safety engines are live,
+                and how ministries, clinics and investors can request deeper evidence packs.
+            </p>
+
+            <p class="tagline">
+                We do <strong>not</strong> claim that all 17 phases are “finished”. Instead, we clearly show:
+                which phases are fully implemented and tested, which ones have core engines already built,
+                and which phases are still in early implementation or roadmap stage.
+            </p>
+
+            <div class="pill-row">
+                <span class="pill">Engines &amp; Rules</span>
+                <span class="pill">WORM Audit &amp; Provenance</span>
+                <span class="pill">Safety Gates &amp; Tests</span>
+                <span class="pill">Real UI &amp; APIs</span>
+                <span class="pill">Multi-language (EN/FA/AR/TR/RO)</span>
+            </div>
+
+            <!-- 1. Phase-by-phase technical status -->
+            <section class="card">
+                <h2>1. Phase-by-Phase Technical Status (17 Phases)</h2>
+                <p>
+                    For each phase, we indicate what is built, what kinds of files and artefacts exist,
+                    and how far tests and safety layers have progressed. Detailed file lists and paths
+                    are provided in private technical packs on request.
+                </p>
+
+                <ul class="phase-list">
+
+                    <!-- Phase 1 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 1 – Core Logs &amp; Events
+                            <span class="badge badge-done">Built &amp; Tested</span>
+                        </div>
+                        <p class="phase-meta">
+                            Core event engine for Elisence – captures structured health events and timelines.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Event schemas, logging engine, core routing and helpers.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Main engine module, event models, helper libraries, test suite.</li>
+                            <li><strong>Tests &amp; safety:</strong> Pytest suites passing for event correctness, ordering and basic safety checks.</li>
+                            <li><strong>Examples:</strong> Used as the backbone for later phases (GLP-1, diabetes, Women+, AHE).</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 2 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 2 – Weight &amp; GLP-1 Calibration
+                            <span class="badge badge-done">Built &amp; Tested</span>
+                        </div>
+                        <p class="phase-meta">
+                            GLP-1 and weight calibration engine – turning raw logs into structured journeys.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Weight/GLP-1 models, calibration logic, event normalisation.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Engine module, schemas, calibration helpers, end-to-end tests.</li>
+                            <li><strong>Tests &amp; safety:</strong> Multiple pytest scenarios (dose changes, weight trends, edge cases) passing.</li>
+                            <li><strong>Examples:</strong> Feeds structured signals into AHE (Phase 8) and Diabetes (Phase 9).</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 3 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 3 – Behaviour &amp; Dopamine / Care Platform
+                            <span class="badge badge-done">Built &amp; Tested</span>
+                        </div>
+                        <p class="phase-meta">
+                            Care / weight-loss platform engine with behaviour &amp; dopamine logic and real UI.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Weight Core v1, schedules, intake/check-in/SOS logic, dashboard UI.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Engine module, schemas, <code>/v3/ui</code> dashboard HTML/JS, tests.</li>
+                            <li><strong>Tests &amp; safety:</strong> All core tests (including 11+ dedicated weight-core tests) passing.</li>
+                            <li><strong>Examples:</strong> Real dashboard UI with cards (Schedules, Intake, Check-In, SOS, Medical, GP, Pharmacy, etc.).</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 4 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 4 – WORM / FHIR / Provenance
+                            <span class="badge badge-done">Built &amp; Tested</span>
+                        </div>
+                        <p class="phase-meta">
+                            Regulatory backbone – WORM audit, FHIR mapping foundations and provenance.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> WORM Event Audit Log v2, FHIR-ready mapping helpers, provenance export paths.</li>
+                            <li><strong>Files &amp; artefacts:</strong> 
+                                Main Phase 4 engine (e.g. <code>main_phase4_elisence.py</code> baseline),
+                                WORM JSONL file (e.g. <code>worm_audit_v2.jsonl</code>), export endpoints.
+                            </li>
+                            <li><strong>Tests &amp; safety:</strong> WORM on/off tests, export tests, provenance validation and health checks are passing.</li>
+                            <li><strong>Examples:</strong> JSONL WORM logs with trace IDs and export manifests – ready for ministry/regulator review.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 5 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 5 – Elisa Companion Layer
+                            <span class="badge badge-done">Built &amp; Tested</span>
+                        </div>
+                        <p class="phase-meta">
+                            Core Elisa companion experience – safe, non-diagnostic coach that sits on top of the engines.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Companion logic, tone &amp; safety rules, multi-language text packs, routing.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Companion engine modules, i18n packs, safety/tone helpers, tests.</li>
+                            <li><strong>Tests &amp; safety:</strong> Safety tone tests, non-diagnostic boundary checks, OFF/ON behaviour tests.</li>
+                            <li><strong>Examples:</strong> Elisa website widget (Scenario C) using these safety rules when answering users.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 6 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 6 – Pro Economy &amp; Verified Profiles
+                            <span class="badge badge-core">Core Built – Evolving</span>
+                        </div>
+                        <p class="phase-meta">
+                            Economy / verification layer that controls professional identity, roles and access.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Core alignment and verification logic, AHE alignment checklist, early engine &amp; checks.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Alignment contracts, engine modules, checklist code and initial tests.</li>
+                            <li><strong>Tests &amp; safety:</strong> Verification logic tested; full commercial flows and UI will grow with platform and Qatar deployment.</li>
+                            <li><strong>Examples:</strong> Used as a foundation for trusted profiles in Phase 10 and AHE governance.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 7 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 7 – Women+ Health &amp; Life Companion
+                            <span class="badge badge-done">Built &amp; Tested</span>
+                        </div>
+                        <p class="phase-meta">
+                            Full Women+ health engine – cycle, pregnancy, postpartum, safety and education, with a large test suite.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Normalisation engine, risk tagging, mental wellness rules, multi-language i18n, Week-based feature flags.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Main Women+ engine, context normalisers, safety engine, 100+ clean tests.</li>
+                            <li><strong>Tests &amp; safety:</strong> Extensive pytest suite green (normalisation, safety gates, mental health rules, locale/region handling).</li>
+                            <li><strong>Examples:</strong> Deterministic risk buckets, emergency/attention flags, and future Knowledge Layer 11.K groundwork.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 8 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 8 – Advanced Health Engine (AHE)
+                            <span class="badge badge-done">Built &amp; Tested</span>
+                        </div>
+                        <p class="phase-meta">
+                            AHE – rule-based profiles for labs, risks and passports. For ministries and clinics this is a “gold” asset.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> AHE core engine, Blood &amp; Hematology module, WORM Event Audit Log v2 integration, Core-4 Mental Health “Calm Now”.</li>
+                            <li><strong>Files &amp; artefacts:</strong> 
+                                AHE main file (e.g. <code>main_phase8_base.py</code>), AHE helpers, WORM JSONL, golden manifests and SHA-256 hashes.
+                            </li>
+                            <li><strong>Tests &amp; safety:</strong> Dozens of tests for AHE risk engines, WORM export, token guards and mental health routes – green.</li>
+                            <li><strong>Examples:</strong> Evidence packs for Blood &amp; Hematology and Calm-Now (Core-4) including tests + WORM traces.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 9 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 9 – Diabetes &amp; Metabolic Health
+                            <span class="badge badge-done">Built &amp; Tested</span>
+                        </div>
+                        <p class="phase-meta">
+                            Diabetes engine – combining GLP-1, glucose, behaviour and AHE profiles with safe charts and journeys.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Core diabetes engine, chart endpoints, risk flags, integration with GLP-1 and AHE.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Main diabetes engine, chart endpoints, tests, golden ZIPs and manifests for charts.</li>
+                            <li><strong>Tests &amp; safety:</strong> Diabetes chart tests completed and frozen; full evidence (tests + SHA-256) already packaged.</li>
+                            <li><strong>Examples:</strong> Phase 9 charts module fully DONE and documented in its own manifest.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 10 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 10 – Social Presence &amp; Trusted Profiles (ELIS)
+                            <span class="badge badge-core">~80% Built</span>
+                        </div>
+                        <p class="phase-meta">
+                            Social identity, messaging and UI – the “vitrine” for Elisence with trusted profiles and safe messaging.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> FastAPI app (v10.2.0), messaging threads, attachments, UI routing (/ui SPA), mobile/LAN access, Part 1–3 core messaging.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Main Phase 10 app, routers (users, messages, threads, UI), tests (boundary tests under active work), ZIP + manifest.</li>
+                            <li><strong>Tests &amp; safety:</strong> Core tests and health endpoints passing; some boundary/auth tests still being aligned and extended.</li>
+                            <li><strong>Examples:</strong> Local SPA UI accessible from desktop and mobile, trusted identity headers, attachment upload paths.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 11 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 11 – Security &amp; Identity Control
+                            <span class="badge badge-done">Built &amp; Tested</span>
+                        </div>
+                        <p class="phase-meta">
+                            Security / identity control layer – passports, tokens, headers and access rules across phases.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Passport/token concepts, role &amp; header-based access, alignment with AHE and Phase 10 messaging.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Security helpers, passport structures, header validation layers and tests.</li>
+                            <li><strong>Tests &amp; safety:</strong> Identity and access-control behaviours tested in AHE, WORM and messaging routes.</li>
+                            <li><strong>Examples:</strong> Used to guard export endpoints, AHE decisions and Phase 10 boundary APIs.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 12 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 12 – Environment-Aware Diabetes
+                            <span class="badge badge-planned">Early Implementation</span>
+                        </div>
+                        <p class="phase-meta">
+                            Environment &amp; weather-aware diabetes layer – about to start from the current point.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> At this stage: design intent and entry point; engine implementation is just beginning.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Roadmap and initial scaffolding; full engine files will be added as implementation progresses.</li>
+                            <li><strong>Tests &amp; safety:</strong> Safety/WORM tests will follow Phase 8/9 patterns once core logic is implemented.</li>
+                            <li><strong>Examples:</strong> Will connect local environment, weather and timing to diabetes journeys using AHE.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 13 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 13 – Voice / Zero-Typing Engine
+                            <span class="badge badge-core">Core Built – Evolving</span>
+                        </div>
+                        <p class="phase-meta">
+                            Voice-first layer – zero-typing interactions with Elisa, to be extended as other phases mature.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Core voice/zero-typing concepts, routing and engine skeletons that support voice flows.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Voice engine modules, early integration hooks with Elisa and web presence.</li>
+                            <li><strong>Tests &amp; safety:</strong> Core behaviour is guarded by existing Elisa safety layers; more detailed voice tests will be added as coverage grows.</li>
+                            <li><strong>Examples:</strong> Designed to power voice-first scenarios on top of existing Phase 5 / Phase 10 infrastructure.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 14 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 14 – Blind &amp; Low-Vision Companion
+                            <span class="badge badge-planned">Planned</span>
+                        </div>
+                        <p class="phase-meta">
+                            Accessibility-focused companion for blind and low-vision users.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Not yet implemented – currently at roadmap / design-concept level.</li>
+                            <li><strong>Files &amp; artefacts:</strong> To be implemented following Elisence accessibility and safety standards.</li>
+                            <li><strong>Tests &amp; safety:</strong> Will inherit strict non-diagnostic and accessibility-first testing from earlier phases.</li>
+                            <li><strong>Examples:</strong> Will link voice, Life Map and AHE signals into an accessible, on-device-first companion.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 15 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 15 – Family Ecosystem Assistant
+                            <span class="badge badge-planned">Planned</span>
+                        </div>
+                        <p class="phase-meta">
+                            0–18 Family Ecosystem Assistant – family health, sleep, education, digital safety and bonding.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Roadmap and content/design documents are defined; implementation has not started yet.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Narrative, phase spec and early content planning; no engine code claimed as done here.</li>
+                            <li><strong>Tests &amp; safety:</strong> Will follow the Kids+ governance and non-addictive dopamine rules already designed.</li>
+                            <li><strong>Examples:</strong> First implementation will likely follow after Qatar registration and earlier clinical phases.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 16 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 16 – Global Nutrition Intelligence (GNIE)
+                            <span class="badge badge-planned">Design Complete</span>
+                        </div>
+                        <p class="phase-meta">
+                            Global Nutrition &amp; Diet Intelligence Engine – the “nutrition brain” of Elisence.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Full design and master pre-implementation report; implementation is scheduled after company registration.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Detailed GNIE roadmap, investor/ministry reports and phase specifications.</li>
+                            <li><strong>Tests &amp; safety:</strong> Safety and WORM patterns will re-use AHE and Phase 9 foundations once implemented.</li>
+                            <li><strong>Examples:</strong> Designed to connect food, disease, medication and culture into explainable, non-diagnostic decisions.</li>
+                        </ul>
+                    </li>
+
+                    <!-- Phase 17 -->
+                    <li class="phase-item">
+                        <div class="phase-title">
+                            Phase 17 – Mental Health &amp; Meditation
+                            <span class="badge badge-planned">Planned</span>
+                        </div>
+                        <p class="phase-meta">
+                            Dedicated mental health &amp; meditation phase building on existing safety and Calm-Now work.
+                        </p>
+                        <ul>
+                            <li><strong>Built:</strong> Conceptual scope and linkage to existing Mental Health Core-4 (Calm Now) in Phase 8.</li>
+                            <li><strong>Files &amp; artefacts:</strong> Roadmap-level documents; no separate Phase 17 engine claimed as complete yet.</li>
+                            <li><strong>Tests &amp; safety:</strong> Will strictly follow mental health safety, escalation and non-diagnostic rules already enforced in AHE.</li>
+                            <li><strong>Examples:</strong> Future phase to unify mental health, meditation and long-term emotional journeys.</li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </section>
+
+            <!-- 2. Evidence types: UI, WORM, pytest, APIs -->
+            <section class="card">
+                <h2>2. Evidence Types – UI, WORM Logs, Tests &amp; APIs</h2>
+                <p>
+                    Beyond the engines themselves, Elisence already has concrete, verifiable technical evidence:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Real UI:</strong> 
+                        Phase 3 care dashboard, Phase 7 Women+ flows, Phase 8 AHE views, Phase 9 diabetes charts
+                        and Phase 10 messaging / profile UI, plus the public Elisence website and Elisa chat widget.
+                    </li>
+                    <li>
+                        <strong>WORM logs (JSONL):</strong>
+                        WORM Event Audit Log v2 JSONL files (for example, Phase 4 &amp; Phase 8 evidence) with trace IDs,
+                        export manifests and signatures suitable for regulators and ministries.
+                    </li>
+                    <li>
+                        <strong>Pytest results:</strong>
+                        Dozens of tests across engines – including full green suites for Women+ (Phase 7),
+                        AHE risk engines and Calm Now (Phase 8), diabetes charts (Phase 9), and multiple safety and token tests.
+                    </li>
+                    <li>
+                        <strong>API &amp; docs:</strong>
+                        FastAPI-based services with <code>/docs</code> and <code>/openapi.json</code> live for multiple phases,
+                        including health checks and phase-specific routes (e.g. AHE, WORM export, diabetes charts, messaging).
+                    </li>
+                </ul>
+                <p>
+                    Screenshots, screencasts, sample WORM JSONL files, pytest logs and OpenAPI exports are included
+                    in private technical packs when needed for ministries, clinics or serious investors.
+                </p>
+            </section>
+
+            <!-- 3. Accessing detailed technical packs -->
+            <section class="card">
+                <h2>3. Accessing Detailed Technical Evidence Packs</h2>
+                <p>
+                    For transparency and safety, we separate public information from deeper technical details:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Public downloads:</strong> 
+                        High-level PDFs (for example, the Qatar summary PDF) are available on the
+                        <a href="download.html">Downloads</a> page.
+                    </li>
+                    <li>
+                        <strong>Technical Evidence Packs (private):</strong>
+                        For ministries, clinics, regulators and investors, we provide phase-specific packs that can include:
+                        <ul>
+                            <li>File and module overviews for the relevant phases.</li>
+                            <li>Sample WORM JSONL logs and export manifests.</li>
+                            <li>Pytest output (number of tests, pass/skip status, focus areas).</li>
+                            <li>OpenAPI definitions and selected UI screenshots/screencasts.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Scope honesty:</strong>
+                        These packs clearly state which phases are fully implemented and tested, which phases have
+                        engines but are still evolving (for example, Phase 6 and Phase 13), and which phases are
+                        still in roadmap or early build stage (for example, Phases 14–17).
+                    </li>
+                </ul>
+                <p class="contact-block">
+                    To request a technical evidence pack for a specific phase (for example, AHE, Women+, Diabetes or WORM),
+                    please use the <a href="contact.html">contact page</a> or email:
+                    <br />
+                    <span class="highlight">contact@elisence.com</span>
+                    <br />
+                    Packs can be shared privately (for example under NDA or as part of QDB/QFC/QSTP / ministry evaluations).
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
+</body>
+</html>

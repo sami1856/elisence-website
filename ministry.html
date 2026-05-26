@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – For Ministries & Clinics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="How Elisence serves Ministries of Health, public health authorities, hospitals and clinics as a trusted digital health infrastructure across GCC, MENA, UK, EU and beyond.">
+    <!-- Elisa chat widget script -->
+    <script defer src="elisa-chat.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* نقطه و لوگوی بالا */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        /* منوی عمودی سمت راست – مثل about / qatar */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* حالت active برای Ministry (فقط در این صفحه) */
+        .nav-btn.ministry-active {
+            background: radial-gradient(circle at top, rgba(56, 189, 248, 0.85), rgba(8, 47, 73, 0.98));
+            border-color: rgba(125, 211, 252, 0.95);
+            box-shadow:
+                0 0 22px rgba(56, 189, 248, 1),
+                0 0 50px rgba(37, 99, 235, 0.95);
+        }
+
+        /* محتوای اصلی صفحه Ministry */
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px; /* فضای منوی عمودی سمت راست */
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #e1eeff;
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.6rem;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.8);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e0f2fe;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+            /* Glow یکسان با index / about / qatar / download */
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.4rem;
+            font-size: 0.94rem;
+            color: #dceafe;
+        }
+
+        .highlight {
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        .contact-block {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-block a {
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+
+        .contact-block a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html"        class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="qatar.html"        class="nav-btn">Qatar</a>
+        <a href="about.html"        class="nav-btn">About</a>
+        <a href="story.html"        class="nav-btn">Story</a>
+        <a href="video.html"        class="nav-btn">Videos</a>
+        <a href="contact.html"      class="nav-btn">Contact</a>
+        <!-- هنوز در منوی بقیه صفحات اضافه‌اش نمی‌کنیم؛ این فقط حالت active برای همین صفحه است -->
+        <a href="ministry.html"     class="nav-btn ministry-active">Ministry &amp; Clinics</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <h1>For Ministries &amp; Clinics</h1>
+
+            <p class="lead">
+                Elisence is built as a national-grade digital health infrastructure for
+                <span class="highlight">Ministries of Health, public health authorities, hospitals and clinics</span>
+                – starting from GCC &amp; MENA, but ready for UK, EU and other regions.
+            </p>
+
+            <p class="tagline">
+                This page explains how Elisence fits into real health systems: how it supports national strategies,
+                strengthens hospitals and clinics, and stays within strict non-diagnostic, safety-first boundaries.
+            </p>
+
+            <div class="pill-row">
+                <span class="pill">National Health Platforms</span>
+                <span class="pill">Population Dashboards</span>
+                <span class="pill">Zero-Trust Security</span>
+                <span class="pill">WORM Audit &amp; Provenance</span>
+                <span class="pill">AHE Clinical Profiles</span>
+                <span class="pill">Women+ &amp; Diabetes</span>
+                <span class="pill">Family &amp; Nutrition</span>
+            </div>
+
+            <!-- 1. National-Grade Health Layer -->
+            <section class="card">
+                <h2>1. A National-Grade Health Layer, Not Just an App</h2>
+                <p>
+                    Elisence is built as a <span class="highlight">multi-phase health infrastructure</span> across
+                    17 phases – from GLP-1 and metabolic engines, to women’s health (Phase 7), Advanced Health Engine /
+                    AHE (Phase 8), diabetes &amp; metabolic health (Phase 9), ELIS social identity &amp; messaging
+                    (Phase 10), family ecosystem (Phase 15) and global nutrition intelligence (Phase 16).
+                </p>
+                <p>
+                    For Ministries and health systems, this means Elisence can act as a <span class="highlight">
+                    long-term digital layer</span> on top of existing records and systems:
+                </p>
+                <ul>
+                    <li>Connecting <strong>daily life signals</strong> (weight, sleep, nutrition, stress) with
+                        <strong>clinical signals</strong> (labs, medications, diagnoses) in one explainable view.</li>
+                    <li>Supporting strategic priorities like obesity, diabetes, women’s health, mental health and
+                        family wellbeing.</li>
+                    <li>Providing <span class="highlight">structured, auditable data</span> instead of black-box AI.</li>
+                </ul>
+                <p>
+                    The platform is designed to be hosted in or for a specific country or region, with clear
+                    boundaries for data residency, privacy and governance.
+                </p>
+            </section>
+
+            <!-- 2. For Ministries of Health & Public Health Authorities -->
+            <section class="card">
+                <h2>2. For Ministries of Health &amp; Public Health Authorities</h2>
+                <p>
+                    Ministries and public health teams need <span class="highlight">population-level insight</span>,
+                    not individual patient apps. Elisence is designed to serve that role safely:
+                </p>
+                <ul>
+                    <li>
+                        <span class="highlight">Population dashboards</span> for diabetes, GLP-1, obesity,
+                        women’s health, nutrition and family wellbeing, built on structured events from the
+                        Elisence phases.
+                    </li>
+                    <li>
+                        <span class="highlight">WORM audit &amp; provenance (Phase 4)</span> – every critical
+                        clinical or behavioural event can be written to a WORM ledger with trace IDs, export
+                        manifests and signatures for regulators.
+                    </li>
+                    <li>
+                        <span class="highlight">Advanced Health Engine (Phase 8)</span> – explainable, rule-based
+                        profiles that combine labs, vitals, risk signals and passports for safer decision support.
+                    </li>
+                    <li>
+                        <span class="highlight">Multi-language by default</span> – EN / AR / FA / TR / RO,
+                        with GCC-aware wording and the ability to extend to other languages for global deployments.
+                    </li>
+                </ul>
+                <p>
+                    For Gulf countries, Elisence can be aligned with <span class="highlight">GCC data protection
+                    and health strategies</span>, while in Europe and the UK it can be framed under EU MDR-style
+                    guidance and NHS digital health expectations.
+                </p>
+            </section>
+
+            <!-- 3. For Hospitals & Clinics -->
+            <section class="card">
+                <h2>3. For Hospitals &amp; Clinics</h2>
+                <p>
+                    Elisence is designed to complement, not replace, existing hospital information systems and
+                    clinic workflows. It focuses on <span class="highlight">connected journeys</span> rather than
+                    duplicating medical records.
+                </p>
+                <ul>
+                    <li>
+                        <span class="highlight">Connected journey views</span> – GLP-1 &amp; weight-loss (Phases 1–3),
+                        women+ health (Phase 7), diabetes (Phase 9), family context (Phase 15) and nutrition (Phase 16)
+                        in one place, with safe boundaries.
+                    </li>
+                    <li>
+                        <span class="highlight">Clinical profile overlays</span> – the AHE profile can sit alongside
+                        existing EMR/EHR systems, showing risk buckets, trends and contextual information without
+                        storing new diagnoses.
+                    </li>
+                    <li>
+                        <span class="highlight">Secure messaging &amp; identity (Phase 10)</span> – a private,
+                        regulated messaging layer that lives inside the health ecosystem, instead of relying on
+                        consumer apps like WhatsApp for sensitive conversations.
+                    </li>
+                    <li>
+                        <span class="highlight">Non-disruptive pilots</span> – clinics can start with a small group
+                        of patients or one condition (for example: diabetes + nutrition) and expand only when ready.
+                    </li>
+                </ul>
+                <p>
+                    The goal is to reduce friction for clinical teams while giving them better visibility into
+                    real-world behaviour between appointments.
+                </p>
+            </section>
+
+            <!-- 4. Safety, AI & Governance Model -->
+            <section class="card">
+                <h2>4. Safety, AI &amp; Governance Model</h2>
+                <p>
+                    Elisence is built around a <span class="highlight">safety-first, non-diagnostic model</span>.
+                    Generative AI is always wrapped inside deterministic safety layers:
+                </p>
+                <ul>
+                    <li>
+                        <span class="highlight">Zero-Trust security</span> – tokens, headers, passports and strict
+                        access rules for every sensitive call, with logs suitable for national-level review.
+                    </li>
+                    <li>
+                        <span class="highlight">WORM audit &amp; provenance</span> – critical events are written
+                        to tamper-evident logs, with exportable JSONL and signatures for regulators and auditors.
+                    </li>
+                    <li>
+                        <span class="highlight">Non-diagnostic boundaries</span> – Elisence does not issue
+                        diagnoses, prescriptions or clinical orders; it focuses on structured support, education,
+                        pattern awareness and “when to seek help”.
+                    </li>
+                    <li>
+                        <span class="highlight">Five-language governance</span> – messages, alerts and explanations
+                        are designed to be consistent across EN / AR / FA / TR / RO, with clear tone rules for
+                        different regions.
+                    </li>
+                </ul>
+                <p>
+                    This makes Elisence suitable for collaboration with Ministries, regulators and hospital
+                    governance teams in GCC, MENA, UK, EU and other regions with strong safety expectations.
+                </p>
+            </section>
+
+            <!-- 5. Integration with Existing Systems -->
+            <section class="card">
+                <h2>5. Integration With Existing Health Systems</h2>
+                <p>
+                    Every country and hospital has its own digital landscape. Elisence is designed to connect
+                    with that landscape rather than replace it:
+                </p>
+                <ul>
+                    <li>
+                        <span class="highlight">API-first architecture</span> – phases expose structured endpoints
+                        that can be integrated with existing EMRs, LIS, RIS and national platforms where appropriate.
+                    </li>
+                    <li>
+                        <span class="highlight">Configurable data flows</span> – countries can decide what stays
+                        inside Elisence, what is exported, and what is only shown as a view layer.
+                    </li>
+                    <li>
+                        <span class="highlight">Flexible hosting options</span> – including cloud, country-specific
+                        regions, or hybrid models that respect data sovereignty and local regulation.
+                    </li>
+                    <li>
+                        <span class="highlight">Clear separation of responsibilities</span> – Elisence focuses on
+                        journeys, intelligence and safety wrappers; core clinical records remain with the health system.
+                    </li>
+                </ul>
+                <p>
+                    The result is a platform that can be introduced step-by-step, without forcing a big-bang
+                    migration or risky disruption.
+                </p>
+            </section>
+
+            <!-- 6. Pilot & Rollout Models -->
+            <section class="card">
+                <h2>6. Pilot &amp; Rollout Models</h2>
+                <p>
+                    Elisence is designed to start small and grow only when trust, value and safety are proven.
+                    Typical collaboration models include:
+                </p>
+                <ul>
+                    <li>
+                        <span class="highlight">Single-clinic pilots</span> – for example, a diabetes clinic using
+                        Phases 3, 8 and 9 to support GLP-1 patients between visits.
+                    </li>
+                    <li>
+                        <span class="highlight">Condition-focused pilots</span> – such as women’s health (Phase 7),
+                        family ecosystem support (Phase 15) or nutrition intelligence (Phase 16) in a targeted
+                        population.
+                    </li>
+                    <li>
+                        <span class="highlight">Regional or city-level pilots</span> – combining multiple phases
+                        for a defined population, with clear KPIs and governance.
+                    </li>
+                    <li>
+                        <span class="highlight">National alignment</span> – once pilots are successful, Elisence
+                        can be configured as a long-term national platform, with tailored dashboards and policies.
+                    </li>
+                </ul>
+                <p>
+                    In all cases, the emphasis is on <span class="highlight">evidence, auditability and regulatory
+                    comfort</span>, so that Ministries and hospitals can move at a pace that feels safe.
+                </p>
+            </section>
+
+            <!-- 7. Contact & Next Steps -->
+            <section class="card">
+                <h2>7. Contact &amp; Next Steps</h2>
+                <p>
+                    Elisence is ready to work with Ministries, public health authorities, regulators, hospitals,
+                    clinics and academic partners across GCC, MENA, UK, EU and beyond.
+                </p>
+                <p>
+                    We welcome conversations about:
+                </p>
+                <ul>
+                    <li>National or regional digital health strategies.</li>
+                    <li>Pilot projects for diabetes, women’s health, nutrition or family wellbeing.</li>
+                    <li>Clinical safety, governance and regulatory positioning.</li>
+                    <li>Integration with existing systems and data platforms.</li>
+                </ul>
+                <p class="contact-block">
+                    To discuss opportunities or request a dedicated ministry/clinic pack, please use the
+                    <a href="contact.html">contact page</a> or email:
+                    <br />
+                    <span class="highlight">contact@elisence.com</span>
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- ریشهٔ ویجت Elisa -->
+    <div id="elisa-chat-root"></div>
+</body>
+</html>

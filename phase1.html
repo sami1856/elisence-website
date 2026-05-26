@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Phase 1: GLP-1 & Metabolic Intelligence Core</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* top dot + label (مثل صفحه اصلی) */
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 900;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 900;
+        }
+
+        /* منوی عمودی سمت راست – همان استایل صفحه اصلی */
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        /* layout اصلی صفحه داخلی */
+        .page-wrapper {
+            max-width: 1120px;
+            margin: 80px auto 80px auto;
+            padding: 24px 40px 60px 40px;
+        }
+
+        header.page-header {
+            margin-bottom: 26px;
+        }
+
+        .phase-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #cfe5ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.55), rgba(0, 20, 60, 0.95));
+            border: 1px solid rgba(120, 195, 255, 0.9);
+            box-shadow: 0 0 18px rgba(0, 150, 255, 0.85);
+            margin-bottom: 16px;
+        }
+
+        .phase-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .phase-subtitle {
+            font-size: 14px;
+            color: #a9d4ff;
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        .cards-row {
+            display: grid;
+            grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.9fr);
+            gap: 22px;
+            margin-top: 26px;
+            margin-bottom: 26px;
+        }
+
+        .card {
+            border-radius: 22px;
+            padding: 20px 22px;
+            background: radial-gradient(circle at top, rgba(0, 110, 255, 0.36), rgba(0, 15, 40, 0.96));
+            border: 1px solid rgba(90, 185, 255, 0.85);
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+        }
+
+        .card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #dbefff;
+            margin-bottom: 12px;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 6px;
+        }
+
+        .card ul li {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #d8e7ff;
+            padding-left: 14px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .card ul li::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 8px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #7fd0ff;
+        }
+
+        .wide-card {
+            border-radius: 22px;
+            padding: 20px 22px;
+            background: radial-gradient(circle at top, rgba(0, 70, 200, 0.42), rgba(0, 10, 30, 0.96));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 22px rgba(0, 150, 255, 0.9),
+                0 0 40px rgba(0, 50, 140, 0.9);
+            margin-top: 10px;
+        }
+
+        .wide-card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .wide-card p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #dbefff;
+            margin-bottom: 10px;
+        }
+
+        .phase-links {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #bddfff;
+        }
+
+        .phase-links a {
+            color: #7fd0ff;
+            text-decoration: none;
+        }
+
+        .phase-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 980px) {
+            .page-wrapper {
+                padding: 80px 18px 60px 18px;
+                margin: 0 auto 60px auto;
+            }
+
+            .cards-row {
+                grid-template-columns: 1fr;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <!-- منوی عمودی سمت راست -->
+    <nav class="side-nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="story.html" class="nav-btn">Story</a>
+        <a href="video.html" class="nav-btn">Videos</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+    </nav>
+
+    <main class="page-wrapper">
+        <header class="page-header">
+            <div class="phase-tag">Phase 1 – GLP-1 Foundations & Safety</div>
+            <h1 class="phase-title">GLP-1 & Metabolic Intelligence Core</h1>
+            <p class="phase-subtitle">
+                Phase 1 is the metabolic foundation of Elisence. It captures GLP-1 and related medication journeys
+                in a safe, structured way, so that ministries, clinicians and families can trust every step before
+                building more advanced engines on top.
+            </p>
+        </header>
+
+        <section class="cards-row">
+            <article class="card">
+                <h2>What Phase 1 Does</h2>
+                <p>
+                    Phase 1 is not a diet app or a prescription tool. It is a safety-first engine that understands how
+                    GLP-1 and similar medications are being used in real life and turns that into structured signals.
+                </p>
+                <ul>
+                    <li>Captures core facts: medication name, dose, schedule and route.</li>
+                    <li>Tracks weight trends and key metabolic context without giving diagnosis.</li>
+                    <li>Highlights simple, non-diagnostic safety patterns that may need attention.</li>
+                    <li>Prepares clean, auditable data for later phases such as Phase 4 and Phase 8.</li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2>Safety & Non-Diagnostic Boundaries</h2>
+                <p>
+                    Phase 1 stays firmly on the wellness and safety side of the line. It does not replace
+                    a doctor, clinic or hospital, and it never tells users to change their medication.
+                </p>
+                <ul>
+                    <li>No diagnosis, no prescriptions, no dose adjustments.</li>
+                    <li>Language tuned for “things to watch” and “questions to ask your clinician”.</li>
+                    <li>Simple traffic-light style signals that can feed into later clinical tools.</li>
+                    <li>Designed for NHS, EU, GCC and global SaMD boundary expectations.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="wide-card">
+            <h2>Who Uses Phase 1 and How It Fits the 17-Phase Roadmap</h2>
+            <p>
+                Phase 1 is designed to be useful to normal families, clinicians and ministries from day one,
+                while also acting as the backbone for future phases of Elisence.
+            </p>
+            <ul>
+                <li>Families and individuals log simple, structured information about medication and weight.</li>
+                <li>Clinicians and clinics can review clear summaries instead of raw chat logs or screenshots.</li>
+                <li>Ministries and hospitals can later plug this core into larger analytics engines.</li>
+            </ul>
+            <p class="phase-links">
+                The outputs of Phase 1 are designed to connect directly into:
+                Phase 3 (Care & Weight-Loss Journeys),
+                Phase 4 (Provenance & Integrity Engine),
+                Phase 8 (AHE & Clinical Profiles),
+                and Phase 9 (Diabetes & Metabolic Health).
+            </p>
+        </section>
+    </main>
+
+    <!-- الیسا – ویجت چت -->
+    <script src="elisa-chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Synthetic Journeys & Demo Policy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+          content="Synthetic demonstration journeys for Elisence – safe, fully scripted examples for ministries, investors and partners. No real patient data, non-diagnostic, Zero-Trust protected.">
+
+    <!-- Elisa chat widget -->
+    <script defer src="elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        .page-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 40px 80px 40px;
+        }
+
+        .content-main {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            color: #38bdf8;
+        }
+
+        .lead {
+            font-size: 1rem;
+            color: #cbd5f5;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #e1eeff;
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.6rem;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(125, 211, 252, 0.8);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e0f2fe;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+            padding: 1.8rem 1.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            color: #7dd3fc;
+        }
+
+        .card p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #e5f2ff;
+        }
+
+        .card ul {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .card li {
+            margin-bottom: 0.35rem;
+            font-size: 0.93rem;
+            color: #dceafe;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .badge-synthetic {
+            background: rgba(59, 130, 246, 0.18);
+            border: 1px solid rgba(96, 165, 250, 0.8);
+            color: #bfdbfe;
+        }
+
+        .badge-real {
+            background: rgba(22, 163, 74, 0.18);
+            border: 1px solid rgba(74, 222, 128, 0.7);
+            color: #bbf7d0;
+        }
+
+        .link-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 0.9rem;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 14px rgba(0, 130, 255, 0.75),
+                0 0 28px rgba(0, 40, 120, 0.75);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 20px rgba(0, 190, 255, 0.95),
+                0 0 44px rgba(0, 80, 200, 0.95);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.65), rgba(0, 25, 80, 1));
+        }
+
+        .link-btn:active {
+            transform: translateY(0px) scale(0.99);
+        }
+
+        @media (max-width: 900px) {
+            .page-shell {
+                padding: 80px 18px 100px 18px;
+            }
+
+            .content-main {
+                margin-right: 0;
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <nav class="side-nav">
+        <a href="index.html"         class="nav-btn">Home</a>
+        <a href="index.html#phases"  class="nav-btn">Phases</a>
+        <a href="governments.html"   class="nav-btn">Governments</a>
+        <a href="evidence.html"      class="nav-btn">Evidence</a>
+        <a href="about.html"         class="nav-btn">About</a>
+        <a href="story.html"         class="nav-btn">Story</a>
+        <a href="video.html"         class="nav-btn">Videos</a>
+        <a href="contact.html"       class="nav-btn">Contact</a>
+        <a href="founder-saami.html" class="nav-btn">Founder</a>
+        <a href="articles.html"      class="nav-btn">Articles</a>
+    </nav>
+
+    <div class="page-shell">
+        <main class="content-main">
+            <h1>Synthetic Journeys & Demo Policy</h1>
+
+            <p class="lead">
+                The Elisence demo environment uses <strong>synthetic journeys</strong>: realistic but fully scripted
+                examples that show how the platform behaves – without using any real patient or citizen data.
+            </p>
+
+            <p class="tagline">
+                This page explains how synthetic journeys are designed, why they exist, and how they connect
+                to the Zero-Trust and Non-Diagnostic policies for ministries, investors and partners.
+            </p>
+
+            <div class="pill-row">
+                <span class="pill">Synthetic Journeys Only</span>
+                <span class="pill">No Real Patient Data</span>
+                <span class="pill">Zero-Trust Demo Access</span>
+                <span class="pill">Non-Diagnostic</span>
+                <span class="pill">Women+ &amp; Diabetes Scenarios</span>
+                <span class="pill">Ministry &amp; Investor Ready</span>
+            </div>
+
+            <section class="card">
+                <h2>1. What Is a Synthetic Journey?</h2>
+                <p>
+                    A synthetic journey is a <strong>pre-scripted, fictional scenario</strong> that shows how Elisence
+                    handles signals, questions and events – without belonging to any real person.
+                </p>
+                <ul>
+                    <li>Names, ages, locations and events are invented and not tied to real individuals.</li>
+                    <li>Signals (for example: glucose curves, symptom patterns, sleep changes) are generated or anonymised examples.</li>
+                    <li>Safety and non-diagnostic rules are fully active, exactly as in the real platform.</li>
+                    <li>Journeys can be replayed and inspected by ministries and investors without privacy risk.</li>
+                </ul>
+                <p>
+                    This allows reviewers to see the real behaviour of the engine with <strong>zero exposure</strong> of personal data.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>2. Why Synthetic Journeys Matter</h2>
+                <p>
+                    For national health systems, it is not enough to see slides or read documents – they need to see
+                    <strong>how the system behaves</strong> under different conditions. Synthetic journeys offer:
+                </p>
+                <ul>
+                    <li><strong>Safety:</strong> no citizen or patient is ever exposed in a public or semi-public demo.</li>
+                    <li><strong>Repeatability:</strong> the same scenario can be replayed by different reviewers.</li>
+                    <li><strong>Transparency:</strong> ministries can compare the textual guidance, probabilities and safety messages.</li>
+                    <li><strong>Auditability:</strong> outputs can be matched with engine rules and WORM logs for evidence.</li>
+                </ul>
+                <p>
+                    This is especially important for <strong>Qatar, GCC and EU</strong> regulators who must see
+                    realistic behaviour without using real clinical data.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>3. Example – Women+ Synthetic Scenarios</h2>
+                <p>
+                    In the Women+ Engine demo, four synthetic journeys are used to show how Elisence responds across
+                    different life contexts and safety levels (for example: general, attention, emergency-advice-to-call-services).
+                </p>
+                <ul>
+                    <li>Cycle changes and pain patterns across a typical month.</li>
+                    <li>Scenario with stress, poor sleep and emotional pressure.</li>
+                    <li>Scenario with red-flag symptoms where emergency guidance is needed.</li>
+                    <li>Scenario with pregnancy-mode questions (with features kept OFF by default in real deployments).</li>
+                </ul>
+                <p>
+                    Each journey is clearly marked as synthetic and is protected behind Zero-Trust access.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>4. Example – Diabetes &amp; Metabolic Journeys</h2>
+                <p>
+                    For the Diabetes and Metabolic engines, synthetic journeys can demonstrate:
+                </p>
+                <ul>
+                    <li>Changing glucose curves over several weeks.</li>
+                    <li>Periods of good stability and periods of instability.</li>
+                    <li>Educational messages about lifestyle, patterns and when to seek advice.</li>
+                    <li>How probability-based insights are presented in non-diagnostic language.</li>
+                </ul>
+                <p>
+                    Again, no real blood results, sensors or personal identifiers are used in the demo environment.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>5. Synthetic vs Real Data – Clear Separation</h2>
+                <p>
+                    Elisence keeps a strict separation between synthetic demo data and any real-world deployments.
+                </p>
+                <ul>
+                    <li>
+                        <span class="badge badge-synthetic">Synthetic</span>
+                        Used in the Cloudflare-protected demo and public presentations. No real identifiers, no real clinical records.
+                    </li>
+                    <li>
+                        <span class="badge badge-real">Real</span>
+                        Used only in production deployments, inside-country or approved regions, under ministry or institutional control.
+                    </li>
+                </ul>
+                <p>
+                    Demo traffic and real traffic are not mixed, and synthetic journeys do not leak into production environments.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>6. Zero-Trust &amp; Access Control for the Demo</h2>
+                <p>
+                    The synthetic demo is protected by the same Zero-Trust principles as the main platform:
+                </p>
+                <ul>
+                    <li>Access can require an email invite or one-time code.</li>
+                    <li>Only approved reviewers (for example: ministry staff, investors, partners) can enter.</li>
+                    <li>Traffic is monitored and can be cut off at any time.</li>
+                    <li>No raw logs or engine internals are exposed through the browser.</li>
+                </ul>
+                <p>
+                    This means Elisence can safely demonstrate complex women’s health and diabetes journeys
+                    for <strong>Qatar, GCC and international partners</strong> without opening the system to the general public.
+                </p>
+                <div class="link-buttons">
+                    <a class="link-btn" href="zero_trust.html">
+                        Read Zero-Trust Policy
+                    </a>
+                    <a class="link-btn" href="non_diagnostic.html">
+                        Read Non-Diagnostic Policy
+                    </a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>7. How Ministries and Investors Use Synthetic Journeys</h2>
+                <p>
+                    For ministries of health, investors and strategic partners, synthetic journeys act as
+                    a <strong>live storyboard</strong> of the platform:
+                </p>
+                <ul>
+                    <li>Reviewers can walk through each step, reading the same messages a citizen would see.</li>
+                    <li>They can compare different journeys (for example: low-risk vs high-risk patterns).</li>
+                    <li>They can request specific “what if” scenarios to be scripted for their population needs.</li>
+                    <li>They can verify that non-diagnostic and safety rules behave as promised in the Evidence Pack.</li>
+                </ul>
+                <p>
+                    This closes the loop between <strong>documents</strong>, <strong>code</strong> and
+                    <strong>realistic behaviour on screen</strong>.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>8. Connection to the Evidence Pack</h2>
+                <p>
+                    Every synthetic journey is backed by real engine logic, feature flags and tests documented in the
+                    <strong>Evidence Hub</strong>. Ministries and partners can:
+                </p>
+                <ul>
+                    <li>Open the Evidence Hub to see which engines and tests are running behind a demo.</li>
+                    <li>Request WORM audit excerpts that show how the demo events were logged.</li>
+                    <li>Access SEAL repositories for Women+, Diabetes and other phases under controlled conditions.</li>
+                </ul>
+                <div class="link-buttons">
+                    <a class="link-btn" href="evidence.html">
+                        Open Evidence Hub
+                    </a>
+                    <a class="link-btn" href="governments.html">
+                        Government & Ministry View
+                    </a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>9. Summary</h2>
+                <p>
+                    Synthetic journeys allow Elisence to show its full capability in Women+, Diabetes,
+                    Nutrition, Family and future phases – while remaining completely safe, private and
+                    aligned with Zero-Trust and Non-Diagnostic rules.
+                </p>
+                <p>
+                    For access to the protected demo environment, ministries, investors and partners can
+                    contact the Elisence team to receive an invite under Cloudflare Zero-Trust.
+                </p>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="elisa-chat-root"></div>
+</body>
+</html>

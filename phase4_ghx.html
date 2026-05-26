@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Elisence – Phase 4 · GHX Governance & Health Exchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+        name="description"
+        content="Elisence Phase 4 GHX – Governance & Health Exchange. Interoperability, export contracts, evidence bundles, policy-bound data sharing, ministry/hospital readiness, audit trails and integration-ready packages."
+    />
+
+    <script defer src="elisa-chat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .top-dot {
+            position: fixed;
+            left: 18px;
+            top: 18px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #34c8ff, #0065ff 65%, #000c28 100%);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+            z-index: 20;
+        }
+
+        .top-dot-label {
+            position: fixed;
+            left: 40px;
+            top: 16px;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            z-index: 20;
+        }
+
+        .side-nav {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            display: block;
+            padding: 13px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 16px rgba(0, 130, 255, 0.95),
+                0 0 34px rgba(0, 40, 120, 0.95);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateX(-4px);
+            padding-right: 44px;
+            box-shadow:
+                0 0 22px rgba(0, 190, 255, 1),
+                0 0 46px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .nav-btn:active {
+            transform: translateX(-2px) scale(0.99);
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            padding: 80px 40px 80px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-shell {
+            width: 100%;
+            max-width: 1100px;
+            margin-right: 190px;
+        }
+
+        .hero-card {
+            border-radius: 26px;
+            padding: 34px 34px 30px 34px;
+            background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
+            box-shadow:
+                0 0 45px rgba(0, 170, 255, 0.85),
+                0 0 120px rgba(0, 80, 200, 0.65);
+            border: 1px solid rgba(70, 190, 255, 0.6);
+            margin-bottom: 18px;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.9fr);
+            gap: 26px;
+            align-items: center;
+        }
+
+        .hero-logo-container {
+            width: 100%;
+            max-width: 430px;
+            margin: 0 auto;
+        }
+
+        .main-hero-logo {
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+            animation: breathingGlow 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.6));
+        }
+
+        @keyframes breathingGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 25px rgba(0, 160, 255, 0.5)) brightness(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(0, 200, 255, 0.9)) brightness(1.15);
+                transform: scale(1.015);
+            }
+        }
+
+        .phase-label {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #a5d7ff;
+            margin-bottom: 6px;
+        }
+
+        .hero-title {
+            font-size: 26px;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .hero-tagline {
+            font-size: 13px;
+            color: #d4e8ff;
+            margin-bottom: 10px;
+        }
+
+        .hero-body {
+            font-size: 13px;
+            color: #dbefff;
+            margin-bottom: 10px;
+        }
+
+        .hero-footnote {
+            margin-top: 14px;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #7fb5ff;
+        }
+
+        .hero-actions {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e3f2ff;
+            background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+            border: 1px solid rgba(90, 185, 255, 0.9);
+            box-shadow:
+                0 0 14px rgba(0, 130, 255, 0.9),
+                0 0 26px rgba(0, 40, 120, 0.9);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 20px rgba(0, 190, 255, 1),
+                0 0 44px rgba(0, 80, 200, 1);
+            background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+        }
+
+        .action-btn:active {
+            transform: translateY(0) scale(0.99);
+        }
+
+        .card-grid {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .info-card {
+            border-radius: 20px;
+            padding: 18px 18px 18px 18px;
+            background: radial-gradient(circle at top, rgba(0, 120, 255, 0.40), rgba(0, 15, 40, 0.96));
+            border: 1px solid rgba(90, 185, 255, 0.85);
+            box-shadow:
+                0 0 22px rgba(0, 140, 255, 0.9),
+                0 0 40px rgba(0, 40, 120, 0.9);
+        }
+
+        .info-title {
+            font-size: 13px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #a9d4ff;
+            margin-bottom: 8px;
+        }
+
+        .info-subtitle {
+            font-size: 12px;
+            color: #93c5fd;
+            margin-bottom: 8px;
+        }
+
+        .info-body {
+            font-size: 12.5px;
+            color: #dbefff;
+        }
+
+        .info-body p {
+            margin-bottom: 10px;
+        }
+
+        .info-body ul {
+            margin: 8px 0 10px 18px;
+            padding-left: 0;
+        }
+
+        .info-body li {
+            margin-bottom: 6px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #7dd3fc;
+        }
+
+        .mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 12px;
+            color: #cde8ff;
+        }
+
+        .note {
+            border-radius: 16px;
+            padding: 14px 14px;
+            margin-top: 10px;
+            background: radial-gradient(circle at top, rgba(0, 160, 255, 0.22), rgba(0, 10, 35, 0.92));
+            border: 1px solid rgba(80, 180, 255, 0.55);
+            box-shadow:
+                0 0 18px rgba(0, 140, 255, 0.65),
+                0 0 32px rgba(0, 60, 180, 0.55);
+        }
+
+        @media (max-width: 900px) {
+            .page-wrapper {
+                padding: 80px 18px 110px 18px;
+            }
+
+            .content-shell {
+                margin-right: 0;
+            }
+
+            .hero-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .card-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .side-nav {
+                position: fixed;
+                right: 50%;
+                top: auto;
+                bottom: 18px;
+                transform: translateX(50%);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 9px 20px;
+                font-size: 11px;
+                letter-spacing: 0.11em;
+            }
+
+            .action-btn {
+                padding: 9px 14px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-dot"></div>
+    <div class="top-dot-label">ELISENCE</div>
+
+    <nav class="side-nav">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="index.html#phases" class="nav-btn">Phases</a>
+        <a href="about.html" class="nav-btn">About</a>
+        <a href="story.html" class="nav-btn">Story</a>
+        <a href="video.html" class="nav-btn">Videos</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+    </nav>
+
+    <div class="page-wrapper">
+        <div class="content-shell">
+
+            <section class="hero-card">
+                <div class="hero-layout">
+
+                    <div class="hero-logo-container">
+                        <img
+                            src="elisence.png"
+                            alt="Elisence – Global Digital Health & Humanity Platform"
+                            class="main-hero-logo"
+                        />
+                    </div>
+
+                    <div>
+                        <div class="phase-label">Phase 4 · GHX – Governance & Health Exchange</div>
+                        <div class="hero-title">GHX</div>
+
+                        <p class="hero-tagline">
+                            GHX is the interoperability and governance exchange layer that turns Phase 4 analytics into
+                            integration-ready, policy-bound evidence packages for real health systems.
+                        </p>
+
+                        <p class="hero-body">
+                            Phase 4 produces trusted, privacy-safe population evidence. GHX is the part that makes those outputs
+                            <span class="highlight">exportable, auditable, and usable</span> by ministries, hospitals, regulators,
+                            and research institutions — without breaking Zero-Trust boundaries.
+                        </p>
+
+                        <p class="hero-body">
+                            In practical terms, GHX defines how Elisence delivers “evidence bundles” with manifests, hashes,
+                            structured metadata, and clear integration contracts. It is designed for national-scale workflows:
+                            review → approval → export → integration → audit.
+                        </p>
+
+                        <div class="hero-footnote">
+                            Interoperability · Export Contracts · Evidence Bundles · Policy Isolation · Audit Trails · Integration-Ready
+                        </div>
+
+                        <div class="hero-actions">
+                            <a class="action-btn" href="phase4.html">Back to Phase 4</a>
+                            <a class="action-btn" href="phase4_provenance.html">Open Provenance Page</a>
+                            <a class="action-btn" href="demo-access.html">Open Locked Demo Portal</a>
+                            <a class="action-btn" href="download.html">Open Downloads</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="card-grid">
+
+                <article class="info-card">
+                    <h2 class="info-title">1. What GHX Is</h2>
+                    <div class="info-body">
+                        <p>
+                            GHX stands for <span class="highlight">Governance & Health Exchange</span>.
+                            It is not a dashboard and not a single API. It is the export-and-integration layer that sits above
+                            Phase 4 evidence and turns it into standards-ready packages.
+                        </p>
+                        <p class="highlight">GHX exists to answer:</p>
+                        <ul>
+                            <li>How do we export analytics in a way that is <span class="highlight">traceable and audit-proof</span>?</li>
+                            <li>How do we ensure each export is <span class="highlight">policy-bound</span> (country/region rules) and cannot be misused?</li>
+                            <li>How do we make exports <span class="highlight">interoperable</span> with national health infrastructures?</li>
+                            <li>How can an external reviewer validate integrity without trusting internal systems blindly?</li>
+                        </ul>
+
+                        <div class="note">
+                            <p class="mono">
+                                GHX posture: exchange evidence, not identities. Share packages, not raw user records.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">2. Who Uses GHX</h2>
+                    <div class="info-body">
+                        <p class="highlight">Ministries and National Regulators</p>
+                        <ul>
+                            <li>Receive policy-grade KPI bundles for population monitoring and programme oversight.</li>
+                            <li>Require manifests, hashes, and audit references to validate integrity.</li>
+                            <li>Use GHX exports for governance, procurement evaluation, and national reporting.</li>
+                        </ul>
+
+                        <p class="highlight">Hospitals and Health Networks</p>
+                        <ul>
+                            <li>Consume governance-ready evidence packs for service monitoring and safety oversight.</li>
+                            <li>Integrate population insights with existing EHR ecosystems via standards mapping.</li>
+                            <li>Run internal audits using exported manifests and audit trails.</li>
+                        </ul>
+
+                        <p class="highlight">Universities and Research Partners</p>
+                        <ul>
+                            <li>Validate methodology through reproducible exports and documented assumptions.</li>
+                            <li>Use synthetic or anonymised evidence packs for evaluation and publications.</li>
+                            <li>Re-check integrity by verifying hashes and bundle manifests.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">3. Evidence Bundles – What Gets Exported</h2>
+                    <div class="info-body">
+                        <p>
+                            GHX exports are <span class="highlight">bundles</span> with machine-verifiable integrity.
+                            A typical bundle can include:
+                        </p>
+                        <ul>
+                            <li>Aggregate KPIs and trend series (population-level only).</li>
+                            <li>Metadata: policy version, engine version, schema version, time window.</li>
+                            <li>Provenance summary: how the outputs were derived (non-identifying).</li>
+                            <li>QA evidence: which gates ran and whether they passed.</li>
+                            <li>WORM audit references: identifiers that point to immutable history.</li>
+                            <li>Export manifest: file list + SHA-256 hashes.</li>
+                            <li>Optional signature references for external validation.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p class="mono">
+                                Export principle: a KPI without a manifest is not an evidence export.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">4. Interoperability – Standards and Mapping</h2>
+                    <div class="info-body">
+                        <p>
+                            GHX is built to make evidence exchange realistic for health systems that already use structured standards.
+                            It supports a mapping layer for key health constructs.
+                        </p>
+
+                        <p class="highlight">Typical interoperability concepts include:</p>
+                        <ul>
+                            <li><span class="highlight">FHIR-aligned packaging</span> where appropriate for medication and programme reporting structures.</li>
+                            <li><span class="highlight">Code mapping</span> (e.g., medication coding, adverse-event coding) to reduce integration friction.</li>
+                            <li><span class="highlight">Controlled schemas</span> with versioning so integrations do not break unexpectedly.</li>
+                            <li><span class="highlight">Policy isolation</span>: exports remain tied to the source policy pack and region rules.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p>
+                                GHX is designed to be integration-ready without exposing raw patient-level identifiers.
+                                It supports governance workflows and standards expectations while remaining non-diagnostic.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">5. Governance – Policy-Bound Exchange</h2>
+                    <div class="info-body">
+                        <p>
+                            GHX enforces that evidence exchange cannot bypass privacy or policy. Exports are generated under:
+                        </p>
+                        <ul>
+                            <li><span class="highlight">Country/region policy packs</span> (rules, thresholds, export boundaries).</li>
+                            <li><span class="highlight">Cohort safety</span> (minimum sizes, safe aggregation, blocked slices).</li>
+                            <li><span class="highlight">Access-tier rules</span> (who can export and what level of detail is permitted).</li>
+                            <li><span class="highlight">Audit trace</span> for each export decision and delivery event.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p class="mono">
+                                Zero-Trust rule: export decisions must be explainable and auditable, not discretionary.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">6. Audit Trails – How External Validation Works</h2>
+                    <div class="info-body">
+                        <p>
+                            GHX is built for environments where external reviewers must validate evidence without relying on internal trust.
+                            Typical validation steps:
+                        </p>
+                        <ul>
+                            <li>Verify the bundle manifest and SHA-256 hashes match the files received.</li>
+                            <li>Confirm the policy version and engine version match the declared release.</li>
+                            <li>Check QA evidence and gate results included in the bundle.</li>
+                            <li>Use WORM audit references to confirm immutable export history exists.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p class="mono">
+                                Integrity workflow: verify package → verify manifest → confirm policy/version → confirm audit references.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">7. Why GHX Matters</h2>
+                    <div class="info-body">
+                        <p>
+                            Many digital health projects fail not because analytics are weak, but because evidence cannot be shipped safely
+                            into real institutional workflows. GHX exists to remove that barrier.
+                        </p>
+
+                        <p class="highlight">GHX provides:</p>
+                        <ul>
+                            <li><span class="highlight">Defensible evidence exchange</span> for ministry-grade adoption.</li>
+                            <li><span class="highlight">Integration readiness</span> for hospitals and health networks.</li>
+                            <li><span class="highlight">Audit-friendly packaging</span> for regulators and governance boards.</li>
+                            <li><span class="highlight">Stable versioning</span> so integrations can evolve safely over time.</li>
+                        </ul>
+
+                        <div class="note">
+                            <p>
+                                In short: Phase 4 makes analytics trustworthy. GHX makes that trust deliverable to the real world.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <h2 class="info-title">Final Statement</h2>
+                    <div class="info-body">
+                        <p>
+                            GHX is the bridge between evidence and real-world adoption.
+                            It packages Phase 4 outputs into governance-grade evidence bundles that can be integrated, reviewed,
+                            and audited — while preserving Zero-Trust boundaries and population-only safety posture.
+                        </p>
+
+                        <div class="hero-actions" style="margin-top: 10px;">
+                            <a class="action-btn" href="phase4.html">Back to Phase 4</a>
+                            <a class="action-btn" href="phase4_provenance.html">Open Provenance Page</a>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+
+        </div>
+    </div>
+
+    <div id="elisa-chat-root"></div>
+
+</body>
+</html>
