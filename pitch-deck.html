@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elisence — Pitch &amp; Deck</title>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #061936 0%, #020816 48%, #000 100%);
+      color: #fff;
+      overflow-y: auto;
+    }
+
+    .board {
+      width: 100vw;
+      min-height: 100vh;
+      padding: 18px 22px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header-wrap {
+      position: relative;
+      flex: 0 0 auto;
+      width: 100%;
+    }
+
+    .nav-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-decoration: none;
+      color: #dff5ff;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 220, 255, .85);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(0, 220, 255, .35), transparent 55%),
+        rgba(0, 80, 160, .28);
+      box-shadow: 0 0 22px rgba(0, 190, 255, .55);
+      transition: transform .15s ease, box-shadow .15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-pill:hover,
+    .nav-pill:focus-visible {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 32px rgba(0, 220, 255, .85);
+      outline: 2px solid rgba(0, 220, 255, .5);
+      outline-offset: 2px;
+    }
+
+    .header {
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    .brand {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 0.28em;
+      color: #ffffff;
+      text-shadow: 0 0 28px rgba(0,180,255,.9);
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      font-size: 17px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8edcff;
+    }
+
+    .description {
+      margin-top: 12px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: clamp(15px, 1.1vw, 18px);
+      line-height: 1.45;
+      font-weight: 620;
+      color: rgba(180, 230, 255, .88);
+      padding: 0 12px;
+    }
+
+    .grid {
+      flex: 0 0 auto;
+      width: min(720px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .card {
+      border: 1px solid rgba(95, 205, 255, .75);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(0,190,255,.34), transparent 45%),
+        linear-gradient(145deg, rgba(8,34,85,.96), rgba(4,12,34,.98));
+      box-shadow:
+        0 0 22px rgba(0,160,255,.65),
+        inset 0 0 20px rgba(255,255,255,.04);
+      padding: 16px;
+      min-height: 158px;
+      height: 100%;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .18s ease;
+      text-decoration: none;
+      color: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .card:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow:
+        0 0 34px rgba(0, 210, 255, .95),
+        0 0 70px rgba(80, 80, 255, .45);
+    }
+
+    .num {
+      font-size: 17px;
+      font-weight: 900;
+      color: #55d9ff;
+      letter-spacing: .12em;
+      text-align: center;
+    }
+
+    .q {
+      font-size: clamp(16px, 1.18vw, 23px);
+      line-height: 1.06;
+      font-weight: 900;
+      color: #ffffff;
+      text-align: center;
+      text-shadow: 0 0 18px rgba(0,170,255,.5);
+    }
+
+    .tag {
+      margin-top: 12px;
+      font-size: 13.5px;
+      line-height: 1.35;
+      font-weight: 650;
+      color: rgba(180, 230, 255, .9);
+      opacity: .94;
+      text-align: center;
+      letter-spacing: .01em;
+    }
+
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: 1fr; width: min(360px, 100%); }
+      .card { min-height: 150px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-pill { font-size: 12px; padding: 9px 14px; }
+      .nav-left { position: static; align-self: flex-start; margin-bottom: 10px; }
+      .header-wrap { display: flex; flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="board">
+    <div class="header-wrap">
+      <div class="nav-left">
+        <a href="index.html" class="nav-pill">&larr; Home</a>
+      </div>
+      <header class="header">
+        <div class="brand">ELISENCE</div>
+        <div class="subtitle">Pitch &amp; Deck</div>
+        <p class="description">Founder pitch and investor deck systems for Elisence.</p>
+      </header>
+    </div>
+
+    <section class="grid">
+      <a href="pitch-system.html" class="card">
+        <div class="num">01</div>
+        <div class="q">Founder Pitch System</div>
+        <div class="tag">Pitch modes, investor answers, and Web Summit preparation</div>
+      </a>
+      <a href="deck-system.html" class="card">
+        <div class="num">02</div>
+        <div class="q">Investor Deck System</div>
+        <div class="tag">Slide-by-slide investor narrative for Elisence</div>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
