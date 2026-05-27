@@ -681,17 +681,18 @@ const items = [
     question:"Since this is a health AI project, how do you handle security and compliance?",
     keywords:["safety-first","privacy","no diagnosis","responsible AI"],
     answer:[
-      "Compliance and security are not features we add at the end — they are part of how Elisence is designed from the beginning.",
-      "Because Elisence deals with health-related information, we think in layers: privacy, consent, encryption, access control, auditability, clinical boundaries, and country-aware governance.",
-      "Users should have meaningful control over what they share and who can access it. Professionals and organisations should only access information through permissioned, role-based, and auditable pathways.",
-      "Elisence is also designed to adapt across regions, because healthcare rules are not the same everywhere. Our thinking is shaped by GDPR, NHS-style safety expectations, FDA, MDR, GCC market realities, and responsible digital health principles.",
-      "On the AI side, we do not position Elisence as an autonomous diagnostic system. We use clear boundaries, structured logic, escalation paths, uncertainty handling, and safety controls to reduce the risk of misleading or unsafe guidance.",
-      "For us, compliance is not paperwork. It is trust architecture."
+      "For Elisence, trust, safety, and governance are foundational — not something added later.",
+      "Because healthcare is sensitive, we designed Elisence around privacy, responsible boundaries, permissioned access, and healthcare-aware safety thinking from the beginning.",
+      "Elisence follows a Zero-Trust approach, meaning identity, permissions, access, consent, and visibility are validated rather than assumed. Users remain in control of sharing, while professional and institutional access is role-based, permissioned, and auditable.",
+      "We also take a conservative approach to health AI. Elisence is designed to remain non-diagnostic by default for citizen experiences, explain uncertainty, escalate when appropriate, and prioritise trusted guidance rather than unsafe autonomy or overconfidence.",
+      "Behind the scenes, we think carefully about governance, provenance, auditability, and accountability — because in healthcare, trust depends on understanding how information, permissions, and outputs happened over time.",
+      "Elisence is also designed with international healthcare expectations in mind — inspired by NHS-style clinical safety thinking, GDPR and UK GDPR privacy expectations, FDA CDS boundaries, EU MDR principles, and GCC healthcare realities.",
+      "For us, compliance is not paperwork. Trust is architecture."
     ],
     followups:[
       {
-        q:"How do you make this practical, not just a policy statement?",
-        a:"By designing systems around least privilege, consent, audit trails, modular controls, fail-closed behaviour, and regional adaptability — so sensitive health experiences can be governed, restricted, or adapted without breaking the whole platform."
+        q:"How do you reduce the risk of unsafe AI behaviour or hallucinations?",
+        a:"We design conservatively. Elisence is built around healthcare-aware boundaries, uncertainty handling, permissioned access, escalation paths, explainability, and trusted guidance rather than autonomous medical decision-making. In healthcare, safety matters more than false confidence."
       }
     ]
   },
