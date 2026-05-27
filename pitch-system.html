@@ -350,8 +350,30 @@
 
   <script>
 const items = [
-  { n:"01", title:"Orbit Pitch (5 sec)", short:"Fast memorable intro for immediate curiosity" },
-  { n:"02", title:"Elevator Pitch (20–30 sec)", short:"Short clear value in under half a minute" },
+  {
+    n:"01",
+    title:"Orbit Pitch (5 sec)",
+    short:"Fast memorable intro for immediate curiosity",
+    modalHeading:"Orbit Pitch",
+    modalSubtitle:"5–8 second fast introduction",
+    body:[
+      "Elisence connects people, healthcare, and trusted health intelligence into one human-centred ecosystem."
+    ],
+    helper:"Designed for immediate curiosity and fast understanding."
+  },
+  {
+    n:"02",
+    title:"Elevator Pitch (20–30 sec)",
+    short:"Short clear value in under half a minute",
+    modalHeading:"Elevator Pitch",
+    modalSubtitle:"20–30 second founder explanation",
+    body:[
+      "Elisence is a human-centred health ecosystem designed to make healthcare feel less fragmented, more connected, and easier to navigate.",
+      "For people, it brings many parts of health into one trusted experience — from prevention, chronic conditions, medical tracking, medication, metabolic and weight journeys, women's health, wellbeing, family care, and trusted health intelligence.",
+      "At the same time, Elisence is designed to help healthcare systems, clinics, insurers, governments, researchers, and universities support better continuity, prevention, and more connected health experiences."
+    ],
+    helper:"Whole elephant. Both sides. Simple enough to say naturally."
+  },
   { n:"03", title:"Founder Pitch (60 sec)", short:"Founder story plus problem and direction" },
   { n:"04", title:"Investor Pitch (90–120 sec)", short:"Problem, solution, traction, and ask" },
   { n:"05", title:"Health System / Government Pitch", short:"Continuity, prevention, and system value" },
@@ -380,10 +402,36 @@ items.forEach((item, index) => {
   grid.appendChild(card);
 });
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 function openModal(index) {
   const item = items[index];
-  document.getElementById("modalTitle").textContent = item.n + " — " + item.title;
-  document.getElementById("modalAnswer").innerHTML = '<p class="placeholder-note">Pitch content drafting in progress.</p><p class="placeholder-note">Content coming soon.</p>';
+  const heading = item.modalHeading || item.title;
+  document.getElementById("modalTitle").textContent = item.n + " — " + heading;
+
+  if (item.body && item.body.length) {
+    let html = "";
+    if (item.modalSubtitle) {
+      html += `<p class="pitch-subtitle">${escapeHtml(item.modalSubtitle)}</p>`;
+    }
+    item.body.forEach((paragraph) => {
+      html += `<p>${escapeHtml(paragraph)}</p>`;
+    });
+    if (item.helper) {
+      html += `<p class="pitch-helper">${escapeHtml(item.helper)}</p>`;
+    }
+    document.getElementById("modalAnswer").innerHTML = html;
+  } else {
+    document.getElementById("modalAnswer").innerHTML =
+      '<p class="placeholder-note">Pitch content drafting in progress.</p><p class="placeholder-note">Content coming soon.</p>';
+  }
+
   modalEl.classList.add("show");
 }
 
