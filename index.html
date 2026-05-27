@@ -83,6 +83,190 @@
           margin-right: 190px; /* جا برای منوی عمودی سمت راست */
       }
 
+      .home-smart-search-section {
+          width: 100%;
+          margin: 0 auto 22px auto;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          position: relative;
+          z-index: 20;
+      }
+
+      .home-smart-search-bar {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+      }
+
+      #homeSmartSearchInput {
+          flex: 1;
+          min-height: 58px;
+          padding: 14px 20px;
+          font-size: clamp(17px, 1.35vw, 24px);
+          font-weight: 650;
+          color: #fff;
+          border-radius: 20px;
+          border: 1px solid rgba(110, 220, 255, .85);
+          background:
+              radial-gradient(circle at top left, rgba(0,190,255,.22), transparent 50%),
+              rgba(4, 18, 48, .92);
+          box-shadow:
+              0 0 24px rgba(0, 170, 255, .45),
+              inset 0 0 16px rgba(255,255,255,.03);
+          outline: none;
+      }
+
+      #homeSmartSearchInput::placeholder {
+          color: rgba(160, 220, 255, .72);
+      }
+
+      #homeSmartSearchInput:focus {
+          border-color: rgba(0, 220, 255, 1);
+          box-shadow:
+              0 0 32px rgba(0, 210, 255, .75),
+              inset 0 0 16px rgba(255,255,255,.05);
+      }
+
+      #homeSmartVoiceButton {
+          flex: 0 0 auto;
+          width: 58px;
+          height: 58px;
+          border-radius: 50%;
+          border: 1px solid rgba(120, 220, 255, .9);
+          background:
+              radial-gradient(circle at 30% 20%, rgba(0,220,255,.45), transparent 55%),
+              linear-gradient(145deg, rgba(8,40,95,.98), rgba(3,14,36,.98));
+          color: #7ee8ff;
+          font-size: 26px;
+          cursor: pointer;
+          box-shadow: 0 0 26px rgba(0, 190, 255, .6);
+          transition: .2s ease;
+          -webkit-tap-highlight-color: transparent;
+      }
+
+      #homeSmartVoiceButton:hover {
+          transform: scale(1.04);
+          box-shadow: 0 0 36px rgba(0, 220, 255, .9);
+      }
+
+      #homeSmartVoiceButton.home-voice-listening {
+          animation: homeVoicePulse 1.2s ease-in-out infinite;
+          border-color: #5dffb8;
+          color: #b8ffe0;
+          box-shadow: 0 0 40px rgba(93, 255, 184, .85);
+      }
+
+      @keyframes homeVoicePulse {
+          0%, 100% { box-shadow: 0 0 28px rgba(93, 255, 184, .55); }
+          50% { box-shadow: 0 0 48px rgba(93, 255, 184, 1); }
+      }
+
+      #homeSmartClearButton {
+          flex: 0 0 auto;
+          min-height: 48px;
+          padding: 10px 18px;
+          font-size: 16px;
+          font-weight: 800;
+          letter-spacing: .06em;
+          text-transform: uppercase;
+          color: #dff5ff;
+          border-radius: 16px;
+          border: 1px solid rgba(120, 210, 255, .65);
+          background: rgba(0, 120, 200, .2);
+          cursor: pointer;
+          box-shadow: 0 0 16px rgba(0, 160, 255, .35);
+          -webkit-tap-highlight-color: transparent;
+      }
+
+      #homeSmartClearButton:hover {
+          background: rgba(0, 160, 255, .32);
+      }
+
+      .home-smart-search-help {
+          font-size: 13px;
+          line-height: 1.4;
+          color: rgba(150, 210, 255, .82);
+          text-align: center;
+          padding: 0 8px;
+      }
+
+      #homeVoiceStatus {
+          font-size: clamp(15px, 1.1vw, 20px);
+          font-weight: 750;
+          color: #5dffb8;
+          text-align: center;
+      }
+
+      #homeVoiceUnsupported {
+          font-size: clamp(14px, 1vw, 18px);
+          font-weight: 650;
+          color: #ffb86b;
+          text-align: center;
+          padding: 8px 12px;
+          border-radius: 14px;
+          border: 1px solid rgba(255, 184, 107, .45);
+          background: rgba(255, 140, 40, .08);
+      }
+
+      #homeSearchSuggestions {
+          display: none;
+          flex-direction: column;
+          gap: 8px;
+          max-height: min(340px, 42vh);
+          overflow-y: auto;
+          padding: 12px;
+          border-radius: 20px;
+          border: 1px solid rgba(100, 210, 255, .75);
+          background:
+              radial-gradient(circle at top, rgba(0,150,255,.18), transparent 55%),
+              rgba(3, 12, 32, .94);
+          box-shadow: 0 0 28px rgba(0, 170, 255, .45);
+          backdrop-filter: blur(10px);
+      }
+
+      #homeSearchSuggestions.show { display: flex; }
+
+      .home-search-suggestion {
+          text-align: left;
+          padding: 14px 16px;
+          border-radius: 14px;
+          border: 1px solid rgba(80, 190, 255, .35);
+          background: rgba(0, 80, 140, .15);
+          cursor: pointer;
+          transition: .15s ease;
+      }
+
+      .home-search-suggestion:hover {
+          border-color: rgba(0, 220, 255, .9);
+          background: rgba(0, 120, 200, .28);
+          box-shadow: 0 0 18px rgba(0, 190, 255, .4);
+      }
+
+      .home-search-suggestion-cat {
+          font-size: 12px;
+          font-weight: 800;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: #55d9ff;
+          margin-bottom: 4px;
+      }
+
+      .home-search-suggestion-title {
+          font-size: clamp(17px, 1.2vw, 22px);
+          font-weight: 900;
+          color: #fff;
+          line-height: 1.15;
+      }
+
+      .home-search-suggestion-desc {
+          margin-top: 6px;
+          font-size: 13px;
+          line-height: 1.35;
+          font-weight: 650;
+          color: rgba(180, 230, 255, .88);
+      }
+
          .hero-card {
         width: 100%;
         max-width: 1100px;      /* پهن‌تر؛ شبیه بنر دمو */
@@ -465,6 +649,30 @@
           .content-area {
               margin-right: 0;
           }
+
+          .home-smart-search-bar {
+              gap: 10px;
+              width: 100%;
+              overflow: hidden;
+          }
+
+          #homeSmartSearchInput {
+              min-width: 0;
+              flex: 1 1 auto;
+              padding: 14px 14px;
+          }
+
+          #homeSmartVoiceButton {
+              width: 52px;
+              height: 52px;
+              flex: 0 0 52px;
+          }
+
+          #homeSmartClearButton {
+              padding: 10px 12px;
+              min-width: 78px;
+              flex: 0 0 auto;
+          }
       }
   </style>
 </head>
@@ -491,6 +699,24 @@
   <!-- سکشن هیرو -->
   <div class="page-wrapper">
       <div class="hero-area">
+          <section class="home-smart-search-section" aria-label="Elisence website navigator">
+            <div class="home-smart-search-bar">
+              <input
+                type="search"
+                id="homeSmartSearchInput"
+                placeholder="Search Elisence by voice, phase, topic, or page..."
+                autocomplete="off"
+                enterkeyhint="search"
+              />
+              <button type="button" id="homeSmartVoiceButton" aria-label="Voice search" title="Voice search">&#127908;</button>
+              <button type="button" id="homeSmartClearButton" hidden>Clear</button>
+            </div>
+            <p class="home-smart-search-help">Search the Elisence website by keyword, phase, feature, or destination.</p>
+            <p id="homeVoiceStatus" hidden></p>
+            <p id="homeVoiceUnsupported" hidden></p>
+            <div id="homeSearchSuggestions" role="listbox" aria-label="Navigation suggestions"></div>
+          </section>
+
           <div class="hero-card">
 
               <!-- لوگوی اصلی Elisence به‌صورت مستطیلی -->
@@ -756,6 +982,304 @@
 
       </div> <!-- end content-area -->
   </main> <!-- end phases-wrapper -->
+
+  <!-- Homepage-only smart navigator (isolated from other page search engines) -->
+  <script>
+    (function () {
+      const homeSmartSearchInput = document.getElementById("homeSmartSearchInput");
+      const homeSmartVoiceButton = document.getElementById("homeSmartVoiceButton");
+      const homeSmartClearButton = document.getElementById("homeSmartClearButton");
+      const homeVoiceStatus = document.getElementById("homeVoiceStatus");
+      const homeVoiceUnsupported = document.getElementById("homeVoiceUnsupported");
+      const homeSearchSuggestions = document.getElementById("homeSearchSuggestions");
+
+      const homeSearchItems = [
+        { title: "Home", category: "Navigate", description: "Elisence homepage", url: "index.html", terms: ["home", "homepage", "main", "elisence"] },
+        { title: "Elisence Phases", category: "Phases", description: "Explore all Elisence phases on the homepage", url: "index.html#phases", terms: ["phases", "phase", "roadmap", "all phases", "ecosystem phases"] },
+        { title: "Governments", category: "Navigate", description: "Government and public-sector Elisence information", url: "governments.html", terms: ["government", "governments", "ministry", "public sector", "health system", "national"] },
+        { title: "Demo Portal", category: "Navigate", description: "Live demo access and portal entry", url: "demo-access.html", terms: ["demo", "demo portal", "portal", "live demo", "access"] },
+        { title: "Pitch & Deck", category: "Preparation", description: "Founder pitch and investor deck systems", url: "pitch-deck.html", terms: ["pitch deck", "pitch and deck", "preparation hub"] },
+        { title: "Founder Quick Board", category: "Preparation", description: "70 founder questions, answers, and interview preparation", url: "web-summit-board.html", terms: ["founder quick board", "70 cards", "founder questions", "web summit board", "quick board", "web summit", "interview board", "interview"] },
+        { title: "Founder Pitch System", category: "Preparation", description: "Pitch modes, investor answers, and Web Summit preparation", url: "pitch-system.html", terms: ["pitch system", "founder pitch", "orbit pitch", "elevator pitch", "investor pitch", "government pitch", "pharma pitch", "pitch"] },
+        { title: "Investor Deck System", category: "Preparation", description: "Slide-by-slide investor narrative for Elisence", url: "deck-system.html", terms: ["deck system", "investor deck system", "investor deck", "deck", "cover slide", "problem slide", "business model", "market expansion", "slides"] },
+        { title: "About Elisence", category: "Navigate", description: "About the Elisence platform", url: "about.html", terms: ["about", "about elisence"] },
+        { title: "Story", category: "Navigate", description: "Elisence story and human mission", url: "story.html", terms: ["story", "elisa", "founder story", "mission"] },
+        { title: "Videos", category: "Navigate", description: "Explainer videos and media", url: "video.html", terms: ["video", "videos", "media", "explainer"] },
+        { title: "Contact", category: "Navigate", description: "Get in touch with Elisence", url: "contact.html", terms: ["contact", "email", "get in touch", "talk to us"] },
+        { title: "Founder — Saami Salami Asl", category: "Navigate", description: "Founder background and profile", url: "founder-saami.html", terms: ["founder", "sami", "saami", "salami", "background", "architect"] },
+        { title: "Articles", category: "Navigate", description: "Articles and updates", url: "articles.html", terms: ["articles", "blog", "news"] },
+        { title: "Phase 1 — GLP-1 Foundations", category: "Phase", description: "GLP-1 foundations and safety", url: "phase1.html", terms: ["phase 1", "phase1", "glp-1", "glp1", "weight loss foundations"] },
+        { title: "Phase 2 — Medication Intelligence", category: "Phase", description: "Medication and dose intelligence", url: "phase2.html", terms: ["phase 2", "phase2", "medication", "dose"] },
+        { title: "Phase 3 — Care Platform", category: "Phase", description: "Care and weight-loss platform", url: "phase3.html", terms: ["phase 3", "phase3", "care platform", "weight loss", "gp", "carer"] },
+        { title: "Phase 4 — Provenance", category: "Phase", description: "Provenance and integrity engine", url: "phase4.html", terms: ["phase 4", "phase4", "provenance", "integrity", "audit"] },
+        { title: "Phase 5 — Elisa Companion", category: "Phase", description: "Elisa healthy dopamine companion", url: "phase5.html", terms: ["phase 5", "phase5", "elisa", "companion", "dopamine"] },
+        { title: "Phase 6 — Drug Intelligence", category: "Phase", description: "Medication safety and global drug intelligence", url: "phase6.html", terms: ["phase 6", "phase6", "drug intelligence", "medicines"] },
+        { title: "Phase 7 — Women+ Health", category: "Phase", description: "Women+ health and life companion", url: "phase7.html", terms: ["phase 7", "phase7", "women", "women health", "womens health", "pregnancy", "fertility", "menopause"] },
+        { title: "Phase 8 — Advanced Health Engine", category: "Phase", description: "National-grade clinical profiles and AHE", url: "phase8.html", terms: ["phase 8", "phase8", "ahe", "clinical", "blood", "labs", "vitals"] },
+        { title: "Phase 9 — Diabetes", category: "Phase", description: "Diabetes and metabolic health", url: "phase9.html", terms: ["phase 9", "phase9", "diabetes", "metabolic", "glucose"] },
+        { title: "Phase 10 — Social Profiles", category: "Phase", description: "Social presence and trusted profiles", url: "phase10.html", terms: ["phase 10", "phase10", "social", "profiles", "message", "messaging", "connection graph", "network"] },
+        { title: "Phase 11 — Security", category: "Phase", description: "Security and identity control", url: "phase11.html", terms: ["phase 11", "phase11", "security", "identity", "zero trust"] },
+        { title: "Phase 12 — Environment Coach", category: "Phase", description: "Environment-aware diabetes coach", url: "phase12.html", terms: ["phase 12", "phase12", "environment", "weather"] },
+        { title: "Phase 13 — Voice Engine", category: "Phase", description: "Voice and zero-typing engine", url: "phase13.html", terms: ["phase 13", "phase13", "voice", "zero typing"] },
+        { title: "Phase 14 — Life Map", category: "Phase", description: "Life map and blind / low-vision companion", url: "phase14.html", terms: ["phase 14", "phase14", "life map", "blind", "low vision", "accessibility"] },
+        { title: "Phase 15 — Family Ecosystem", category: "Phase", description: "Family ecosystem assistant ages 0–18", url: "phase15.html", terms: ["phase 15", "phase15", "family", "children", "0-18"] },
+        { title: "Phase 16 — Nutrition", category: "Phase", description: "Global nutrition and diet intelligence", url: "phase16.html", terms: ["phase 16", "phase16", "nutrition", "diet", "gnie", "food"] },
+        { title: "Phase 17 — Mental Health", category: "Phase", description: "Mental health and meditation journeys", url: "phase17.html", terms: ["phase 17", "phase17", "mental health", "meditation", "mindfulness", "pulse"] }
+      ];
+
+      let homeLastSearchResults = [];
+      let homeSpeechRecognition = null;
+      let homeVoiceListening = false;
+
+      const HomeSpeechRecognitionCtor =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      function homeNormalizeText(value) {
+        return String(value || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^\w\s]/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function homeEscapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      const homeAliasRules = [
+        { triggers: ["pitch deck", "pitch and deck"], expand: ["pitch", "deck", "pitch-deck"] },
+        { triggers: ["web summit", "interview"], expand: ["founder", "quick", "board", "pitch", "web", "summit"] },
+        { triggers: ["business model", "revenue", "money"], expand: ["business", "model", "deck", "monetisation"] },
+        { triggers: ["women health", "womens"], expand: ["women", "phase", "7"] },
+        { triggers: ["next step", "ask"], expand: ["ask", "next", "deck"] }
+      ];
+
+      function homeExpandAliases(query) {
+        const normalized = homeNormalizeText(query);
+        if (!normalized) return "";
+        const words = new Set(normalized.split(/\s+/).filter(Boolean));
+        words.add(normalized);
+        homeAliasRules.forEach((rule) => {
+          const hit = rule.triggers.some((trigger) => {
+            const t = homeNormalizeText(trigger);
+            if (!t) return false;
+            if (normalized.includes(t)) return true;
+            return normalized.split(/\s+/).some((w) => w.startsWith(t) || t.startsWith(w));
+          });
+          if (hit) rule.expand.forEach((term) => words.add(homeNormalizeText(term)));
+        });
+        return Array.from(words).join(" ");
+      }
+
+      function homeBuildSearchText(item) {
+        return homeNormalizeText([item.title, item.category, item.description, item.url, ...(item.terms || [])].join(" "));
+      }
+
+      function homeScoreField(text, queryWords, fullPhrase, weight) {
+        const norm = homeNormalizeText(text);
+        if (!norm) return 0;
+        let score = 0;
+        if (fullPhrase.length >= 2 && norm.includes(fullPhrase)) score += weight * 0.55;
+        let matched = 0;
+        queryWords.forEach((word) => {
+          if (word.length < 2 && !/^\d+$/.test(word)) return;
+          if (norm.includes(word)) { score += weight * 0.18; matched += 1; }
+          norm.split(/\s+/).forEach((token) => {
+            if (token.startsWith(word) && word.length >= 2) score += weight * 0.12;
+          });
+        });
+        if (queryWords.length > 1 && matched === queryWords.length) score += weight * 0.22;
+        return score;
+      }
+
+      function homeScoreItem(item, query) {
+        const fullPhrase = homeNormalizeText(query);
+        if (!fullPhrase) return 0;
+        const expanded = homeExpandAliases(query);
+        const queryWords = Array.from(new Set(expanded.split(/\s+/).concat(fullPhrase.split(/\s+/)).filter(Boolean)));
+        let score = 0;
+        score += homeScoreField(item.title, queryWords, fullPhrase, 95);
+        score += homeScoreField(item.category, queryWords, fullPhrase, 55);
+        score += homeScoreField(item.description, queryWords, fullPhrase, 70);
+        score += homeScoreField((item.terms || []).join(" "), queryWords, fullPhrase, 80);
+        if (homeBuildSearchText(item).includes(fullPhrase)) score += 30;
+        return score;
+      }
+
+      function runHomeSmartSearch(query) {
+        const trimmed = (query || "").trim();
+        if (!trimmed) return homeSearchItems.map((item, index) => ({ index, item, score: 0 }));
+        return homeSearchItems
+          .map((item, index) => ({ index, item, score: homeScoreItem(item, trimmed) }))
+          .filter((row) => row.score > 0)
+          .sort((a, b) => b.score - a.score || a.index - b.index);
+      }
+
+      function homeIsStrongSingleResult(results) {
+        if (!results.length) return false;
+        if (results.length === 1) return results[0].score >= 35;
+        const top = results[0].score;
+        const second = results[1].score;
+        return top >= 50 && top >= second * 1.4 && top - second >= 12;
+      }
+
+      function openHomeSearchTarget(url) {
+        const target = String(url || "").trim();
+        if (!target) return;
+        if (target.indexOf("#") !== -1) {
+          const hashIndex = target.indexOf("#");
+          const base = target.slice(0, hashIndex);
+          const hash = target.slice(hashIndex);
+          const onIndex = !base || base === "index.html" || base.endsWith("/index.html");
+          if (onIndex) {
+            if (hash === "#phases") document.body.classList.add("show-phases-only");
+            window.location.hash = hash;
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+          }
+        }
+        window.location.href = target;
+      }
+
+      function homeRenderSuggestions(results) {
+        homeSearchSuggestions.innerHTML = "";
+        if (!results.length || !homeSmartSearchInput.value.trim()) {
+          homeSearchSuggestions.classList.remove("show");
+          return;
+        }
+        results.slice(0, 10).forEach((row) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "home-search-suggestion";
+          btn.setAttribute("role", "option");
+          btn.innerHTML =
+            '<div class="home-search-suggestion-cat">' + homeEscapeHtml(row.item.category) + "</div>" +
+            '<div class="home-search-suggestion-title">' + homeEscapeHtml(row.item.title) + "</div>" +
+            '<div class="home-search-suggestion-desc">' + homeEscapeHtml(row.item.description) + "</div>";
+          btn.onclick = function () { openHomeSearchTarget(row.item.url); };
+          homeSearchSuggestions.appendChild(btn);
+        });
+        homeSearchSuggestions.classList.add("show");
+      }
+
+      function applyHomeSmartSearch(query, options) {
+        const opts = options || {};
+        const trimmed = (query || "").trim();
+        homeSmartClearButton.hidden = !trimmed;
+        if (!trimmed) {
+          homeLastSearchResults = [];
+          homeRenderSuggestions([]);
+          return homeLastSearchResults;
+        }
+        homeLastSearchResults = runHomeSmartSearch(trimmed);
+        homeRenderSuggestions(homeLastSearchResults);
+        if ((opts.openTopOnEnter || opts.openTopIfStrong) && homeLastSearchResults.length) {
+          if (opts.openTopOnEnter || homeIsStrongSingleResult(homeLastSearchResults)) {
+            openHomeSearchTarget(homeLastSearchResults[0].item.url);
+          }
+        }
+        return homeLastSearchResults;
+      }
+
+      function homeStopVoiceSearch() {
+        homeVoiceListening = false;
+        homeSmartVoiceButton.classList.remove("home-voice-listening");
+        if (homeSpeechRecognition) {
+          try { homeSpeechRecognition.stop(); } catch (e) { /* ignore */ }
+        }
+      }
+
+      function initHomeVoiceSearch() {
+        if (!HomeSpeechRecognitionCtor) {
+          homeVoiceUnsupported.hidden = false;
+          homeVoiceUnsupported.textContent = "Voice search is not supported on this browser. Please type a few words.";
+          homeSmartVoiceButton.disabled = true;
+          homeSmartVoiceButton.style.opacity = "0.55";
+          return;
+        }
+        homeSpeechRecognition = new HomeSpeechRecognitionCtor();
+        homeSpeechRecognition.continuous = false;
+        homeSpeechRecognition.interimResults = false;
+        homeSpeechRecognition.lang = "en-GB";
+        homeSpeechRecognition.onstart = function () {
+          homeVoiceListening = true;
+          homeSmartVoiceButton.classList.add("home-voice-listening");
+          homeVoiceStatus.hidden = false;
+          homeVoiceStatus.textContent = "Listening...";
+          homeVoiceUnsupported.hidden = true;
+        };
+        homeSpeechRecognition.onresult = function (event) {
+          const transcript = Array.from(event.results).map(function (r) { return r[0].transcript; }).join(" ").trim();
+          if (transcript) {
+            homeSmartSearchInput.value = transcript;
+            applyHomeSmartSearch(transcript, { openTopIfStrong: true });
+          }
+        };
+        homeSpeechRecognition.onerror = function () {
+          homeStopVoiceSearch();
+          homeVoiceStatus.textContent = "Voice input ended. Try again or type your search.";
+        };
+        homeSpeechRecognition.onend = function () {
+          homeStopVoiceSearch();
+        };
+      }
+
+      function startHomeVoiceSearch() {
+        if (!HomeSpeechRecognitionCtor) {
+          homeVoiceUnsupported.hidden = false;
+          homeVoiceUnsupported.textContent = "Voice search is not supported on this browser. Please type a few words.";
+          return;
+        }
+        if (!homeSpeechRecognition) initHomeVoiceSearch();
+        try {
+          if (homeVoiceListening) { homeStopVoiceSearch(); return; }
+          homeSpeechRecognition.start();
+        } catch (err) {
+          homeVoiceStatus.hidden = false;
+          homeVoiceStatus.textContent = "Could not start microphone. Please type your search.";
+          homeStopVoiceSearch();
+        }
+      }
+
+      function clearHomeSmartSearch() {
+        homeSmartSearchInput.value = "";
+        homeSmartClearButton.hidden = true;
+        homeStopVoiceSearch();
+        homeVoiceStatus.hidden = true;
+        homeLastSearchResults = [];
+        homeRenderSuggestions([]);
+        homeSmartSearchInput.focus();
+      }
+
+      homeSmartSearchInput.addEventListener("input", function () {
+        applyHomeSmartSearch(homeSmartSearchInput.value);
+      });
+
+      homeSmartSearchInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          applyHomeSmartSearch(homeSmartSearchInput.value, { openTopOnEnter: true });
+        }
+      });
+
+      homeSmartClearButton.addEventListener("click", clearHomeSmartSearch);
+      homeSmartVoiceButton.addEventListener("click", startHomeVoiceSearch);
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && homeSmartSearchInput.value.trim()) {
+          clearHomeSmartSearch();
+        }
+      });
+
+      initHomeVoiceSearch();
+    })();
+  </script>
 
   <!-- اسکریپت کوچک برای نمایش فقط فازها وقتی hash = #phases باشد -->
   <script>
