@@ -30,6 +30,45 @@
       flex: 0 0 auto;
     }
 
+    .header-wrap {
+      position: relative;
+      flex: 0 0 auto;
+      width: 100%;
+    }
+
+    .nav-pill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #dff5ff;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 220, 255, .85);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(0, 220, 255, .35), transparent 55%),
+        rgba(0, 80, 160, .28);
+      box-shadow: 0 0 22px rgba(0, 190, 255, .55);
+      transition: transform .15s ease, box-shadow .15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-pill:hover,
+    .nav-pill:focus-visible {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 32px rgba(0, 220, 255, .85);
+      outline: 2px solid rgba(0, 220, 255, .5);
+      outline-offset: 2px;
+    }
+
     .brand {
       font-size: 34px;
       font-weight: 900;
@@ -442,6 +481,20 @@
     }
 
     @media (max-width: 768px) {
+      .nav-pill {
+        position: static;
+        align-self: flex-start;
+        margin-bottom: 10px;
+        font-size: 12px;
+        padding: 9px 14px;
+      }
+
+      .header-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
       .search-bar {
         gap: 10px;
         width: 100%;
@@ -471,10 +524,13 @@
 
 <body>
   <main class="board">
-    <header class="header">
-      <div class="brand">ELISENCE</div>
-      <div class="subtitle">Web Summit Founder Quick Board</div>
-    </header>
+    <div class="header-wrap">
+      <a href="pitch-system.html" class="nav-pill">Pitch System</a>
+      <header class="header">
+        <div class="brand">ELISENCE</div>
+        <div class="subtitle">Web Summit Founder Quick Board</div>
+      </header>
+    </div>
 
     <section class="search-section" aria-label="Founder search">
       <div class="search-bar">
