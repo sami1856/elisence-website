@@ -103,6 +103,191 @@
       padding: 0 12px;
     }
 
+    .search-section {
+      flex: 0 0 auto;
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .search-input {
+      flex: 1;
+      min-height: 62px;
+      padding: 16px 22px;
+      font-size: clamp(20px, 1.55vw, 28px);
+      font-weight: 650;
+      color: #fff;
+      border-radius: 20px;
+      border: 1px solid rgba(110, 220, 255, .85);
+      background:
+        radial-gradient(circle at top left, rgba(0,190,255,.22), transparent 50%),
+        rgba(4, 18, 48, .92);
+      box-shadow:
+        0 0 24px rgba(0, 170, 255, .45),
+        inset 0 0 16px rgba(255,255,255,.03);
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: rgba(160, 220, 255, .72);
+    }
+
+    .search-input:focus {
+      border-color: rgba(0, 220, 255, 1);
+      box-shadow:
+        0 0 32px rgba(0, 210, 255, .75),
+        inset 0 0 16px rgba(255,255,255,.05);
+    }
+
+    .voice-btn {
+      flex: 0 0 auto;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 1px solid rgba(120, 220, 255, .9);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(0,220,255,.45), transparent 55%),
+        linear-gradient(145deg, rgba(8,40,95,.98), rgba(3,14,36,.98));
+      color: #7ee8ff;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 0 26px rgba(0, 190, 255, .6);
+      transition: .2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .voice-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 36px rgba(0, 220, 255, .9);
+    }
+
+    .voice-btn.listening {
+      animation: voicePulse 1.2s ease-in-out infinite;
+      border-color: #5dffb8;
+      color: #b8ffe0;
+      box-shadow: 0 0 40px rgba(93, 255, 184, .85);
+    }
+
+    @keyframes voicePulse {
+      0%, 100% { box-shadow: 0 0 28px rgba(93, 255, 184, .55); }
+      50% { box-shadow: 0 0 48px rgba(93, 255, 184, 1); }
+    }
+
+    .clear-btn {
+      flex: 0 0 auto;
+      min-height: 52px;
+      padding: 12px 20px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #dff5ff;
+      border-radius: 16px;
+      border: 1px solid rgba(120, 210, 255, .65);
+      background: rgba(0, 120, 200, .2);
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(0, 160, 255, .35);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .clear-btn:hover {
+      background: rgba(0, 160, 255, .32);
+    }
+
+    .voice-help {
+      font-size: 14px;
+      line-height: 1.4;
+      color: rgba(150, 210, 255, .82);
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .voice-status {
+      font-size: clamp(17px, 1.2vw, 22px);
+      font-weight: 750;
+      color: #5dffb8;
+      text-align: center;
+      text-shadow: 0 0 16px rgba(93, 255, 184, .5);
+    }
+
+    .voice-unsupported {
+      font-size: clamp(16px, 1.1vw, 20px);
+      font-weight: 650;
+      color: #ffb86b;
+      text-align: center;
+      padding: 8px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 184, 107, .45);
+      background: rgba(255, 140, 40, .08);
+    }
+
+    .suggestions {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      max-height: min(340px, 40vh);
+      overflow-y: auto;
+      padding: 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(100, 210, 255, .75);
+      background:
+        radial-gradient(circle at top, rgba(0,150,255,.18), transparent 55%),
+        rgba(3, 12, 32, .94);
+      box-shadow: 0 0 28px rgba(0, 170, 255, .45);
+      backdrop-filter: blur(10px);
+    }
+
+    .suggestions.show { display: flex; }
+
+    .suggestion {
+      text-align: left;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(80, 190, 255, .35);
+      background: rgba(0, 80, 140, .15);
+      cursor: pointer;
+      transition: .15s ease;
+    }
+
+    .suggestion:hover {
+      border-color: rgba(0, 220, 255, .9);
+      background: rgba(0, 120, 200, .28);
+      box-shadow: 0 0 18px rgba(0, 190, 255, .4);
+    }
+
+    .suggestion-num {
+      font-size: 15px;
+      font-weight: 900;
+      color: #55d9ff;
+      letter-spacing: .1em;
+      margin-bottom: 4px;
+    }
+
+    .suggestion-short {
+      font-size: clamp(18px, 1.25vw, 24px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+    }
+
+    .suggestion-q {
+      margin-top: 6px;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 650;
+      color: rgba(180, 230, 255, .88);
+    }
+
     .grid {
       flex: 0 0 auto;
       width: min(1280px, 100%);
@@ -294,6 +479,30 @@
       .nav-pill { align-self: flex-start; margin-bottom: 10px; font-size: 12px; padding: 9px 14px; }
       .nav-left { position: static; align-self: flex-start; margin-bottom: 10px; }
       .header-wrap { display: flex; flex-direction: column; align-items: center; }
+
+      .search-bar {
+        gap: 10px;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .search-input {
+        min-width: 0;
+        flex: 1 1 auto;
+        padding: 16px 16px;
+      }
+
+      .voice-btn {
+        width: 58px;
+        height: 58px;
+        flex: 0 0 58px;
+      }
+
+      .clear-btn {
+        padding: 12px 14px;
+        min-width: 86px;
+        flex: 0 0 auto;
+      }
     }
   </style>
 </head>
@@ -313,6 +522,25 @@
       </header>
     </div>
 
+    <section class="search-section" aria-label="Deck search">
+      <div class="search-bar">
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search by voice, keyword, slide, or topic..."
+          autocomplete="off"
+          enterkeyhint="search"
+        />
+        <button type="button" id="voiceBtn" class="voice-btn" aria-label="Voice search" title="Voice search">&#127908;</button>
+        <button type="button" id="clearBtn" class="clear-btn" hidden>Clear</button>
+      </div>
+      <p class="voice-help">Voice search uses your selected microphone. For Zoom audio on the same device, use Stereo Mix or a virtual audio cable.</p>
+      <p class="voice-status" id="voiceStatus" hidden></p>
+      <p class="voice-unsupported" id="voiceUnsupported" hidden></p>
+      <div class="suggestions" id="suggestions" role="listbox" aria-label="Search suggestions"></div>
+    </section>
+
     <section class="grid" id="grid"></section>
   </main>
 
@@ -328,22 +556,96 @@
 
   <script>
 const items = [
-  { n:"01", title:"Cover", short:"Deck opening identity and positioning" },
-  { n:"02", title:"Problem", short:"Fragmentation and system pressure" },
-  { n:"03", title:"Why Now", short:"Turning point and timing" },
-  { n:"04", title:"What is Elisence", short:"One connected ecosystem" },
-  { n:"05", title:"Why Elisence is Different", short:"Continuity, trust, and modular thinking" },
-  { n:"06", title:"Product Ecosystem", short:"Connected health experiences" },
-  { n:"07", title:"Trust, Safety & Governance", short:"Built for trust and compliance" },
-  { n:"08", title:"Business Model", short:"Trust-first routes and partnerships" },
-  { n:"09", title:"Market & Expansion", short:"Global ambition, local execution" },
-  { n:"10", title:"Founder Story", short:"Why Elisence exists" },
-  { n:"11", title:"Vision / Closing", short:"Connected future for health" },
-  { n:"12", title:"Ask / Next Step", short:"Clear next step for the room" }
+  {
+    n:"01", title:"Cover", short:"Deck opening identity and positioning",
+    modalSubtitle:"Investor deck opening identity and positioning",
+    searchBody:["ELISENCE","Human-Centred Connected Health Ecosystem","Prevention Continuity Trusted Health Intelligence","Building a more connected trusted and human future for healthcare","Global ambition Local adaptability Multilingual Healthcare-aware"],
+    helper:"5-second investor impression → trust → healthcare maturity → global ambition"
+  },
+  {
+    n:"02", title:"Problem", short:"Fragmentation and system pressure",
+    modalHeading:"Healthcare Feels Fragmented",
+    modalSubtitle:"Fragmentation, rising costs, and growing system pressure",
+    searchBody:["Health journeys fragmented","disconnected apps appointments medications trackers","diabetes prevention chronic conditions wellbeing family care","For People For Healthcare Systems","Healthcare should feel more connected understandable affordable and human"],
+    helper:"Fragmentation → cost → system pressure → prevention gap → continuity"
+  },
+  {
+    n:"03", title:"Why Now", short:"Turning point and timing",
+    modalSubtitle:"A turning point in healthcare and human expectations",
+    searchBody:["Healthcare is changing","Chronic conditions ageing populations workforce cost pressures","People are also changing","Technology is finally mature enough to help","From reactive to preventive episodic to continuous fragmented to connected","turning point timing"],
+    helper:"Pressure → behaviour change → technology maturity → timing"
+  },
+  {
+    n:"04", title:"What is Elisence", short:"One connected ecosystem",
+    modalSubtitle:"A connected health ecosystem for people and healthcare systems",
+    searchBody:["human-centred globally adaptable health ecosystem","prevention diabetes metabolic health medical tracking medication continuity","medical intelligence body scan weight wellbeing women health family care","doctor patient communication social health voice chat video chat audio chat","For People For Healthcare Systems Built for Real-World Healthcare"],
+    helper:"Connected health → continuity → intelligence → communication → people + systems"
+  },
+  {
+    n:"05", title:"Why Elisence is Different", short:"Continuity, trust, and modular thinking",
+    modalSubtitle:"Beyond isolated apps — toward connected health continuity",
+    searchBody:["Most digital health tools solve one problem at a time","fragmentation disconnected tools subscriptions","Elisence is built differently connected ecosystem","continuity trust modular architecture international adaptability","Not another health app connected ecosystem long-term health continuity","competitors different moat"],
+    helper:"Fragmented tools → disconnected care → continuity gap → connected ecosystem"
+  },
+  {
+    n:"06", title:"Product Ecosystem", short:"Connected health experiences",
+    modalSubtitle:"Connected health experiences — not disconnected tools",
+    searchBody:["Everyday Health Prevention wellbeing medical tracking","Medical Long-Term Health Journeys diabetes metabolic weight medication chronic care","Health Intelligence Layer body scan trusted guidance","Human Social Health Layer family care voice chat video chat audio chat","Healthcare Ecosystem Layer clinics hospitals insurers governments universities"],
+    helper:"Prevention → care → intelligence → communication → continuity"
+  },
+  {
+    n:"07", title:"Trust, Safety & Governance", short:"Built for trust and compliance",
+    modalSubtitle:"Built for trust — not added later",
+    searchBody:["Trust is foundational","Safety by Design non-diagnostic healthcare-aware boundaries","Zero-Trust permissions identity access consent auditability","Governance Provenance Accountability","NHS GDPR FDA MDR GCC international healthcare readiness","Compliance is not paperwork Trust is architecture safety governance compliance"],
+    helper:"Safety → trust → governance → accountability → healthcare readiness"
+  },
+  {
+    n:"08", title:"Business Model", short:"Trust-first routes and partnerships",
+    modalSubtitle:"Trust before monetisation",
+    searchBody:["multi-route business model","premium consumer experiences B2B B2B2C B2G","clinics employers insurers healthcare providers pharmacies health systems","governments public health prevention continuity","licensing workflow tools healthcare intelligence institutional partnerships","monetisation revenue money business trust-first scale"],
+    helper:"B2C → B2B → B2B2C → B2G → trust-first scale"
+  },
+  {
+    n:"09", title:"Market & Expansion", short:"Global ambition, local execution",
+    modalSubtitle:"Global ambition, local execution",
+    searchBody:["global healthcare problem local adoption","Global Market Opportunity chronic conditions prevention ageing populations","Local Execution country regulation language culture trust","UK Europe Gulf Middle East expansion","Repeatable Scale Model prove trust locally scale responsibly market global"],
+    helper:"Global opportunity → local trust → country adaptation → repeatable scale"
+  },
+  {
+    n:"10", title:"Founder Story", short:"Why Elisence exists",
+    modalSubtitle:"Why Elisence exists",
+    searchBody:["healthcare fragmented stressful difficult to navigate","engineering legal business care services domiciliary care","Elisa daughter personal mission","prevention continuity trust intelligence human support","AI collaboration tools build trust validate responsibly founder background story"],
+    helper:"Mission → credibility → responsibility → long-term execution"
+  },
+  {
+    n:"11", title:"Vision / Closing", short:"Connected future for health",
+    modalSubtitle:"A future where healthcare stays connected",
+    searchBody:["healthcare should not only exist when people are ill","healthcare should feel continuous","social health ecosystem engagement","before during and after illness","Build responsibly Earn trust locally Scale globally vision closing continuous healthcare"],
+    helper:"Continuity → trust → engagement → prevention → human healthcare"
+  },
+  {
+    n:"12", title:"Ask / Next Step", short:"Clear next step for the room",
+    modalSubtitle:"Clear next step for the room",
+    searchBody:["responsible validation partnerships scale","strategic partners investors healthcare leaders clinicians universities research","pilot conversation strategic partnership advisor introduction investment discussion","ask next step validation partnership trust"],
+    helper:"Validation → partnership → trust → responsible scale"
+  }
 ];
 
 const grid = document.getElementById("grid");
 const modalEl = document.getElementById("modal");
+const searchInput = document.getElementById("searchInput");
+const voiceBtn = document.getElementById("voiceBtn");
+const clearBtn = document.getElementById("clearBtn");
+const voiceStatus = document.getElementById("voiceStatus");
+const voiceUnsupported = document.getElementById("voiceUnsupported");
+const suggestionsEl = document.getElementById("suggestions");
+
+let lastSearchResults = [];
+let speechRecognition = null;
+let voiceListening = false;
+
+const SpeechRecognitionCtor =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
 
 function escapeHtml(value) {
   return String(value)
@@ -353,9 +655,145 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
-function renderGrid() {
+function normalizeText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\w\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const ALIAS_RULES = [
+  { triggers: ["cover", "opening"], expand: ["cover", "opening", "identity"] },
+  { triggers: ["problem", "fragmentation", "fragmented"], expand: ["problem", "fragmentation", "fragmented", "pressure"] },
+  { triggers: ["why now", "timing", "turning point"], expand: ["why", "now", "timing", "turning"] },
+  { triggers: ["what is elisence", "what is"], expand: ["what", "elisence", "ecosystem"] },
+  { triggers: ["different", "competitors", "competitor", "moat"], expand: ["different", "competitors", "continuity", "ecosystem"] },
+  { triggers: ["product", "ecosystem"], expand: ["product", "ecosystem", "experiences"] },
+  { triggers: ["trust", "safety", "governance", "compliance"], expand: ["trust", "safety", "governance", "compliance"] },
+  { triggers: ["business", "money", "revenue", "monetisation", "monetization", "b2b", "b2c"], expand: ["business", "money", "revenue", "model", "partnerships"] },
+  { triggers: ["market", "global", "expansion", "local"], expand: ["market", "global", "expansion", "local", "scale"] },
+  { triggers: ["founder", "story", "elisa"], expand: ["founder", "story", "mission", "background"] },
+  { triggers: ["vision", "closing", "close"], expand: ["vision", "closing", "continuous", "future"] },
+  { triggers: ["ask", "next step", "next"], expand: ["ask", "next", "step", "validation", "partnership"] }
+];
+
+function expandAliases(query) {
+  const normalized = normalizeText(query);
+  if (!normalized) return "";
+  const words = new Set(normalized.split(/\s+/).filter(Boolean));
+  words.add(normalized);
+
+  ALIAS_RULES.forEach((rule) => {
+    const hit = rule.triggers.some((trigger) => {
+      const t = normalizeText(trigger);
+      if (!t) return false;
+      if (normalized.includes(t)) return true;
+      return normalized.split(/\s+/).some((w) => w.startsWith(t) || t.startsWith(w));
+    });
+    if (hit) rule.expand.forEach((term) => words.add(normalizeText(term)));
+  });
+
+  return Array.from(words).join(" ");
+}
+
+function buildSearchText(item) {
+  const parts = [
+    item.n,
+    item.title,
+    item.short,
+    item.modalHeading,
+    item.modalSubtitle,
+    ...(item.searchBody || []),
+    item.helper
+  ];
+  return normalizeText(parts.join(" "));
+}
+
+function scoreField(text, queryWords, fullPhrase, weight) {
+  const norm = normalizeText(text);
+  if (!norm) return 0;
+
+  let score = 0;
+  if (fullPhrase.length >= 2 && norm.includes(fullPhrase)) score += weight * 0.55;
+
+  let matchedWords = 0;
+  queryWords.forEach((word) => {
+    if (word.length < 2 && !/^\d+$/.test(word)) return;
+    if (norm.includes(word)) {
+      score += weight * 0.18;
+      matchedWords += 1;
+    }
+    norm.split(/\s+/).forEach((token) => {
+      if (token.startsWith(word) && word.length >= 2) score += weight * 0.12;
+    });
+  });
+
+  if (queryWords.length > 1 && matchedWords === queryWords.length) score += weight * 0.22;
+  return score;
+}
+
+function scoreItem(item, index, query) {
+  const fullPhrase = normalizeText(query);
+  if (!fullPhrase) return 0;
+
+  const expanded = expandAliases(query);
+  const queryWords = Array.from(
+    new Set(
+      expanded
+        .split(/\s+/)
+        .concat(fullPhrase.split(/\s+/))
+        .filter((w) => w.length > 0)
+    )
+  );
+
+  let score = 0;
+  score += scoreField(item.title, queryWords, fullPhrase, 90);
+  score += scoreField(item.modalHeading, queryWords, fullPhrase, 90);
+  score += scoreField(item.short, queryWords, fullPhrase, 75);
+  score += scoreField(item.modalSubtitle, queryWords, fullPhrase, 70);
+  score += scoreField((item.searchBody || []).join(" "), queryWords, fullPhrase, 55);
+  score += scoreField(item.helper, queryWords, fullPhrase, 45);
+
+  const nNorm = item.n.replace(/^0+/, "") || item.n;
+  queryWords.forEach((word) => {
+    if (word === nNorm || word === item.n) score += 200;
+    if (/^\d+$/.test(word) && (nNorm === word || item.n === word.padStart(2, "0"))) score += 200;
+  });
+
+  const corpus = buildSearchText(item);
+  if (corpus.includes(fullPhrase)) score += 35;
+
+  return score;
+}
+
+function getSearchResults(query) {
+  const trimmed = (query || "").trim();
+  if (!trimmed) return items.map((item, index) => ({ index, item, score: 0 }));
+
+  return items
+    .map((item, index) => ({ index, item, score: scoreItem(item, index, trimmed) }))
+    .filter((row) => row.score > 0)
+    .sort((a, b) => b.score - a.score || Number(a.item.n) - Number(b.item.n));
+}
+
+function isStrongSingleResult(results) {
+  if (!results.length) return false;
+  if (results.length === 1) return results[0].score >= 35;
+  const top = results[0].score;
+  const second = results[1].score;
+  return top >= 50 && top >= second * 1.4 && top - second >= 12;
+}
+
+function renderGrid(results) {
   grid.innerHTML = "";
-  items.forEach((item, index) => {
+  const list = results && results.length
+    ? results
+    : items.map((item, index) => ({ index, item, score: 0 }));
+
+  list.forEach(({ index, item }) => {
     const card = document.createElement("button");
     card.type = "button";
     card.className = "card";
@@ -367,6 +805,137 @@ function renderGrid() {
     `;
     grid.appendChild(card);
   });
+}
+
+function renderSuggestions(results) {
+  suggestionsEl.innerHTML = "";
+  if (!results.length || !searchInput.value.trim()) {
+    suggestionsEl.classList.remove("show");
+    return;
+  }
+
+  results.slice(0, 8).forEach((row) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "suggestion";
+    btn.setAttribute("role", "option");
+    btn.innerHTML = `
+      <div class="suggestion-num">${escapeHtml(row.item.n)}</div>
+      <div class="suggestion-short">${escapeHtml(row.item.title)}</div>
+      <div class="suggestion-q">${escapeHtml(row.item.modalSubtitle || row.item.short)}</div>
+    `;
+    btn.onclick = () => openModal(row.index);
+    suggestionsEl.appendChild(btn);
+  });
+
+  suggestionsEl.classList.add("show");
+}
+
+function applySearch(query, options = {}) {
+  const { openTopIfStrong = false, openTopOnEnter = false } = options;
+  const trimmed = (query || "").trim();
+
+  clearBtn.hidden = !trimmed;
+
+  if (!trimmed) {
+    lastSearchResults = items.map((item, index) => ({ index, item, score: 0 }));
+    renderGrid(lastSearchResults);
+    renderSuggestions([]);
+    return lastSearchResults;
+  }
+
+  lastSearchResults = getSearchResults(trimmed);
+  renderGrid(lastSearchResults);
+  renderSuggestions(lastSearchResults);
+
+  if (openTopOnEnter || openTopIfStrong) {
+    if (lastSearchResults.length && (openTopOnEnter || isStrongSingleResult(lastSearchResults))) {
+      openModal(lastSearchResults[0].index);
+    }
+  }
+
+  return lastSearchResults;
+}
+
+function stopVoiceSearch() {
+  voiceListening = false;
+  voiceBtn.classList.remove("listening");
+  if (speechRecognition) {
+    try { speechRecognition.stop(); } catch (err) { /* ignore */ }
+  }
+}
+
+function initVoiceSearch() {
+  if (!SpeechRecognitionCtor) {
+    voiceUnsupported.hidden = false;
+    voiceUnsupported.textContent = "Voice search is not supported on this browser. Please type a few words.";
+    voiceBtn.disabled = true;
+    voiceBtn.style.opacity = "0.55";
+    return;
+  }
+
+  speechRecognition = new SpeechRecognitionCtor();
+  speechRecognition.continuous = false;
+  speechRecognition.interimResults = false;
+  speechRecognition.lang = "en-GB";
+
+  speechRecognition.onstart = () => {
+    voiceListening = true;
+    voiceBtn.classList.add("listening");
+    voiceStatus.hidden = false;
+    voiceStatus.textContent = "Listening...";
+    voiceUnsupported.hidden = true;
+  };
+
+  speechRecognition.onresult = (event) => {
+    const transcript = Array.from(event.results).map((r) => r[0].transcript).join(" ").trim();
+    if (transcript) {
+      searchInput.value = transcript;
+      applySearch(transcript, { openTopIfStrong: true });
+    }
+  };
+
+  speechRecognition.onerror = () => {
+    stopVoiceSearch();
+    voiceStatus.textContent = "Voice input ended. Try again or type your search.";
+  };
+
+  speechRecognition.onend = () => {
+    stopVoiceSearch();
+  };
+}
+
+function startVoiceSearch() {
+  if (!SpeechRecognitionCtor) {
+    voiceUnsupported.hidden = false;
+    voiceUnsupported.textContent = "Voice search is not supported on this browser. Please type a few words.";
+    return;
+  }
+
+  if (!speechRecognition) initVoiceSearch();
+
+  try {
+    if (voiceListening) {
+      stopVoiceSearch();
+      return;
+    }
+    speechRecognition.start();
+  } catch (err) {
+    voiceStatus.hidden = false;
+    voiceStatus.textContent = "Could not start microphone. Please type your search.";
+    stopVoiceSearch();
+  }
+}
+
+function clearSearch() {
+  searchInput.value = "";
+  clearBtn.hidden = true;
+  stopVoiceSearch();
+  voiceStatus.hidden = true;
+  lastSearchResults = items.map((item, index) => ({ index, item, score: 0 }));
+  renderGrid(lastSearchResults);
+  renderSuggestions([]);
+  searchInput.focus();
 }
 
 function openModal(index) {
@@ -545,10 +1114,32 @@ function closeModal() {
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && modalEl.classList.contains("show")) closeModal();
+  if (e.key !== "Escape") return;
+  if (modalEl.classList.contains("show")) {
+    closeModal();
+    return;
+  }
+  if (searchInput.value.trim()) {
+    clearSearch();
+  }
 });
 
-renderGrid();
+searchInput.addEventListener("input", () => {
+  applySearch(searchInput.value);
+});
+
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    applySearch(searchInput.value, { openTopOnEnter: true });
+  }
+});
+
+clearBtn.addEventListener("click", clearSearch);
+voiceBtn.addEventListener("click", startVoiceSearch);
+
+renderGrid(items.map((item, index) => ({ index, item, score: 0 })));
+initVoiceSearch();
   </script>
 </body>
 </html>
