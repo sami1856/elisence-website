@@ -371,9 +371,20 @@ function renderGrid() {
 function openModal(index) {
   const item = items[index];
   document.getElementById("modalTitle").textContent = item.n + " — " + item.title;
-  document.getElementById("modalAnswer").innerHTML =
-    '<p class="deck-subtitle">Deck slide skeleton</p>' +
-    '<p class="placeholder-note">Deck slide content will be drafted next.</p>';
+  if (item.n === "01") {
+    document.getElementById("modalAnswer").innerHTML =
+      '<p class="deck-subtitle">Investor deck opening identity and positioning</p>' +
+      '<p style="margin-bottom: 10px; font-weight: 950; letter-spacing: .22em; text-transform: uppercase; text-align: center;">ELISENCE</p>' +
+      '<p style="margin-bottom: 10px; font-weight: 900; text-align: center;">Human-Centred Connected Health Ecosystem</p>' +
+      '<p style="margin-bottom: 22px; font-weight: 850; color: rgba(180, 230, 255, .92); text-align: center;">Prevention • Continuity • Trusted Health Intelligence</p>' +
+      '<p style="margin-bottom: 14px; text-align: center;">Building a more connected, trusted, and human future for healthcare</p>' +
+      '<p style="margin-bottom: 0; text-align: center; color: rgba(180, 230, 255, .88);">Global ambition • Local adaptability • Multilingual • Healthcare-aware</p>' +
+      '<p class="placeholder-note" style="margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">5-second investor impression → trust → healthcare maturity → global ambition</p>';
+  } else {
+    document.getElementById("modalAnswer").innerHTML =
+      '<p class="deck-subtitle">Deck slide skeleton</p>' +
+      '<p class="placeholder-note">Deck slide content will be drafted next.</p>';
+  }
   modalEl.classList.add("show");
 }
 
