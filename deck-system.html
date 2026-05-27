@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elisence — Investor Deck System</title>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #061936 0%, #020816 48%, #000 100%);
+      color: #fff;
+      overflow-y: auto;
+    }
+
+    .board {
+      width: 100vw;
+      min-height: 100vh;
+      padding: 18px 22px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header-wrap {
+      position: relative;
+      flex: 0 0 auto;
+      width: 100%;
+    }
+
+    .nav-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-decoration: none;
+      color: #dff5ff;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 220, 255, .85);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(0, 220, 255, .35), transparent 55%),
+        rgba(0, 80, 160, .28);
+      box-shadow: 0 0 22px rgba(0, 190, 255, .55);
+      transition: transform .15s ease, box-shadow .15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-pill:hover,
+    .nav-pill:focus-visible {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 32px rgba(0, 220, 255, .85);
+      outline: 2px solid rgba(0, 220, 255, .5);
+      outline-offset: 2px;
+    }
+
+    .header {
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    .brand {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 0.28em;
+      color: #ffffff;
+      text-shadow: 0 0 28px rgba(0,180,255,.9);
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      font-size: 17px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8edcff;
+    }
+
+    .description {
+      margin-top: 12px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: clamp(15px, 1.1vw, 18px);
+      line-height: 1.45;
+      font-weight: 620;
+      color: rgba(180, 230, 255, .88);
+      padding: 0 12px;
+    }
+
+    .grid {
+      flex: 0 0 auto;
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .card {
+      border: 1px solid rgba(95, 205, 255, .75);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(0,190,255,.34), transparent 45%),
+        linear-gradient(145deg, rgba(8,34,85,.96), rgba(4,12,34,.98));
+      box-shadow:
+        0 0 22px rgba(0,160,255,.65),
+        inset 0 0 20px rgba(255,255,255,.04);
+      padding: 16px;
+      min-height: 158px;
+      height: 100%;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow:
+        0 0 34px rgba(0, 210, 255, .95),
+        0 0 70px rgba(80, 80, 255, .45);
+    }
+
+    .num {
+      font-size: 17px;
+      font-weight: 900;
+      color: #55d9ff;
+      letter-spacing: .12em;
+      text-align: center;
+    }
+
+    .q {
+      font-size: clamp(16px, 1.18vw, 23px);
+      line-height: 1.06;
+      font-weight: 900;
+      color: #ffffff;
+      text-align: center;
+      text-shadow: 0 0 18px rgba(0,170,255,.5);
+    }
+
+    .tag {
+      margin-top: 12px;
+      font-size: 13.5px;
+      line-height: 1.35;
+      font-weight: 650;
+      color: rgba(180, 230, 255, .9);
+      opacity: .94;
+      text-align: center;
+      letter-spacing: .01em;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 34px;
+      background: rgba(0, 0, 0, .82);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal.show { display: flex; }
+
+    .panel {
+      position: relative;
+      width: min(1500px, 96vw);
+      height: min(850px, 92vh);
+      border-radius: 34px;
+      border: 1px solid rgba(110, 220, 255, .9);
+      background:
+        radial-gradient(circle at top, rgba(0,160,255,.28), transparent 42%),
+        linear-gradient(145deg, #06193a, #020716 72%);
+      box-shadow:
+        0 0 55px rgba(0,190,255,.8),
+        0 0 140px rgba(90,80,255,.45);
+      padding: 34px 42px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      overflow: hidden;
+    }
+
+    .modal-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 16px;
+      flex: 0 0 auto;
+      padding-right: 4px;
+    }
+
+    .modal-title {
+      font-size: clamp(34px, 3.2vw, 58px);
+      line-height: 1.08;
+      font-weight: 950;
+      color: #fff;
+      padding-right: 8px;
+      word-break: break-word;
+    }
+
+    .close {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      min-height: 56px;
+      padding: 0;
+      border: 1px solid rgba(120, 220, 255, .95);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 900;
+      color: #fff;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(0, 220, 255, .4), transparent 55%),
+        rgba(0, 120, 200, .35);
+      cursor: pointer;
+      box-shadow:
+        0 0 24px rgba(0, 190, 255, .75),
+        inset 0 0 12px rgba(255, 255, 255, .06);
+      transition: transform .15s ease, box-shadow .15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .close:hover,
+    .close:focus-visible {
+      transform: scale(1.05);
+      box-shadow: 0 0 32px rgba(0, 220, 255, .95);
+      outline: 2px solid rgba(0, 220, 255, .6);
+      outline-offset: 2px;
+    }
+
+    .close:active { transform: scale(0.97); }
+
+    .answer {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 8px;
+      font-size: clamp(28px, 2.15vw, 42px);
+      line-height: 1.32;
+      font-weight: 650;
+      color: #eaf8ff;
+    }
+
+    .answer p { margin-bottom: 22px; }
+
+    .placeholder-note {
+      color: rgba(180, 230, 255, .75);
+      font-style: italic;
+    }
+
+    .deck-subtitle {
+      font-size: clamp(20px, 1.45vw, 30px);
+      line-height: 1.22;
+      font-weight: 850;
+      color: #8edcff;
+      margin-bottom: 20px;
+      letter-spacing: .04em;
+    }
+
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 16px; width: min(720px, 100%); }
+      .card { min-height: 150px; }
+      .modal { padding: 12px; }
+      .panel { padding: 22px 18px; height: min(92vh, 92dvh); }
+      .close { width: 52px; height: 52px; min-width: 52px; min-height: 52px; font-size: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-pill { align-self: flex-start; margin-bottom: 10px; font-size: 12px; padding: 9px 14px; }
+      .nav-left { position: static; align-self: flex-start; margin-bottom: 10px; }
+      .header-wrap { display: flex; flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="board">
+    <div class="header-wrap">
+      <div class="nav-left">
+        <a href="web-summit-board.html" class="nav-pill">&larr; Founder Quick Board</a>
+        <a href="pitch-system.html" class="nav-pill">&larr; Pitch System</a>
+      </div>
+      <header class="header">
+        <div class="brand">ELISENCE</div>
+        <div class="subtitle">Investor Deck System</div>
+        <p class="description">Slide-by-slide investor story structure for Elisence.</p>
+      </header>
+    </div>
+
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="panel">
+      <div class="modal-top">
+        <div class="modal-title" id="modalTitle"></div>
+        <button type="button" class="close" onclick="closeModal()" aria-label="Close">&times;</button>
+      </div>
+      <div class="answer" id="modalAnswer"></div>
+    </div>
+  </div>
+
+  <script>
+const items = [
+  { n:"01", title:"Cover", short:"Deck opening identity and positioning" },
+  { n:"02", title:"Problem", short:"Fragmentation and system pressure" },
+  { n:"03", title:"Why Now", short:"Turning point and timing" },
+  { n:"04", title:"What is Elisence", short:"One connected ecosystem" },
+  { n:"05", title:"Why Elisence is Different", short:"Continuity, trust, and modular thinking" },
+  { n:"06", title:"Product Ecosystem", short:"Connected health experiences" },
+  { n:"07", title:"Trust, Safety & Governance", short:"Built for trust and compliance" },
+  { n:"08", title:"Business Model", short:"Trust-first routes and partnerships" },
+  { n:"09", title:"Market & Expansion", short:"Global ambition, local execution" },
+  { n:"10", title:"Founder Story", short:"Why Elisence exists" },
+  { n:"11", title:"Vision / Closing", short:"Connected future for health" },
+  { n:"12", title:"Ask / Next Step", short:"Clear next step for the room" }
+];
+
+const grid = document.getElementById("grid");
+const modalEl = document.getElementById("modal");
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function renderGrid() {
+  grid.innerHTML = "";
+  items.forEach((item, index) => {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "card";
+    card.onclick = () => openModal(index);
+    card.innerHTML = `
+      <div class="num">${escapeHtml(item.n)}</div>
+      <div class="q">${escapeHtml(item.title)}</div>
+      <div class="tag">${escapeHtml(item.short)}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function openModal(index) {
+  const item = items[index];
+  document.getElementById("modalTitle").textContent = item.n + " — " + item.title;
+  document.getElementById("modalAnswer").innerHTML =
+    '<p class="deck-subtitle">Deck slide skeleton</p>' +
+    '<p class="placeholder-note">Deck slide content will be drafted next.</p>';
+  modalEl.classList.add("show");
+}
+
+function closeModal() {
+  modalEl.classList.remove("show");
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modalEl.classList.contains("show")) closeModal();
+});
+
+renderGrid();
+  </script>
+</body>
+</html>
+

@@ -36,11 +36,18 @@
       width: 100%;
     }
 
-    .nav-pill {
+    .nav-left {
       position: absolute;
       top: 0;
       left: 0;
       z-index: 10;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -482,11 +489,16 @@
 
     @media (max-width: 768px) {
       .nav-pill {
-        position: static;
         align-self: flex-start;
         margin-bottom: 10px;
         font-size: 12px;
         padding: 9px 14px;
+      }
+
+      .nav-left {
+        position: static;
+        align-self: flex-start;
+        margin-bottom: 10px;
       }
 
       .header-wrap {
@@ -525,7 +537,10 @@
 <body>
   <main class="board">
     <div class="header-wrap">
-      <a href="pitch-system.html" class="nav-pill">Pitch System</a>
+      <div class="nav-left">
+        <a href="pitch-system.html" class="nav-pill">Pitch System</a>
+        <a href="deck-system.html" class="nav-pill">Deck System</a>
+      </div>
       <header class="header">
         <div class="brand">ELISENCE</div>
         <div class="subtitle">Web Summit Founder Quick Board</div>
