@@ -601,7 +601,7 @@ const items = [
   },
   {
     n:"08", title:"Business Model", short:"Trust-first routes and partnerships",
-    modalSubtitle:"Trust before monetisation",
+    modalSubtitle:"Trust-led healthcare value creation",
     searchBody:["multi-route business model","premium consumer experiences B2B B2B2C B2G","clinics employers insurers healthcare providers pharmacies health systems","governments public health prevention continuity","licensing workflow tools healthcare intelligence institutional partnerships","monetisation revenue money business trust-first scale"],
     helper:"B2C → B2B → B2B2C → B2G → trust-first scale"
   },
@@ -1046,6 +1046,23 @@ function openModal(index) {
       '<p style="margin-bottom: 22px; padding-left: 8px;">• Safety matters more than false certainty. Elisence is designed to behave conservatively, explain uncertainty, restrict unsafe access, and fail safely rather than overclaim confidence.</p>' +
       '<p style="margin-bottom: 0; font-weight: 850; text-align: center;">Compliance is not paperwork. Trust is architecture.</p>' +
       '<p class="placeholder-note" style="margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">Safety → trust → governance → accountability → healthcare readiness</p>';
+  } else if (item.n === "08") {
+    document.getElementById("modalAnswer").innerHTML =
+      '<p class="deck-subtitle">Trust-led healthcare value creation</p>' +
+      '<p style="margin-bottom: 22px;">Elisence is designed as a trust-led healthcare ecosystem with multiple monetisation layers rather than a single subscription product.</p>' +
+      '<p style="margin-bottom: 14px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: #8edcff;">FOR PEOPLE (B2C)</p>' +
+      '<p style="margin-bottom: 12px; padding-left: 8px;">• Elisence can offer premium experiences where advanced health support, prevention, continuity, trusted health intelligence, personal health tools, medical tracking, social health experiences, and healthcare coordination create meaningful everyday value.</p>' +
+      '<p style="margin-bottom: 22px; padding-left: 8px;">• Our philosophy is simple: basic safety, trust, and essential healthcare participation should never feel locked behind payment.</p>' +
+      '<p style="margin-bottom: 14px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: #8edcff;">FOR HEALTHCARE ORGANISATIONS (B2B / B2B2C)</p>' +
+      '<p style="margin-bottom: 12px; padding-left: 8px;">• Elisence is designed to support clinics, hospitals, employers, insurers, pharmacies, healthcare providers, and responsible care organisations through continuity, communication, prevention, trusted participation, and better coordination across fragmented healthcare journeys.</p>' +
+      '<p style="margin-bottom: 22px; padding-left: 8px;">• In some cases, organisations may enable or subsidise access for the people they support.</p>' +
+      '<p style="margin-bottom: 14px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: #8edcff;">FOR GOVERNMENTS &amp; PUBLIC HEALTH SYSTEMS (B2G)</p>' +
+      '<p style="margin-bottom: 12px; padding-left: 8px;">• Governments and public health systems increasingly need prevention, continuity, participation, trusted health engagement, and lower fragmentation across healthcare journeys.</p>' +
+      '<p style="margin-bottom: 22px; padding-left: 8px;">• Elisence is designed to support more connected and scalable healthcare experiences rather than isolated interactions.</p>' +
+      '<p style="margin-bottom: 14px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: #8edcff;">LONG-TERM PLATFORM VALUE</p>' +
+      '<p style="margin-bottom: 22px; padding-left: 8px;">• Over time, Elisence may support responsible licensing, workflow tools, healthcare intelligence services, institutional partnerships, research collaborations, and trusted healthcare infrastructure services — always centred around governance, privacy, consent, and trust.</p>' +
+      '<p style="margin-bottom: 0; font-weight: 850; text-align: center;">B2C creates direct user value. B2B, B2B2C, and B2G create scalable impact. Trust keeps the model sustainable.</p>' +
+      '<p class="placeholder-note" style="margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">People → organisations → governments → trusted healthcare infrastructure</p>';
   } else if (item.n === "09") {
     document.getElementById("modalAnswer").innerHTML =
       '<p class="deck-subtitle">Global ambition, local execution</p>' +
