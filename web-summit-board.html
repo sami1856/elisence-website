@@ -1002,14 +1002,14 @@ const items = [
   {
     n:"23",
     title:"Competitors",
-    short:"Who are your competitors?",
-    question:"Who do you compete with, and how do you compare?",
-    keywords:["fragmented tools","ecosystem","continuity","social health"],
+    short:"Who are your competitors, and why is Elisence different?",
+    question:"How are you different from competitors?",
+    keywords:["competitors","competition","different","market","fragmentation","health apps","wellness","telehealth","community","medication","ecosystem"],
     answer:[
-      "We see many fragmented solutions in digital health.",
-      "Some focus on tracking, some on community, some on medication, and some on wellness.",
-      "Elisence is different because we are not building one isolated tool.",
-      "We are building a connected ecosystem where healthcare support, continuity, social health, and intelligent assistance work together."
+      "We absolutely see competitors, and we respect them. Digital health is a large and fast-moving market with strong companies focused on specific areas — for example wellness tracking, medication support, telehealth, women's health, AI health assistants, or online health communities.",
+      "The challenge, in our view, is that healthcare still feels fragmented. People often move between disconnected apps, services, and experiences without continuity.",
+      "What makes Elisence different is that we are not trying to build just one isolated tool. We are building a connected, modular health ecosystem where prevention, health continuity, intelligent assistance, medication support, social health experiences, and trust-aware infrastructure can work together in one experience.",
+      "So we do not see competition as one single company. We see competitors across categories — and our goal is to connect what is currently fragmented into something more seamless, trusted, and useful."
     ]
   },
   {
@@ -1031,7 +1031,7 @@ const items = [
     question:"Can you explain Elisence in one sentence?",
     keywords:["connected health AI","prevention","continuity","healthcare systems"],
     answer:[
-      "Elisence is a connected health AI platform that helps people better understand, manage, and navigate healthcare while supporting prevention, continuity, and smarter healthcare systems."
+      "Elisence is a connected health and humanity ecosystem that keeps people, clinicians, hospitals, pharmacies, and governments continuously connected through trusted health intelligence, prevention, communication, and continuity of care."
     ]
   },
   {
@@ -1800,24 +1800,35 @@ const SpeechRecognitionCtor =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
 const ALIAS_RULES = [
-  { triggers: ["hall", "halucination", "hallucinat", "hallucination"], expand: ["hallucination", "hallucinat", "unsafe", "mistake"], boost: [31, 45] },
-  { triggers: ["ai mistake", "ai wrong", "unsafe ai"], expand: ["hallucination", "liability", "unsafe", "harm"], boost: [31, 45] },
-  { triggers: ["api", "model", "foundation", "own model", "models"], expand: ["foundation", "models", "api", "ip"], boost: [30] },
-  { triggers: ["data", "privacy", "gdpr", "residency", "gulf", "provenance", "dmd"], expand: ["data", "residency", "privacy", "quality", "governance"], boost: [30, 32, 53] },
-  { triggers: ["doctor", "doctors", "specialist", "biologist", "clinician"], expand: ["doctor", "doctors", "professional", "specialist", "clinician"], boost: [35, 44, 56] },
-  { triggers: ["apple", "google", "copy", "big tech", "copies"], expand: ["apple", "google", "big tech", "competition"], boost: [37] },
-  { triggers: ["cost", "compute", "margin", "profit", "unit economics"], expand: ["cost", "compute", "margin", "pricing", "economics"], boost: [36, 46] },
-  { triggers: ["fund", "funding", "investment", "raise", "investor"], expand: ["fund", "funding", "investment", "raise"], boost: [26, 50] },
-  { triggers: ["trust", "privacy"], expand: ["trust", "privacy", "user trust"], boost: [25, 5] },
-  { triggers: ["compliance", "security", "reliability"], expand: ["compliance", "security", "reliability"], boost: [5, 32] },
-  { triggers: ["medical device", "samd", "mhra", "regulated", "regulation"], expand: ["medical device", "samd", "mhra", "regulatory"], boost: [41] },
-  { triggers: ["proof", "evidence", "validation"], expand: ["proof", "evidence", "validation", "pilot"], boost: [42, 44, 18] },
-  { triggers: ["pilot", "beta", "first users"], expand: ["pilot", "beta", "users"], boost: [44, 42] },
-  { triggers: ["price", "pricing", "arpu", "subscription", "charge"], expand: ["price", "pricing", "subscription", "premium"], boost: [46] },
-  { triggers: ["insurer", "insurance", "payer", "reimbursement", "commissioning"], expand: ["insurer", "insurance", "payer", "reimbursement"], boost: [59] },
-  { triggers: ["pitch", "stage", "40 words", "40 word", "three minute", "3 minute"], expand: ["pitch", "stage", "words", "minute"], boost: [40, 55] },
-  { triggers: ["demo", "showcase", "live product"], expand: ["demo", "showcase", "live"], boost: [57] },
-  { triggers: ["liability", "liable", "harm", "legal"], expand: ["liability", "harm", "legal", "disclaimers"], boost: [45] }
+  { triggers: ["halucination", "hallucinat", "hallucinate", "hallucination"], expand: ["hallucination", "hallucinat", "unsafe", "mistake"], boostCardNumbers: ["32", "46"] },
+  { triggers: ["ai mistake", "ai wrong", "unsafe ai"], expand: ["hallucination", "liability", "unsafe", "harm"], boostCardNumbers: ["32", "46"] },
+  { triggers: ["foundation model", "foundation models", "own model", "own models"], expand: ["foundation", "models", "api", "ip"], boostCardNumbers: ["31"] },
+  { triggers: ["api"], expand: ["api", "ip", "foundation"], boostCardNumbers: ["31"] },
+  { triggers: ["business model", "monetisation", "monetization", "monetise", "monetize"], expand: ["business", "model", "revenue", "monetisation", "money"], boostCardNumbers: ["19"] },
+  { triggers: ["make money", "how do you make money"], expand: ["money", "revenue", "business", "model"], boostCardNumbers: ["19"] },
+  { triggers: ["biggest challenge", "big challenge", "greatest challenge"], expand: ["challenge", "biggest"], boostCardNumbers: ["16"] },
+  { triggers: ["challenge"], expand: ["challenge"], boostCardNumbers: ["16"] },
+  { triggers: ["data", "privacy", "gdpr", "residency", "gulf", "provenance", "dmd"], expand: ["data", "residency", "privacy", "quality", "governance"], boostCardNumbers: ["31", "33", "54"] },
+  { triggers: ["doctor", "doctors", "specialist", "biologist", "clinician"], expand: ["doctor", "doctors", "professional", "specialist", "clinician"], boostCardNumbers: ["36", "45", "57"] },
+  { triggers: ["apple", "google", "copy", "big tech", "copies"], expand: ["apple", "google", "big tech", "competition"], boostCardNumbers: ["38"] },
+  { triggers: ["cost", "compute", "margin", "profit", "unit economics"], expand: ["cost", "compute", "margin", "pricing", "economics"], boostCardNumbers: ["37", "47"] },
+  { triggers: ["fund", "funding", "investment", "raise", "investor"], expand: ["fund", "funding", "investment", "raise"], boostCardNumbers: ["26", "51"] },
+  { triggers: ["trust", "user trust"], expand: ["trust", "privacy", "user trust"], boostCardNumbers: ["22", "06"] },
+  { triggers: ["privacy"], expand: ["privacy", "data", "trust"], boostCardNumbers: ["33", "06", "22"] },
+  { triggers: ["compliance", "security", "reliability"], expand: ["compliance", "security", "reliability"], boostCardNumbers: ["06", "33"] },
+  { triggers: ["medical device", "samd", "mhra", "regulated", "regulation"], expand: ["medical device", "samd", "mhra", "regulatory"], boostCardNumbers: ["42"] },
+  { triggers: ["proof", "evidence", "validation"], expand: ["proof", "evidence", "validation", "pilot"], boostCardNumbers: ["43", "45", "19"] },
+  { triggers: ["pilot", "beta", "first users"], expand: ["pilot", "beta", "users"], boostCardNumbers: ["45", "43"] },
+  { triggers: ["price", "pricing", "arpu", "subscription", "charge"], expand: ["price", "pricing", "subscription", "premium"], boostCardNumbers: ["47"] },
+  { triggers: ["insurer", "insurance", "payer", "reimbursement", "commissioning"], expand: ["insurer", "insurance", "payer", "reimbursement"], boostCardNumbers: ["60"] },
+  { triggers: ["pitch", "stage", "40 words", "40 word", "three minute", "3 minute"], expand: ["pitch", "stage", "words", "minute"], boostCardNumbers: ["41", "56"] },
+  { triggers: ["demo", "showcase", "live product"], expand: ["demo", "showcase", "live"], boostCardNumbers: ["58"] },
+  { triggers: ["liability", "liable", "harm", "legal"], expand: ["liability", "harm", "legal", "disclaimers"], boostCardNumbers: ["46"] },
+  { triggers: ["market scope", "local or global", "global or local"], expand: ["market", "global", "local", "scope"], boostCardNumbers: ["08"] },
+  { triggers: ["what is elisence"], expand: ["elisence", "ecosystem", "health"], boostCardNumbers: ["01"] },
+  { triggers: ["future vision", "where do you see elisence", "see elisence in"], expand: ["vision", "future", "years"], boostCardNumbers: ["17"] },
+  { triggers: ["zero trust"], expand: ["zero", "trust", "identity"], boostCardNumbers: ["65"] },
+  { triggers: ["women health", "women s health", "womens health"], expand: ["women", "health", "wellbeing"], boostCardNumbers: ["05"] }
 ];
 
 function escapeHtml(value) {
@@ -1838,19 +1849,48 @@ function normalizeText(value) {
     .trim();
 }
 
+function queryTokensFromNormalized(normalized) {
+  return normalized.split(/\s+/).filter(Boolean);
+}
+
+function aliasTriggerMatches(normalized, trigger) {
+  const t = normalizeText(trigger);
+  if (!t || !normalized) return false;
+
+  const padded = ` ${normalized} `;
+  const tokens = queryTokensFromNormalized(normalized);
+
+  if (t.includes(" ")) {
+    return padded.includes(` ${t} `);
+  }
+
+  if (tokens.some((w) => w === t)) return true;
+
+  if (t.length >= 4) {
+    return tokens.some((w) => {
+      if (w === t) return true;
+      if (w.startsWith(t)) return true;
+      if (t.startsWith(w) && w.length >= 4) return true;
+      return false;
+    });
+  }
+
+  return false;
+}
+
+function resolveCardIndex(cardNumber) {
+  const nn = String(cardNumber).padStart(2, "0");
+  return items.findIndex((item) => item.n === nn);
+}
+
 function expandAliases(query) {
   const normalized = normalizeText(query);
   if (!normalized) return "";
-  const words = new Set(normalized.split(/\s+/).filter(Boolean));
+  const words = new Set(queryTokensFromNormalized(normalized));
   words.add(normalized);
 
   ALIAS_RULES.forEach((rule) => {
-    const hit = rule.triggers.some((trigger) => {
-      const t = normalizeText(trigger);
-      if (!t) return false;
-      if (normalized.includes(t)) return true;
-      return normalized.split(/\s+/).some((w) => w.startsWith(t) || t.startsWith(w));
-    });
+    const hit = rule.triggers.some((trigger) => aliasTriggerMatches(normalized, trigger));
     if (hit) {
       rule.expand.forEach((term) => words.add(normalizeText(term)));
     }
@@ -1865,17 +1905,16 @@ function getAliasBoostIndices(query) {
   if (!normalized) return boosts;
 
   ALIAS_RULES.forEach((rule) => {
-    const hit = rule.triggers.some((trigger) => {
-      const t = normalizeText(trigger);
-      if (!t) return false;
-      if (normalized.includes(t)) return true;
-      return normalized.split(/\s+/).some((w) => w.startsWith(t) || t.startsWith(w));
-    });
-    if (hit && rule.boost) {
-      rule.boost.forEach((idx) => {
+    const hit = rule.triggers.some((trigger) => aliasTriggerMatches(normalized, trigger));
+    if (!hit) return;
+
+    const cardNumbers = rule.boostCardNumbers || [];
+    cardNumbers.forEach((cardNumber) => {
+      const idx = resolveCardIndex(cardNumber);
+      if (idx >= 0) {
         boosts.set(idx, (boosts.get(idx) || 0) + 120);
-      });
-    }
+      }
+    });
   });
 
   return boosts;
@@ -1943,16 +1982,27 @@ function scoreItem(item, index, query) {
   );
 
   let score = 0;
-  score += scoreField(item.short, queryWords, fullPhrase, 100);
-  score += scoreField(item.title, queryWords, fullPhrase, 80);
-  score += scoreField(item.question, queryWords, fullPhrase, 70);
-  score += scoreField((item.keywords || []).join(" "), queryWords, fullPhrase, 60);
-  score += scoreField((item.answer || []).join(" "), queryWords, fullPhrase, 40);
+  score += scoreField(item.short, queryWords, fullPhrase, 108);
+  score += scoreField(item.title, queryWords, fullPhrase, 92);
+  score += scoreField(item.question, queryWords, fullPhrase, 78);
+  score += scoreField((item.keywords || []).join(" "), queryWords, fullPhrase, 76);
+  score += scoreField((item.answer || []).join(" "), queryWords, fullPhrase, 24);
 
   if (item.followups) {
     item.followups.forEach((f) => {
-      score += scoreField(f.q + " " + f.a, queryWords, fullPhrase, 40);
+      score += scoreField(f.q + " " + f.a, queryWords, fullPhrase, 24);
     });
+  }
+
+  if (fullPhrase.length >= 2) {
+    const titleNorm = normalizeText(item.title);
+    const shortNorm = normalizeText(item.short);
+    const questionNorm = normalizeText(item.question);
+    const keywordsNorm = normalizeText((item.keywords || []).join(" "));
+    if (titleNorm.includes(fullPhrase)) score += 55;
+    if (shortNorm.includes(fullPhrase)) score += 50;
+    if (questionNorm.includes(fullPhrase)) score += 40;
+    if (keywordsNorm.includes(fullPhrase)) score += 35;
   }
 
   const nNorm = item.n.replace(/^0+/, "") || item.n;
