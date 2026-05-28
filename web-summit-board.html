@@ -1560,11 +1560,10 @@ const items = [
     question:"Are you B2C-first, B2B-first, B2G-first, or dual-track — and why?",
     keywords:["B2C","B2B","B2G","GTM","healthcare systems"],
     answer:[
-      "Near term, trust comes before aggressive monetisation.",
-      "We want people to experience genuine value, safety, and usefulness before asking them to pay. Premium should feel like advanced support — not access to basic safety.",
-      "Over time, revenue may come from a mix of premium consumer experiences, B2B and B2B2C partnerships, and clinical or system licensing for trusted healthcare tools and health intelligence.",
-      "For example, healthcare providers, employers, insurers, or health systems may enable Elisence for the people they serve, while individuals remain at the centre of the experience.",
-      "Our unit economics depend on efficient AI routing — using structured logic, rules, and trusted systems where possible, and applying generative AI only where it adds real value. This helps us scale responsibly while keeping trust, quality, and cost efficiency in balance."
+      "Long term, Elisence is a dual-track platform — serving both people and healthcare systems.",
+      "In the near term, we are trust-first and validation-first: starting with real user value while building pilot partnerships with credible healthcare environments.",
+      "The reason is simple: healthcare systems move slowly, trust takes time, and meaningful adoption happens when people experience real value while institutions gain confidence in safety, governance, and outcomes.",
+      "Over time, Elisence can scale across B2C, B2B2C, healthcare providers, insurers, and government or national health systems — while keeping the individual at the centre of the experience."
     ],
     followups:[
       {
@@ -1781,6 +1780,130 @@ const items = [
       {
         q:"Who pays for Elisence?",
         a:"To date, development has been founder-funded."
+      }
+    ]
+  },
+  {
+    n:"71",
+    title:"Medical advice, diagnosis & safety?",
+    short:"Medical advice, diagnosis & safety?",
+    question:"Are you a medical app, diagnostic AI, or medical advice platform? Do you replace doctors, give diagnoses, prescriptions, or clinical recommendations? How do you prevent unsafe AI, hallucinations, and medical risk?",
+    keywords:["medical advice","medical app","wellness app","diagnosis","diagnostic","diagnostic AI","doctor","replace doctor","doctors","clinician","clinical safety","clinical responsibility","prescription","prescribe","prescribing","medical device","FDA","MDR","health regulation","compliance","governance","trust","unsafe AI","hallucination","hallucinations","medical risk","risk","safety","liability","accountability","privacy","explainability","fail-safe","fail safe","permission boundaries"],
+    answer:[
+      "Elisence is designed to support people and healthcare systems — not replace clinicians or act as an autonomous diagnostic system.",
+      "We do not position Elisence as a platform for autonomous diagnosis, prescription, or replacing qualified medical professionals. Instead, we focus on helping people better understand, manage, and navigate health and healthcare through trusted guidance, prevention, continuity, structured health understanding, and safer decision support.",
+      "Clinical decisions remain with qualified professionals.",
+      "To reduce unsafe AI risk, Elisence is designed around trust, explainability, structured logic, permission boundaries, governance, trusted sources, and fail-safe behavior rather than unrestricted autonomy.",
+      "We intentionally build around safety, privacy, accountability, and regulatory readiness from the beginning — not as an afterthought."
+    ],
+    followups:[
+      {
+        q:"Are you a medical device?",
+        a:"We build with regulatory readiness and safety thinking in mind, but we do not position Elisence as an autonomous diagnostic or prescribing medical device. Any regulated functionality would be approached explicitly, with the right governance, evidence, and compliance path."
+      },
+      {
+        q:"Do you give medical advice?",
+        a:"Elisence is designed for trusted guidance and safer decision support, while keeping clinical decisions with qualified professionals. It is not positioned as a substitute for professional medical advice or diagnosis."
+      },
+      {
+        q:"How do you stop hallucinations?",
+        a:"We design around structured logic, trusted sources, permission boundaries, and fail-safe behavior — prioritising explainability and governance rather than unrestricted AI autonomy."
+      },
+      {
+        q:"How do you prevent diagnosis?",
+        a:"We do not position the system as an autonomous diagnostic engine. The product is designed to support understanding and navigation, while clinical diagnosis and prescribing remain with qualified professionals."
+      },
+      {
+        q:"Why should users trust health AI?",
+        a:"Trust is earned through safety-first design, clear boundaries, explainability, privacy, governance, and measurable validation — not through big claims."
+      }
+    ]
+  },
+  {
+    n:"72",
+    title:"Regulation, FDA & MDR?",
+    short:"Regulation: FDA & MDR",
+    question:"How do you approach regulation — FDA, MDR, MHRA, and the medical device / SaMD boundary? Is Elisence a regulated medical device, and what is your compliance plan?",
+    keywords:["regulation","regulated","health regulation","compliance","FDA","MDR","MHRA","SaMD","software as a medical device","medical device","medical app","wellness app","clinical decision support","CDS","boundary","regulatory readiness","governance","quality system","QMS","risk management","evidence","validation"],
+    answer:[
+      "We design Elisence with regulatory realism from day one — treating the medical device and SaMD boundary as a serious product constraint, not a marketing label.",
+      "We do not position the core consumer experience as an autonomous diagnostic or prescribing system. Where functionality approaches regulated territory, we would scope it explicitly and build the required governance, evidence, and compliance pathway before shipping.",
+      "Practically, that means clear feature boundaries, careful claims, traceable sources, risk management, validation, and a path to the appropriate regulatory frameworks such as FDA, MDR, and MHRA expectations when applicable."
+    ],
+    followups:[
+      {
+        q:"So are you a medical device?",
+        a:"We build with the boundary in mind and avoid positioning Elisence as autonomous diagnosis or prescribing. If a module is intended to be regulated, it would be treated as a regulated product with the right evidence and compliance process."
+      },
+      {
+        q:"Are you just a wellness app then?",
+        a:"We start with real user value and trust-first guidance, while designing for healthcare-grade governance. The goal is not to hide behind 'wellness' but to earn trust and expand responsibly with the right controls."
+      }
+    ]
+  },
+  {
+    n:"73",
+    title:"Clinical responsibility & liability?",
+    short:"Liability & responsibility",
+    question:"If someone is harmed after using Elisence, who is responsible? How do you handle clinical responsibility, liability, and safe boundaries so people do not confuse AI guidance with clinician decisions?",
+    keywords:["liability","liable","responsibility","clinical responsibility","clinical risk","harm","legal","governance","safety","unsafe AI","hallucination","boundaries","disclaimer","duty of care","clinical decisions","doctor","clinician","audit","accountability","fail-safe","fail closed"],
+    answer:[
+      "Clinical decisions remain with qualified professionals. Elisence is designed to support understanding, continuity, and safer decision support — not to replace clinicians.",
+      "We reduce risk by setting clear boundaries, avoiding diagnostic and prescribing positioning, using structured logic and trusted sources where possible, and designing fail-safe behavior rather than unrestricted autonomy.",
+      "We treat accountability as a product requirement: governance, auditability, permission boundaries, and validation are part of how we earn trust over time."
+    ],
+    followups:[
+      {
+        q:"How do you stop users over-trusting the AI?",
+        a:"By designing the experience around boundaries, explainability, and safety-first guidance — and by avoiding product claims that encourage autonomous clinical reliance."
+      },
+      {
+        q:"What happens if the AI is wrong?",
+        a:"We design to minimize that risk through constraints, trusted sources, and fail-safe behavior, and we treat 'wrong output' as a safety event to be prevented, detected, and governed."
+      }
+    ]
+  },
+  {
+    n:"74",
+    title:"Health data, privacy & governments?",
+    short:"Privacy & government access",
+    question:"How do you protect sensitive health data? What about privacy, security, data residency, and potential government access requests — especially across countries?",
+    keywords:["health data","sensitive data","privacy","security","GDPR","UK GDPR","data residency","sovereignty","government","governments","access request","law enforcement","audit","permissions","consent","governance","encryption","least privilege","zero trust","trust"],
+    answer:[
+      "Health data is among the most sensitive categories of information, so Elisence is designed around privacy, consent, and least-privilege access rather than broad default sharing.",
+      "We design for jurisdiction awareness and data residency expectations where applicable, with governance and auditability so access is explicit, controlled, and accountable.",
+      "We treat security and trust as foundational: clear permission boundaries, strong identity assumptions, and designs that fail closed rather than fail open."
+    ],
+    followups:[
+      {
+        q:"Do governments get access to user data?",
+        a:"User data is not treated as an open resource. Access would be governed by consent, legal obligations, and strict controls — with an emphasis on minimization, auditability, and accountable handling."
+      },
+      {
+        q:"How do you handle cross-country data rules?",
+        a:"By designing the platform to be country-aware and governance-driven, so data handling and features can adapt to jurisdiction and residency expectations without breaking the core experience."
+      }
+    ]
+  },
+  {
+    n:"75",
+    title:"Hard objections & risk?",
+    short:"Hard objections & risk",
+    question:"What are the hardest objections to Elisence — unsafe AI, medical risk, trust, regulation, and adoption — and how do you answer them without over-claiming?",
+    keywords:["hard objections","objections","risk","medical risk","clinical risk","unsafe AI","hallucination","trust","regulation","FDA","MDR","medical device","adoption","governance","safety","evidence","validation","pilot","overclaiming"],
+    answer:[
+      "The hardest objections are valid: healthcare is high-stakes, trust takes time, and unsafe AI is unacceptable.",
+      "Our answer is to be trust-first and validation-first: clear boundaries on what the system is and is not, governance by design, structured logic and trusted sources where possible, and a staged path of pilots and evidence rather than big claims.",
+      "We would rather ship responsibly and earn confidence than move fast and break trust."
+    ],
+    followups:[
+      {
+        q:"What if regulators push back?",
+        a:"We assume scrutiny is part of the job. We design around regulatory readiness and feature boundaries so we can engage with the right compliance pathway when needed."
+      },
+      {
+        q:"What if users don't trust health AI?",
+        a:"Then we haven't earned it yet. Trust is built through safety, transparency, boundaries, and outcomes — not marketing."
       }
     ]
   }
