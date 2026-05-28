@@ -171,9 +171,27 @@
       letter-spacing: .01em;
     }
 
+    .grid-wide-wrap {
+      width: min(1080px, 100%);
+      margin: 0 auto;
+      flex: 0 0 auto;
+    }
+
+    .card-wide {
+      min-height: 132px;
+      width: 100%;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .card-wide .num {
+      margin-bottom: 2px;
+    }
+
     @media (max-width: 1100px) {
       .grid { grid-template-columns: 1fr; width: min(360px, 100%); }
       .card { min-height: 150px; }
+      .grid-wide-wrap { width: min(360px, 100%); }
     }
 
     @media (max-width: 768px) {
@@ -214,6 +232,14 @@
         <div class="tag">Slide-by-slide investor narrative for Elisence</div>
       </a>
     </section>
+
+    <div class="grid-wide-wrap">
+      <a href="elisence-overview-gallery.html" class="card card-wide">
+        <div class="num">04</div>
+        <div class="q">Visual Overview Gallery</div>
+        <div class="tag">One-slide visual explanations for Web Summit, HLTH, investors, and partners</div>
+      </a>
+    </div>
   </main>
 </body>
 </html>
