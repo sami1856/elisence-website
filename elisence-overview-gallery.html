@@ -117,10 +117,11 @@
     .slide-stage {
       width: 100%;
       display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
     .nav-btn {
@@ -235,8 +236,8 @@
     @media (max-width: 768px) {
       .nav-left { position: static; margin-bottom: 10px; }
       .header-wrap { display: flex; flex-direction: column; align-items: center; }
-      .slide-stage { flex-direction: column; }
-      .nav-btn { width: 100%; max-width: 280px; }
+      .slide-stage { gap: 8px; }
+      .slide-stage .nav-btn { padding: 10px 12px; font-size: 12px; }
       .thumb img { width: 100px; height: 56px; }
     }
   </style>
@@ -255,7 +256,7 @@
     </div>
 
     <section class="gallery" aria-label="Visual overview slides">
-      <h1 class="slide-title" id="slideTitle">Elisence Vision</h1>
+      <h1 class="slide-title" id="slideTitle">Web Summit Overview</h1>
 
       <div class="slide-stage">
         <button type="button" class="nav-btn" id="prevBtn" aria-label="Previous slide">Previous</button>
@@ -264,8 +265,8 @@
           <img
             class="slide-image"
             id="slideImage"
-            src="assets/websummit2026/Elisence_Vision_Slide_01.png"
-            alt="Elisence Vision overview slide"
+            src="assets/websummit2026/ELISENCE_WEB_SUMMIT_OVERVIEW.png"
+            alt="Elisence Web Summit one-slide overview"
           />
           <div class="slide-counter" id="slideCounter">1 / 3</div>
         </div>
@@ -274,7 +275,7 @@
       </div>
 
       <p class="slide-caption" id="slideCaption">
-        A connected social health network where prevention, support, AI assistance, care, and real-world health experiences come together.
+        A simple one-slide explanation of Elisence as a global digital health and humanity platform.
       </p>
 
       <div class="thumbs" id="thumbs" role="tablist" aria-label="Slide thumbnails"></div>
@@ -283,6 +284,12 @@
 
   <script>
     const slides = [
+      {
+        title: "Web Summit Overview",
+        image: "assets/websummit2026/ELISENCE_WEB_SUMMIT_OVERVIEW.png",
+        alt: "Elisence Web Summit one-slide overview",
+        caption: "A simple one-slide explanation of Elisence as a global digital health and humanity platform."
+      },
       {
         title: "Elisence Vision",
         image: "assets/websummit2026/Elisence_Vision_Slide_01.png",
@@ -294,12 +301,6 @@
         image: "assets/websummit2026/Elisence_Real_Health_Experiences_Slide_02.png",
         alt: "Elisence real health experiences mobile product slide",
         caption: "Real mobile product direction showing everyday health experiences, including women's health, diabetes and metabolic health, continuity, and support."
-      },
-      {
-        title: "Web Summit Overview",
-        image: "assets/websummit2026/ELISENCE_WEB_SUMMIT_OVERVIEW.png",
-        alt: "Elisence Web Summit one-slide overview",
-        caption: "A simple one-slide explanation of Elisence as a global digital health and humanity platform."
       }
     ];
 
