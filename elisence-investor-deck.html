@@ -888,7 +888,7 @@
 
     #slide-05 .s05-header {
       flex-shrink: 0;
-      margin-bottom: clamp(14px, 2vh, 20px);
+      margin-bottom: clamp(10px, 1.5vh, 14px);
     }
 
     #slide-05 .s05-kicker {
@@ -901,15 +901,15 @@
     }
 
     #slide-05 .s05-header h2 {
-      font-size: clamp(56px, 5.5vw, 72px);
+      font-size: clamp(56px, 4.5vw, 60px);
       font-weight: 900;
       line-height: 1.08;
       color: #fff;
-      margin: 0 0 8px;
+      margin: 0 0 6px;
     }
 
     #slide-05 .s05-header > p {
-      font-size: clamp(26px, 2.2vw, 32px);
+      font-size: clamp(26px, 2vw, 30px);
       font-weight: 700;
       line-height: 1.4;
       color: rgba(200, 235, 255, .92);
@@ -924,9 +924,27 @@
       display: flex;
       flex-direction: column;
       gap: clamp(18px, 2.2vh, 24px);
-      padding-right: 4px;
+      padding-right: 6px;
       scrollbar-width: thin;
-      scrollbar-color: rgba(85, 217, 255, .45) transparent;
+      scrollbar-color: rgba(85, 217, 255, .22) transparent;
+    }
+
+    #slide-05 .s05-scroll-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #slide-05 .s05-scroll-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    #slide-05 .s05-scroll-body::-webkit-scrollbar-thumb {
+      background: rgba(85, 217, 255, .22);
+      border-radius: 6px;
+      border: 1px solid rgba(85, 217, 255, .12);
+    }
+
+    #slide-05 .s05-scroll-body::-webkit-scrollbar-thumb:hover {
+      background: rgba(85, 217, 255, .35);
     }
 
     #slide-05 .s05-underglow {
@@ -950,9 +968,9 @@
 
     #slide-05 .s05-comparison-grid {
       display: grid;
-      grid-template-columns: 42% 8% 42%;
+      grid-template-columns: 40% 12% 40%;
       gap: clamp(12px, 1.5vw, 20px);
-      align-items: stretch;
+      align-items: start;
     }
 
     #slide-05 .s05-side-card {
@@ -960,13 +978,40 @@
       padding: clamp(22px, 2.5vh, 28px) clamp(22px, 2.5vw, 28px);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
+      min-height: 0;
+      overflow: visible;
     }
 
     #slide-05 .s05-problem-card {
       border: 1px solid rgba(255, 120, 160, .45);
       background: linear-gradient(165deg, rgba(48, 18, 38, .75), rgba(12, 8, 22, .95));
       box-shadow: 0 0 32px rgba(200, 60, 120, .15);
+      gap: 10px;
+    }
+
+    #slide-05 .s05-problem-card h3 {
+      font-size: clamp(32px, 2.6vw, 38px);
+      line-height: 1.15;
+      margin: 0 0 4px;
+    }
+
+    #slide-05 .s05-problem-intro {
+      font-size: clamp(20px, 1.45vw, 22px);
+      font-weight: 650;
+      line-height: 1.5;
+      color: rgba(225, 245, 255, .96);
+      margin: 0;
+    }
+
+    #slide-05 .s05-problem-card .s05-mini-pill-grid {
+      margin: 2px 0 4px;
+    }
+
+    #slide-05 .s05-problem-card ul {
+      margin: 6px 0 0;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 130, 170, .22);
     }
 
     #slide-05 .s05-problem-card.s05-underglow::after {
@@ -977,6 +1022,46 @@
       border: 1px solid rgba(95, 210, 255, .55);
       background: linear-gradient(165deg, rgba(10, 42, 95, .9), rgba(3, 12, 32, .96));
       box-shadow: 0 0 40px rgba(0, 150, 255, .28);
+      gap: 14px;
+    }
+
+    #slide-05 .s05-elisence-accent-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 4px;
+    }
+
+    #slide-05 .s05-accent-chip {
+      font-size: clamp(16px, 1.1vw, 17px);
+      padding: 7px 12px;
+      opacity: .95;
+      border-color: rgba(120, 220, 255, .55);
+      background: rgba(0, 70, 130, .45);
+    }
+
+    #slide-05 .s05-elisence-lead {
+      font-size: clamp(20px, 1.45vw, 22px);
+      font-weight: 700;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    #slide-05 .s05-elisence-body {
+      font-size: clamp(20px, 1.45vw, 22px);
+      font-weight: 600;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    #slide-05 .s05-elisence-card .s05-connected-chip-grid {
+      margin-top: 4px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(85, 200, 255, .2);
+    }
+
+    #slide-05 .s05-difference-card--ecosystem p {
+      line-height: 1.7;
     }
 
     #slide-05 .s05-side-card h3,
@@ -992,6 +1077,12 @@
 
     #slide-05 .s05-problem-card h3 {
       color: #ffb8d0;
+    }
+
+    #slide-05 .s05-elisence-card h3 {
+      font-size: clamp(30px, 2.5vw, 38px);
+      line-height: 1.2;
+      color: #8edcff;
     }
 
     #slide-05 .s05-side-card > p {
@@ -1042,7 +1133,7 @@
     }
 
     #slide-05 .s05-mini-pill {
-      font-size: clamp(15px, 1.1vw, 17px);
+      font-size: clamp(16px, 1.15vw, 18px);
       font-weight: 700;
       line-height: 1.25;
       padding: 8px 12px;
@@ -1099,38 +1190,58 @@
 
     #slide-05 .s05-arrow-zone {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      gap: 8px;
-      padding: 8px 4px;
+      align-self: stretch;
+      padding: 0 4px;
     }
 
-    #slide-05 .s05-arrow-icon {
-      font-size: clamp(36px, 4vw, 48px);
+    #slide-05 .s05-transform-bridge {
+      width: 100%;
+      max-width: 160px;
+      margin: 0 auto;
+      padding: clamp(16px, 2vh, 20px) clamp(12px, 1.2vw, 14px);
+      border-radius: 22px;
+      border: 1px solid rgba(95, 210, 255, .5);
+      background:
+        linear-gradient(180deg, rgba(40, 16, 32, .5), rgba(6, 28, 68, .85)),
+        rgba(4, 18, 48, .9);
+      box-shadow:
+        0 0 32px rgba(0, 180, 255, .28),
+        inset 0 0 20px rgba(0, 120, 200, .08);
+      text-align: center;
+    }
+
+    #slide-05 .s05-bridge-from {
+      display: block;
+      font-size: clamp(14px, 1.1vw, 16px);
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      line-height: 1.35;
+      color: #ff9ec4;
+      margin-bottom: 8px;
+    }
+
+    #slide-05 .s05-bridge-arrow {
+      display: block;
+      font-size: clamp(28px, 3vw, 34px);
       font-weight: 300;
       line-height: 1;
       color: #55d9ff;
-      text-shadow: 0 0 24px rgba(0, 200, 255, .55);
+      text-shadow: 0 0 22px rgba(0, 200, 255, .6);
+      margin: 4px 0;
     }
 
-    #slide-05 .s05-arrow-label {
-      font-size: clamp(15px, 1.2vw, 17px);
+    #slide-05 .s05-bridge-to {
+      display: block;
+      font-size: clamp(14px, 1.1vw, 16px);
       font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
       line-height: 1.35;
-      letter-spacing: .04em;
-      color: rgba(200, 235, 255, .9);
-    }
-
-    #slide-05 .s05-arrow-label em {
-      font-style: normal;
-      color: #ff9ec4;
-    }
-
-    #slide-05 .s05-arrow-label strong {
       color: #8edcff;
-      font-weight: 900;
+      margin-top: 8px;
     }
 
     #slide-05 .s05-fragmentation-card {
@@ -1232,8 +1343,12 @@
       #slide-05 .s05-arrow-zone {
         padding: 12px 0;
       }
-      #slide-05 .s05-arrow-icon {
+      #slide-05 .s05-transform-bridge {
+        max-width: 280px;
+      }
+      #slide-05 .s05-bridge-arrow {
         transform: rotate(90deg);
+        margin: 8px 0;
       }
       #slide-05 .s05-difference-panels {
         grid-template-columns: 1fr;
@@ -2118,7 +2233,7 @@
         <section class="s05-comparison-grid">
           <article class="s05-side-card s05-problem-card s05-underglow">
             <h3>Most Digital Health Tools</h3>
-            <p>Most digital health tools solve one problem at a time.</p>
+            <p class="s05-problem-intro">Most digital health tools solve one problem at a time.</p>
             <div class="s05-mini-pill-grid" aria-hidden="true">
               <span class="s05-mini-pill">Medication</span>
               <span class="s05-mini-pill">Diabetes / Metabolism</span>
@@ -2138,9 +2253,12 @@
               <li>One for wellbeing or lifestyle</li>
             </ul>
           </article>
-          <div class="s05-arrow-zone" aria-hidden="true">
-            <span class="s05-arrow-icon">→</span>
-            <p class="s05-arrow-label"><em>Fragmented tools</em> → <strong>Connected ecosystem</strong></p>
+          <div class="s05-arrow-zone">
+            <div class="s05-transform-bridge" aria-label="Fragmented tools to connected ecosystem">
+              <span class="s05-bridge-from">Fragmented tools</span>
+              <span class="s05-bridge-arrow" aria-hidden="true">↓</span>
+              <span class="s05-bridge-to">Connected ecosystem</span>
+            </div>
           </div>
           <article class="s05-side-card s05-elisence-card s05-underglow">
             <h3>Elisence is Built Differently</h3>
@@ -2148,8 +2266,14 @@
               <strong>ELISENCE</strong>
               <span>Connected health ecosystem</span>
             </div>
-            <p>Elisence is built differently.</p>
-            <p>Rather than building another isolated health app, Elisence is designed as a connected ecosystem where prevention, metabolic and blood understanding, medical tracking, medication continuity, women’s health, pharmacy, GP and doctor communication, body understanding, intelligent support, sensor-aware experiences, social health participation, and trusted health continuity work together rather than separately.</p>
+            <div class="s05-elisence-accent-chips" aria-hidden="true">
+              <span class="s05-connected-chip s05-accent-chip">Prevention</span>
+              <span class="s05-connected-chip s05-accent-chip">Continuity</span>
+              <span class="s05-connected-chip s05-accent-chip">Trusted Health</span>
+              <span class="s05-connected-chip s05-accent-chip">Connected Care</span>
+            </div>
+            <p class="s05-elisence-lead">Elisence is built differently.</p>
+            <p class="s05-elisence-body">Rather than building another isolated health app, Elisence is designed as a connected ecosystem where prevention, metabolic and blood understanding, medical tracking, medication continuity, women’s health, pharmacy, GP and doctor communication, body understanding, intelligent support, sensor-aware experiences, social health participation, and trusted health continuity work together rather than separately.</p>
             <div class="s05-connected-chip-grid" aria-hidden="true">
               <span class="s05-connected-chip">Prevention</span>
               <span class="s05-connected-chip">Metabolic &amp; Blood Understanding</span>
@@ -2175,7 +2299,7 @@
             <h3>Continuity Over Time</h3>
             <p>Elisence is designed around continuity — helping healthcare feel connected over time rather than episodic, fragmented, and reactive.</p>
           </article>
-          <article class="s05-difference-card s05-underglow">
+          <article class="s05-difference-card s05-difference-card--ecosystem s05-underglow">
             <h3>Connected Health Ecosystem</h3>
             <p>Rather than building another isolated health app, Elisence is designed as a connected ecosystem where prevention, metabolic and blood understanding, medical tracking, medication continuity, women’s health, pharmacy, GP and doctor communication, body understanding, intelligent support, sensor-aware experiences, social health participation, and trusted health continuity work together rather than separately.</p>
           </article>
