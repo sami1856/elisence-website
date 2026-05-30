@@ -1632,6 +1632,19 @@
       overflow: visible;
     }
 
+    #slide-07 .s07-card-grid .s07-content-card:last-child {
+      grid-column: 1 / -1;
+    }
+
+    @media (min-width: 901px) {
+      #slide-07 .s07-card-grid .s07-content-card:last-child ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(20px, 3vw, 40px);
+        align-items: start;
+      }
+    }
+
     #slide-07 .s07-content-card h3 {
       font-size: clamp(28px, 2.2vw, 36px);
       font-weight: 900;
