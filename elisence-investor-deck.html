@@ -146,11 +146,11 @@
     }
 
     .slide-cover .hero-visual {
-      width: min(720px, 92vw);
-      margin: 0 auto 36px;
+      width: min(900px, 95vw);
+      margin: 0 auto 28px;
       border-radius: 20px;
       border: 1px solid rgba(95, 205, 255, .45);
-      box-shadow: 0 0 48px rgba(0, 160, 255, .4);
+      box-shadow: 0 0 56px rgba(0, 160, 255, .45);
       overflow: hidden;
       background: rgba(4, 12, 34, .6);
     }
@@ -159,7 +159,7 @@
       display: block;
       width: 100%;
       height: auto;
-      max-height: 42vh;
+      max-height: 52vh;
       object-fit: contain;
     }
 
@@ -187,10 +187,16 @@
     }
 
     .founder-meta {
-      font-size: clamp(15px, 1.2vw, 18px);
-      font-weight: 700;
-      color: rgba(180, 230, 255, .88);
-      line-height: 1.6;
+      font-size: clamp(17px, 1.35vw, 21px);
+      font-weight: 750;
+      color: rgba(200, 240, 255, .92);
+      line-height: 1.45;
+      letter-spacing: .04em;
+    }
+
+    .founder-meta strong {
+      font-weight: 900;
+      color: #fff;
     }
 
     /* Two column */
@@ -224,18 +230,29 @@
       background: rgba(0, 0, 0, .25);
     }
 
-    .frag-chip {
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      color: rgba(200, 230, 255, .75);
-      border: 1px solid rgba(100, 180, 255, .3);
-      background: rgba(8, 30, 70, .6);
-      opacity: .85;
+    .info-chip,
+    .frag-chip,
+    .orbit-tag,
+    .founder-tags span,
+    .timeline-3 .journey-card,
+    .chips span {
+      cursor: default;
+      pointer-events: none;
+      user-select: none;
     }
 
-    .frag-chip.off { opacity: .45; transform: scale(.96); }
+    .frag-chip {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: .03em;
+      color: rgba(190, 225, 255, .78);
+      border: 1px solid rgba(80, 160, 220, .22);
+      background: rgba(6, 24, 55, .45);
+      box-shadow: none;
+      opacity: 1;
+    }
 
     /* 2x2 grid */
     .grid-2x2 {
@@ -287,14 +304,17 @@
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       gap: 20px;
-      align-items: center;
+      align-items: stretch;
       margin: 28px 0;
     }
 
     .compare-side {
       border-radius: 18px;
       padding: 24px;
-      min-height: 140px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .compare-side.bad {
@@ -320,9 +340,9 @@
     /* Orbit ecosystem */
     .orbit-wrap {
       position: relative;
-      width: min(520px, 90vw);
-      height: min(520px, 90vw);
-      margin: 28px auto;
+      width: min(580px, 92vw);
+      height: min(580px, 92vw);
+      margin: 24px auto;
     }
 
     .orbit-core {
@@ -359,20 +379,28 @@
 
     .orbit-tag {
       position: absolute;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(100, 200, 255, .4);
-      background: rgba(4, 18, 48, .9);
-      color: rgba(200, 235, 255, .9);
+      font-size: 10px;
+      font-weight: 650;
+      padding: 5px 9px;
+      border-radius: 6px;
+      border: 1px solid rgba(80, 170, 230, .28);
+      background: rgba(4, 18, 48, .75);
+      color: rgba(195, 230, 255, .82);
       white-space: nowrap;
+      box-shadow: none;
+    }
+
+    .orbit-tag.core-label {
+      font-size: 13px;
+      font-weight: 900;
+      border-color: rgba(0, 200, 255, .5);
+      color: #fff;
     }
 
     /* Trust pillars */
     .pillars-4 {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1fr 1fr 1.18fr 1fr;
       gap: 14px;
       margin: 28px 0;
     }
@@ -434,26 +462,121 @@
       color: rgba(210, 240, 255, .88);
     }
 
-    /* Map */
-    .map-visual {
-      width: min(640px, 100%);
-      height: 200px;
+    /* Expansion map */
+    .expansion-map {
+      width: min(680px, 100%);
+      height: 210px;
       margin: 24px auto;
       border-radius: 20px;
-      border: 1px solid rgba(95, 205, 255, .4);
+      border: 1px solid rgba(80, 180, 230, .28);
+      background: rgba(4, 16, 40, .75);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .expansion-map::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       background:
-        radial-gradient(ellipse 60% 40% at 35% 45%, rgba(0, 180, 255, .2), transparent),
-        radial-gradient(ellipse 40% 35% at 55% 40%, rgba(80, 120, 255, .15), transparent),
-        radial-gradient(ellipse 35% 30% at 72% 55%, rgba(0, 200, 200, .12), transparent),
-        rgba(4, 16, 40, .8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: .2em;
-      color: rgba(140, 210, 255, .6);
+        radial-gradient(ellipse 45% 55% at 28% 52%, rgba(0, 160, 255, .14), transparent),
+        radial-gradient(ellipse 38% 50% at 52% 46%, rgba(70, 120, 255, .1), transparent),
+        radial-gradient(ellipse 32% 45% at 78% 58%, rgba(0, 190, 200, .1), transparent);
+      pointer-events: none;
+    }
+
+    .expansion-map-svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: .85;
+    }
+
+    .expansion-map .exp-path {
+      fill: none;
+      stroke: rgba(85, 217, 255, .35);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 6;
+    }
+
+    .expansion-map .exp-route {
+      fill: none;
+      stroke: url(#routeGlow);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .expansion-map .exp-node {
+      fill: rgba(85, 217, 255, .9);
+      filter: drop-shadow(0 0 6px rgba(0, 200, 255, .6));
+    }
+
+    .expansion-labels {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .expansion-labels span {
+      position: absolute;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
       text-transform: uppercase;
+      color: rgba(170, 225, 255, .75);
+    }
+
+    .expansion-labels .exp-uk { left: 18%; top: 58%; }
+    .expansion-labels .exp-eu { left: 46%; top: 42%; }
+    .expansion-labels .exp-gulf { right: 16%; top: 54%; }
+    .expansion-labels .exp-ambition {
+      left: 50%;
+      top: 12%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: rgba(140, 200, 255, .5);
+      letter-spacing: .18em;
+    }
+
+    .tagline-moat {
+      font-size: clamp(16px, 1.35vw, 22px);
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-align: center;
+      margin-top: 28px;
+      padding: 16px 28px;
+      border-radius: 12px;
+      border: 1px solid rgba(95, 205, 255, .45);
+      background: rgba(0, 90, 160, .14);
+      box-shadow: 0 0 28px rgba(0, 160, 255, .22);
+      color: #a8e8ff;
+      max-width: 36em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slide-scan .deck-img { margin: 12px auto 20px; }
+    .slide-scan .deck-img img { max-height: 26vh; }
+    .slide-scan .scan-lead {
+      font-size: clamp(18px, 1.55vw, 23px);
+      line-height: 1.42;
+      margin-bottom: 28px;
+    }
+    .slide-scan .cols-2 { gap: clamp(28px, 4vw, 48px); }
+    .slide-scan .label-upper { margin-top: 4px; margin-bottom: 14px; }
+    .slide-scan ul.bullets li {
+      margin-bottom: 14px;
+      line-height: 1.5;
+      font-size: clamp(14px, 1.15vw, 18px);
+    }
+
+    .pillar.pillar-medical {
+      padding: 24px 20px;
+    }
+
+    .pillar.pillar-medical p {
+      line-height: 1.5;
+      padding: 0 4px;
     }
 
     /* Founder */
@@ -468,32 +591,28 @@
     .founder-portrait {
       aspect-ratio: 3/4;
       border-radius: 20px;
-      border: 1px solid rgba(95, 205, 255, .55);
-      background:
-        radial-gradient(circle at 30% 25%, rgba(0, 190, 255, .25), transparent 55%),
-        linear-gradient(160deg, rgba(8, 34, 85, .95), rgba(2, 10, 28, .98));
-      box-shadow: 0 0 32px rgba(0, 160, 255, .35);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      text-align: center;
+      border: 1px solid rgba(95, 205, 255, .45);
+      box-shadow: 0 0 36px rgba(0, 160, 255, .32);
+      overflow: hidden;
+      padding: 0;
+      background: rgba(4, 12, 34, .6);
     }
 
-    .founder-portrait .initials {
-      font-size: 48px;
-      font-weight: 950;
-      color: #55d9ff;
-      text-shadow: 0 0 24px rgba(0, 200, 255, .5);
-      margin-bottom: 12px;
+    .founder-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
     }
 
-    .founder-portrait .name {
-      font-size: 16px;
-      font-weight: 900;
-      color: #fff;
-      line-height: 1.3;
+    .founder-story .lead {
+      margin-top: 18px;
+      line-height: 1.55;
+    }
+
+    .founder-story .lead:first-child {
+      margin-top: 0;
     }
 
     .founder-tags {
@@ -504,29 +623,30 @@
     }
 
     .founder-tags span {
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(120, 220, 255, .6);
-      font-size: 13px;
-      font-weight: 800;
-      color: #dff5ff;
-      background: rgba(0, 80, 160, .25);
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(80, 170, 230, .25);
+      font-size: 12px;
+      font-weight: 650;
+      color: rgba(195, 230, 255, .82);
+      background: rgba(6, 24, 55, .45);
+      box-shadow: none;
     }
 
     /* Vision */
     .vision-visual {
-      width: min(800px, 100%);
-      margin: 24px auto;
+      width: min(960px, 100%);
+      margin: 20px auto;
       border-radius: 18px;
       overflow: hidden;
       border: 1px solid rgba(95, 205, 255, .45);
-      box-shadow: 0 0 36px rgba(0, 160, 255, .35);
+      box-shadow: 0 0 44px rgba(0, 160, 255, .38);
     }
 
     .vision-visual img {
       width: 100%;
       height: auto;
-      max-height: 38vh;
+      max-height: 48vh;
       object-fit: contain;
       display: block;
       background: rgba(0, 0, 0, .3);
@@ -539,15 +659,44 @@
       margin-top: 28px;
     }
 
-    .timeline-3 div {
+    .timeline-3 .journey-card {
       text-align: center;
-      padding: 20px;
-      border-radius: 14px;
-      border: 1px solid rgba(95, 205, 255, .4);
-      background: rgba(6, 28, 68, .5);
+      padding: 18px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(80, 170, 230, .25);
+      background: rgba(6, 24, 55, .45);
+    }
+
+    .journey-title {
       font-size: clamp(15px, 1.2vw, 18px);
-      font-weight: 850;
+      font-weight: 800;
       color: #8edcff;
+      margin-bottom: 6px;
+    }
+
+    .journey-sub {
+      font-size: clamp(12px, .95vw, 14px);
+      font-weight: 650;
+      letter-spacing: .06em;
+      color: rgba(160, 210, 240, .65);
+      text-transform: uppercase;
+    }
+
+    .ask-closing-cue {
+      text-align: center;
+      font-size: clamp(17px, 1.4vw, 21px);
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: rgba(200, 240, 255, .9);
+      margin: 24px 0 8px;
+    }
+
+    .ask-cta .ask-cta-lead {
+      font-size: clamp(20px, 1.75vw, 28px);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.35;
     }
 
     /* Ask slide */
@@ -605,14 +754,15 @@
     }
 
     .chips span {
-      padding: 12px 20px;
-      border-radius: 999px;
-      border: 1px solid rgba(120, 220, 255, .85);
-      font-size: 14px;
-      font-weight: 800;
-      color: #dff5ff;
-      background: rgba(0, 70, 140, .4);
-      box-shadow: 0 0 16px rgba(0, 170, 255, .4);
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(80, 170, 230, .28);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: .04em;
+      color: rgba(195, 230, 255, .85);
+      background: rgba(6, 24, 55, .5);
+      box-shadow: none;
     }
 
     .deck-img {
@@ -710,7 +860,7 @@
       <p class="brand-line">Human-Centred Connected Health Ecosystem</p>
       <p class="brand-pillars">Prevention • Continuity • Trusted Health Intelligence</p>
       <p class="founder-meta">
-        Founder: Saami Salami<br />
+        <strong>Saami Salami</strong><br />
         Founder &amp; CEO<br />
         Web Summit Lisbon 2026
       </p>
@@ -724,13 +874,14 @@
       <h1 class="slide-title">Healthcare Feels Fragmented</h1>
       <p class="slide-sub">Fragmentation, rising costs, and growing system pressure</p>
       <div class="frag-visual" aria-hidden="true">
-        <span class="frag-chip off">App A</span>
-        <span class="frag-chip off">Tracker</span>
-        <span class="frag-chip off">Meds</span>
-        <span class="frag-chip off">Clinic</span>
-        <span class="frag-chip off">Insurer</span>
-        <span class="frag-chip off">Wellness</span>
-        <span class="frag-chip off">Records</span>
+        <span class="frag-chip">Medication</span>
+        <span class="frag-chip">Women’s Health</span>
+        <span class="frag-chip">GP / Doctor</span>
+        <span class="frag-chip">Pharmacy</span>
+        <span class="frag-chip">Metabolism</span>
+        <span class="frag-chip">Body Tracking</span>
+        <span class="frag-chip">Wellbeing</span>
+        <span class="frag-chip">Prevention</span>
       </div>
       <div class="cols-2">
         <div class="col-card">
@@ -775,7 +926,7 @@
         </div>
         <div class="mini-card">
           <h3>Technology maturity</h3>
-          <p>Digital infrastructure, AI-assisted workflows, medical intelligence, and secure communication now enable long-term engagement in a trusted way.</p>
+          <p>Digital infrastructure, richer health signals, sensor-aware experiences, AI-assisted workflows, and secure communication now enable long-term engagement in a trusted way.</p>
         </div>
       </div>
       <div class="transitions">
@@ -788,7 +939,7 @@
   </section>
 
   <!-- Slide 04 What is Elisence -->
-  <section class="slide" id="slide-04">
+  <section class="slide slide-scan" id="slide-04">
     <div class="slide-inner">
       <p class="slide-num">04 — What is Elisence</p>
       <h1 class="slide-title">One Connected Ecosystem</h1>
@@ -796,7 +947,7 @@
       <div class="deck-img">
         <img src="assets/websummit2026/ELISENCE_WEB_SUMMIT_OVERVIEW.png" alt="Elisence overview" />
       </div>
-      <p class="lead" style="margin-bottom: 20px;">Elisence is a human-centred, globally adaptable health ecosystem designed to make healthcare feel more connected, understandable, and easier to navigate over time.</p>
+      <p class="lead scan-lead">Elisence is a human-centred, globally adaptable health ecosystem designed to make healthcare feel more connected, understandable, and easier to navigate over time.</p>
       <div class="cols-2">
         <div>
           <p class="label-upper">For People</p>
@@ -857,19 +1008,25 @@
         <div class="orbit-ring outer"></div>
         <div class="orbit-ring"></div>
         <div class="orbit-core">ELISENCE<br />Continuity</div>
-        <span class="orbit-tag" style="top: 4%; left: 50%; transform: translateX(-50%);">Women’s health</span>
-        <span class="orbit-tag" style="top: 18%; right: 8%;">Diabetes</span>
-        <span class="orbit-tag" style="top: 42%; right: 0;">Medication</span>
-        <span class="orbit-tag" style="bottom: 18%; right: 8%;">GP · Pharmacy</span>
-        <span class="orbit-tag" style="bottom: 4%; left: 50%; transform: translateX(-50%);">Prevention</span>
-        <span class="orbit-tag" style="bottom: 18%; left: 8%;">Family care</span>
-        <span class="orbit-tag" style="top: 42%; left: 0;">Intelligence</span>
-        <span class="orbit-tag" style="top: 18%; left: 8%;">Voice · Video</span>
-        <span class="orbit-tag" style="top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 10px; opacity: .7;">Elisa</span>
-        <span class="orbit-tag" style="top: 0; right: 22%;">Hospitals</span>
-        <span class="orbit-tag" style="bottom: 0; right: 22%;">Insurers</span>
-        <span class="orbit-tag" style="bottom: 0; left: 22%;">Governments</span>
-        <span class="orbit-tag" style="top: 0; left: 22%;">Research</span>
+        <span class="orbit-tag core-label" style="top: 50%; left: 50%; transform: translate(-50%,-50%);">Elisa</span>
+        <span class="orbit-tag" style="top: 2%; left: 50%; transform: translateX(-50%);">Women’s Health</span>
+        <span class="orbit-tag" style="top: 10%; right: 4%;">Pulse / Social Health</span>
+        <span class="orbit-tag" style="top: 24%; right: -2%;">Pharmacy</span>
+        <span class="orbit-tag" style="top: 40%; right: -4%;">Body Scan</span>
+        <span class="orbit-tag" style="top: 56%; right: 2%;">Medication</span>
+        <span class="orbit-tag" style="bottom: 22%; right: 6%;">GP / Doctor</span>
+        <span class="orbit-tag" style="bottom: 8%; right: 18%;">Metabolism</span>
+        <span class="orbit-tag" style="bottom: 2%; left: 50%; transform: translateX(-50%);">Prevention</span>
+        <span class="orbit-tag" style="bottom: 8%; left: 18%;">Family Care</span>
+        <span class="orbit-tag" style="bottom: 22%; left: 6%;">Voice / Video</span>
+        <span class="orbit-tag" style="top: 56%; left: 2%;">Intelligence</span>
+        <span class="orbit-tag" style="top: 40%; left: -4%;">Wellbeing</span>
+        <span class="orbit-tag" style="top: 24%; left: -2%;">Body Tracking</span>
+        <span class="orbit-tag" style="top: 10%; left: 4%;">Research</span>
+        <span class="orbit-tag" style="top: 0; left: 28%;">Healthcare Systems</span>
+        <span class="orbit-tag" style="top: 0; right: 28%;">Hospitals</span>
+        <span class="orbit-tag" style="bottom: 0; right: 26%;">Insurers</span>
+        <span class="orbit-tag" style="bottom: 0; left: 26%;">Governments</span>
       </div>
       <p class="lead" style="text-align: center; max-width: 48em; margin: 0 auto;">Prevention, care, communication, intelligence, and continuity reinforce one another — clinics, hospitals, insurers, universities, and governments on the outer ring.</p>
       <p class="closing-line">One connected ecosystem where health experiences work together.</p>
@@ -891,7 +1048,7 @@
           <h3>Governed Health Intelligence</h3>
           <p>Auditability, provenance, evidence-driven workflows, explainable decisions over time.</p>
         </div>
-        <div class="pillar">
+        <div class="pillar pillar-medical">
           <h3>Medical-ready Foundations</h3>
           <p>NHS-style safety, GDPR, FDA CDS boundaries, MDR principles, GCC realities.</p>
         </div>
@@ -930,7 +1087,7 @@
         </div>
       </div>
       <p class="closing-line">B2C creates user value. B2B and B2G create scale. Trust sustains the model.</p>
-      <p class="tagline">Healthy engagement as a moat</p>
+      <p class="tagline tagline-moat">Healthy engagement as a moat</p>
     </div>
   </section>
 
@@ -940,7 +1097,28 @@
       <p class="slide-num">09 — Market &amp; Expansion</p>
       <h1 class="slide-title">Global Ambition, Local Execution</h1>
       <p class="slide-sub">Healthcare adoption is earned locally</p>
-      <div class="map-visual">Global · UK · Europe · Gulf · Middle East</div>
+      <div class="expansion-map" aria-hidden="true">
+        <svg class="expansion-map-svg" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="routeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(85,217,255,.2)" />
+              <stop offset="50%" stop-color="rgba(85,217,255,.75)" />
+              <stop offset="100%" stop-color="rgba(0,200,200,.5)" />
+            </linearGradient>
+          </defs>
+          <path class="exp-path" d="M 80 120 Q 200 80 320 95 T 520 115" />
+          <path class="exp-route" d="M 120 118 Q 240 88 340 98 T 480 108" />
+          <circle class="exp-node" cx="120" cy="118" r="5" />
+          <circle class="exp-node" cx="340" cy="98" r="5" />
+          <circle class="exp-node" cx="480" cy="108" r="5" />
+        </svg>
+        <div class="expansion-labels">
+          <span class="exp-ambition">Responsible expansion</span>
+          <span class="exp-uk">UK</span>
+          <span class="exp-eu">Europe</span>
+          <span class="exp-gulf">Gulf / Middle East</span>
+        </div>
+      </div>
       <div class="cols-2">
         <div>
           <p class="label-upper">Global opportunity</p>
@@ -969,14 +1147,13 @@
       <p class="slide-sub">A founder story rooted in healthcare continuity</p>
       <div class="founder-layout">
         <div class="founder-portrait">
-          <div class="initials">SS</div>
-          <p class="name">Saami Salami<br />Founder &amp; CEO</p>
+          <img src="assets/websummit2026/samiwebsummit.jpeg" alt="Saami Salami, Founder and CEO" width="280" height="373" />
         </div>
-        <div>
+        <div class="founder-story">
           <p class="lead"><strong>Why does healthcare so often feel fragmented, stressful, and difficult to navigate — especially when people are already vulnerable?</strong></p>
-          <p class="lead" style="margin-top: 16px;">Through engineering, legal, business, and care services — including domiciliary care — I saw health journeys become disconnected and hard for families to manage.</p>
-          <p class="lead" style="margin-top: 16px;">Elisence is inspired by my daughter, <strong>Elisa</strong> — a hope for healthcare that feels more trusted, connected, and human.</p>
-          <p class="lead" style="margin-top: 16px;">A long-term mission to reduce fragmentation, strengthen continuity, and help healthcare feel calmer over time.</p>
+          <p class="lead">Through engineering, legal, business, and care services — including domiciliary care — I saw health journeys become disconnected and hard for families to manage.</p>
+          <p class="lead">Elisence is inspired by my daughter, <strong>Elisa</strong> — a hope for healthcare that feels more trusted, connected, and human.</p>
+          <p class="lead">A long-term mission to reduce fragmentation, strengthen continuity, and help healthcare feel calmer over time.</p>
           <div class="founder-tags">
             <span>Engineering</span>
             <span>Care</span>
@@ -999,9 +1176,18 @@
       </div>
       <p class="lead">Healthcare should not only exist when people are ill. Prevention, continuity, and human support — before, during, and after illness.</p>
       <div class="timeline-3">
-        <div>Before illness</div>
-        <div>During illness</div>
-        <div>After illness</div>
+        <div class="journey-card">
+          <div class="journey-title">Before illness</div>
+          <div class="journey-sub">Prevention</div>
+        </div>
+        <div class="journey-card">
+          <div class="journey-title">During illness</div>
+          <div class="journey-sub">Support</div>
+        </div>
+        <div class="journey-card">
+          <div class="journey-title">After illness</div>
+          <div class="journey-sub">Continuity</div>
+        </div>
       </div>
       <p class="closing-line" style="margin-top: 28px;">Most systems engage when people are ill. Elisence stays valuable across the full journey.</p>
       <p class="tagline">Build responsibly · Earn trust locally · Scale globally</p>
@@ -1046,13 +1232,15 @@
         </div>
       </div>
       <p class="tagline">Global ambition • Local trust • Responsible scale</p>
+      <p class="ask-closing-cue">Pilot • Partnership • Strategic Introduction • Investment</p>
       <div class="ask-cta">
-        <p>If you believe healthcare should feel more connected, trusted, preventative, and human — let’s explore one concrete next step.</p>
+        <p class="ask-cta-lead">Let’s explore one concrete next step.</p>
+        <p>If you believe healthcare should feel more connected, trusted, preventative, and human — we welcome a focused conversation.</p>
         <div class="chips">
           <span>Pilot</span>
           <span>Partnership</span>
           <span>Strategic Introduction</span>
-          <span>Investment Conversation</span>
+          <span>Investment</span>
         </div>
       </div>
     </div>
