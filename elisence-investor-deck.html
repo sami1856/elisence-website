@@ -1723,6 +1723,293 @@
       }
     }
 
+    /* Slide 08 — Premium trust-led business model (hard reset) */
+    #slide-08.slide {
+      min-height: 100vh;
+      height: 100vh;
+      max-height: 100vh;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding: clamp(28px, 4vh, 48px) clamp(24px, 4vw, 64px);
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    #slide-08 .s08-shell {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: min(1320px, 100%);
+      height: 100%;
+      max-height: calc(100vh - clamp(56px, 8vh, 96px));
+      margin: 0 auto;
+      gap: clamp(12px, 1.5vh, 16px);
+    }
+
+    #slide-08 .s08-header {
+      flex-shrink: 0;
+    }
+
+    #slide-08 .s08-header > div:first-child {
+      font-size: clamp(14px, 1.1vw, 18px);
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #55d9ff;
+      margin-bottom: 8px;
+    }
+
+    #slide-08 .s08-header h2 {
+      font-size: clamp(58px, 5.2vw, 74px);
+      font-weight: 900;
+      line-height: 1.06;
+      color: #fff;
+      text-shadow: 0 0 40px rgba(0, 170, 255, .28);
+      margin: 0 0 6px;
+    }
+
+    #slide-08 .s08-header > p {
+      font-size: clamp(28px, 2.2vw, 34px);
+      font-weight: 700;
+      line-height: 1.35;
+      color: rgba(200, 235, 255, .92);
+      margin: 0;
+    }
+
+    #slide-08 .s08-scroll-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 1.8vh, 18px);
+      padding-right: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(85, 217, 255, .22) transparent;
+    }
+
+    #slide-08 .s08-scroll-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #slide-08 .s08-scroll-body::-webkit-scrollbar-thumb {
+      background: rgba(85, 217, 255, .22);
+      border-radius: 6px;
+    }
+
+    #slide-08 .s08-blue-underglow {
+      position: relative;
+      z-index: 0;
+    }
+
+    #slide-08 .s08-blue-underglow::after {
+      content: "";
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      bottom: -6px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 200, 255, .42), transparent 72%);
+      filter: blur(12px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #slide-08 .s08-value-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2vh, 20px);
+    }
+
+    #slide-08 .s08-value-card {
+      border-radius: 28px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
+      padding: clamp(32px, 3.5vh, 42px);
+      box-shadow: 0 0 36px rgba(0, 130, 255, .14);
+      overflow: visible;
+    }
+
+    #slide-08 .s08-card-tag {
+      display: inline-block;
+      font-size: clamp(13px, 1vw, 15px);
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #55d9ff;
+      margin-bottom: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(85, 200, 255, .35);
+      background: rgba(4, 22, 58, .65);
+    }
+
+    #slide-08 .s08-value-card h3 {
+      font-size: clamp(28px, 2vw, 34px);
+      font-weight: 900;
+      letter-spacing: .04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(85, 200, 255, .25);
+    }
+
+    #slide-08 .s08-value-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #slide-08 .s08-value-card li {
+      font-size: clamp(20px, 1.45vw, 24px);
+      font-weight: 600;
+      line-height: 1.55;
+      color: rgba(220, 245, 255, .96);
+      margin-bottom: 14px;
+      padding-left: 1.15em;
+      position: relative;
+    }
+
+    #slide-08 .s08-value-card li:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-08 .s08-value-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    #slide-08 .s08-value-strip {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: clamp(18px, 2.2vh, 24px) clamp(20px, 2.5vw, 32px);
+      border-radius: 24px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(90deg, rgba(6, 28, 62, .9), rgba(3, 12, 32, .96), rgba(6, 28, 62, .9));
+      box-shadow: 0 0 32px rgba(0, 140, 255, .18);
+      text-align: center;
+    }
+
+    #slide-08 .s08-strip-node {
+      font-size: clamp(18px, 1.35vw, 22px);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(220, 245, 255, .96);
+      padding: 8px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(90, 190, 255, .35);
+      background: rgba(4, 22, 58, .72);
+      min-width: min(280px, 90%);
+    }
+
+    #slide-08 .s08-strip-connector {
+      font-size: clamp(16px, 1.2vw, 20px);
+      font-weight: 300;
+      color: #55d9ff;
+      text-shadow: 0 0 12px rgba(0, 200, 255, .45);
+      line-height: 1;
+    }
+
+    #slide-08 .s08-strip-closing {
+      margin-top: 8px;
+      font-size: clamp(20px, 1.6vw, 24px);
+      font-weight: 800;
+      line-height: 1.45;
+      color: #fff;
+      letter-spacing: .02em;
+    }
+
+    #slide-08 .s08-moat-card {
+      border-radius: 28px;
+      border: 1px solid rgba(95, 210, 255, .55);
+      background: linear-gradient(165deg, rgba(12, 42, 96, .92), rgba(4, 14, 38, .96));
+      padding: clamp(32px, 3.5vh, 42px);
+      box-shadow: 0 0 48px rgba(0, 150, 255, .22);
+    }
+
+    #slide-08 .s08-moat-card h3 {
+      font-size: clamp(30px, 2.4vw, 38px);
+      font-weight: 900;
+      letter-spacing: .06em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 28px rgba(0, 180, 255, .35);
+      margin: 0 0 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(85, 200, 255, .3);
+    }
+
+    #slide-08 .s08-moat-card p {
+      font-size: clamp(20px, 1.5vw, 24px);
+      font-weight: 600;
+      line-height: 1.55;
+      color: rgba(220, 245, 255, .96);
+      margin: 0;
+      padding-left: 1.15em;
+      position: relative;
+    }
+
+    #slide-08 .s08-moat-card p::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    #slide-08 .s08-closing-bar {
+      text-align: center;
+      font-size: clamp(26px, 2.2vw, 32px);
+      font-weight: 800;
+      line-height: 1.5;
+      color: #fff;
+      border-radius: 28px;
+      border: 1px solid rgba(95, 210, 255, .5);
+      background: linear-gradient(90deg, rgba(0, 75, 140, .28), rgba(70, 55, 150, .2), rgba(0, 75, 140, .28));
+      padding: clamp(24px, 2.8vh, 32px) clamp(26px, 3vw, 36px);
+      box-shadow: 0 0 40px rgba(0, 150, 255, .2);
+      margin: 0 0 6px;
+    }
+
+    @media (max-width: 1024px) {
+      #slide-08 .s08-header h2 {
+        font-size: clamp(48px, 5.5vw, 58px);
+      }
+      #slide-08 .s08-header > p {
+        font-size: clamp(24px, 2.5vw, 28px);
+      }
+      #slide-08 .s08-value-card h3 {
+        font-size: max(24px, clamp(24px, 2.8vw, 30px));
+      }
+      #slide-08 .s08-value-card li {
+        font-size: max(18px, clamp(18px, 1.8vw, 22px));
+      }
+      #slide-08 .s08-moat-card h3 {
+        font-size: max(26px, clamp(26px, 3vw, 32px));
+      }
+      #slide-08 .s08-moat-card p {
+        font-size: max(18px, clamp(18px, 1.8vw, 22px));
+      }
+    }
+
+    @media (max-width: 900px) {
+      #slide-08 .s08-value-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* 2x2 grid */
     .grid-2x2 {
       display: grid;
@@ -2814,31 +3101,65 @@
   </section>
 
   <!-- Slide 08 Business -->
-  <section class="slide" id="slide-08">
-    <div class="slide-inner">
-      <p class="slide-num">08 — Business Model</p>
-      <h1 class="slide-title">Trust-Led Value Creation</h1>
-      <p class="slide-sub">Multiple monetisation layers — trust-first</p>
-      <div class="value-lanes">
-        <div class="lane">
-          <p class="lane-title">B2C</p>
-          <p>Premium experiences: prevention, continuity, intelligence, coordination — essential safety never locked behind payment.</p>
-        </div>
-        <div class="lane">
-          <p class="lane-title">B2B / B2B2C</p>
-          <p>Clinics, hospitals, employers, insurers, pharmacies — continuity, communication, trusted participation.</p>
-        </div>
-        <div class="lane">
-          <p class="lane-title">B2G</p>
-          <p>Prevention, continuity, participation, scalable connected public-health experiences.</p>
-        </div>
-        <div class="lane">
-          <p class="lane-title">Platform value</p>
-          <p>Licensing, intelligence services, partnerships, research — governed by privacy and consent.</p>
-        </div>
+  <section class="slide deck-slide" id="slide-08" data-deck-build="s08-hard-reset-premium-business-model">
+    <div class="s08-shell">
+      <header class="s08-header">
+        <div>08 — BUSINESS MODEL</div>
+        <h2>Trust-Led Value Creation</h2>
+        <p>Multiple monetisation layers — trust-first</p>
+      </header>
+      <div class="s08-scroll-body">
+        <section class="s08-value-grid">
+          <article class="s08-value-card s08-blue-underglow">
+            <span class="s08-card-tag">B2C</span>
+            <h3>For People (B2C)</h3>
+            <ul>
+              <li>Elisence is designed to create meaningful everyday value through prevention, continuity, trusted health participation, medication support, metabolic and wellbeing journeys, health understanding, social health participation, and more connected everyday healthcare experiences.</li>
+              <li>Premium experiences may support advanced health understanding, continuity support, intelligent health participation, deeper personalisation, and more connected long-term health journeys — while preserving the philosophy that trust, safety, and essential participation should not feel locked behind payment.</li>
+            </ul>
+          </article>
+          <article class="s08-value-card s08-blue-underglow">
+            <span class="s08-card-tag">B2B / B2B2C</span>
+            <h3>For Healthcare Organisations (B2B / B2B2C)</h3>
+            <ul>
+              <li>Elisence is designed to support clinics, hospitals, pharmacies, employers, insurers, healthcare providers, and responsible care organisations through continuity, participation, communication, prevention, trusted engagement, and more connected healthcare journeys.</li>
+              <li>In some environments, organisations may enable, sponsor, or subsidise Elisence experiences for the people they support.</li>
+            </ul>
+          </article>
+          <article class="s08-value-card s08-blue-underglow">
+            <span class="s08-card-tag">B2G</span>
+            <h3>For Governments &amp; Public Health Systems (B2G)</h3>
+            <ul>
+              <li>Public health systems increasingly need prevention, participation, continuity, trusted engagement, healthier behaviours, and lower fragmentation across healthcare journeys.</li>
+              <li>Elisence is designed to support more scalable, connected, and prevention-oriented healthcare participation rather than isolated interactions.</li>
+            </ul>
+          </article>
+          <article class="s08-value-card s08-blue-underglow">
+            <span class="s08-card-tag">Platform</span>
+            <h3>Long-Term Platform Value</h3>
+            <ul>
+              <li>Over time, Elisence may support responsible licensing, governed healthcare infrastructure, continuity tooling, workflow support, institutional partnerships, research collaboration, healthcare intelligence services, and trusted ecosystem participation.</li>
+            </ul>
+          </article>
+        </section>
+        <section class="s08-value-strip s08-blue-underglow">
+          <div class="s08-strip-node">B2C</div>
+          <span class="s08-strip-connector" aria-hidden="true">↓</span>
+          <div class="s08-strip-node">B2B / B2B2C</div>
+          <span class="s08-strip-connector" aria-hidden="true">↓</span>
+          <div class="s08-strip-node">B2G</div>
+          <span class="s08-strip-connector" aria-hidden="true">↓</span>
+          <div class="s08-strip-node">Platform Value</div>
+          <p class="s08-strip-closing">Trust sustains long-term value.</p>
+        </section>
+        <section class="s08-moat-card s08-blue-underglow">
+          <h3>Healthy Engagement as a Moat</h3>
+          <p>Elisence is designed around healthy long-term participation rather than advertising-driven attention loops — helping continuity, trust, engagement, and meaningful everyday value reinforce one another over time.</p>
+        </section>
+        <section class="s08-closing-bar s08-blue-underglow">
+          One ecosystem. Multiple value layers. Trust before monetisation.
+        </section>
       </div>
-      <p class="closing-line">B2C creates user value. B2B and B2G create scale. Trust sustains the model.</p>
-      <p class="tagline tagline-moat">Healthy engagement as a moat</p>
     </div>
   </section>
 
