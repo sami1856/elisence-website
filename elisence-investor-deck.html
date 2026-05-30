@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elisence — Web Summit Investor Deck</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020816;
+      color: #eaf8ff;
+      overflow-x: hidden;
+    }
+
+    .slide {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(48px, 8vh, 96px) clamp(28px, 6vw, 88px);
+      position: relative;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 140, 220, .18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(60, 80, 200, .12), transparent 40%),
+        linear-gradient(180deg, #061936 0%, #020816 48%, #000 100%);
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(0, 200, 255, .06), transparent 45%);
+      pointer-events: none;
+    }
+
+    .slide-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, 100%);
+      margin: 0 auto;
+    }
+
+    .slide-num {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      color: #55d9ff;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .slide-title {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 950;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: #fff;
+      text-shadow: 0 0 40px rgba(0, 170, 255, .35);
+      margin-bottom: 16px;
+    }
+
+    .slide-sub {
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 750;
+      color: #8edcff;
+      letter-spacing: .06em;
+      margin-bottom: 28px;
+      line-height: 1.3;
+    }
+
+    .lead {
+      font-size: clamp(17px, 1.5vw, 22px);
+      line-height: 1.5;
+      font-weight: 600;
+      color: rgba(220, 245, 255, .92);
+      max-width: 52em;
+    }
+
+    .lead strong { font-weight: 850; color: #fff; }
+
+    ul.bullets {
+      list-style: none;
+      margin: 12px 0;
+    }
+
+    ul.bullets li {
+      font-size: clamp(15px, 1.25vw, 20px);
+      line-height: 1.45;
+      font-weight: 600;
+      color: rgba(210, 240, 255, .9);
+      margin-bottom: 10px;
+      padding-left: 1.2em;
+      position: relative;
+    }
+
+    ul.bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    .label-upper {
+      font-size: clamp(13px, 1vw, 16px);
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 22px 0 12px;
+    }
+
+    .closing-line {
+      margin-top: 28px;
+      font-size: clamp(18px, 1.6vw, 24px);
+      font-weight: 850;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 170, 255, .3);
+    }
+
+    .tagline {
+      font-size: clamp(14px, 1.1vw, 17px);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #55d9ff;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Cover */
+    .slide-cover {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide-cover .hero-visual {
+      width: min(720px, 92vw);
+      margin: 0 auto 36px;
+      border-radius: 20px;
+      border: 1px solid rgba(95, 205, 255, .45);
+      box-shadow: 0 0 48px rgba(0, 160, 255, .4);
+      overflow: hidden;
+      background: rgba(4, 12, 34, .6);
+    }
+
+    .slide-cover .hero-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 42vh;
+      object-fit: contain;
+    }
+
+    .brand-hero {
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 950;
+      letter-spacing: .28em;
+      color: #fff;
+      text-shadow: 0 0 36px rgba(0, 180, 255, .85);
+      margin-bottom: 12px;
+    }
+
+    .brand-line {
+      font-size: clamp(20px, 2.2vw, 32px);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .brand-pillars {
+      font-size: clamp(16px, 1.4vw, 22px);
+      font-weight: 750;
+      color: rgba(180, 230, 255, .95);
+      margin-bottom: 32px;
+    }
+
+    .founder-meta {
+      font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 700;
+      color: rgba(180, 230, 255, .88);
+      line-height: 1.6;
+    }
+
+    /* Two column */
+    .cols-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(20px, 3vw, 40px);
+      margin-top: 24px;
+    }
+
+    .col-card {
+      border: 1px solid rgba(95, 205, 255, .5);
+      border-radius: 20px;
+      padding: clamp(20px, 2.5vw, 32px);
+      background:
+        radial-gradient(circle at top left, rgba(0, 190, 255, .2), transparent 50%),
+        linear-gradient(145deg, rgba(8, 34, 85, .85), rgba(4, 12, 34, .95));
+      box-shadow: 0 0 24px rgba(0, 150, 255, .3);
+    }
+
+    /* Fragment visual */
+    .frag-visual {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 24px 0;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px dashed rgba(120, 200, 255, .35);
+      background: rgba(0, 0, 0, .25);
+    }
+
+    .frag-chip {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(200, 230, 255, .75);
+      border: 1px solid rgba(100, 180, 255, .3);
+      background: rgba(8, 30, 70, .6);
+      opacity: .85;
+    }
+
+    .frag-chip.off { opacity: .45; transform: scale(.96); }
+
+    /* 2x2 grid */
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .mini-card {
+      border: 1px solid rgba(95, 205, 255, .45);
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(6, 28, 68, .7);
+      box-shadow: 0 0 18px rgba(0, 140, 255, .25);
+    }
+
+    .mini-card h3 {
+      font-size: clamp(14px, 1.1vw, 17px);
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin-bottom: 10px;
+    }
+
+    .mini-card p {
+      font-size: clamp(14px, 1.05vw, 17px);
+      line-height: 1.4;
+      font-weight: 600;
+      color: rgba(210, 240, 255, .88);
+    }
+
+    .transitions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      justify-content: center;
+      margin-top: 28px;
+      font-size: clamp(15px, 1.2vw, 19px);
+      font-weight: 800;
+      color: #dff5ff;
+    }
+
+    .transitions span { color: #55d9ff; }
+
+    /* Compare */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: center;
+      margin: 28px 0;
+    }
+
+    .compare-side {
+      border-radius: 18px;
+      padding: 24px;
+      min-height: 140px;
+    }
+
+    .compare-side.bad {
+      border: 1px solid rgba(255, 120, 120, .25);
+      background: rgba(40, 20, 30, .5);
+    }
+
+    .compare-side.good {
+      border: 1px solid rgba(95, 205, 255, .6);
+      background:
+        radial-gradient(circle at top, rgba(0, 180, 255, .15), transparent 60%),
+        rgba(6, 28, 68, .8);
+      box-shadow: 0 0 28px rgba(0, 160, 255, .35);
+    }
+
+    .compare-arrow {
+      font-size: 32px;
+      font-weight: 900;
+      color: #55d9ff;
+      text-shadow: 0 0 20px rgba(0, 200, 255, .6);
+    }
+
+    /* Orbit ecosystem */
+    .orbit-wrap {
+      position: relative;
+      width: min(520px, 90vw);
+      height: min(520px, 90vw);
+      margin: 28px auto;
+    }
+
+    .orbit-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 220, 255, .8);
+      background:
+        radial-gradient(circle, rgba(0, 200, 255, .35), rgba(4, 20, 50, .95));
+      box-shadow: 0 0 40px rgba(0, 190, 255, .6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-align: center;
+      color: #fff;
+      z-index: 2;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      inset: 8%;
+      border-radius: 50%;
+      border: 1px solid rgba(95, 205, 255, .35);
+    }
+
+    .orbit-ring.outer { inset: 0; border-color: rgba(120, 180, 255, .25); }
+
+    .orbit-tag {
+      position: absolute;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(100, 200, 255, .4);
+      background: rgba(4, 18, 48, .9);
+      color: rgba(200, 235, 255, .9);
+      white-space: nowrap;
+    }
+
+    /* Trust pillars */
+    .pillars-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .pillar {
+      text-align: center;
+      padding: 22px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(95, 205, 255, .5);
+      background: rgba(6, 28, 68, .65);
+      box-shadow: 0 0 20px rgba(0, 140, 255, .2);
+    }
+
+    .pillar h3 {
+      font-size: clamp(12px, .95vw, 14px);
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .pillar p {
+      font-size: clamp(12px, .9vw, 14px);
+      line-height: 1.35;
+      font-weight: 600;
+      color: rgba(200, 235, 255, .85);
+    }
+
+    /* Business model */
+    .value-lanes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 24px 0;
+    }
+
+    .lane {
+      padding: 20px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(95, 205, 255, .45);
+      background: linear-gradient(160deg, rgba(8, 40, 90, .8), rgba(4, 14, 36, .95));
+      text-align: center;
+    }
+
+    .lane .lane-title {
+      font-size: clamp(13px, 1vw, 16px);
+      font-weight: 900;
+      letter-spacing: .1em;
+      color: #55d9ff;
+      margin-bottom: 10px;
+    }
+
+    .lane p {
+      font-size: clamp(12px, .95vw, 15px);
+      line-height: 1.4;
+      font-weight: 600;
+      color: rgba(210, 240, 255, .88);
+    }
+
+    /* Map */
+    .map-visual {
+      width: min(640px, 100%);
+      height: 200px;
+      margin: 24px auto;
+      border-radius: 20px;
+      border: 1px solid rgba(95, 205, 255, .4);
+      background:
+        radial-gradient(ellipse 60% 40% at 35% 45%, rgba(0, 180, 255, .2), transparent),
+        radial-gradient(ellipse 40% 35% at 55% 40%, rgba(80, 120, 255, .15), transparent),
+        radial-gradient(ellipse 35% 30% at 72% 55%, rgba(0, 200, 200, .12), transparent),
+        rgba(4, 16, 40, .8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      color: rgba(140, 210, 255, .6);
+      text-transform: uppercase;
+    }
+
+    /* Founder */
+    .founder-layout {
+      display: grid;
+      grid-template-columns: minmax(200px, 280px) 1fr;
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+      margin-top: 20px;
+    }
+
+    .founder-portrait {
+      aspect-ratio: 3/4;
+      border-radius: 20px;
+      border: 1px solid rgba(95, 205, 255, .55);
+      background:
+        radial-gradient(circle at 30% 25%, rgba(0, 190, 255, .25), transparent 55%),
+        linear-gradient(160deg, rgba(8, 34, 85, .95), rgba(2, 10, 28, .98));
+      box-shadow: 0 0 32px rgba(0, 160, 255, .35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .founder-portrait .initials {
+      font-size: 48px;
+      font-weight: 950;
+      color: #55d9ff;
+      text-shadow: 0 0 24px rgba(0, 200, 255, .5);
+      margin-bottom: 12px;
+    }
+
+    .founder-portrait .name {
+      font-size: 16px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .founder-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .founder-tags span {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 220, 255, .6);
+      font-size: 13px;
+      font-weight: 800;
+      color: #dff5ff;
+      background: rgba(0, 80, 160, .25);
+    }
+
+    /* Vision */
+    .vision-visual {
+      width: min(800px, 100%);
+      margin: 24px auto;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(95, 205, 255, .45);
+      box-shadow: 0 0 36px rgba(0, 160, 255, .35);
+    }
+
+    .vision-visual img {
+      width: 100%;
+      height: auto;
+      max-height: 38vh;
+      object-fit: contain;
+      display: block;
+      background: rgba(0, 0, 0, .3);
+    }
+
+    .timeline-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .timeline-3 div {
+      text-align: center;
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(95, 205, 255, .4);
+      background: rgba(6, 28, 68, .5);
+      font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 850;
+      color: #8edcff;
+    }
+
+    /* Ask slide */
+    .ask-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .ask-block {
+      border: 1px solid rgba(95, 205, 255, .55);
+      border-radius: 18px;
+      padding: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(0, 190, 255, .18), transparent 50%),
+        rgba(6, 28, 68, .75);
+      box-shadow: 0 0 22px rgba(0, 150, 255, .28);
+    }
+
+    .ask-block h3 {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin-bottom: 12px;
+    }
+
+    .ask-cta {
+      text-align: center;
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid rgba(110, 220, 255, .7);
+      background: rgba(4, 18, 48, .8);
+      box-shadow: 0 0 32px rgba(0, 170, 255, .35);
+      margin-top: 20px;
+    }
+
+    .ask-cta p {
+      font-size: clamp(16px, 1.3vw, 20px);
+      font-weight: 750;
+      line-height: 1.45;
+      margin-bottom: 18px;
+      max-width: 40em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .chips span {
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 220, 255, .85);
+      font-size: 14px;
+      font-weight: 800;
+      color: #dff5ff;
+      background: rgba(0, 70, 140, .4);
+      box-shadow: 0 0 16px rgba(0, 170, 255, .4);
+    }
+
+    .deck-img {
+      width: min(560px, 100%);
+      margin: 20px auto;
+      border-radius: 16px;
+      border: 1px solid rgba(95, 205, 255, .4);
+      box-shadow: 0 0 28px rgba(0, 150, 255, .3);
+    }
+
+    .deck-img img {
+      width: 100%;
+      height: auto;
+      max-height: 32vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Nav dots */
+    .nav-dots {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-dots a {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(120, 220, 255, .7);
+      background: rgba(0, 60, 120, .5);
+      text-indent: -9999px;
+      overflow: hidden;
+      transition: .2s ease;
+    }
+
+    .nav-dots a:hover,
+    .nav-dots a.active {
+      background: #55d9ff;
+      box-shadow: 0 0 12px rgba(0, 220, 255, .8);
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 900px) {
+      .cols-2, .grid-2x2, .compare, .pillars-4, .value-lanes, .ask-grid, .timeline-3 {
+        grid-template-columns: 1fr;
+      }
+      .compare { grid-template-columns: 1fr; text-align: center; }
+      .compare-arrow { transform: rotate(90deg); margin: 8px auto; }
+      .founder-layout { grid-template-columns: 1fr; }
+      .nav-dots { display: none; }
+    }
+
+    @media print {
+      html { scroll-snap-type: none; }
+      .slide {
+        page-break-after: always;
+        min-height: 100vh;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      .nav-dots { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-dots" aria-label="Slide navigation">
+    <a href="#slide-01" title="Slide 1">1</a>
+    <a href="#slide-02" title="Slide 2">2</a>
+    <a href="#slide-03" title="Slide 3">3</a>
+    <a href="#slide-04" title="Slide 4">4</a>
+    <a href="#slide-05" title="Slide 5">5</a>
+    <a href="#slide-06" title="Slide 6">6</a>
+    <a href="#slide-07" title="Slide 7">7</a>
+    <a href="#slide-08" title="Slide 8">8</a>
+    <a href="#slide-09" title="Slide 9">9</a>
+    <a href="#slide-10" title="Slide 10">10</a>
+    <a href="#slide-11" title="Slide 11">11</a>
+    <a href="#slide-12" title="Slide 12">12</a>
+  </nav>
+
+  <!-- Slide 01 Cover -->
+  <section class="slide slide-cover" id="slide-01">
+    <div class="slide-inner">
+      <div class="hero-visual">
+        <img src="assets/websummit2026/Elisence_Vision_Slide_01.png" alt="Elisence connected health ecosystem" />
+      </div>
+      <p class="brand-hero">ELISENCE</p>
+      <p class="brand-line">Human-Centred Connected Health Ecosystem</p>
+      <p class="brand-pillars">Prevention • Continuity • Trusted Health Intelligence</p>
+      <p class="founder-meta">
+        Founder: Saami Salami<br />
+        Founder &amp; CEO<br />
+        Web Summit Lisbon 2026
+      </p>
+    </div>
+  </section>
+
+  <!-- Slide 02 Problem -->
+  <section class="slide" id="slide-02">
+    <div class="slide-inner">
+      <p class="slide-num">02 — Problem</p>
+      <h1 class="slide-title">Healthcare Feels Fragmented</h1>
+      <p class="slide-sub">Fragmentation, rising costs, and growing system pressure</p>
+      <div class="frag-visual" aria-hidden="true">
+        <span class="frag-chip off">App A</span>
+        <span class="frag-chip off">Tracker</span>
+        <span class="frag-chip off">Meds</span>
+        <span class="frag-chip off">Clinic</span>
+        <span class="frag-chip off">Insurer</span>
+        <span class="frag-chip off">Wellness</span>
+        <span class="frag-chip off">Records</span>
+      </div>
+      <div class="cols-2">
+        <div class="col-card">
+          <p class="label-upper">For People</p>
+          <ul class="bullets">
+            <li>Health journeys are fragmented across disconnected apps, appointments, medications, trackers, and systems.</li>
+            <li>Many people manage diabetes, prevention, chronic conditions, wellbeing, family care, and medication across multiple tools — often with little continuity.</li>
+            <li>Health can feel confusing, stressful, isolating, expensive, and difficult to navigate.</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <p class="label-upper">For Healthcare Systems</p>
+          <ul class="bullets">
+            <li>Growing pressure from chronic disease, ageing populations, workforce strain, fragmented care journeys, and rising costs.</li>
+            <li>Prevention, continuity, trusted participation, and long-term engagement are increasingly important.</li>
+            <li>Better coordination and continuity may help reduce inefficiency, duplication, and avoidable burden over time.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="closing-line">Healthcare should feel more connected, understandable, affordable, and human.</p>
+    </div>
+  </section>
+
+  <!-- Slide 03 Why Now -->
+  <section class="slide" id="slide-03">
+    <div class="slide-inner">
+      <p class="slide-num">03 — Why Now</p>
+      <h1 class="slide-title">A Convergence Moment</h1>
+      <p class="slide-sub">Healthcare is reaching a turning point</p>
+      <div class="grid-2x2">
+        <div class="mini-card">
+          <h3>Healthcare pressure</h3>
+          <p>Chronic conditions rising, populations ageing, costs increasing — systems must move from reactive care toward prevention and continuity.</p>
+        </div>
+        <div class="mini-card">
+          <h3>People managing more health</h3>
+          <p>Medication, diabetes, prevention, wellbeing, family care, and everyday decisions are pushed onto individuals — yet experiences stay fragmented.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Digital expectations changed</h3>
+          <p>People expect connected, intelligent experiences in life — but healthcare still often feels disconnected, episodic, and hard to coordinate.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Technology maturity</h3>
+          <p>Digital infrastructure, AI-assisted workflows, medical intelligence, and secure communication now enable long-term engagement in a trusted way.</p>
+        </div>
+      </div>
+      <div class="transitions">
+        <span>Reactive</span> → <span>Preventative</span> &nbsp;|&nbsp;
+        <span>Episodic</span> → <span>Continuous</span> &nbsp;|&nbsp;
+        <span>Fragmented</span> → <span>Connected</span>
+      </div>
+      <p class="closing-line" style="margin-top: 32px;">Healthcare pressure, behaviour change, technology maturity, and trust are finally converging.</p>
+    </div>
+  </section>
+
+  <!-- Slide 04 What is Elisence -->
+  <section class="slide" id="slide-04">
+    <div class="slide-inner">
+      <p class="slide-num">04 — What is Elisence</p>
+      <h1 class="slide-title">One Connected Ecosystem</h1>
+      <p class="slide-sub">A connected health ecosystem for people and healthcare systems</p>
+      <div class="deck-img">
+        <img src="assets/websummit2026/ELISENCE_WEB_SUMMIT_OVERVIEW.png" alt="Elisence overview" />
+      </div>
+      <p class="lead" style="margin-bottom: 20px;">Elisence is a human-centred, globally adaptable health ecosystem designed to make healthcare feel more connected, understandable, and easier to navigate over time.</p>
+      <div class="cols-2">
+        <div>
+          <p class="label-upper">For People</p>
+          <ul class="bullets">
+            <li>Prevention, diabetes and metabolic health, medical tracking, medication continuity, intelligence, body understanding, women’s health, family care, trusted guidance, and care-provider communication — in one connected experience.</li>
+            <li>Greater continuity, clarity, trust, lower friction, and lower health-management cost.</li>
+          </ul>
+        </div>
+        <div>
+          <p class="label-upper">For Healthcare Systems</p>
+          <ul class="bullets">
+            <li>Continuity, prevention, participation, and connected experiences across clinics, hospitals, insurers, governments, universities, researchers, and pharmacies.</li>
+            <li>Secure, modular, multilingual, healthcare-aware — adaptable across countries and real-world environments.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="closing-line">One connected ecosystem — human, trusted, continuous.</p>
+    </div>
+  </section>
+
+  <!-- Slide 05 Different -->
+  <section class="slide" id="slide-05">
+    <div class="slide-inner">
+      <p class="slide-num">05 — Why Different</p>
+      <h1 class="slide-title">Not Another Health App</h1>
+      <p class="slide-sub">Beyond fragmented apps — toward connected health continuity</p>
+      <div class="compare">
+        <div class="compare-side bad">
+          <p class="label-upper">Most health apps</p>
+          <ul class="bullets">
+            <li>One problem at a time</li>
+            <li>Disconnected tools &amp; subscriptions</li>
+            <li>Episodic, fragmented, reactive</li>
+          </ul>
+        </div>
+        <div class="compare-arrow" aria-hidden="true">→</div>
+        <div class="compare-side good">
+          <p class="label-upper">Elisence</p>
+          <ul class="bullets">
+            <li>Connected ecosystem</li>
+            <li>Continuity over time</li>
+            <li>People + systems together</li>
+          </ul>
+        </div>
+      </div>
+      <p class="lead">Elisence combines prevention, chronic support, intelligence, tracking, communication, wellbeing, social health, and coordination — working together rather than separately.</p>
+      <p class="closing-line">A connected ecosystem designed to keep healthcare meaningfully connected over time.</p>
+    </div>
+  </section>
+
+  <!-- Slide 06 Ecosystem -->
+  <section class="slide" id="slide-06">
+    <div class="slide-inner">
+      <p class="slide-num">06 — Product Ecosystem</p>
+      <h1 class="slide-title">Connected Health Experiences</h1>
+      <p class="slide-sub">Not disconnected tools — one ecosystem</p>
+      <div class="orbit-wrap" aria-hidden="true">
+        <div class="orbit-ring outer"></div>
+        <div class="orbit-ring"></div>
+        <div class="orbit-core">ELISENCE<br />Continuity</div>
+        <span class="orbit-tag" style="top: 4%; left: 50%; transform: translateX(-50%);">Women’s health</span>
+        <span class="orbit-tag" style="top: 18%; right: 8%;">Diabetes</span>
+        <span class="orbit-tag" style="top: 42%; right: 0;">Medication</span>
+        <span class="orbit-tag" style="bottom: 18%; right: 8%;">GP · Pharmacy</span>
+        <span class="orbit-tag" style="bottom: 4%; left: 50%; transform: translateX(-50%);">Prevention</span>
+        <span class="orbit-tag" style="bottom: 18%; left: 8%;">Family care</span>
+        <span class="orbit-tag" style="top: 42%; left: 0;">Intelligence</span>
+        <span class="orbit-tag" style="top: 18%; left: 8%;">Voice · Video</span>
+        <span class="orbit-tag" style="top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 10px; opacity: .7;">Elisa</span>
+        <span class="orbit-tag" style="top: 0; right: 22%;">Hospitals</span>
+        <span class="orbit-tag" style="bottom: 0; right: 22%;">Insurers</span>
+        <span class="orbit-tag" style="bottom: 0; left: 22%;">Governments</span>
+        <span class="orbit-tag" style="top: 0; left: 22%;">Research</span>
+      </div>
+      <p class="lead" style="text-align: center; max-width: 48em; margin: 0 auto;">Prevention, care, communication, intelligence, and continuity reinforce one another — clinics, hospitals, insurers, universities, and governments on the outer ring.</p>
+      <p class="closing-line">One connected ecosystem where health experiences work together.</p>
+    </div>
+  </section>
+
+  <!-- Slide 07 Trust -->
+  <section class="slide" id="slide-07">
+    <div class="slide-inner">
+      <p class="slide-num">07 — Trust &amp; Governance</p>
+      <h1 class="slide-title">Trust Is Architecture</h1>
+      <p class="slide-sub">Built for trust — not added later</p>
+      <div class="pillars-4">
+        <div class="pillar">
+          <h3>Trust &amp; Safety</h3>
+          <p>Healthcare-aware safety, responsible boundaries, human oversight, non-diagnostic by default.</p>
+        </div>
+        <div class="pillar">
+          <h3>Governed Health Intelligence</h3>
+          <p>Auditability, provenance, evidence-driven workflows, explainable decisions over time.</p>
+        </div>
+        <div class="pillar">
+          <h3>Medical-ready Foundations</h3>
+          <p>NHS-style safety, GDPR, FDA CDS boundaries, MDR principles, GCC realities.</p>
+        </div>
+        <div class="pillar">
+          <h3>Zero Trust &amp; Privacy</h3>
+          <p>Permissions, identity, consent validated — fail safely, not overclaim.</p>
+        </div>
+      </div>
+      <p class="lead">Privacy, safety, governance, and compliance are designed into the platform from the beginning — not bolted on at the end.</p>
+      <p class="closing-line">Trust is not paperwork. Trust is architecture.</p>
+    </div>
+  </section>
+
+  <!-- Slide 08 Business -->
+  <section class="slide" id="slide-08">
+    <div class="slide-inner">
+      <p class="slide-num">08 — Business Model</p>
+      <h1 class="slide-title">Trust-Led Value Creation</h1>
+      <p class="slide-sub">Multiple monetisation layers — trust-first</p>
+      <div class="value-lanes">
+        <div class="lane">
+          <p class="lane-title">B2C</p>
+          <p>Premium experiences: prevention, continuity, intelligence, coordination — essential safety never locked behind payment.</p>
+        </div>
+        <div class="lane">
+          <p class="lane-title">B2B / B2B2C</p>
+          <p>Clinics, hospitals, employers, insurers, pharmacies — continuity, communication, trusted participation.</p>
+        </div>
+        <div class="lane">
+          <p class="lane-title">B2G</p>
+          <p>Prevention, continuity, participation, scalable connected public-health experiences.</p>
+        </div>
+        <div class="lane">
+          <p class="lane-title">Platform value</p>
+          <p>Licensing, intelligence services, partnerships, research — governed by privacy and consent.</p>
+        </div>
+      </div>
+      <p class="closing-line">B2C creates user value. B2B and B2G create scale. Trust sustains the model.</p>
+      <p class="tagline">Healthy engagement as a moat</p>
+    </div>
+  </section>
+
+  <!-- Slide 09 Market -->
+  <section class="slide" id="slide-09">
+    <div class="slide-inner">
+      <p class="slide-num">09 — Market &amp; Expansion</p>
+      <h1 class="slide-title">Global Ambition, Local Execution</h1>
+      <p class="slide-sub">Healthcare adoption is earned locally</p>
+      <div class="map-visual">Global · UK · Europe · Gulf · Middle East</div>
+      <div class="cols-2">
+        <div>
+          <p class="label-upper">Global opportunity</p>
+          <ul class="bullets">
+            <li>Fragmentation, chronic conditions, prevention pressure, and self-management are global — not local — realities.</li>
+            <li>Better continuity and connected experiences are needed worldwide.</li>
+          </ul>
+        </div>
+        <div>
+          <p class="label-upper">Local execution</p>
+          <ul class="bullets">
+            <li>Country-aware regulation, language, culture, trust, and data governance.</li>
+            <li>Validate locally, build credibility, scale responsibly — UK, Europe, Gulf.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="closing-line">Global problem. Local trust. Responsible scale.</p>
+    </div>
+  </section>
+
+  <!-- Slide 10 Founder -->
+  <section class="slide" id="slide-10">
+    <div class="slide-inner">
+      <p class="slide-num">10 — Founder Story</p>
+      <h1 class="slide-title">Why Elisence Exists</h1>
+      <p class="slide-sub">A founder story rooted in healthcare continuity</p>
+      <div class="founder-layout">
+        <div class="founder-portrait">
+          <div class="initials">SS</div>
+          <p class="name">Saami Salami<br />Founder &amp; CEO</p>
+        </div>
+        <div>
+          <p class="lead"><strong>Why does healthcare so often feel fragmented, stressful, and difficult to navigate — especially when people are already vulnerable?</strong></p>
+          <p class="lead" style="margin-top: 16px;">Through engineering, legal, business, and care services — including domiciliary care — I saw health journeys become disconnected and hard for families to manage.</p>
+          <p class="lead" style="margin-top: 16px;">Elisence is inspired by my daughter, <strong>Elisa</strong> — a hope for healthcare that feels more trusted, connected, and human.</p>
+          <p class="lead" style="margin-top: 16px;">A long-term mission to reduce fragmentation, strengthen continuity, and help healthcare feel calmer over time.</p>
+          <div class="founder-tags">
+            <span>Engineering</span>
+            <span>Care</span>
+            <span>Systems Thinking</span>
+            <span>Human Health</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11 Vision -->
+  <section class="slide" id="slide-11">
+    <div class="slide-inner">
+      <p class="slide-num">11 — Vision</p>
+      <h1 class="slide-title">Healthcare That Stays Connected</h1>
+      <p class="slide-sub">A future where healthcare stays connected</p>
+      <div class="vision-visual">
+        <img src="assets/websummit2026/Elisence_Real_Health_Experiences_Slide_02.png" alt="Real health experiences" />
+      </div>
+      <p class="lead">Healthcare should not only exist when people are ill. Prevention, continuity, and human support — before, during, and after illness.</p>
+      <div class="timeline-3">
+        <div>Before illness</div>
+        <div>During illness</div>
+        <div>After illness</div>
+      </div>
+      <p class="closing-line" style="margin-top: 28px;">Most systems engage when people are ill. Elisence stays valuable across the full journey.</p>
+      <p class="tagline">Build responsibly · Earn trust locally · Scale globally</p>
+    </div>
+  </section>
+
+  <!-- Slide 12 Ask -->
+  <section class="slide" id="slide-12">
+    <div class="slide-inner">
+      <p class="slide-num">12 — Ask / Next Step</p>
+      <h1 class="slide-title">Let’s Build Responsibly</h1>
+      <p class="slide-sub">Build responsibly. Validate meaningfully. Scale with trust.</p>
+      <p class="lead">Elisence is moving from strong product foundation toward responsible validation, institutional partnerships, and scalable real-world deployment.</p>
+      <div class="ask-grid">
+        <div class="ask-block">
+          <h3>Strategic Validation</h3>
+          <ul class="bullets">
+            <li>Pilot conversations with healthcare systems, clinics, insurers, and responsible partners</li>
+            <li>Real-world learning and responsible validation environments</li>
+          </ul>
+        </div>
+        <div class="ask-block">
+          <h3>Long-Term Partnerships</h3>
+          <ul class="bullets">
+            <li>Clinical, academic, healthcare system, and research collaboration</li>
+            <li>Trusted ecosystem and institutional relationships</li>
+          </ul>
+        </div>
+        <div class="ask-block">
+          <h3>Investment &amp; Strategic Support</h3>
+          <ul class="bullets">
+            <li>Mission-aligned investors in long-term healthcare transformation</li>
+            <li>Advisors and introductions that accelerate responsible growth</li>
+          </ul>
+        </div>
+        <div class="ask-block">
+          <h3>Healthcare Collaboration</h3>
+          <ul class="bullets">
+            <li>Institutional pilots, partnerships, and ecosystem alignment</li>
+            <li>Concrete next steps with the right partners</li>
+          </ul>
+        </div>
+      </div>
+      <p class="tagline">Global ambition • Local trust • Responsible scale</p>
+      <div class="ask-cta">
+        <p>If you believe healthcare should feel more connected, trusted, preventative, and human — let’s explore one concrete next step.</p>
+        <div class="chips">
+          <span>Pilot</span>
+          <span>Partnership</span>
+          <span>Strategic Introduction</span>
+          <span>Investment Conversation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var dots = document.querySelectorAll(".nav-dots a");
+      var slides = document.querySelectorAll(".slide");
+      if (!dots.length || !slides.length) return;
+
+      function setActive() {
+        var y = window.scrollY + window.innerHeight * 0.4;
+        var active = 0;
+        slides.forEach(function (s, i) {
+          if (s.offsetTop <= y) active = i;
+        });
+        dots.forEach(function (d, i) {
+          d.classList.toggle("active", i === active);
+        });
+      }
+
+      window.addEventListener("scroll", setActive, { passive: true });
+      setActive();
+    })();
+  </script>
+</body>
+</html>
