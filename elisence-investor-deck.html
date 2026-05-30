@@ -14,13 +14,19 @@
 
     html.deck-magnetic-active {
       height: 100%;
-      overflow: hidden;
+      width: 100%;
+      overflow: hidden !important;
       scroll-snap-type: none;
+      overscroll-behavior: none;
     }
 
     html.deck-magnetic-active body {
       height: 100%;
-      overflow: hidden;
+      width: 100%;
+      overflow: hidden !important;
+      overscroll-behavior: none;
+      position: fixed;
+      inset: 0;
     }
 
     body {
@@ -3682,21 +3688,26 @@
       position: fixed;
       inset: 0;
       width: 100%;
-      height: 100vh;
-      height: 100dvh;
+      height: 100%;
       overflow: hidden;
-      touch-action: pan-x pinch-zoom;
+      overscroll-behavior: none;
+      touch-action: manipulation;
+      z-index: 1;
     }
 
     .deck-track {
       display: flex;
       flex-direction: column;
       will-change: transform;
-      transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .deck-track.is-instant {
       transition: none !important;
+    }
+
+    .deck-track.is-animating {
+      pointer-events: none;
     }
 
     html.deck-magnetic-active .slide {
@@ -3708,25 +3719,55 @@
       min-height: 100dvh;
       max-height: 100vh;
       max-height: 100dvh;
+      overflow: hidden;
       scroll-snap-align: none;
     }
 
     /* Premium slide navigator */
     .deck-nav {
       position: fixed;
-      right: clamp(14px, 1.8vw, 22px);
+      right: clamp(12px, 1.6vw, 20px);
       top: 50%;
       transform: translateY(-50%);
-      z-index: 200;
+      z-index: 300;
+      pointer-events: none;
+      padding: 10px 0;
+    }
+
+    .deck-nav-rail {
+      position: absolute;
+      right: 4px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, transparent, rgba(46, 232, 197, .22) 12%, rgba(46, 232, 197, .22) 88%, transparent);
+      pointer-events: none;
+    }
+
+    .deck-nav-beam {
+      position: absolute;
+      right: 2px;
+      width: 3px;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(110, 255, 232, 1), rgba(46, 232, 197, .85));
+      box-shadow:
+        0 0 14px rgba(46, 232, 197, .65),
+        0 0 28px rgba(0, 230, 180, .28);
+      transform: translateY(0);
+      transition: transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
       pointer-events: none;
     }
 
     .deck-nav-list {
+      position: relative;
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: clamp(6px, .8vh, 9px);
+      gap: clamp(5px, .75vh, 8px);
       pointer-events: auto;
+      padding-right: 14px;
     }
 
     .deck-nav-link {
@@ -3795,18 +3836,25 @@
     }
 
     .deck-nav-link.is-active .deck-nav-dot {
-      width: 10px;
-      height: 10px;
-      background: #2ee8c5;
-      border-color: rgba(110, 255, 232, .85);
-      box-shadow: 0 0 14px rgba(46, 232, 197, .55), 0 0 28px rgba(0, 230, 180, .22);
-      transform: scale(1.08);
+      width: 11px;
+      height: 11px;
+      background: radial-gradient(circle at 35% 35%, #b8fff4, #2ee8c5 55%, #00c9a8);
+      border-color: rgba(110, 255, 232, .95);
+      box-shadow:
+        0 0 16px rgba(46, 232, 197, .72),
+        0 0 32px rgba(0, 230, 180, .32);
+      transform: scale(1.12);
     }
 
     .deck-nav-link.is-active .deck-nav-num {
       opacity: 1;
-      color: #6dffe8;
+      color: #8efff0;
       font-weight: 800;
+      text-shadow: 0 0 12px rgba(46, 232, 197, .45);
+    }
+
+    .deck-nav-link.is-active .deck-nav-label {
+      color: rgba(200, 255, 245, .92);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -3908,7 +3956,9 @@
 <body>
 
   <nav class="deck-nav" aria-label="Slide navigation">
-    <ol class="deck-nav-list">
+    <span class="deck-nav-rail" aria-hidden="true"></span>
+    <span class="deck-nav-beam" id="deck-nav-beam" aria-hidden="true"></span>
+    <ol class="deck-nav-list" id="deck-nav-list">
       <li><a class="deck-nav-link" href="#slide-01" data-slide-index="0" aria-label="Slide 01 Intro"><span class="deck-nav-label">Intro</span><span class="deck-nav-num">01</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
       <li><a class="deck-nav-link" href="#slide-02" data-slide-index="1" aria-label="Slide 02 Healthcare Feels Fragmented"><span class="deck-nav-label">Healthcare Feels Fragmented</span><span class="deck-nav-num">02</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
       <li><a class="deck-nav-link" href="#slide-03" data-slide-index="2" aria-label="Slide 03 Why Now"><span class="deck-nav-label">Why Now</span><span class="deck-nav-num">03</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
@@ -4796,25 +4846,30 @@
 
       var viewport = document.getElementById("deck-viewport");
       var track = document.getElementById("deck-track");
+      var navBeam = document.getElementById("deck-nav-beam");
+      var navList = document.getElementById("deck-nav-list");
       if (!viewport || !track) return;
 
       var slides = Array.prototype.slice.call(track.querySelectorAll(".slide"));
       var navLinks = Array.prototype.slice.call(document.querySelectorAll(".deck-nav-link[data-slide-index]"));
       var index = 0;
-      var locked = false;
-      var DURATION = 550;
-      var WHEEL_THRESHOLD = 36;
-      var wheelAccum = 0;
-      var wheelResetTimer = null;
+      var animating = false;
+      var wheelCooldown = false;
+      var animTimer = null;
+      var TRANSITION_MS = 560;
       var touchStartY = null;
       var touchStartX = null;
       var touchStartTarget = null;
-      var SWIPE_THRESHOLD = 56;
+      var SWIPE_THRESHOLD = 52;
 
       document.documentElement.classList.add("deck-magnetic-active");
 
       function clamp(i) {
         return Math.max(0, Math.min(slides.length - 1, i));
+      }
+
+      function slideStep() {
+        return viewport.clientHeight || window.innerHeight;
       }
 
       function getIndexFromHash() {
@@ -4826,47 +4881,78 @@
         return 0;
       }
 
+      function updateNavBeam() {
+        if (!navBeam || !navList || !navLinks.length) return;
+        var active = navLinks[index];
+        if (!active) return;
+        var listRect = navList.getBoundingClientRect();
+        var linkRect = active.getBoundingClientRect();
+        var beamTop = linkRect.top - listRect.top + (linkRect.height - navBeam.offsetHeight) / 2;
+        navBeam.style.transform = "translateY(" + beamTop + "px)";
+      }
+
       function updateNav() {
         navLinks.forEach(function (link, i) {
           var active = i === index;
           link.classList.toggle("is-active", active);
           link.setAttribute("aria-current", active ? "true" : "false");
         });
+        updateNavBeam();
       }
 
       function applyTransform(instant) {
         if (instant) track.classList.add("is-instant");
-        var step = viewport.clientHeight;
-        track.style.transform = "translate3d(0, " + (-index * step) + "px, 0)";
+        track.style.transform = "translate3d(0, " + (-index * slideStep()) + "px, 0)";
         if (instant) {
           void track.offsetHeight;
           track.classList.remove("is-instant");
         }
         updateNav();
-        var id = slides[index].id;
-        var nextHash = "#" + id;
+        var nextHash = "#" + slides[index].id;
         if (location.hash !== nextHash) {
           history.replaceState(null, "", nextHash);
         }
       }
 
+      function beginAnimation() {
+        animating = true;
+        wheelCooldown = true;
+        track.classList.add("is-animating");
+        window.clearTimeout(animTimer);
+        animTimer = window.setTimeout(endAnimation, TRANSITION_MS + 80);
+      }
+
+      function endAnimation() {
+        animating = false;
+        track.classList.remove("is-animating");
+        window.clearTimeout(animTimer);
+        animTimer = null;
+        window.setTimeout(function () {
+          wheelCooldown = false;
+        }, 120);
+      }
+
       function goTo(i, opts) {
         opts = opts || {};
         var next = clamp(i);
-        if (next === index && !opts.force) return;
-        if (locked && !opts.instant) return;
+        if (next === index && !opts.force) return false;
+        if (animating && !opts.instant) return false;
+
         index = next;
         applyTransform(!!opts.instant);
-        if (!opts.instant) {
-          locked = true;
-          window.setTimeout(function () {
-            locked = false;
-          }, DURATION + 50);
+
+        if (opts.instant) {
+          endAnimation();
+          return true;
         }
+
+        beginAnimation();
+        return true;
       }
 
       function getScrollable(el) {
-        while (el && el !== viewport) {
+        while (el && el !== document.body) {
+          if (el === viewport) break;
           var style = window.getComputedStyle(el);
           var oy = style.overflowY;
           if ((oy === "auto" || oy === "scroll") && el.scrollHeight > el.clientHeight + 2) {
@@ -4883,47 +4969,45 @@
         return false;
       }
 
-      function resolveDirection(delta) {
-        if (delta > 0) return 1;
-        if (delta < 0) return -1;
+      function wheelDirection(deltaY) {
+        if (deltaY > 0) return 1;
+        if (deltaY < 0) return -1;
         return 0;
       }
 
+      function navigateBy(dir) {
+        if (!dir || animating || wheelCooldown) return false;
+        return goTo(index + dir);
+      }
+
       function onWheel(e) {
-        var dir = resolveDirection(e.deltaY);
+        var dir = wheelDirection(e.deltaY);
         if (!dir) return;
+
         var scrollable = getScrollable(e.target);
         if (scrollable && canScrollEl(scrollable, dir)) return;
+
         e.preventDefault();
-        if (locked) return;
+        e.stopImmediatePropagation();
 
-        wheelAccum += e.deltaY;
-        window.clearTimeout(wheelResetTimer);
-        wheelResetTimer = window.setTimeout(function () {
-          wheelAccum = 0;
-        }, 140);
+        if (animating || wheelCooldown) return;
+        if (Math.abs(e.deltaY) < 2) return;
 
-        if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
-        goTo(index + (wheelAccum > 0 ? 1 : -1));
-        wheelAccum = 0;
+        navigateBy(dir);
       }
 
       function onKeyDown(e) {
         if (e.altKey || e.ctrlKey || e.metaKey) return;
         var key = e.key;
-        if (key === "ArrowDown" || key === "PageDown") {
-          e.preventDefault();
-          if (!locked) goTo(index + 1);
-        } else if (key === "ArrowUp" || key === "PageUp") {
-          e.preventDefault();
-          if (!locked) goTo(index - 1);
-        } else if (key === "Home") {
-          e.preventDefault();
-          if (!locked) goTo(0);
-        } else if (key === "End") {
-          e.preventDefault();
-          if (!locked) goTo(slides.length - 1);
-        }
+        var dir = 0;
+        if (key === "ArrowDown" || key === "PageDown" || key === " ") dir = 1;
+        else if (key === "ArrowUp" || key === "PageUp") dir = -1;
+        else if (key === "Home") { e.preventDefault(); goTo(0); return; }
+        else if (key === "End") { e.preventDefault(); goTo(slides.length - 1); return; }
+        else return;
+
+        e.preventDefault();
+        navigateBy(dir);
       }
 
       function onTouchStart(e) {
@@ -4933,8 +5017,15 @@
         touchStartTarget = e.target;
       }
 
+      function onTouchMove(e) {
+        if (touchStartY == null) return;
+        var scrollable = getScrollable(touchStartTarget);
+        if (scrollable && scrollable.scrollHeight > scrollable.clientHeight + 2) return;
+        e.preventDefault();
+      }
+
       function onTouchEnd(e) {
-        if (touchStartY == null || locked) return;
+        if (touchStartY == null || animating) return;
         var touch = e.changedTouches[0];
         if (!touch) return;
         var dy = touchStartY - touch.clientY;
@@ -4947,7 +5038,13 @@
         var scrollable = getScrollable(target);
         if (scrollable && canScrollEl(scrollable, dir)) return;
         e.preventDefault();
-        goTo(index + dir);
+        navigateBy(dir);
+      }
+
+      function killDocumentScroll() {
+        if (window.scrollY !== 0 || document.documentElement.scrollTop !== 0) {
+          window.scrollTo(0, 0);
+        }
       }
 
       navLinks.forEach(function (link) {
@@ -4957,21 +5054,31 @@
         });
       });
 
+      track.addEventListener("transitionend", function (e) {
+        if (e.target !== track || e.propertyName !== "transform") return;
+        endAnimation();
+      });
+
       window.addEventListener("hashchange", function () {
         goTo(getIndexFromHash(), { instant: true, force: true });
       });
 
       window.addEventListener("resize", function () {
         applyTransform(true);
+        updateNavBeam();
       });
 
-      viewport.addEventListener("wheel", onWheel, { passive: false });
+      window.addEventListener("scroll", killDocumentScroll, { passive: true });
+      document.addEventListener("wheel", onWheel, { passive: false, capture: true });
       window.addEventListener("keydown", onKeyDown);
       viewport.addEventListener("touchstart", onTouchStart, { passive: true });
+      viewport.addEventListener("touchmove", onTouchMove, { passive: false });
       viewport.addEventListener("touchend", onTouchEnd, { passive: false });
 
       index = getIndexFromHash();
       applyTransform(true);
+      killDocumentScroll();
+      window.requestAnimationFrame(updateNavBeam);
     })();
   </script>
 </body>
