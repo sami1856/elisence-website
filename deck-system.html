@@ -467,7 +467,136 @@
       letter-spacing: .04em;
     }
 
+    .deck-ask-wrap {
+      font-size: clamp(17px, 1.28vw, 24px);
+      line-height: 1.38;
+    }
+
+    .deck-ask-position {
+      margin-bottom: 18px;
+      font-weight: 750;
+      color: rgba(234, 248, 255, .95);
+    }
+
+    .deck-ask-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 18px 0 20px;
+    }
+
+    .deck-ask-block {
+      border: 1px solid rgba(95, 205, 255, .6);
+      border-radius: 18px;
+      padding: 16px 18px;
+      background:
+        radial-gradient(circle at top left, rgba(0, 190, 255, .22), transparent 50%),
+        linear-gradient(145deg, rgba(8, 34, 85, .92), rgba(4, 12, 34, .96));
+      box-shadow:
+        0 0 20px rgba(0, 160, 255, .4),
+        inset 0 0 14px rgba(255, 255, 255, .03);
+    }
+
+    .deck-ask-block-title {
+      font-size: clamp(15px, 1.05vw, 19px);
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin-bottom: 10px;
+    }
+
+    .deck-ask-block p {
+      margin-bottom: 8px;
+      font-size: clamp(15px, 1.02vw, 20px);
+      line-height: 1.35;
+      font-weight: 650;
+      padding-left: 4px;
+    }
+
+    .deck-ask-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .deck-ask-philosophy {
+      margin: 18px 0 16px;
+      padding: 20px 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(120, 220, 255, .7);
+      background:
+        radial-gradient(circle at 30% 15%, rgba(0, 200, 255, .18), transparent 55%),
+        rgba(4, 18, 48, .75);
+      box-shadow: 0 0 24px rgba(0, 170, 255, .35);
+      text-align: center;
+    }
+
+    .deck-ask-philosophy .deck-ask-block-title {
+      margin-bottom: 12px;
+    }
+
+    .deck-ask-quote {
+      font-size: clamp(17px, 1.2vw, 22px);
+      font-weight: 750;
+      font-style: italic;
+      line-height: 1.45;
+      color: #eaf8ff;
+      margin-bottom: 0;
+    }
+
+    .deck-ask-tagline {
+      text-align: center;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: clamp(14px, 1vw, 18px);
+      color: #55d9ff;
+      margin-bottom: 22px;
+      text-shadow: 0 0 14px rgba(0, 170, 255, .45);
+    }
+
+    .deck-ask-cta {
+      padding: 20px 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(110, 220, 255, .75);
+      background:
+        radial-gradient(circle at top, rgba(0, 160, 255, .2), transparent 50%),
+        rgba(3, 14, 36, .85);
+      box-shadow: 0 0 28px rgba(0, 180, 255, .4);
+      text-align: center;
+    }
+
+    .deck-ask-cta p {
+      margin-bottom: 14px;
+      font-size: clamp(16px, 1.15vw, 21px);
+      font-weight: 750;
+      line-height: 1.42;
+    }
+
+    .deck-ask-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .deck-ask-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 220, 255, .85);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(0, 220, 255, .28), transparent 55%),
+        rgba(0, 70, 140, .35);
+      font-size: clamp(13px, .95vw, 16px);
+      font-weight: 800;
+      letter-spacing: .06em;
+      color: #dff5ff;
+      box-shadow: 0 0 16px rgba(0, 170, 255, .45);
+    }
+
     @media (max-width: 1100px) {
+      .deck-ask-grid { grid-template-columns: 1fr; }
       .grid { grid-template-columns: repeat(2, 1fr); gap: 16px; width: min(720px, 100%); }
       .card { min-height: 150px; }
       .modal { padding: 12px; }
@@ -625,8 +754,8 @@ const items = [
   },
   {
     n:"12", title:"Ask / Next Step", short:"Clear next step for the room",
-    modalSubtitle:"Clear next step for the room",
-    searchBody:["responsible validation partnerships scale","strategic partners investors healthcare leaders clinicians universities research","pilot conversation strategic partnership advisor introduction investment discussion","ask next step validation partnership trust"],
+    modalSubtitle:"Build responsibly. Validate meaningfully. Scale with trust.",
+    searchBody:["ask next step pilot partnership investment conversation strategic introduction","strategic validation healthcare systems clinics insurers responsible validation","long-term partnerships clinical academic healthcare research ecosystem","mission-aligned investors strategic support advisors healthcare transformation","philosophy build responsibly right people not noise","pilot partnership strategic introduction investment conversation","responsible validation institutional partnerships scalable deployment","connected trusted preventative human concrete next step"],
     helper:"Validation → partnership → trust → responsible scale"
   }
 ];
@@ -1120,6 +1249,44 @@ function openModal(index) {
       '<p style="margin-bottom: 12px; font-weight: 850; text-align: center;">Most digital health systems engage people when they are ill.</p>' +
       '<p style="margin-bottom: 0; font-weight: 850; text-align: center;">Elisence is designed to stay valuable before, during, and after illness.</p>' +
       '<p class="placeholder-note" style="margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">Continuity → trust → engagement → prevention → human healthcare</p>';
+  } else if (item.n === "12") {
+    document.getElementById("modalAnswer").innerHTML =
+      '<div class="deck-ask-wrap">' +
+      '<p class="deck-subtitle">Build responsibly. Validate meaningfully. Scale with trust.</p>' +
+      '<p class="deck-ask-position">Elisence is moving from strong product foundation toward responsible validation, institutional partnerships, and scalable real-world deployment.</p>' +
+      '<div class="deck-ask-grid">' +
+      '<div class="deck-ask-block">' +
+      '<div class="deck-ask-block-title">Strategic Validation</div>' +
+      '<p>• Pilot conversations with healthcare systems, clinics, insurers, and responsible partners</p>' +
+      '<p>• Real-world learning and responsible validation environments</p>' +
+      '</div>' +
+      '<div class="deck-ask-block">' +
+      '<div class="deck-ask-block-title">Long-Term Partnerships</div>' +
+      '<p>• Clinical, academic, healthcare system, and research collaboration</p>' +
+      '<p>• Trusted ecosystem and institutional relationships</p>' +
+      '</div>' +
+      '<div class="deck-ask-block">' +
+      '<div class="deck-ask-block-title">Investment &amp; Strategic Support</div>' +
+      '<p>• Mission-aligned investors who believe in long-term healthcare transformation</p>' +
+      '<p>• Advisors and strategic introductions that accelerate responsible growth</p>' +
+      '</div>' +
+      '<div class="deck-ask-philosophy">' +
+      '<div class="deck-ask-block-title">Our Philosophy</div>' +
+      '<p class="deck-ask-quote">“We are not looking for noise.<br><br>We are looking for the right people to help build Elisence responsibly.”</p>' +
+      '</div>' +
+      '</div>' +
+      '<p class="deck-ask-tagline">Global ambition • Local trust • Responsible scale</p>' +
+      '<div class="deck-ask-cta">' +
+      '<p>If you believe healthcare should feel more connected, trusted, preventative, and human — let’s explore one concrete next step.</p>' +
+      '<div class="deck-ask-chips">' +
+      '<span class="deck-ask-chip">Pilot</span>' +
+      '<span class="deck-ask-chip">Partnership</span>' +
+      '<span class="deck-ask-chip">Strategic Introduction</span>' +
+      '<span class="deck-ask-chip">Investment Conversation</span>' +
+      '</div>' +
+      '</div>' +
+      '<p class="placeholder-note" style="margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">Validation → partnership → trust → responsible scale</p>' +
+      '</div>';
   } else {
     document.getElementById("modalAnswer").innerHTML =
       '<p class="deck-subtitle">Deck slide skeleton</p>' +
