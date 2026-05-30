@@ -649,196 +649,176 @@
       text-shadow: 0 0 20px rgba(0, 200, 255, .45);
     }
 
-    /* Slide 04 — What is Elisence v5 (central Elisence) */
+    /* Slide 04 — What is Elisence v7 (image banner) */
     #slide-04.slide {
       min-height: 100vh;
-      height: auto;
+      height: 100vh;
+      max-height: 100vh;
       justify-content: flex-start;
       align-items: stretch;
-      padding-top: clamp(36px, 5vh, 64px);
-      padding-bottom: clamp(48px, 8vh, 96px);
+      padding: clamp(28px, 4vh, 48px) clamp(24px, 4vw, 64px);
+      overflow: hidden;
       scroll-snap-align: start;
     }
 
-    #slide-04 .s04-v5-shell {
+    #slide-04 .s04-v7-shell {
       display: flex;
       flex-direction: column;
-      gap: clamp(18px, 2.2vh, 24px);
       width: 100%;
-      max-width: min(1280px, 100%);
+      max-width: min(1320px, 100%);
+      height: 100%;
+      max-height: calc(100vh - clamp(56px, 8vh, 96px));
       margin: 0 auto;
+      gap: 0;
     }
 
-    #slide-04 .s04-v5-header .slide-num {
+    #slide-04 .s04-v7-header {
+      flex-shrink: 0;
+      margin-bottom: clamp(14px, 2vh, 20px);
+    }
+
+    #slide-04 .s04-v7-kicker {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #55d9ff;
       margin-bottom: 10px;
     }
 
-    #slide-04 .s04-v5-header .slide-title {
-      font-size: clamp(34px, 4.5vw, 52px);
-      margin-bottom: 8px;
-      line-height: 1.1;
+    #slide-04 .s04-v7-header h2 {
+      font-size: clamp(54px, 5.5vw, 68px);
+      font-weight: 900;
+      line-height: 1.08;
+      color: #fff;
+      margin: 0 0 8px;
     }
 
-    #slide-04 .s04-v5-header .slide-sub {
-      font-size: clamp(20px, 1.8vw, 24px);
+    #slide-04 .s04-v7-header > p {
+      font-size: clamp(26px, 2.2vw, 30px);
       font-weight: 700;
-      line-height: 1.45;
+      line-height: 1.4;
       color: rgba(200, 235, 255, .92);
-      margin-bottom: 0;
+      margin: 0;
     }
 
-    #slide-04 .s04-v5-underglow {
+    #slide-04 .s04-v7-scroll-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 2.2vh, 24px);
+      padding-right: 4px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(85, 217, 255, .45) transparent;
+    }
+
+    #slide-04 .s04-v7-underglow {
       position: relative;
       z-index: 0;
     }
 
-    #slide-04 .s04-v5-underglow::after {
+    #slide-04 .s04-v7-underglow::after {
       content: "";
       position: absolute;
       left: 6%;
       right: 6%;
-      bottom: -6px;
-      height: 32px;
+      bottom: -8px;
+      height: 36px;
       border-radius: 50%;
-      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 200, 255, .48), transparent 72%);
-      filter: blur(12px);
+      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 200, 255, .5), transparent 72%);
+      filter: blur(14px);
       pointer-events: none;
       z-index: -1;
     }
 
-    #slide-04 .s04-v5-hero {
-      border-radius: 20px;
+    #slide-04 .s04-v7-image-panel {
+      flex-shrink: 0;
+      border-radius: 28px;
       border: 1px solid rgba(95, 210, 255, .5);
-      background: linear-gradient(180deg, rgba(8, 34, 78, .92), rgba(2, 10, 28, .97));
-      padding: clamp(20px, 2.5vh, 28px) clamp(20px, 2.5vw, 32px) clamp(22px, 2.8vh, 30px);
-      box-shadow: 0 0 44px rgba(0, 140, 255, .24);
-      text-align: center;
+      overflow: hidden;
+      background: rgba(4, 16, 42, .9);
+      box-shadow: 0 0 40px rgba(0, 140, 255, .22);
     }
 
-    #slide-04 .s04-v5-central-card {
-      display: inline-block;
-      width: min(100%, 520px);
-      margin: 0 auto 18px;
-      padding: clamp(20px, 2.5vh, 28px) clamp(24px, 3vw, 36px);
-      border-radius: 18px;
-      border: 2px solid rgba(130, 220, 255, .55);
-      background:
-        radial-gradient(ellipse 100% 80% at 50% 0%, rgba(0, 200, 255, .18), transparent 55%),
-        linear-gradient(165deg, rgba(14, 52, 110, .95), rgba(4, 14, 38, .98));
-      box-shadow: 0 0 36px rgba(0, 180, 255, .35);
-    }
-
-    #slide-04 .s04-v5-brand {
+    #slide-04 .s04-v7-image-panel img {
       display: block;
-      font-size: clamp(28px, 3.2vw, 38px);
-      font-weight: 900;
-      letter-spacing: .14em;
-      color: #fff;
-      text-shadow: 0 0 24px rgba(0, 200, 255, .45);
-      margin-bottom: 8px;
+      width: 100%;
+      height: clamp(180px, 24vh, 260px);
+      object-fit: cover;
+      object-position: center;
     }
 
-    #slide-04 .s04-v5-brand-line {
-      font-size: clamp(18px, 1.5vw, 22px);
-      font-weight: 750;
-      line-height: 1.4;
-      color: rgba(220, 245, 255, .95);
-      margin: 0 0 10px;
-    }
-
-    #slide-04 .s04-v5-brand-tags {
-      font-size: clamp(15px, 1.2vw, 17px);
-      font-weight: 700;
-      letter-spacing: .04em;
-      color: #8edcff;
-      margin: 0;
-      line-height: 1.45;
-    }
-
-    #slide-04 .s04-v5-chip-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      max-width: 100%;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    #slide-04 .s04-v5-chip {
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.3;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(90, 190, 255, .38);
-      color: rgba(205, 238, 255, .92);
-      background: rgba(4, 22, 58, .75);
-    }
-
-    #slide-04 .s04-v5-intro-card {
-      border-radius: 18px;
+    #slide-04 .s04-v7-intro-card {
+      border-radius: 28px;
       border: 1px solid rgba(95, 210, 255, .48);
       background: linear-gradient(165deg, rgba(10, 40, 90, .88), rgba(3, 12, 32, .96));
-      padding: clamp(20px, 2.2vh, 26px) clamp(24px, 2.8vw, 32px);
+      padding: clamp(22px, 2.5vh, 28px) clamp(26px, 3vw, 36px);
       box-shadow: 0 0 36px rgba(0, 140, 255, .2);
     }
 
-    #slide-04 .s04-v5-intro-card p {
-      font-size: max(22px, clamp(22px, 1.6vw, 24px));
+    #slide-04 .s04-v7-intro-card p {
+      font-size: clamp(22px, 1.75vw, 24px);
       font-weight: 650;
       line-height: 1.55;
       color: rgba(235, 250, 255, .98);
       margin: 0;
     }
 
-    #slide-04 .s04-v5-panel-stack {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(16px, 2vh, 20px);
+    #slide-04 .s04-v7-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(18px, 2vh, 24px);
     }
 
-    #slide-04 .s04-v5-panel {
-      border-radius: 18px;
+    #slide-04 .s04-v7-card {
+      border-radius: 28px;
       border: 1px solid rgba(95, 210, 255, .48);
       background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
-      padding: clamp(22px, 2.5vh, 28px) clamp(24px, 2.8vw, 32px);
+      padding: clamp(24px, 2.8vh, 32px) clamp(26px, 3vw, 36px);
       box-shadow: 0 0 40px rgba(0, 130, 255, .18);
       overflow: visible;
     }
 
-    #slide-04 .s04-v5-panel h2 {
-      font-size: max(26px, clamp(26px, 2vw, 30px));
+    #slide-04 .s04-v7-card-wide {
+      grid-column: 1 / -1;
+    }
+
+    #slide-04 .s04-v7-card h3 {
+      font-size: clamp(28px, 2.4vw, 32px);
       font-weight: 900;
       letter-spacing: .06em;
       line-height: 1.25;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 16px;
-      padding-bottom: 12px;
+      margin: 0 0 18px;
+      padding-bottom: 14px;
       border-bottom: 1px solid rgba(85, 200, 255, .28);
     }
 
-    #slide-04 .s04-v5-panel ul {
+    #slide-04 .s04-v7-card ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    #slide-04 .s04-v5-panel li {
-      font-size: max(20px, clamp(20px, 1.35vw, 21px));
+    #slide-04 .s04-v7-card li {
+      font-size: clamp(20px, 1.45vw, 22px);
       font-weight: 600;
       line-height: 1.55;
       color: rgba(220, 245, 255, .96);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       padding-left: 1.2em;
       position: relative;
     }
 
-    #slide-04 .s04-v5-panel li:last-child {
+    #slide-04 .s04-v7-card li:last-child {
       margin-bottom: 0;
     }
 
-    #slide-04 .s04-v5-panel li::before {
+    #slide-04 .s04-v7-card li::before {
       content: "•";
       position: absolute;
       left: 0;
@@ -846,32 +826,41 @@
       font-weight: 900;
     }
 
-    #slide-04 .s04-v5-closing-bar {
+    #slide-04 .s04-v7-closing-bar {
       text-align: center;
-      font-size: max(24px, clamp(24px, 2vw, 28px));
+      font-size: clamp(24px, 2.2vw, 28px);
       font-weight: 800;
       line-height: 1.5;
       color: #fff;
-      border-radius: 18px;
+      border-radius: 28px;
       border: 1px solid rgba(95, 210, 255, .5);
       background: linear-gradient(90deg, rgba(0, 75, 140, .28), rgba(70, 55, 150, .2), rgba(0, 75, 140, .28));
-      padding: clamp(22px, 2.5vh, 28px) clamp(24px, 2.8vw, 32px);
+      padding: clamp(24px, 2.8vh, 32px) clamp(26px, 3vw, 36px);
       box-shadow: 0 0 44px rgba(0, 150, 255, .22);
-      margin: 0;
+      margin: 0 0 8px;
     }
 
-    @media (max-width: 1100px) {
-      #slide-04 .s04-v5-chip-grid {
-        grid-template-columns: repeat(3, 1fr);
+    @media (max-width: 1024px) {
+      #slide-04 .s04-v7-header h2 {
+        font-size: clamp(44px, 6vw, 54px);
+      }
+      #slide-04 .s04-v7-header > p {
+        font-size: clamp(22px, 2.5vw, 26px);
+      }
+      #slide-04 .s04-v7-card h3 {
+        font-size: max(24px, clamp(24px, 2.8vw, 28px));
+      }
+      #slide-04 .s04-v7-card li {
+        font-size: max(18px, clamp(18px, 1.8vw, 20px));
       }
     }
 
-    @media (max-width: 700px) {
-      #slide-04 .s04-v5-chip-grid {
-        grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 900px) {
+      #slide-04 .s04-v7-content-grid {
+        grid-template-columns: 1fr;
       }
-      #slide-04 .s04-v5-chip {
-        font-size: 13px;
+      #slide-04 .s04-v7-card-wide {
+        grid-column: auto;
       }
     }
 
@@ -1698,64 +1687,46 @@
   </section>
 
   <!-- Slide 04 What is Elisence -->
-  <section class="slide" id="slide-04" data-deck-build="s04-v5-central-elisence">
-    <div class="slide-inner s04-v5-shell">
-      <header class="s04-v5-header">
-        <p class="slide-num">04 — WHAT IS ELISENCE</p>
-        <h1 class="slide-title">What is Elisence</h1>
-        <p class="slide-sub">One connected health ecosystem for people and healthcare systems.</p>
+  <section class="slide deck-slide" id="slide-04" data-deck-build="s04-v7-image-banner-readable">
+    <div class="s04-v7-shell">
+      <header class="s04-v7-header">
+        <div class="s04-v7-kicker">04 — WHAT IS ELISENCE</div>
+        <h2>What is Elisence</h2>
+        <p>One connected health ecosystem for people and healthcare systems.</p>
       </header>
-      <div class="s04-v5-hero s04-v5-underglow" aria-label="Elisence central ecosystem">
-        <div class="s04-v5-central-card">
-          <span class="s04-v5-brand">ELISENCE</span>
-          <p class="s04-v5-brand-line">One connected health ecosystem</p>
-          <p class="s04-v5-brand-tags">Prevention • Continuity • Trusted Health Intelligence</p>
-        </div>
-        <div class="s04-v5-chip-grid">
-          <span class="s04-v5-chip">Prevention</span>
-          <span class="s04-v5-chip">Diabetes &amp; Metabolic Health</span>
-          <span class="s04-v5-chip">Advanced Blood &amp; Metabolism</span>
-          <span class="s04-v5-chip">Medical Tracking</span>
-          <span class="s04-v5-chip">Medication Continuity</span>
-          <span class="s04-v5-chip">Women’s Health</span>
-          <span class="s04-v5-chip">GP / Doctor Communication</span>
-          <span class="s04-v5-chip">Pharmacy Journeys</span>
-          <span class="s04-v5-chip">Body Understanding</span>
-          <span class="s04-v5-chip">Wellbeing</span>
-          <span class="s04-v5-chip">Weight Journeys</span>
-          <span class="s04-v5-chip">Diet &amp; Lifestyle Support</span>
-          <span class="s04-v5-chip">Family Care</span>
-          <span class="s04-v5-chip">Trusted Health Intelligence</span>
-          <span class="s04-v5-chip">Sensor-Aware Experiences</span>
-          <span class="s04-v5-chip">Social Health Participation</span>
-        </div>
+      <div class="s04-v7-scroll-body">
+        <section class="s04-v7-image-panel s04-v7-underglow">
+          <img src="assets/investor-deck/slide04-connected-ecosystem-banner.jpg" alt="Elisence connected health ecosystem visual" width="1320" height="260" />
+        </section>
+        <section class="s04-v7-intro-card s04-v7-underglow">
+          <p>Elisence is a human-centred, globally adaptable health ecosystem designed to make healthcare feel more connected, understandable, trusted, and easier to navigate over time.</p>
+        </section>
+        <section class="s04-v7-content-grid">
+          <article class="s04-v7-card s04-v7-underglow">
+            <h3>For People</h3>
+            <ul>
+              <li>Elisence brings many parts of health into one connected experience — including prevention, diabetes and metabolic health, advanced blood and metabolism understanding, medical tracking, medication continuity, women’s health, GP and doctor communication, pharmacy journeys, body understanding, wellbeing, weight journeys, diet and lifestyle support, family care, trusted health intelligence, and more continuous everyday health support.</li>
+              <li>Sensor-aware experiences, body understanding, environmental awareness, trusted communication, intelligent health support, and social health participation are designed to help people better understand health patterns over time rather than manage fragmented moments.</li>
+            </ul>
+          </article>
+          <article class="s04-v7-card s04-v7-underglow">
+            <h3>For Healthcare Systems</h3>
+            <ul>
+              <li>Elisence is designed to support stronger continuity, prevention, communication, participation, prediction, and more connected health experiences across clinics, hospitals, insurers, pharmacies, governments, universities, researchers, and responsible healthcare organisations.</li>
+              <li>The goal is to help move healthcare beyond fragmented snapshots toward more continuous, preventative, and trusted long-term health understanding.</li>
+            </ul>
+          </article>
+          <article class="s04-v7-card s04-v7-underglow s04-v7-card-wide">
+            <h3>Built for Real-World Healthcare</h3>
+            <ul>
+              <li>Behind the scenes, Elisence is designed as a secure, modular, multilingual, healthcare-aware ecosystem adaptable across countries, trust expectations, healthcare realities, and regional governance needs.</li>
+            </ul>
+          </article>
+        </section>
+        <section class="s04-v7-closing-bar s04-v7-underglow">
+          <p>One connected ecosystem designed to help healthcare feel more human, preventative, trusted, intelligent, and continuous.</p>
+        </section>
       </div>
-      <div class="s04-v5-intro-card s04-v5-underglow">
-        <p>Elisence is a human-centred, globally adaptable health ecosystem designed to make healthcare feel more connected, understandable, trusted, and easier to navigate over time.</p>
-      </div>
-      <div class="s04-v5-panel-stack">
-        <article class="s04-v5-panel s04-v5-underglow">
-          <h2>For People</h2>
-          <ul>
-            <li>Elisence brings many parts of health into one connected experience — including prevention, diabetes and metabolic health, advanced blood and metabolism understanding, medical tracking, medication continuity, women’s health, GP and doctor communication, pharmacy journeys, body understanding, wellbeing, weight journeys, diet and lifestyle support, family care, trusted health intelligence, and more continuous everyday health support.</li>
-            <li>Sensor-aware experiences, body understanding, environmental awareness, trusted communication, intelligent health support, and social health participation are designed to help people better understand health patterns over time rather than manage fragmented moments.</li>
-          </ul>
-        </article>
-        <article class="s04-v5-panel s04-v5-underglow">
-          <h2>For Healthcare Systems</h2>
-          <ul>
-            <li>Elisence is designed to support stronger continuity, prevention, communication, participation, prediction, and more connected health experiences across clinics, hospitals, insurers, pharmacies, governments, universities, researchers, and responsible healthcare organisations.</li>
-            <li>The goal is to help move healthcare beyond fragmented snapshots toward more continuous, preventative, and trusted long-term health understanding.</li>
-          </ul>
-        </article>
-        <article class="s04-v5-panel s04-v5-underglow">
-          <h2>Built for Real-World Healthcare</h2>
-          <ul>
-            <li>Behind the scenes, Elisence is designed as a secure, modular, multilingual, healthcare-aware ecosystem adaptable across countries, trust expectations, healthcare realities, and regional governance needs.</li>
-          </ul>
-        </article>
-      </div>
-      <p class="s04-v5-closing-bar s04-v5-underglow">One connected ecosystem designed to help healthcare feel more human, preventative, trusted, intelligent, and continuous.</p>
     </div>
   </section>
 
