@@ -1488,6 +1488,228 @@
       }
     }
 
+    /* Slide 07 — Trust architecture v1 (hard reset) */
+    #slide-07.slide {
+      min-height: 100vh;
+      height: 100vh;
+      max-height: 100vh;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding: clamp(28px, 4vh, 48px) clamp(24px, 4vw, 64px);
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    #slide-07 .s07-shell {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: min(1320px, 100%);
+      height: 100%;
+      max-height: calc(100vh - clamp(56px, 8vh, 96px));
+      margin: 0 auto;
+      gap: clamp(12px, 1.5vh, 16px);
+    }
+
+    #slide-07 .s07-header {
+      flex-shrink: 0;
+    }
+
+    #slide-07 .s07-header > div:first-child {
+      font-size: clamp(14px, 1.1vw, 18px);
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #55d9ff;
+      margin-bottom: 8px;
+    }
+
+    #slide-07 .s07-header h2 {
+      font-size: clamp(56px, 5vw, 72px);
+      font-weight: 900;
+      line-height: 1.06;
+      color: #fff;
+      margin: 0 0 6px;
+    }
+
+    #slide-07 .s07-header > p {
+      font-size: clamp(28px, 2.2vw, 34px);
+      font-weight: 700;
+      line-height: 1.35;
+      color: rgba(200, 235, 255, .92);
+      margin: 0;
+    }
+
+    #slide-07 .s07-trust-hero {
+      flex-shrink: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 10px;
+      padding: clamp(12px, 1.5vh, 16px) clamp(14px, 1.8vw, 20px);
+      border-radius: 24px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(90deg, rgba(6, 28, 62, .9), rgba(3, 12, 32, .96), rgba(6, 28, 62, .9));
+      box-shadow: 0 0 32px rgba(0, 140, 255, .18);
+    }
+
+    #slide-07 .s07-blue-underglow {
+      position: relative;
+      z-index: 0;
+    }
+
+    #slide-07 .s07-blue-underglow::after {
+      content: "";
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      bottom: -6px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 200, 255, .42), transparent 72%);
+      filter: blur(12px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #slide-07 .s07-trust-node {
+      font-size: clamp(15px, 1.05vw, 17px);
+      font-weight: 800;
+      letter-spacing: .04em;
+      line-height: 1.25;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(90, 190, 255, .4);
+      color: rgba(210, 240, 255, .94);
+      background: rgba(4, 22, 58, .78);
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    #slide-07 .s07-trust-connector {
+      font-size: clamp(18px, 1.4vw, 22px);
+      font-weight: 300;
+      color: #55d9ff;
+      text-shadow: 0 0 14px rgba(0, 200, 255, .5);
+      line-height: 1;
+    }
+
+    #slide-07 .s07-scroll-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 2vh, 20px);
+      padding-right: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(85, 217, 255, .22) transparent;
+    }
+
+    #slide-07 .s07-scroll-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #slide-07 .s07-scroll-body::-webkit-scrollbar-thumb {
+      background: rgba(85, 217, 255, .22);
+      border-radius: 6px;
+    }
+
+    #slide-07 .s07-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2vh, 20px);
+    }
+
+    #slide-07 .s07-content-card {
+      border-radius: 28px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
+      padding: clamp(32px, 3.5vh, 40px);
+      box-shadow: 0 0 36px rgba(0, 130, 255, .14);
+      overflow: visible;
+    }
+
+    #slide-07 .s07-content-card h3 {
+      font-size: clamp(28px, 2.2vw, 36px);
+      font-weight: 900;
+      letter-spacing: .05em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(85, 200, 255, .25);
+    }
+
+    #slide-07 .s07-content-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #slide-07 .s07-content-card li {
+      font-size: clamp(20px, 1.45vw, 24px);
+      font-weight: 600;
+      line-height: 1.55;
+      color: rgba(220, 245, 255, .96);
+      margin-bottom: 16px;
+      padding-left: 1.15em;
+      position: relative;
+    }
+
+    #slide-07 .s07-content-card li:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-07 .s07-content-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    #slide-07 .s07-closing-bar {
+      text-align: center;
+      font-size: clamp(24px, 2.1vw, 28px);
+      font-weight: 800;
+      line-height: 1.5;
+      color: #fff;
+      border-radius: 28px;
+      border: 1px solid rgba(95, 210, 255, .5);
+      background: linear-gradient(90deg, rgba(0, 75, 140, .28), rgba(70, 55, 150, .2), rgba(0, 75, 140, .28));
+      padding: clamp(24px, 2.8vh, 32px) clamp(26px, 3vw, 36px);
+      box-shadow: 0 0 40px rgba(0, 150, 255, .2);
+      margin: 0 0 6px;
+    }
+
+    @media (max-width: 1024px) {
+      #slide-07 .s07-header h2 {
+        font-size: clamp(48px, 5.5vw, 56px);
+      }
+      #slide-07 .s07-header > p {
+        font-size: clamp(24px, 2.5vw, 28px);
+      }
+      #slide-07 .s07-content-card h3 {
+        font-size: max(24px, clamp(24px, 2.8vw, 30px));
+      }
+      #slide-07 .s07-content-card li {
+        font-size: max(18px, clamp(18px, 1.8vw, 22px));
+      }
+    }
+
+    @media (max-width: 900px) {
+      #slide-07 .s07-card-grid {
+        grid-template-columns: 1fr;
+      }
+      #slide-07 .s07-trust-node {
+        font-size: clamp(14px, 1.2vw, 16px);
+      }
+    }
+
     /* 2x2 grid */
     .grid-2x2 {
       display: grid;
@@ -2514,31 +2736,67 @@
   </section>
 
   <!-- Slide 07 Trust -->
-  <section class="slide" id="slide-07">
-    <div class="slide-inner">
-      <p class="slide-num">07 — Trust &amp; Governance</p>
-      <h1 class="slide-title">Trust Is Architecture</h1>
-      <p class="slide-sub">Built for trust — not added later</p>
-      <div class="pillars-4">
-        <div class="pillar">
-          <h3>Trust &amp; Safety</h3>
-          <p>Healthcare-aware safety, responsible boundaries, human oversight, non-diagnostic by default.</p>
-        </div>
-        <div class="pillar">
-          <h3>Governed Health Intelligence</h3>
-          <p>Auditability, provenance, evidence-driven workflows, explainable decisions over time.</p>
-        </div>
-        <div class="pillar pillar-medical">
-          <h3>Medical-ready Foundations</h3>
-          <p>NHS-style safety, GDPR, FDA CDS boundaries, MDR principles, GCC realities.</p>
-        </div>
-        <div class="pillar">
-          <h3>Zero Trust &amp; Privacy</h3>
-          <p>Permissions, identity, consent validated — fail safely, not overclaim.</p>
-        </div>
+  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-hard-reset-trust-architecture">
+    <div class="s07-shell">
+      <header class="s07-header">
+        <div>07 — TRUST, SAFETY &amp; GOVERNANCE</div>
+        <h2>Trust Is Architecture</h2>
+        <p>Built medical-aware, governed non-medical by default.</p>
+      </header>
+      <section class="s07-trust-hero s07-blue-underglow">
+        <div class="s07-trust-node">Trust &amp; Safety</div>
+        <span class="s07-trust-connector" aria-hidden="true">→</span>
+        <div class="s07-trust-node">Governed Health Intelligence</div>
+        <span class="s07-trust-connector" aria-hidden="true">→</span>
+        <div class="s07-trust-node">Medical-Ready Foundations</div>
+        <span class="s07-trust-connector" aria-hidden="true">→</span>
+        <div class="s07-trust-node">Zero Trust &amp; Privacy</div>
+        <span class="s07-trust-connector" aria-hidden="true">→</span>
+        <div class="s07-trust-node">Fail Safely</div>
+      </section>
+      <div class="s07-scroll-body">
+        <section class="s07-card-grid">
+          <article class="s07-content-card s07-blue-underglow">
+            <h3>Trust &amp; Safety by Design</h3>
+            <ul>
+              <li>Elisence is designed with healthcare-aware safety thinking from the beginning — prioritising trust, responsible boundaries, privacy, transparency, permission, and safer long-term participation.</li>
+              <li>Citizen experiences are intentionally designed to remain non-clinical and non-diagnostic by default, helping people better understand and navigate healthcare rather than replacing doctors or acting as autonomous medical authority.</li>
+            </ul>
+          </article>
+          <article class="s07-content-card s07-blue-underglow">
+            <h3>Governed Health Intelligence</h3>
+            <ul>
+              <li>Elisence is designed around trusted, governed, and curated health understanding rather than unrestricted medical AI generation.</li>
+              <li>Health understanding is designed to align with healthcare-aware thinking inspired by NHS-style safety principles, UK and EU privacy expectations, FDA-informed boundaries, MDR thinking, and Gulf healthcare realities — while adapting responsibly to local healthcare context over time.</li>
+              <li>Responses are designed to operate within governed safety boundaries, uncertainty handling, trusted escalation pathways, and permission-aware experiences rather than unsafe certainty or unrestricted medical automation.</li>
+            </ul>
+          </article>
+          <article class="s07-content-card s07-blue-underglow">
+            <h3>Medical-Ready Foundations</h3>
+            <ul>
+              <li>Elisence is intentionally designed as a governed non-medical platform today — while supporting future clinically governed activation where appropriate, under licensed, institutionally supervised, or healthcare-system-led environments.</li>
+              <li>Safety-aware infrastructure, governance foundations, auditability, permissions, and healthcare-aware controls are designed from the beginning, remaining intentionally constrained and fail-safe by default.</li>
+            </ul>
+          </article>
+          <article class="s07-content-card s07-blue-underglow">
+            <h3>Zero Trust, Privacy &amp; Accountability</h3>
+            <ul>
+              <li>Elisence follows a Zero-Trust philosophy — permissions, access, identity, consent, and visibility are validated rather than assumed.</li>
+              <li>Privacy-aware, permissioned, explainable, and accountable participation are designed to support trust over time.</li>
+            </ul>
+          </article>
+          <article class="s07-content-card s07-blue-underglow">
+            <h3>Built to Fail Safely</h3>
+            <ul>
+              <li>Safety matters more than false certainty.</li>
+              <li>Elisence is designed to behave conservatively, explain uncertainty, restrict unsafe behaviour, and fail safely rather than overclaim confidence.</li>
+            </ul>
+          </article>
+        </section>
+        <section class="s07-closing-bar s07-blue-underglow">
+          Trust is not paperwork. Trust is architecture.
+        </section>
       </div>
-      <p class="lead">Privacy, safety, governance, and compliance are designed into the platform from the beginning — not bolted on at the end.</p>
-      <p class="closing-line">Trust is not paperwork. Trust is architecture.</p>
     </div>
   </section>
 
