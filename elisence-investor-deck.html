@@ -374,6 +374,149 @@
       box-shadow: 0 -12px 32px rgba(0, 140, 255, .08);
     }
 
+    /* Slide 03 — Why Now (scoped) */
+    #slide-03 .slide-sub {
+      margin-bottom: 18px;
+    }
+
+    #slide-03 .why-drivers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2.2vw, 22px);
+      margin: 18px 0 26px;
+    }
+
+    #slide-03 .driver-card {
+      position: relative;
+      padding: 20px 20px 18px 52px;
+      border-radius: 18px;
+      border: 1px solid rgba(95, 210, 255, .45);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(0, 160, 255, .12), transparent 45%),
+        linear-gradient(155deg, rgba(10, 42, 95, .9), rgba(4, 14, 38, .96));
+      box-shadow: 0 0 28px rgba(0, 140, 255, .22);
+      min-height: 132px;
+    }
+
+    #slide-03 .driver-card--tech {
+      border-color: rgba(110, 225, 255, .55);
+      box-shadow: 0 0 40px rgba(0, 170, 255, .3);
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 180, 255, .14), transparent 55%),
+        linear-gradient(155deg, rgba(14, 58, 120, .92), rgba(4, 18, 48, .98));
+    }
+
+    #slide-03 .driver-num {
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      color: rgba(85, 217, 255, .75);
+    }
+
+    #slide-03 .driver-card h3 {
+      font-size: clamp(13px, 1.05vw, 15px);
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    #slide-03 .driver-card p {
+      font-size: clamp(13px, 1.05vw, 16px);
+      line-height: 1.44;
+      font-weight: 600;
+      color: rgba(215, 242, 255, .92);
+    }
+
+    #slide-03 .tech-signals {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(85, 200, 255, .25);
+    }
+
+    #slide-03 .tech-signals span {
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(90, 190, 255, .35);
+      color: rgba(190, 235, 255, .9);
+      background: rgba(0, 70, 140, .28);
+      cursor: default;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    #slide-03 .convergence-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(12px, 2vw, 18px);
+      margin: 8px 0 26px;
+      padding: 22px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(95, 210, 255, .42);
+      background:
+        linear-gradient(90deg, rgba(0, 80, 150, .15) 0%, rgba(0, 140, 220, .08) 50%, rgba(0, 80, 150, .15) 100%),
+        rgba(3, 12, 32, .85);
+      box-shadow: 0 0 44px rgba(0, 130, 220, .18), inset 0 1px 0 rgba(160, 235, 255, .08);
+    }
+
+    #slide-03 .shift-pair {
+      text-align: center;
+      padding: 8px 6px;
+      border-right: 1px solid rgba(80, 170, 230, .15);
+    }
+
+    #slide-03 .shift-pair:last-child {
+      border-right: none;
+    }
+
+    #slide-03 .shift-from {
+      display: block;
+      font-size: clamp(11px, .9vw, 13px);
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(150, 195, 230, .65);
+      margin-bottom: 8px;
+    }
+
+    #slide-03 .shift-mid {
+      display: block;
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(85, 217, 255, .85);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    #slide-03 .shift-to {
+      display: block;
+      font-size: clamp(15px, 1.25vw, 19px);
+      font-weight: 900;
+      letter-spacing: .02em;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 180, 255, .35);
+    }
+
+    #slide-03 .closing-line--convergence {
+      margin-top: 8px;
+      padding: 18px 28px 0;
+      border-top: 1px solid rgba(85, 200, 255, .35);
+      font-size: clamp(17px, 1.45vw, 22px);
+      box-shadow: 0 -16px 36px rgba(0, 140, 255, .1);
+    }
+
     /* 2x2 grid */
     .grid-2x2 {
       display: grid;
@@ -1021,8 +1164,19 @@
     }
 
     @media (max-width: 900px) {
-      .cols-2, .grid-2x2, .compare, .pillars-4, .value-lanes, .ask-grid, .timeline-3 {
+      .cols-2, .grid-2x2, .compare, .pillars-4, .value-lanes, .ask-grid, .timeline-3,
+      #slide-03 .why-drivers, #slide-03 .convergence-strip {
         grid-template-columns: 1fr;
+      }
+      #slide-03 .shift-pair {
+        border-right: none;
+        border-bottom: 1px solid rgba(80, 170, 230, .15);
+        padding-bottom: 14px;
+        margin-bottom: 6px;
+      }
+      #slide-03 .shift-pair:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
       }
       .compare { grid-template-columns: 1fr; text-align: center; }
       .compare-arrow { transform: rotate(90deg); margin: 8px auto; }
@@ -1132,30 +1286,53 @@
       <p class="slide-num">03 — Why Now</p>
       <h1 class="slide-title">A Convergence Moment</h1>
       <p class="slide-sub">Healthcare is reaching a turning point</p>
-      <div class="grid-2x2">
-        <div class="mini-card">
+      <div class="why-drivers">
+        <article class="driver-card">
+          <span class="driver-num">01</span>
           <h3>Healthcare pressure</h3>
           <p>Chronic conditions rising, populations ageing, costs increasing — systems must move from reactive care toward prevention and continuity.</p>
-        </div>
-        <div class="mini-card">
+        </article>
+        <article class="driver-card">
+          <span class="driver-num">02</span>
           <h3>People managing more health</h3>
           <p>Medication, diabetes, prevention, wellbeing, family care, and everyday decisions are pushed onto individuals — yet experiences stay fragmented.</p>
-        </div>
-        <div class="mini-card">
+        </article>
+        <article class="driver-card">
+          <span class="driver-num">03</span>
           <h3>Digital expectations changed</h3>
           <p>People expect connected, intelligent experiences in life — but healthcare still often feels disconnected, episodic, and hard to coordinate.</p>
-        </div>
-        <div class="mini-card">
+        </article>
+        <article class="driver-card driver-card--tech">
+          <span class="driver-num">04</span>
           <h3>Technology maturity</h3>
           <p>Digital infrastructure, richer health signals, sensor-aware experiences, AI-assisted workflows, and secure communication now enable long-term engagement in a trusted way.</p>
+          <div class="tech-signals" aria-hidden="true">
+            <span>Health signals</span>
+            <span>Sensor-aware</span>
+            <span>AI-assisted workflows</span>
+            <span>Trusted communication</span>
+            <span>Long-term continuity</span>
+          </div>
+        </article>
+      </div>
+      <div class="convergence-strip" aria-label="Healthcare macro shift">
+        <div class="shift-pair">
+          <span class="shift-from">Reactive</span>
+          <span class="shift-mid" aria-hidden="true">→</span>
+          <span class="shift-to">Preventative</span>
+        </div>
+        <div class="shift-pair">
+          <span class="shift-from">Episodic</span>
+          <span class="shift-mid" aria-hidden="true">→</span>
+          <span class="shift-to">Continuous</span>
+        </div>
+        <div class="shift-pair">
+          <span class="shift-from">Fragmented</span>
+          <span class="shift-mid" aria-hidden="true">→</span>
+          <span class="shift-to">Connected</span>
         </div>
       </div>
-      <div class="transitions">
-        <span>Reactive</span> → <span>Preventative</span> &nbsp;|&nbsp;
-        <span>Episodic</span> → <span>Continuous</span> &nbsp;|&nbsp;
-        <span>Fragmented</span> → <span>Connected</span>
-      </div>
-      <p class="closing-line" style="margin-top: 32px;">Healthcare pressure, behaviour change, technology maturity, and trust are finally converging.</p>
+      <p class="closing-line closing-line--convergence">Healthcare pressure, behaviour change, technology maturity, and trust are finally converging.</p>
     </div>
   </section>
 
