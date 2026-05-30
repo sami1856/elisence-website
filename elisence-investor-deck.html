@@ -1930,6 +1930,118 @@
       letter-spacing: .02em;
     }
 
+    #slide-08 .s08-strategic-layer {
+      border-radius: 28px;
+      border: 1px solid rgba(95, 210, 255, .52);
+      background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 10, 28, .96));
+      padding: clamp(28px, 3.2vh, 38px);
+      box-shadow: 0 0 44px rgba(0, 140, 255, .18);
+      overflow: visible;
+    }
+
+    #slide-08 .s08-strategic-head {
+      text-align: center;
+      margin-bottom: clamp(20px, 2.4vh, 28px);
+      padding-bottom: clamp(16px, 2vh, 22px);
+      border-bottom: 1px solid rgba(85, 200, 255, .22);
+    }
+
+    #slide-08 .s08-strategic-head h3 {
+      font-size: clamp(26px, 2.2vw, 32px);
+      font-weight: 900;
+      letter-spacing: .05em;
+      line-height: 1.25;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0 0 10px;
+    }
+
+    #slide-08 .s08-strategic-head p {
+      font-size: clamp(18px, 1.35vw, 22px);
+      font-weight: 700;
+      line-height: 1.45;
+      color: rgba(200, 235, 255, .9);
+      margin: 0;
+      letter-spacing: .02em;
+    }
+
+    #slide-08 .s08-strategic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(20px, 2.5vw, 32px);
+    }
+
+    #slide-08 .s08-strategic-col h4 {
+      font-size: clamp(22px, 1.7vw, 28px);
+      font-weight: 900;
+      letter-spacing: .04em;
+      line-height: 1.25;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(85, 200, 255, .2);
+    }
+
+    #slide-08 .s08-strategic-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #slide-08 .s08-strategic-col li {
+      font-size: clamp(20px, 1.45vw, 24px);
+      font-weight: 600;
+      line-height: 1.55;
+      color: rgba(220, 245, 255, .96);
+      margin-bottom: 14px;
+      padding-left: 1.15em;
+      position: relative;
+    }
+
+    #slide-08 .s08-strategic-col li:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-08 .s08-strategic-col li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    #slide-08 .s08-strategic-takeaway {
+      margin-top: clamp(20px, 2.4vh, 28px);
+      padding-top: clamp(18px, 2.2vh, 24px);
+      border-top: 1px solid rgba(85, 200, 255, .28);
+      text-align: center;
+      border-radius: 20px;
+      background: linear-gradient(90deg, rgba(0, 75, 140, .22), rgba(70, 55, 150, .16), rgba(0, 75, 140, .22));
+      padding: clamp(18px, 2.2vh, 24px) clamp(20px, 2.5vw, 28px);
+    }
+
+    #slide-08 .s08-strategic-takeaway h4 {
+      font-size: clamp(20px, 1.6vw, 24px);
+      font-weight: 900;
+      letter-spacing: .06em;
+      line-height: 1.3;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0 0 10px;
+    }
+
+    #slide-08 .s08-strategic-takeaway p {
+      font-size: clamp(20px, 1.45vw, 24px);
+      font-weight: 700;
+      line-height: 1.5;
+      color: rgba(220, 245, 255, .96);
+      margin: 0;
+      max-width: 52em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     #slide-08 .s08-moat-card {
       border-radius: 28px;
       border: 1px solid rgba(95, 210, 255, .55);
@@ -2002,10 +2114,23 @@
       #slide-08 .s08-moat-card p {
         font-size: max(18px, clamp(18px, 1.8vw, 22px));
       }
+      #slide-08 .s08-strategic-head h3 {
+        font-size: max(22px, clamp(22px, 2.5vw, 28px));
+      }
+      #slide-08 .s08-strategic-col h4 {
+        font-size: max(20px, clamp(20px, 2.2vw, 24px));
+      }
+      #slide-08 .s08-strategic-col li,
+      #slide-08 .s08-strategic-takeaway p {
+        font-size: max(18px, clamp(18px, 1.8vw, 22px));
+      }
     }
 
     @media (max-width: 900px) {
       #slide-08 .s08-value-grid {
+        grid-template-columns: 1fr;
+      }
+      #slide-08 .s08-strategic-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -3151,6 +3276,34 @@
           <span class="s08-strip-connector" aria-hidden="true">↓</span>
           <div class="s08-strip-node">Platform Value</div>
           <p class="s08-strip-closing">Trust sustains long-term value.</p>
+        </section>
+        <section class="s08-strategic-layer s08-blue-underglow">
+          <header class="s08-strategic-head">
+            <h3>Why Healthcare Systems, Insurers &amp; Research Partners Care</h3>
+            <p>Permissioned health continuity — creating trusted long-term value</p>
+          </header>
+          <div class="s08-strategic-grid">
+            <div class="s08-strategic-col">
+              <h4>Healthcare Systems, Insurers &amp; Care Organisations</h4>
+              <ul>
+                <li>Over time, Elisence is designed to help create privacy-aware, permissioned, and longitudinal health understanding that supports stronger prevention, continuity, healthier participation, and reduced fragmentation across healthcare journeys.</li>
+                <li>When people choose to engage with Elisence experiences over time, healthcare understanding may become more connected — helping identify earlier patterns, behavioural trends, medication continuity, wellbeing signals, adherence journeys, and prevention opportunities that may support earlier awareness and more proactive healthcare participation.</li>
+                <li>For healthcare systems, insurers, clinics, hospitals, and responsible care organisations, stronger continuity and earlier participation may help reduce avoidable friction, improve engagement, encourage healthier behaviour, support prevention, and potentially reduce unnecessary healthcare burden over time.</li>
+              </ul>
+            </div>
+            <div class="s08-strategic-col">
+              <h4>Research, Pharma &amp; Public Health Value</h4>
+              <ul>
+                <li>For pharmaceutical, research, and responsible healthcare innovation environments, governed and permission-aware population-level understanding may help support treatment understanding, medication continuity learning, adherence patterns, wellbeing outcomes, real-world evidence, and safer healthcare learning over time.</li>
+                <li>Elisence is intentionally designed around governed participation, privacy-aware experiences, permissioned understanding, and healthcare-aware trust — not unrestricted surveillance, uncontrolled profiling, or unsafe medical automation.</li>
+                <li>Individual trust, consent, safety, explainability, and responsible governance remain foundational to how Elisence is designed to evolve.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="s08-strategic-takeaway">
+            <h4>Health System Value Through Trusted Participation</h4>
+            <p>Helping prevention, continuity, healthier behaviour, and healthcare understanding reinforce one another over time.</p>
+          </div>
         </section>
         <section class="s08-moat-card s08-blue-underglow">
           <h3>Healthy Engagement as a Moat</h3>
