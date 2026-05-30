@@ -227,294 +227,328 @@
       user-select: none;
     }
 
-    /* Slide 02 — fragmentation (scoped, high-visibility) */
-    #slide-02 .slide-sub {
-      margin-bottom: 16px;
+    /* Slide 02 — rebuild v2 */
+    #slide-02[data-deck-build="s02-v2"] .slide-sub {
+      margin-bottom: 12px;
     }
 
-    #slide-02 .frag-visual {
+    #slide-02 .s02-fragment-zone {
       position: relative;
-      margin: 18px 0 30px;
-      padding: 32px 24px 36px;
-      border-radius: 20px;
-      border: 1px solid rgba(95, 210, 255, .45);
+      margin: 14px 0 24px;
+      padding: 20px 16px 24px;
+      min-height: 200px;
+      border-radius: 22px;
+      border: 1px solid rgba(100, 215, 255, .5);
       background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0, 160, 255, .16), transparent 60%),
-        linear-gradient(180deg, rgba(8, 32, 72, .85) 0%, rgba(2, 8, 24, .95) 100%);
-      box-shadow:
-        0 0 48px rgba(0, 140, 255, .2),
-        inset 0 1px 0 rgba(160, 235, 255, .1);
+        radial-gradient(circle at 50% 55%, rgba(255, 80, 80, .06), transparent 35%),
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(0, 150, 255, .14), transparent 55%),
+        linear-gradient(180deg, rgba(6, 26, 62, .95), rgba(2, 6, 18, .98));
+      box-shadow: 0 0 56px rgba(0, 130, 220, .22), inset 0 0 80px rgba(0, 0, 0, .25);
       overflow: hidden;
     }
 
-    #slide-02 .frag-lines {
+    #slide-02 .s02-fragment-zone::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 72px;
+      height: 72px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 2px dashed rgba(255, 120, 120, .35);
+      background: radial-gradient(circle, rgba(0, 0, 0, .4), transparent 70%);
+      box-shadow: 0 0 24px rgba(255, 100, 100, .15);
+      pointer-events: none;
+    }
+
+    #slide-02 .s02-break-svg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      opacity: .55;
+      opacity: .65;
     }
 
-    #slide-02 .frag-lines line {
-      stroke: rgba(85, 200, 255, .25);
+    #slide-02 .s02-break-svg line {
+      stroke: rgba(85, 200, 255, .28);
       stroke-width: 1;
-      stroke-dasharray: 4 10;
+      stroke-dasharray: 5 12;
     }
 
-    #slide-02 .frag-scatter {
+    #slide-02 .s02-chip-field {
       position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: auto auto;
-      gap: 14px 10px;
-      max-width: 920px;
+      z-index: 2;
+      min-height: 168px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
-    #slide-02 .frag-chip {
-      justify-self: center;
-      padding: 11px 18px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 750;
+    #slide-02 .s02-chip {
+      position: absolute;
+      padding: 10px 16px;
+      border-radius: 11px;
+      font-size: 12px;
+      font-weight: 800;
       letter-spacing: .05em;
-      color: #e8f8ff;
-      border: 1px solid rgba(100, 210, 255, .45);
-      background: linear-gradient(160deg, rgba(12, 52, 110, .9), rgba(4, 16, 40, .95));
-      box-shadow: 0 4px 20px rgba(0, 100, 200, .25);
+      color: #eefaff;
+      border: 1px solid rgba(110, 220, 255, .5);
+      background: linear-gradient(160deg, rgba(16, 58, 120, .95), rgba(4, 12, 32, .98));
+      box-shadow: 0 6px 24px rgba(0, 90, 180, .35);
       cursor: default;
       pointer-events: none;
       user-select: none;
       white-space: nowrap;
     }
 
-    #slide-02 .frag-chip.c1 { grid-column: 1 / span 3; transform: translateY(-6px) rotate(-1.5deg); }
-    #slide-02 .frag-chip.c2 { grid-column: 4 / span 3; transform: translateY(8px) rotate(1deg); opacity: .92; }
-    #slide-02 .frag-chip.c3 { grid-column: 7 / span 2; transform: translateY(-4px) rotate(-0.5deg); }
-    #slide-02 .frag-chip.c4 { grid-column: 10 / span 3; transform: translateY(10px) rotate(1.2deg); }
-    #slide-02 .frag-chip.c5 { grid-column: 2 / span 3; transform: translateY(6px) rotate(0.8deg); }
-    #slide-02 .frag-chip.c6 { grid-column: 5 / span 2; transform: translateY(-8px) rotate(-1deg); }
-    #slide-02 .frag-chip.c7 { grid-column: 8 / span 3; transform: translateY(4px) rotate(1.5deg); opacity: .88; }
-    #slide-02 .frag-chip.c8 { grid-column: 11 / span 2; transform: translateY(-5px) rotate(-0.8deg); }
+    #slide-02 .s02-chip--a { left: 2%; top: 8%; transform: rotate(-4deg); }
+    #slide-02 .s02-chip--b { left: 22%; top: 38%; transform: rotate(2deg); }
+    #slide-02 .s02-chip--c { left: 44%; top: 4%; transform: rotate(-1deg); opacity: .9; }
+    #slide-02 .s02-chip--d { right: 28%; top: 12%; transform: rotate(3deg); }
+    #slide-02 .s02-chip--e { right: 4%; top: 32%; transform: rotate(-2deg); }
+    #slide-02 .s02-chip--f { left: 8%; bottom: 6%; transform: rotate(1.5deg); }
+    #slide-02 .s02-chip--g { left: 38%; bottom: 2%; transform: rotate(-3deg); opacity: .88; }
+    #slide-02 .s02-chip--h { right: 6%; bottom: 8%; transform: rotate(2deg); }
 
-    #slide-02 .cols-2 {
-      align-items: stretch;
-      gap: clamp(28px, 4vw, 52px);
-      margin-top: 4px;
-    }
-
-    #slide-02 .col-card {
-      display: flex;
-      flex-direction: column;
-      padding: clamp(24px, 2.8vw, 34px);
-      border-radius: 22px;
-      border: 1px solid rgba(95, 210, 255, .5);
-      border-left: 4px solid #55d9ff;
-      box-shadow: 0 0 36px rgba(0, 150, 255, .28);
-    }
-
-    #slide-02 .col-card .label-upper {
-      margin: 0 0 16px;
-      font-size: clamp(14px, 1.1vw, 16px);
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(85, 200, 255, .3);
-    }
-
-    #slide-02 .problem-lead {
-      font-size: clamp(16px, 1.35vw, 20px);
-      font-weight: 850;
-      line-height: 1.4;
-      color: #fff;
-      margin-bottom: 18px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: rgba(0, 80, 150, .22);
-      border: 1px solid rgba(85, 200, 255, .25);
-      box-shadow: inset 0 0 24px rgba(0, 120, 200, .08);
-    }
-
-    #slide-02 .scan-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex: 1;
-    }
-
-    #slide-02 .scan-point {
-      font-size: clamp(13px, 1.08vw, 16px);
-      line-height: 1.45;
-      font-weight: 600;
-      color: rgba(215, 240, 255, .92);
-      padding: 12px 14px 12px 16px;
-      border-radius: 10px;
-      background: rgba(4, 20, 48, .55);
-      border-left: 3px solid rgba(85, 217, 255, .65);
-    }
-
-    #slide-02 .scan-point strong {
-      display: block;
-      font-weight: 900;
-      font-size: clamp(12px, .95vw, 14px);
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: #8edcff;
-      margin-bottom: 6px;
-    }
-
-    #slide-02 .closing-line {
-      margin-top: 32px;
-      padding: 16px 24px 0;
-      max-width: 46em;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.45;
-      border-top: 1px solid rgba(85, 200, 255, .35);
-      box-shadow: 0 -12px 32px rgba(0, 140, 255, .08);
-    }
-
-    /* Slide 03 — Why Now (scoped) */
-    #slide-03 .slide-sub {
-      margin-bottom: 18px;
-    }
-
-    #slide-03 .why-drivers {
+    #slide-02 .s02-dual-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(16px, 2.2vw, 22px);
-      margin: 18px 0 26px;
+      gap: clamp(24px, 3.5vw, 40px);
+      align-items: stretch;
     }
 
-    #slide-03 .driver-card {
-      position: relative;
-      padding: 20px 20px 18px 52px;
-      border-radius: 18px;
-      border: 1px solid rgba(95, 210, 255, .45);
-      background:
-        radial-gradient(circle at 100% 0%, rgba(0, 160, 255, .12), transparent 45%),
-        linear-gradient(155deg, rgba(10, 42, 95, .9), rgba(4, 14, 38, .96));
-      box-shadow: 0 0 28px rgba(0, 140, 255, .22);
-      min-height: 132px;
+    #slide-02 .s02-panel {
+      display: flex;
+      flex-direction: column;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(95, 210, 255, .48);
+      box-shadow: 0 0 40px rgba(0, 140, 255, .25);
+      background: linear-gradient(180deg, rgba(8, 34, 78, .92), rgba(3, 10, 28, .98));
     }
 
-    #slide-03 .driver-card--tech {
-      border-color: rgba(110, 225, 255, .55);
-      box-shadow: 0 0 40px rgba(0, 170, 255, .3);
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 180, 255, .14), transparent 55%),
-        linear-gradient(155deg, rgba(14, 58, 120, .92), rgba(4, 18, 48, .98));
+    #slide-02 .s02-panel--people { border-top: 4px solid #55d9ff; }
+    #slide-02 .s02-panel--systems { border-top: 4px solid #7eb8ff; }
+
+    #slide-02 .s02-panel-head {
+      padding: 16px 20px 14px;
+      background: rgba(0, 60, 120, .28);
+      border-bottom: 1px solid rgba(85, 200, 255, .28);
     }
 
-    #slide-03 .driver-num {
-      position: absolute;
-      left: 16px;
-      top: 18px;
-      font-size: 11px;
+    #slide-02 .s02-panel-title {
+      font-size: clamp(14px, 1.15vw, 17px);
       font-weight: 900;
       letter-spacing: .14em;
-      color: rgba(85, 217, 255, .75);
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0;
     }
 
-    #slide-03 .driver-card h3 {
-      font-size: clamp(13px, 1.05vw, 15px);
+    #slide-02 .s02-panel-body {
+      padding: 18px 20px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    #slide-02 .s02-lead {
+      font-size: clamp(15px, 1.25vw, 19px);
+      font-weight: 850;
+      line-height: 1.38;
+      color: #fff;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(0, 90, 160, .28);
+      border: 1px solid rgba(90, 200, 255, .3);
+    }
+
+    #slide-02 .s02-point {
+      font-size: clamp(12px, 1vw, 15px);
+      line-height: 1.43;
+      font-weight: 600;
+      color: rgba(215, 242, 255, .93);
+      padding: 11px 12px 11px 14px;
+      border-radius: 10px;
+      background: rgba(2, 14, 36, .65);
+      border-left: 4px solid rgba(85, 217, 255, .75);
+    }
+
+    #slide-02 .s02-point-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #55d9ff;
+      margin-bottom: 5px;
+    }
+
+    #slide-02 .s02-closing {
+      margin-top: 26px;
+      padding: 20px 24px 4px;
+      text-align: center;
+      font-size: clamp(18px, 1.55vw, 24px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.4;
+      border-top: 2px solid rgba(85, 217, 255, .4);
+      box-shadow: 0 -20px 48px rgba(0, 150, 255, .12);
+      text-shadow: 0 0 24px rgba(0, 180, 255, .25);
+    }
+
+    /* Slide 03 — rebuild v2 */
+    #slide-03[data-deck-build="s03-v2"] .slide-sub {
+      margin-bottom: 14px;
+    }
+
+    #slide-03 .s03-driver-matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(14px, 2vw, 20px);
+      margin: 14px 0 22px;
+    }
+
+    #slide-03 .s03-driver {
+      position: relative;
+      padding: 18px 18px 16px 48px;
+      border-radius: 18px;
+      min-height: 128px;
+      border: 1px solid rgba(95, 210, 255, .45);
+      background: linear-gradient(145deg, rgba(10, 44, 98, .92), rgba(3, 12, 32, .97));
+      box-shadow: 0 8px 32px rgba(0, 100, 200, .2);
+    }
+
+    #slide-03 .s03-driver--pressure { border-left: 5px solid #ff9a6b; }
+    #slide-03 .s03-driver--people { border-left: 5px solid #55d9ff; }
+    #slide-03 .s03-driver--digital { border-left: 5px solid #a78bfa; }
+    #slide-03 .s03-driver--tech {
+      border-left: 5px solid #5dffb8;
+      box-shadow: 0 0 48px rgba(0, 200, 255, .28);
+      background:
+        radial-gradient(ellipse 90% 70% at 50% 0%, rgba(0, 200, 255, .12), transparent 55%),
+        linear-gradient(145deg, rgba(12, 52, 115, .95), rgba(4, 16, 42, .98));
+    }
+
+    #slide-03 .s03-driver-num {
+      position: absolute;
+      left: 14px;
+      top: 16px;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 900;
+      color: #020816;
+      background: rgba(85, 217, 255, .9);
+    }
+
+    #slide-03 .s03-driver h3 {
+      font-size: clamp(12px, 1vw, 14px);
       font-weight: 900;
       letter-spacing: .1em;
       text-transform: uppercase;
       color: #8edcff;
-      margin-bottom: 10px;
-      line-height: 1.25;
+      margin-bottom: 8px;
     }
 
-    #slide-03 .driver-card p {
-      font-size: clamp(13px, 1.05vw, 16px);
-      line-height: 1.44;
+    #slide-03 .s03-driver p {
+      font-size: clamp(12px, 1vw, 15px);
+      line-height: 1.42;
       font-weight: 600;
-      color: rgba(215, 242, 255, .92);
+      color: rgba(220, 245, 255, .93);
     }
 
-    #slide-03 .tech-signals {
+    #slide-03 .s03-tech-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(85, 200, 255, .25);
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(85, 200, 255, .22);
     }
 
-    #slide-03 .tech-signals span {
-      font-size: 10px;
-      font-weight: 750;
-      letter-spacing: .05em;
+    #slide-03 .s03-tech-row span {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      padding: 5px 10px;
-      border-radius: 6px;
-      border: 1px solid rgba(90, 190, 255, .35);
-      color: rgba(190, 235, 255, .9);
-      background: rgba(0, 70, 140, .28);
-      cursor: default;
+      padding: 4px 8px;
+      border-radius: 5px;
+      border: 1px solid rgba(90, 200, 255, .4);
+      color: rgba(200, 240, 255, .95);
+      background: rgba(0, 80, 140, .35);
       pointer-events: none;
-      user-select: none;
+      cursor: default;
     }
 
-    #slide-03 .convergence-strip {
+    #slide-03 .s03-macro-shift {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: clamp(12px, 2vw, 18px);
-      margin: 8px 0 26px;
-      padding: 22px 16px;
-      border-radius: 20px;
-      border: 1px solid rgba(95, 210, 255, .42);
+      gap: 12px;
+      margin: 6px 0 22px;
+      padding: 24px 12px;
+      border-radius: 22px;
+      border: 1px solid rgba(100, 220, 255, .5);
       background:
-        linear-gradient(90deg, rgba(0, 80, 150, .15) 0%, rgba(0, 140, 220, .08) 50%, rgba(0, 80, 150, .15) 100%),
-        rgba(3, 12, 32, .85);
-      box-shadow: 0 0 44px rgba(0, 130, 220, .18), inset 0 1px 0 rgba(160, 235, 255, .08);
+        linear-gradient(90deg, rgba(255, 100, 100, .04) 0%, rgba(0, 180, 255, .1) 50%, rgba(100, 255, 200, .06) 100%),
+        rgba(2, 10, 28, .9);
+      box-shadow: 0 0 52px rgba(0, 150, 255, .2), inset 0 1px 0 rgba(200, 245, 255, .1);
     }
 
-    #slide-03 .shift-pair {
+    #slide-03 .s03-shift {
       text-align: center;
-      padding: 8px 6px;
-      border-right: 1px solid rgba(80, 170, 230, .15);
+      padding: 10px 8px;
     }
 
-    #slide-03 .shift-pair:last-child {
-      border-right: none;
+    #slide-03 .s03-shift:not(:last-child) {
+      border-right: 1px solid rgba(80, 180, 230, .2);
     }
 
-    #slide-03 .shift-from {
+    #slide-03 .s03-from {
       display: block;
-      font-size: clamp(11px, .9vw, 13px);
-      font-weight: 700;
-      letter-spacing: .1em;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      color: rgba(150, 195, 230, .65);
-      margin-bottom: 8px;
+      color: rgba(140, 180, 210, .6);
+      margin-bottom: 10px;
     }
 
-    #slide-03 .shift-mid {
+    #slide-03 .s03-arrow {
       display: block;
-      font-size: 18px;
+      font-size: 22px;
       font-weight: 300;
-      color: rgba(85, 217, 255, .85);
       line-height: 1;
-      margin-bottom: 8px;
+      color: #55d9ff;
+      margin-bottom: 10px;
+      text-shadow: 0 0 16px rgba(0, 200, 255, .6);
     }
 
-    #slide-03 .shift-to {
+    #slide-03 .s03-to {
       display: block;
-      font-size: clamp(15px, 1.25vw, 19px);
-      font-weight: 900;
-      letter-spacing: .02em;
+      font-size: clamp(16px, 1.35vw, 21px);
+      font-weight: 950;
       color: #fff;
-      text-shadow: 0 0 20px rgba(0, 180, 255, .35);
+      letter-spacing: .02em;
+      text-shadow: 0 0 28px rgba(0, 200, 255, .45);
     }
 
-    #slide-03 .closing-line--convergence {
-      margin-top: 8px;
-      padding: 18px 28px 0;
-      border-top: 1px solid rgba(85, 200, 255, .35);
-      font-size: clamp(17px, 1.45vw, 22px);
-      box-shadow: 0 -16px 36px rgba(0, 140, 255, .1);
+    #slide-03 .s03-closing {
+      margin-top: 4px;
+      padding: 20px 20px 0;
+      text-align: center;
+      font-size: clamp(17px, 1.5vw, 23px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.4;
+      border-top: 2px solid rgba(85, 217, 255, .4);
+      box-shadow: 0 -20px 40px rgba(0, 140, 255, .12);
     }
 
     /* 2x2 grid */
@@ -1165,16 +1199,16 @@
 
     @media (max-width: 900px) {
       .cols-2, .grid-2x2, .compare, .pillars-4, .value-lanes, .ask-grid, .timeline-3,
-      #slide-03 .why-drivers, #slide-03 .convergence-strip {
+      #slide-02 .s02-dual-grid, #slide-03 .s03-driver-matrix, #slide-03 .s03-macro-shift {
         grid-template-columns: 1fr;
       }
-      #slide-03 .shift-pair {
-        border-right: none;
+      #slide-03 .s03-shift {
+        border-right: none !important;
         border-bottom: 1px solid rgba(80, 170, 230, .15);
         padding-bottom: 14px;
         margin-bottom: 6px;
       }
-      #slide-03 .shift-pair:last-child {
+      #slide-03 .s03-shift:last-child {
         border-bottom: none;
         margin-bottom: 0;
       }
@@ -1231,82 +1265,86 @@
   </section>
 
   <!-- Slide 02 Problem -->
-  <section class="slide" id="slide-02">
+  <section class="slide" id="slide-02" data-deck-build="s02-v2">
     <div class="slide-inner">
       <p class="slide-num">02 — Problem</p>
       <h1 class="slide-title">Healthcare Feels Fragmented</h1>
       <p class="slide-sub">Fragmentation, rising costs, and growing system pressure</p>
-      <div class="frag-visual" aria-hidden="true">
-        <svg class="frag-lines" viewBox="0 0 920 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="80" y1="50" x2="220" y2="95" />
-          <line x1="260" y1="40" x2="400" y2="110" />
-          <line x1="480" y1="100" x2="620" y2="45" />
-          <line x1="700" y1="55" x2="840" y2="100" />
-          <line x1="150" y1="120" x2="350" y2="35" opacity="0.5" />
-          <line x1="550" y1="30" x2="780" y2="115" opacity="0.5" />
+      <div class="s02-fragment-zone" aria-hidden="true">
+        <svg class="s02-break-svg" viewBox="0 0 920 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="40" x2="200" y2="120" />
+          <line x1="240" y1="30" x2="380" y2="150" />
+          <line x1="420" y1="150" x2="560" y2="35" />
+          <line x1="600" y1="50" x2="760" y2="130" />
+          <line x1="180" y1="160" x2="400" y2="25" opacity="0.45" />
+          <line x1="520" y1="20" x2="820" y2="155" opacity="0.45" />
         </svg>
-        <div class="frag-scatter">
-          <span class="frag-chip c1">Medication</span>
-          <span class="frag-chip c2">GP / Doctor</span>
-          <span class="frag-chip c3">Pharmacy</span>
-          <span class="frag-chip c4">Prevention</span>
-          <span class="frag-chip c5">Women’s Health</span>
-          <span class="frag-chip c6">Metabolism</span>
-          <span class="frag-chip c7">Body Tracking</span>
-          <span class="frag-chip c8">Wellbeing</span>
+        <div class="s02-chip-field">
+          <span class="s02-chip s02-chip--a">Medication</span>
+          <span class="s02-chip s02-chip--b">GP / Doctor</span>
+          <span class="s02-chip s02-chip--c">Pharmacy</span>
+          <span class="s02-chip s02-chip--d">Prevention</span>
+          <span class="s02-chip s02-chip--e">Women’s Health</span>
+          <span class="s02-chip s02-chip--f">Metabolism</span>
+          <span class="s02-chip s02-chip--g">Body Tracking</span>
+          <span class="s02-chip s02-chip--h">Wellbeing</span>
         </div>
       </div>
-      <div class="cols-2">
-        <div class="col-card">
-          <p class="label-upper">For People</p>
-          <p class="problem-lead">Health journeys split across disconnected apps, appointments, medications, trackers, and systems — with little continuity.</p>
-          <div class="scan-stack">
-            <p class="scan-point"><strong>Fragmented care</strong>Diabetes &amp; metabolic care, prevention, wellbeing, women’s health, and family care — often across separate tools.</p>
-            <p class="scan-point"><strong>Broken continuity</strong>Medication, GP / doctor communication, pharmacy journeys, and body understanding rarely stay connected.</p>
-            <p class="scan-point"><strong>Human burden</strong>Health can feel confusing, stressful, isolating, expensive, and difficult to navigate.</p>
+      <div class="s02-dual-grid">
+        <article class="s02-panel s02-panel--people">
+          <header class="s02-panel-head">
+            <h2 class="s02-panel-title">For People</h2>
+          </header>
+          <div class="s02-panel-body">
+            <p class="s02-lead">Health journeys split across disconnected apps, appointments, medications, medical tracking, trackers, and systems — with little continuity.</p>
+            <p class="s02-point"><span class="s02-point-label">Fragmented care</span>Diabetes &amp; metabolic care, prevention, wellbeing, women’s health, and family care — often across separate tools.</p>
+            <p class="s02-point"><span class="s02-point-label">Broken continuity</span>Medication, GP / doctor communication, pharmacy journeys, body understanding, and trusted communication rarely stay connected.</p>
+            <p class="s02-point"><span class="s02-point-label">Human burden</span>Health can feel confusing, stressful, isolating, expensive, and difficult to navigate.</p>
           </div>
-        </div>
-        <div class="col-card">
-          <p class="label-upper">For Healthcare Systems</p>
-          <p class="problem-lead">Growing system pressure — prevention, continuity, and participation are harder to sustain at scale.</p>
-          <div class="scan-stack">
-            <p class="scan-point"><strong>System strain</strong>Chronic disease, ageing populations, workforce strain, fragmented care journeys, and rising costs.</p>
-            <p class="scan-point"><strong>What matters now</strong>Prevention, continuity, trusted participation, and long-term engagement.</p>
-            <p class="scan-point"><strong>Efficiency gap</strong>Better coordination and continuity may help reduce inefficiency, duplication, and avoidable burden over time.</p>
+        </article>
+        <article class="s02-panel s02-panel--systems">
+          <header class="s02-panel-head">
+            <h2 class="s02-panel-title">For Healthcare Systems</h2>
+          </header>
+          <div class="s02-panel-body">
+            <p class="s02-lead">Growing system pressure — prevention, continuity, participation, and trusted communication are harder to sustain at scale.</p>
+            <p class="s02-point"><span class="s02-point-label">System strain</span>Chronic disease, ageing populations, workforce strain, fragmented care journeys, and rising costs.</p>
+            <p class="s02-point"><span class="s02-point-label">What matters now</span>Prevention, continuity, trusted participation, trusted communication, and long-term engagement.</p>
+            <p class="s02-point"><span class="s02-point-label">Efficiency gap</span>Better coordination and continuity may help reduce inefficiency, duplication, and avoidable burden over time.</p>
           </div>
-        </div>
+        </article>
       </div>
-      <p class="closing-line">Healthcare should feel more connected, understandable, affordable, and human.</p>
+      <p class="s02-closing">Healthcare should feel more connected, understandable, affordable, and human.</p>
     </div>
   </section>
 
   <!-- Slide 03 Why Now -->
-  <section class="slide" id="slide-03">
+  <section class="slide" id="slide-03" data-deck-build="s03-v2">
     <div class="slide-inner">
       <p class="slide-num">03 — Why Now</p>
       <h1 class="slide-title">A Convergence Moment</h1>
       <p class="slide-sub">Healthcare is reaching a turning point</p>
-      <div class="why-drivers">
-        <article class="driver-card">
-          <span class="driver-num">01</span>
+      <div class="s03-driver-matrix">
+        <article class="s03-driver s03-driver--pressure">
+          <span class="s03-driver-num">01</span>
           <h3>Healthcare pressure</h3>
           <p>Chronic conditions rising, populations ageing, costs increasing — systems must move from reactive care toward prevention and continuity.</p>
         </article>
-        <article class="driver-card">
-          <span class="driver-num">02</span>
+        <article class="s03-driver s03-driver--people">
+          <span class="s03-driver-num">02</span>
           <h3>People managing more health</h3>
           <p>Medication, diabetes, prevention, wellbeing, family care, and everyday decisions are pushed onto individuals — yet experiences stay fragmented.</p>
         </article>
-        <article class="driver-card">
-          <span class="driver-num">03</span>
+        <article class="s03-driver s03-driver--digital">
+          <span class="s03-driver-num">03</span>
           <h3>Digital expectations changed</h3>
           <p>People expect connected, intelligent experiences in life — but healthcare still often feels disconnected, episodic, and hard to coordinate.</p>
         </article>
-        <article class="driver-card driver-card--tech">
-          <span class="driver-num">04</span>
+        <article class="s03-driver s03-driver--tech">
+          <span class="s03-driver-num">04</span>
           <h3>Technology maturity</h3>
           <p>Digital infrastructure, richer health signals, sensor-aware experiences, AI-assisted workflows, and secure communication now enable long-term engagement in a trusted way.</p>
-          <div class="tech-signals" aria-hidden="true">
+          <div class="s03-tech-row" aria-hidden="true">
             <span>Health signals</span>
             <span>Sensor-aware</span>
             <span>AI-assisted workflows</span>
@@ -1315,24 +1353,24 @@
           </div>
         </article>
       </div>
-      <div class="convergence-strip" aria-label="Healthcare macro shift">
-        <div class="shift-pair">
-          <span class="shift-from">Reactive</span>
-          <span class="shift-mid" aria-hidden="true">→</span>
-          <span class="shift-to">Preventative</span>
+      <div class="s03-macro-shift" aria-label="Healthcare macro shift">
+        <div class="s03-shift">
+          <span class="s03-from">Reactive</span>
+          <span class="s03-arrow" aria-hidden="true">→</span>
+          <span class="s03-to">Preventative</span>
         </div>
-        <div class="shift-pair">
-          <span class="shift-from">Episodic</span>
-          <span class="shift-mid" aria-hidden="true">→</span>
-          <span class="shift-to">Continuous</span>
+        <div class="s03-shift">
+          <span class="s03-from">Episodic</span>
+          <span class="s03-arrow" aria-hidden="true">→</span>
+          <span class="s03-to">Continuous</span>
         </div>
-        <div class="shift-pair">
-          <span class="shift-from">Fragmented</span>
-          <span class="shift-mid" aria-hidden="true">→</span>
-          <span class="shift-to">Connected</span>
+        <div class="s03-shift">
+          <span class="s03-from">Fragmented</span>
+          <span class="s03-arrow" aria-hidden="true">→</span>
+          <span class="s03-to">Connected</span>
         </div>
       </div>
-      <p class="closing-line closing-line--convergence">Healthcare pressure, behaviour change, technology maturity, and trust are finally converging.</p>
+      <p class="s03-closing">Healthcare pressure, behaviour change, technology maturity, and trust are finally converging.</p>
     </div>
   </section>
 
@@ -1702,8 +1740,16 @@
         });
       }
 
+      function scrollToHash() {
+        if (!location.hash) return;
+        var target = document.querySelector(location.hash);
+        if (target) window.scrollTo(0, target.offsetTop);
+      }
+
       window.addEventListener("scroll", setActive, { passive: true });
+      window.addEventListener("hashchange", scrollToHash);
       setActive();
+      scrollToHash();
     })();
   </script>
 </body>
