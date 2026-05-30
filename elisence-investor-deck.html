@@ -217,21 +217,7 @@
       box-shadow: 0 0 24px rgba(0, 150, 255, .3);
     }
 
-    /* Fragment visual */
-    .frag-visual {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin: 24px 0;
-      padding: 24px;
-      border-radius: 16px;
-      border: 1px dashed rgba(120, 200, 255, .35);
-      background: rgba(0, 0, 0, .25);
-    }
-
     .info-chip,
-    .frag-chip,
     .orbit-tag,
     .founder-tags span,
     .timeline-3 .journey-card,
@@ -241,17 +227,151 @@
       user-select: none;
     }
 
-    .frag-chip {
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 650;
-      letter-spacing: .03em;
-      color: rgba(190, 225, 255, .78);
-      border: 1px solid rgba(80, 160, 220, .22);
-      background: rgba(6, 24, 55, .45);
-      box-shadow: none;
-      opacity: 1;
+    /* Slide 02 — fragmentation (scoped, high-visibility) */
+    #slide-02 .slide-sub {
+      margin-bottom: 16px;
+    }
+
+    #slide-02 .frag-visual {
+      position: relative;
+      margin: 18px 0 30px;
+      padding: 32px 24px 36px;
+      border-radius: 20px;
+      border: 1px solid rgba(95, 210, 255, .45);
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0, 160, 255, .16), transparent 60%),
+        linear-gradient(180deg, rgba(8, 32, 72, .85) 0%, rgba(2, 8, 24, .95) 100%);
+      box-shadow:
+        0 0 48px rgba(0, 140, 255, .2),
+        inset 0 1px 0 rgba(160, 235, 255, .1);
+      overflow: hidden;
+    }
+
+    #slide-02 .frag-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .55;
+    }
+
+    #slide-02 .frag-lines line {
+      stroke: rgba(85, 200, 255, .25);
+      stroke-width: 1;
+      stroke-dasharray: 4 10;
+    }
+
+    #slide-02 .frag-scatter {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto auto;
+      gap: 14px 10px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    #slide-02 .frag-chip {
+      justify-self: center;
+      padding: 11px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: .05em;
+      color: #e8f8ff;
+      border: 1px solid rgba(100, 210, 255, .45);
+      background: linear-gradient(160deg, rgba(12, 52, 110, .9), rgba(4, 16, 40, .95));
+      box-shadow: 0 4px 20px rgba(0, 100, 200, .25);
+      cursor: default;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    #slide-02 .frag-chip.c1 { grid-column: 1 / span 3; transform: translateY(-6px) rotate(-1.5deg); }
+    #slide-02 .frag-chip.c2 { grid-column: 4 / span 3; transform: translateY(8px) rotate(1deg); opacity: .92; }
+    #slide-02 .frag-chip.c3 { grid-column: 7 / span 2; transform: translateY(-4px) rotate(-0.5deg); }
+    #slide-02 .frag-chip.c4 { grid-column: 10 / span 3; transform: translateY(10px) rotate(1.2deg); }
+    #slide-02 .frag-chip.c5 { grid-column: 2 / span 3; transform: translateY(6px) rotate(0.8deg); }
+    #slide-02 .frag-chip.c6 { grid-column: 5 / span 2; transform: translateY(-8px) rotate(-1deg); }
+    #slide-02 .frag-chip.c7 { grid-column: 8 / span 3; transform: translateY(4px) rotate(1.5deg); opacity: .88; }
+    #slide-02 .frag-chip.c8 { grid-column: 11 / span 2; transform: translateY(-5px) rotate(-0.8deg); }
+
+    #slide-02 .cols-2 {
+      align-items: stretch;
+      gap: clamp(28px, 4vw, 52px);
+      margin-top: 4px;
+    }
+
+    #slide-02 .col-card {
+      display: flex;
+      flex-direction: column;
+      padding: clamp(24px, 2.8vw, 34px);
+      border-radius: 22px;
+      border: 1px solid rgba(95, 210, 255, .5);
+      border-left: 4px solid #55d9ff;
+      box-shadow: 0 0 36px rgba(0, 150, 255, .28);
+    }
+
+    #slide-02 .col-card .label-upper {
+      margin: 0 0 16px;
+      font-size: clamp(14px, 1.1vw, 16px);
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(85, 200, 255, .3);
+    }
+
+    #slide-02 .problem-lead {
+      font-size: clamp(16px, 1.35vw, 20px);
+      font-weight: 850;
+      line-height: 1.4;
+      color: #fff;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(0, 80, 150, .22);
+      border: 1px solid rgba(85, 200, 255, .25);
+      box-shadow: inset 0 0 24px rgba(0, 120, 200, .08);
+    }
+
+    #slide-02 .scan-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    #slide-02 .scan-point {
+      font-size: clamp(13px, 1.08vw, 16px);
+      line-height: 1.45;
+      font-weight: 600;
+      color: rgba(215, 240, 255, .92);
+      padding: 12px 14px 12px 16px;
+      border-radius: 10px;
+      background: rgba(4, 20, 48, .55);
+      border-left: 3px solid rgba(85, 217, 255, .65);
+    }
+
+    #slide-02 .scan-point strong {
+      display: block;
+      font-weight: 900;
+      font-size: clamp(12px, .95vw, 14px);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin-bottom: 6px;
+    }
+
+    #slide-02 .closing-line {
+      margin-top: 32px;
+      padding: 16px 24px 0;
+      max-width: 46em;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.45;
+      border-top: 1px solid rgba(85, 200, 255, .35);
+      box-shadow: 0 -12px 32px rgba(0, 140, 255, .08);
     }
 
     /* 2x2 grid */
@@ -963,31 +1083,43 @@
       <h1 class="slide-title">Healthcare Feels Fragmented</h1>
       <p class="slide-sub">Fragmentation, rising costs, and growing system pressure</p>
       <div class="frag-visual" aria-hidden="true">
-        <span class="frag-chip">Medication</span>
-        <span class="frag-chip">Women’s Health</span>
-        <span class="frag-chip">GP / Doctor</span>
-        <span class="frag-chip">Pharmacy</span>
-        <span class="frag-chip">Metabolism</span>
-        <span class="frag-chip">Body Tracking</span>
-        <span class="frag-chip">Wellbeing</span>
-        <span class="frag-chip">Prevention</span>
+        <svg class="frag-lines" viewBox="0 0 920 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="80" y1="50" x2="220" y2="95" />
+          <line x1="260" y1="40" x2="400" y2="110" />
+          <line x1="480" y1="100" x2="620" y2="45" />
+          <line x1="700" y1="55" x2="840" y2="100" />
+          <line x1="150" y1="120" x2="350" y2="35" opacity="0.5" />
+          <line x1="550" y1="30" x2="780" y2="115" opacity="0.5" />
+        </svg>
+        <div class="frag-scatter">
+          <span class="frag-chip c1">Medication</span>
+          <span class="frag-chip c2">GP / Doctor</span>
+          <span class="frag-chip c3">Pharmacy</span>
+          <span class="frag-chip c4">Prevention</span>
+          <span class="frag-chip c5">Women’s Health</span>
+          <span class="frag-chip c6">Metabolism</span>
+          <span class="frag-chip c7">Body Tracking</span>
+          <span class="frag-chip c8">Wellbeing</span>
+        </div>
       </div>
       <div class="cols-2">
         <div class="col-card">
           <p class="label-upper">For People</p>
-          <ul class="bullets">
-            <li>Health journeys are fragmented across disconnected apps, appointments, medications, trackers, and systems.</li>
-            <li>Many people manage diabetes, prevention, chronic conditions, wellbeing, family care, and medication across multiple tools — often with little continuity.</li>
-            <li>Health can feel confusing, stressful, isolating, expensive, and difficult to navigate.</li>
-          </ul>
+          <p class="problem-lead">Health journeys split across disconnected apps, appointments, medications, trackers, and systems — with little continuity.</p>
+          <div class="scan-stack">
+            <p class="scan-point"><strong>Fragmented care</strong>Diabetes &amp; metabolic care, prevention, wellbeing, women’s health, and family care — often across separate tools.</p>
+            <p class="scan-point"><strong>Broken continuity</strong>Medication, GP / doctor communication, pharmacy journeys, and body understanding rarely stay connected.</p>
+            <p class="scan-point"><strong>Human burden</strong>Health can feel confusing, stressful, isolating, expensive, and difficult to navigate.</p>
+          </div>
         </div>
         <div class="col-card">
           <p class="label-upper">For Healthcare Systems</p>
-          <ul class="bullets">
-            <li>Growing pressure from chronic disease, ageing populations, workforce strain, fragmented care journeys, and rising costs.</li>
-            <li>Prevention, continuity, trusted participation, and long-term engagement are increasingly important.</li>
-            <li>Better coordination and continuity may help reduce inefficiency, duplication, and avoidable burden over time.</li>
-          </ul>
+          <p class="problem-lead">Growing system pressure — prevention, continuity, and participation are harder to sustain at scale.</p>
+          <div class="scan-stack">
+            <p class="scan-point"><strong>System strain</strong>Chronic disease, ageing populations, workforce strain, fragmented care journeys, and rising costs.</p>
+            <p class="scan-point"><strong>What matters now</strong>Prevention, continuity, trusted participation, and long-term engagement.</p>
+            <p class="scan-point"><strong>Efficiency gap</strong>Better coordination and continuity may help reduce inefficiency, duplication, and avoidable burden over time.</p>
+          </div>
         </div>
       </div>
       <p class="closing-line">Healthcare should feel more connected, understandable, affordable, and human.</p>
