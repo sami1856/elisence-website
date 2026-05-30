@@ -4037,12 +4037,14 @@
       height: auto !important;
       min-height: 100vh !important;
       max-height: none !important;
-      overflow: visible !important;
+      overflow: hidden !important;
       page-break-after: always;
       break-after: page;
       scroll-snap-align: none !important;
       justify-content: flex-start !important;
       padding: clamp(36px, 5vh, 56px) clamp(40px, 5vw, 72px) !important;
+      position: relative;
+      isolation: isolate;
     }
 
     html.pdf-deck .slide:last-child,
@@ -4115,7 +4117,6 @@
     html.pdf-deck #slide-11b .s11-shell {
       height: auto !important;
       max-height: none !important;
-      overflow: visible !important;
     }
 
     html.pdf-deck #slide-04 .slide,
@@ -4185,6 +4186,316 @@
 
     html.pdf-deck #slide-11b .s11-main {
       grid-template-columns: 1fr 1fr !important;
+    }
+
+    /* ===== PDF RENDER CONTAINMENT REPAIR =====
+       Split pages use slide-03a / slide-09b IDs, so #slide-XX scoped rules never apply.
+       Unbounded SVG width:100% and absolute orbit nodes then escape their panels. */
+    html.pdf-deck [class*="-scroll-body"],
+    html.pdf-deck .s10-narrative,
+    html.pdf-deck .s02-v3-text-panel,
+    html.pdf-deck .s03-v3-drivers-panel,
+    html.pdf-deck .s03-v3-shift-panel,
+    html.pdf-deck .s04-v7-scroll-body,
+    html.pdf-deck .s05-v2-scroll-body,
+    html.pdf-deck .s09-scroll-body {
+      overflow: visible !important;
+    }
+
+    html.pdf-deck [class$="-shell"] {
+      position: relative;
+      overflow: clip !important;
+      max-width: 100%;
+    }
+
+    html.pdf-deck .s03-v3-orbit-panel {
+      position: relative;
+      overflow: hidden !important;
+      width: 100%;
+      max-width: 100%;
+      height: 280px !important;
+      min-height: 280px !important;
+      max-height: 320px !important;
+    }
+
+    html.pdf-deck .s03-v3-orbit-scene {
+      position: relative;
+      width: 100%;
+      height: 280px !important;
+      min-height: 280px !important;
+      max-height: 320px !important;
+      overflow: hidden !important;
+    }
+
+    html.pdf-deck .s03-v3-orbit-ring--outer {
+      width: 88%;
+      height: 200px;
+      max-height: 72%;
+    }
+
+    html.pdf-deck .s03-v3-orbit-ring--inner {
+      width: 58%;
+      height: 130px;
+      max-height: 48%;
+    }
+
+    html.pdf-deck .s03-v3-orbit-core {
+      width: 72px;
+      height: 72px;
+    }
+
+    html.pdf-deck .s03-v3-orbit-node {
+      max-width: 72px;
+      font-size: 8px;
+    }
+
+    html.pdf-deck .s09-hero-banner,
+    html.pdf-deck .s09-hero-frame {
+      overflow: hidden !important;
+      max-width: 100%;
+    }
+
+    html.pdf-deck .s09-hero-banner img {
+      width: 100%;
+      height: auto;
+      max-height: clamp(120px, 18vh, 180px) !important;
+      object-fit: contain;
+      display: block;
+    }
+
+    html.pdf-deck .s09-bottom-row {
+      display: grid;
+      grid-template-columns: 1fr minmax(160px, 280px);
+      gap: clamp(16px, 2vh, 20px);
+      align-items: stretch;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    html.pdf-deck .s09-growth-visual {
+      position: relative;
+      overflow: hidden !important;
+      width: 100%;
+      max-width: 280px;
+      max-height: 220px !important;
+      min-height: 160px;
+      flex-shrink: 0;
+      contain: layout paint;
+    }
+
+    html.pdf-deck .s09-growth-visual svg {
+      width: 100% !important;
+      max-width: 280px !important;
+      height: auto !important;
+      max-height: 210px !important;
+      display: block;
+    }
+
+    html.pdf-deck .s09-card-icon {
+      position: relative;
+      width: 46px !important;
+      height: 46px !important;
+      max-width: 46px;
+      max-height: 46px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    html.pdf-deck .s09-card-icon svg {
+      width: 26px !important;
+      height: 26px !important;
+      max-width: 26px !important;
+      max-height: 26px !important;
+      display: block;
+    }
+
+    html.pdf-deck .s09-shell::before {
+      display: none !important;
+    }
+
+    html.pdf-deck .s09-orbital-glow::before,
+    html.pdf-deck .s09-blue-underglow::after {
+      inset: auto;
+      left: 5%;
+      right: 5%;
+      bottom: -8px;
+      height: 32px !important;
+      max-height: 32px !important;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    html.pdf-deck svg[viewBox="0 0 24 24"] {
+      width: 26px !important;
+      height: 26px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    html.pdf-deck .s10-tag-chip svg[viewBox="0 0 24 24"] {
+      width: 15px !important;
+      height: 15px !important;
+      max-width: 15px !important;
+      max-height: 15px !important;
+    }
+
+    html.pdf-deck .s09-growth-visual svg[viewBox="0 0 280 220"] {
+      width: 100% !important;
+      max-width: 280px !important;
+      height: auto !important;
+      max-height: 210px !important;
+    }
+
+    html.pdf-deck .s09-growth-visual svg [filter] {
+      filter: none !important;
+    }
+
+    /* Restore split-slide layout (A/B ids miss #slide-XX grid/flex rules) */
+    html.pdf-deck .s03-v3-shell {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(16px, 2vh, 24px);
+      align-items: stretch;
+    }
+
+    html.pdf-deck .s03-v3-shift-panel {
+      display: flex;
+      flex-direction: column;
+      border-radius: 18px;
+      border: 1px solid rgba(100, 220, 255, .45);
+      padding: 14px 12px;
+    }
+
+    html.pdf-deck .s09-shell {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: min(1320px, 100%);
+      margin: 0 auto;
+      gap: clamp(10px, 1.3vh, 14px);
+    }
+
+    html.pdf-deck .s09-scroll-body {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 1.8vh, 18px);
+    }
+
+    html.pdf-deck .s09-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2vh, 20px);
+    }
+
+    html.pdf-deck .s09-content-card,
+    html.pdf-deck .s09-wide-card {
+      position: relative;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 26px;
+      border: 1px solid rgba(85, 217, 255, .42);
+      padding: clamp(20px, 2.4vh, 28px);
+    }
+
+    html.pdf-deck .s09-card-accent {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    html.pdf-deck .slide,
+    html.pdf-deck .pdf-page {
+      contain: layout paint style;
+    }
+
+    html.pdf-deck .s10-section-icon,
+    html.pdf-deck .s11-section-icon,
+    html.pdf-deck .s11-bullet-icon {
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    html.pdf-deck .s10-section-icon {
+      width: 42px !important;
+      height: 42px !important;
+    }
+
+    html.pdf-deck .s10-section-icon svg {
+      width: 20px !important;
+      height: 20px !important;
+      max-width: 20px !important;
+      max-height: 20px !important;
+    }
+
+    html.pdf-deck .s11-section-icon {
+      width: 30px !important;
+      height: 30px !important;
+    }
+
+    html.pdf-deck .s11-section-icon svg {
+      width: 15px !important;
+      height: 15px !important;
+      max-width: 15px !important;
+      max-height: 15px !important;
+    }
+
+    html.pdf-deck .s11-bullet-icon {
+      width: 26px !important;
+      height: 26px !important;
+    }
+
+    html.pdf-deck .s11-bullet-icon svg {
+      width: 13px !important;
+      height: 13px !important;
+      max-width: 13px !important;
+      max-height: 13px !important;
+    }
+
+    html.pdf-deck .vision-visual {
+      overflow: hidden !important;
+      max-width: 100%;
+    }
+
+    html.pdf-deck .vision-visual img {
+      width: 100%;
+      height: auto;
+      max-height: clamp(118px, 22vh, 168px) !important;
+      object-fit: contain;
+      display: block;
+    }
+
+    html.pdf-deck .slide-cover .hero-visual {
+      max-width: min(900px, 100%);
+      overflow: hidden;
+    }
+
+    html.pdf-deck .slide-cover .hero-visual img {
+      max-height: clamp(200px, 32vh, 320px) !important;
+    }
+
+    html.pdf-deck .s02-v3-visual-panel,
+    html.pdf-deck .s04-v7-image-panel {
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    html.pdf-deck .s02-v3-image,
+    html.pdf-deck .s04-v7-image-panel img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    html.pdf-deck .orbit-wrap {
+      width: min(580px, 100%);
+      height: min(580px, 60vh);
+      max-width: 100%;
+      max-height: 580px;
+      margin: 24px auto;
+      overflow: hidden;
     }
 
     html.pdf-deck .s06-card-grid,
