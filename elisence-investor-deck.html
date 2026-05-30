@@ -2343,162 +2343,327 @@
       color: rgba(210, 240, 255, .88);
     }
 
-    /* Slide 09 — expansion network (scoped) */
-    #slide-09 .expansion-map {
-      width: min(780px, 100%);
-      height: min(280px, 34vh);
-      margin: 28px auto 32px;
-      border-radius: 22px;
-      border: 1px solid rgba(85, 200, 255, .32);
-      background:
-        radial-gradient(ellipse 55% 45% at 50% 18%, rgba(0, 140, 220, .16), transparent 58%),
-        radial-gradient(ellipse 40% 50% at 28% 62%, rgba(60, 120, 255, .1), transparent),
-        radial-gradient(ellipse 40% 50% at 72% 62%, rgba(0, 190, 200, .09), transparent),
-        linear-gradient(180deg, rgba(6, 22, 52, .95) 0%, rgba(3, 10, 28, .98) 100%);
-      box-shadow:
-        0 0 48px rgba(0, 120, 200, .18),
-        inset 0 1px 0 rgba(140, 220, 255, .08);
-      position: relative;
+    /* Slide 09 — Premium market expansion (hard reset) */
+    #slide-09.slide {
+      min-height: 100vh;
+      height: 100vh;
+      max-height: 100vh;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding: clamp(24px, 3.5vh, 40px) clamp(24px, 4vw, 64px);
       overflow: hidden;
+      scroll-snap-align: start;
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(0, 120, 200, .14), transparent 55%),
+        radial-gradient(circle at 85% 20%, rgba(0, 200, 180, .06), transparent 40%),
+        linear-gradient(180deg, #061936 0%, #020816 48%, #000 100%);
     }
 
-    #slide-09 .expansion-map::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 50% 22%, rgba(85, 217, 255, .12) 0, transparent 42%),
-        radial-gradient(circle 1px at 20% 70%, rgba(120, 200, 255, .35) 0, transparent 100%),
-        radial-gradient(circle 1px at 80% 68%, rgba(120, 200, 255, .3) 0, transparent 100%),
-        radial-gradient(circle 1px at 50% 88%, rgba(120, 200, 255, .25) 0, transparent 100%);
-      background-size: 100% 100%, 120px 120px, 120px 120px, 100% 100%;
-      opacity: .7;
-      pointer-events: none;
+    #slide-09 .s09-shell {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: min(1320px, 100%);
+      height: 100%;
+      max-height: calc(100vh - clamp(48px, 7vh, 80px));
+      margin: 0 auto;
+      gap: clamp(10px, 1.2vh, 14px);
     }
 
-    #slide-09 .expansion-map-svg {
+    #slide-09 .s09-hero-banner {
+      flex-shrink: 0;
+      border-radius: 24px;
+      border: 1px solid rgba(95, 210, 255, .5);
+      overflow: hidden;
+      background: rgba(4, 16, 42, .9);
+      box-shadow: 0 0 44px rgba(0, 140, 255, .24);
+    }
+
+    #slide-09 .s09-hero-banner img {
       display: block;
       width: 100%;
-      height: 100%;
+      height: clamp(170px, 21vh, 230px);
+      object-fit: cover;
+      object-position: center 88%;
+    }
+
+    #slide-09 .s09-blue-underglow {
       position: relative;
-      z-index: 1;
+      z-index: 0;
     }
 
-    #slide-09 .expansion-map .exp-mesh {
-      fill: none;
-      stroke: rgba(70, 160, 220, .12);
-      stroke-width: 1;
-    }
-
-    #slide-09 .expansion-map .exp-path {
-      fill: none;
-      stroke: rgba(70, 150, 210, .22);
-      stroke-width: 1.2;
-      stroke-dasharray: 3 8;
-    }
-
-    #slide-09 .expansion-map .exp-route {
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    #slide-09 .expansion-map .exp-route--origin {
-      stroke: url(#expOriginGlow);
-      stroke-width: 2.2;
-    }
-
-    #slide-09 .expansion-map .exp-route--parallel {
-      stroke: url(#expParallelGlow);
-      stroke-width: 2;
-    }
-
-    #slide-09 .expansion-map .exp-route--global {
-      stroke: url(#expGlobalGlow);
-      stroke-width: 1.8;
-      opacity: .9;
-    }
-
-    #slide-09 .expansion-map .exp-node {
-      filter: url(#expNodeGlow);
-    }
-
-    #slide-09 .expansion-map .exp-node--uk {
-      fill: rgba(120, 220, 255, .95);
-    }
-
-    #slide-09 .expansion-map .exp-node--region {
-      fill: rgba(85, 200, 255, .85);
-    }
-
-    #slide-09 .expansion-map .exp-global-halo {
-      fill: url(#globalHaloFill);
-      opacity: .55;
-    }
-
-    #slide-09 .expansion-map .exp-global-ring {
-      fill: none;
-      stroke: rgba(85, 217, 255, .35);
-      stroke-width: 1;
-    }
-
-    #slide-09 .expansion-map .exp-global-core {
-      fill: rgba(200, 245, 255, .95);
-    }
-
-    #slide-09 .expansion-map .exp-spark {
-      stroke: rgba(160, 235, 255, .7);
-      stroke-width: 1.2;
-      stroke-linecap: round;
-    }
-
-    #slide-09 .expansion-labels {
+    #slide-09 .s09-blue-underglow::after {
+      content: "";
       position: absolute;
-      inset: 0;
-      z-index: 2;
+      left: 6%;
+      right: 6%;
+      bottom: -6px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 200, 255, .42), transparent 72%);
+      filter: blur(12px);
       pointer-events: none;
+      z-index: -1;
     }
 
-    #slide-09 .expansion-labels span {
-      position: absolute;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(175, 230, 255, .82);
-      text-shadow: 0 0 12px rgba(0, 120, 200, .4);
+    #slide-09 .s09-header {
+      flex-shrink: 0;
     }
 
-    #slide-09 .expansion-labels .exp-global {
-      left: 50%;
-      top: 6%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      font-weight: 900;
-      color: rgba(220, 248, 255, .95);
-      letter-spacing: .16em;
-    }
-
-    #slide-09 .expansion-labels .exp-eu { left: 22%; top: 44%; }
-    #slide-09 .expansion-labels .exp-gulf { right: 14%; top: 44%; }
-    #slide-09 .expansion-labels .exp-uk {
-      left: 50%;
-      bottom: 10%;
-      transform: translateX(-50%);
+    #slide-09 .s09-header > div:first-child {
+      font-size: clamp(14px, 1.1vw, 18px);
       font-weight: 800;
-      color: rgba(140, 220, 255, .9);
-    }
-
-    #slide-09 .expansion-labels .exp-ambition {
-      left: 50%;
-      bottom: 3%;
-      transform: translateX(-50%);
-      font-size: 9px;
-      font-weight: 650;
-      color: rgba(130, 190, 230, .55);
       letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #55d9ff;
+      margin-bottom: 6px;
     }
 
+    #slide-09 .s09-header h2 {
+      font-size: clamp(52px, 4.8vw, 68px);
+      font-weight: 900;
+      line-height: 1.06;
+      color: #fff;
+      text-shadow: 0 0 36px rgba(0, 170, 255, .28);
+      margin: 0 0 6px;
+    }
+
+    #slide-09 .s09-header > p {
+      font-size: clamp(26px, 2.1vw, 32px);
+      font-weight: 700;
+      line-height: 1.35;
+      color: rgba(200, 235, 255, .92);
+      margin: 0 0 10px;
+    }
+
+    #slide-09 .s09-accent-divider {
+      width: min(120px, 28%);
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(0, 200, 255, .2), rgba(85, 217, 255, .95), rgba(0, 220, 180, .5));
+      box-shadow: 0 0 16px rgba(0, 200, 255, .45);
+    }
+
+    #slide-09 .s09-scroll-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 1.8vh, 18px);
+      padding-right: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(85, 217, 255, .22) transparent;
+    }
+
+    #slide-09 .s09-scroll-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #slide-09 .s09-scroll-body::-webkit-scrollbar-thumb {
+      background: rgba(85, 217, 255, .22);
+      border-radius: 6px;
+    }
+
+    #slide-09 .s09-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(14px, 1.8vh, 18px);
+    }
+
+    #slide-09 .s09-content-card {
+      border-radius: 24px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
+      padding: clamp(24px, 2.8vh, 32px);
+      box-shadow: 0 0 32px rgba(0, 130, 255, .14);
+      overflow: visible;
+    }
+
+    #slide-09 .s09-card-accent {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    #slide-09 .s09-card-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid rgba(85, 200, 255, .45);
+      background: rgba(4, 22, 58, .75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      color: #55d9ff;
+      box-shadow: 0 0 14px rgba(0, 160, 255, .25);
+      flex-shrink: 0;
+    }
+
+    #slide-09 .s09-card-line {
+      flex: 1;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(85, 217, 255, .75), rgba(0, 220, 180, .15));
+      box-shadow: 0 0 10px rgba(0, 180, 255, .25);
+    }
+
+    #slide-09 .s09-content-card h3 {
+      font-size: clamp(24px, 1.9vw, 30px);
+      font-weight: 900;
+      letter-spacing: .05em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(85, 200, 255, .22);
+    }
+
+    #slide-09 .s09-content-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #slide-09 .s09-content-card li {
+      font-size: clamp(18px, 1.35vw, 22px);
+      font-weight: 600;
+      line-height: 1.55;
+      color: rgba(220, 245, 255, .96);
+      margin-bottom: 12px;
+      padding-left: 1.15em;
+      position: relative;
+    }
+
+    #slide-09 .s09-content-card li:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-09 .s09-content-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    #slide-09 .s09-bottom-row {
+      display: grid;
+      grid-template-columns: 1fr minmax(220px, 34%);
+      gap: clamp(14px, 1.8vh, 18px);
+      align-items: stretch;
+    }
+
+    #slide-09 .s09-wide-card {
+      border-radius: 24px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
+      padding: clamp(24px, 2.8vh, 32px);
+      box-shadow: 0 0 32px rgba(0, 130, 255, .14);
+    }
+
+    #slide-09 .s09-wide-card h3 {
+      font-size: clamp(24px, 1.9vw, 30px);
+      font-weight: 900;
+      letter-spacing: .05em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(85, 200, 255, .22);
+    }
+
+    #slide-09 .s09-wide-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #slide-09 .s09-wide-card li {
+      font-size: clamp(18px, 1.35vw, 22px);
+      font-weight: 600;
+      line-height: 1.55;
+      color: rgba(220, 245, 255, .96);
+      margin-bottom: 12px;
+      padding-left: 1.15em;
+      position: relative;
+    }
+
+    #slide-09 .s09-wide-card li:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-09 .s09-wide-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    #slide-09 .s09-growth-visual {
+      border-radius: 24px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0, 160, 255, .18), transparent 60%),
+        linear-gradient(165deg, rgba(8, 32, 72, .92), rgba(2, 8, 24, .98));
+      padding: clamp(16px, 2vh, 20px);
+      box-shadow: 0 0 36px rgba(0, 140, 255, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+    }
+
+    #slide-09 .s09-growth-visual svg {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      display: block;
+    }
+
+    #slide-09 .s09-closing-bar {
+      text-align: center;
+      font-size: clamp(26px, 2.2vw, 32px);
+      font-weight: 800;
+      line-height: 1.5;
+      color: #fff;
+      border-radius: 24px;
+      border: 1px solid rgba(95, 210, 255, .5);
+      background: linear-gradient(90deg, rgba(0, 75, 140, .28), rgba(70, 55, 150, .2), rgba(0, 75, 140, .28));
+      padding: clamp(22px, 2.6vh, 28px) clamp(24px, 3vw, 32px);
+      box-shadow: 0 0 40px rgba(0, 150, 255, .2);
+      margin: 0 0 6px;
+      animation: s09ClosingGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes s09ClosingGlow {
+      0%, 100% { box-shadow: 0 0 32px rgba(0, 140, 255, .18); }
+      50% { box-shadow: 0 0 48px rgba(0, 180, 255, .32); }
+    }
+
+    @media (max-width: 1024px) {
+      #slide-09 .s09-header h2 {
+        font-size: clamp(44px, 5vw, 52px);
+      }
+      #slide-09 .s09-content-card li,
+      #slide-09 .s09-wide-card li {
+        font-size: max(18px, clamp(18px, 1.7vw, 20px));
+      }
+    }
+
+    @media (max-width: 900px) {
+      #slide-09 .s09-card-grid,
+      #slide-09 .s09-bottom-row {
+        grid-template-columns: 1fr;
+      }
+    }
     .tagline-moat {
       font-size: clamp(16px, 1.35vw, 22px);
       font-weight: 900;
@@ -3317,91 +3482,120 @@
   </section>
 
   <!-- Slide 09 Market -->
-  <section class="slide" id="slide-09">
-    <div class="slide-inner">
-      <p class="slide-num">09 — Market &amp; Expansion</p>
-      <h1 class="slide-title">Global Ambition, Local Execution</h1>
-      <p class="slide-sub">Healthcare adoption is earned locally</p>
-      <div class="expansion-map" aria-hidden="true">
-        <svg class="expansion-map-svg" viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="globalHaloFill" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="rgba(140, 235, 255, .45)" />
-              <stop offset="55%" stop-color="rgba(60, 160, 255, .12)" />
-              <stop offset="100%" stop-color="rgba(0, 80, 160, 0)" />
-            </radialGradient>
-            <linearGradient id="expOriginGlow" x1="50%" y1="100%" x2="50%" y2="0%">
-              <stop offset="0%" stop-color="rgba(85, 217, 255, .95)" />
-              <stop offset="100%" stop-color="rgba(85, 217, 255, .35)" />
-            </linearGradient>
-            <linearGradient id="expParallelGlow" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="rgba(70, 190, 255, .85)" />
-              <stop offset="100%" stop-color="rgba(100, 210, 255, .4)" />
-            </linearGradient>
-            <linearGradient id="expGlobalGlow" x1="0%" y1="100%" x2="50%" y2="0%">
-              <stop offset="0%" stop-color="rgba(85, 217, 255, .25)" />
-              <stop offset="100%" stop-color="rgba(180, 240, 255, .75)" />
-            </linearGradient>
-            <filter id="expNodeGlow" x="-80%" y="-80%" width="260%" height="260%">
-              <feGaussianBlur stdDeviation="2.5" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            <filter id="globalSpark" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur stdDeviation="4" result="glow" />
-              <feMerge>
-                <feMergeNode in="glow" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          <ellipse class="exp-mesh" cx="360" cy="140" rx="300" ry="105" />
-          <ellipse class="exp-mesh" cx="360" cy="140" rx="210" ry="72" opacity=".6" />
-          <path class="exp-path" d="M 120 200 Q 360 120 600 200" />
-          <path class="exp-path" d="M 200 80 Q 360 50 520 80" opacity=".5" />
-          <path class="exp-route exp-route--origin" d="M 360 228 L 210 158" />
-          <path class="exp-route exp-route--origin" d="M 360 228 L 510 158" />
-          <path class="exp-route exp-route--global" d="M 210 158 Q 285 95 360 62" />
-          <path class="exp-route exp-route--global" d="M 510 158 Q 435 95 360 62" />
-          <circle class="exp-global-halo" cx="360" cy="58" r="38" filter="url(#globalSpark)" />
-          <circle class="exp-global-ring" cx="360" cy="58" r="26" />
-          <circle class="exp-global-ring" cx="360" cy="58" r="14" opacity=".5" />
-          <line class="exp-spark" x1="360" y1="28" x2="360" y2="42" />
-          <line class="exp-spark" x1="360" y1="74" x2="360" y2="88" opacity=".4" />
-          <line class="exp-spark" x1="336" y1="58" x2="348" y2="58" />
-          <line class="exp-spark" x1="372" y1="58" x2="384" y2="58" />
-          <circle class="exp-global-core exp-node" cx="360" cy="58" r="6" filter="url(#globalSpark)" />
-          <circle class="exp-node exp-node--region" cx="210" cy="158" r="7" />
-          <circle class="exp-node exp-node--region" cx="510" cy="158" r="7" />
-          <circle class="exp-node exp-node--uk" cx="360" cy="228" r="9" />
-        </svg>
-        <div class="expansion-labels">
-          <span class="exp-global">Global</span>
-          <span class="exp-eu">Europe</span>
-          <span class="exp-gulf">Gulf / Middle East</span>
-          <span class="exp-uk">UK</span>
-          <span class="exp-ambition">Responsible expansion</span>
-        </div>
+  <section class="slide deck-slide" id="slide-09" data-deck-build="s09-premium-market-expansion">
+    <div class="s09-shell">
+      <section class="s09-hero-banner s09-blue-underglow">
+        <img src="assets/investor-deck/slide09-global-expansion-banner.jpg" alt="UK to Europe to Middle East to World — Elisence global expansion pathway with Earth horizon" width="1320" height="230" />
+      </section>
+      <header class="s09-header">
+        <div>09 — MARKET &amp; EXPANSION</div>
+        <h2>Global Ambition, Local Execution</h2>
+        <p>Global ambition. Local trust.</p>
+        <div class="s09-accent-divider" aria-hidden="true"></div>
+      </header>
+      <div class="s09-scroll-body">
+        <section class="s09-card-grid">
+          <article class="s09-content-card s09-blue-underglow">
+            <div class="s09-card-accent">
+              <span class="s09-card-icon" aria-hidden="true">01</span>
+              <span class="s09-card-line"></span>
+            </div>
+            <h3>Global Healthcare Problem</h3>
+            <ul>
+              <li>Fragmentation, chronic conditions, prevention pressure, ageing populations, medication complexity, rising healthcare costs, and increasing self-management are global realities rather than country-specific problems.</li>
+              <li>The need for stronger continuity, trusted health participation, prevention, and more connected healthcare experiences exists across healthcare systems worldwide.</li>
+            </ul>
+          </article>
+          <article class="s09-content-card s09-blue-underglow">
+            <div class="s09-card-accent">
+              <span class="s09-card-icon" aria-hidden="true">02</span>
+              <span class="s09-card-line"></span>
+            </div>
+            <h3>Multiple Large Health Journeys</h3>
+            <ul>
+              <li>Elisence is designed around multiple long-term healthcare realities rather than a single condition — including prevention, women’s health, diabetes and metabolic health, medication continuity, wellbeing, GP and doctor communication, family care, pharmacy journeys, trusted health intelligence, and long-term health participation.</li>
+            </ul>
+          </article>
+          <article class="s09-content-card s09-blue-underglow">
+            <div class="s09-card-accent">
+              <span class="s09-card-icon" aria-hidden="true">03</span>
+              <span class="s09-card-line"></span>
+            </div>
+            <h3>Country-Aware Expansion</h3>
+            <ul>
+              <li>Healthcare is never one-size-fits-all.</li>
+              <li>Different countries operate with different healthcare systems, regulation, trust expectations, reimbursement models, language, culture, safety expectations, and governance realities.</li>
+              <li>Elisence is designed with multilingual, healthcare-aware, and country-adaptable foundations — supporting responsible localisation rather than forcing one model everywhere.</li>
+            </ul>
+          </article>
+          <article class="s09-content-card s09-blue-underglow">
+            <div class="s09-card-accent">
+              <span class="s09-card-icon" aria-hidden="true">04</span>
+              <span class="s09-card-line"></span>
+            </div>
+            <h3>Trust-First Scale Model</h3>
+            <ul>
+              <li>Our approach is practical: validate locally, build trust, strengthen healthcare relationships, and scale responsibly.</li>
+              <li>The UK represents an important validation environment because of healthcare credibility, safety expectations, and trust standards.</li>
+              <li>Europe, the Gulf region, and other healthcare transformation markets represent meaningful long-term opportunities for responsible expansion.</li>
+            </ul>
+          </article>
+        </section>
+        <section class="s09-bottom-row">
+          <article class="s09-wide-card s09-blue-underglow">
+            <div class="s09-card-accent">
+              <span class="s09-card-icon" aria-hidden="true">05</span>
+              <span class="s09-card-line"></span>
+            </div>
+            <h3>Repeatable Growth Model</h3>
+            <ul>
+              <li>The goal is not to launch everywhere at once.</li>
+              <li>The goal is to build a repeatable model where prevention, continuity, trusted participation, social health engagement, and healthcare-aware governance can scale responsibly over time.</li>
+            </ul>
+          </article>
+          <aside class="s09-growth-visual s09-blue-underglow" aria-hidden="true">
+            <svg viewBox="0 0 260 210" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="s09BarA" x1="0%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stop-color="rgba(0,120,200,.35)" />
+                  <stop offset="100%" stop-color="rgba(85,217,255,.95)" />
+                </linearGradient>
+                <linearGradient id="s09BarB" x1="0%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stop-color="rgba(0,140,180,.35)" />
+                  <stop offset="100%" stop-color="rgba(0,230,200,.9)" />
+                </linearGradient>
+                <linearGradient id="s09Arrow" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#55d9ff" />
+                  <stop offset="100%" stop-color="#00e6b8" />
+                </linearGradient>
+                <filter id="s09Glow" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <ellipse cx="130" cy="188" rx="92" ry="16" fill="rgba(0,140,255,.12)" />
+              <ellipse cx="130" cy="188" rx="62" ry="10" fill="none" stroke="rgba(85,217,255,.25)" stroke-width="1" />
+              <ellipse cx="130" cy="188" rx="38" ry="6" fill="none" stroke="rgba(85,217,255,.18)" stroke-width="1" />
+              <rect x="36" y="118" width="28" height="58" rx="6" fill="url(#s09BarA)" filter="url(#s09Glow)" opacity=".85" />
+              <rect x="78" y="96" width="28" height="80" rx="6" fill="url(#s09BarA)" filter="url(#s09Glow)" />
+              <rect x="120" y="72" width="28" height="104" rx="6" fill="url(#s09BarB)" filter="url(#s09Glow)" />
+              <rect x="162" y="48" width="28" height="128" rx="6" fill="url(#s09BarB)" filter="url(#s09Glow)" />
+              <path d="M 52 108 L 92 86 L 132 62 L 176 38 L 206 22" fill="none" stroke="url(#s09Arrow)" stroke-width="2.5" stroke-linecap="round" filter="url(#s09Glow)" />
+              <path d="M 194 18 L 210 22 L 204 36" fill="none" stroke="#00e6b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#s09Glow)" />
+              <circle cx="52" cy="108" r="4" fill="#55d9ff" filter="url(#s09Glow)" />
+              <circle cx="92" cy="86" r="4" fill="#55d9ff" filter="url(#s09Glow)" />
+              <circle cx="132" cy="62" r="4" fill="#00e6b8" filter="url(#s09Glow)" />
+              <circle cx="176" cy="38" r="4" fill="#00e6b8" filter="url(#s09Glow)" />
+            </svg>
+          </aside>
+        </section>
+        <section class="s09-closing-bar s09-blue-underglow">
+          Global problem. Local trust. Responsible scale.
+        </section>
       </div>
-      <div class="cols-2">
-        <div>
-          <p class="label-upper">Global opportunity</p>
-          <ul class="bullets">
-            <li>Fragmentation, chronic conditions, prevention pressure, and self-management are global — not local — realities.</li>
-            <li>Better continuity and connected experiences are needed worldwide.</li>
-          </ul>
-        </div>
-        <div>
-          <p class="label-upper">Local execution</p>
-          <ul class="bullets">
-            <li>Country-aware regulation, language, culture, trust, and data governance.</li>
-            <li>Validate locally, build credibility, scale responsibly — UK, Europe, Gulf.</li>
-          </ul>
-        </div>
-      </div>
-      <p class="closing-line">Global problem. Local trust. Responsible scale.</p>
     </div>
   </section>
 
