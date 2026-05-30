@@ -227,176 +227,163 @@
       user-select: none;
     }
 
-    /* Slide 02 — rebuild v2 */
-    #slide-02[data-deck-build="s02-v2"] .slide-sub {
-      margin-bottom: 12px;
+    /* Slide 02 — image + full text v3 */
+    #slide-02 {
+      padding-top: clamp(36px, 6vh, 64px);
+      padding-bottom: clamp(36px, 6vh, 64px);
     }
 
-    #slide-02 .s02-fragment-zone {
+    #slide-02 .slide-title {
+      font-size: clamp(30px, 4.2vw, 52px);
+      margin-bottom: 10px;
+    }
+
+    #slide-02 .slide-sub {
+      margin-bottom: 14px;
+      font-size: clamp(16px, 1.5vw, 22px);
+    }
+
+    #slide-02 .s02-v3-shell {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(18px, 2.5vw, 24px);
+      margin-top: 8px;
+    }
+
+    #slide-02 .s02-v3-visual-panel {
       position: relative;
-      margin: 14px 0 24px;
-      padding: 20px 16px 24px;
-      min-height: 200px;
-      border-radius: 22px;
-      border: 1px solid rgba(100, 215, 255, .5);
-      background:
-        radial-gradient(circle at 50% 55%, rgba(255, 80, 80, .06), transparent 35%),
-        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(0, 150, 255, .14), transparent 55%),
-        linear-gradient(180deg, rgba(6, 26, 62, .95), rgba(2, 6, 18, .98));
-      box-shadow: 0 0 56px rgba(0, 130, 220, .22), inset 0 0 80px rgba(0, 0, 0, .25);
-      overflow: hidden;
+      border-radius: 20px;
+      padding: 12px 12px 20px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(180deg, rgba(8, 32, 72, .9), rgba(2, 8, 22, .98));
+      box-shadow:
+        0 0 48px rgba(0, 150, 255, .28),
+        0 18px 56px rgba(0, 120, 220, .35);
     }
 
-    #slide-02 .s02-fragment-zone::after {
+    #slide-02 .s02-v3-visual-panel::after {
       content: "";
       position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 72px;
-      height: 72px;
-      transform: translate(-50%, -50%);
+      left: 8%;
+      right: 8%;
+      bottom: 4px;
+      height: 28px;
       border-radius: 50%;
-      border: 2px dashed rgba(255, 120, 120, .35);
-      background: radial-gradient(circle, rgba(0, 0, 0, .4), transparent 70%);
-      box-shadow: 0 0 24px rgba(255, 100, 100, .15);
+      background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(0, 200, 255, .45), transparent 72%);
+      filter: blur(10px);
       pointer-events: none;
+      z-index: 0;
     }
 
-    #slide-02 .s02-break-svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: .65;
-    }
-
-    #slide-02 .s02-break-svg line {
-      stroke: rgba(85, 200, 255, .28);
-      stroke-width: 1;
-      stroke-dasharray: 5 12;
-    }
-
-    #slide-02 .s02-chip-field {
+    #slide-02 .s02-v3-image {
       position: relative;
-      z-index: 2;
-      min-height: 168px;
-      max-width: 960px;
-      margin: 0 auto;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: min(38vh, 340px);
+      object-fit: contain;
+      object-position: center center;
+      border-radius: 14px;
     }
 
-    #slide-02 .s02-chip {
-      position: absolute;
-      padding: 10px 16px;
-      border-radius: 11px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .05em;
-      color: #eefaff;
-      border: 1px solid rgba(110, 220, 255, .5);
-      background: linear-gradient(160deg, rgba(16, 58, 120, .95), rgba(4, 12, 32, .98));
-      box-shadow: 0 6px 24px rgba(0, 90, 180, .35);
-      cursor: default;
-      pointer-events: none;
-      user-select: none;
-      white-space: nowrap;
+    #slide-02 .s02-v3-text-panel {
+      border-radius: 20px;
+      border: 1px solid rgba(95, 210, 255, .42);
+      background: linear-gradient(165deg, rgba(8, 34, 78, .88), rgba(3, 10, 28, .96));
+      box-shadow: 0 0 32px rgba(0, 140, 255, .18);
+      padding: clamp(18px, 2.2vw, 26px) clamp(18px, 2.5vw, 28px);
+      max-height: min(46vh, 480px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(85, 217, 255, .4) transparent;
     }
 
-    #slide-02 .s02-chip--a { left: 2%; top: 8%; transform: rotate(-4deg); }
-    #slide-02 .s02-chip--b { left: 22%; top: 38%; transform: rotate(2deg); }
-    #slide-02 .s02-chip--c { left: 44%; top: 4%; transform: rotate(-1deg); opacity: .9; }
-    #slide-02 .s02-chip--d { right: 28%; top: 12%; transform: rotate(3deg); }
-    #slide-02 .s02-chip--e { right: 4%; top: 32%; transform: rotate(-2deg); }
-    #slide-02 .s02-chip--f { left: 8%; bottom: 6%; transform: rotate(1.5deg); }
-    #slide-02 .s02-chip--g { left: 38%; bottom: 2%; transform: rotate(-3deg); opacity: .88; }
-    #slide-02 .s02-chip--h { right: 6%; bottom: 8%; transform: rotate(2deg); }
-
-    #slide-02 .s02-dual-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(24px, 3.5vw, 40px);
-      align-items: stretch;
-    }
-
-    #slide-02 .s02-panel {
-      display: flex;
-      flex-direction: column;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(95, 210, 255, .48);
-      box-shadow: 0 0 40px rgba(0, 140, 255, .25);
-      background: linear-gradient(180deg, rgba(8, 34, 78, .92), rgba(3, 10, 28, .98));
-    }
-
-    #slide-02 .s02-panel--people { border-top: 4px solid #55d9ff; }
-    #slide-02 .s02-panel--systems { border-top: 4px solid #7eb8ff; }
-
-    #slide-02 .s02-panel-head {
-      padding: 16px 20px 14px;
-      background: rgba(0, 60, 120, .28);
-      border-bottom: 1px solid rgba(85, 200, 255, .28);
-    }
-
-    #slide-02 .s02-panel-title {
+    #slide-02 .s02-v3-intro {
       font-size: clamp(14px, 1.15vw, 17px);
+      font-weight: 750;
+      line-height: 1.45;
+      color: rgba(235, 248, 255, .96);
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(85, 200, 255, .22);
+    }
+
+    #slide-02 .s02-v3-section-title {
+      font-size: clamp(12px, 1vw, 14px);
       font-weight: 900;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0;
+      margin: 14px 0 10px;
     }
 
-    #slide-02 .s02-panel-body {
-      padding: 18px 20px 22px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    #slide-02 .s02-v3-section-title:first-of-type {
+      margin-top: 0;
     }
 
-    #slide-02 .s02-lead {
-      font-size: clamp(15px, 1.25vw, 19px);
-      font-weight: 850;
-      line-height: 1.38;
-      color: #fff;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: rgba(0, 90, 160, .28);
-      border: 1px solid rgba(90, 200, 255, .3);
+    #slide-02 .s02-v3-text-panel ul {
+      list-style: none;
+      margin: 0 0 8px;
+      padding: 0;
     }
 
-    #slide-02 .s02-point {
-      font-size: clamp(12px, 1vw, 15px);
-      line-height: 1.43;
+    #slide-02 .s02-v3-text-panel li {
+      font-size: clamp(12px, .98vw, 14px);
+      line-height: 1.42;
       font-weight: 600;
-      color: rgba(215, 242, 255, .93);
-      padding: 11px 12px 11px 14px;
-      border-radius: 10px;
-      background: rgba(2, 14, 36, .65);
-      border-left: 4px solid rgba(85, 217, 255, .75);
+      color: rgba(210, 240, 255, .92);
+      margin-bottom: 10px;
+      padding-left: 1.15em;
+      position: relative;
     }
 
-    #slide-02 .s02-point-label {
-      display: block;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+    #slide-02 .s02-v3-text-panel li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
       color: #55d9ff;
-      margin-bottom: 5px;
+      font-weight: 900;
     }
 
-    #slide-02 .s02-closing {
-      margin-top: 26px;
-      padding: 20px 24px 4px;
+    #slide-02 .s02-v3-text-panel li:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-02 .s02-v3-closing-bar {
+      margin-top: clamp(16px, 2vh, 22px);
+      padding: 16px 20px;
       text-align: center;
-      font-size: clamp(18px, 1.55vw, 24px);
+      font-size: clamp(16px, 1.4vw, 21px);
       font-weight: 900;
-      color: #fff;
       line-height: 1.4;
-      border-top: 2px solid rgba(85, 217, 255, .4);
-      box-shadow: 0 -20px 48px rgba(0, 150, 255, .12);
-      text-shadow: 0 0 24px rgba(0, 180, 255, .25);
+      color: #fff;
+      border-radius: 16px;
+      border: 1px solid rgba(95, 210, 255, .45);
+      background: rgba(0, 80, 150, .22);
+      box-shadow: 0 0 36px rgba(0, 150, 255, .2);
+      text-shadow: 0 0 20px rgba(0, 180, 255, .2);
+    }
+
+    @media (min-width: 1080px) {
+      #slide-02 .s02-v3-shell {
+        grid-template-columns: minmax(340px, 1.1fr) 1fr;
+        align-items: start;
+        gap: clamp(20px, 2.5vw, 28px);
+      }
+
+      #slide-02 .s02-v3-visual-panel {
+        position: sticky;
+        top: 0;
+      }
+
+      #slide-02 .s02-v3-image {
+        max-height: min(52vh, 420px);
+      }
+
+      #slide-02 .s02-v3-text-panel {
+        max-height: min(58vh, 520px);
+      }
     }
 
     /* Slide 03 — rebuild v2 */
@@ -1199,7 +1186,7 @@
 
     @media (max-width: 900px) {
       .cols-2, .grid-2x2, .compare, .pillars-4, .value-lanes, .ask-grid, .timeline-3,
-      #slide-02 .s02-dual-grid, #slide-03 .s03-driver-matrix, #slide-03 .s03-macro-shift {
+      #slide-02 .s02-v3-shell, #slide-03 .s03-driver-matrix, #slide-03 .s03-macro-shift {
         grid-template-columns: 1fr;
       }
       #slide-03 .s03-shift {
@@ -1265,56 +1252,39 @@
   </section>
 
   <!-- Slide 02 Problem -->
-  <section class="slide" id="slide-02" data-deck-build="s02-v2">
+  <section class="slide" id="slide-02" data-deck-build="s02-v3-image-text">
     <div class="slide-inner">
-      <p class="slide-num">02 — Problem</p>
+      <p class="slide-num">02 — Healthcare Feels Fragmented</p>
       <h1 class="slide-title">Healthcare Feels Fragmented</h1>
       <p class="slide-sub">Fragmentation, rising costs, and growing system pressure</p>
-      <div class="s02-fragment-zone" aria-hidden="true">
-        <svg class="s02-break-svg" viewBox="0 0 920 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="60" y1="40" x2="200" y2="120" />
-          <line x1="240" y1="30" x2="380" y2="150" />
-          <line x1="420" y1="150" x2="560" y2="35" />
-          <line x1="600" y1="50" x2="760" y2="130" />
-          <line x1="180" y1="160" x2="400" y2="25" opacity="0.45" />
-          <line x1="520" y1="20" x2="820" y2="155" opacity="0.45" />
-        </svg>
-        <div class="s02-chip-field">
-          <span class="s02-chip s02-chip--a">Medication</span>
-          <span class="s02-chip s02-chip--b">GP / Doctor</span>
-          <span class="s02-chip s02-chip--c">Pharmacy</span>
-          <span class="s02-chip s02-chip--d">Prevention</span>
-          <span class="s02-chip s02-chip--e">Women’s Health</span>
-          <span class="s02-chip s02-chip--f">Metabolism</span>
-          <span class="s02-chip s02-chip--g">Body Tracking</span>
-          <span class="s02-chip s02-chip--h">Wellbeing</span>
+      <div class="s02-v3-shell">
+        <div class="s02-v3-visual-panel">
+          <img
+            class="s02-v3-image"
+            src="assets/investor-deck/healthcare-fragmented-elisence.jpg"
+            alt="Fragmented healthcare tools and apps connecting into one Elisence ecosystem"
+            width="1200"
+            height="675"
+            loading="eager"
+          />
+        </div>
+        <div class="s02-v3-text-panel">
+          <p class="s02-v3-intro">Healthcare today often feels fragmented, reactive, expensive, and difficult to navigate — both for people and healthcare systems.</p>
+          <h2 class="s02-v3-section-title">For People</h2>
+          <ul>
+            <li>Health journeys are increasingly scattered across disconnected apps, appointments, medications, prevention tools, GP and doctor communication, medical tracking, body understanding, women’s health, diabetes and metabolic care, wellbeing, pharmacy journeys, and everyday health decisions.</li>
+            <li>Many people are expected to manage weight, prevention, chronic conditions, medication continuity, family care, health information, and trusted guidance across multiple tools with little continuity.</li>
+            <li>Healthcare can feel confusing, stressful, isolating, expensive, and difficult to coordinate over time.</li>
+          </ul>
+          <h2 class="s02-v3-section-title">For Healthcare Systems</h2>
+          <ul>
+            <li>Healthcare systems face rising chronic disease, ageing populations, workforce strain, fragmented care journeys, increasing operational pressure, and growing healthcare cost.</li>
+            <li>Prevention, continuity, earlier intervention, participation, trusted communication, and long-term engagement are becoming increasingly important.</li>
+            <li>Better continuity, prediction, prevention, communication, and connected health participation may help reduce avoidable burden, inefficiency, duplication, and pressure on healthcare systems over time.</li>
+          </ul>
         </div>
       </div>
-      <div class="s02-dual-grid">
-        <article class="s02-panel s02-panel--people">
-          <header class="s02-panel-head">
-            <h2 class="s02-panel-title">For People</h2>
-          </header>
-          <div class="s02-panel-body">
-            <p class="s02-lead">Health journeys split across disconnected apps, appointments, medications, medical tracking, trackers, and systems — with little continuity.</p>
-            <p class="s02-point"><span class="s02-point-label">Fragmented care</span>Diabetes &amp; metabolic care, prevention, wellbeing, women’s health, and family care — often across separate tools.</p>
-            <p class="s02-point"><span class="s02-point-label">Broken continuity</span>Medication, GP / doctor communication, pharmacy journeys, body understanding, and trusted communication rarely stay connected.</p>
-            <p class="s02-point"><span class="s02-point-label">Human burden</span>Health can feel confusing, stressful, isolating, expensive, and difficult to navigate.</p>
-          </div>
-        </article>
-        <article class="s02-panel s02-panel--systems">
-          <header class="s02-panel-head">
-            <h2 class="s02-panel-title">For Healthcare Systems</h2>
-          </header>
-          <div class="s02-panel-body">
-            <p class="s02-lead">Growing system pressure — prevention, continuity, participation, and trusted communication are harder to sustain at scale.</p>
-            <p class="s02-point"><span class="s02-point-label">System strain</span>Chronic disease, ageing populations, workforce strain, fragmented care journeys, and rising costs.</p>
-            <p class="s02-point"><span class="s02-point-label">What matters now</span>Prevention, continuity, trusted participation, trusted communication, and long-term engagement.</p>
-            <p class="s02-point"><span class="s02-point-label">Efficiency gap</span>Better coordination and continuity may help reduce inefficiency, duplication, and avoidable burden over time.</p>
-          </div>
-        </article>
-      </div>
-      <p class="s02-closing">Healthcare should feel more connected, understandable, affordable, and human.</p>
+      <p class="s02-v3-closing-bar">Healthcare should feel more connected, understandable, preventative, continuous, and human.</p>
     </div>
   </section>
 
