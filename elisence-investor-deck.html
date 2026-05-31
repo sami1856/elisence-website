@@ -3233,6 +3233,347 @@
       }
     }
 
+    /* Slide 12 — Premium world-class closing (PDF-safe) */
+    #slide-12.slide {
+      --s12-cyan: #55d9ff;
+      --s12-soft: #8edcff;
+      --s12-emerald: #6dd4a8;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      min-height: 100vh;
+      min-height: 100dvh;
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100vh;
+      max-height: 100dvh;
+      padding: clamp(10px, 1.35vh, 16px) clamp(16px, 3vw, 48px);
+      overflow: hidden;
+      scroll-snap-align: start;
+      background:
+        radial-gradient(ellipse 120% 70% at 50% -5%, rgba(0, 140, 220, .2), transparent 55%),
+        radial-gradient(circle at 10% 85%, rgba(56, 168, 118, .08), transparent 40%),
+        linear-gradient(180deg, #071a3a 0%, #030b1c 50%, #000 100%);
+    }
+
+    #slide-12.slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 180, 255, .08), transparent 50%);
+      pointer-events: none;
+    }
+
+    #slide-12 .s12-shell {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      width: 100%;
+      max-width: min(1320px, 100%);
+      min-height: 0;
+      max-height: 100%;
+      margin: 0 auto;
+      gap: clamp(5px, 0.6vh, 7px);
+    }
+
+    #slide-12 .s12-deck-header {
+      flex-shrink: 0;
+      padding: 0;
+    }
+
+    #slide-12 .s12-kicker {
+      font-size: clamp(10px, 0.85vw, 12px);
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--s12-cyan);
+      margin: 0 0 2px;
+      line-height: 1.2;
+    }
+
+    #slide-12 .s12-headline {
+      font-size: clamp(22px, 2.6vh, 30px);
+      font-weight: 900;
+      line-height: 1.12;
+      color: #fff;
+      margin: 0 0 2px;
+      text-shadow: 0 0 14px rgba(0, 180, 255, .12);
+    }
+
+    #slide-12 .s12-subhead {
+      font-size: clamp(13px, 1.5vh, 16px);
+      font-weight: 700;
+      line-height: 1.28;
+      color: rgba(200, 235, 255, .92);
+      margin: 0;
+    }
+
+    #slide-12 .s12-vision {
+      flex: 1 1 auto;
+      min-height: 0;
+      border-radius: 12px;
+      border: 1px solid rgba(95, 210, 255, .42);
+      background:
+        linear-gradient(165deg, rgba(10, 38, 88, .88) 0%, rgba(4, 14, 34, .96) 100%);
+      box-shadow:
+        0 0 28px rgba(0, 150, 255, .14),
+        inset 0 0 32px rgba(0, 120, 200, .06);
+      padding: clamp(7px, 0.85vh, 9px) clamp(10px, 1.1vw, 12px);
+      overflow: hidden;
+    }
+
+    #slide-12 .s12-vision-body {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(3px, 0.35vh, 4px);
+    }
+
+    #slide-12 .s12-vision-body p {
+      font-size: clamp(11px, 1.05vh, 12.5px);
+      font-weight: 600;
+      line-height: 1.32;
+      color: rgba(220, 245, 255, .96);
+      margin: 0;
+    }
+
+    #slide-12 .s12-vision-body p.s12-vision-lead {
+      font-weight: 700;
+      color: rgba(235, 248, 255, .98);
+    }
+
+    #slide-12 .s12-vision-sep {
+      height: 1px;
+      border: 0;
+      margin: clamp(3px, 0.4vh, 4px) 0;
+      background: linear-gradient(90deg, transparent, rgba(85, 200, 255, .28), transparent);
+      flex-shrink: 0;
+    }
+
+    #slide-12 .s12-columns {
+      flex: 0 1 auto;
+      min-height: 0;
+      max-height: 36%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(8px, 1vh, 10px);
+      align-items: stretch;
+    }
+
+    #slide-12 .s12-panel {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      border: 1px solid rgba(95, 210, 255, .4);
+      background: linear-gradient(165deg, rgba(8, 32, 72, .9), rgba(3, 12, 28, .96));
+      box-shadow: 0 0 20px rgba(0, 150, 255, .12);
+      padding: clamp(6px, 0.75vh, 8px) clamp(8px, 0.95vw, 10px);
+      overflow: hidden;
+    }
+
+    #slide-12 .s12-panel-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: clamp(4px, 0.5vh, 6px);
+      padding-bottom: clamp(4px, 0.45vh, 5px);
+      border-bottom: 1px solid rgba(85, 200, 255, .22);
+      flex-shrink: 0;
+    }
+
+    #slide-12 .s12-panel-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(85, 217, 255, .35);
+      background: radial-gradient(circle at 35% 30%, rgba(85, 217, 255, .2), rgba(4, 22, 48, .9));
+      box-shadow: 0 0 12px rgba(0, 160, 255, .2);
+    }
+
+    #slide-12 .s12-panel-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    #slide-12 .s12-panel-icon svg path,
+    #slide-12 .s12-panel-icon svg circle {
+      stroke: var(--s12-soft);
+    }
+
+    #slide-12 .s12-panel-head h3 {
+      font-size: clamp(12px, 1.2vh, 15px);
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--s12-soft);
+      margin: 0;
+      line-height: 1.15;
+    }
+
+    #slide-12 .s12-panel ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    #slide-12 .s12-panel li {
+      font-size: clamp(11px, 1.02vh, 12.5px);
+      font-weight: 600;
+      line-height: 1.3;
+      color: rgba(220, 245, 255, .95);
+      margin-bottom: clamp(3px, 0.35vh, 4px);
+      padding-left: 1.05em;
+      position: relative;
+    }
+
+    #slide-12 .s12-panel li:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-12 .s12-panel li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--s12-cyan);
+      font-weight: 900;
+    }
+
+    #slide-12 .s12-elisa-accent {
+      color: var(--s12-emerald);
+      font-weight: 750;
+      text-shadow: 0 0 10px rgba(72, 190, 140, .25);
+    }
+
+    #slide-12 .s12-finale {
+      flex-shrink: 0;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(8px, 1vh, 10px);
+      align-items: stretch;
+    }
+
+    #slide-12 .s12-belief-block {
+      border-radius: 11px;
+      border: 1px solid rgba(94, 210, 170, .32);
+      background: linear-gradient(135deg, rgba(16, 48, 42, .45), rgba(6, 22, 48, .75));
+      box-shadow: 0 0 18px rgba(72, 190, 140, .1);
+      padding: clamp(6px, 0.75vh, 8px) clamp(9px, 1vw, 11px);
+    }
+
+    #slide-12 .s12-belief-block h4 {
+      font-size: clamp(11px, 1.1vh, 13px);
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--s12-emerald);
+      margin: 0 0 4px;
+    }
+
+    #slide-12 .s12-belief-block p {
+      font-size: clamp(11px, 1.02vh, 12.5px);
+      font-weight: 600;
+      line-height: 1.32;
+      color: rgba(220, 245, 255, .96);
+      margin: 0 0 4px;
+    }
+
+    #slide-12 .s12-belief-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-12 .s12-mantra {
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px solid rgba(94, 210, 170, .22);
+      font-weight: 800;
+      color: rgba(235, 248, 255, .98);
+      line-height: 1.35;
+    }
+
+    #slide-12 .s12-signature-block {
+      border-radius: 11px;
+      border: 1px solid rgba(95, 210, 255, .38);
+      background: linear-gradient(165deg, rgba(0, 70, 130, .22), rgba(4, 14, 34, .88));
+      padding: clamp(6px, 0.75vh, 8px) clamp(9px, 1vw, 11px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    #slide-12 .s12-brand {
+      font-size: clamp(18px, 2vh, 22px);
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0;
+      text-shadow: 0 0 16px rgba(0, 180, 255, .2);
+    }
+
+    #slide-12 .s12-tagline {
+      font-size: clamp(11px, 1vh, 12px);
+      font-weight: 650;
+      line-height: 1.3;
+      color: rgba(200, 235, 255, .9);
+      margin: 0;
+    }
+
+    #slide-12 .s12-founder {
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px solid rgba(85, 200, 255, .2);
+    }
+
+    #slide-12 .s12-founder p {
+      font-size: clamp(11px, 0.95vh, 12px);
+      font-weight: 600;
+      line-height: 1.32;
+      color: rgba(200, 230, 255, .88);
+      margin: 0;
+    }
+
+    #slide-12 .s12-founder strong {
+      font-weight: 800;
+      color: #fff;
+      font-size: clamp(10.5px, 1.05vh, 12px);
+    }
+
+    @media (max-height: 860px) {
+      #slide-12 .s12-headline {
+        font-size: 22px;
+      }
+      #slide-12 .s12-subhead {
+        font-size: 13px;
+      }
+      #slide-12 .s12-vision-body p,
+      #slide-12 .s12-panel li,
+      #slide-12 .s12-belief-block p {
+        font-size: 11px;
+        line-height: 1.28;
+      }
+      #slide-12 .s12-columns {
+        max-height: 38%;
+      }
+    }
+
+    @media (max-width: 900px) {
+      #slide-12 .s12-columns,
+      #slide-12 .s12-finale {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .timeline-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -3826,6 +4167,46 @@
       #slide-10 .s10-shell,
       #slide-10 .s10-body,
       #slide-10 .s10-panel {
+        overflow: visible !important;
+      }
+      #slide-12.slide {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: 100vh !important;
+        overflow: hidden !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        padding: 5mm 8mm !important;
+        box-sizing: border-box;
+      }
+      #slide-12 .s12-shell {
+        max-height: 100% !important;
+        height: 100% !important;
+        gap: 1.5mm !important;
+      }
+      #slide-12 .s12-headline {
+        font-size: 16pt !important;
+      }
+      #slide-12 .s12-subhead {
+        font-size: 10pt !important;
+      }
+      #slide-12 .s12-vision-body p,
+      #slide-12 .s12-panel li,
+      #slide-12 .s12-belief-block p {
+        font-size: 8.5pt !important;
+        line-height: 1.26 !important;
+      }
+      #slide-12 .s12-panel-head h3 {
+        font-size: 9pt !important;
+      }
+      #slide-12 .s12-vision,
+      #slide-12 .s12-panel {
+        padding: 2mm 2.5mm !important;
+      }
+      #slide-12 .s12-shell,
+      #slide-12 .s12-vision,
+      #slide-12 .s12-panel,
+      #slide-12 .s12-finale {
         overflow: visible !important;
       }
     }
@@ -4535,55 +4916,77 @@
     </div>
   </section>
 
-  <!-- Slide 12 Ask -->
-  <section class="slide" id="slide-12">
-    <div class="slide-inner">
-      <p class="slide-num">12 — Ask / Next Step</p>
-      <h1 class="slide-title">Let’s Build Responsibly</h1>
-      <p class="slide-sub">Build responsibly. Validate meaningfully. Scale with trust.</p>
-      <p class="lead">Elisence is moving from strong product foundation toward responsible validation, institutional partnerships, and scalable real-world deployment.</p>
-      <div class="ask-grid">
-        <div class="ask-block">
-          <h3>Strategic Validation</h3>
-          <ul class="bullets">
-            <li>Pilot conversations with healthcare systems, clinics, insurers, and responsible partners</li>
-            <li>Real-world learning and responsible validation environments</li>
-          </ul>
+  <!-- Slide 12 Closing -->
+  <section class="slide deck-slide" id="slide-12" data-deck-build="s12-premium-closing">
+    <div class="s12-shell">
+      <header class="s12-deck-header">
+        <div class="s12-kicker">12 — Closing / The Road Ahead</div>
+        <h2 class="s12-headline">Build responsibly. Earn trust meaningfully. Scale with purpose.</h2>
+        <p class="s12-subhead">A calmer, more connected, more trusted future for healthcare.</p>
+      </header>
+      <article class="s12-vision" aria-label="Healthcare vision narrative">
+        <div class="s12-vision-body">
+          <p class="s12-vision-lead">Healthcare should not feel fragmented, episodic, reactive, or difficult to navigate.</p>
+          <p>We believe people deserve a future where healthcare feels more connected, more trusted, more preventative, and easier to understand over time.</p>
+          <hr class="s12-vision-sep" aria-hidden="true" />
+          <p>A future where prevention matters more.</p>
+          <p>Where continuity becomes normal.</p>
+          <p>Where people remain meaningfully connected to their health before, during, and after illness.</p>
+          <p>Where trusted participation, communication, wellbeing, medication continuity, body understanding, social health support, and intelligent guidance work together rather than separately.</p>
+          <hr class="s12-vision-sep" aria-hidden="true" />
+          <p>We believe healthcare should not only exist in moments of illness.</p>
+          <p>It should remain present in everyday life — calmer, more supportive, more human, and more continuous.</p>
         </div>
-        <div class="ask-block">
-          <h3>Long-Term Partnerships</h3>
-          <ul class="bullets">
-            <li>Clinical, academic, healthcare system, and research collaboration</li>
-            <li>Trusted ecosystem and institutional relationships</li>
+      </article>
+      <div class="s12-columns">
+        <article class="s12-panel s12-panel--why" aria-label="Why Elisence">
+          <div class="s12-panel-head">
+            <span class="s12-panel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.1"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity=".65"/></svg>
+            </span>
+            <h3>Why Elisence</h3>
+          </div>
+          <ul>
+            <li>Elisence is designed as a human-centred, connected health ecosystem built around continuity rather than fragmented moments of care.</li>
+            <li>Prevention, trusted health intelligence, medication support, body understanding, wellbeing, women’s health, metabolic health, communication, social health participation, and long-term continuity are designed to work together rather than exist separately.</li>
+            <li>At the centre is <span class="s12-elisa-accent">Elisa</span> — a trusted continuity companion designed to help people stay connected to healthier routines, supportive participation, communication, wellbeing, and everyday health continuity while remaining intentionally non-clinical and non-diagnostic by design.</li>
+            <li>Elisence is designed to build responsibly — earning trust locally, adapting to healthcare realities, and scaling meaningfully over time.</li>
           </ul>
-        </div>
-        <div class="ask-block">
-          <h3>Investment &amp; Strategic Support</h3>
-          <ul class="bullets">
-            <li>Mission-aligned investors in long-term healthcare transformation</li>
-            <li>Advisors and introductions that accelerate responsible growth</li>
+        </article>
+        <article class="s12-panel s12-panel--road" aria-label="The road ahead">
+          <div class="s12-panel-head">
+            <span class="s12-panel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17l5-9 4 5 3-4 4 8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="8" r="1.2" fill="currentColor" opacity=".7"/></svg>
+            </span>
+            <h3>The Road Ahead</h3>
+          </div>
+          <ul>
+            <li>Responsible validation</li>
+            <li>Trusted partnerships</li>
+            <li>Healthcare collaboration</li>
+            <li>Meaningful real-world learning</li>
+            <li>Long-term healthcare continuity</li>
           </ul>
-        </div>
-        <div class="ask-block">
-          <h3>Healthcare Collaboration</h3>
-          <ul class="bullets">
-            <li>Institutional pilots, partnerships, and ecosystem alignment</li>
-            <li>Concrete next steps with the right partners</li>
-          </ul>
-        </div>
+        </article>
       </div>
-      <p class="tagline">Global ambition • Local trust • Responsible scale</p>
-      <p class="ask-closing-cue">Pilot • Partnership • Strategic Introduction • Investment</p>
-      <div class="ask-cta">
-        <p class="ask-cta-lead">Let’s explore one concrete next step.</p>
-        <p>If you believe healthcare should feel more connected, trusted, preventative, and human — we welcome a focused conversation.</p>
-        <div class="chips">
-          <span>Pilot</span>
-          <span>Partnership</span>
-          <span>Strategic Introduction</span>
-          <span>Investment</span>
+      <footer class="s12-finale">
+        <div class="s12-belief-block">
+          <h4>Our Belief</h4>
+          <p>The future of healthcare is not more disconnected tools.</p>
+          <p>It is trusted, connected, preventative, continuous, and more human healthcare experiences working together over time.</p>
+          <p class="s12-mantra">Build responsibly.<br />Earn trust locally.<br />Scale meaningfully.</p>
         </div>
-      </div>
+        <div class="s12-signature-block">
+          <p class="s12-brand">Elisence</p>
+          <p class="s12-tagline">Building a more connected, trusted, and human future for healthcare.</p>
+          <div class="s12-founder">
+            <p>Founder:</p>
+            <p><strong>Saami Salami</strong></p>
+            <p>Founder &amp; CEO</p>
+            <p>Web Summit Lisbon 2026</p>
+          </div>
+        </div>
+      </footer>
     </div>
   </section>
 
