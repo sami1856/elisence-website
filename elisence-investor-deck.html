@@ -3298,8 +3298,10 @@
     #slide-11.slide {
       --s11-cyan: #55d9ff;
       --s11-blue: #8edcff;
+      --s11-green: #5dffb8;
       --s11-glow: rgba(0, 180, 255, .42);
       --s11-blue-glow: rgba(0, 160, 255, .28);
+      --s11-green-glow: rgba(56, 200, 130, .38);
       --s11-elisa-warm: rgba(56, 200, 130, .32);
       min-height: 100vh;
       height: 100vh;
@@ -3367,7 +3369,19 @@
       text-shadow:
         0 0 28px rgba(0, 180, 255, .28),
         0 0 48px rgba(0, 160, 255, .14);
-      margin: 0 0 4px;
+      margin: 0 0 6px;
+      padding-bottom: 2px;
+    }
+
+    #slide-11 .s11-header h2::after {
+      content: "";
+      display: block;
+      width: min(220px, 48%);
+      height: 2px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(85, 217, 255, .2), rgba(0, 230, 180, .92), rgba(85, 217, 255, .25));
+      box-shadow: 0 0 18px rgba(0, 230, 180, .5), 0 0 28px rgba(0, 180, 255, .2);
     }
 
     #slide-11 .s11-header > p {
@@ -3387,12 +3401,17 @@
       box-shadow: 0 0 22px rgba(0, 210, 255, .55), 0 0 40px rgba(0, 180, 255, .18);
     }
 
+    #slide-11 .s11-hero-visual-wrap {
+      flex-shrink: 0;
+      width: 100%;
+    }
+
     #slide-11 .s11-main {
       flex: 1;
       min-height: 0;
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(0, .92fr);
-      gap: clamp(10px, 1.2vw, 14px);
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr) minmax(0, .94fr);
+      gap: clamp(12px, 1.4vw, 16px);
       align-items: stretch;
       overflow: hidden;
     }
@@ -3401,7 +3420,6 @@
       min-height: 0;
       display: flex;
       flex-direction: column;
-      gap: clamp(8px, 1vh, 10px);
       overflow: hidden;
     }
 
@@ -3443,12 +3461,27 @@
       position: relative;
       flex: 1;
       min-height: 0;
-      padding: clamp(8px, 1vh, 10px) clamp(10px, 1.1vw, 12px);
+      padding: clamp(10px, 1.15vh, 12px) clamp(12px, 1.2vw, 14px);
       border-radius: 14px;
-      border: 1px solid rgba(85, 217, 255, .22);
-      background: linear-gradient(165deg, rgba(4, 18, 44, .62) 0%, rgba(2, 8, 22, .78) 100%);
-      box-shadow: 0 0 24px rgba(0, 160, 255, .08), inset 0 0 28px rgba(0, 140, 220, .05);
+      border: 1px solid rgba(85, 217, 255, .28);
+      background: linear-gradient(165deg, rgba(4, 18, 44, .68) 0%, rgba(2, 8, 22, .82) 100%);
+      box-shadow:
+        0 0 28px rgba(0, 160, 255, .1),
+        0 0 18px rgba(56, 200, 130, .06),
+        inset 0 0 28px rgba(0, 140, 220, .05);
       overflow: hidden;
+    }
+
+    #slide-11 .s11-section-why {
+      border-color: rgba(85, 217, 255, .32);
+      box-shadow:
+        0 0 28px rgba(0, 160, 255, .12),
+        inset 0 0 20px rgba(56, 200, 130, .04);
+    }
+
+    #slide-11 .s11-section-ambition {
+      border-color: rgba(0, 230, 180, .28);
+      background: linear-gradient(165deg, rgba(4, 22, 48, .72) 0%, rgba(2, 12, 28, .88) 100%);
     }
 
     #slide-11 .s11-section::before {
@@ -3491,35 +3524,49 @@
     }
 
     #slide-11 .s11-section-title {
-      font-size: clamp(10px, .82vw, 12px);
+      font-size: clamp(11px, .9vw, 13px);
       font-weight: 800;
       letter-spacing: .16em;
       text-transform: uppercase;
       color: var(--s11-cyan);
-      text-shadow: 0 0 16px var(--s11-glow);
+      text-shadow: 0 0 16px var(--s11-glow), 0 0 12px var(--s11-green-glow);
+    }
+
+    #slide-11 .s11-section-head::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      margin-left: 8px;
+      background: linear-gradient(90deg, rgba(85, 217, 255, .35), rgba(0, 230, 180, .45), transparent);
+      box-shadow: 0 0 10px rgba(0, 200, 255, .2);
     }
 
     #slide-11 .s11-section p {
       position: relative;
-      font-size: clamp(11px, .88vw, 13px);
+      font-size: clamp(11.5px, .9vw, 13.5px);
       font-weight: 600;
-      line-height: 1.38;
-      color: rgba(220, 240, 255, .93);
-      margin: 0 0 6px;
+      line-height: 1.42;
+      color: rgba(220, 240, 255, .94);
+      margin: 0 0 clamp(6px, 0.7vh, 8px);
     }
 
     #slide-11 .s11-section p:last-child {
       margin-bottom: 0;
     }
 
-    #slide-11 .s11-vision-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 10px;
+    #slide-11 .s11-vision-body {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(5px, 0.65vh, 7px);
+      min-height: 0;
     }
 
-    #slide-11 .s11-vision-cols .s11-emphasis {
-      grid-column: 1 / -1;
+    #slide-11 .s11-vision-highlight {
+      padding: clamp(6px, 0.7vh, 8px) clamp(8px, 0.9vw, 10px);
+      border-radius: 10px;
+      border: 1px solid rgba(85, 217, 255, .22);
+      background: linear-gradient(135deg, rgba(0, 60, 110, .22), rgba(0, 40, 70, .12));
+      box-shadow: inset 0 0 16px rgba(0, 140, 220, .06);
     }
 
     #slide-11 .s11-kw {
@@ -3528,16 +3575,23 @@
       text-shadow: 0 0 14px var(--s11-glow);
     }
 
+    #slide-11 .s11-kw-green {
+      color: var(--s11-green);
+      font-weight: 750;
+      text-shadow: 0 0 14px var(--s11-green-glow);
+    }
+
     #slide-11 .s11-emphasis {
       font-weight: 800;
+      font-size: clamp(12px, .95vw, 14px);
       color: var(--s11-cyan);
-      text-shadow: 0 0 18px var(--s11-glow);
+      text-shadow: 0 0 18px var(--s11-glow), 0 0 12px var(--s11-green-glow);
     }
 
     #slide-11 .s11-bullet-cards {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: clamp(7px, 0.85vh, 9px);
       margin-top: 2px;
       min-height: 0;
     }
@@ -3545,12 +3599,14 @@
     #slide-11 .s11-bullet-card {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
-      padding: 6px 8px;
-      border-radius: 10px;
-      border: 1px solid rgba(85, 217, 255, .18);
-      background: linear-gradient(165deg, rgba(0, 50, 95, .22) 0%, rgba(2, 10, 26, .58) 100%);
-      box-shadow: inset 0 0 16px rgba(0, 140, 220, .04);
+      gap: 10px;
+      padding: clamp(7px, 0.85vh, 9px) clamp(9px, 1vw, 11px);
+      border-radius: 11px;
+      border: 1px solid rgba(85, 217, 255, .24);
+      background: linear-gradient(165deg, rgba(0, 50, 95, .28) 0%, rgba(2, 10, 26, .62) 100%);
+      box-shadow:
+        0 0 14px rgba(0, 160, 255, .08),
+        inset 0 0 16px rgba(0, 140, 220, .05);
     }
 
     #slide-11 .s11-bullet-icon {
@@ -3578,37 +3634,47 @@
 
     #slide-11 .s11-bullet-card p {
       margin: 0;
-      font-size: clamp(10.5px, .82vw, 12.5px);
-      line-height: 1.36;
+      font-size: clamp(11px, .88vw, 13px);
+      line-height: 1.4;
     }
 
     #slide-11 .s11-elisa-emphasis {
-      font-size: 1.12em;
+      display: inline-block;
+      font-size: 1.22em;
       font-weight: 900;
-      letter-spacing: .06em;
+      letter-spacing: .08em;
+      text-transform: uppercase;
       color: var(--s11-cyan);
-      text-shadow: 0 0 18px var(--s11-glow), 0 0 28px rgba(56, 200, 130, .22);
+      text-shadow:
+        0 0 20px var(--s11-glow),
+        0 0 32px var(--s11-green-glow),
+        0 0 48px rgba(56, 200, 130, .18);
     }
 
     #slide-11 .s11-ambition-lead {
-      font-size: clamp(12px, 1vw, 14px);
+      font-size: clamp(12.5px, 1.05vw, 15px);
       font-weight: 800;
-      line-height: 1.35;
+      line-height: 1.38;
       color: #f4fbff;
-      text-shadow: 0 0 20px rgba(0, 180, 255, .2);
-      margin-bottom: 6px;
+      text-shadow: 0 0 20px rgba(0, 180, 255, .22), 0 0 14px var(--s11-green-glow);
+      margin-bottom: clamp(6px, 0.7vh, 8px);
+      padding-left: 10px;
+      border-left: 3px solid rgba(0, 230, 180, .65);
     }
 
     #slide-11 .s11-closing-strip {
-      margin-top: 6px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(85, 217, 255, .3);
-      background: linear-gradient(135deg, rgba(0, 70, 130, .28) 0%, rgba(4, 18, 44, .58) 100%);
-      box-shadow: 0 0 28px rgba(0, 160, 255, .2), inset 0 0 22px rgba(0, 140, 220, .1);
-      font-size: clamp(11px, .88vw, 13px);
+      margin-top: clamp(6px, 0.8vh, 8px);
+      padding: clamp(9px, 1vh, 11px) clamp(11px, 1.1vw, 13px);
+      border-radius: 11px;
+      border: 1px solid rgba(0, 230, 180, .35);
+      background: linear-gradient(135deg, rgba(0, 70, 130, .32) 0%, rgba(4, 28, 52, .62) 48%, rgba(0, 50, 40, .2) 100%);
+      box-shadow:
+        0 0 32px rgba(0, 160, 255, .22),
+        0 0 24px rgba(56, 200, 130, .14),
+        inset 0 0 22px rgba(0, 140, 220, .1);
+      font-size: clamp(11.5px, .92vw, 13.5px);
       font-weight: 750;
-      line-height: 1.38;
+      line-height: 1.42;
       color: rgba(235, 248, 255, .98);
     }
 
@@ -3623,6 +3689,9 @@
       #slide-11 .s11-main {
         grid-template-columns: 1fr;
         overflow-y: auto;
+      }
+      #slide-11 .s11-section-head::after {
+        display: none;
       }
     }
 
@@ -4788,7 +4857,7 @@
   </section>
 
   <!-- Slide 11 Vision -->
-  <section class="slide deck-slide" id="slide-11" data-deck-build="s11-one-frame-vision-fix">
+  <section class="slide deck-slide" id="slide-11" data-deck-build="s11-premium-vision-closing">
     <div class="s11-shell">
       <header class="s11-header">
         <div>11 — VISION / CLOSING</div>
@@ -4796,25 +4865,27 @@
         <p>Connected, preventative, supportive, and continuously human.</p>
         <div class="s11-accent-divider" aria-hidden="true"></div>
       </header>
+      <div class="s11-hero-visual-wrap">
+        <div class="vision-visual">
+          <img src="assets/websummit2026/Elisence_Real_Health_Experiences_Slide_02.png" alt="Real health experiences" />
+        </div>
+      </div>
       <div class="s11-main">
         <div class="s11-col s11-col-vision">
-          <div class="vision-visual">
-            <img src="assets/websummit2026/Elisence_Real_Health_Experiences_Slide_02.png" alt="Real health experiences" />
-          </div>
           <section class="s11-section s11-section-vision">
             <div class="s11-section-head">
               <span class="s11-section-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#2ee8c5" stroke-width="1.1"/><path d="M8 12h8M12 8v8" stroke="#00e6b8" stroke-width="1.1" stroke-linecap="round"/><circle cx="6" cy="6" r="1.5" stroke="#6dffe8" stroke-width="1"/><circle cx="18" cy="18" r="1.5" stroke="#6dffe8" stroke-width="1"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="#2ee8c5" stroke-width="1.1"/><path d="M7 12c1.8-2.2 3.5-3 5-3s3.2.8 5 3M7 12c-1.8 2.2-3.5 3-5 3s-3.2-.8-5-3" stroke="#00e6b8" stroke-width="1.1" stroke-linecap="round"/><circle cx="6" cy="8" r="1.2" fill="#5dffb8" opacity=".85"/><circle cx="18" cy="16" r="1.2" fill="#5dffb8" opacity=".85"/></svg>
               </span>
               <span class="s11-section-title">Vision</span>
             </div>
-            <p>We believe healthcare should not only exist when people are ill.</p>
-            <div class="s11-vision-cols">
+            <div class="s11-vision-body">
+              <p>We believe healthcare should not only exist when people are ill.</p>
               <p>Today, many health experiences are fragmented, episodic, stressful, and reactive — moments of appointments, medication, monitoring, or illness that often disappear once the immediate need ends.</p>
               <p>People are increasingly expected to manage prevention, medication, wellbeing, chronic conditions, appointments, family care, health understanding, and everyday health decisions across disconnected systems that rarely feel <span class="s11-kw">human</span>, <span class="s11-kw">connected</span>, or <span class="s11-kw">supportive</span>.</p>
-              <p class="s11-emphasis">We believe healthcare should feel continuous.</p>
-              <p>A future where prevention matters more, continuity becomes normal, trusted health participation grows, and people remain <span class="s11-kw">connected</span> to health <span class="s11-kw">before, during, and after illness</span>.</p>
-              <p>A future where healthcare feels calmer, more <span class="s11-kw">supportive</span>, socially <span class="s11-kw">connected</span>, intelligent, <span class="s11-kw">preventative</span>, and more <span class="s11-kw">human</span>.</p>
+              <p class="s11-emphasis s11-vision-highlight">We believe healthcare should feel continuous.</p>
+              <p>A future where prevention matters more, continuity becomes normal, trusted health participation grows, and people remain <span class="s11-kw">connected</span> to health <span class="s11-kw-green">before, during, and after illness</span>.</p>
+              <p>A future where healthcare feels calmer, more <span class="s11-kw">supportive</span>, socially <span class="s11-kw">connected</span>, intelligent, <span class="s11-kw-green">preventative</span>, and more <span class="s11-kw">human</span>.</p>
             </div>
           </section>
         </div>
@@ -4857,10 +4928,10 @@
               <span class="s11-section-title">The Ambition</span>
             </div>
             <p class="s11-ambition-lead">Build responsibly. Earn trust locally. Scale globally.</p>
-            <p>Help healthcare move from fragmented and reactive → toward <span class="s11-kw">connected</span>, <span class="s11-kw">preventative</span>, <span class="s11-kw">supportive</span>, and continuously <span class="s11-kw">human</span> experiences.</p>
+            <p>Help healthcare move from fragmented and reactive → toward <span class="s11-kw">connected</span>, <span class="s11-kw-green">preventative</span>, <span class="s11-kw">supportive</span>, and continuously <span class="s11-kw">human</span> experiences.</p>
             <p>Most digital health systems become useful during moments of illness.</p>
             <div class="s11-closing-strip">
-              <p>Elisence is designed to stay valuable <span class="s11-kw">before, during, and after illness</span>.</p>
+              <p>Elisence is designed to stay valuable <span class="s11-kw-green">before, during, and after illness</span>.</p>
             </div>
           </section>
         </div>
