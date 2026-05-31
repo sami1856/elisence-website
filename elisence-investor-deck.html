@@ -3233,7 +3233,7 @@
       }
     }
 
-    /* Slide 12 — Premium world-class closing (PDF-safe) */
+    /* Slide 12 — Premium readable global closing (PDF-safe) */
     #slide-12.slide {
       --s12-cyan: #55d9ff;
       --s12-soft: #8edcff;
@@ -3248,12 +3248,12 @@
       height: 100dvh;
       max-height: 100vh;
       max-height: 100dvh;
-      padding: clamp(10px, 1.35vh, 16px) clamp(16px, 3vw, 48px);
+      padding: clamp(12px, 1.6vh, 20px) clamp(18px, 3vw, 48px);
       overflow: hidden;
       scroll-snap-align: start;
       background:
-        radial-gradient(ellipse 120% 70% at 50% -5%, rgba(0, 140, 220, .2), transparent 55%),
-        radial-gradient(circle at 10% 85%, rgba(56, 168, 118, .08), transparent 40%),
+        radial-gradient(ellipse 120% 70% at 50% -5%, rgba(0, 140, 220, .22), transparent 55%),
+        radial-gradient(circle at 10% 88%, rgba(56, 168, 118, .1), transparent 42%),
         linear-gradient(180deg, #071a3a 0%, #030b1c 50%, #000 100%);
     }
 
@@ -3261,7 +3261,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(0, 180, 255, .08), transparent 50%);
+      background: radial-gradient(circle at 50% 0%, rgba(0, 180, 255, .1), transparent 52%);
       pointer-events: none;
     }
 
@@ -3276,130 +3276,169 @@
       min-height: 0;
       max-height: 100%;
       margin: 0 auto;
-      gap: clamp(5px, 0.6vh, 7px);
+      gap: clamp(10px, 1.2vh, 14px);
     }
 
     #slide-12 .s12-deck-header {
       flex-shrink: 0;
-      padding: 0;
+      padding: 0 0 clamp(2px, 0.25vh, 4px);
+      border-bottom: 1px solid rgba(85, 200, 255, .18);
     }
 
     #slide-12 .s12-kicker {
-      font-size: clamp(10px, 0.85vw, 12px);
+      font-size: clamp(11px, 0.9vw, 13px);
       font-weight: 800;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--s12-cyan);
-      margin: 0 0 2px;
+      margin: 0 0 4px;
       line-height: 1.2;
     }
 
     #slide-12 .s12-headline {
-      font-size: clamp(22px, 2.6vh, 30px);
+      font-size: clamp(26px, 3.1vh, 34px);
       font-weight: 900;
-      line-height: 1.12;
+      line-height: 1.14;
       color: #fff;
-      margin: 0 0 2px;
-      text-shadow: 0 0 14px rgba(0, 180, 255, .12);
+      margin: 0 0 4px;
+      text-shadow: 0 0 18px rgba(0, 180, 255, .14);
     }
 
     #slide-12 .s12-subhead {
-      font-size: clamp(13px, 1.5vh, 16px);
+      font-size: clamp(15px, 1.75vh, 18px);
       font-weight: 700;
-      line-height: 1.28;
-      color: rgba(200, 235, 255, .92);
+      line-height: 1.35;
+      color: rgba(210, 240, 255, .94);
       margin: 0;
+    }
+
+    #slide-12 .s12-main {
+      flex: 1 1 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(10px, 1.1vh, 12px);
     }
 
     #slide-12 .s12-vision {
       flex: 1 1 auto;
       min-height: 0;
-      border-radius: 12px;
-      border: 1px solid rgba(95, 210, 255, .42);
+      display: flex;
+      flex-direction: column;
+      border-radius: 14px;
+      border: 1px solid rgba(95, 210, 255, .45);
       background:
-        linear-gradient(165deg, rgba(10, 38, 88, .88) 0%, rgba(4, 14, 34, .96) 100%);
+        linear-gradient(165deg, rgba(10, 38, 88, .9) 0%, rgba(4, 14, 34, .96) 100%);
       box-shadow:
-        0 0 28px rgba(0, 150, 255, .14),
-        inset 0 0 32px rgba(0, 120, 200, .06);
-      padding: clamp(7px, 0.85vh, 9px) clamp(10px, 1.1vw, 12px);
-      overflow: hidden;
+        0 0 32px rgba(0, 150, 255, .16),
+        inset 0 0 36px rgba(0, 120, 200, .06);
+      padding: clamp(12px, 1.35vh, 14px) clamp(14px, 1.4vw, 16px);
+      overflow: visible;
     }
 
     #slide-12 .s12-vision-body {
       display: flex;
       flex-direction: column;
-      gap: clamp(3px, 0.35vh, 4px);
+      gap: clamp(7px, 0.85vh, 10px);
+      min-height: 0;
     }
 
-    #slide-12 .s12-vision-body p {
-      font-size: clamp(11px, 1.05vh, 12.5px);
+    #slide-12 .s12-vision-body > p {
+      font-size: clamp(12.5px, 1.35vh, 14px);
       font-weight: 600;
-      line-height: 1.32;
+      line-height: 1.42;
       color: rgba(220, 245, 255, .96);
       margin: 0;
     }
 
-    #slide-12 .s12-vision-body p.s12-vision-lead {
-      font-weight: 700;
-      color: rgba(235, 248, 255, .98);
+    #slide-12 .s12-vision-body > p.s12-vision-lead {
+      font-size: clamp(13px, 1.45vh, 15px);
+      font-weight: 750;
+      line-height: 1.4;
+      color: #f4fbff;
+    }
+
+    #slide-12 .s12-future-group {
+      padding: clamp(10px, 1.1vh, 12px) clamp(10px, 1vw, 12px);
+      border-radius: 10px;
+      border: 1px solid rgba(85, 200, 255, .22);
+      background: rgba(4, 20, 48, .45);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(7px, 0.8vh, 9px);
+    }
+
+    #slide-12 .s12-future-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(8px, 0.9vh, 10px) clamp(10px, 1vw, 12px);
+    }
+
+    #slide-12 .s12-future-grid p {
+      font-size: clamp(12px, 1.28vh, 13.5px);
+      font-weight: 600;
+      line-height: 1.38;
+      color: rgba(225, 245, 255, .95);
+      margin: 0;
+    }
+
+    #slide-12 .s12-future-grid p.s12-future-span {
+      grid-column: 1 / -1;
     }
 
     #slide-12 .s12-vision-sep {
       height: 1px;
       border: 0;
-      margin: clamp(3px, 0.4vh, 4px) 0;
-      background: linear-gradient(90deg, transparent, rgba(85, 200, 255, .28), transparent);
+      margin: 0;
+      background: linear-gradient(90deg, transparent, rgba(85, 200, 255, .32), transparent);
       flex-shrink: 0;
     }
 
-    #slide-12 .s12-columns {
-      flex: 0 1 auto;
-      min-height: 0;
-      max-height: 36%;
+    #slide-12 .s12-panels-row {
+      flex-shrink: 0;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(8px, 1vh, 10px);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(12px, 1.3vw, 14px);
       align-items: stretch;
     }
 
     #slide-12 .s12-panel {
-      min-height: 0;
       display: flex;
       flex-direction: column;
-      border-radius: 12px;
-      border: 1px solid rgba(95, 210, 255, .4);
-      background: linear-gradient(165deg, rgba(8, 32, 72, .9), rgba(3, 12, 28, .96));
-      box-shadow: 0 0 20px rgba(0, 150, 255, .12);
-      padding: clamp(6px, 0.75vh, 8px) clamp(8px, 0.95vw, 10px);
-      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(95, 210, 255, .42);
+      background: linear-gradient(165deg, rgba(8, 32, 72, .92), rgba(3, 12, 28, .96));
+      box-shadow: 0 0 22px rgba(0, 150, 255, .14);
+      padding: clamp(10px, 1.15vh, 12px) clamp(12px, 1.2vw, 14px);
+      overflow: visible;
     }
 
     #slide-12 .s12-panel-head {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: clamp(4px, 0.5vh, 6px);
-      padding-bottom: clamp(4px, 0.45vh, 5px);
-      border-bottom: 1px solid rgba(85, 200, 255, .22);
+      gap: 10px;
+      margin-bottom: clamp(8px, 0.9vh, 10px);
+      padding-bottom: clamp(7px, 0.8vh, 8px);
+      border-bottom: 1px solid rgba(85, 200, 255, .24);
       flex-shrink: 0;
     }
 
     #slide-12 .s12-panel-icon {
       flex-shrink: 0;
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(85, 217, 255, .35);
-      background: radial-gradient(circle at 35% 30%, rgba(85, 217, 255, .2), rgba(4, 22, 48, .9));
-      box-shadow: 0 0 12px rgba(0, 160, 255, .2);
+      border: 1px solid rgba(85, 217, 255, .38);
+      background: radial-gradient(circle at 35% 30%, rgba(85, 217, 255, .22), rgba(4, 22, 48, .92));
+      box-shadow: 0 0 14px rgba(0, 160, 255, .22);
     }
 
     #slide-12 .s12-panel-icon svg {
-      width: 15px;
-      height: 15px;
+      width: 17px;
+      height: 17px;
     }
 
     #slide-12 .s12-panel-icon svg path,
@@ -3408,13 +3447,13 @@
     }
 
     #slide-12 .s12-panel-head h3 {
-      font-size: clamp(12px, 1.2vh, 15px);
+      font-size: clamp(14px, 1.45vh, 17px);
       font-weight: 900;
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--s12-soft);
       margin: 0;
-      line-height: 1.15;
+      line-height: 1.2;
     }
 
     #slide-12 .s12-panel ul {
@@ -3423,20 +3462,19 @@
       padding: 0;
       flex: 1 1 auto;
       min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(7px, 0.8vh, 9px);
     }
 
     #slide-12 .s12-panel li {
-      font-size: clamp(11px, 1.02vh, 12.5px);
+      font-size: clamp(12px, 1.28vh, 13.5px);
       font-weight: 600;
-      line-height: 1.3;
-      color: rgba(220, 245, 255, .95);
-      margin-bottom: clamp(3px, 0.35vh, 4px);
-      padding-left: 1.05em;
+      line-height: 1.4;
+      color: rgba(220, 245, 255, .96);
+      margin: 0;
+      padding-left: 1.15em;
       position: relative;
-    }
-
-    #slide-12 .s12-panel li:last-child {
-      margin-bottom: 0;
     }
 
     #slide-12 .s12-panel li::before {
@@ -3450,40 +3488,40 @@
     #slide-12 .s12-elisa-accent {
       color: var(--s12-emerald);
       font-weight: 750;
-      text-shadow: 0 0 10px rgba(72, 190, 140, .25);
+      text-shadow: 0 0 10px rgba(72, 190, 140, .28);
     }
 
     #slide-12 .s12-finale {
       flex-shrink: 0;
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: clamp(8px, 1vh, 10px);
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(12px, 1.3vw, 14px);
       align-items: stretch;
     }
 
     #slide-12 .s12-belief-block {
-      border-radius: 11px;
-      border: 1px solid rgba(94, 210, 170, .32);
-      background: linear-gradient(135deg, rgba(16, 48, 42, .45), rgba(6, 22, 48, .75));
-      box-shadow: 0 0 18px rgba(72, 190, 140, .1);
-      padding: clamp(6px, 0.75vh, 8px) clamp(9px, 1vw, 11px);
+      border-radius: 12px;
+      border: 1px solid rgba(94, 210, 170, .38);
+      background: linear-gradient(135deg, rgba(16, 48, 42, .5), rgba(6, 22, 48, .78));
+      box-shadow: 0 0 22px rgba(72, 190, 140, .12);
+      padding: clamp(11px, 1.25vh, 13px) clamp(14px, 1.35vw, 16px);
     }
 
     #slide-12 .s12-belief-block h4 {
-      font-size: clamp(11px, 1.1vh, 13px);
+      font-size: clamp(13px, 1.35vh, 15px);
       font-weight: 900;
       letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--s12-emerald);
-      margin: 0 0 4px;
+      margin: 0 0 8px;
     }
 
     #slide-12 .s12-belief-block p {
-      font-size: clamp(11px, 1.02vh, 12.5px);
+      font-size: clamp(12.5px, 1.3vh, 14px);
       font-weight: 600;
-      line-height: 1.32;
+      line-height: 1.42;
       color: rgba(220, 245, 255, .96);
-      margin: 0 0 4px;
+      margin: 0 0 8px;
     }
 
     #slide-12 .s12-belief-block p:last-child {
@@ -3491,85 +3529,140 @@
     }
 
     #slide-12 .s12-mantra {
-      margin-top: 4px;
-      padding-top: 4px;
-      border-top: 1px solid rgba(94, 210, 170, .22);
+      margin-top: clamp(8px, 0.9vh, 10px);
+      padding-top: clamp(8px, 0.9vh, 10px);
+      border-top: 1px solid rgba(94, 210, 170, .26);
+      font-size: clamp(12.5px, 1.3vh, 14px);
       font-weight: 800;
+      line-height: 1.45;
       color: rgba(235, 248, 255, .98);
-      line-height: 1.35;
     }
 
     #slide-12 .s12-signature-block {
-      border-radius: 11px;
-      border: 1px solid rgba(95, 210, 255, .38);
-      background: linear-gradient(165deg, rgba(0, 70, 130, .22), rgba(4, 14, 34, .88));
-      padding: clamp(6px, 0.75vh, 8px) clamp(9px, 1vw, 11px);
+      border-radius: 12px;
+      border: 1px solid rgba(95, 210, 255, .42);
+      background: linear-gradient(165deg, rgba(0, 70, 130, .26), rgba(4, 14, 34, .9));
+      box-shadow: 0 0 24px rgba(0, 150, 255, .14);
+      padding: clamp(11px, 1.25vh, 13px) clamp(14px, 1.35vw, 16px);
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 2px;
+      gap: clamp(4px, 0.5vh, 6px);
     }
 
     #slide-12 .s12-brand {
-      font-size: clamp(18px, 2vh, 22px);
+      font-size: clamp(22px, 2.4vh, 26px);
       font-weight: 900;
-      letter-spacing: .12em;
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: #fff;
       margin: 0;
-      text-shadow: 0 0 16px rgba(0, 180, 255, .2);
+      text-shadow: 0 0 18px rgba(0, 180, 255, .22);
     }
 
     #slide-12 .s12-tagline {
-      font-size: clamp(11px, 1vh, 12px);
+      font-size: clamp(12px, 1.25vh, 13.5px);
       font-weight: 650;
-      line-height: 1.3;
-      color: rgba(200, 235, 255, .9);
+      line-height: 1.38;
+      color: rgba(205, 235, 255, .92);
       margin: 0;
     }
 
     #slide-12 .s12-founder {
-      margin-top: 4px;
-      padding-top: 4px;
-      border-top: 1px solid rgba(85, 200, 255, .2);
+      margin-top: clamp(8px, 0.9vh, 10px);
+      padding-top: clamp(8px, 0.9vh, 10px);
+      border-top: 1px solid rgba(85, 200, 255, .22);
     }
 
     #slide-12 .s12-founder p {
-      font-size: clamp(11px, 0.95vh, 12px);
+      font-size: clamp(12px, 1.2vh, 13px);
       font-weight: 600;
-      line-height: 1.32;
-      color: rgba(200, 230, 255, .88);
+      line-height: 1.38;
+      color: rgba(200, 230, 255, .9);
       margin: 0;
     }
 
     #slide-12 .s12-founder strong {
       font-weight: 800;
       color: #fff;
-      font-size: clamp(10.5px, 1.05vh, 12px);
+      font-size: clamp(13px, 1.35vh, 15px);
     }
 
     @media (max-height: 860px) {
+      #slide-12.slide {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
       #slide-12 .s12-headline {
-        font-size: 22px;
+        font-size: 26px;
+        margin-bottom: 2px;
       }
       #slide-12 .s12-subhead {
-        font-size: 13px;
+        font-size: 15px;
       }
-      #slide-12 .s12-vision-body p,
+      #slide-12 .s12-vision-body > p,
+      #slide-12 .s12-future-grid p,
       #slide-12 .s12-panel li,
       #slide-12 .s12-belief-block p {
-        font-size: 11px;
-        line-height: 1.28;
+        font-size: 12px;
+        line-height: 1.36;
       }
-      #slide-12 .s12-columns {
-        max-height: 38%;
+      #slide-12 .s12-shell {
+        gap: 8px;
+      }
+      #slide-12 .s12-vision {
+        padding: 10px 12px;
+      }
+      #slide-12 .s12-future-group {
+        padding: 8px 10px;
+      }
+      #slide-12 .s12-panel-head {
+        margin-bottom: 6px;
+        padding-bottom: 5px;
+      }
+      #slide-12 .s12-panel-icon {
+        width: 30px;
+        height: 30px;
+      }
+      #slide-12 .s12-finale {
+        gap: 10px;
+      }
+      #slide-12 .s12-belief-block,
+      #slide-12 .s12-signature-block {
+        padding: 9px 12px;
+      }
+      #slide-12 .s12-brand {
+        font-size: 20px;
+      }
+      #slide-12 .s12-vision-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 12px;
+        row-gap: 6px;
+      }
+      #slide-12 .s12-vision-body > .s12-vision-lead,
+      #slide-12 .s12-vision-body > .s12-future-group,
+      #slide-12 .s12-vision-body > .s12-vision-sep {
+        grid-column: 1 / -1;
+      }
+      #slide-12 .s12-future-grid {
+        gap: 6px 10px;
+      }
+      #slide-12 .s12-mantra {
+        margin-top: 6px;
+        padding-top: 6px;
+      }
+      #slide-12 .s12-founder {
+        margin-top: 6px;
+        padding-top: 6px;
       }
     }
 
     @media (max-width: 900px) {
-      #slide-12 .s12-columns,
-      #slide-12 .s12-finale {
+      #slide-12 .s12-panels-row,
+      #slide-12 .s12-finale,
+      #slide-12 .s12-future-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -4185,25 +4278,29 @@
         gap: 1.5mm !important;
       }
       #slide-12 .s12-headline {
-        font-size: 16pt !important;
+        font-size: 18pt !important;
       }
       #slide-12 .s12-subhead {
-        font-size: 10pt !important;
+        font-size: 11pt !important;
       }
-      #slide-12 .s12-vision-body p,
+      #slide-12 .s12-vision-body > p,
+      #slide-12 .s12-future-grid p,
       #slide-12 .s12-panel li,
       #slide-12 .s12-belief-block p {
-        font-size: 8.5pt !important;
-        line-height: 1.26 !important;
+        font-size: 9.5pt !important;
+        line-height: 1.32 !important;
       }
       #slide-12 .s12-panel-head h3 {
-        font-size: 9pt !important;
+        font-size: 10.5pt !important;
       }
       #slide-12 .s12-vision,
-      #slide-12 .s12-panel {
-        padding: 2mm 2.5mm !important;
+      #slide-12 .s12-panel,
+      #slide-12 .s12-belief-block,
+      #slide-12 .s12-signature-block {
+        padding: 2.5mm 3mm !important;
       }
       #slide-12 .s12-shell,
+      #slide-12 .s12-main,
       #slide-12 .s12-vision,
       #slide-12 .s12-panel,
       #slide-12 .s12-finale {
@@ -4917,57 +5014,62 @@
   </section>
 
   <!-- Slide 12 Closing -->
-  <section class="slide deck-slide" id="slide-12" data-deck-build="s12-premium-closing">
+  <section class="slide deck-slide" id="slide-12" data-deck-build="s12-readable-closing">
     <div class="s12-shell">
       <header class="s12-deck-header">
         <div class="s12-kicker">12 — Closing / The Road Ahead</div>
         <h2 class="s12-headline">Build responsibly. Earn trust meaningfully. Scale with purpose.</h2>
         <p class="s12-subhead">A calmer, more connected, more trusted future for healthcare.</p>
       </header>
-      <article class="s12-vision" aria-label="Healthcare vision narrative">
-        <div class="s12-vision-body">
-          <p class="s12-vision-lead">Healthcare should not feel fragmented, episodic, reactive, or difficult to navigate.</p>
-          <p>We believe people deserve a future where healthcare feels more connected, more trusted, more preventative, and easier to understand over time.</p>
-          <hr class="s12-vision-sep" aria-hidden="true" />
-          <p>A future where prevention matters more.</p>
-          <p>Where continuity becomes normal.</p>
-          <p>Where people remain meaningfully connected to their health before, during, and after illness.</p>
-          <p>Where trusted participation, communication, wellbeing, medication continuity, body understanding, social health support, and intelligent guidance work together rather than separately.</p>
-          <hr class="s12-vision-sep" aria-hidden="true" />
-          <p>We believe healthcare should not only exist in moments of illness.</p>
-          <p>It should remain present in everyday life — calmer, more supportive, more human, and more continuous.</p>
+      <div class="s12-main">
+        <article class="s12-vision" aria-label="Healthcare vision narrative">
+          <div class="s12-vision-body">
+            <p class="s12-vision-lead">Healthcare should not feel fragmented, episodic, reactive, or difficult to navigate.</p>
+            <p>We believe people deserve a future where healthcare feels more connected, more trusted, more preventative, and easier to understand over time.</p>
+            <div class="s12-future-group">
+              <div class="s12-future-grid">
+                <p>A future where prevention matters more.</p>
+                <p>Where continuity becomes normal.</p>
+                <p class="s12-future-span">Where people remain meaningfully connected to their health before, during, and after illness.</p>
+                <p class="s12-future-span">Where trusted participation, communication, wellbeing, medication continuity, body understanding, social health support, and intelligent guidance work together rather than separately.</p>
+              </div>
+            </div>
+            <hr class="s12-vision-sep" aria-hidden="true" />
+            <p>We believe healthcare should not only exist in moments of illness.</p>
+            <p>It should remain present in everyday life — calmer, more supportive, more human, and more continuous.</p>
+          </div>
+        </article>
+        <div class="s12-panels-row">
+          <article class="s12-panel s12-panel--why" aria-label="Why Elisence">
+            <div class="s12-panel-head">
+              <span class="s12-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.1"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity=".65"/></svg>
+              </span>
+              <h3>Why Elisence</h3>
+            </div>
+            <ul>
+              <li>Elisence is designed as a human-centred, connected health ecosystem built around continuity rather than fragmented moments of care.</li>
+              <li>Prevention, trusted health intelligence, medication support, body understanding, wellbeing, women’s health, metabolic health, communication, social health participation, and long-term continuity are designed to work together rather than exist separately.</li>
+              <li>At the centre is <span class="s12-elisa-accent">Elisa</span> — a trusted continuity companion designed to help people stay connected to healthier routines, supportive participation, communication, wellbeing, and everyday health continuity while remaining intentionally non-clinical and non-diagnostic by design.</li>
+              <li>Elisence is designed to build responsibly — earning trust locally, adapting to healthcare realities, and scaling meaningfully over time.</li>
+            </ul>
+          </article>
+          <article class="s12-panel s12-panel--road" aria-label="The road ahead">
+            <div class="s12-panel-head">
+              <span class="s12-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17l5-9 4 5 3-4 4 8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="8" r="1.2" fill="currentColor" opacity=".7"/></svg>
+              </span>
+              <h3>The Road Ahead</h3>
+            </div>
+            <ul>
+              <li>Responsible validation</li>
+              <li>Trusted partnerships</li>
+              <li>Healthcare collaboration</li>
+              <li>Meaningful real-world learning</li>
+              <li>Long-term healthcare continuity</li>
+            </ul>
+          </article>
         </div>
-      </article>
-      <div class="s12-columns">
-        <article class="s12-panel s12-panel--why" aria-label="Why Elisence">
-          <div class="s12-panel-head">
-            <span class="s12-panel-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.1"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity=".65"/></svg>
-            </span>
-            <h3>Why Elisence</h3>
-          </div>
-          <ul>
-            <li>Elisence is designed as a human-centred, connected health ecosystem built around continuity rather than fragmented moments of care.</li>
-            <li>Prevention, trusted health intelligence, medication support, body understanding, wellbeing, women’s health, metabolic health, communication, social health participation, and long-term continuity are designed to work together rather than exist separately.</li>
-            <li>At the centre is <span class="s12-elisa-accent">Elisa</span> — a trusted continuity companion designed to help people stay connected to healthier routines, supportive participation, communication, wellbeing, and everyday health continuity while remaining intentionally non-clinical and non-diagnostic by design.</li>
-            <li>Elisence is designed to build responsibly — earning trust locally, adapting to healthcare realities, and scaling meaningfully over time.</li>
-          </ul>
-        </article>
-        <article class="s12-panel s12-panel--road" aria-label="The road ahead">
-          <div class="s12-panel-head">
-            <span class="s12-panel-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17l5-9 4 5 3-4 4 8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="8" r="1.2" fill="currentColor" opacity=".7"/></svg>
-            </span>
-            <h3>The Road Ahead</h3>
-          </div>
-          <ul>
-            <li>Responsible validation</li>
-            <li>Trusted partnerships</li>
-            <li>Healthcare collaboration</li>
-            <li>Meaningful real-world learning</li>
-            <li>Long-term healthcare continuity</li>
-          </ul>
-        </article>
       </div>
       <footer class="s12-finale">
         <div class="s12-belief-block">
