@@ -2116,14 +2116,19 @@
       color: rgba(210, 240, 255, .88);
     }
 
-    /* Slide 09 — Premium orbital market expansion (visual rebuild) */
+    /* Slide 09 — PDF-safe two-panel market expansion (hero preserved) */
     #slide-09.slide {
-      min-height: 100vh;
-      height: 100vh;
-      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
       justify-content: flex-start;
       align-items: stretch;
-      padding: clamp(22px, 3.2vh, 38px) clamp(24px, 4vw, 64px);
+      min-height: 100vh;
+      min-height: 100dvh;
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100vh;
+      max-height: 100dvh;
+      padding: clamp(10px, 1.35vh, 16px) clamp(16px, 3vw, 48px);
       overflow: hidden;
       scroll-snap-align: start;
       background:
@@ -2151,30 +2156,14 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      flex: 1 1 auto;
       width: 100%;
       max-width: min(1320px, 100%);
-      height: 100%;
-      max-height: calc(100vh - clamp(44px, 6.5vh, 76px));
+      min-height: 0;
+      max-height: 100%;
       margin: 0 auto;
-      gap: clamp(10px, 1.3vh, 14px);
+      gap: clamp(5px, 0.65vh, 7px);
       z-index: 1;
-    }
-
-    #slide-09 .s09-shell::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 42%;
-      width: min(920px, 92%);
-      height: 420px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      border: 1px solid rgba(85, 200, 255, .08);
-      box-shadow:
-        0 0 80px rgba(0, 120, 200, .08),
-        inset 0 0 60px rgba(0, 140, 255, .04);
-      pointer-events: none;
-      z-index: -1;
     }
 
     #slide-09 .s09-hero-banner {
@@ -2214,14 +2203,12 @@
       object-position: center 38%;
     }
 
-    #slide-09 .s09-orbital-glow,
-    #slide-09 .s09-blue-underglow {
+    #slide-09 .s09-orbital-glow {
       position: relative;
       z-index: 0;
     }
 
-    #slide-09 .s09-orbital-glow::before,
-    #slide-09 .s09-blue-underglow::after {
+    #slide-09 .s09-orbital-glow::before {
       content: "";
       position: absolute;
       left: 5%;
@@ -2235,322 +2222,169 @@
       z-index: -1;
     }
 
-    #slide-09 .s09-header {
+    #slide-09 .s09-deck-header {
       flex-shrink: 0;
+      margin: 0;
       padding: 0;
     }
 
-    #slide-09 .s09-header > div:first-child {
-      font-size: clamp(14px, 1.1vw, 18px);
+    #slide-09 .s09-kicker {
+      font-size: clamp(10px, 0.85vw, 12px);
       font-weight: 800;
-      letter-spacing: .22em;
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: #55d9ff;
-      text-shadow: 0 0 18px rgba(0, 200, 255, .45);
-      margin-bottom: 6px;
+      margin: 0 0 2px;
+      line-height: 1.2;
     }
 
-    #slide-09 .s09-header h2 {
-      font-size: clamp(48px, 4.4vw, 58px);
+    #slide-09 .s09-deck-header h2 {
+      font-size: clamp(34px, 4vh, 42px);
       font-weight: 900;
-      line-height: 1.08;
+      line-height: 1.06;
       color: #fff;
-      text-shadow:
-        0 0 32px rgba(0, 180, 255, .42),
-        0 0 64px rgba(0, 220, 180, .16);
-      margin: 0 0 6px;
+      margin: 0 0 2px;
+      text-shadow: 0 0 16px rgba(0, 180, 255, .15);
     }
 
-    #slide-09 .s09-header > p {
-      font-size: clamp(22px, 1.85vw, 26px);
+    #slide-09 .s09-deck-header > p {
+      font-size: clamp(14px, 1.65vh, 18px);
       font-weight: 700;
-      line-height: 1.3;
-      color: rgba(210, 245, 255, .96);
-      margin: 0 0 8px;
-      text-shadow: 0 0 20px rgba(0, 160, 255, .2);
+      line-height: 1.28;
+      color: rgba(200, 235, 255, .92);
+      margin: 0;
     }
 
-    #slide-09 .s09-accent-divider {
-      width: min(160px, 36%);
-      height: 3px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(0, 200, 255, .15), rgba(85, 217, 255, 1), rgba(0, 230, 180, .75), rgba(0, 200, 255, .15));
-      box-shadow: 0 0 22px rgba(0, 210, 255, .55), 0 0 40px rgba(0, 220, 180, .18);
-    }
-
-    #slide-09 .s09-scroll-body {
-      flex: 1;
+    #slide-09 .s09-columns {
+      flex: 1 1 0;
       min-height: 0;
-      overflow-y: auto;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(14px, 1.8vh, 18px);
-      padding-right: 6px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(85, 217, 255, .28) transparent;
-    }
-
-    #slide-09 .s09-scroll-body::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    #slide-09 .s09-scroll-body::-webkit-scrollbar-thumb {
-      background: rgba(85, 217, 255, .28);
-      border-radius: 6px;
-    }
-
-    #slide-09 .s09-card-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(16px, 2vh, 20px);
-      align-items: start;
+      gap: clamp(8px, 1vh, 10px);
+      align-items: stretch;
     }
 
-    #slide-09 .s09-content-card {
-      position: relative;
-      border-radius: 26px;
-      border: 1px solid rgba(85, 217, 255, .38);
-      background:
-        radial-gradient(circle at 18% 0%, rgba(0, 190, 255, .14), transparent 42%),
-        radial-gradient(circle at 88% 100%, rgba(0, 220, 180, .08), transparent 40%),
-        linear-gradient(155deg, rgba(10, 38, 88, .82), rgba(2, 8, 24, .94));
-      padding: clamp(24px, 2.8vh, 32px);
-      box-shadow:
-        0 0 36px rgba(0, 130, 255, .18),
-        inset 0 1px 0 rgba(140, 235, 255, .14),
-        inset 0 -18px 40px rgba(0, 80, 160, .08);
-      overflow: visible;
-      backdrop-filter: blur(6px);
-    }
-
-    #slide-09 .s09-content-card::before {
-      content: "";
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 1px solid rgba(85, 200, 255, .12);
-      box-shadow: 0 0 20px rgba(0, 140, 255, .08);
-      pointer-events: none;
-    }
-
-    #slide-09 .s09-content-card:nth-child(2),
-    #slide-09 .s09-content-card:nth-child(4) {
-      transform: translateY(6px);
-    }
-
-    #slide-09 .s09-card-accent {
+    #slide-09 .s09-panel {
+      min-height: 0;
+      height: 100%;
       display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0;
+      border-radius: 12px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
+      box-shadow: 0 0 22px rgba(0, 150, 255, .16);
+      padding: clamp(7px, 0.9vh, 9px) clamp(9px, 1vw, 11px);
+      overflow: hidden;
     }
 
-    #slide-09 .s09-card-icon {
-      position: relative;
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      border: 1px solid rgba(85, 217, 255, .45);
-      background:
-        radial-gradient(circle at 50% 30%, rgba(0, 190, 255, .22), rgba(4, 18, 48, .92));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow:
-        0 0 22px rgba(0, 170, 255, .32),
-        inset 0 0 14px rgba(0, 200, 255, .12);
+    #slide-09 .s09-block {
       flex-shrink: 0;
     }
 
-    #slide-09 .s09-card-icon svg {
-      width: 26px;
-      height: 26px;
-      display: block;
-      filter: drop-shadow(0 0 6px rgba(0, 200, 255, .55));
+    #slide-09 .s09-block + .s09-block {
+      margin-top: 0;
+      padding-top: clamp(6px, 0.75vh, 8px);
+      border-top: 1px solid rgba(85, 200, 255, .22);
     }
 
-    #slide-09 .s09-card-num {
-      position: absolute;
-      right: -6px;
-      bottom: -6px;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 4px;
-      border-radius: 999px;
-      background: rgba(0, 120, 200, .85);
-      border: 1px solid rgba(140, 235, 255, .6);
-      font-size: 10px;
+    #slide-09 .s09-block h3 {
+      font-size: clamp(14px, 1.45vh, 18px);
       font-weight: 900;
-      line-height: 16px;
-      text-align: center;
-      color: #fff;
-      box-shadow: 0 0 10px rgba(0, 180, 255, .45);
-    }
-
-    #slide-09 .s09-card-line {
-      flex: 1;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(85, 217, 255, .85), rgba(0, 230, 180, .35), transparent);
-      box-shadow: 0 0 12px rgba(0, 190, 255, .35);
-    }
-
-    #slide-09 .s09-content-card h3,
-    #slide-09 .s09-wide-card h3 {
-      font-size: clamp(24px, 1.95vw, 32px);
-      font-weight: 900;
-      letter-spacing: .05em;
-      line-height: 1.2;
+      letter-spacing: .04em;
+      line-height: 1.18;
       text-transform: uppercase;
-      color: #a8ecff;
-      text-shadow: 0 0 24px rgba(0, 180, 255, .28);
-      margin: 0 0 14px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(85, 200, 255, .28);
+      color: #8edcff;
+      margin: 0 0 clamp(4px, 0.5vh, 6px);
+      padding-bottom: clamp(3px, 0.4vh, 5px);
+      border-bottom: 1px solid rgba(85, 200, 255, .2);
     }
 
-    #slide-09 .s09-content-card ul,
-    #slide-09 .s09-wide-card ul {
+    #slide-09 .s09-block ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    #slide-09 .s09-content-card li,
-    #slide-09 .s09-wide-card li {
-      font-size: clamp(18px, 1.35vw, 22px);
+    #slide-09 .s09-block li {
+      font-size: clamp(11px, 1.15vh, 13px);
       font-weight: 600;
-      line-height: 1.55;
-      color: rgba(225, 248, 255, .97);
-      margin-bottom: 12px;
-      padding-left: 1.15em;
+      line-height: 1.32;
+      color: rgba(220, 245, 255, .96);
+      margin-bottom: clamp(3px, 0.4vh, 5px);
+      padding-left: 1.1em;
       position: relative;
     }
 
-    #slide-09 .s09-content-card li:last-child,
-    #slide-09 .s09-wide-card li:last-child {
+    #slide-09 .s09-block li:last-child {
       margin-bottom: 0;
     }
 
-    #slide-09 .s09-content-card li::before,
-    #slide-09 .s09-wide-card li::before {
+    #slide-09 .s09-block li::before {
       content: "•";
       position: absolute;
       left: 0;
       color: #55d9ff;
-      text-shadow: 0 0 10px rgba(0, 200, 255, .65);
       font-weight: 900;
     }
 
-    #slide-09 .s09-bottom-row {
-      display: grid;
-      grid-template-columns: 1fr minmax(240px, 36%);
-      gap: clamp(16px, 2vh, 20px);
-      align-items: stretch;
-    }
-
-    #slide-09 .s09-wide-card {
-      position: relative;
-      border-radius: 26px;
-      border: 1px solid rgba(85, 217, 255, .42);
-      background:
-        radial-gradient(circle at 12% 0%, rgba(0, 190, 255, .16), transparent 44%),
-        radial-gradient(circle at 92% 100%, rgba(0, 220, 180, .1), transparent 42%),
-        linear-gradient(155deg, rgba(12, 42, 96, .86), rgba(2, 8, 24, .95));
-      padding: clamp(24px, 2.8vh, 32px);
-      box-shadow:
-        0 0 42px rgba(0, 140, 255, .22),
-        inset 0 1px 0 rgba(140, 235, 255, .14);
-      backdrop-filter: blur(6px);
-    }
-
-    #slide-09 .s09-growth-visual {
-      position: relative;
-      border-radius: 26px;
-      border: 1px solid rgba(85, 217, 255, .42);
-      background:
-        radial-gradient(ellipse 90% 70% at 50% 100%, rgba(0, 180, 255, .22), transparent 62%),
-        radial-gradient(circle at 50% 40%, rgba(0, 220, 180, .08), transparent 55%),
-        linear-gradient(165deg, rgba(8, 32, 72, .92), rgba(2, 8, 24, .98));
-      padding: clamp(14px, 1.8vh, 18px);
-      box-shadow:
-        0 0 48px rgba(0, 150, 255, .26),
-        inset 0 0 30px rgba(0, 140, 255, .08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 190px;
-      overflow: hidden;
-    }
-
-    #slide-09 .s09-growth-visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle 1px at 22% 28%, rgba(120, 230, 255, .55) 0, transparent 100%),
-        radial-gradient(circle 1px at 68% 18%, rgba(0, 230, 200, .45) 0, transparent 100%),
-        radial-gradient(circle 1px at 82% 62%, rgba(120, 220, 255, .4) 0, transparent 100%);
-      pointer-events: none;
-    }
-
-    #slide-09 .s09-growth-visual svg {
-      width: 100%;
-      height: auto;
-      max-height: 210px;
-      display: block;
-      position: relative;
-      z-index: 1;
-    }
-
-    #slide-09 .s09-closing-bar {
+    #slide-09 .s09-closing {
+      flex-shrink: 0;
+      margin: 0;
       text-align: center;
-      font-size: clamp(26px, 2.2vw, 34px);
+      font-size: clamp(11px, 1.25vh, 14px);
       font-weight: 800;
-      line-height: 1.5;
+      line-height: 1.32;
       color: #fff;
-      border-radius: 26px;
-      border: 1px solid rgba(85, 217, 255, .45);
-      background:
-        radial-gradient(ellipse 80% 120% at 50% 0%, rgba(0, 160, 255, .16), transparent 60%),
-        linear-gradient(90deg, rgba(0, 75, 140, .32), rgba(0, 120, 140, .18), rgba(70, 55, 150, .22), rgba(0, 75, 140, .32));
-      padding: clamp(22px, 2.6vh, 28px) clamp(24px, 3vw, 32px);
-      box-shadow: 0 0 44px rgba(0, 150, 255, .24);
-      margin: 0 0 6px;
-      text-shadow: 0 0 24px rgba(0, 180, 255, .25);
-      animation: s09ClosingGlow 4s ease-in-out infinite;
+      padding: clamp(5px, 0.65vh, 7px) clamp(12px, 1.2vw, 16px);
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .45);
+      background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
+      box-shadow: 0 0 20px rgba(0, 150, 255, .14);
+      text-shadow: 0 0 12px rgba(0, 180, 255, .12);
     }
 
-    @keyframes s09ClosingGlow {
-      0%, 100% {
-        box-shadow: 0 0 36px rgba(0, 140, 255, .2), 0 0 0 rgba(0, 220, 180, 0);
+    @media (max-height: 860px) {
+      #slide-09.slide {
+        padding: 8px 14px;
       }
-      50% {
-        box-shadow: 0 0 56px rgba(0, 180, 255, .36), 0 0 24px rgba(0, 220, 180, .12);
+      #slide-09 .s09-shell {
+        gap: 4px;
       }
-    }
-
-    @media (max-width: 1024px) {
-      #slide-09 .s09-header h2 {
-        font-size: clamp(40px, 4.2vw, 48px);
+      #slide-09 .s09-hero-banner img {
+        height: clamp(168px, 21vh, 220px);
       }
-      #slide-09 .s09-content-card li,
-      #slide-09 .s09-wide-card li {
-        font-size: max(18px, clamp(18px, 1.7vw, 20px));
+      #slide-09 .s09-deck-header h2 {
+        font-size: 34px;
       }
-      #slide-09 .s09-content-card:nth-child(2),
-      #slide-09 .s09-content-card:nth-child(4) {
-        transform: none;
+      #slide-09 .s09-deck-header > p {
+        font-size: 15px;
+      }
+      #slide-09 .s09-block h3 {
+        font-size: 14px;
+        margin-bottom: 3px;
+        padding-bottom: 3px;
+      }
+      #slide-09 .s09-block li {
+        font-size: 11px;
+        line-height: 1.28;
+        margin-bottom: 3px;
+      }
+      #slide-09 .s09-block + .s09-block {
+        padding-top: 5px;
+      }
+      #slide-09 .s09-panel {
+        padding: 6px 8px;
+      }
+      #slide-09 .s09-closing {
+        font-size: 11px;
+        padding: 4px 10px;
       }
     }
 
     @media (max-width: 900px) {
-      #slide-09 .s09-card-grid,
-      #slide-09 .s09-bottom-row {
+      #slide-09 .s09-columns {
         grid-template-columns: 1fr;
       }
     }
@@ -3921,6 +3755,55 @@
       #slide-07 .s07-panel {
         overflow: visible !important;
       }
+      #slide-09.slide {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: 100vh !important;
+        overflow: hidden !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        padding: 5mm 8mm !important;
+        box-sizing: border-box;
+      }
+      #slide-09 .s09-shell {
+        max-height: 100% !important;
+        height: 100% !important;
+        gap: 1.5mm !important;
+      }
+      #slide-09 .s09-hero-banner img {
+        height: 34mm !important;
+      }
+      #slide-09 .s09-deck-header h2 {
+        font-size: 20pt !important;
+      }
+      #slide-09 .s09-deck-header > p {
+        font-size: 9.5pt !important;
+      }
+      #slide-09 .s09-block h3 {
+        font-size: 9.5pt !important;
+        margin-bottom: 1mm !important;
+        padding-bottom: 1mm !important;
+      }
+      #slide-09 .s09-block li {
+        font-size: 9pt !important;
+        line-height: 1.24 !important;
+        margin-bottom: 1mm !important;
+      }
+      #slide-09 .s09-block + .s09-block {
+        padding-top: 1mm !important;
+      }
+      #slide-09 .s09-panel {
+        padding: 2mm 2.5mm !important;
+      }
+      #slide-09 .s09-closing {
+        font-size: 10pt !important;
+        padding: 2mm 4mm !important;
+      }
+      #slide-09 .s09-shell,
+      #slide-09 .s09-columns,
+      #slide-09 .s09-panel {
+        overflow: visible !important;
+      }
     }
   </style>
 </head>
@@ -4430,156 +4313,61 @@
   </section>
 
   <!-- Slide 09 Market -->
-  <section class="slide deck-slide" id="slide-09" data-deck-build="s09-premium-market-expansion-visual">
+  <section class="slide deck-slide" id="slide-09" data-deck-build="s09-pdf-two-panel-market">
     <div class="s09-shell">
       <section class="s09-hero-banner s09-orbital-glow">
         <div class="s09-hero-frame">
           <img src="assets/investor-deck/slide09-global-expansion-banner.jpg" alt="UK to Europe to Middle East to World — Elisence global expansion pathway with Earth horizon" width="1320" height="230" />
         </div>
       </section>
-      <header class="s09-header">
-        <div>09 — MARKET &amp; EXPANSION</div>
+      <header class="s09-deck-header">
+        <div class="s09-kicker">09 — MARKET &amp; EXPANSION</div>
         <h2>Global Ambition, Local Execution</h2>
         <p>Global ambition. Local trust.</p>
-        <div class="s09-accent-divider" aria-hidden="true"></div>
       </header>
-      <div class="s09-scroll-body">
-        <section class="s09-card-grid">
-          <article class="s09-content-card s09-blue-underglow">
-            <div class="s09-card-accent">
-              <span class="s09-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="#55d9ff" stroke-width="1.2"/><path d="M4 12h16M12 4c2 2.5 3 5 3 8s-1 6-3 8M12 4c-2 2.5-3 5-3 8s1 6 3 8" stroke="#8edcff" stroke-width="1" opacity=".85"/></svg>
-                <span class="s09-card-num">01</span>
-              </span>
-              <span class="s09-card-line"></span>
-            </div>
+      <div class="s09-columns">
+        <article class="s09-panel s09-panel--left" aria-label="Global healthcare problem, health journeys, country-aware expansion">
+          <div class="s09-block">
             <h3>Global Healthcare Problem</h3>
             <ul>
               <li>Fragmentation, chronic conditions, prevention pressure, ageing populations, medication complexity, rising healthcare costs, and increasing self-management are global realities rather than country-specific problems.</li>
               <li>The need for stronger continuity, trusted health participation, prevention, and more connected healthcare experiences exists across healthcare systems worldwide.</li>
             </ul>
-          </article>
-          <article class="s09-content-card s09-blue-underglow">
-            <div class="s09-card-accent">
-              <span class="s09-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3" stroke="#55d9ff" stroke-width="1.2"/><circle cx="12" cy="12" r="7" stroke="#8edcff" stroke-width="1" opacity=".5"/><path d="M12 5v2M12 17v2M5 12h2M17 12h2" stroke="#00e6b8" stroke-width="1.2" stroke-linecap="round"/></svg>
-                <span class="s09-card-num">02</span>
-              </span>
-              <span class="s09-card-line"></span>
-            </div>
+          </div>
+          <div class="s09-block">
             <h3>Multiple Large Health Journeys</h3>
             <ul>
               <li>Elisence is designed around multiple long-term healthcare realities rather than a single condition — including prevention, women’s health, diabetes and metabolic health, medication continuity, wellbeing, GP and doctor communication, family care, pharmacy journeys, trusted health intelligence, and long-term health participation.</li>
             </ul>
-          </article>
-          <article class="s09-content-card s09-blue-underglow">
-            <div class="s09-card-accent">
-              <span class="s09-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 16c2-4 4-6 6-6s4 2 6 6" stroke="#55d9ff" stroke-width="1.2" stroke-linecap="round"/><ellipse cx="12" cy="17" rx="8" ry="2.5" stroke="#8edcff" stroke-width="1" opacity=".7"/><path d="M9 10l3-2 3 2" stroke="#00e6b8" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span class="s09-card-num">03</span>
-              </span>
-              <span class="s09-card-line"></span>
-            </div>
+          </div>
+          <div class="s09-block">
             <h3>Country-Aware Expansion</h3>
             <ul>
               <li>Healthcare is never one-size-fits-all.</li>
               <li>Different countries operate with different healthcare systems, regulation, trust expectations, reimbursement models, language, culture, safety expectations, and governance realities.</li>
               <li>Elisence is designed with multilingual, healthcare-aware, and country-adaptable foundations — supporting responsible localisation rather than forcing one model everywhere.</li>
             </ul>
-          </article>
-          <article class="s09-content-card s09-blue-underglow">
-            <div class="s09-card-accent">
-              <span class="s09-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18l5-8 4 5 3-4 4 7" stroke="#55d9ff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="10" r="1.5" fill="#00e6b8"/><circle cx="13" cy="15" r="1.5" fill="#8edcff"/><circle cx="16" cy="11" r="1.5" fill="#55d9ff"/></svg>
-                <span class="s09-card-num">04</span>
-              </span>
-              <span class="s09-card-line"></span>
-            </div>
+          </div>
+        </article>
+        <article class="s09-panel s09-panel--right" aria-label="Trust-first scale model and repeatable growth">
+          <div class="s09-block">
             <h3>Trust-First Scale Model</h3>
             <ul>
               <li>Our approach is practical: validate locally, build trust, strengthen healthcare relationships, and scale responsibly.</li>
               <li>The UK represents an important validation environment because of healthcare credibility, safety expectations, and trust standards.</li>
               <li>Europe, the Gulf region, and other healthcare transformation markets represent meaningful long-term opportunities for responsible expansion.</li>
             </ul>
-          </article>
-        </section>
-        <section class="s09-bottom-row">
-          <article class="s09-wide-card s09-blue-underglow">
-            <div class="s09-card-accent">
-              <span class="s09-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="17" rx="8" ry="2.5" stroke="#55d9ff" stroke-width="1"/><path d="M8 14V9h3v5M13 14V6h3v8" stroke="#8edcff" stroke-width="1.2" stroke-linecap="round"/><path d="M6 8l6-3 6 3" stroke="#00e6b8" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/></svg>
-                <span class="s09-card-num">05</span>
-              </span>
-              <span class="s09-card-line"></span>
-            </div>
+          </div>
+          <div class="s09-block">
             <h3>Repeatable Growth Model</h3>
             <ul>
               <li>The goal is not to launch everywhere at once.</li>
               <li>The goal is to build a repeatable model where prevention, continuity, trusted participation, social health engagement, and healthcare-aware governance can scale responsibly over time.</li>
             </ul>
-          </article>
-          <aside class="s09-growth-visual s09-orbital-glow" aria-hidden="true">
-            <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="s09BarA" x1="0%" y1="100%" x2="0%" y2="0%">
-                  <stop offset="0%" stop-color="rgba(0,100,180,.4)" />
-                  <stop offset="100%" stop-color="rgba(85,217,255,.98)" />
-                </linearGradient>
-                <linearGradient id="s09BarB" x1="0%" y1="100%" x2="0%" y2="0%">
-                  <stop offset="0%" stop-color="rgba(0,120,160,.4)" />
-                  <stop offset="100%" stop-color="rgba(0,235,200,.95)" />
-                </linearGradient>
-                <linearGradient id="s09Arrow" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#55d9ff" />
-                  <stop offset="100%" stop-color="#00e6b8" />
-                </linearGradient>
-                <radialGradient id="s09OrbitalBase" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(0,180,255,.35)" />
-                  <stop offset="100%" stop-color="rgba(0,80,140,0)" />
-                </radialGradient>
-                <filter id="s09Glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3.5" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-                <filter id="s09Spark" x="-100%" y="-100%" width="300%" height="300%">
-                  <feGaussianBlur stdDeviation="2" result="g" />
-                  <feMerge>
-                    <feMergeNode in="g" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-              <ellipse cx="140" cy="196" rx="104" ry="18" fill="url(#s09OrbitalBase)" />
-              <ellipse cx="140" cy="196" rx="72" ry="12" fill="none" stroke="rgba(85,217,255,.32)" stroke-width="1.2" />
-              <ellipse cx="140" cy="196" rx="46" ry="7" fill="none" stroke="rgba(0,230,200,.22)" stroke-width="1" />
-              <ellipse cx="140" cy="196" rx="22" ry="3.5" fill="none" stroke="rgba(85,217,255,.18)" stroke-width="1" />
-              <rect x="34" y="122" width="30" height="62" rx="7" fill="url(#s09BarA)" filter="url(#s09Glow)" opacity=".88" />
-              <rect x="78" y="98" width="30" height="86" rx="7" fill="url(#s09BarA)" filter="url(#s09Glow)" />
-              <rect x="122" y="72" width="30" height="112" rx="7" fill="url(#s09BarB)" filter="url(#s09Glow)" />
-              <rect x="166" y="46" width="30" height="138" rx="7" fill="url(#s09BarB)" filter="url(#s09Glow)" />
-              <rect x="210" y="28" width="30" height="156" rx="7" fill="url(#s09BarB)" filter="url(#s09Glow)" opacity=".95" />
-              <path d="M 49 114 L 93 90 L 137 66 L 181 42 L 225 18" fill="none" stroke="url(#s09Arrow)" stroke-width="3" stroke-linecap="round" filter="url(#s09Glow)" />
-              <path d="M 212 12 L 228 18 L 220 34" fill="none" stroke="#00e6b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" filter="url(#s09Glow)" />
-              <circle cx="49" cy="114" r="4.5" fill="#55d9ff" filter="url(#s09Spark)" />
-              <circle cx="93" cy="90" r="4.5" fill="#55d9ff" filter="url(#s09Spark)" />
-              <circle cx="137" cy="66" r="4.5" fill="#00e6b8" filter="url(#s09Spark)" />
-              <circle cx="181" cy="42" r="4.5" fill="#00e6b8" filter="url(#s09Spark)" />
-              <circle cx="225" cy="18" r="5" fill="#fff" filter="url(#s09Spark)" />
-              <circle cx="58" cy="54" r="1.5" fill="#8edcff" opacity=".8" filter="url(#s09Spark)" />
-              <circle cx="196" cy="78" r="1.5" fill="#00e6b8" opacity=".75" filter="url(#s09Spark)" />
-              <circle cx="236" cy="96" r="1.2" fill="#55d9ff" opacity=".7" filter="url(#s09Spark)" />
-              <line x1="62" y1="48" x2="72" y2="38" stroke="rgba(140,235,255,.45)" stroke-width="1" filter="url(#s09Spark)" />
-              <line x1="200" y1="72" x2="212" y2="58" stroke="rgba(0,230,200,.4)" stroke-width="1" filter="url(#s09Spark)" />
-            </svg>
-          </aside>
-        </section>
-        <section class="s09-closing-bar s09-blue-underglow">
-          Global problem. Local trust. Responsible scale.
-        </section>
+          </div>
+        </article>
       </div>
+      <p class="s09-closing">Global problem. Local trust. Responsible scale.</p>
     </div>
   </section>
 
