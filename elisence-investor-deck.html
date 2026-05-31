@@ -747,10 +747,9 @@
       flex: 1;
       min-height: 0;
       overflow: hidden;
-      display: grid;
-      grid-template-rows: minmax(clamp(100px, 12vh, 120px), 1fr) auto auto auto;
-      gap: clamp(5px, 0.65vh, 7px);
-      align-content: start;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(6px, 0.7vh, 8px);
     }
 
     #slide-04 .s04-v7-underglow {
@@ -773,25 +772,20 @@
     }
 
     #slide-04 .s04-v7-image-panel {
-      min-height: 0;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      flex: 0 0 auto;
       border-radius: 14px;
       border: 1px solid rgba(95, 210, 255, .45);
       overflow: hidden;
       background: rgba(4, 16, 42, .9);
       box-shadow: 0 0 28px rgba(0, 140, 255, .2);
+      line-height: 0;
     }
 
     #slide-04 .s04-v7-image-panel img {
       display: block;
       width: 100%;
-      height: 100%;
-      min-height: clamp(96px, 11.5vh, 118px);
-      max-height: 100%;
-      object-fit: contain;
+      height: clamp(112px, 13.5vh, 136px);
+      object-fit: cover;
       object-position: center center;
     }
 
@@ -808,23 +802,33 @@
     }
 
     #slide-04 .s04-v7-content-grid {
-      flex: 0 0 auto;
+      flex: 1 1 auto;
+      min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
       gap: clamp(8px, 1vh, 10px);
-      align-items: start;
-      align-content: start;
+      align-items: stretch;
     }
 
     #slide-04 .s04-v7-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
       border-radius: 14px;
       border: 1px solid rgba(95, 210, 255, .4);
       background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
       padding: clamp(8px, 1vh, 10px) clamp(10px, 1.1vw, 12px);
       box-shadow: 0 0 24px rgba(0, 130, 255, .14);
-      overflow: visible;
-      height: auto;
-      align-self: start;
+      overflow: hidden;
+    }
+
+    #slide-04 .s04-v7-card ul {
+      flex: 1;
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
     #slide-04 .s04-v7-card h3 {
@@ -837,12 +841,6 @@
       margin: 0 0 clamp(5px, 0.6vh, 7px);
       padding-bottom: clamp(4px, 0.5vh, 6px);
       border-bottom: 1px solid rgba(85, 200, 255, .24);
-    }
-
-    #slide-04 .s04-v7-card ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
     }
 
     #slide-04 .s04-v7-card li {
