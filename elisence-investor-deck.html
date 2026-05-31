@@ -783,8 +783,8 @@
     #slide-04 .s04-v7-image-panel img {
       display: block;
       width: 100%;
-      height: clamp(52px, 6.5vh, 68px);
-      object-fit: cover;
+      height: clamp(100px, 12.5vh, 128px);
+      object-fit: contain;
       object-position: center center;
     }
 
@@ -801,12 +801,12 @@
     }
 
     #slide-04 .s04-v7-content-grid {
-      flex: 1;
-      min-height: 0;
+      flex: 0 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: clamp(8px, 1vh, 10px);
-      align-items: stretch;
+      align-items: start;
+      align-content: start;
     }
 
     #slide-04 .s04-v7-card {
@@ -815,8 +815,9 @@
       background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
       padding: clamp(8px, 1vh, 10px) clamp(10px, 1.1vw, 12px);
       box-shadow: 0 0 24px rgba(0, 130, 255, .14);
-      overflow: hidden;
-      min-height: 0;
+      overflow: visible;
+      height: auto;
+      align-self: start;
     }
 
     #slide-04 .s04-v7-card h3 {
