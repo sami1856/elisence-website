@@ -1,0 +1,9 @@
+{
+  "path": "C:\\Users\\sami\\Desktop\\Elisence_Investor_Deck_WebSummit_2026.pdf",
+  "bytes": 8831708,
+  "pages": 12,
+  "expected_pages": 12,
+  "pages_ok": true,
+  "proof_first": "C:\\dev\\elisence-website-sparse\\audit\\investor-deck-pdf-export\\pdf-proof-page-01.png",
+  "proof_last": "C:\\dev\\elisence-website-sparse\\audit\\investor-deck-pdf-export\\pdf-proof-page-12.png"
+}
