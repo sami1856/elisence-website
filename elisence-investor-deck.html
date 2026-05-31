@@ -1518,7 +1518,7 @@
       }
     }
 
-    /* Slide 07 — PDF-safe trust governance (real viewport compact) */
+    /* Slide 07 — readable full-content two-panel (emergency rebuild) */
     #slide-07.slide {
       display: flex;
       flex-direction: column;
@@ -1530,7 +1530,7 @@
       height: 100dvh;
       max-height: 100vh;
       max-height: 100dvh;
-      padding: clamp(8px, 1.1vh, 14px) clamp(14px, 2.8vw, 44px);
+      padding: clamp(10px, 1.35vh, 16px) clamp(16px, 3vw, 48px);
       overflow: hidden;
       scroll-snap-align: start;
     }
@@ -1541,11 +1541,10 @@
       flex: 1 1 auto;
       width: 100%;
       max-width: min(1320px, 100%);
-      height: auto;
+      min-height: 0;
       max-height: 100%;
       margin: 0 auto;
-      min-height: 0;
-      gap: clamp(3px, 0.45vh, 5px);
+      gap: clamp(6px, 0.75vh, 8px);
     }
 
     #slide-07 .s07-deck-header {
@@ -1555,28 +1554,28 @@
     }
 
     #slide-07 .s07-kicker {
-      font-size: clamp(9px, 0.75vw, 11px);
+      font-size: clamp(10px, 0.85vw, 12px);
       font-weight: 800;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: #55d9ff;
-      margin: 0 0 1px;
-      line-height: 1.15;
+      margin: 0 0 3px;
+      line-height: 1.2;
     }
 
     #slide-07 .s07-deck-header h2 {
-      font-size: clamp(26px, 3.6vh, 40px);
+      font-size: clamp(32px, 4.2vh, 42px);
       font-weight: 900;
-      line-height: 1.04;
+      line-height: 1.06;
       color: #fff;
-      margin: 0 0 1px;
-      text-shadow: 0 0 14px rgba(0, 180, 255, .14);
+      margin: 0 0 3px;
+      text-shadow: 0 0 16px rgba(0, 180, 255, .15);
     }
 
     #slide-07 .s07-deck-header > p {
-      font-size: clamp(13px, 1.55vh, 17px);
+      font-size: clamp(14px, 1.75vh, 20px);
       font-weight: 700;
-      line-height: 1.22;
+      line-height: 1.28;
       color: rgba(200, 235, 255, .92);
       margin: 0;
     }
@@ -1587,22 +1586,22 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 2px 4px;
-      padding: clamp(2px, 0.35vh, 4px) clamp(6px, 0.8vw, 8px);
-      border-radius: 8px;
-      border: 1px solid rgba(95, 210, 255, .42);
+      gap: 4px 6px;
+      padding: clamp(5px, 0.65vh, 7px) clamp(8px, 1vw, 12px);
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(6, 28, 62, .9), rgba(3, 12, 32, .96), rgba(6, 28, 62, .9));
-      box-shadow: 0 0 16px rgba(0, 140, 255, .14);
+      box-shadow: 0 0 20px rgba(0, 140, 255, .15);
     }
 
     #slide-07 .s07-flow-node {
-      font-size: clamp(8px, 0.95vh, 10.5px);
+      font-size: clamp(10px, 1.15vh, 12px);
       font-weight: 800;
-      letter-spacing: .02em;
-      line-height: 1.1;
-      padding: 2px 5px;
-      border-radius: 6px;
-      border: 1px solid rgba(90, 190, 255, .32);
+      letter-spacing: .03em;
+      line-height: 1.15;
+      padding: 3px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(90, 190, 255, .35);
       color: rgba(210, 240, 255, .94);
       background: rgba(4, 22, 58, .78);
       text-align: center;
@@ -1611,7 +1610,7 @@
     }
 
     #slide-07 .s07-flow-connector {
-      font-size: clamp(9px, 1vh, 11px);
+      font-size: clamp(11px, 1.2vh, 13px);
       font-weight: 300;
       color: #55d9ff;
       line-height: 1;
@@ -1622,38 +1621,52 @@
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(5px, 0.65vh, 8px);
+      gap: clamp(8px, 1vh, 10px);
       align-items: stretch;
     }
 
     #slide-07 .s07-panel {
       min-height: 0;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 0;
-      border-radius: 10px;
-      border: 1px solid rgba(95, 210, 255, .45);
+      justify-content: flex-start;
+      gap: clamp(8px, 1vh, 10px);
+      border-radius: 12px;
+      border: 1px solid rgba(95, 210, 255, .48);
       background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
-      box-shadow: 0 0 18px rgba(0, 150, 255, .14);
-      padding: clamp(4px, 0.55vh, 6px) clamp(6px, 0.75vw, 8px);
+      box-shadow: 0 0 22px rgba(0, 150, 255, .16);
+      padding: clamp(8px, 1vh, 10px) clamp(10px, 1.1vw, 12px);
+    }
+
+    #slide-07 .s07-panel--left {
+      justify-content: space-between;
+    }
+
+    #slide-07 .s07-panel--right {
+      justify-content: flex-start;
+    }
+
+    #slide-07 .s07-block {
+      flex-shrink: 0;
     }
 
     #slide-07 .s07-block + .s07-block {
-      margin-top: clamp(3px, 0.4vh, 5px);
-      padding-top: clamp(3px, 0.4vh, 5px);
-      border-top: 1px solid rgba(85, 200, 255, .18);
+      margin-top: 0;
+      padding-top: clamp(8px, 1vh, 10px);
+      border-top: 1px solid rgba(85, 200, 255, .22);
     }
 
     #slide-07 .s07-block h3 {
-      font-size: clamp(12px, 1.35vh, 16px);
+      font-size: clamp(14px, 1.55vh, 18px);
       font-weight: 900;
-      letter-spacing: .03em;
-      line-height: 1.12;
+      letter-spacing: .04em;
+      line-height: 1.18;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 clamp(2px, 0.25vh, 3px);
-      padding-bottom: clamp(1px, 0.2vh, 2px);
-      border-bottom: 1px solid rgba(85, 200, 255, .16);
+      margin: 0 0 clamp(5px, 0.6vh, 7px);
+      padding-bottom: clamp(4px, 0.45vh, 5px);
+      border-bottom: 1px solid rgba(85, 200, 255, .2);
     }
 
     #slide-07 .s07-block ul {
@@ -1663,12 +1676,12 @@
     }
 
     #slide-07 .s07-block li {
-      font-size: clamp(10px, 1.15vh, 12.5px);
+      font-size: clamp(11.5px, 1.28vh, 13px);
       font-weight: 600;
-      line-height: 1.26;
+      line-height: 1.3;
       color: rgba(220, 245, 255, .96);
-      margin-bottom: clamp(2px, 0.28vh, 3px);
-      padding-left: 1em;
+      margin-bottom: clamp(4px, 0.5vh, 6px);
+      padding-left: 1.1em;
       position: relative;
     }
 
@@ -1688,56 +1701,53 @@
       flex-shrink: 0;
       margin: 0;
       text-align: center;
-      font-size: clamp(11px, 1.25vh, 14px);
+      font-size: clamp(12px, 1.4vh, 15px);
       font-weight: 800;
-      line-height: 1.28;
+      line-height: 1.32;
       color: #fff;
-      padding: clamp(3px, 0.45vh, 5px) clamp(8px, 0.9vw, 12px);
-      border-radius: 8px;
-      border: 1px solid rgba(95, 210, 255, .42);
+      padding: clamp(6px, 0.75vh, 8px) clamp(12px, 1.2vw, 16px);
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
-      box-shadow: 0 0 16px rgba(0, 150, 255, .12);
-      text-shadow: 0 0 10px rgba(0, 180, 255, .1);
+      box-shadow: 0 0 20px rgba(0, 150, 255, .14);
+      text-shadow: 0 0 12px rgba(0, 180, 255, .12);
     }
 
-    @media (max-height: 900px) {
+    @media (max-height: 860px) {
       #slide-07.slide {
-        padding: clamp(7px, 1vh, 12px) clamp(12px, 2.5vw, 36px);
+        padding: 8px 14px;
+      }
+      #slide-07 .s07-shell {
+        gap: 5px;
       }
       #slide-07 .s07-deck-header h2 {
-        font-size: clamp(24px, 3.3vh, 34px);
+        font-size: 34px;
       }
       #slide-07 .s07-deck-header > p {
-        font-size: clamp(12px, 1.45vh, 15px);
+        font-size: 16px;
       }
-      #slide-07 .s07-block h3 {
-        font-size: clamp(11px, 1.25vh, 14px);
-      }
-      #slide-07 .s07-block li {
-        font-size: clamp(9.5px, 1.08vh, 11.5px);
-        line-height: 1.24;
-      }
-    }
-
-    @media (max-height: 780px) {
-      #slide-07 .s07-shell {
-        gap: 2px;
+      #slide-07 .s07-flow {
+        padding: 4px 8px;
       }
       #slide-07 .s07-flow-node {
-        font-size: clamp(7.5px, 0.9vh, 9.5px);
-        padding: 1px 4px;
+        font-size: 10px;
+        padding: 2px 6px;
       }
-      #slide-07 .s07-block + .s07-block {
-        margin-top: 2px;
-        padding-top: 2px;
+      #slide-07 .s07-block h3 {
+        font-size: 14px;
       }
       #slide-07 .s07-block li {
-        font-size: clamp(9px, 1.05vh, 11px);
-        margin-bottom: 2px;
+        font-size: 11.5px;
+        line-height: 1.28;
+        margin-bottom: 4px;
+      }
+      #slide-07 .s07-panel {
+        padding: 7px 9px;
+        gap: 7px;
       }
       #slide-07 .s07-closing {
-        font-size: clamp(10px, 1.15vh, 12px);
-        padding: 2px 8px;
+        font-size: 12px;
+        padding: 5px 10px;
       }
     }
 
@@ -1747,6 +1757,9 @@
       }
       #slide-07 .s07-flow-node {
         white-space: normal;
+      }
+      #slide-07 .s07-panel--left {
+        justify-content: flex-start;
       }
     }
 
@@ -3872,36 +3885,36 @@
         gap: 1.5mm !important;
       }
       #slide-07 .s07-deck-header h2 {
-        font-size: 22pt !important;
+        font-size: 24pt !important;
       }
       #slide-07 .s07-deck-header > p {
-        font-size: 10pt !important;
+        font-size: 11pt !important;
       }
       #slide-07 .s07-flow-node {
-        font-size: 7pt !important;
-        padding: 1px 3px !important;
+        font-size: 9pt !important;
+        padding: 2px 4px !important;
       }
       #slide-07 .s07-flow-connector {
-        font-size: 8pt !important;
+        font-size: 9pt !important;
       }
       #slide-07 .s07-block h3 {
-        font-size: 9.5pt !important;
+        font-size: 11pt !important;
       }
       #slide-07 .s07-block li {
-        font-size: 8pt !important;
-        line-height: 1.22 !important;
+        font-size: 9.5pt !important;
+        line-height: 1.26 !important;
         margin-bottom: 1.5mm !important;
       }
       #slide-07 .s07-block + .s07-block {
-        margin-top: 1.5mm !important;
         padding-top: 1.5mm !important;
       }
       #slide-07 .s07-panel {
-        padding: 2mm 2.5mm !important;
+        padding: 2.5mm 3mm !important;
+        gap: 2mm !important;
       }
       #slide-07 .s07-closing {
-        font-size: 9.5pt !important;
-        padding: 2mm 3mm !important;
+        font-size: 11pt !important;
+        padding: 2.5mm 4mm !important;
       }
       #slide-07 .s07-shell,
       #slide-07 .s07-columns,
@@ -4301,7 +4314,7 @@
   </section>
 
   <!-- Slide 07 Trust -->
-  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-pdf-viewport-repair">
+  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-readable-full-content">
     <div class="s07-shell">
       <header class="s07-deck-header">
         <div class="s07-kicker">07 — Trust, Safety &amp; Governance</div>
