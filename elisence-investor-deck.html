@@ -1518,14 +1518,14 @@
       }
     }
 
-    /* Slide 07 — Trust architecture v1 (hard reset) */
+    /* Slide 07 — PDF-safe trust governance two-panel */
     #slide-07.slide {
       min-height: 100vh;
       height: 100vh;
       max-height: 100vh;
       justify-content: flex-start;
       align-items: stretch;
-      padding: clamp(28px, 4vh, 48px) clamp(24px, 4vw, 64px);
+      padding: clamp(14px, 2vh, 22px) clamp(18px, 3.2vw, 52px);
       overflow: hidden;
       scroll-snap-align: start;
     }
@@ -1536,178 +1536,140 @@
       width: 100%;
       max-width: min(1320px, 100%);
       height: 100%;
-      max-height: calc(100vh - clamp(56px, 8vh, 96px));
+      max-height: calc(100vh - clamp(28px, 4vh, 44px));
       margin: 0 auto;
-      gap: clamp(12px, 1.5vh, 16px);
+      min-height: 0;
+      gap: clamp(5px, 0.65vh, 7px);
     }
 
-    #slide-07 .s07-header {
+    #slide-07 .s07-deck-header {
       flex-shrink: 0;
+      margin: 0;
+      padding: 0;
     }
 
-    #slide-07 .s07-header > div:first-child {
-      font-size: clamp(14px, 1.1vw, 18px);
+    #slide-07 .s07-kicker {
+      font-size: clamp(10px, 0.8vw, 12px);
       font-weight: 800;
-      letter-spacing: .2em;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: #55d9ff;
-      margin-bottom: 8px;
+      margin: 0 0 2px;
     }
 
-    #slide-07 .s07-header h2 {
-      font-size: clamp(56px, 5vw, 72px);
+    #slide-07 .s07-deck-header h2 {
+      font-size: clamp(36px, 3.1vw, 48px);
       font-weight: 900;
-      line-height: 1.06;
+      line-height: 1.05;
       color: #fff;
-      margin: 0 0 6px;
+      margin: 0 0 2px;
+      text-shadow: 0 0 18px rgba(0, 180, 255, .16);
     }
 
-    #slide-07 .s07-header > p {
-      font-size: clamp(28px, 2.2vw, 34px);
+    #slide-07 .s07-deck-header > p {
+      font-size: clamp(18px, 1.35vw, 22px);
       font-weight: 700;
-      line-height: 1.35;
+      line-height: 1.28;
       color: rgba(200, 235, 255, .92);
       margin: 0;
     }
 
-    #slide-07 .s07-trust-hero {
+    #slide-07 .s07-flow {
       flex-shrink: 0;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 8px 10px;
-      padding: clamp(12px, 1.5vh, 16px) clamp(14px, 1.8vw, 20px);
-      border-radius: 24px;
-      border: 1px solid rgba(95, 210, 255, .48);
+      gap: 4px 6px;
+      padding: clamp(4px, 0.55vh, 6px) clamp(8px, 1vw, 10px);
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(6, 28, 62, .9), rgba(3, 12, 32, .96), rgba(6, 28, 62, .9));
-      box-shadow: 0 0 32px rgba(0, 140, 255, .18);
+      box-shadow: 0 0 20px rgba(0, 140, 255, .16);
     }
 
-    #slide-07 .s07-blue-underglow {
-      position: relative;
-      z-index: 0;
-    }
-
-    #slide-07 .s07-blue-underglow::after {
-      content: "";
-      position: absolute;
-      left: 6%;
-      right: 6%;
-      bottom: -6px;
-      height: 28px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 200, 255, .42), transparent 72%);
-      filter: blur(12px);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    #slide-07 .s07-trust-node {
-      font-size: clamp(15px, 1.05vw, 17px);
+    #slide-07 .s07-flow-node {
+      font-size: clamp(9.5px, 0.72vw, 11.5px);
       font-weight: 800;
-      letter-spacing: .04em;
-      line-height: 1.25;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(90, 190, 255, .4);
+      letter-spacing: .03em;
+      line-height: 1.15;
+      padding: 3px 7px;
+      border-radius: 8px;
+      border: 1px solid rgba(90, 190, 255, .35);
       color: rgba(210, 240, 255, .94);
       background: rgba(4, 22, 58, .78);
       text-align: center;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    #slide-07 .s07-trust-connector {
-      font-size: clamp(18px, 1.4vw, 22px);
+    #slide-07 .s07-flow-connector {
+      font-size: clamp(11px, 0.85vw, 13px);
       font-weight: 300;
       color: #55d9ff;
-      text-shadow: 0 0 14px rgba(0, 200, 255, .5);
       line-height: 1;
     }
 
-    #slide-07 .s07-scroll-body {
-      flex: 1;
+    #slide-07 .s07-columns {
+      flex: 1 1 0;
       min-height: 0;
-      overflow-y: auto;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(16px, 2vh, 20px);
-      padding-right: 6px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(85, 217, 255, .22) transparent;
-    }
-
-    #slide-07 .s07-scroll-body::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    #slide-07 .s07-scroll-body::-webkit-scrollbar-thumb {
-      background: rgba(85, 217, 255, .22);
-      border-radius: 6px;
-    }
-
-    #slide-07 .s07-card-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(16px, 2vh, 20px);
+      gap: clamp(8px, 1vh, 12px);
+      align-items: stretch;
     }
 
-    #slide-07 .s07-content-card {
-      border-radius: 28px;
+    #slide-07 .s07-panel {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 12px;
       border: 1px solid rgba(95, 210, 255, .48);
-      background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
-      padding: clamp(32px, 3.5vh, 40px);
-      box-shadow: 0 0 36px rgba(0, 130, 255, .14);
-      overflow: visible;
+      background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
+      box-shadow: 0 0 22px rgba(0, 150, 255, .16);
+      padding: clamp(6px, 0.8vh, 8px) clamp(8px, 1vw, 10px);
     }
 
-    #slide-07 .s07-card-grid .s07-content-card:last-child {
-      grid-column: 1 / -1;
+    #slide-07 .s07-block + .s07-block {
+      margin-top: clamp(6px, 0.75vh, 8px);
+      padding-top: clamp(6px, 0.75vh, 8px);
+      border-top: 1px solid rgba(85, 200, 255, .2);
     }
 
-    @media (min-width: 901px) {
-      #slide-07 .s07-card-grid .s07-content-card:last-child ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(20px, 3vw, 40px);
-        align-items: start;
-      }
-    }
-
-    #slide-07 .s07-content-card h3 {
-      font-size: clamp(28px, 2.2vw, 36px);
+    #slide-07 .s07-block h3 {
+      font-size: clamp(15px, 1.15vw, 19px);
       font-weight: 900;
-      letter-spacing: .05em;
-      line-height: 1.2;
+      letter-spacing: .04em;
+      line-height: 1.16;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(85, 200, 255, .25);
+      margin: 0 0 clamp(3px, 0.4vh, 5px);
+      padding-bottom: clamp(2px, 0.3vh, 4px);
+      border-bottom: 1px solid rgba(85, 200, 255, .18);
     }
 
-    #slide-07 .s07-content-card ul {
+    #slide-07 .s07-block ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    #slide-07 .s07-content-card li {
-      font-size: clamp(20px, 1.45vw, 24px);
+    #slide-07 .s07-block li {
+      font-size: clamp(11px, 0.85vw, 13.5px);
       font-weight: 600;
-      line-height: 1.55;
+      line-height: 1.32;
       color: rgba(220, 245, 255, .96);
-      margin-bottom: 16px;
-      padding-left: 1.15em;
+      margin-bottom: clamp(3px, 0.4vh, 5px);
+      padding-left: 1.05em;
       position: relative;
     }
 
-    #slide-07 .s07-content-card li:last-child {
+    #slide-07 .s07-block li:last-child {
       margin-bottom: 0;
     }
 
-    #slide-07 .s07-content-card li::before {
+    #slide-07 .s07-block li::before {
       content: "•";
       position: absolute;
       left: 0;
@@ -1715,41 +1677,28 @@
       font-weight: 900;
     }
 
-    #slide-07 .s07-closing-bar {
+    #slide-07 .s07-closing {
+      flex-shrink: 0;
+      margin: 0;
       text-align: center;
-      font-size: clamp(24px, 2.1vw, 28px);
+      font-size: clamp(13px, 1vw, 16px);
       font-weight: 800;
-      line-height: 1.5;
+      line-height: 1.34;
       color: #fff;
-      border-radius: 28px;
-      border: 1px solid rgba(95, 210, 255, .5);
-      background: linear-gradient(90deg, rgba(0, 75, 140, .28), rgba(70, 55, 150, .2), rgba(0, 75, 140, .28));
-      padding: clamp(24px, 2.8vh, 32px) clamp(26px, 3vw, 36px);
-      box-shadow: 0 0 40px rgba(0, 150, 255, .2);
-      margin: 0 0 6px;
-    }
-
-    @media (max-width: 1024px) {
-      #slide-07 .s07-header h2 {
-        font-size: clamp(48px, 5.5vw, 56px);
-      }
-      #slide-07 .s07-header > p {
-        font-size: clamp(24px, 2.5vw, 28px);
-      }
-      #slide-07 .s07-content-card h3 {
-        font-size: max(24px, clamp(24px, 2.8vw, 30px));
-      }
-      #slide-07 .s07-content-card li {
-        font-size: max(18px, clamp(18px, 1.8vw, 22px));
-      }
+      padding: clamp(5px, 0.65vh, 7px) clamp(10px, 1vw, 14px);
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .45);
+      background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
+      box-shadow: 0 0 20px rgba(0, 150, 255, .14);
+      text-shadow: 0 0 12px rgba(0, 180, 255, .12);
     }
 
     @media (max-width: 900px) {
-      #slide-07 .s07-card-grid {
+      #slide-07 .s07-columns {
         grid-template-columns: 1fr;
       }
-      #slide-07 .s07-trust-node {
-        font-size: clamp(14px, 1.2vw, 16px);
+      #slide-07 .s07-flow-node {
+        white-space: normal;
       }
     }
 
@@ -3859,6 +3808,17 @@
       #slide-06 .s06-panel {
         overflow: visible;
       }
+      #slide-07.slide {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+        page-break-inside: avoid;
+      }
+      #slide-07 .s07-shell,
+      #slide-07 .s07-columns,
+      #slide-07 .s07-panel {
+        overflow: visible;
+      }
     }
   </style>
 </head>
@@ -4252,67 +4212,67 @@
   </section>
 
   <!-- Slide 07 Trust -->
-  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-hard-reset-trust-architecture">
+  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-pdf-two-panel">
     <div class="s07-shell">
-      <header class="s07-header">
-        <div>07 — TRUST, SAFETY &amp; GOVERNANCE</div>
+      <header class="s07-deck-header">
+        <div class="s07-kicker">07 — Trust, Safety &amp; Governance</div>
         <h2>Trust Is Architecture</h2>
         <p>Built medical-aware, governed non-medical by default.</p>
       </header>
-      <section class="s07-trust-hero s07-blue-underglow">
-        <div class="s07-trust-node">Trust &amp; Safety</div>
-        <span class="s07-trust-connector" aria-hidden="true">→</span>
-        <div class="s07-trust-node">Governed Health Intelligence</div>
-        <span class="s07-trust-connector" aria-hidden="true">→</span>
-        <div class="s07-trust-node">Medical-Ready Foundations</div>
-        <span class="s07-trust-connector" aria-hidden="true">→</span>
-        <div class="s07-trust-node">Zero Trust &amp; Privacy</div>
-        <span class="s07-trust-connector" aria-hidden="true">→</span>
-        <div class="s07-trust-node">Fail Safely</div>
-      </section>
-      <div class="s07-scroll-body">
-        <section class="s07-card-grid">
-          <article class="s07-content-card s07-blue-underglow">
-            <h3>Trust &amp; Safety by Design</h3>
+      <div class="s07-flow" aria-label="Trust architecture flow">
+        <span class="s07-flow-node">Trust &amp; Safety</span>
+        <span class="s07-flow-connector" aria-hidden="true">→</span>
+        <span class="s07-flow-node">Governed Health Intelligence</span>
+        <span class="s07-flow-connector" aria-hidden="true">→</span>
+        <span class="s07-flow-node">Medical-Ready Foundations</span>
+        <span class="s07-flow-connector" aria-hidden="true">→</span>
+        <span class="s07-flow-node">Zero Trust &amp; Privacy</span>
+        <span class="s07-flow-connector" aria-hidden="true">→</span>
+        <span class="s07-flow-node">Fail Safely</span>
+      </div>
+      <div class="s07-columns">
+        <article class="s07-panel s07-panel--left" aria-label="Trust and safety, medical-ready foundations">
+          <div class="s07-block">
+            <h3>TRUST &amp; SAFETY BY DESIGN</h3>
             <ul>
               <li>Elisence is designed with healthcare-aware safety thinking from the beginning — prioritising trust, responsible boundaries, privacy, transparency, permission, and safer long-term participation.</li>
               <li>Citizen experiences are intentionally designed to remain non-clinical and non-diagnostic by default, helping people better understand and navigate healthcare rather than replacing doctors or acting as autonomous medical authority.</li>
             </ul>
-          </article>
-          <article class="s07-content-card s07-blue-underglow">
-            <h3>Governed Health Intelligence</h3>
+          </div>
+          <div class="s07-block">
+            <h3>MEDICAL-READY FOUNDATIONS</h3>
+            <ul>
+              <li>Elisence is intentionally designed as a governed non-medical platform today — while supporting future clinically governed activation where appropriate, under licensed, institutionally supervised, or healthcare-system-led environments.</li>
+              <li>Safety-aware infrastructure, governance foundations, auditability, permissions, and healthcare-aware controls are designed from the beginning, remaining intentionally constrained and fail-safe by default.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="s07-panel s07-panel--right" aria-label="Governed intelligence, zero trust, fail safely">
+          <div class="s07-block">
+            <h3>GOVERNED HEALTH INTELLIGENCE</h3>
             <ul>
               <li>Elisence is designed around trusted, governed, and curated health understanding rather than unrestricted medical AI generation.</li>
               <li>Health understanding is designed to align with healthcare-aware thinking inspired by NHS-style safety principles, UK and EU privacy expectations, FDA-informed boundaries, MDR thinking, and Gulf healthcare realities — while adapting responsibly to local healthcare context over time.</li>
               <li>Responses are designed to operate within governed safety boundaries, uncertainty handling, trusted escalation pathways, and permission-aware experiences rather than unsafe certainty or unrestricted medical automation.</li>
             </ul>
-          </article>
-          <article class="s07-content-card s07-blue-underglow">
-            <h3>Medical-Ready Foundations</h3>
-            <ul>
-              <li>Elisence is intentionally designed as a governed non-medical platform today — while supporting future clinically governed activation where appropriate, under licensed, institutionally supervised, or healthcare-system-led environments.</li>
-              <li>Safety-aware infrastructure, governance foundations, auditability, permissions, and healthcare-aware controls are designed from the beginning, remaining intentionally constrained and fail-safe by default.</li>
-            </ul>
-          </article>
-          <article class="s07-content-card s07-blue-underglow">
-            <h3>Zero Trust, Privacy &amp; Accountability</h3>
+          </div>
+          <div class="s07-block">
+            <h3>ZERO TRUST, PRIVACY &amp; ACCOUNTABILITY</h3>
             <ul>
               <li>Elisence follows a Zero-Trust philosophy — permissions, access, identity, consent, and visibility are validated rather than assumed.</li>
               <li>Privacy-aware, permissioned, explainable, and accountable participation are designed to support trust over time.</li>
             </ul>
-          </article>
-          <article class="s07-content-card s07-blue-underglow">
-            <h3>Built to Fail Safely</h3>
+          </div>
+          <div class="s07-block">
+            <h3>BUILT TO FAIL SAFELY</h3>
             <ul>
               <li>Safety matters more than false certainty.</li>
               <li>Elisence is designed to behave conservatively, explain uncertainty, restrict unsafe behaviour, and fail safely rather than overclaim confidence.</li>
             </ul>
-          </article>
-        </section>
-        <section class="s07-closing-bar s07-blue-underglow">
-          Trust is not paperwork. Trust is architecture.
-        </section>
+          </div>
+        </article>
       </div>
+      <p class="s07-closing">Trust is not paperwork. Trust is architecture.</p>
     </div>
   </section>
 
