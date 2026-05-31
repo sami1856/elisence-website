@@ -2167,8 +2167,11 @@
     }
 
     #slide-09 .s09-hero-banner {
-      flex-shrink: 0;
+      flex: 1 1 auto;
+      min-height: clamp(200px, 42vh, 320px);
       position: relative;
+      display: flex;
+      flex-direction: column;
       padding: 2px;
       border-radius: 26px;
       background: linear-gradient(135deg, rgba(85, 217, 255, .55), rgba(0, 220, 180, .35), rgba(60, 120, 255, .4));
@@ -2179,10 +2182,16 @@
     }
 
     #slide-09 .s09-hero-frame {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 24px;
       overflow: hidden;
       background: rgba(2, 8, 22, .92);
       position: relative;
+      padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1vw, 12px);
     }
 
     #slide-09 .s09-hero-frame::after {
@@ -2190,17 +2199,19 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(2, 8, 22, .15) 0%, transparent 28%, transparent 72%, rgba(0, 140, 255, .08) 100%),
-        radial-gradient(ellipse 90% 40% at 50% 100%, rgba(0, 200, 255, .12), transparent 70%);
+        linear-gradient(180deg, rgba(2, 8, 22, .12) 0%, transparent 22%, transparent 78%, rgba(0, 140, 255, .06) 100%),
+        radial-gradient(ellipse 90% 40% at 50% 100%, rgba(0, 200, 255, .1), transparent 70%);
       pointer-events: none;
     }
 
     #slide-09 .s09-hero-banner img {
       display: block;
       width: 100%;
-      height: clamp(220px, 27vh, 288px);
-      object-fit: cover;
-      object-position: center 38%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center center;
     }
 
     #slide-09 .s09-orbital-glow {
@@ -2256,7 +2267,7 @@
     }
 
     #slide-09 .s09-columns {
-      flex: 1 1 0;
+      flex: 0 0 auto;
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -2266,7 +2277,8 @@
 
     #slide-09 .s09-panel {
       min-height: 0;
-      height: 100%;
+      height: auto;
+      max-height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -2352,8 +2364,8 @@
       #slide-09 .s09-shell {
         gap: 4px;
       }
-      #slide-09 .s09-hero-banner img {
-        height: clamp(168px, 21vh, 220px);
+      #slide-09 .s09-hero-banner {
+        min-height: clamp(168px, 38vh, 260px);
       }
       #slide-09 .s09-deck-header h2 {
         font-size: 34px;
@@ -3770,8 +3782,19 @@
         height: 100% !important;
         gap: 1.5mm !important;
       }
+      #slide-09 .s09-hero-banner {
+        flex: 1 1 auto !important;
+        min-height: 42mm !important;
+        max-height: 48% !important;
+      }
       #slide-09 .s09-hero-banner img {
-        height: 34mm !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+      }
+      #slide-09 .s09-columns {
+        flex: 0 0 auto !important;
       }
       #slide-09 .s09-deck-header h2 {
         font-size: 20pt !important;
@@ -4313,11 +4336,11 @@
   </section>
 
   <!-- Slide 09 Market -->
-  <section class="slide deck-slide" id="slide-09" data-deck-build="s09-pdf-two-panel-market">
+  <section class="slide deck-slide" id="slide-09" data-deck-build="s09-hero-balance-full-image">
     <div class="s09-shell">
       <section class="s09-hero-banner s09-orbital-glow">
         <div class="s09-hero-frame">
-          <img src="assets/investor-deck/slide09-global-expansion-banner.jpg" alt="UK to Europe to Middle East to World — Elisence global expansion pathway with Earth horizon" width="1320" height="230" />
+          <img src="assets/investor-deck/slide09-global-expansion-banner.jpg" alt="UK to Europe to Middle East to World — Elisence global expansion pathway with Earth horizon" width="1774" height="887" />
         </div>
       </section>
       <header class="s09-deck-header">
