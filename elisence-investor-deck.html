@@ -1518,14 +1518,19 @@
       }
     }
 
-    /* Slide 07 — PDF-safe trust governance two-panel */
+    /* Slide 07 — PDF-safe trust governance (real viewport compact) */
     #slide-07.slide {
-      min-height: 100vh;
-      height: 100vh;
-      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
       justify-content: flex-start;
       align-items: stretch;
-      padding: clamp(14px, 2vh, 22px) clamp(18px, 3.2vw, 52px);
+      min-height: 100vh;
+      min-height: 100dvh;
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100vh;
+      max-height: 100dvh;
+      padding: clamp(8px, 1.1vh, 14px) clamp(14px, 2.8vw, 44px);
       overflow: hidden;
       scroll-snap-align: start;
     }
@@ -1533,13 +1538,14 @@
     #slide-07 .s07-shell {
       display: flex;
       flex-direction: column;
+      flex: 1 1 auto;
       width: 100%;
       max-width: min(1320px, 100%);
-      height: 100%;
-      max-height: calc(100vh - clamp(28px, 4vh, 44px));
+      height: auto;
+      max-height: 100%;
       margin: 0 auto;
       min-height: 0;
-      gap: clamp(5px, 0.65vh, 7px);
+      gap: clamp(3px, 0.45vh, 5px);
     }
 
     #slide-07 .s07-deck-header {
@@ -1549,27 +1555,28 @@
     }
 
     #slide-07 .s07-kicker {
-      font-size: clamp(10px, 0.8vw, 12px);
+      font-size: clamp(9px, 0.75vw, 11px);
       font-weight: 800;
-      letter-spacing: .15em;
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: #55d9ff;
-      margin: 0 0 2px;
+      margin: 0 0 1px;
+      line-height: 1.15;
     }
 
     #slide-07 .s07-deck-header h2 {
-      font-size: clamp(36px, 3.1vw, 48px);
+      font-size: clamp(26px, 3.6vh, 40px);
       font-weight: 900;
-      line-height: 1.05;
+      line-height: 1.04;
       color: #fff;
-      margin: 0 0 2px;
-      text-shadow: 0 0 18px rgba(0, 180, 255, .16);
+      margin: 0 0 1px;
+      text-shadow: 0 0 14px rgba(0, 180, 255, .14);
     }
 
     #slide-07 .s07-deck-header > p {
-      font-size: clamp(18px, 1.35vw, 22px);
+      font-size: clamp(13px, 1.55vh, 17px);
       font-weight: 700;
-      line-height: 1.28;
+      line-height: 1.22;
       color: rgba(200, 235, 255, .92);
       margin: 0;
     }
@@ -1580,22 +1587,22 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 4px 6px;
-      padding: clamp(4px, 0.55vh, 6px) clamp(8px, 1vw, 10px);
-      border-radius: 10px;
-      border: 1px solid rgba(95, 210, 255, .45);
+      gap: 2px 4px;
+      padding: clamp(2px, 0.35vh, 4px) clamp(6px, 0.8vw, 8px);
+      border-radius: 8px;
+      border: 1px solid rgba(95, 210, 255, .42);
       background: linear-gradient(90deg, rgba(6, 28, 62, .9), rgba(3, 12, 32, .96), rgba(6, 28, 62, .9));
-      box-shadow: 0 0 20px rgba(0, 140, 255, .16);
+      box-shadow: 0 0 16px rgba(0, 140, 255, .14);
     }
 
     #slide-07 .s07-flow-node {
-      font-size: clamp(9.5px, 0.72vw, 11.5px);
+      font-size: clamp(8px, 0.95vh, 10.5px);
       font-weight: 800;
-      letter-spacing: .03em;
-      line-height: 1.15;
-      padding: 3px 7px;
-      border-radius: 8px;
-      border: 1px solid rgba(90, 190, 255, .35);
+      letter-spacing: .02em;
+      line-height: 1.1;
+      padding: 2px 5px;
+      border-radius: 6px;
+      border: 1px solid rgba(90, 190, 255, .32);
       color: rgba(210, 240, 255, .94);
       background: rgba(4, 22, 58, .78);
       text-align: center;
@@ -1604,7 +1611,7 @@
     }
 
     #slide-07 .s07-flow-connector {
-      font-size: clamp(11px, 0.85vw, 13px);
+      font-size: clamp(9px, 1vh, 11px);
       font-weight: 300;
       color: #55d9ff;
       line-height: 1;
@@ -1615,7 +1622,7 @@
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(8px, 1vh, 12px);
+      gap: clamp(5px, 0.65vh, 8px);
       align-items: stretch;
     }
 
@@ -1624,29 +1631,29 @@
       display: flex;
       flex-direction: column;
       gap: 0;
-      border-radius: 12px;
-      border: 1px solid rgba(95, 210, 255, .48);
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
-      box-shadow: 0 0 22px rgba(0, 150, 255, .16);
-      padding: clamp(6px, 0.8vh, 8px) clamp(8px, 1vw, 10px);
+      box-shadow: 0 0 18px rgba(0, 150, 255, .14);
+      padding: clamp(4px, 0.55vh, 6px) clamp(6px, 0.75vw, 8px);
     }
 
     #slide-07 .s07-block + .s07-block {
-      margin-top: clamp(6px, 0.75vh, 8px);
-      padding-top: clamp(6px, 0.75vh, 8px);
-      border-top: 1px solid rgba(85, 200, 255, .2);
+      margin-top: clamp(3px, 0.4vh, 5px);
+      padding-top: clamp(3px, 0.4vh, 5px);
+      border-top: 1px solid rgba(85, 200, 255, .18);
     }
 
     #slide-07 .s07-block h3 {
-      font-size: clamp(15px, 1.15vw, 19px);
+      font-size: clamp(12px, 1.35vh, 16px);
       font-weight: 900;
-      letter-spacing: .04em;
-      line-height: 1.16;
+      letter-spacing: .03em;
+      line-height: 1.12;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 clamp(3px, 0.4vh, 5px);
-      padding-bottom: clamp(2px, 0.3vh, 4px);
-      border-bottom: 1px solid rgba(85, 200, 255, .18);
+      margin: 0 0 clamp(2px, 0.25vh, 3px);
+      padding-bottom: clamp(1px, 0.2vh, 2px);
+      border-bottom: 1px solid rgba(85, 200, 255, .16);
     }
 
     #slide-07 .s07-block ul {
@@ -1656,12 +1663,12 @@
     }
 
     #slide-07 .s07-block li {
-      font-size: clamp(11px, 0.85vw, 13.5px);
+      font-size: clamp(10px, 1.15vh, 12.5px);
       font-weight: 600;
-      line-height: 1.32;
+      line-height: 1.26;
       color: rgba(220, 245, 255, .96);
-      margin-bottom: clamp(3px, 0.4vh, 5px);
-      padding-left: 1.05em;
+      margin-bottom: clamp(2px, 0.28vh, 3px);
+      padding-left: 1em;
       position: relative;
     }
 
@@ -1681,16 +1688,57 @@
       flex-shrink: 0;
       margin: 0;
       text-align: center;
-      font-size: clamp(13px, 1vw, 16px);
+      font-size: clamp(11px, 1.25vh, 14px);
       font-weight: 800;
-      line-height: 1.34;
+      line-height: 1.28;
       color: #fff;
-      padding: clamp(5px, 0.65vh, 7px) clamp(10px, 1vw, 14px);
-      border-radius: 10px;
-      border: 1px solid rgba(95, 210, 255, .45);
+      padding: clamp(3px, 0.45vh, 5px) clamp(8px, 0.9vw, 12px);
+      border-radius: 8px;
+      border: 1px solid rgba(95, 210, 255, .42);
       background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
-      box-shadow: 0 0 20px rgba(0, 150, 255, .14);
-      text-shadow: 0 0 12px rgba(0, 180, 255, .12);
+      box-shadow: 0 0 16px rgba(0, 150, 255, .12);
+      text-shadow: 0 0 10px rgba(0, 180, 255, .1);
+    }
+
+    @media (max-height: 900px) {
+      #slide-07.slide {
+        padding: clamp(7px, 1vh, 12px) clamp(12px, 2.5vw, 36px);
+      }
+      #slide-07 .s07-deck-header h2 {
+        font-size: clamp(24px, 3.3vh, 34px);
+      }
+      #slide-07 .s07-deck-header > p {
+        font-size: clamp(12px, 1.45vh, 15px);
+      }
+      #slide-07 .s07-block h3 {
+        font-size: clamp(11px, 1.25vh, 14px);
+      }
+      #slide-07 .s07-block li {
+        font-size: clamp(9.5px, 1.08vh, 11.5px);
+        line-height: 1.24;
+      }
+    }
+
+    @media (max-height: 780px) {
+      #slide-07 .s07-shell {
+        gap: 2px;
+      }
+      #slide-07 .s07-flow-node {
+        font-size: clamp(7.5px, 0.9vh, 9.5px);
+        padding: 1px 4px;
+      }
+      #slide-07 .s07-block + .s07-block {
+        margin-top: 2px;
+        padding-top: 2px;
+      }
+      #slide-07 .s07-block li {
+        font-size: clamp(9px, 1.05vh, 11px);
+        margin-bottom: 2px;
+      }
+      #slide-07 .s07-closing {
+        font-size: clamp(10px, 1.15vh, 12px);
+        padding: 2px 8px;
+      }
     }
 
     @media (max-width: 900px) {
@@ -3809,15 +3857,56 @@
         overflow: visible;
       }
       #slide-07.slide {
-        height: 100vh;
-        max-height: 100vh;
-        overflow: hidden;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: 100vh !important;
+        overflow: hidden !important;
         page-break-inside: avoid;
+        break-inside: avoid;
+        padding: 6mm 8mm !important;
+        box-sizing: border-box;
+      }
+      #slide-07 .s07-shell {
+        max-height: 100% !important;
+        height: 100% !important;
+        gap: 1.5mm !important;
+      }
+      #slide-07 .s07-deck-header h2 {
+        font-size: 22pt !important;
+      }
+      #slide-07 .s07-deck-header > p {
+        font-size: 10pt !important;
+      }
+      #slide-07 .s07-flow-node {
+        font-size: 7pt !important;
+        padding: 1px 3px !important;
+      }
+      #slide-07 .s07-flow-connector {
+        font-size: 8pt !important;
+      }
+      #slide-07 .s07-block h3 {
+        font-size: 9.5pt !important;
+      }
+      #slide-07 .s07-block li {
+        font-size: 8pt !important;
+        line-height: 1.22 !important;
+        margin-bottom: 1.5mm !important;
+      }
+      #slide-07 .s07-block + .s07-block {
+        margin-top: 1.5mm !important;
+        padding-top: 1.5mm !important;
+      }
+      #slide-07 .s07-panel {
+        padding: 2mm 2.5mm !important;
+      }
+      #slide-07 .s07-closing {
+        font-size: 9.5pt !important;
+        padding: 2mm 3mm !important;
       }
       #slide-07 .s07-shell,
       #slide-07 .s07-columns,
       #slide-07 .s07-panel {
-        overflow: visible;
+        overflow: visible !important;
       }
     }
   </style>
@@ -4212,7 +4301,7 @@
   </section>
 
   <!-- Slide 07 Trust -->
-  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-pdf-two-panel">
+  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-pdf-viewport-repair">
     <div class="s07-shell">
       <header class="s07-deck-header">
         <div class="s07-kicker">07 — Trust, Safety &amp; Governance</div>
