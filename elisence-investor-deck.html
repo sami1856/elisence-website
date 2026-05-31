@@ -245,8 +245,8 @@
 
     /* Slide 02 — image + full text v3 */
     #slide-02 {
-      padding-top: clamp(22px, 3.5vh, 40px);
-      padding-bottom: clamp(22px, 3.5vh, 40px);
+      padding-top: clamp(18px, 2.8vh, 32px);
+      padding-bottom: clamp(18px, 2.8vh, 32px);
       justify-content: flex-start;
     }
 
@@ -297,9 +297,9 @@
     }
 
     #slide-02 .s02-v3-intro {
-      font-size: clamp(15px, 1.15vw, 18px);
+      font-size: clamp(16px, 1.25vw, 19px);
       font-weight: 750;
-      line-height: 1.42;
+      line-height: 1.44;
       color: rgba(235, 248, 255, .96);
       margin: 0;
       padding-bottom: clamp(8px, 0.9vh, 10px);
@@ -323,7 +323,7 @@
     }
 
     #slide-02 .s02-v3-section-title {
-      font-size: clamp(15px, 1.15vw, 18px);
+      font-size: clamp(16px, 1.22vw, 19px);
       font-weight: 900;
       letter-spacing: .12em;
       text-transform: uppercase;
@@ -340,8 +340,8 @@
     }
 
     #slide-02 .s02-v3-text-panel li {
-      font-size: clamp(14px, 0.98vw, 16px);
-      line-height: 1.42;
+      font-size: clamp(15px, 1.12vw, 17.5px);
+      line-height: 1.44;
       font-weight: 600;
       color: rgba(210, 240, 255, .94);
       margin-bottom: clamp(8px, 1vh, 12px);
@@ -367,7 +367,7 @@
       margin-top: clamp(8px, 1vh, 12px);
       padding: clamp(10px, 1.1vh, 13px) clamp(14px, 2vw, 20px);
       text-align: center;
-      font-size: clamp(16px, 1.3vw, 20px);
+      font-size: clamp(17px, 1.38vw, 21px);
       font-weight: 900;
       line-height: 1.4;
       color: #fff;
@@ -4043,6 +4043,72 @@
       .compare { grid-template-columns: 1fr; text-align: center; }
       .compare-arrow { transform: rotate(90deg); margin: 8px auto; }
       .founder-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Global readability pass — taller viewports only; tight/protected slides unchanged */
+    @media (min-height: 900px) and (min-width: 1200px) {
+      #slide-03 .s03-v3-driver-card h3 {
+        font-size: clamp(14px, 1.12vw, 17px);
+      }
+      #slide-03 .s03-v3-driver-text {
+        font-size: clamp(14px, 1.05vw, 16px);
+        line-height: 1.42;
+      }
+      #slide-03 .s03-v3-shift-heading {
+        font-size: clamp(14px, 1.12vw, 17px);
+      }
+      #slide-03 .s03-v3-shift-from {
+        font-size: clamp(13px, 1vw, 15px);
+      }
+      #slide-03 .s03-v3-shift-to {
+        font-size: clamp(14px, 1.08vw, 16px);
+      }
+      #slide-03 .s03-v3-closing-bar {
+        font-size: clamp(16px, 1.28vw, 19px);
+        line-height: 1.46;
+      }
+
+      #slide-05 .s05-top-intro > p,
+      #slide-05 .s05-top-bullets li,
+      #slide-05 .s05-top-frag p,
+      #slide-05 .s05-block p,
+      #slide-05 .s05-block li {
+        font-size: clamp(11px, 0.82vw, 13px);
+        line-height: 1.32;
+      }
+      #slide-05 .s05-chips span {
+        font-size: clamp(10.5px, 0.78vw, 12px);
+      }
+      #slide-05 .s05-block h4 {
+        font-size: clamp(11.5px, 0.88vw, 14px);
+      }
+      #slide-05 .s05-closings p {
+        font-size: clamp(11px, 0.85vw, 13px);
+        line-height: 1.34;
+      }
+      #slide-05 .s05-closing-final {
+        font-size: clamp(11.5px, 0.88vw, 14px) !important;
+      }
+
+      #slide-06 .s06-block li {
+        font-size: clamp(12px, 0.92vw, 14.5px);
+        line-height: 1.36;
+      }
+      #slide-06 .s06-flow-node {
+        font-size: clamp(11px, 0.85vw, 13px);
+      }
+      #slide-06 .s06-flow-elisa span {
+        font-size: clamp(10px, 0.76vw, 12px);
+      }
+
+      #slide-08 .s08-block li {
+        font-size: clamp(13px, 1vw, 15.5px);
+        line-height: 1.38;
+      }
+      #slide-08 .s08-closing {
+        font-size: clamp(15px, 1.15vw, 18px);
+        line-height: 1.38;
+      }
     }
 
     @media print {
