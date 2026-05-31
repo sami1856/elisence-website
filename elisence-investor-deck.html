@@ -940,186 +940,146 @@
       }
     }
 
-    /* Slide 05 — PDF-safe two-panel rebuild */
+    /* Slide 05 — final PDF-safe: compact top strip + full-width main */
     #slide-05.slide {
       min-height: 100vh;
       height: 100vh;
       max-height: 100vh;
       justify-content: flex-start;
       align-items: stretch;
-      padding: clamp(18px, 2.4vh, 28px) clamp(20px, 3.5vw, 56px);
+      padding: clamp(14px, 2vh, 22px) clamp(18px, 3.2vw, 52px);
       overflow: hidden;
       scroll-snap-align: start;
     }
 
-    #slide-05 .s05-pdf-shell {
+    #slide-05 .s05-shell {
       display: flex;
       flex-direction: column;
       width: 100%;
       max-width: min(1320px, 100%);
       height: 100%;
-      max-height: calc(100vh - clamp(36px, 4.8vh, 56px));
+      max-height: calc(100vh - clamp(28px, 4vh, 44px));
       margin: 0 auto;
       min-height: 0;
-      gap: clamp(6px, 0.75vh, 8px);
+      gap: clamp(5px, 0.65vh, 7px);
     }
 
-    #slide-05 .s05-pdf-header {
+    #slide-05 .s05-deck-header {
       flex-shrink: 0;
       margin: 0;
       padding: 0;
     }
 
-    #slide-05 .s05-pdf-kicker {
-      font-size: clamp(10px, 0.82vw, 12px);
+    #slide-05 .s05-deck-kicker {
+      font-size: clamp(10px, 0.8vw, 12px);
       font-weight: 800;
-      letter-spacing: .16em;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: #55d9ff;
-      margin: 0 0 2px;
+      margin: 0 0 1px;
     }
 
-    #slide-05 .s05-pdf-header h2 {
-      font-size: clamp(36px, 3.1vw, 48px);
+    #slide-05 .s05-deck-header h2 {
+      font-size: clamp(32px, 2.75vw, 44px);
       font-weight: 900;
-      line-height: 1.06;
+      line-height: 1.05;
       color: #fff;
-      margin: 0 0 2px;
-      text-shadow: 0 0 20px rgba(0, 180, 255, .18);
-    }
-
-    #slide-05 .s05-pdf-header > p {
-      font-size: clamp(18px, 1.35vw, 24px);
-      font-weight: 700;
-      line-height: 1.3;
-      color: rgba(200, 235, 255, .92);
       margin: 0;
+      text-shadow: 0 0 18px rgba(0, 180, 255, .16);
     }
 
-    #slide-05 .s05-pdf-columns {
-      flex: 1;
-      min-height: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(8px, 1vh, 12px);
-      align-items: stretch;
-      overflow: hidden;
-    }
-
-    #slide-05 .s05-pdf-panel {
-      position: relative;
-      z-index: 0;
-      min-height: 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(2px, 0.35vh, 4px);
-      border-radius: 14px;
-      padding: clamp(6px, 0.75vh, 9px) clamp(8px, 0.95vw, 11px);
-    }
-
-    #slide-05 .s05-pdf-panel::after {
-      content: "";
-      position: absolute;
-      left: 6%;
-      right: 6%;
-      bottom: 0;
-      height: 14px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: -1;
-      filter: blur(8px);
-    }
-
-    #slide-05 .s05-pdf-panel--problem {
-      border: 1px solid rgba(255, 120, 160, .42);
+    #slide-05 .s05-top {
+      flex: 0 0 auto;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 120, 160, .4);
       background: linear-gradient(165deg, rgba(48, 18, 38, .82), rgba(12, 8, 22, .96));
-      box-shadow: 0 0 22px rgba(200, 60, 120, .12);
+      box-shadow: 0 0 20px rgba(200, 60, 120, .1);
+      padding: clamp(5px, 0.65vh, 7px) clamp(8px, 0.95vw, 10px);
     }
 
-    #slide-05 .s05-pdf-panel--problem::after {
-      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(220, 80, 140, .28), transparent 72%);
+    #slide-05 .s05-top-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) minmax(0, 1fr);
+      grid-template-areas:
+        "intro chips bullets"
+        "frag frag bullets";
+      gap: clamp(3px, 0.4vh, 5px) clamp(8px, 1vw, 12px);
+      align-items: start;
     }
 
-    #slide-05 .s05-pdf-panel--solution {
-      border: 1px solid rgba(95, 210, 255, .5);
-      background: linear-gradient(165deg, rgba(10, 42, 95, .9), rgba(3, 12, 32, .96));
-      box-shadow: 0 0 26px rgba(0, 150, 255, .2);
+    #slide-05 .s05-top-intro {
+      grid-area: intro;
     }
 
-    #slide-05 .s05-pdf-panel--solution::after {
-      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 200, 255, .38), transparent 72%);
+    #slide-05 .s05-top-chips {
+      grid-area: chips;
     }
 
-    #slide-05 .s05-pdf-panel > h3 {
-      flex-shrink: 0;
-      font-size: clamp(18px, 1.45vw, 24px);
+    #slide-05 .s05-top-bullets {
+      grid-area: bullets;
+    }
+
+    #slide-05 .s05-top-frag {
+      grid-area: frag;
+      border-top: 1px solid rgba(255, 130, 170, .2);
+      padding-top: clamp(3px, 0.35vh, 4px);
+    }
+
+    #slide-05 .s05-top-intro h3 {
+      font-size: clamp(13px, 1.05vw, 17px);
       font-weight: 900;
       letter-spacing: .06em;
       line-height: 1.15;
       text-transform: uppercase;
-      margin: 0;
-    }
-
-    #slide-05 .s05-pdf-panel--problem > h3 {
       color: #ffb8d0;
+      margin: 0 0 2px;
     }
 
-    #slide-05 .s05-pdf-panel--solution > h3 {
-      color: #8edcff;
-    }
-
-    #slide-05 .s05-pdf-lead,
-    #slide-05 .s05-pdf-section p,
-    #slide-05 .s05-pdf-closing {
-      font-size: clamp(11.5px, 0.88vw, 14px);
+    #slide-05 .s05-top-intro > p {
+      font-size: clamp(11px, 0.85vw, 13px);
       font-weight: 600;
-      line-height: 1.32;
+      line-height: 1.3;
       color: rgba(220, 245, 255, .96);
       margin: 0;
     }
 
-    #slide-05 .s05-pdf-chips {
+    #slide-05 .s05-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
-      flex-shrink: 0;
+      gap: 3px;
     }
 
-    #slide-05 .s05-pdf-chips span {
-      font-size: clamp(10px, 0.78vw, 12px);
+    #slide-05 .s05-chips span {
+      font-size: clamp(9.5px, 0.72vw, 11.5px);
       font-weight: 700;
-      line-height: 1.2;
-      padding: 3px 7px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 130, 170, .32);
+      line-height: 1.15;
+      padding: 2px 6px;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 130, 170, .3);
       color: rgba(255, 220, 235, .92);
-      background: rgba(60, 20, 40, .5);
+      background: rgba(60, 20, 40, .48);
     }
 
-    #slide-05 .s05-pdf-list {
+    #slide-05 .s05-top-bullets {
       list-style: none;
       margin: 0;
-      padding: clamp(3px, 0.4vh, 4px) 0 0;
-      border-top: 1px solid rgba(255, 130, 170, .18);
-      flex-shrink: 0;
+      padding: 0;
+      columns: 2;
+      column-gap: clamp(8px, 1vw, 10px);
     }
 
-    #slide-05 .s05-pdf-list li {
-      font-size: clamp(11.5px, 0.88vw, 14px);
+    #slide-05 .s05-top-bullets li {
+      font-size: clamp(9.5px, 0.72vw, 11.5px);
       font-weight: 600;
-      line-height: 1.32;
+      line-height: 1.28;
       color: rgba(215, 240, 255, .94);
-      margin-bottom: clamp(2px, 0.25vh, 3px);
-      padding-left: 1.1em;
+      margin-bottom: 2px;
+      padding-left: 1em;
       position: relative;
+      break-inside: avoid;
     }
 
-    #slide-05 .s05-pdf-list li:last-child {
-      margin-bottom: 0;
-    }
-
-    #slide-05 .s05-pdf-list li::before {
+    #slide-05 .s05-top-bullets li::before {
       content: "•";
       position: absolute;
       left: 0;
@@ -1127,99 +1087,224 @@
       font-weight: 900;
     }
 
-    #slide-05 .s05-pdf-section {
-      flex-shrink: 0;
-      padding-top: clamp(3px, 0.4vh, 5px);
-      margin-top: clamp(1px, 0.2vh, 2px);
-      border-top: 1px solid rgba(85, 200, 255, .2);
-    }
-
-    #slide-05 .s05-pdf-panel--problem .s05-pdf-section {
-      border-top-color: rgba(255, 130, 170, .22);
-    }
-
-    #slide-05 .s05-pdf-section h4 {
-      font-size: clamp(15px, 1.1vw, 20px);
+    #slide-05 .s05-top-frag h4 {
+      font-size: clamp(11px, 0.88vw, 14px);
       font-weight: 900;
       letter-spacing: .05em;
-      line-height: 1.18;
+      line-height: 1.15;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 clamp(1px, 0.2vh, 3px);
+      margin: 0 0 2px;
     }
 
-    #slide-05 .s05-pdf-panel--problem .s05-pdf-section h4 {
-      color: #8edcff;
+    #slide-05 .s05-top-frag p {
+      font-size: clamp(9.5px, 0.72vw, 11.5px);
+      font-weight: 600;
+      line-height: 1.28;
+      color: rgba(220, 245, 255, .96);
+      margin: 0;
     }
 
-    #slide-05 .s05-pdf-brand {
+    #slide-05 .s05-main {
+      flex: 1 1 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(4px, 0.5vh, 5px);
+      border-radius: 12px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(165deg, rgba(10, 42, 95, .9), rgba(3, 12, 32, .96));
+      box-shadow: 0 0 24px rgba(0, 150, 255, .18);
+      padding: clamp(5px, 0.65vh, 7px) clamp(8px, 0.95vw, 10px);
+    }
+
+    #slide-05 .s05-main > h3 {
       flex-shrink: 0;
-      padding: clamp(4px, 0.5vh, 6px) clamp(6px, 0.7vw, 8px);
-      border-radius: 10px;
-      border: 1px solid rgba(120, 220, 255, .42);
-      background: rgba(0, 55, 110, .38);
+      font-size: clamp(14px, 1.15vw, 18px);
+      font-weight: 900;
+      letter-spacing: .06em;
+      line-height: 1.12;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0;
+      padding-bottom: 3px;
+      border-bottom: 1px solid rgba(85, 200, 255, .22);
     }
 
-    #slide-05 .s05-pdf-brand strong {
-      display: block;
-      font-size: clamp(13px, 1vw, 16px);
+    #slide-05 .s05-main-grid {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(4px, 0.5vh, 6px) clamp(10px, 1.2vw, 14px);
+      align-content: start;
+    }
+
+    #slide-05 .s05-block {
+      min-width: 0;
+    }
+
+    #slide-05 .s05-block + .s05-block {
+      padding-top: clamp(3px, 0.35vh, 4px);
+      border-top: 1px solid rgba(85, 200, 255, .16);
+    }
+
+    #slide-05 .s05-main-grid > .s05-block:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    #slide-05 .s05-main-grid > .s05-col > .s05-block:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    #slide-05 .s05-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      min-width: 0;
+    }
+
+    #slide-05 .s05-col > .s05-block + .s05-block {
+      padding-top: clamp(3px, 0.35vh, 4px);
+      border-top: 1px solid rgba(85, 200, 255, .16);
+    }
+
+    #slide-05 .s05-block h4 {
+      font-size: clamp(10.5px, 0.82vw, 13px);
+      font-weight: 900;
+      letter-spacing: .04em;
+      line-height: 1.15;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0 0 2px;
+    }
+
+    #slide-05 .s05-block p {
+      font-size: clamp(9.5px, 0.72vw, 11.5px);
+      font-weight: 600;
+      line-height: 1.28;
+      color: rgba(220, 245, 255, .96);
+      margin: 0;
+    }
+
+    #slide-05 .s05-block ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #slide-05 .s05-block li {
+      font-size: clamp(9.5px, 0.72vw, 11.5px);
+      font-weight: 600;
+      line-height: 1.28;
+      color: rgba(220, 245, 255, .96);
+      margin-bottom: 2px;
+      padding-left: 1em;
+      position: relative;
+    }
+
+    #slide-05 .s05-block li:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-05 .s05-block li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    #slide-05 .s05-brand-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 8px;
+      margin-bottom: 2px;
+    }
+
+    #slide-05 .s05-brand-line strong {
+      font-size: clamp(11px, 0.88vw, 14px);
       font-weight: 900;
       letter-spacing: .1em;
       color: #fff;
-      margin-bottom: 1px;
     }
 
-    #slide-05 .s05-pdf-brand span {
-      display: block;
-      font-size: clamp(11.5px, 0.88vw, 14px);
+    #slide-05 .s05-brand-line span {
+      font-size: clamp(10px, 0.78vw, 12px);
       font-weight: 700;
       color: #8edcff;
     }
 
-    #slide-05 .s05-pdf-ribbon {
-      flex-shrink: 0;
+    #slide-05 .s05-ribbon {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 4px 8px;
-      padding: clamp(4px, 0.5vh, 6px) clamp(6px, 0.7vw, 8px);
-      border-radius: 10px;
-      border: 1px solid rgba(95, 210, 255, .42);
-      background: linear-gradient(90deg, rgba(50, 16, 36, .5), rgba(6, 32, 72, .82), rgba(50, 16, 36, .5));
+      gap: 3px 6px;
+      padding: 3px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(95, 210, 255, .38);
+      background: linear-gradient(90deg, rgba(50, 16, 36, .48), rgba(6, 32, 72, .78), rgba(50, 16, 36, .48));
       text-align: center;
     }
 
-    #slide-05 .s05-pdf-ribbon span {
-      font-size: clamp(10px, 0.78vw, 12px);
+    #slide-05 .s05-ribbon span {
+      font-size: clamp(9px, 0.68vw, 10.5px);
       font-weight: 800;
       letter-spacing: .03em;
       text-transform: uppercase;
       color: rgba(220, 245, 255, .95);
     }
 
-    #slide-05 .s05-pdf-ribbon em {
+    #slide-05 .s05-ribbon em {
       font-style: normal;
-      font-size: clamp(12px, 0.9vw, 14px);
+      font-size: clamp(10px, 0.75vw, 11px);
       font-weight: 300;
       color: #55d9ff;
-      text-shadow: 0 0 12px rgba(0, 200, 255, .45);
     }
 
-    #slide-05 .s05-pdf-closing {
+    #slide-05 .s05-closings {
       flex-shrink: 0;
-      margin-top: clamp(2px, 0.25vh, 4px);
-      padding-top: clamp(3px, 0.4vh, 5px);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-top: clamp(3px, 0.4vh, 4px);
       border-top: 1px solid rgba(85, 200, 255, .24);
+    }
+
+    #slide-05 .s05-closings p {
+      margin: 0;
       text-align: center;
-      font-weight: 800;
-      color: #fff;
-      text-shadow: 0 0 14px rgba(0, 180, 255, .16);
+      font-size: clamp(10px, 0.78vw, 12px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: rgba(235, 250, 255, .96);
+    }
+
+    #slide-05 .s05-closing-final {
+      font-size: clamp(10.5px, 0.82vw, 13px) !important;
+      font-weight: 800 !important;
+      color: #fff !important;
+      text-shadow: 0 0 12px rgba(0, 180, 255, .14);
     }
 
     @media (max-width: 900px) {
-      #slide-05 .s05-pdf-columns {
+      #slide-05 .s05-top-grid,
+      #slide-05 .s05-main-grid {
         grid-template-columns: 1fr;
+        grid-template-areas: none;
+      }
+      #slide-05 .s05-top-intro,
+      #slide-05 .s05-top-chips,
+      #slide-05 .s05-top-bullets,
+      #slide-05 .s05-top-frag {
+        grid-area: auto;
+      }
+      #slide-05 .s05-top-bullets {
+        columns: 1;
       }
     }
 
@@ -4081,10 +4166,10 @@
         overflow: hidden;
         page-break-inside: avoid;
       }
-      #slide-05 .s05-pdf-shell,
-      #slide-05 .s05-pdf-columns,
-      #slide-05 .s05-pdf-panel {
-        overflow: hidden;
+      #slide-05 .s05-shell,
+      #slide-05 .s05-main,
+      #slide-05 .s05-main-grid {
+        overflow: visible;
       }
     }
   </style>
@@ -4281,18 +4366,19 @@
   </section>
 
   <!-- Slide 05 Why Elisence is Different -->
-  <section class="slide deck-slide" id="slide-05" data-deck-build="s05-pdf-two-panel">
-    <div class="s05-pdf-shell">
-      <header class="s05-pdf-header">
-        <div class="s05-pdf-kicker">05 — WHY ELISENCE IS DIFFERENT</div>
+  <section class="slide deck-slide" id="slide-05" data-deck-build="s05-final-pdf-safe">
+    <div class="s05-shell">
+      <header class="s05-deck-header">
+        <div class="s05-deck-kicker">05 — WHY ELISENCE IS DIFFERENT</div>
         <h2>Why Elisence is Different</h2>
-        <p>Most digital health tools solve one problem at a time.</p>
       </header>
-      <div class="s05-pdf-columns">
-        <article class="s05-pdf-panel s05-pdf-panel--problem">
-          <h3>MOST DIGITAL HEALTH TOOLS</h3>
-          <p class="s05-pdf-lead">Most digital health tools solve one problem at a time.</p>
-          <div class="s05-pdf-chips">
+      <article class="s05-top" aria-label="Most digital health tools">
+        <div class="s05-top-grid">
+          <div class="s05-top-intro">
+            <h3>MOST DIGITAL HEALTH TOOLS</h3>
+            <p>Most digital health tools solve one problem at a time.</p>
+          </div>
+          <div class="s05-top-chips s05-chips">
             <span>Medication</span>
             <span>Diabetes / Metabolism</span>
             <span>Women’s Health</span>
@@ -4301,7 +4387,7 @@
             <span>Pharmacy</span>
             <span>Wellbeing / Lifestyle</span>
           </div>
-          <ul class="s05-pdf-list">
+          <ul class="s05-top-bullets">
             <li>One app for medication</li>
             <li>One for diabetes or metabolism</li>
             <li>One for women’s health</li>
@@ -4310,46 +4396,95 @@
             <li>One for pharmacy</li>
             <li>One for wellbeing or lifestyle</li>
           </ul>
-          <div class="s05-pdf-section">
+          <div class="s05-top-frag">
             <h4>THE RESULT IS FRAGMENTATION</h4>
             <p>Health becomes scattered across disconnected tools, subscriptions, fragmented data, repeated friction, and isolated moments of care — often with little continuity or long-term understanding.</p>
           </div>
-        </article>
-        <article class="s05-pdf-panel s05-pdf-panel--solution">
-          <h3>ELISENCE IS BUILT DIFFERENTLY</h3>
-          <div class="s05-pdf-brand">
-            <strong>ELISENCE</strong>
-            <span>Connected health ecosystem</span>
+        </div>
+      </article>
+      <article class="s05-main" aria-label="Elisence is built differently">
+        <h3>ELISENCE IS BUILT DIFFERENTLY</h3>
+        <div class="s05-main-grid">
+          <div class="s05-col">
+            <div class="s05-block">
+              <div class="s05-brand-line">
+                <strong>ELISENCE</strong>
+                <span>Connected health ecosystem</span>
+              </div>
+              <p>Rather than building another isolated health app, Elisence is designed as a connected ecosystem where prevention, metabolic and blood understanding, medical tracking, medication continuity, women’s health, pharmacy, GP and doctor communication, body understanding, intelligent support, sensor-aware experiences, social health participation, and trusted health continuity work together rather than separately.</p>
+            </div>
+            <div class="s05-block">
+              <div class="s05-ribbon" aria-label="Fragmented apps to connected ecosystem; episodic tools to continuity over time">
+                <span>Fragmented apps</span>
+                <em>→</em>
+                <span>Connected ecosystem</span>
+                <em>•</em>
+                <span>Episodic tools</span>
+                <em>→</em>
+                <span>Continuity over time</span>
+              </div>
+            </div>
+            <div class="s05-block">
+              <h4>CONTINUITY OVER TIME</h4>
+              <p>Elisence is designed around continuity — helping healthcare feel connected over time rather than episodic, fragmented, and reactive.</p>
+            </div>
+            <div class="s05-block">
+              <h4>CONNECTED HEALTH ECOSYSTEM</h4>
+              <p>Rather than building another isolated health app, Elisence is designed as a connected ecosystem where prevention, metabolic and blood understanding, medical tracking, medication continuity, women’s health, pharmacy, GP and doctor communication, body understanding, intelligent support, sensor-aware experiences, social health participation, and trusted health continuity work together rather than separately.</p>
+            </div>
+            <div class="s05-block">
+              <h4>COUNTRY-ADAPTABLE ARCHITECTURE</h4>
+              <p>Built with modular architecture, multilingual experiences, healthcare-aware trust, and country-adaptable thinking, Elisence is designed to support people and healthcare systems across different healthcare realities rather than assuming one model fits everyone.</p>
+            </div>
           </div>
-          <p class="s05-pdf-lead">Rather than building another isolated health app, Elisence is designed as a connected ecosystem where prevention, metabolic and blood understanding, medical tracking, medication continuity, women’s health, pharmacy, GP and doctor communication, body understanding, intelligent support, sensor-aware experiences, social health participation, and trusted health continuity work together rather than separately.</p>
-          <div class="s05-pdf-ribbon" aria-label="Fragmented apps to connected ecosystem; episodic tools to continuity over time">
-            <span>Fragmented apps</span>
-            <em>→</em>
-            <span>Connected ecosystem</span>
-            <em>•</em>
-            <span>Episodic tools</span>
-            <em>→</em>
-            <span>Continuity over time</span>
+          <div class="s05-col">
+            <div class="s05-block">
+              <h4>HEALTHCARE-AWARE TRUST</h4>
+              <p>Elisence is designed with regional healthcare expectations in mind — including NHS-style safety thinking, UK and EU privacy expectations, FDA-inspired safety boundaries, and Gulf healthcare realities — while adapting responsibly to trust, governance, language, and healthcare context over time.</p>
+            </div>
+            <div class="s05-block">
+              <h4>TRUST &amp; SAFETY BY DESIGN</h4>
+              <ul>
+                <li>Elisence is designed with healthcare-aware safety thinking from the beginning — prioritising trust, responsible boundaries, privacy, transparency, permission, and safer long-term participation.</li>
+                <li>Citizen experiences are intentionally designed to remain non-clinical and non-diagnostic by default, helping people better understand and navigate healthcare rather than replacing doctors or acting as autonomous medical authority.</li>
+              </ul>
+            </div>
+            <div class="s05-block">
+              <h4>GOVERNED HEALTH INTELLIGENCE</h4>
+              <ul>
+                <li>Elisence is designed around trusted, governed, and curated health understanding rather than unrestricted medical AI generation.</li>
+                <li>Health understanding is designed to align with healthcare-aware thinking inspired by NHS-style safety principles, UK and EU privacy expectations, FDA-informed boundaries, MDR thinking, and Gulf healthcare realities — while adapting responsibly to local healthcare context over time.</li>
+                <li>Responses are designed to operate within governed safety boundaries, uncertainty handling, trusted escalation pathways, and permission-aware experiences rather than unsafe certainty or unrestricted medical automation.</li>
+              </ul>
+            </div>
+            <div class="s05-block">
+              <h4>MEDICAL-READY FOUNDATIONS</h4>
+              <ul>
+                <li>Elisence is intentionally designed as a governed non-medical platform today — while supporting future clinically governed activation where appropriate, under licensed, institutionally supervised, or healthcare-system-led environments.</li>
+                <li>Safety-aware infrastructure, governance foundations, auditability, permissions, and healthcare-aware controls are designed from the beginning, remaining intentionally constrained and fail-safe by default.</li>
+              </ul>
+            </div>
+            <div class="s05-block">
+              <h4>ZERO TRUST, PRIVACY &amp; ACCOUNTABILITY</h4>
+              <ul>
+                <li>Elisence follows a Zero-Trust philosophy — permissions, access, identity, consent, and visibility are validated rather than assumed.</li>
+                <li>Privacy-aware, permissioned, explainable, and accountable participation are designed to support trust over time.</li>
+              </ul>
+            </div>
+            <div class="s05-block">
+              <h4>BUILT TO FAIL SAFELY</h4>
+              <ul>
+                <li>Safety matters more than false certainty.</li>
+                <li>Elisence is designed to behave conservatively, explain uncertainty, restrict unsafe behaviour, and fail safely rather than overclaim confidence.</li>
+              </ul>
+            </div>
           </div>
-          <div class="s05-pdf-section">
-            <h4>CONTINUITY OVER TIME</h4>
-            <p>Elisence is designed around continuity — helping healthcare feel connected over time rather than episodic, fragmented, and reactive.</p>
-          </div>
-          <div class="s05-pdf-section">
-            <h4>CONNECTED HEALTH ECOSYSTEM</h4>
-            <p>Rather than building another isolated health app, Elisence is designed as a connected ecosystem where prevention, metabolic and blood understanding, medical tracking, medication continuity, women’s health, pharmacy, GP and doctor communication, body understanding, intelligent support, sensor-aware experiences, social health participation, and trusted health continuity work together rather than separately.</p>
-          </div>
-          <div class="s05-pdf-section">
-            <h4>COUNTRY-ADAPTABLE ARCHITECTURE</h4>
-            <p>Built with modular architecture, multilingual experiences, healthcare-aware trust, and country-adaptable thinking, Elisence is designed to support people and healthcare systems across different healthcare realities rather than assuming one model fits everyone.</p>
-          </div>
-          <div class="s05-pdf-section">
-            <h4>HEALTHCARE-AWARE TRUST</h4>
-            <p>Elisence is designed with regional healthcare expectations in mind — including NHS-style safety thinking, UK and EU privacy expectations, FDA-inspired safety boundaries, and Gulf healthcare realities — while adapting responsibly to trust, governance, language, and healthcare context over time.</p>
-          </div>
-          <p class="s05-pdf-closing">Not another health app — a connected ecosystem designed to reduce fragmentation and help healthcare stay meaningfully connected over time.</p>
-        </article>
-      </div>
+        </div>
+        <div class="s05-closings">
+          <p>Not another health app — a connected ecosystem designed to reduce fragmentation and help healthcare stay meaningfully connected over time.</p>
+          <p class="s05-closing-final">Trust is not paperwork. Trust is architecture.</p>
+        </div>
+      </article>
     </div>
   </section>
 
