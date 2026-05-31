@@ -1308,14 +1308,14 @@
       }
     }
 
-    /* Slide 06 — Premium ecosystem v1 (hard reset) */
+    /* Slide 06 — PDF-safe two-panel product ecosystem */
     #slide-06.slide {
       min-height: 100vh;
       height: 100vh;
       max-height: 100vh;
       justify-content: flex-start;
       align-items: stretch;
-      padding: clamp(28px, 4vh, 48px) clamp(24px, 4vw, 64px);
+      padding: clamp(14px, 2vh, 22px) clamp(18px, 3.2vw, 52px);
       overflow: hidden;
       scroll-snap-align: start;
     }
@@ -1326,194 +1326,165 @@
       width: 100%;
       max-width: min(1320px, 100%);
       height: 100%;
-      max-height: calc(100vh - clamp(56px, 8vh, 96px));
+      max-height: calc(100vh - clamp(28px, 4vh, 44px));
       margin: 0 auto;
-      gap: clamp(12px, 1.5vh, 16px);
+      min-height: 0;
+      gap: clamp(5px, 0.65vh, 7px);
     }
 
-    #slide-06 .s06-header {
+    #slide-06 .s06-deck-header {
       flex-shrink: 0;
+      margin: 0;
+      padding: 0;
     }
 
-    #slide-06 .s06-header > div:first-child {
-      font-size: clamp(14px, 1.1vw, 18px);
+    #slide-06 .s06-kicker {
+      font-size: clamp(10px, 0.8vw, 12px);
       font-weight: 800;
-      letter-spacing: .2em;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: #55d9ff;
-      margin-bottom: 8px;
+      margin: 0 0 2px;
     }
 
-    #slide-06 .s06-header h2 {
-      font-size: clamp(58px, 5vw, 72px);
+    #slide-06 .s06-deck-header h2 {
+      font-size: clamp(36px, 3.1vw, 48px);
       font-weight: 900;
-      line-height: 1.06;
+      line-height: 1.05;
       color: #fff;
-      margin: 0 0 6px;
+      margin: 0 0 2px;
+      text-shadow: 0 0 18px rgba(0, 180, 255, .16);
     }
 
-    #slide-06 .s06-header > p {
-      font-size: clamp(28px, 2.2vw, 34px);
+    #slide-06 .s06-deck-header > p {
+      font-size: clamp(18px, 1.35vw, 22px);
       font-weight: 700;
-      line-height: 1.35;
+      line-height: 1.28;
       color: rgba(200, 235, 255, .92);
       margin: 0;
     }
 
-    #slide-06 .s06-hero-strip {
+    #slide-06 .s06-flow {
       flex-shrink: 0;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 8px 10px;
-      padding: clamp(12px, 1.5vh, 16px) clamp(14px, 1.8vw, 20px);
-      border-radius: 24px;
-      border: 1px solid rgba(95, 210, 255, .48);
+      gap: 4px 6px;
+      padding: clamp(4px, 0.55vh, 6px) clamp(8px, 1vw, 10px);
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(8, 32, 72, .88), rgba(4, 14, 38, .94), rgba(8, 32, 72, .88));
-      box-shadow: 0 0 32px rgba(0, 140, 255, .2);
+      box-shadow: 0 0 20px rgba(0, 140, 255, .16);
     }
 
-    #slide-06 .s06-blue-underglow {
-      position: relative;
-      z-index: 0;
-    }
-
-    #slide-06 .s06-blue-underglow::after {
-      content: "";
-      position: absolute;
-      left: 6%;
-      right: 6%;
-      bottom: -6px;
-      height: 28px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 200, 255, .45), transparent 72%);
-      filter: blur(12px);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    #slide-06 .s06-hero-node {
-      font-size: clamp(15px, 1.1vw, 17px);
+    #slide-06 .s06-flow-node {
+      font-size: clamp(10px, 0.78vw, 12px);
       font-weight: 800;
-      letter-spacing: .03em;
-      line-height: 1.25;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(90, 190, 255, .38);
+      letter-spacing: .02em;
+      line-height: 1.2;
+      padding: 3px 7px;
+      border-radius: 8px;
+      border: 1px solid rgba(90, 190, 255, .35);
       color: rgba(210, 240, 255, .92);
-      background: rgba(4, 22, 58, .75);
+      background: rgba(4, 22, 58, .72);
       text-align: center;
       white-space: nowrap;
     }
 
-    #slide-06 .s06-hero-connector {
-      font-size: clamp(18px, 1.4vw, 22px);
+    #slide-06 .s06-flow-connector {
+      font-size: clamp(11px, 0.85vw, 13px);
       font-weight: 300;
       color: #55d9ff;
-      text-shadow: 0 0 14px rgba(0, 200, 255, .5);
       line-height: 1;
     }
 
-    #slide-06 .s06-elisa-node {
-      padding: 12px 18px;
-      border: 2px solid rgba(130, 230, 255, .65);
-      background:
-        radial-gradient(ellipse 100% 80% at 50% 0%, rgba(0, 200, 255, .22), transparent 55%),
-        rgba(0, 55, 115, .55);
-      box-shadow: 0 0 28px rgba(0, 180, 255, .4);
+    #slide-06 .s06-flow-elisa {
+      padding: 3px 8px;
+      border: 1px solid rgba(130, 230, 255, .55);
+      background: rgba(0, 55, 115, .5);
+      box-shadow: 0 0 14px rgba(0, 180, 255, .28);
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      min-width: 140px;
+      gap: 1px;
+      min-width: 0;
     }
 
-    #slide-06 .s06-elisa-node strong {
-      font-size: clamp(18px, 1.4vw, 22px);
+    #slide-06 .s06-flow-elisa strong {
+      font-size: clamp(10px, 0.8vw, 12px);
       font-weight: 900;
-      letter-spacing: .1em;
+      letter-spacing: .08em;
       color: #fff;
-      text-shadow: 0 0 16px rgba(0, 200, 255, .45);
     }
 
-    #slide-06 .s06-elisa-node span {
-      font-size: clamp(13px, 1vw, 15px);
+    #slide-06 .s06-flow-elisa span {
+      font-size: clamp(9px, 0.7vw, 11px);
       font-weight: 700;
       color: #8edcff;
-      white-space: normal;
-      line-height: 1.25;
+      line-height: 1.15;
+      white-space: nowrap;
     }
 
-    #slide-06 .s06-scroll-body {
-      flex: 1;
+    #slide-06 .s06-columns {
+      flex: 1 1 0;
       min-height: 0;
-      overflow-y: auto;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(16px, 2vh, 20px);
-      padding-right: 6px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(85, 217, 255, .22) transparent;
-    }
-
-    #slide-06 .s06-scroll-body::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    #slide-06 .s06-scroll-body::-webkit-scrollbar-thumb {
-      background: rgba(85, 217, 255, .22);
-      border-radius: 6px;
-    }
-
-    #slide-06 .s06-card-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(16px, 2vh, 20px);
+      gap: clamp(8px, 1vh, 12px);
+      align-items: stretch;
     }
 
-    #slide-06 .s06-content-card {
-      border-radius: 28px;
+    #slide-06 .s06-panel {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 12px;
       border: 1px solid rgba(95, 210, 255, .48);
-      background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
-      padding: clamp(32px, 3.5vh, 40px);
-      box-shadow: 0 0 36px rgba(0, 130, 255, .16);
-      overflow: visible;
+      background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
+      box-shadow: 0 0 22px rgba(0, 150, 255, .16);
+      padding: clamp(6px, 0.8vh, 8px) clamp(8px, 1vw, 10px);
     }
 
-    #slide-06 .s06-content-card h3 {
-      font-size: clamp(28px, 2.2vw, 36px);
+    #slide-06 .s06-block + .s06-block {
+      margin-top: clamp(5px, 0.6vh, 7px);
+      padding-top: clamp(5px, 0.6vh, 7px);
+      border-top: 1px solid rgba(85, 200, 255, .2);
+    }
+
+    #slide-06 .s06-block h3 {
+      font-size: clamp(15px, 1.15vw, 19px);
       font-weight: 900;
-      letter-spacing: .05em;
-      line-height: 1.2;
+      letter-spacing: .04em;
+      line-height: 1.16;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(85, 200, 255, .25);
+      margin: 0 0 clamp(3px, 0.4vh, 5px);
+      padding-bottom: clamp(2px, 0.3vh, 4px);
+      border-bottom: 1px solid rgba(85, 200, 255, .18);
     }
 
-    #slide-06 .s06-content-card ul {
+    #slide-06 .s06-block ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    #slide-06 .s06-content-card li {
-      font-size: clamp(20px, 1.45vw, 24px);
+    #slide-06 .s06-block li {
+      font-size: clamp(11px, 0.85vw, 13.5px);
       font-weight: 600;
-      line-height: 1.55;
+      line-height: 1.32;
       color: rgba(220, 245, 255, .96);
-      margin-bottom: 16px;
-      padding-left: 1.15em;
+      margin-bottom: clamp(3px, 0.4vh, 5px);
+      padding-left: 1.05em;
       position: relative;
     }
 
-    #slide-06 .s06-content-card li:last-child {
+    #slide-06 .s06-block li:last-child {
       margin-bottom: 0;
     }
 
-    #slide-06 .s06-content-card li::before {
+    #slide-06 .s06-block li::before {
       content: "•";
       position: absolute;
       left: 0;
@@ -1521,66 +1492,28 @@
       font-weight: 900;
     }
 
-    #slide-06 .s06-elisa-panel {
-      margin-top: 18px;
-      padding: clamp(20px, 2.2vh, 24px);
-      border-radius: 18px;
-      border: 1px solid rgba(120, 220, 255, .55);
-      background:
-        radial-gradient(ellipse 100% 70% at 50% 0%, rgba(0, 200, 255, .16), transparent 60%),
-        rgba(0, 50, 105, .45);
-      box-shadow: 0 0 32px rgba(0, 180, 255, .28);
-    }
-
-    #slide-06 .s06-elisa-panel h4 {
-      font-size: clamp(20px, 1.6vw, 24px);
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: #fff;
-      margin: 0 0 14px;
-      text-shadow: 0 0 14px rgba(0, 200, 255, .35);
-    }
-
-    #slide-06 .s06-elisa-panel li {
-      font-size: clamp(20px, 1.4vw, 23px);
-    }
-
-    #slide-06 .s06-closing-bar {
+    #slide-06 .s06-closing {
+      flex-shrink: 0;
+      margin: 0;
       text-align: center;
-      font-size: clamp(24px, 2vw, 28px);
+      font-size: clamp(12px, 0.95vw, 15px);
       font-weight: 800;
-      line-height: 1.5;
+      line-height: 1.34;
       color: #fff;
-      border-radius: 28px;
-      border: 1px solid rgba(95, 210, 255, .5);
-      background: linear-gradient(90deg, rgba(0, 75, 140, .28), rgba(70, 55, 150, .2), rgba(0, 75, 140, .28));
-      padding: clamp(24px, 2.8vh, 32px) clamp(26px, 3vw, 36px);
-      box-shadow: 0 0 40px rgba(0, 150, 255, .2);
-      margin: 0 0 6px;
-    }
-
-    @media (max-width: 1024px) {
-      #slide-06 .s06-header h2 {
-        font-size: clamp(48px, 5.5vw, 58px);
-      }
-      #slide-06 .s06-header > p {
-        font-size: clamp(24px, 2.5vw, 28px);
-      }
-      #slide-06 .s06-content-card h3 {
-        font-size: max(24px, clamp(24px, 2.8vw, 30px));
-      }
-      #slide-06 .s06-content-card li,
-      #slide-06 .s06-elisa-panel li {
-        font-size: max(18px, clamp(18px, 1.8vw, 22px));
-      }
+      padding: clamp(5px, 0.65vh, 7px) clamp(10px, 1vw, 14px);
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .45);
+      background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
+      box-shadow: 0 0 20px rgba(0, 150, 255, .14);
+      text-shadow: 0 0 12px rgba(0, 180, 255, .12);
     }
 
     @media (max-width: 900px) {
-      #slide-06 .s06-card-grid {
+      #slide-06 .s06-columns {
         grid-template-columns: 1fr;
       }
-      #slide-06 .s06-hero-node {
+      #slide-06 .s06-flow-node,
+      #slide-06 .s06-flow-elisa span {
         white-space: normal;
       }
     }
@@ -3915,6 +3848,17 @@
       #slide-08 .s08-panel {
         overflow: visible;
       }
+      #slide-06.slide {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+        page-break-inside: avoid;
+      }
+      #slide-06 .s06-shell,
+      #slide-06 .s06-columns,
+      #slide-06 .s06-panel {
+        overflow: visible;
+      }
     }
   </style>
 </head>
@@ -4233,82 +4177,77 @@
   </section>
 
   <!-- Slide 06 Product Ecosystem -->
-  <section class="slide deck-slide" id="slide-06" data-deck-build="s06-hard-reset-premium-ecosystem">
+  <section class="slide deck-slide" id="slide-06" data-deck-build="s06-pdf-two-panel">
     <div class="s06-shell">
-      <header class="s06-header">
-        <div>06 — PRODUCT ECOSYSTEM</div>
+      <header class="s06-deck-header">
+        <div class="s06-kicker">06 — Product Ecosystem</div>
         <h2>Connected Health Experiences</h2>
         <p>Connected health experiences — not disconnected tools.</p>
       </header>
-      <div class="s06-hero-strip s06-blue-underglow">
-        <div class="s06-hero-node">Everyday Health</div>
-        <span class="s06-hero-connector" aria-hidden="true">→</span>
-        <div class="s06-hero-node">Medical Journeys</div>
-        <span class="s06-hero-connector" aria-hidden="true">→</span>
-        <div class="s06-hero-node">Intelligence Layer</div>
-        <span class="s06-hero-connector" aria-hidden="true">→</span>
-        <div class="s06-hero-node s06-elisa-node">
+      <div class="s06-flow" aria-label="Ecosystem flow">
+        <span class="s06-flow-node">Everyday Health</span>
+        <span class="s06-flow-connector" aria-hidden="true">→</span>
+        <span class="s06-flow-node">Medical Journeys</span>
+        <span class="s06-flow-connector" aria-hidden="true">→</span>
+        <span class="s06-flow-node">Intelligence Layer</span>
+        <span class="s06-flow-connector" aria-hidden="true">→</span>
+        <span class="s06-flow-elisa">
           <strong>ELISA</strong>
           <span>Trusted Continuity Companion</span>
-        </div>
-        <span class="s06-hero-connector" aria-hidden="true">→</span>
-        <div class="s06-hero-node">Social Health</div>
-        <span class="s06-hero-connector" aria-hidden="true">→</span>
-        <div class="s06-hero-node">Healthcare Ecosystem</div>
+        </span>
+        <span class="s06-flow-connector" aria-hidden="true">→</span>
+        <span class="s06-flow-node">Social Health</span>
+        <span class="s06-flow-connector" aria-hidden="true">→</span>
+        <span class="s06-flow-node">Healthcare Ecosystem</span>
       </div>
-      <div class="s06-scroll-body">
-        <section class="s06-card-grid">
-          <article class="s06-content-card s06-blue-underglow">
-            <h3>Everyday Health &amp; Prevention</h3>
+      <div class="s06-columns">
+        <article class="s06-panel s06-panel--left" aria-label="Everyday health, medical journeys, and intelligence">
+          <div class="s06-block">
+            <h3>EVERYDAY HEALTH &amp; PREVENTION</h3>
             <ul>
               <li>Prevention, wellbeing, diet and lifestyle support, environmental awareness, sensor-aware experiences, body understanding, trusted health participation, and everyday health continuity designed to help healthcare become more proactive rather than reactive.</li>
             </ul>
-          </article>
-          <article class="s06-content-card s06-blue-underglow">
-            <h3>Medical &amp; Long-Term Health Journeys</h3>
+          </div>
+          <div class="s06-block">
+            <h3>MEDICAL &amp; LONG-TERM HEALTH JOURNEYS</h3>
             <ul>
               <li>Diabetes and metabolic health, advanced blood and metabolism understanding, medication continuity, pharmacy journeys, medical tracking, GP and doctor communication, chronic condition support, weight and wellbeing journeys, and longer-term care experiences designed to work together rather than exist separately.</li>
             </ul>
-          </article>
-          <article class="s06-content-card s06-blue-underglow">
-            <h3>Health Intelligence &amp; Continuity Layer</h3>
+          </div>
+          <div class="s06-block">
+            <h3>HEALTH INTELLIGENCE &amp; CONTINUITY LAYER</h3>
             <ul>
               <li>Trusted health intelligence, blood test understanding and translation, body scan and body understanding, intelligent guidance, medication reminders, pattern awareness, continuity support, and everyday health understanding designed to help people better understand health over time.</li>
+              <li>At the centre of the experience is Elisa — a trusted continuity companion designed to help people stay engaged with healthier routines, wellbeing, reminders, trusted participation, communication, and supportive everyday health behaviour while remaining safely non-clinical and non-diagnostic by design.</li>
+              <li>Elisa is designed to provide friendly, supportive, and non-medical guidance that helps reduce isolation, encourage continuity, and make healthcare feel more human, calmer, and easier to navigate in everyday life.</li>
             </ul>
-            <div class="s06-elisa-panel">
-              <h4>ELISA — TRUSTED CONTINUITY COMPANION</h4>
-              <ul>
-                <li>At the centre of the experience is Elisa — a trusted continuity companion designed to help people stay engaged with healthier routines, wellbeing, reminders, trusted participation, communication, and supportive everyday health behaviour while remaining safely non-clinical and non-diagnostic by design.</li>
-                <li>Elisa is designed to provide friendly, supportive, and non-medical guidance that helps reduce isolation, encourage continuity, and make healthcare feel more human, calmer, and easier to navigate in everyday life.</li>
-              </ul>
-            </div>
-          </article>
-          <article class="s06-content-card s06-blue-underglow">
-            <h3>Continuous Social Health Layer</h3>
+          </div>
+        </article>
+        <article class="s06-panel s06-panel--right" aria-label="Social health, engagement, and healthcare ecosystem">
+          <div class="s06-block">
+            <h3>CONTINUOUS SOCIAL HEALTH LAYER</h3>
             <ul>
               <li>Elisence is designed to help healthcare remain part of everyday life rather than moments of illness.</li>
               <li>Trusted social health participation, shared health journeys, prevention experiences, wellness and activity progress, Pulse-based health sharing, trusted communication, voice and video interaction, peer support, family care, clinician connection, and permission-aware sharing are designed to help healthcare feel more human, supportive, socially connected, and continuous over time.</li>
               <li>Users can share meaningful health experiences, support one another, communicate with care teams when appropriate, and remain connected to health in ways that feel supportive rather than stressful, isolated, or permanently clinical.</li>
             </ul>
-          </article>
-          <article class="s06-content-card s06-blue-underglow">
-            <h3>Healthy Engagement by Design</h3>
+          </div>
+          <div class="s06-block">
+            <h3>HEALTHY ENGAGEMENT BY DESIGN</h3>
             <ul>
               <li>Elisence is designed around healthy participation rather than advertising-driven attention loops — encouraging continuity, wellbeing, prevention, trusted participation, healthier routines, and meaningful long-term engagement rather than addictive behaviour.</li>
             </ul>
-          </article>
-          <article class="s06-content-card s06-blue-underglow">
-            <h3>Healthcare Ecosystem Layer</h3>
+          </div>
+          <div class="s06-block">
+            <h3>HEALTHCARE ECOSYSTEM LAYER</h3>
             <ul>
               <li>Designed to support stronger continuity, prevention, communication, participation, and more connected healthcare experiences across clinics, hospitals, insurers, pharmacies, governments, universities, researchers, and responsible healthcare organisations.</li>
               <li>Over time, privacy-aware, permissioned, and longitudinal health understanding may help support stronger continuity, prevention, healthcare learning, research, participation, and more connected system understanding.</li>
             </ul>
-          </article>
-        </section>
-        <section class="s06-closing-bar s06-blue-underglow">
-          One connected ecosystem where prevention, care, intelligence, communication, participation, and continuity reinforce one another over time.
-        </section>
+          </div>
+        </article>
       </div>
+      <p class="s06-closing">One connected ecosystem where prevention, care, intelligence, communication, participation, and continuity reinforce one another over time.</p>
     </div>
   </section>
 
