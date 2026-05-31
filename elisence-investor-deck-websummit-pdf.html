@@ -314,7 +314,14 @@ html.pdf-deck body {
   color: rgba(220, 245, 255, .9);
 }
 
-/* ===== SLIDE 02 ===== */
+.pdf-deck .slide-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: min(1320px, 100%);
+  margin: 0 auto;
+}
 .pdf-deck .s02-v3-shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
@@ -470,6 +477,7 @@ html.pdf-deck body {
   flex-direction: column;
   flex: 1;
   min-height: 0;
+  height: 100%;
   gap: clamp(8px, 1vh, 12px);
 }
 
@@ -685,6 +693,16 @@ html.pdf-deck body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(8px, 1vh, 12px);
+}
+
+.pdf-deck .s09-card-grid--single {
+  grid-template-columns: 1fr;
+}
+
+.pdf-deck #slide-09b .s09-bottom-row {
+  flex: 1;
+  align-items: stretch;
+  min-height: 0;
 }
 
 .pdf-deck .s09-card-accent {
@@ -988,7 +1006,10 @@ html.pdf-deck body {
   color: #8edcff;
 }
 
-/* ===== SCROLL BODY → PDF BODY ===== */
+.pdf-deck #slide-05a .s05-v2-scroll-body,
+.pdf-deck #slide-09b .s09-scroll-body {
+  justify-content: center;
+}
 .pdf-deck [class*="-scroll-body"] {
   flex: 1;
   min-height: 0;
@@ -1279,7 +1300,21 @@ html.pdf-deck body {
             <p>Rather than building another isolated health app, Elisence is designed as a connected ecosystem where prevention, metabolic and blood understanding, medical tracking, medication continuity, women’s health, pharmacy, GP and doctor communication, body understanding, intelligent support, sensor-aware experiences, social health participation, and trusted health continuity work together rather than separately.</p>
           </article>
         </section>
-        <section class="s05-v2-ribbon s05-v2-underglow">
+      </div>
+    </div>
+  </section>
+
+<!-- Slide 05B -->
+  <section class="pdf-page" id="slide-05b">
+    <div class="s05-v2-shell">
+      <header class="s05-v2-header">
+        <div class="s05-v2-kicker">05 — WHY ELISENCE IS DIFFERENT</div>
+        <p class="pdf-continued-label">05B — continued</p>
+        <h2>Why Elisence is Different</h2>
+        <p>Most digital health tools solve one problem at a time.</p>
+      </header>
+      <div class="s05-v2-scroll-body">
+<section class="s05-v2-ribbon s05-v2-underglow">
           <span>Fragmented apps</span>
           <strong>→</strong>
           <span>Connected ecosystem</span>
@@ -1292,16 +1327,16 @@ html.pdf-deck body {
           <h3>THE RESULT IS FRAGMENTATION</h3>
           <p>Health becomes scattered across disconnected tools, subscriptions, fragmented data, repeated friction, and isolated moments of care — often with little continuity or long-term understanding.</p>
         </section>
-</div>
+      </div>
     </div>
   </section>
 
-<!-- Slide 05B -->
-  <section class="pdf-page" id="slide-05b" data-deck-build="s05-v2-locked-comparison">
+<!-- Slide 05C -->
+  <section class="pdf-page" id="slide-05c">
     <div class="s05-v2-shell">
       <header class="s05-v2-header">
         <div class="s05-v2-kicker">05 — WHY ELISENCE IS DIFFERENT</div>
-        <p class="pdf-continued-label">05B — continued</p>
+        <p class="pdf-continued-label">05C — continued</p>
         <h2>Why Elisence is Different</h2>
         <p>Most digital health tools solve one problem at a time.</p>
       </header>
@@ -1602,6 +1637,9 @@ html.pdf-deck body {
             <p>Helping prevention, continuity, healthier behaviour, and healthcare understanding reinforce one another over time.</p>
           </div>
         </section>
+      </div>
+    </div>
+  </section>
 
 <!-- Slide 08C -->
   <section class="pdf-page" id="slide-08c">
@@ -1620,6 +1658,9 @@ html.pdf-deck body {
         <section class="s08-closing-bar s08-blue-underglow">
           One ecosystem. Multiple value layers. Trust before monetisation.
         </section>
+      </div>
+    </div>
+  </section>
       </div>
     </div>
   </section>
@@ -1698,7 +1739,7 @@ html.pdf-deck body {
         <div class="s09-accent-divider" aria-hidden="true"></div>
       </header>
       <div class="s09-scroll-body">
-        <section class="s09-card-grid">
+        <section class="s09-card-grid s09-card-grid--single">
 <article class="s09-content-card s09-blue-underglow">
             <div class="s09-card-accent">
               <span class="s09-card-icon" aria-hidden="true">
@@ -1714,8 +1755,24 @@ html.pdf-deck body {
               <li>Europe, the Gulf region, and other healthcare transformation markets represent meaningful long-term opportunities for responsible expansion.</li>
             </ul>
           </article>
+        
         </section>
-        <section class="s09-bottom-row">
+      </div>
+    </div>
+  </section>
+
+<!-- Slide 09C -->
+  <section class="pdf-page" id="slide-09c">
+    <div class="s09-shell">
+      <header class="s09-header">
+        <div>09 — MARKET &amp; EXPANSION</div>
+        <p class="pdf-continued-label">09C — continued</p>
+        <h2>Global Ambition, Local Execution</h2>
+        <p>Global ambition. Local trust.</p>
+        <div class="s09-accent-divider" aria-hidden="true"></div>
+      </header>
+      <div class="s09-scroll-body">
+<section class="s09-bottom-row">
           <article class="s09-wide-card s09-blue-underglow">
             <div class="s09-card-accent">
               <span class="s09-card-icon" aria-hidden="true">
