@@ -772,23 +772,36 @@
     }
 
     #slide-04 .s04-v7-image-panel {
-      flex: 0 0 auto;
+      flex: 1 1 0;
+      min-height: clamp(200px, 22vh, 268px);
       border-radius: 14px;
       border: 1px solid rgba(95, 210, 255, .45);
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(85, 217, 255, .5) rgba(4, 16, 42, .75);
       background: rgba(4, 16, 42, .9);
       box-shadow: 0 0 28px rgba(0, 140, 255, .2);
       line-height: 0;
     }
 
+    #slide-04 .s04-v7-image-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #slide-04 .s04-v7-image-panel::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      background: rgba(85, 217, 255, .45);
+    }
+
     #slide-04 .s04-v7-image-panel img {
       display: block;
       width: 100%;
-      height: auto;
-      aspect-ratio: 1320 / 260;
-      max-height: clamp(152px, 17.5vh, 178px);
-      min-height: clamp(140px, 16vh, 165px);
-      object-fit: contain;
+      max-width: none;
+      min-height: 100%;
+      height: clamp(400px, 45vh, 500px);
+      object-fit: cover;
       object-position: center center;
     }
 
@@ -815,7 +828,8 @@
     #slide-04 .s04-v7-card {
       display: flex;
       flex-direction: column;
-      height: 100%;
+      height: auto;
+      align-self: stretch;
       border-radius: 14px;
       border: 1px solid rgba(95, 210, 255, .4);
       background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
@@ -5073,6 +5087,14 @@
         updateNavBeam();
       }
 
+      function centerSlide04HeroScroll() {
+        if (!slides[index] || slides[index].id !== "slide-04") return;
+        var panel = slides[index].querySelector(".s04-v7-image-panel");
+        if (!panel) return;
+        var overflow = panel.scrollHeight - panel.clientHeight;
+        panel.scrollTop = overflow > 0 ? overflow / 2 : 0;
+      }
+
       function applyTransform(instant) {
         if (instant) track.classList.add("is-instant");
         track.style.transform = "translate3d(0, " + (-index * slideStep()) + "px, 0)";
@@ -5085,6 +5107,7 @@
         if (location.hash !== nextHash) {
           history.replaceState(null, "", nextHash);
         }
+        window.requestAnimationFrame(centerSlide04HeroScroll);
       }
 
       function beginAnimation() {
