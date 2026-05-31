@@ -747,9 +747,10 @@
       flex: 1;
       min-height: 0;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-rows: minmax(clamp(100px, 12vh, 120px), 1fr) auto auto auto;
       gap: clamp(5px, 0.65vh, 7px);
+      align-content: start;
     }
 
     #slide-04 .s04-v7-underglow {
@@ -772,7 +773,11 @@
     }
 
     #slide-04 .s04-v7-image-panel {
-      flex-shrink: 0;
+      min-height: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 14px;
       border: 1px solid rgba(95, 210, 255, .45);
       overflow: hidden;
@@ -783,7 +788,9 @@
     #slide-04 .s04-v7-image-panel img {
       display: block;
       width: 100%;
-      height: clamp(100px, 12.5vh, 128px);
+      height: 100%;
+      min-height: clamp(96px, 11.5vh, 118px);
+      max-height: 100%;
       object-fit: contain;
       object-position: center center;
     }
