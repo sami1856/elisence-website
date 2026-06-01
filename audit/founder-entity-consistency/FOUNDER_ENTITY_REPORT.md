@@ -1,9 +1,10 @@
-# Founder Entity Consistency Report
+# Founder Entity Consistency Report — Identity Cleanup Pass
 
 **Date:** 2026-05-28  
-**Scope:** SEO / schema / image metadata only — no layout, copy, or design changes.
+**Repository:** elisence-website (sparse checkout)  
+**Commit message:** Unify founder identity signals across Elisence Online
 
-## Canonical founder identity (locked)
+## Locked canonical entity
 
 | Field | Value |
 |-------|-------|
@@ -13,168 +14,96 @@
 
 ---
 
-## 1. Files changed (13)
+## Pre-edit audit — impacted file categories
 
-| File | Change summary |
-|------|----------------|
-| `saami-salami.html` | Canonical self; OG/Twitter; Person schema name/url/image |
-| `founder-saami.html` | Canonical → saami-salami; OG/Twitter; new Person JSON-LD |
-| `founder-story-saami-salami-asl.html` | Article canonical (self); OG/Twitter; Article + author Person schema |
-| `sami-salami.html` | Fixed broken JSON-LD; canonical; OG/Twitter; Person schema |
-| `sami-salami-asl.html` | Canonical; OG/Twitter; Person schema |
-| `sami-salami-profile.html` | Canonical; OG/Twitter; Person JSON-LD added |
-| `sami-profile.html` | Canonical; OG/Twitter; Person JSON-LD added |
-| `saami-salami-profile.html` | Canonical; OG/Twitter; Person JSON-LD added |
-| `saami-bio.html` | Canonical; OG/Twitter; Person JSON-LD added |
-| `index.html` | Organization.founder url + image; removed `alternateName` |
-| `about.html` | Organization.founder url + image + jobTitle |
-| `elisence.html` | Organization.founder url + image |
-| `articles.html` | CollectionPage author Person url + image |
+Forbidden identity patterns found in:
+
+- Root: `index.html`, `story.html`, `video.html`, `saami-bio.html`, `sami-profile.html`
+- `saami/`: hub, bio, message, press-kit, timeline, youtube, articles, interviews, achievements, nested `saami/saami/*`
+- `articles/`: keywords meta + author schema URLs pointing at `founder-saami.html`
+
+**Excluded (per scope):** investor deck HTML, audit deck proofs, `pitch-system.html`, `deck-system.html`, `web-summit-board.html`
 
 ---
 
-## 2. Metadata / schema fields added or standardized
+## Changes applied
 
-### Founder-profile pages (canonical → `saami-salami.html`)
+### Forbidden terms removed (visible copy + metadata)
 
-Added or corrected on: `saami-salami.html`, `founder-saami.html`, `sami-salami.html`, `sami-salami-asl.html`, `sami-salami-profile.html`, `sami-profile.html`, `saami-salami-profile.html`, `saami-bio.html`
+- `Sami Salami`, `Saami Salami` (without Asl), `Saami (Sami) Salami`, `Sami / Saami`
+- `also written as`, `also known as`, `same person`, alias clarification links/text
+- `appears online in several forms`, `name variations`, `search for his name online`
+- JSON-LD `alternateName` arrays on founder Person blocks
 
-```html
-<link rel="canonical" href="https://elisence.com/saami-salami.html" />
-<meta property="og:type" content="profile" />
-<meta property="og:title" content="Saami Salami Asl — Founder of Elisence" />
-<meta property="og:url" content="https://elisence.com/saami-salami.html" />
-<meta property="og:image" content="https://elisence.com/assets/saami-founder.jpeg" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://elisence.com/assets/saami-founder.jpeg" />
-```
+Replaced with calm professional founder wording (governance, non-diagnostic technology, platform architecture).
 
-Person JSON-LD (preserved `jobTitle`, `affiliation` where present):
+### Schema / metadata
 
-```json
-{
-  "@type": "Person",
-  "name": "Saami Salami Asl",
-  "url": "https://elisence.com/saami-salami.html",
-  "image": "https://elisence.com/assets/saami-founder.jpeg"
-}
-```
+- Article `author` URLs: `founder-saami.html` → `https://elisence.com/saami-salami.html` (22 article files)
+- `saami/index.html` Person schema: canonical name, url, image; removed alternateName
+- Hub pages: OG/Twitter `saami-founder.jpeg` where added (`saami/index.html`)
+- Organization/founder blocks unchanged from prior pass on `index.html`, `about.html`, `elisence.html`, `founder-saami.html`, `saami-salami.html`
 
-### Article page (own canonical preserved)
+### Canonical policy
 
-`founder-story-saami-salami-asl.html`:
+- Page self-canonicals unchanged where already correct (`elisence.com` domain per `CNAME`)
+- Founder schema references use `https://elisence.com/saami-salami.html` (not article hub URLs)
 
-```html
-<link rel="canonical" href="https://elisence.com/founder-story-saami-salami-asl.html" />
-```
+### Sitemap
 
-Article JSON-LD with author Person pointing to canonical founder entity.
-
-### Organization founder references
-
-`index.html`, `about.html`, `elisence.html` — `founder` Person block:
-
-- `"name": "Saami Salami Asl"`
-- `"url": "https://elisence.com/saami-salami.html"`
-- `"image": "https://elisence.com/assets/saami-founder.jpeg"`
-
-`index.html` — removed schema `alternateName` array (alias consolidation in structured data only).
-
-`articles.html` — CollectionPage `author` Person url + image.
+- **No changes** — existing URLs retained
 
 ---
 
-## 3. URLs standardized
+## Post-edit grep proof
 
-All Person / founder schema `url` fields now use:
+| Pattern | Result (site HTML, excl. investor deck) |
+|---------|----------------------------------------|
+| `Sami Salami` | **0** matches |
+| `also written as` | **0** matches |
+| `also known as` | **0** matches |
+| `alias clarification` | **0** matches |
+| `Saami (Sami)` | **0** matches |
+| `alternateName` | **0** matches |
+| `rumour` / `accusation` | **0** matches |
 
-`https://elisence.com/saami-salami.html`
+**Note:** `phase5.html` contains “same personality rules” (unrelated to founder identity).
 
-Previously inconsistent values corrected:
-
-- `https://elisence.com/founder-saami.html` → canonical founder URL
-- `https://www.elisence.com/saami-salami.html` → non-www canonical
-
----
-
-## 4. Image refs standardized
-
-All founder-related schema and social meta now use:
-
-`https://elisence.com/assets/saami-founder.jpeg`
-
-No in-body `<img>` founder photos exist on founder pages in this sparse checkout; investor deck Web Summit portrait (`samiwebsummit.jpeg`) intentionally untouched.
+**Investor deck:** still contains `Saami Salami` in slide copy — intentionally skipped.
 
 ---
 
-## 5. Pages intentionally skipped
+## Files changed (this pass)
 
-| Page / area | Reason |
-|-------------|--------|
-| `elisence-investor-deck.html` and all deck variants | Forbidden: investor deck / Web Summit materials |
-| `audit/investor-deck-*` proof HTML | Audit artifacts; not live site SEO |
-| `story.html`, `video.html` | No existing JSON-LD / OG founder schema; body copy unchanged per scope |
-| Product / evidence / Qatar / phase pages | Navigation links only; no founder schema surfaces |
-| Individual article HTML under `articles/` | Not present in sparse checkout; hub schema updated via `articles.html` |
-| CSS, layout, navigation hrefs, visible body copy | Out of scope |
+### Root
 
----
+`index.html`, `story.html`, `video.html`, `saami-bio.html`, `sami-profile.html`
 
-## 6. Grep proof
+### saami/
 
-### `saami-founder.jpeg` (founder meta/schema only)
+`index.html`, `bio.html`, `message.html`, `press-kit.html`, `timeline.html`, `youtube.html`, `articles.html`, `interviews.html`, `achievements.html`, `interview-family-0-18-phase15.html`, `interview-weight-intelligence.html`, `saami/saami/articles.html`, `saami/saami/interview-elisence-vision.html`, `saami/saami/interview-weight-intelligence.html`, `saami/saami/interviews.html`, `saami/saami/saami/interviews.html`, `saami/saami/timeline.html`
 
-```
-founder-story-saami-salami-asl.html  og:image, twitter:image, Article.image, author.image
-founder-saami.html                   og:image, twitter:image, Person.image
-saami-salami.html                    og:image, twitter:image, Person.image
-sami-salami.html                     og:image, twitter:image, Person.image
-sami-salami-asl.html                 og:image, twitter:image, Person.image
-sami-salami-profile.html             og:image, twitter:image, Person.image
-sami-profile.html                    og:image, twitter:image, Person.image
-saami-salami-profile.html            og:image, twitter:image, Person.image
-saami-bio.html                       og:image, twitter:image, Person.image
-index.html                           Organization.founder.image
-about.html                           Organization.founder.image
-elisence.html                        Organization.founder.image
-articles.html                        author.image
-```
+### articles/ (22 files)
 
-### Canonical founder URL (`rel="canonical"` → saami-salami.html)
-
-```
-saami-salami.html
-founder-saami.html
-sami-salami.html
-sami-salami-asl.html
-sami-salami-profile.html
-sami-profile.html
-saami-salami-profile.html
-saami-bio.html
-```
-
-Article self-canonical:
-
-```
-founder-story-saami-salami-asl.html → founder-story-saami-salami-asl.html
-```
-
-### Person schema `"url": "https://elisence.com/saami-salami.html"`
-
-All 13 changed files — 13 matching Person/founder url references (8 standalone Person pages + 3 Organization.founder + 1 CollectionPage author + 1 Article author).
-
-### Fail-condition check
-
-- No redesign, layout, or CSS changes
-- No visible body copy rewritten
-- No non-founder assets modified
-- No new schema aliases introduced (`alternateName` removed from index schema only)
-- Investor deck / Web Summit images untouched
+Including `elisence-intro.html`, `who-is-saami-salami-asl-elisence-founder.html`, `founder-philosophy-saami-salami-asl.html`, `national-health-intelligence-saami-salami-asl.html`, and other knowledge-center articles.
 
 ---
 
-## Outcome
+## Skipped
 
-Google structured-data signals now converge on one founder entity:
+| Item | Reason |
+|------|--------|
+| Investor deck + audit deck HTML | Forbidden scope |
+| `pitch-system.html`, `deck-system.html`, `web-summit-board.html` | Pitch / summit materials |
+| `saami-salami-asl-profile.html` | Case-variant path; left at `HEAD` to avoid Windows collision corruption |
+| `elisence.online` domain | Not present in repo; `CNAME` is `elisence.com` |
+| `sami-salami.html` and other deleted-on-remote alias pages | Not in sparse checkout / removed on `main` |
 
-**Saami Salami Asl** + **https://elisence.com/saami-salami.html** + **https://elisence.com/assets/saami-founder.jpeg**
+---
+
+## Fail-condition check
+
+- No redesign or layout change
+- No file deletion or new pages
+- No investor deck edits
+- No unrelated health content rewrites (only founder-identity surfaces)
