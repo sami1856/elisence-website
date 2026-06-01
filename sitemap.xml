@@ -47,17 +47,10 @@
 
   <!-- Founder & name SEO pages -->
   <url>
-    <loc>https://elisence.com/founder-saami.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://elisence.com/saami-salami.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
