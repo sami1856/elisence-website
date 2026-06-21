@@ -1329,7 +1329,7 @@
       min-height: 0;
       max-height: 100%;
       margin: 0 auto;
-      gap: clamp(4px, 0.55vh, 6px);
+      gap: clamp(3px, 0.4vh, 4px);
     }
 
     #slide-07 .s07-deck-header {
@@ -1358,9 +1358,9 @@
     }
 
     #slide-07 .s07-deck-header > p {
-      font-size: clamp(13px, 1.45vh, 17px);
+      font-size: clamp(12px, 1.25vh, 15px);
       font-weight: 700;
-      line-height: 1.26;
+      line-height: 1.22;
       color: rgba(200, 235, 255, .92);
       margin: 0;
     }
@@ -1371,8 +1371,8 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 3px 5px;
-      padding: clamp(3px, 0.45vh, 5px) clamp(6px, 0.85vw, 10px);
+      gap: 2px 4px;
+      padding: 2px clamp(5px, 0.75vw, 8px);
       border-radius: 10px;
       border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(6, 28, 62, .9), rgba(3, 12, 32, .96), rgba(6, 28, 62, .9));
@@ -1380,11 +1380,11 @@
     }
 
     #slide-07 .s07-flow-node {
-      font-size: clamp(11px, 1.28vh, 13.5px);
+      font-size: clamp(10px, 1.1vh, 12px);
       font-weight: 800;
       letter-spacing: .03em;
-      line-height: 1.2;
-      padding: 3px 8px;
+      line-height: 1.18;
+      padding: 2px 6px;
       border-radius: 8px;
       border: 1px solid rgba(90, 190, 255, .35);
       color: rgba(210, 240, 255, .94);
@@ -1406,7 +1406,7 @@
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(4px, 0.55vh, 6px);
+      gap: clamp(3px, 0.38vh, 4px);
       align-items: stretch;
     }
 
@@ -1414,7 +1414,7 @@
       min-height: 0;
       display: flex;
       flex-direction: column;
-      gap: clamp(3px, 0.4vh, 4px);
+      gap: clamp(2px, 0.28vh, 3px);
     }
 
     #slide-07 .s07-section-panel {
@@ -1422,29 +1422,29 @@
       min-height: 0;
       display: flex;
       flex-direction: column;
-      border-radius: 10px;
+      border-radius: 9px;
       border: 1px solid rgba(95, 210, 255, .48);
       background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
-      box-shadow: 0 0 18px rgba(0, 150, 255, .14);
-      padding: clamp(4px, 0.55vh, 6px) clamp(7px, 0.9vw, 9px);
-      overflow: hidden;
+      box-shadow: 0 0 16px rgba(0, 150, 255, .12);
+      padding: 2px 5px 3px;
+      overflow: visible;
     }
 
     #slide-07 .s07-block-head {
       display: flex;
       align-items: center;
-      gap: 6px;
-      margin-bottom: clamp(3px, 0.35vh, 4px);
-      padding-bottom: clamp(2px, 0.3vh, 3px);
+      gap: 5px;
+      margin-bottom: 1px;
+      padding-bottom: 1px;
       border-bottom: 1px solid rgba(85, 200, 255, .2);
       flex-shrink: 0;
     }
 
     #slide-07 .s07-block-icon {
       flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1454,8 +1454,8 @@
     }
 
     #slide-07 .s07-block-icon svg {
-      width: 12px;
-      height: 12px;
+      width: 11px;
+      height: 11px;
     }
 
     #slide-07 .s07-block-icon svg path,
@@ -1496,6 +1496,7 @@
       display: flex;
       flex-direction: column;
       min-height: 0;
+      overflow: visible;
     }
 
     #slide-07 .s07-block + .s07-block {
@@ -1511,10 +1512,10 @@
 
     #slide-07 .s07-block-head h3,
     #slide-07 .s07-block h3 {
-      font-size: clamp(15px, 1.65vh, 19px);
+      font-size: clamp(14px, 1.5vh, 17px);
       font-weight: 900;
-      letter-spacing: .04em;
-      line-height: 1.18;
+      letter-spacing: .035em;
+      line-height: 1.14;
       text-transform: uppercase;
       color: #8edcff;
       margin: 0;
@@ -1523,13 +1524,9 @@
     }
 
     #slide-07 .s07-section-panel .s07-block ul {
-      flex: 1 1 auto;
-      min-height: 0;
-    }
-
-    #slide-07 .s07-section-panel .s07-block li {
-      font-size: clamp(13px, 1.45vh, 15.5px);
-      line-height: 1.38;
+      flex: 0 1 auto;
+      min-height: auto;
+      overflow: visible;
     }
 
     #slide-07 .s07-block-head h3 {
@@ -1544,13 +1541,24 @@
     }
 
     #slide-07 .s07-block li {
-      font-size: clamp(13px, 1.45vh, 15.5px);
+      font-size: clamp(11px, 1.15vh, 12.5px);
       font-weight: 600;
-      line-height: 1.38;
+      line-height: 1.28;
       color: rgba(220, 245, 255, .96);
-      margin-bottom: clamp(4px, 0.5vh, 6px);
-      padding-left: 1.1em;
+      margin-bottom: clamp(1px, 0.18vh, 2px);
+      padding-left: 1.05em;
       position: relative;
+    }
+
+    #slide-07 .s07-regulatory-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: clamp(6px, 0.8vw, 10px);
+      row-gap: 0;
+    }
+
+    #slide-07 .s07-regulatory-list .s07-li-full {
+      grid-column: 1 / -1;
     }
 
     #slide-07 .s07-block li:last-child {
@@ -1569,11 +1577,11 @@
       flex-shrink: 0;
       margin: 0;
       text-align: center;
-      font-size: clamp(13.5px, 1.55vh, 17px);
+      font-size: clamp(12px, 1.35vh, 14px);
       font-weight: 800;
-      line-height: 1.36;
+      line-height: 1.32;
       color: #fff;
-      padding: clamp(6px, 0.75vh, 8px) clamp(12px, 1.2vw, 16px);
+      padding: clamp(4px, 0.5vh, 5px) clamp(10px, 1vw, 12px);
       border-radius: 10px;
       border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
@@ -1602,12 +1610,12 @@
         padding: 2px 6px;
       }
       #slide-07 .s07-block h3 {
-        font-size: 15px;
+        font-size: 14px;
       }
       #slide-07 .s07-block li {
-        font-size: 12.5px;
-        line-height: 1.34;
-        margin-bottom: 4px;
+        font-size: 11px;
+        line-height: 1.28;
+        margin-bottom: 1px;
       }
       #slide-07 .s07-panel {
         padding: 7px 9px;
@@ -3995,8 +4003,8 @@
       }
 
       #slide-07 .s07-block li {
-        font-size: clamp(14px, 1.55vh, 16px);
-        line-height: 1.4;
+        font-size: clamp(11px, 1.15vh, 12.5px);
+        line-height: 1.28;
       }
       #slide-07 .s07-closing {
         font-size: clamp(14.5px, 1.65vh, 18px);
@@ -4197,12 +4205,12 @@
         font-size: 9pt !important;
       }
       #slide-07 .s07-block h3 {
-        font-size: 11pt !important;
+        font-size: 10.5pt !important;
       }
       #slide-07 .s07-block li {
-        font-size: 9.5pt !important;
-        line-height: 1.26 !important;
-        margin-bottom: 1.5mm !important;
+        font-size: 8.5pt !important;
+        line-height: 1.28 !important;
+        margin-bottom: 0.8mm !important;
       }
       #slide-07 .s07-block + .s07-block {
         padding-top: 1.5mm !important;
@@ -4212,7 +4220,11 @@
         gap: 2mm !important;
       }
       #slide-07 .s07-section-panel {
-        padding: 1.5mm 2mm !important;
+        padding: 1mm 1.5mm !important;
+        overflow: visible !important;
+      }
+      #slide-07 .s07-regulatory-list {
+        column-gap: 2mm !important;
       }
       #slide-07 .s07-col {
         gap: 1mm !important;
@@ -4947,7 +4959,7 @@
   </section>
 
   <!-- Slide 07 Trust -->
-  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-trust-governance-expanded">
+  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-overflow-fixed">
     <div class="s07-shell">
       <header class="s07-deck-header">
         <div class="s07-kicker">07 — Trust, Safety &amp; Governance</div>
@@ -5035,15 +5047,15 @@
                 </span>
                 <h3>REGULATORY ALIGNMENT</h3>
               </div>
-              <ul>
-                <li>Elisence is designed with awareness of:</li>
+              <ul class="s07-regulatory-list">
+                <li class="s07-li-full">Elisence is designed with awareness of:</li>
                 <li>NHS principles</li>
                 <li>UK GDPR expectations</li>
                 <li>EU GDPR expectations</li>
                 <li>MDR thinking</li>
                 <li>FDA-informed safety thinking</li>
                 <li>GCC healthcare realities</li>
-                <li>The objective is supporting responsible deployment across different healthcare environments while respecting local governance requirements.</li>
+                <li class="s07-li-full">The objective is supporting responsible deployment across different healthcare environments while respecting local governance requirements.</li>
               </ul>
             </div>
           </article>
