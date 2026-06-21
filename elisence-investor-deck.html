@@ -1315,7 +1315,7 @@
       height: 100dvh;
       max-height: 100vh;
       max-height: 100dvh;
-      padding: clamp(10px, 1.35vh, 16px) clamp(16px, 3vw, 48px);
+      padding: clamp(6px, 0.85vh, 12px) clamp(14px, 2.6vw, 44px);
       overflow: hidden;
       scroll-snap-align: start;
     }
@@ -1329,7 +1329,7 @@
       min-height: 0;
       max-height: 100%;
       margin: 0 auto;
-      gap: clamp(6px, 0.75vh, 8px);
+      gap: clamp(4px, 0.55vh, 6px);
     }
 
     #slide-07 .s07-deck-header {
@@ -1344,23 +1344,23 @@
       letter-spacing: .14em;
       text-transform: uppercase;
       color: #55d9ff;
-      margin: 0 0 3px;
+      margin: 0 0 2px;
       line-height: 1.2;
     }
 
     #slide-07 .s07-deck-header h2 {
-      font-size: clamp(32px, 4.2vh, 42px);
+      font-size: clamp(26px, 3.2vh, 36px);
       font-weight: 900;
       line-height: 1.06;
       color: #fff;
-      margin: 0 0 3px;
+      margin: 0 0 2px;
       text-shadow: 0 0 16px rgba(0, 180, 255, .15);
     }
 
     #slide-07 .s07-deck-header > p {
-      font-size: clamp(14px, 1.75vh, 20px);
+      font-size: clamp(13px, 1.45vh, 17px);
       font-weight: 700;
-      line-height: 1.28;
+      line-height: 1.26;
       color: rgba(200, 235, 255, .92);
       margin: 0;
     }
@@ -1371,8 +1371,8 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 4px 6px;
-      padding: clamp(5px, 0.65vh, 7px) clamp(8px, 1vw, 12px);
+      gap: 3px 5px;
+      padding: clamp(3px, 0.45vh, 5px) clamp(6px, 0.85vw, 10px);
       border-radius: 10px;
       border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(6, 28, 62, .9), rgba(3, 12, 32, .96), rgba(6, 28, 62, .9));
@@ -1406,8 +1406,62 @@
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(8px, 1vh, 10px);
+      gap: clamp(4px, 0.55vh, 6px);
       align-items: stretch;
+    }
+
+    #slide-07 .s07-col {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(3px, 0.4vh, 4px);
+    }
+
+    #slide-07 .s07-section-panel {
+      flex: 1 1 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
+      box-shadow: 0 0 18px rgba(0, 150, 255, .14);
+      padding: clamp(4px, 0.55vh, 6px) clamp(7px, 0.9vw, 9px);
+      overflow: hidden;
+    }
+
+    #slide-07 .s07-block-head {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: clamp(3px, 0.35vh, 4px);
+      padding-bottom: clamp(2px, 0.3vh, 3px);
+      border-bottom: 1px solid rgba(85, 200, 255, .2);
+      flex-shrink: 0;
+    }
+
+    #slide-07 .s07-block-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(90, 210, 255, .42);
+      background: radial-gradient(circle at 35% 30%, rgba(85, 217, 255, .22), rgba(4, 22, 58, .88));
+      box-shadow: 0 0 8px rgba(0, 150, 255, .14);
+    }
+
+    #slide-07 .s07-block-icon svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    #slide-07 .s07-block-icon svg path,
+    #slide-07 .s07-block-icon svg circle,
+    #slide-07 .s07-block-icon svg rect {
+      stroke: #8edcff;
     }
 
     #slide-07 .s07-panel {
@@ -1434,6 +1488,14 @@
 
     #slide-07 .s07-block {
       flex-shrink: 0;
+      min-height: 0;
+    }
+
+    #slide-07 .s07-section-panel .s07-block {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
 
     #slide-07 .s07-block + .s07-block {
@@ -1442,6 +1504,12 @@
       border-top: 1px solid rgba(85, 200, 255, .22);
     }
 
+    #slide-07 .s07-section-panel .s07-block + .s07-block {
+      padding-top: 0;
+      border-top: none;
+    }
+
+    #slide-07 .s07-block-head h3,
     #slide-07 .s07-block h3 {
       font-size: clamp(15px, 1.65vh, 19px);
       font-weight: 900;
@@ -1449,9 +1517,24 @@
       line-height: 1.18;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 clamp(5px, 0.6vh, 7px);
-      padding-bottom: clamp(4px, 0.45vh, 5px);
-      border-bottom: 1px solid rgba(85, 200, 255, .2);
+      margin: 0;
+      padding: 0;
+      border-bottom: none;
+    }
+
+    #slide-07 .s07-section-panel .s07-block ul {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    #slide-07 .s07-section-panel .s07-block li {
+      font-size: clamp(13px, 1.45vh, 15.5px);
+      line-height: 1.38;
+    }
+
+    #slide-07 .s07-block-head h3 {
+      flex: 1 1 auto;
+      min-width: 0;
     }
 
     #slide-07 .s07-block ul {
@@ -4128,12 +4211,23 @@
         padding: 2.5mm 3mm !important;
         gap: 2mm !important;
       }
+      #slide-07 .s07-section-panel {
+        padding: 1.5mm 2mm !important;
+      }
+      #slide-07 .s07-col {
+        gap: 1mm !important;
+      }
+      #slide-07 .s07-columns {
+        gap: 1.5mm !important;
+      }
       #slide-07 .s07-closing {
         font-size: 11pt !important;
         padding: 2.5mm 4mm !important;
       }
       #slide-07 .s07-shell,
       #slide-07 .s07-columns,
+      #slide-07 .s07-col,
+      #slide-07 .s07-section-panel,
       #slide-07 .s07-panel {
         overflow: visible !important;
       }
@@ -4853,7 +4947,7 @@
   </section>
 
   <!-- Slide 07 Trust -->
-  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-readable-full-content">
+  <section class="slide deck-slide" id="slide-07" data-deck-build="s07-trust-governance-expanded">
     <div class="s07-shell">
       <header class="s07-deck-header">
         <div class="s07-kicker">07 — Trust, Safety &amp; Governance</div>
@@ -4872,46 +4966,164 @@
         <span class="s07-flow-node">Fail Safely</span>
       </div>
       <div class="s07-columns">
-        <article class="s07-panel s07-panel--left" aria-label="Trust and safety, medical-ready foundations">
-          <div class="s07-block">
-            <h3>TRUST &amp; SAFETY BY DESIGN</h3>
-            <ul>
-              <li>Elisence is designed with healthcare-aware safety thinking from the beginning — prioritising trust, responsible boundaries, privacy, transparency, permission, and safer long-term participation.</li>
-              <li>Citizen experiences are intentionally designed to remain non-clinical and non-diagnostic by default, helping people better understand and navigate healthcare rather than replacing doctors or acting as autonomous medical authority.</li>
-            </ul>
-          </div>
-          <div class="s07-block">
-            <h3>MEDICAL-READY FOUNDATIONS</h3>
-            <ul>
-              <li>Elisence is intentionally designed as a governed non-medical platform today — while supporting future clinically governed activation where appropriate, under licensed, institutionally supervised, or healthcare-system-led environments.</li>
-              <li>Safety-aware infrastructure, governance foundations, auditability, permissions, and healthcare-aware controls are designed from the beginning, remaining intentionally constrained and fail-safe by default.</li>
-            </ul>
-          </div>
-        </article>
-        <article class="s07-panel s07-panel--right" aria-label="Governed intelligence, zero trust, fail safely">
-          <div class="s07-block">
-            <h3>GOVERNED HEALTH INTELLIGENCE</h3>
-            <ul>
-              <li>Elisence is designed around trusted, governed, and curated health understanding rather than unrestricted medical AI generation.</li>
-              <li>Health understanding is designed to align with healthcare-aware thinking inspired by NHS-style safety principles, UK and EU privacy expectations, FDA-informed boundaries, MDR thinking, and Gulf healthcare realities — while adapting responsibly to local healthcare context over time.</li>
-              <li>Responses are designed to operate within governed safety boundaries, uncertainty handling, trusted escalation pathways, and permission-aware experiences rather than unsafe certainty or unrestricted medical automation.</li>
-            </ul>
-          </div>
-          <div class="s07-block">
-            <h3>ZERO TRUST, PRIVACY &amp; ACCOUNTABILITY</h3>
-            <ul>
-              <li>Elisence follows a Zero-Trust philosophy — permissions, access, identity, consent, and visibility are validated rather than assumed.</li>
-              <li>Privacy-aware, permissioned, explainable, and accountable participation are designed to support trust over time.</li>
-            </ul>
-          </div>
-          <div class="s07-block">
-            <h3>BUILT TO FAIL SAFELY</h3>
-            <ul>
-              <li>Safety matters more than false certainty.</li>
-              <li>Elisence is designed to behave conservatively, explain uncertainty, restrict unsafe behaviour, and fail safely rather than overclaim confidence.</li>
-            </ul>
-          </div>
-        </article>
+        <div class="s07-col" aria-label="Trust, safety, medical foundations, explainability, human control, and regulatory alignment">
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l7 3v6c0 4.2-3 7.8-7 9-4-1.2-7-4.8-7-9V6l7-3z" stroke-width="1.1" stroke-linejoin="round"/></svg>
+                </span>
+                <h3>TRUST &amp; SAFETY BY DESIGN</h3>
+              </div>
+              <ul>
+                <li>Elisence is designed with healthcare-aware safety thinking from the beginning — prioritising trust, responsible boundaries, privacy, transparency, permission, and safer long-term participation.</li>
+                <li>Citizen experiences are intentionally designed to remain non-clinical and non-diagnostic by default, helping people better understand and navigate healthcare rather than replacing doctors or acting as autonomous medical authority.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v18M3 12h18" stroke-width="1.1" stroke-linecap="round" opacity=".45"/><rect x="7" y="8" width="10" height="10" rx="1.5" stroke-width="1.1"/></svg>
+                </span>
+                <h3>MEDICAL-READY FOUNDATIONS</h3>
+              </div>
+              <ul>
+                <li>Elisence is intentionally designed as a governed non-medical platform today — while supporting future clinically governed activation where appropriate, under licensed, institutionally supervised, or healthcare-system-led environments.</li>
+                <li>Safety-aware infrastructure, governance foundations, auditability, permissions, and healthcare-aware controls are designed from the beginning, remaining intentionally constrained and fail-safe by default.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke-width="1.1"/><path d="M16 16l4 4" stroke-width="1.1" stroke-linecap="round"/></svg>
+                </span>
+                <h3>EXPLAINABLE &amp; AUDITABLE INTELLIGENCE</h3>
+              </div>
+              <ul>
+                <li>Elisence is designed around explainable and accountable health understanding.</li>
+                <li>Recommendations, insights, and guidance are intended to remain traceable, reviewable, and understandable rather than operating as opaque black-box decision making.</li>
+                <li>The platform prioritizes explainability, governance, transparency, and accountability before automation.</li>
+                <li>Operational objective: Trust through understanding rather than trust through blind automation.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="3" stroke-width="1.1"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.1" stroke-linecap="round"/></svg>
+                </span>
+                <h3>HUMAN IN CONTROL</h3>
+              </div>
+              <ul>
+                <li>Elisence is designed to support people, clinicians, caregivers, and healthcare organisations rather than replace them.</li>
+                <li>Healthcare professionals remain responsible for clinical judgement.</li>
+                <li>Elisence is designed to support awareness, participation, continuity, communication, and understanding while keeping humans accountable for important decisions.</li>
+                <li>Operational objective: Technology supports people. Technology does not replace people.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 4h10v16H7z" stroke-width="1.1"/><path d="M9 8h6M9 12h6M9 16h4" stroke-width="1.1" stroke-linecap="round"/></svg>
+                </span>
+                <h3>REGULATORY ALIGNMENT</h3>
+              </div>
+              <ul>
+                <li>Elisence is designed with awareness of:</li>
+                <li>NHS principles</li>
+                <li>UK GDPR expectations</li>
+                <li>EU GDPR expectations</li>
+                <li>MDR thinking</li>
+                <li>FDA-informed safety thinking</li>
+                <li>GCC healthcare realities</li>
+                <li>The objective is supporting responsible deployment across different healthcare environments while respecting local governance requirements.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <div class="s07-col" aria-label="Governed intelligence, zero trust, fail safely, trust infrastructure, and responsible AI">
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke-width="1.1"/><path d="M9 12h6M12 9v6" stroke-width="1.1" stroke-linecap="round" opacity=".7"/></svg>
+                </span>
+                <h3>GOVERNED HEALTH INTELLIGENCE</h3>
+              </div>
+              <ul>
+                <li>Elisence is designed around trusted, governed, and curated health understanding rather than unrestricted medical AI generation.</li>
+                <li>Health understanding is designed to align with healthcare-aware thinking inspired by NHS-style safety principles, UK and EU privacy expectations, FDA-informed boundaries, MDR thinking, and Gulf healthcare realities — while adapting responsibly to local healthcare context over time.</li>
+                <li>Responses are designed to operate within governed safety boundaries, uncertainty handling, trusted escalation pathways, and permission-aware experiences rather than unsafe certainty or unrestricted medical automation.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="11" width="14" height="10" rx="2" stroke-width="1.1"/><path d="M8 11V8a4 4 0 018 0v3" stroke-width="1.1"/></svg>
+                </span>
+                <h3>ZERO TRUST, PRIVACY &amp; ACCOUNTABILITY</h3>
+              </div>
+              <ul>
+                <li>Elisence follows a Zero-Trust philosophy — permissions, access, identity, consent, and visibility are validated rather than assumed.</li>
+                <li>Privacy-aware, permissioned, explainable, and accountable participation are designed to support trust over time.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 8v5M12 16h.01" stroke-width="1.2" stroke-linecap="round"/><path d="M10.3 4.5h3.4L20 20H4L10.3 4.5z" stroke-width="1.1" stroke-linejoin="round"/></svg>
+                </span>
+                <h3>BUILT TO FAIL SAFELY</h3>
+              </div>
+              <ul>
+                <li>Safety matters more than false certainty.</li>
+                <li>Elisence is designed to behave conservatively, explain uncertainty, restrict unsafe behaviour, and fail safely rather than overclaim confidence.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18h16M6 18V8l6-4 6 4v10" stroke-width="1.1" stroke-linejoin="round"/></svg>
+                </span>
+                <h3>TRUST AS INFRASTRUCTURE</h3>
+              </div>
+              <ul>
+                <li>Many digital platforms add trust, governance, privacy, and accountability later.</li>
+                <li>Elisence is designed with trust as foundational infrastructure from the beginning.</li>
+                <li>Identity, permissions, consent, privacy, governance, auditability, and accountability are intended to operate as core platform capabilities rather than optional features.</li>
+                <li>Operational objective: Trust is architecture. Not an afterthought.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s07-section-panel">
+            <div class="s07-block">
+              <div class="s07-block-head">
+                <span class="s07-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="8" width="14" height="10" rx="2" stroke-width="1.1"/><circle cx="9" cy="12" r="1.2" fill="#8edcff"/><circle cx="15" cy="12" r="1.2" fill="#8edcff"/><path d="M8 5h8M12 5v3" stroke-width="1.1" stroke-linecap="round"/></svg>
+                </span>
+                <h3>RESPONSIBLE AI ACTIVATION</h3>
+              </div>
+              <ul>
+                <li>Future intelligent capabilities are intended to remain governance-aware and permission-aware.</li>
+                <li>Higher levels of intelligence may be activated under appropriate organisational, institutional, healthcare-system, or regulatory controls when required.</li>
+                <li>The objective is responsible activation rather than unrestricted automation.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
       </div>
       <p class="s07-closing">Trust is not paperwork. Trust is architecture.</p>
     </div>
