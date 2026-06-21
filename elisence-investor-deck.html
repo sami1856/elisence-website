@@ -1105,6 +1105,201 @@
       }
     }
 
+    /* Slide 06B — Healthcare Systems, Hospitals & Insurers */
+    #slide-06b.slide {
+      min-height: 100vh;
+      height: 100vh;
+      max-height: 100vh;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding: clamp(10px, 1.4vh, 16px) clamp(16px, 2.8vw, 44px);
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    #slide-06b .s06b-shell {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: min(1320px, 100%);
+      height: 100%;
+      max-height: calc(100vh - clamp(20px, 2.8vh, 32px));
+      margin: 0 auto;
+      min-height: 0;
+      gap: clamp(4px, 0.55vh, 6px);
+    }
+
+    #slide-06b .s06b-deck-header {
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    #slide-06b .s06b-kicker {
+      font-size: clamp(10px, 0.78vw, 12px);
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #55d9ff;
+      margin: 0 0 1px;
+    }
+
+    #slide-06b .s06b-deck-header h2 {
+      font-size: clamp(26px, 2.35vw, 38px);
+      font-weight: 900;
+      line-height: 1.06;
+      color: #fff;
+      margin: 0 0 1px;
+      text-shadow: 0 0 18px rgba(0, 180, 255, .16);
+    }
+
+    #slide-06b .s06b-deck-header > p {
+      font-size: clamp(13px, 1.1vw, 17px);
+      font-weight: 700;
+      line-height: 1.24;
+      color: rgba(200, 235, 255, .92);
+      margin: 0;
+    }
+
+    #slide-06b .s06b-columns {
+      flex: 1 1 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(5px, 0.65vh, 7px);
+      align-items: stretch;
+    }
+
+    #slide-06b .s06b-col {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(4px, 0.55vh, 6px);
+    }
+
+    #slide-06b .s06b-value-panel {
+      flex: 1 1 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      border-radius: 11px;
+      border: 1px solid rgba(95, 210, 255, .48);
+      background: linear-gradient(165deg, rgba(10, 38, 88, .92), rgba(3, 12, 32, .97));
+      box-shadow: 0 0 20px rgba(0, 150, 255, .14);
+      padding: clamp(4px, 0.55vh, 6px) clamp(7px, 0.9vw, 9px);
+      overflow: hidden;
+    }
+
+    #slide-06b .s06b-panel-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: clamp(2px, 0.32vh, 3px);
+      padding-bottom: clamp(2px, 0.28vh, 3px);
+      border-bottom: 1px solid rgba(85, 200, 255, .22);
+      flex-shrink: 0;
+    }
+
+    #slide-06b .s06b-panel-icon {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(90, 210, 255, .42);
+      background: radial-gradient(circle at 35% 30%, rgba(85, 217, 255, .22), rgba(4, 22, 58, .88));
+      box-shadow: 0 0 12px rgba(0, 150, 255, .18);
+    }
+
+    #slide-06b .s06b-panel-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    #slide-06b .s06b-panel-icon svg path,
+    #slide-06b .s06b-panel-icon svg circle,
+    #slide-06b .s06b-panel-icon svg rect {
+      stroke: #8edcff;
+    }
+
+    #slide-06b .s06b-panel-head h3 {
+      font-size: clamp(11.5px, 0.98vh, 14px);
+      font-weight: 900;
+      letter-spacing: .03em;
+      line-height: 1.16;
+      text-transform: uppercase;
+      color: #8edcff;
+      margin: 0;
+    }
+
+    #slide-06b .s06b-panel-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2px, 0.25vh, 3px);
+    }
+
+    #slide-06b .s06b-panel-body p {
+      font-size: clamp(10.5px, 0.96vh, 12.5px);
+      font-weight: 600;
+      line-height: 1.3;
+      color: rgba(220, 245, 255, .96);
+      margin: 0;
+    }
+
+    #slide-06b .s06b-panel-body ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #slide-06b .s06b-panel-body li {
+      font-size: clamp(10.5px, 0.96vh, 12.5px);
+      font-weight: 600;
+      line-height: 1.3;
+      color: rgba(220, 245, 255, .96);
+      margin-bottom: clamp(1px, 0.2vh, 2px);
+      padding-left: 1em;
+      position: relative;
+    }
+
+    #slide-06b .s06b-panel-body li:last-child {
+      margin-bottom: 0;
+    }
+
+    #slide-06b .s06b-panel-body li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    #slide-06b .s06b-closing {
+      flex-shrink: 0;
+      margin: 0;
+      text-align: center;
+      font-size: clamp(10.5px, 0.92vh, 12.5px);
+      font-weight: 800;
+      line-height: 1.32;
+      color: #fff;
+      padding: clamp(4px, 0.55vh, 6px) clamp(8px, 1vw, 12px);
+      border-radius: 10px;
+      border: 1px solid rgba(95, 210, 255, .45);
+      background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
+      box-shadow: 0 0 20px rgba(0, 150, 255, .14);
+      text-shadow: 0 0 12px rgba(0, 180, 255, .12);
+    }
+
+    @media (max-width: 900px) {
+      #slide-06b .s06b-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Slide 07 — readable full-content two-panel (emergency rebuild) */
     #slide-07.slide {
       display: flex;
@@ -3701,6 +3896,18 @@
         font-size: clamp(11px, 0.98vh, 13px);
       }
 
+      #slide-06b .s06b-panel-body p,
+      #slide-06b .s06b-panel-body li {
+        font-size: clamp(11px, 1vh, 13px);
+        line-height: 1.32;
+      }
+      #slide-06b .s06b-panel-head h3 {
+        font-size: clamp(12px, 1.05vh, 14.5px);
+      }
+      #slide-06b .s06b-closing {
+        font-size: clamp(11px, 0.98vh, 13px);
+      }
+
       #slide-07 .s07-block li {
         font-size: clamp(14px, 1.55vh, 16px);
         line-height: 1.4;
@@ -3842,6 +4049,36 @@
         line-height: 1.26 !important;
       }
       #slide-06a .s06a-closing {
+        font-size: 9pt !important;
+        padding: 2mm 3mm !important;
+      }
+      #slide-06b.slide {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+        page-break-inside: avoid;
+      }
+      #slide-06b .s06b-shell,
+      #slide-06b .s06b-columns,
+      #slide-06b .s06b-col,
+      #slide-06b .s06b-value-panel {
+        overflow: visible;
+      }
+      #slide-06b .s06b-deck-header h2 {
+        font-size: 20pt !important;
+      }
+      #slide-06b .s06b-deck-header > p {
+        font-size: 9.5pt !important;
+      }
+      #slide-06b .s06b-panel-head h3 {
+        font-size: 9pt !important;
+      }
+      #slide-06b .s06b-panel-body p,
+      #slide-06b .s06b-panel-body li {
+        font-size: 8pt !important;
+        line-height: 1.26 !important;
+      }
+      #slide-06b .s06b-closing {
         font-size: 9pt !important;
         padding: 2mm 3mm !important;
       }
@@ -4060,12 +4297,13 @@
       <li><a class="deck-nav-link" href="#slide-05" data-slide-index="4" aria-label="Slide 05 Why Elisence Is Different"><span class="deck-nav-label">Why Elisence Is Different</span><span class="deck-nav-num">05</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
       <li><a class="deck-nav-link" href="#slide-06" data-slide-index="5" aria-label="Slide 06 People Value"><span class="deck-nav-label">People Value</span><span class="deck-nav-num">06</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
       <li><a class="deck-nav-link" href="#slide-06a" data-slide-index="6" aria-label="Slide 06A Healthcare System Government and Insurer Value"><span class="deck-nav-label">System &amp; Government Value</span><span class="deck-nav-num">06A</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
-      <li><a class="deck-nav-link" href="#slide-07" data-slide-index="7" aria-label="Slide 07 Trust Architecture"><span class="deck-nav-label">Trust Architecture</span><span class="deck-nav-num">07</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
-      <li><a class="deck-nav-link" href="#slide-08" data-slide-index="8" aria-label="Slide 08 Business Model"><span class="deck-nav-label">Business Model</span><span class="deck-nav-num">08</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
-      <li><a class="deck-nav-link" href="#slide-09" data-slide-index="9" aria-label="Slide 09 Market and Expansion"><span class="deck-nav-label">Market &amp; Expansion</span><span class="deck-nav-num">09</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
-      <li><a class="deck-nav-link" href="#slide-10" data-slide-index="10" aria-label="Slide 10 Founder Story"><span class="deck-nav-label">Founder Story</span><span class="deck-nav-num">10</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
-      <li><a class="deck-nav-link" href="#slide-11" data-slide-index="11" aria-label="Slide 11 Vision and Closing"><span class="deck-nav-label">Vision / Closing</span><span class="deck-nav-num">11</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
-      <li><a class="deck-nav-link" href="#slide-12" data-slide-index="12" aria-label="Slide 12 Ask and Next Step"><span class="deck-nav-label">Ask / Next Step</span><span class="deck-nav-num">12</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
+      <li><a class="deck-nav-link" href="#slide-06b" data-slide-index="7" aria-label="Slide 06B Healthcare Systems and Insurers"><span class="deck-nav-label">Healthcare Systems &amp; Insurers</span><span class="deck-nav-num">06B</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
+      <li><a class="deck-nav-link" href="#slide-07" data-slide-index="8" aria-label="Slide 07 Trust Architecture"><span class="deck-nav-label">Trust Architecture</span><span class="deck-nav-num">07</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
+      <li><a class="deck-nav-link" href="#slide-08" data-slide-index="9" aria-label="Slide 08 Business Model"><span class="deck-nav-label">Business Model</span><span class="deck-nav-num">08</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
+      <li><a class="deck-nav-link" href="#slide-09" data-slide-index="10" aria-label="Slide 09 Market and Expansion"><span class="deck-nav-label">Market &amp; Expansion</span><span class="deck-nav-num">09</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
+      <li><a class="deck-nav-link" href="#slide-10" data-slide-index="11" aria-label="Slide 10 Founder Story"><span class="deck-nav-label">Founder Story</span><span class="deck-nav-num">10</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
+      <li><a class="deck-nav-link" href="#slide-11" data-slide-index="12" aria-label="Slide 11 Vision and Closing"><span class="deck-nav-label">Vision / Closing</span><span class="deck-nav-num">11</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
+      <li><a class="deck-nav-link" href="#slide-12" data-slide-index="13" aria-label="Slide 12 Ask and Next Step"><span class="deck-nav-label">Ask / Next Step</span><span class="deck-nav-num">12</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
     </ol>
   </nav>
 
@@ -4485,6 +4723,169 @@
         </div>
       </div>
       <p class="s06a-closing">Helping people stay healthier. Helping healthcare systems become more connected. Supporting prevention, continuity, population understanding, and better long-term health outcomes.</p>
+    </div>
+  </section>
+
+  <!-- Slide 06B Healthcare Systems, Hospitals & Insurers -->
+  <section class="slide deck-slide" id="slide-06b" data-deck-build="s06b-healthcare-systems-insurer-value">
+    <div class="s06b-shell">
+      <header class="s06b-deck-header">
+        <div class="s06b-kicker">06B — Healthcare Systems, Hospitals &amp; Insurers</div>
+        <h2>Healthcare Systems, Hospitals &amp; Insurers</h2>
+        <p>How Elisence supports continuity, efficiency, engagement, and better long-term outcomes.</p>
+      </header>
+      <div class="s06b-columns">
+        <div class="s06b-col" aria-label="Healthcare system pressure, continuity, medication, and engagement">
+          <article class="s06b-value-panel">
+            <div class="s06b-panel-head">
+              <span class="s06b-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18h16M6 18V8l6-4 6 4v10" stroke-width="1.1" stroke-linejoin="round"/><path d="M9 14h6M9 11h6" stroke-width="1.1" stroke-linecap="round"/></svg>
+              </span>
+              <h3>Reducing Pressure on Healthcare Systems</h3>
+            </div>
+            <div class="s06b-panel-body">
+              <p>Elisence helps support prevention, continuity, self-management, and long-term participation.</p>
+              <p>By helping people stay healthier and engaged between appointments, healthcare systems may experience:</p>
+              <ul>
+                <li>fewer avoidable complications</li>
+                <li>fewer avoidable visits</li>
+                <li>stronger continuity</li>
+                <li>more informed patients</li>
+                <li>better long-term outcomes</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s06b-value-panel">
+            <div class="s06b-panel-head">
+              <span class="s06b-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M12 4v16" stroke-width="1.1" stroke-linecap="round" opacity=".5"/><circle cx="12" cy="12" r="8" stroke-width="1.1"/><path d="M8 12c1.5-2 3-3 4-3s2.5 1 4 3" stroke-width="1.1" stroke-linecap="round"/></svg>
+              </span>
+              <h3>Continuity of Care</h3>
+            </div>
+            <div class="s06b-panel-body">
+              <p>Most healthcare systems only see patients during appointments.</p>
+              <p>Elisence helps maintain continuity between visits.</p>
+              <p>Tracking, communication, participation, follow-up, and social health support help maintain ongoing connection over time.</p>
+            </div>
+          </article>
+          <article class="s06b-value-panel">
+            <div class="s06b-panel-head">
+              <span class="s06b-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="4" width="8" height="16" rx="2" stroke-width="1.1"/><path d="M12 8v8M9 11h6" stroke-width="1.1" stroke-linecap="round"/></svg>
+              </span>
+              <h3>Medication Adherence &amp; Safety</h3>
+            </div>
+            <div class="s06b-panel-body">
+              <p>Medication continuity is supported through:</p>
+              <ul>
+                <li>reminders</li>
+                <li>refill awareness</li>
+                <li>adherence support</li>
+                <li>medication intelligence</li>
+                <li>pharmacy journeys</li>
+              </ul>
+              <p>Goal: better adherence, better safety, better continuity.</p>
+            </div>
+          </article>
+          <article class="s06b-value-panel">
+            <div class="s06b-panel-head">
+              <span class="s06b-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3" stroke-width="1.1"/><circle cx="6" cy="16" r="2.5" stroke-width="1.1"/><circle cx="18" cy="16" r="2.5" stroke-width="1.1"/><path d="M9.5 10.2L7.5 14M14.5 10.2l2 3.8" stroke-width="1.1"/></svg>
+              </span>
+              <h3>Better Healthcare Engagement</h3>
+            </div>
+            <div class="s06b-panel-body">
+              <p>Elisence promotes healthy engagement.</p>
+              <p>Not addictive engagement.</p>
+              <p>People stay connected through:</p>
+              <ul>
+                <li>family support</li>
+                <li>social health participation</li>
+                <li>trusted communities</li>
+                <li>care teams</li>
+                <li>healthcare professionals</li>
+              </ul>
+              <p>Long-term engagement supports healthier outcomes.</p>
+            </div>
+          </article>
+        </div>
+        <div class="s06b-col" aria-label="Insurers, pharmacy, longitudinal understanding, and connected care">
+          <article class="s06b-value-panel">
+            <div class="s06b-panel-head">
+              <span class="s06b-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="7" width="14" height="12" rx="2" stroke-width="1.1"/><path d="M8 7V5a4 4 0 018 0v2" stroke-width="1.1"/></svg>
+              </span>
+              <h3>Value for Insurers &amp; Health Plans</h3>
+            </div>
+            <div class="s06b-panel-body">
+              <p>Insurers may benefit from:</p>
+              <ul>
+                <li>stronger prevention</li>
+                <li>better participation</li>
+                <li>continuity of care</li>
+                <li>population understanding</li>
+                <li>long-term engagement</li>
+                <li>more informed risk understanding</li>
+              </ul>
+              <p>Focus: healthier populations, not isolated claims.</p>
+            </div>
+          </article>
+          <article class="s06b-value-panel">
+            <div class="s06b-panel-head">
+              <span class="s06b-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v18M3 12h18" stroke-width="1.1" stroke-linecap="round" opacity=".45"/><rect x="7" y="8" width="10" height="10" rx="1.5" stroke-width="1.1"/></svg>
+              </span>
+              <h3>Pharmacy &amp; Care Network Value</h3>
+            </div>
+            <div class="s06b-panel-body">
+              <p>Pharmacies benefit from:</p>
+              <ul>
+                <li>medication continuity</li>
+                <li>refill support</li>
+                <li>adherence support</li>
+                <li>communication pathways</li>
+                <li>safer medication journeys</li>
+              </ul>
+            </div>
+          </article>
+          <article class="s06b-value-panel">
+            <div class="s06b-panel-head">
+              <span class="s06b-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 16l4-6 4 4 4-8 4 10" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <h3>Longitudinal Health Understanding</h3>
+            </div>
+            <div class="s06b-panel-body">
+              <p>Elisence supports understanding health over time.</p>
+              <p>Instead of isolated snapshots, health journeys can be viewed across:</p>
+              <ul>
+                <li>nutrition</li>
+                <li>hydration</li>
+                <li>activity</li>
+                <li>medication</li>
+                <li>body metrics</li>
+                <li>symptoms</li>
+                <li>participation</li>
+              </ul>
+              <p>This may support better understanding and better decision-making.</p>
+            </div>
+          </article>
+          <article class="s06b-value-panel">
+            <div class="s06b-panel-head">
+              <span class="s06b-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2.2" stroke-width="1.1"/><circle cx="6" cy="7" r="1.6" stroke-width="1"/><circle cx="18" cy="7" r="1.6" stroke-width="1"/><circle cx="6" cy="17" r="1.6" stroke-width="1"/><circle cx="18" cy="17" r="1.6" stroke-width="1"/><path d="M7.4 8.2L10 10.2M16.6 8.2L14 10.2" stroke-width="1" opacity=".85"/></svg>
+              </span>
+              <h3>Connected Care Model</h3>
+            </div>
+            <div class="s06b-panel-body">
+              <p>Unlike many health applications, Elisence is designed to help maintain ongoing connections between people, their support networks, and healthcare organisations.</p>
+              <p>Through trusted participation, social health experiences, communication, and continuity support, healthcare providers can remain better informed about the long-term health journey.</p>
+              <p>The goal is helping healthcare stay connected rather than disconnected between appointments.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <p class="s06b-closing">Helping hospitals. Helping clinics. Helping pharmacies. Helping insurers. Helping healthcare systems. Helping people stay healthier through continuity, participation, prevention, and long-term understanding.</p>
     </div>
   </section>
 
