@@ -2085,19 +2085,19 @@
       color: rgba(210, 240, 255, .88);
     }
 
-    /* Slide 09 — PDF-safe global expansion strategy (two columns, 8 panels) */
+    /* Slide 09 — global expansion strategy with hero (hero preserved) */
     #slide-09.slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
       min-height: 100vh;
       min-height: 100dvh;
       height: 100vh;
       height: 100dvh;
       max-height: 100vh;
       max-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: stretch;
-      padding: clamp(4px, 0.55vh, 8px) clamp(14px, 2.6vw, 44px);
+      padding: clamp(10px, 1.35vh, 16px) clamp(16px, 3vw, 48px);
       overflow: hidden;
       scroll-snap-align: start;
       background:
@@ -2131,8 +2131,75 @@
       min-height: 0;
       max-height: 100%;
       margin: 0 auto;
-      gap: clamp(2px, 0.3vh, 4px);
+      gap: clamp(5px, 0.65vh, 7px);
       z-index: 1;
+    }
+
+    #slide-09 .s09-hero-banner {
+      flex: 1 1 auto;
+      min-height: clamp(180px, 36vh, 280px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 2px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, rgba(85, 217, 255, .55), rgba(0, 220, 180, .35), rgba(60, 120, 255, .4));
+      box-shadow:
+        0 0 48px rgba(0, 160, 255, .28),
+        0 0 80px rgba(0, 220, 180, .12),
+        inset 0 0 24px rgba(85, 217, 255, .08);
+    }
+
+    #slide-09 .s09-hero-frame {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(2, 8, 22, .92);
+      position: relative;
+      padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1vw, 12px);
+    }
+
+    #slide-09 .s09-hero-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(2, 8, 22, .12) 0%, transparent 22%, transparent 78%, rgba(0, 140, 255, .06) 100%),
+        radial-gradient(ellipse 90% 40% at 50% 100%, rgba(0, 200, 255, .1), transparent 70%);
+      pointer-events: none;
+    }
+
+    #slide-09 .s09-hero-banner img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    #slide-09 .s09-orbital-glow {
+      position: relative;
+      z-index: 0;
+    }
+
+    #slide-09 .s09-orbital-glow::before {
+      content: "";
+      position: absolute;
+      left: 5%;
+      right: 5%;
+      bottom: -8px;
+      height: 32px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 210, 255, .48), rgba(0, 220, 180, .18) 45%, transparent 72%);
+      filter: blur(14px);
+      pointer-events: none;
+      z-index: -1;
     }
 
     #slide-09 .s09-deck-header {
@@ -2160,7 +2227,7 @@
     }
 
     #slide-09 .s09-columns {
-      flex: 1 1 0;
+      flex: 0 0 auto;
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -2265,6 +2332,42 @@
       background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
       box-shadow: 0 0 22px rgba(0, 150, 255, .16);
       text-shadow: 0 0 14px rgba(0, 180, 255, .14);
+    }
+
+    @media (max-height: 860px) {
+      #slide-09.slide {
+        padding: 8px 14px;
+      }
+      #slide-09 .s09-shell {
+        gap: 4px;
+      }
+      #slide-09 .s09-hero-banner {
+        min-height: clamp(148px, 32vh, 220px);
+      }
+      #slide-09 .s09-deck-header h2 {
+        font-size: clamp(20px, 2.3vh, 28px);
+      }
+      #slide-09 .s09-block h3 {
+        font-size: 12px;
+        margin-bottom: 1px;
+        padding-bottom: 1px;
+      }
+      #slide-09 .s09-block li {
+        font-size: 11px;
+        line-height: 1.22;
+        margin-bottom: 1px;
+      }
+      #slide-09 .s09-panel .s09-block + .s09-block {
+        padding-top: 2px;
+      }
+      #slide-09 .s09-panel {
+        padding: 2px 4px;
+      }
+      #slide-09 .s09-closing {
+        font-size: 10px;
+        line-height: 1.28;
+        padding: 2px 8px;
+      }
     }
 
     @media (max-width: 900px) {
@@ -4284,10 +4387,21 @@
       #slide-09 .s09-shell {
         max-height: 100% !important;
         height: 100% !important;
-        gap: 1mm !important;
+        gap: 1.5mm !important;
+      }
+      #slide-09 .s09-hero-banner {
+        flex: 1 1 auto !important;
+        min-height: 42mm !important;
+        max-height: 48% !important;
+      }
+      #slide-09 .s09-hero-banner img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        object-position: center center !important;
       }
       #slide-09 .s09-columns {
-        flex: 1 1 0 !important;
+        flex: 0 0 auto !important;
       }
       #slide-09 .s09-deck-header h2 {
         font-size: 20pt !important;
@@ -5342,41 +5456,54 @@
   </section>
 
   <!-- Slide 09 Market -->
-  <section class="slide deck-slide" id="slide-09" data-deck-build="s09-global-expansion-strategy">
+  <section class="slide deck-slide" id="slide-09" data-deck-build="s09-hero-global-expansion-restored">
     <div class="s09-shell">
+      <section class="s09-hero-banner s09-orbital-glow">
+        <div class="s09-hero-frame">
+          <img src="assets/investor-deck/slide09-global-expansion-hero-approved.jpeg" alt="Middle East to United Kingdom to Europe to World — Elisence global expansion pathway" width="2048" height="683" />
+        </div>
+      </section>
       <header class="s09-deck-header">
         <div class="s09-kicker">09 — MARKET &amp; EXPANSION</div>
         <h2>Global Ambition, Local Execution</h2>
       </header>
       <div class="s09-columns">
-        <article class="s09-panel s09-panel--left" aria-label="Global healthcare opportunity, UK foundation, country-aware architecture, and defensible platform">
+        <article class="s09-panel s09-panel--left" aria-label="Global healthcare opportunity, Middle East momentum, UK foundation, and country-aware expansion">
           <div class="s09-block">
             <h3>🌍 GLOBAL HEALTHCARE OPPORTUNITY</h3>
             <ul class="s09-dense-list">
               <li class="s09-li-full">Healthcare systems around the world face similar long-term challenges:</li>
-              <li>chronic disease growth</li>
-              <li>ageing populations</li>
               <li>prevention pressure</li>
-              <li>rising healthcare costs</li>
+              <li>chronic disease growth</li>
+              <li>continuity gaps</li>
               <li>medication complexity</li>
-              <li>fragmented healthcare journeys</li>
-              <li class="s09-li-full">The need for stronger continuity, prevention, participation, and long-term health engagement exists across healthcare systems worldwide rather than in a single country or region.</li>
+              <li>ageing populations</li>
+              <li>rising healthcare costs</li>
+              <li class="s09-li-full">The need for stronger prevention, continuity, participation, and long-term health engagement exists across healthcare systems worldwide rather than in a single country or region.</li>
+            </ul>
+          </div>
+          <div class="s09-block">
+            <h3>🌏 MIDDLE EAST MOMENTUM</h3>
+            <ul>
+              <li>The Gulf region represents one of the world's most ambitious healthcare transformation environments.</li>
+              <li>Countries across the region continue investing in digital health, prevention, patient engagement, healthcare innovation, and future-ready healthcare infrastructure.</li>
+              <li>Elisence is designed to support responsible localisation while respecting regional healthcare priorities.</li>
             </ul>
           </div>
           <div class="s09-block">
             <h3>🇬🇧 UNITED KINGDOM FOUNDATION</h3>
             <ul class="s09-dense-list">
               <li class="s09-li-full">The United Kingdom provides an important validation environment because of:</li>
-              <li>strong healthcare standards</li>
-              <li>patient safety expectations</li>
               <li>trust requirements</li>
-              <li>governance expectations</li>
+              <li>patient safety expectations</li>
+              <li>healthcare standards</li>
+              <li>responsible deployment</li>
               <li>healthcare credibility</li>
               <li class="s09-li-full">Building responsibly within mature healthcare environments helps strengthen long-term international readiness.</li>
             </ul>
           </div>
           <div class="s09-block">
-            <h3>🌐 COUNTRY-AWARE ARCHITECTURE</h3>
+            <h3>🌐 COUNTRY-AWARE EXPANSION</h3>
             <ul class="s09-dense-list">
               <li class="s09-li-full">Healthcare is never one-size-fits-all.</li>
               <li class="s09-li-full">Different countries operate with different:</li>
@@ -5389,31 +5516,18 @@
               <li class="s09-li-full">Elisence is designed with multilingual, healthcare-aware, and country-adaptive foundations that support responsible localisation rather than forcing one model everywhere.</li>
             </ul>
           </div>
-          <div class="s09-block">
-            <h3>🧩 DEFENSIBLE GLOBAL PLATFORM</h3>
-            <ul class="s09-dense-list s09-capabilities-list">
-              <li class="s09-li-full">Elisence is designed around multiple connected healthcare domains including:</li>
-              <li>prevention</li>
-              <li>women's health</li>
-              <li>diabetes &amp; metabolic health</li>
-              <li>medication continuity</li>
-              <li>social health</li>
-              <li>population health</li>
-              <li>trusted health intelligence</li>
-              <li class="s09-li-full">These capabilities operate on one connected platform rather than disconnected solutions.</li>
-            </ul>
-          </div>
         </article>
         <article class="s09-panel s09-panel--right" aria-label="European expansion, international markets, repeatable scale model, and long-term global vision">
           <div class="s09-block">
             <h3>🇪🇺 EUROPEAN EXPANSION</h3>
             <ul class="s09-dense-list">
-              <li class="s09-li-full">Many European healthcare systems share growing demand for:</li>
-              <li>prevention</li>
-              <li>continuity</li>
-              <li>digital participation</li>
-              <li>long-term health engagement</li>
-              <li class="s09-li-full">The objective is responsible expansion through localisation, partnerships, and healthcare-system awareness rather than rapid market replication.</li>
+              <li class="s09-li-full">Many European healthcare systems share growing demand for responsible expansion through:</li>
+              <li>partnerships</li>
+              <li>localisation</li>
+              <li>compliance</li>
+              <li>healthcare participation</li>
+              <li>responsible scaling</li>
+              <li class="s09-li-full">The objective is healthcare-system awareness rather than rapid market replication.</li>
             </ul>
           </div>
           <div class="s09-block">
@@ -5421,11 +5535,11 @@
             <ul class="s09-dense-list s09-regions-list">
               <li class="s09-li-full">Healthcare transformation is taking place across many regions including:</li>
               <li>Europe</li>
-              <li>GCC countries</li>
+              <li>GCC</li>
               <li>North America</li>
               <li>Asia-Pacific</li>
               <li class="s09-li-full">emerging healthcare innovation markets</li>
-              <li class="s09-li-full">The opportunity is not limited to a single geography.</li>
+              <li class="s09-li-full">The opportunity is global.</li>
               <li class="s09-li-full">The platform is designed to adapt responsibly to different healthcare environments over time.</li>
             </ul>
           </div>
@@ -5449,8 +5563,8 @@
               <li>people</li>
               <li>families</li>
               <li>caregivers</li>
-              <li>healthcare professionals</li>
               <li>pharmacies</li>
+              <li>clinicians</li>
               <li>healthcare organisations</li>
               <li>insurers</li>
               <li>public health systems</li>
