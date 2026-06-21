@@ -750,7 +750,7 @@
       max-height: 100vh;
       justify-content: flex-start;
       align-items: stretch;
-      padding: clamp(14px, 2vh, 22px) clamp(18px, 3.2vw, 52px);
+      padding: clamp(10px, 1.4vh, 16px) clamp(16px, 2.8vw, 44px);
       overflow: hidden;
       scroll-snap-align: start;
     }
@@ -761,10 +761,10 @@
       width: 100%;
       max-width: min(1320px, 100%);
       height: 100%;
-      max-height: calc(100vh - clamp(28px, 4vh, 44px));
+      max-height: calc(100vh - clamp(20px, 2.8vh, 32px));
       margin: 0 auto;
       min-height: 0;
-      gap: clamp(5px, 0.65vh, 7px);
+      gap: clamp(4px, 0.55vh, 6px);
     }
 
     #slide-06 .s06-deck-header {
@@ -774,90 +774,29 @@
     }
 
     #slide-06 .s06-kicker {
-      font-size: clamp(10px, 0.8vw, 12px);
+      font-size: clamp(10px, 0.78vw, 12px);
       font-weight: 800;
       letter-spacing: .15em;
       text-transform: uppercase;
       color: #55d9ff;
-      margin: 0 0 2px;
+      margin: 0 0 1px;
     }
 
     #slide-06 .s06-deck-header h2 {
-      font-size: clamp(36px, 3.1vw, 48px);
+      font-size: clamp(28px, 2.5vw, 40px);
       font-weight: 900;
-      line-height: 1.05;
+      line-height: 1.06;
       color: #fff;
-      margin: 0 0 2px;
+      margin: 0 0 1px;
       text-shadow: 0 0 18px rgba(0, 180, 255, .16);
     }
 
     #slide-06 .s06-deck-header > p {
-      font-size: clamp(18px, 1.35vw, 22px);
+      font-size: clamp(14px, 1.15vw, 18px);
       font-weight: 700;
-      line-height: 1.28;
+      line-height: 1.24;
       color: rgba(200, 235, 255, .92);
       margin: 0;
-    }
-
-    #slide-06 .s06-flow {
-      flex-shrink: 0;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 4px 6px;
-      padding: clamp(4px, 0.55vh, 6px) clamp(8px, 1vw, 10px);
-      border-radius: 10px;
-      border: 1px solid rgba(95, 210, 255, .45);
-      background: linear-gradient(90deg, rgba(8, 32, 72, .88), rgba(4, 14, 38, .94), rgba(8, 32, 72, .88));
-      box-shadow: 0 0 20px rgba(0, 140, 255, .16);
-    }
-
-    #slide-06 .s06-flow-node {
-      font-size: clamp(10px, 0.78vw, 12px);
-      font-weight: 800;
-      letter-spacing: .02em;
-      line-height: 1.2;
-      padding: 3px 7px;
-      border-radius: 8px;
-      border: 1px solid rgba(90, 190, 255, .35);
-      color: rgba(210, 240, 255, .92);
-      background: rgba(4, 22, 58, .72);
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    #slide-06 .s06-flow-connector {
-      font-size: clamp(11px, 0.85vw, 13px);
-      font-weight: 300;
-      color: #55d9ff;
-      line-height: 1;
-    }
-
-    #slide-06 .s06-flow-elisa {
-      padding: 3px 8px;
-      border: 1px solid rgba(130, 230, 255, .55);
-      background: rgba(0, 55, 115, .5);
-      box-shadow: 0 0 14px rgba(0, 180, 255, .28);
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      min-width: 0;
-    }
-
-    #slide-06 .s06-flow-elisa strong {
-      font-size: clamp(10px, 0.8vw, 12px);
-      font-weight: 900;
-      letter-spacing: .08em;
-      color: #fff;
-    }
-
-    #slide-06 .s06-flow-elisa span {
-      font-size: clamp(9px, 0.7vw, 11px);
-      font-weight: 700;
-      color: #8edcff;
-      line-height: 1.15;
-      white-space: nowrap;
     }
 
     #slide-06 .s06-columns {
@@ -865,77 +804,99 @@
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(8px, 1vh, 12px);
+      gap: clamp(6px, 0.75vh, 8px);
       align-items: stretch;
     }
 
-    #slide-06 .s06-panel {
+    #slide-06 .s06-col {
       min-height: 0;
       display: flex;
       flex-direction: column;
-      gap: 0;
-      border-radius: 12px;
+      gap: clamp(5px, 0.65vh, 7px);
+    }
+
+    #slide-06 .s06-value-panel {
+      flex: 1 1 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      border-radius: 11px;
       border: 1px solid rgba(95, 210, 255, .48);
-      background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
-      box-shadow: 0 0 22px rgba(0, 150, 255, .16);
-      padding: clamp(6px, 0.8vh, 8px) clamp(8px, 1vw, 10px);
+      background: linear-gradient(165deg, rgba(10, 38, 88, .92), rgba(3, 12, 32, .97));
+      box-shadow: 0 0 20px rgba(0, 150, 255, .14);
+      padding: clamp(5px, 0.65vh, 7px) clamp(7px, 0.9vw, 9px);
+      overflow: hidden;
     }
 
-    #slide-06 .s06-block + .s06-block {
-      margin-top: clamp(5px, 0.6vh, 7px);
-      padding-top: clamp(5px, 0.6vh, 7px);
-      border-top: 1px solid rgba(85, 200, 255, .2);
+    #slide-06 .s06-panel-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: clamp(3px, 0.4vh, 4px);
+      padding-bottom: clamp(2px, 0.3vh, 3px);
+      border-bottom: 1px solid rgba(85, 200, 255, .22);
+      flex-shrink: 0;
     }
 
-    #slide-06 .s06-block h3 {
-      font-size: clamp(15px, 1.15vw, 19px);
+    #slide-06 .s06-panel-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(90, 210, 255, .42);
+      background: radial-gradient(circle at 35% 30%, rgba(85, 217, 255, .22), rgba(4, 22, 58, .88));
+      box-shadow: 0 0 12px rgba(0, 150, 255, .18);
+    }
+
+    #slide-06 .s06-panel-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    #slide-06 .s06-panel-icon svg path,
+    #slide-06 .s06-panel-icon svg circle,
+    #slide-06 .s06-panel-icon svg rect {
+      stroke: #8edcff;
+    }
+
+    #slide-06 .s06-panel-head h3 {
+      font-size: clamp(12.5px, 1.05vh, 15px);
       font-weight: 900;
-      letter-spacing: .04em;
-      line-height: 1.16;
+      letter-spacing: .03em;
+      line-height: 1.18;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 clamp(3px, 0.4vh, 5px);
-      padding-bottom: clamp(2px, 0.3vh, 4px);
-      border-bottom: 1px solid rgba(85, 200, 255, .18);
-    }
-
-    #slide-06 .s06-block ul {
-      list-style: none;
       margin: 0;
-      padding: 0;
     }
 
-    #slide-06 .s06-block li {
-      font-size: clamp(12.5px, 0.95vw, 15px);
+    #slide-06 .s06-panel-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2px, 0.28vh, 3px);
+    }
+
+    #slide-06 .s06-panel-body p {
+      font-size: clamp(11px, 1.02vh, 13px);
       font-weight: 600;
-      line-height: 1.36;
+      line-height: 1.32;
       color: rgba(220, 245, 255, .96);
-      margin-bottom: clamp(3px, 0.4vh, 5px);
-      padding-left: 1.05em;
-      position: relative;
-    }
-
-    #slide-06 .s06-block li:last-child {
-      margin-bottom: 0;
-    }
-
-    #slide-06 .s06-block li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: #55d9ff;
-      font-weight: 900;
+      margin: 0;
     }
 
     #slide-06 .s06-closing {
       flex-shrink: 0;
       margin: 0;
       text-align: center;
-      font-size: clamp(12px, 0.95vw, 15px);
+      font-size: clamp(11px, 0.95vh, 13px);
       font-weight: 800;
-      line-height: 1.34;
+      line-height: 1.32;
       color: #fff;
-      padding: clamp(5px, 0.65vh, 7px) clamp(10px, 1vw, 14px);
+      padding: clamp(4px, 0.55vh, 6px) clamp(8px, 1vw, 12px);
       border-radius: 10px;
       border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
@@ -946,10 +907,6 @@
     @media (max-width: 900px) {
       #slide-06 .s06-columns {
         grid-template-columns: 1fr;
-      }
-      #slide-06 .s06-flow-node,
-      #slide-06 .s06-flow-elisa span {
-        white-space: normal;
       }
     }
 
@@ -3526,15 +3483,15 @@
         font-size: clamp(11.5px, 0.88vw, 14px) !important;
       }
 
-      #slide-06 .s06-block li {
-        font-size: clamp(12px, 0.92vw, 14.5px);
-        line-height: 1.36;
+      #slide-06 .s06-panel-body p {
+        font-size: clamp(11.5px, 1.05vh, 13.5px);
+        line-height: 1.34;
       }
-      #slide-06 .s06-flow-node {
-        font-size: clamp(11px, 0.85vw, 13px);
+      #slide-06 .s06-panel-head h3 {
+        font-size: clamp(13px, 1.1vh, 15.5px);
       }
-      #slide-06 .s06-flow-elisa span {
-        font-size: clamp(10px, 0.76vw, 12px);
+      #slide-06 .s06-closing {
+        font-size: clamp(12px, 1vh, 14px);
       }
 
       #slide-07 .s07-block li {
@@ -3630,8 +3587,26 @@
       }
       #slide-06 .s06-shell,
       #slide-06 .s06-columns,
-      #slide-06 .s06-panel {
+      #slide-06 .s06-col,
+      #slide-06 .s06-value-panel {
         overflow: visible;
+      }
+      #slide-06 .s06-deck-header h2 {
+        font-size: 22pt !important;
+      }
+      #slide-06 .s06-deck-header > p {
+        font-size: 10pt !important;
+      }
+      #slide-06 .s06-panel-head h3 {
+        font-size: 9.5pt !important;
+      }
+      #slide-06 .s06-panel-body p {
+        font-size: 8.5pt !important;
+        line-height: 1.28 !important;
+      }
+      #slide-06 .s06-closing {
+        font-size: 9.5pt !important;
+        padding: 2mm 3mm !important;
       }
       #slide-07.slide {
         height: 100vh !important;
@@ -3846,7 +3821,7 @@
       <li><a class="deck-nav-link" href="#slide-03" data-slide-index="2" aria-label="Slide 03 Why Now"><span class="deck-nav-label">Why Now</span><span class="deck-nav-num">03</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
       <li><a class="deck-nav-link" href="#slide-04" data-slide-index="3" aria-label="Slide 04 What Is Elisence"><span class="deck-nav-label">What Is Elisence</span><span class="deck-nav-num">04</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
       <li><a class="deck-nav-link" href="#slide-05" data-slide-index="4" aria-label="Slide 05 Why Elisence Is Different"><span class="deck-nav-label">Why Elisence Is Different</span><span class="deck-nav-num">05</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
-      <li><a class="deck-nav-link" href="#slide-06" data-slide-index="5" aria-label="Slide 06 Connected Ecosystem"><span class="deck-nav-label">Connected Ecosystem</span><span class="deck-nav-num">06</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
+      <li><a class="deck-nav-link" href="#slide-06" data-slide-index="5" aria-label="Slide 06 People Value"><span class="deck-nav-label">People Value</span><span class="deck-nav-num">06</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
       <li><a class="deck-nav-link" href="#slide-07" data-slide-index="6" aria-label="Slide 07 Trust Architecture"><span class="deck-nav-label">Trust Architecture</span><span class="deck-nav-num">07</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
       <li><a class="deck-nav-link" href="#slide-08" data-slide-index="7" aria-label="Slide 08 Business Model"><span class="deck-nav-label">Business Model</span><span class="deck-nav-num">08</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
       <li><a class="deck-nav-link" href="#slide-09" data-slide-index="8" aria-label="Slide 09 Market and Expansion"><span class="deck-nav-label">Market &amp; Expansion</span><span class="deck-nav-num">09</span><span class="deck-nav-dot" aria-hidden="true"></span></a></li>
@@ -4004,78 +3979,113 @@
     <img class="s05-full-slide-image" src="assets/investor-deck/slide05-ecosystem-visual-approved.jpeg" alt="Why Elisence is Different — Elisence ecosystem visual" width="1536" height="1024" />
   </section>
 
-  <!-- Slide 06 Product Ecosystem -->
-  <section class="slide deck-slide" id="slide-06" data-deck-build="s06-pdf-two-panel">
+  <!-- Slide 06 People Value -->
+  <section class="slide deck-slide" id="slide-06" data-deck-build="s06-people-value-architecture">
     <div class="s06-shell">
       <header class="s06-deck-header">
-        <div class="s06-kicker">06 — Product Ecosystem</div>
-        <h2>Connected Health Experiences</h2>
-        <p>Connected health experiences — not disconnected tools.</p>
+        <div class="s06-kicker">06 — People Value</div>
+        <h2>How Elisence Helps People Stay Healthier</h2>
+        <p>Continuity, prevention, and better long-term outcomes — for people, not disconnected tools.</p>
       </header>
-      <div class="s06-flow" aria-label="Ecosystem flow">
-        <span class="s06-flow-node">Everyday Health</span>
-        <span class="s06-flow-connector" aria-hidden="true">→</span>
-        <span class="s06-flow-node">Medical Journeys</span>
-        <span class="s06-flow-connector" aria-hidden="true">→</span>
-        <span class="s06-flow-node">Intelligence Layer</span>
-        <span class="s06-flow-connector" aria-hidden="true">→</span>
-        <span class="s06-flow-elisa">
-          <strong>ELISA</strong>
-          <span>Trusted Continuity Companion</span>
-        </span>
-        <span class="s06-flow-connector" aria-hidden="true">→</span>
-        <span class="s06-flow-node">Social Health</span>
-        <span class="s06-flow-connector" aria-hidden="true">→</span>
-        <span class="s06-flow-node">Healthcare Ecosystem</span>
-      </div>
       <div class="s06-columns">
-        <article class="s06-panel s06-panel--left" aria-label="Everyday health, medical journeys, and intelligence">
-          <div class="s06-block">
-            <h3>EVERYDAY HEALTH &amp; PREVENTION</h3>
-            <ul>
-              <li>Prevention, wellbeing, diet and lifestyle support, environmental awareness, sensor-aware experiences, body understanding, trusted health participation, and everyday health continuity designed to help healthcare become more proactive rather than reactive.</li>
-            </ul>
-          </div>
-          <div class="s06-block">
-            <h3>MEDICAL &amp; LONG-TERM HEALTH JOURNEYS</h3>
-            <ul>
-              <li>Diabetes and metabolic health, advanced blood and metabolism understanding, medication continuity, pharmacy journeys, medical tracking, GP and doctor communication, chronic condition support, weight and wellbeing journeys, and longer-term care experiences designed to work together rather than exist separately.</li>
-            </ul>
-          </div>
-          <div class="s06-block">
-            <h3>HEALTH INTELLIGENCE &amp; CONTINUITY LAYER</h3>
-            <ul>
-              <li>Trusted health intelligence, blood test understanding and translation, body scan and body understanding, intelligent guidance, medication reminders, pattern awareness, continuity support, and everyday health understanding designed to help people better understand health over time.</li>
-              <li>At the centre of the experience is Elisa — a trusted continuity companion designed to help people stay engaged with healthier routines, wellbeing, reminders, trusted participation, communication, and supportive everyday health behaviour while remaining safely non-clinical and non-diagnostic by design.</li>
-              <li>Elisa is designed to provide friendly, supportive, and non-medical guidance that helps reduce isolation, encourage continuity, and make healthcare feel more human, calmer, and easier to navigate in everyday life.</li>
-            </ul>
-          </div>
-        </article>
-        <article class="s06-panel s06-panel--right" aria-label="Social health, engagement, and healthcare ecosystem">
-          <div class="s06-block">
-            <h3>CONTINUOUS SOCIAL HEALTH LAYER</h3>
-            <ul>
-              <li>Elisence is designed to help healthcare remain part of everyday life rather than moments of illness.</li>
-              <li>Trusted social health participation, shared health journeys, prevention experiences, wellness and activity progress, Pulse-based health sharing, trusted communication, voice and video interaction, peer support, family care, clinician connection, and permission-aware sharing are designed to help healthcare feel more human, supportive, socially connected, and continuous over time.</li>
-              <li>Users can share meaningful health experiences, support one another, communicate with care teams when appropriate, and remain connected to health in ways that feel supportive rather than stressful, isolated, or permanently clinical.</li>
-            </ul>
-          </div>
-          <div class="s06-block">
-            <h3>HEALTHY ENGAGEMENT BY DESIGN</h3>
-            <ul>
-              <li>Elisence is designed around healthy participation rather than advertising-driven attention loops — encouraging continuity, wellbeing, prevention, trusted participation, healthier routines, and meaningful long-term engagement rather than addictive behaviour.</li>
-            </ul>
-          </div>
-          <div class="s06-block">
-            <h3>HEALTHCARE ECOSYSTEM LAYER</h3>
-            <ul>
-              <li>Designed to support stronger continuity, prevention, communication, participation, and more connected healthcare experiences across clinics, hospitals, insurers, pharmacies, governments, universities, researchers, and responsible healthcare organisations.</li>
-              <li>Over time, privacy-aware, permissioned, and longitudinal health understanding may help support stronger continuity, prevention, healthcare learning, research, participation, and more connected system understanding.</li>
-            </ul>
-          </div>
-        </article>
+        <div class="s06-col" aria-label="Prevention, metabolic health, women's health, and social health">
+          <article class="s06-value-panel">
+            <div class="s06-panel-head">
+              <span class="s06-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l7 3v6c0 4.2-3 7.8-7 9-4-1.2-7-4.8-7-9V6l7-3z" stroke-width="1.1" stroke-linejoin="round"/><path d="M12 8v4M12 16h.01" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </span>
+              <h3>Prevention &amp; Early Awareness</h3>
+            </div>
+            <div class="s06-panel-body">
+              <p>Elisence is designed to help people identify risks earlier and support healthier decisions before complications develop.</p>
+              <p>Food intelligence, water intelligence, activity understanding, sleep awareness, medication continuity, body understanding, environmental awareness, and pattern recognition work together to help users better understand their health over time.</p>
+              <p>The goal is to support prevention rather than waiting for illness.</p>
+            </div>
+          </article>
+          <article class="s06-value-panel">
+            <div class="s06-panel-head">
+              <span class="s06-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18h16M6 18V8l6-4 6 4v10" stroke-width="1.1" stroke-linejoin="round"/><path d="M9 14h6M9 11h6" stroke-width="1.1" stroke-linecap="round"/></svg>
+              </span>
+              <h3>Diabetes &amp; Metabolic Health</h3>
+            </div>
+            <div class="s06-panel-body">
+              <p>Diabetes is one of the biggest health challenges across many regions, including GCC countries.</p>
+              <p>Elisence combines nutrition understanding, hydration, activity, medication continuity, body metrics, weight tracking, and metabolic intelligence to support healthier routines, earlier awareness, and better long-term outcomes.</p>
+              <p>The focus is continuity and understanding rather than isolated tracking tools.</p>
+            </div>
+          </article>
+          <article class="s06-value-panel">
+            <div class="s06-panel-head">
+              <span class="s06-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="7" r="3" stroke-width="1.1"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.1" stroke-linecap="round"/></svg>
+              </span>
+              <h3>Women's Health Intelligence</h3>
+            </div>
+            <div class="s06-panel-body">
+              <p>Women's Health is supported through the wider Elisence ecosystem.</p>
+              <p>Nutrition, medication continuity, activity, sleep, body metrics, emotional wellbeing, social support, and health intelligence work together across different life stages including puberty, fertility, pregnancy, postpartum, menopause, and long-term wellbeing.</p>
+              <p>The goal is a connected experience rather than fragmented tools.</p>
+            </div>
+          </article>
+          <article class="s06-value-panel">
+            <div class="s06-panel-head">
+              <span class="s06-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2.2" stroke-width="1.1"/><circle cx="6" cy="7" r="1.6" stroke-width="1"/><circle cx="18" cy="7" r="1.6" stroke-width="1"/><circle cx="6" cy="17" r="1.6" stroke-width="1"/><circle cx="18" cy="17" r="1.6" stroke-width="1"/><path d="M7.4 8.2L10 10.2M16.6 8.2L14 10.2" stroke-width="1" opacity=".85"/></svg>
+              </span>
+              <h3>Social Health Network</h3>
+            </div>
+            <div class="s06-panel-body">
+              <p>Health is not only medical.</p>
+              <p>Family members, friends, caregivers, communities, clinicians, and trusted professionals can become part of a connected support network.</p>
+              <p>Voice communication, video communication, text messaging, health participation, and continuity tools help people stay supported, connected, and engaged over time.</p>
+            </div>
+          </article>
+        </div>
+        <div class="s06-col" aria-label="Healthcare continuity, Elisa companion, and everyday health intelligence">
+          <article class="s06-value-panel">
+            <div class="s06-panel-head">
+              <span class="s06-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12h8M12 8v8" stroke-width="1.1" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke-width="1.1"/><path d="M4 12h2M18 12h2M12 4v2M12 18v2" stroke-width="1" stroke-linecap="round" opacity=".6"/></svg>
+              </span>
+              <h3>Healthcare Continuity &amp; Participation</h3>
+            </div>
+            <div class="s06-panel-body">
+              <p>Most health applications lose continuity between people and healthcare providers.</p>
+              <p>Elisence is designed to help maintain trusted long-term connections between people, families, caregivers, clinicians, pharmacies, and healthcare organisations.</p>
+              <p>Rather than only appearing during illness, healthcare can remain connected to the person's ongoing health journey.</p>
+              <p>This helps support continuity, participation, and better long-term understanding.</p>
+            </div>
+          </article>
+          <article class="s06-value-panel">
+            <div class="s06-panel-head">
+              <span class="s06-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l2.2 5.4L20 9.2l-4.2 3.8L17 19l-5-2.8L7 19l1.2-6L4 9.2l5.8-.8L12 3z" stroke-width="1.1" stroke-linejoin="round"/></svg>
+              </span>
+              <h3>Elisa Continuity Companion</h3>
+            </div>
+            <div class="s06-panel-body">
+              <p>At the centre of the experience is Elisa.</p>
+              <p>Elisa is designed as a trusted continuity companion that helps people stay engaged with healthier routines, reminders, continuity support, participation, and long-term health journeys.</p>
+              <p>Elisa is intentionally non-diagnostic and designed to support understanding, continuity, and healthier engagement.</p>
+            </div>
+          </article>
+          <article class="s06-value-panel">
+            <div class="s06-panel-head">
+              <span class="s06-panel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7" stroke-width="1.1"/><path d="M12 5v7l4 2" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <h3>Everyday Health Intelligence</h3>
+            </div>
+            <div class="s06-panel-body">
+              <p>Elisence combines everyday life experiences with health understanding.</p>
+              <p>Food, hydration, activity, sleep, medication, body metrics, environmental awareness, social participation, and longitudinal understanding work together to help people better understand patterns, habits, and health behaviours over time.</p>
+              <p>The objective is to create better awareness, stronger continuity, and healthier long-term outcomes.</p>
+            </div>
+          </article>
+        </div>
       </div>
-      <p class="s06-closing">One connected ecosystem where prevention, care, intelligence, communication, participation, and continuity reinforce one another over time.</p>
+      <p class="s06-closing">One connected ecosystem helping people stay healthier through prevention, continuity, participation, trusted health intelligence, and stronger long-term relationships with their support networks and healthcare providers.</p>
     </div>
   </section>
 
