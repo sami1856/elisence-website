@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elisence — Executive Summary</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #061936 0%, #020816 48%, #000 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .board {
+      width: 100vw;
+      min-height: 100vh;
+      padding: 18px 22px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .nav-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-decoration: none;
+      color: #dff5ff;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 220, 255, .85);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(0, 220, 255, .35), transparent 55%),
+        rgba(0, 80, 160, .28);
+      box-shadow: 0 0 22px rgba(0, 190, 255, .55);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .nav-pill:hover,
+    .nav-pill:focus-visible {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 32px rgba(0, 220, 255, .85);
+      outline: 2px solid rgba(0, 220, 255, .5);
+      outline-offset: 2px;
+    }
+
+    .header {
+      text-align: center;
+      padding-top: 8px;
+    }
+
+    .brand {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 0.28em;
+      color: #ffffff;
+      text-shadow: 0 0 28px rgba(0,180,255,.9);
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      font-size: 17px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8edcff;
+    }
+
+    .description {
+      margin-top: 12px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: clamp(15px, 1.1vw, 18px);
+      line-height: 1.45;
+      font-weight: 620;
+      color: rgba(180, 230, 255, .88);
+      padding: 0 12px;
+    }
+
+    .content {
+      width: min(820px, 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .doc-title {
+      text-align: center;
+      padding: 8px 12px 0;
+    }
+
+    .doc-title h1 {
+      font-size: clamp(22px, 2.4vw, 30px);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      color: #ffffff;
+      text-shadow: 0 0 18px rgba(0,170,255,.5);
+    }
+
+    .section {
+      border: 1px solid rgba(95, 205, 255, .45);
+      border-radius: 18px;
+      background: rgba(4, 12, 34, .55);
+      padding: 22px 24px;
+      box-shadow: 0 0 24px rgba(0,160,255,.25);
+    }
+
+    .section h2 {
+      font-size: clamp(16px, 1.2vw, 19px);
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #55d9ff;
+      margin-bottom: 16px;
+    }
+
+    .section p {
+      font-size: clamp(15px, 1.05vw, 17px);
+      line-height: 1.55;
+      color: rgba(220, 240, 255, .94);
+      margin-bottom: 14px;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section ul {
+      list-style: none;
+      margin: 0 0 14px;
+      padding: 0;
+    }
+
+    .section ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .section li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 10px;
+      font-size: clamp(15px, 1.05vw, 17px);
+      line-height: 1.5;
+      color: rgba(220, 240, 255, .94);
+    }
+
+    .section li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #55d9ff;
+      font-weight: 900;
+    }
+
+    .section li:last-child {
+      margin-bottom: 0;
+    }
+
+    .phase-block {
+      margin-bottom: 16px;
+    }
+
+    .phase-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .phase-block h3 {
+      font-size: clamp(15px, 1.05vw, 17px);
+      font-weight: 800;
+      color: #8edcff;
+      margin-bottom: 8px;
+    }
+
+    .closing-section {
+      text-align: center;
+    }
+
+    .closing-section p {
+      margin-bottom: 12px;
+    }
+
+    .closing-mantra {
+      font-weight: 800;
+      color: #8edcff;
+    }
+
+    @media (max-width: 768px) {
+      .nav-left { position: static; margin-bottom: 10px; }
+      .header-wrap { display: flex; flex-direction: column; align-items: center; }
+      .section { padding: 18px 16px; }
+    }
+
+    @media print {
+      body {
+        background: #020816;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .nav-left { display: none; }
+      .board { padding: 12px; }
+      .section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="board">
+    <div class="header-wrap">
+      <div class="nav-left">
+        <a href="pitch-deck.html" class="nav-pill">&larr; Back to Pitch &amp; Deck</a>
+      </div>
+      <header class="header">
+        <div class="brand">ELISENCE</div>
+        <div class="subtitle">Executive Summary</div>
+        <p class="description">Executive overview, problem, solution, business model, growth strategy, and competitive advantage.</p>
+      </header>
+    </div>
+
+    <article class="content">
+      <div class="doc-title">
+        <h1>ELISENCE – EXECUTIVE SUMMARY</h1>
+      </div>
+
+      <section class="section" aria-labelledby="s1-title">
+        <h2 id="s1-title">COMPANY OVERVIEW</h2>
+        <p>Elisence is building a connected healthcare relationship ecosystem designed to improve prevention, continuity, participation, and long-term health outcomes.</p>
+        <p>Rather than creating another isolated health application, Elisence brings together health participation, family support, caregiver involvement, communication, medication continuity, health intelligence, and trusted healthcare engagement into one connected platform.</p>
+        <p>At the centre of the ecosystem is ELISA, a continuity companion designed to help people remain engaged with healthier routines, support networks, health understanding, and everyday participation before illness, during illness, and after illness.</p>
+        <p>Built on a Zero-Trust security architecture and designed for regional adaptation, Elisence aims to support individuals, families, healthcare providers, insurers, and public health programmes through one connected healthcare experience.</p>
+      </section>
+
+      <section class="section" aria-labelledby="s2-title">
+        <h2 id="s2-title">THE PROBLEM</h2>
+        <p>Healthcare remains fragmented.</p>
+        <p>People manage prevention, medication, wellbeing, appointments, chronic conditions, family care, and healthcare communication across disconnected systems.</p>
+        <p>This fragmentation creates declining participation, poor continuity, rising healthcare costs, increasing administrative burden, and worsening long-term outcomes.</p>
+        <p>Most solutions address only one part of the healthcare journey.</p>
+        <p>Very few address the healthcare relationship itself.</p>
+      </section>
+
+      <section class="section" aria-labelledby="s3-title">
+        <h2 id="s3-title">THE ELISENCE SOLUTION</h2>
+        <p>Elisence is designed as a Continuity Ecosystem.</p>
+        <p>The platform combines:</p>
+        <ul>
+          <li>Prevention</li>
+          <li>Health Intelligence</li>
+          <li>Medication Support</li>
+          <li>Women's Health</li>
+          <li>Diabetes &amp; Metabolic Health</li>
+          <li>Family Participation</li>
+          <li>Social Health Engagement</li>
+          <li>Communication</li>
+          <li>Healthcare Continuity</li>
+        </ul>
+        <p>within one connected experience.</p>
+        <p>Rather than requiring people to switch between multiple applications, Elisence provides a unified ecosystem supporting long-term participation and trusted health relationships.</p>
+      </section>
+
+      <section class="section" aria-labelledby="s4-title">
+        <h2 id="s4-title">WHY USERS STAY</h2>
+        <p>One of the strongest differentiators of Elisence is long-term engagement.</p>
+        <p>Most health applications struggle with retention because users must constantly switch between disconnected tools.</p>
+        <p>Elisence reduces this fragmentation through:</p>
+        <ul>
+          <li>Social Health Network</li>
+          <li>Family Participation</li>
+          <li>Caregiver Participation</li>
+          <li>Elisa Continuity Companion</li>
+          <li>Connected Health Experiences</li>
+          <li>Continuity Architecture</li>
+        </ul>
+        <p>This creates stronger engagement, stronger retention, and long-term healthcare relationships.</p>
+      </section>
+
+      <section class="section" aria-labelledby="s5-title">
+        <h2 id="s5-title">MARKET OPPORTUNITY</h2>
+        <p>Elisence addresses global healthcare challenges including:</p>
+        <ul>
+          <li>Chronic disease</li>
+          <li>Diabetes</li>
+          <li>Prevention</li>
+          <li>Healthcare participation</li>
+          <li>Medication continuity</li>
+          <li>Population health engagement</li>
+        </ul>
+        <p>The initial regional focus includes:</p>
+        <div class="phase-block">
+          <h3>Phase 1:</h3>
+          <p>UAE, Saudi Arabia, Qatar</p>
+        </div>
+        <div class="phase-block">
+          <h3>Phase 2:</h3>
+          <p>United Kingdom and Europe</p>
+        </div>
+        <div class="phase-block">
+          <h3>Phase 3:</h3>
+          <p>International expansion</p>
+        </div>
+        <p>The platform is designed for multilingual deployment, country-aware localisation, and regional healthcare adaptation.</p>
+      </section>
+
+      <section class="section" aria-labelledby="s6-title">
+        <h2 id="s6-title">BUSINESS MODEL</h2>
+        <p>Revenue is generated through:</p>
+        <ul>
+          <li>Monthly Subscription</li>
+          <li>Family Subscription</li>
+          <li>Clinic Licensing</li>
+          <li>Healthcare Organisation Licensing</li>
+          <li>Insurer Licensing</li>
+          <li>Government Contracts</li>
+          <li>Ecosystem Partner Revenue</li>
+        </ul>
+        <p>The model aligns incentives across individuals, families, providers, insurers, and public health organisations.</p>
+      </section>
+
+      <section class="section" aria-labelledby="s7-title">
+        <h2 id="s7-title">COMPETITIVE ADVANTAGE</h2>
+        <p>The primary competitive advantage is the Continuity Network Effect.</p>
+        <p>As more individuals, families, caregivers, healthcare organisations, and public health participants join the ecosystem, the value of the platform increases.</p>
+        <p>The combination of Social Health Network, Continuity Architecture, and Healthcare Participation creates a durable competitive moat that is difficult for isolated health applications to replicate.</p>
+      </section>
+
+      <section class="section closing-section" aria-labelledby="s8-title">
+        <h2 id="s8-title">LONG-TERM VISION</h2>
+        <p>Elisence aims to become a trusted healthcare relationship ecosystem where prevention, continuity, participation, trusted health intelligence, and social health support work together throughout everyday life.</p>
+        <p>By aligning the needs of individuals, families, healthcare providers, insurers, and public health organisations, Elisence seeks to create healthier populations, stronger healthcare relationships, and more sustainable healthcare systems.</p>
+        <p class="closing-mantra">Build responsibly.</p>
+        <p class="closing-mantra">Earn trust locally.</p>
+        <p class="closing-mantra">Scale meaningfully.</p>
+      </section>
+    </article>
+  </main>
+</body>
+</html>
