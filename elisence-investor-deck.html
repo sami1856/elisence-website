@@ -836,17 +836,19 @@
     }
 
     #slide-04 .s04-v7-content-grid {
-      flex: 0 0 auto;
+      flex: 1 1 auto;
+      min-height: 0;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(8px, 1vh, 10px);
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(6px, 0.8vh, 8px);
       align-items: stretch;
     }
 
     #slide-04 .s04-v7-card {
       display: flex;
       flex-direction: column;
-      height: auto;
+      height: 100%;
+      min-height: 0;
       align-self: stretch;
       border-radius: 14px;
       border: 1px solid rgba(95, 210, 255, .4);
@@ -875,9 +877,9 @@
     }
 
     #slide-04 .s04-v7-card li {
-      font-size: clamp(11.5px, 0.92vw, 13.5px);
+      font-size: clamp(10.5px, 0.84vw, 12.5px);
       font-weight: 600;
-      line-height: 1.36;
+      line-height: 1.32;
       color: rgba(220, 245, 255, .96);
       margin-bottom: clamp(5px, 0.6vh, 7px);
       padding-left: 1.15em;
@@ -4603,13 +4605,14 @@
               <li>The goal is to help move healthcare beyond fragmented snapshots toward more continuous, preventative, and trusted long-term health understanding.</li>
             </ul>
           </article>
-        </section>
-        <section class="s04-v7-bottom-panel s04-v7-underglow">
-          <h3>Built for Real-World Healthcare</h3>
-          <ul>
-            <li>Behind the scenes, Elisence is designed as a secure, modular, multilingual, healthcare-aware ecosystem adaptable across countries, trust expectations, healthcare realities, and regional governance needs.</li>
-          </ul>
-          <p class="s04-v7-closing-line">One connected ecosystem designed to help healthcare feel more human, preventative, trusted, intelligent, and continuous.</p>
+          <article class="s04-v7-card s04-v7-underglow">
+            <h3>For Governments &amp; Public Health</h3>
+            <ul>
+              <li>Elisence supports prevention, population health, public participation, continuity, and stronger health system engagement across regions.</li>
+              <li>Designed to help governments, ministries, public health organisations, insurers, and healthcare systems work with better long-term health understanding.</li>
+              <li>Built to adapt across NHS, FDA, MDR, GCC, and country-specific healthcare frameworks.</li>
+            </ul>
+          </article>
         </section>
       </div>
     </div>
