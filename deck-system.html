@@ -757,6 +757,36 @@ const items = [
     modalSubtitle:"Build responsibly. Validate meaningfully. Scale with trust.",
     searchBody:["ask next step pilot partnership investment conversation strategic introduction","strategic validation healthcare systems clinics insurers responsible validation","long-term partnerships clinical academic healthcare research ecosystem","mission-aligned investors strategic support advisors healthcare transformation","philosophy build responsibly right people not noise","pilot partnership strategic introduction investment conversation","responsible validation institutional partnerships scalable deployment","connected trusted preventative human concrete next step"],
     helper:"Validation → partnership → trust → responsible scale"
+  },
+  {
+    n:"13", title:"Why Abu Dhabi?", short:"Hub71, UAE, and strategic healthcare expansion",
+    modalSubtitle:"Why is Abu Dhabi the right strategic base for Elisence?",
+    searchBody:["Abu Dhabi Hub71 UAE GCC healthcare innovation digital health government partnership hospitals insurers universities public health systems healthcare ecosystem regional expansion strategic growth"],
+    helper:"Abu Dhabi → Hub71 → GCC gateway → healthcare innovation → responsible scale"
+  },
+  {
+    n:"14", title:"Why GCC?", short:"Regional healthcare transformation and prevention opportunity",
+    modalSubtitle:"Why is the GCC important for Elisence?",
+    searchBody:["GCC UAE Saudi Arabia Qatar Abu Dhabi Middle East preventive healthcare diabetes obesity chronic disease metabolic health public health digital health healthcare transformation population health ministry of health governments hospitals clinics insurers universities"],
+    helper:"GCC healthcare pressure → prevention → digital transformation → population health"
+  },
+  {
+    n:"15", title:"Why Elisence Wins", short:"Ecosystem advantage, trust, and continuity",
+    modalSubtitle:"Why do you believe Elisence can win in this market?",
+    searchBody:["competitive advantage moat why win ecosystem Health Intelligence digital health healthcare AI continuity trust Zero Trust modular platform hospitals clinics governments insurers universities pharmacies caregivers patients families"],
+    helper:"Fragmented apps → connected ecosystem → trust → continuity → defensibility"
+  },
+  {
+    n:"16", title:"Execution & Validation", short:"From product foundation to real-world readiness",
+    modalSubtitle:"What has Elisence built, and what needs to happen next?",
+    searchBody:["execution validation traction product development operational modules pilot partnership real-world validation healthcare systems clinics hospitals insurers universities government deployment roadmap Hub71 Abu Dhabi GCC"],
+    helper:"Build → validate → partner → learn → scale responsibly"
+  },
+  {
+    n:"17", title:"Regulatory Trust", short:"Zero Trust, regional compliance, and healthcare readiness",
+    modalSubtitle:"How can healthcare organisations trust Elisence?",
+    searchBody:["Zero Trust compliance privacy security governance NHS FDA MDR GCC UAE Saudi Arabia Qatar five-language multilingual region-aware compliance country adaptation location-based rules healthcare regulation auditability permissioned access"],
+    helper:"Trust → compliance → region-aware adaptation → healthcare readiness"
   }
 ];
 
@@ -1287,6 +1317,41 @@ function openModal(index) {
       '</div>' +
       '<p class="placeholder-note" style="margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">Validation → partnership → trust → responsible scale</p>' +
       '</div>';
+  } else if (item.n === "13") {
+    document.getElementById("modalAnswer").innerHTML =
+      '<p class="deck-subtitle">Why is Abu Dhabi the right strategic base for Elisence?</p>' +
+      '<p style="margin-bottom: 22px;">Abu Dhabi is a strong strategic fit for Elisence because the UAE is investing deeply in healthcare innovation, digital transformation, prevention, AI, and long-term national development.</p>' +
+      '<p style="margin-bottom: 22px;">For Elisence, Hub71 and Abu Dhabi represent more than a startup location. They represent access to a serious healthcare, government, university, insurer, investor, and innovation ecosystem that can help validate and scale a trusted Health Intelligence platform.</p>' +
+      '<p style="margin-bottom: 0;">Our vision is global, but healthcare trust is built locally. Abu Dhabi can become a strategic launch and validation environment for GCC expansion, while maintaining the long-term ambition to serve people, hospitals, clinics, governments, insurers, universities, pharmacies, and public health systems across multiple regions.</p>' +
+      '<p class="placeholder-note" style="margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">Abu Dhabi → Hub71 → GCC gateway → healthcare innovation → responsible scale</p>';
+  } else if (item.n === "14") {
+    document.getElementById("modalAnswer").innerHTML =
+      '<p class="deck-subtitle">Why is the GCC important for Elisence?</p>' +
+      '<p style="margin-bottom: 22px;">The GCC is highly relevant for Elisence because the region combines major healthcare challenges with strong healthcare transformation ambition.</p>' +
+      '<p style="margin-bottom: 22px;">Countries such as the UAE, Saudi Arabia, Qatar, and the wider GCC are focused on prevention, chronic disease, diabetes, obesity, metabolic health, digital health, AI, and population wellbeing. These are exactly the areas where Elisence is designed to create value for both people and systems.</p>' +
+      '<p style="margin-bottom: 0;">For individuals and families, Elisence can support prevention, medication, chronic condition journeys, caregiver support, and trusted health intelligence. For governments, ministries, hospitals, clinics, insurers, universities, and public health systems, Elisence can support continuity, engagement, prevention, and more connected healthcare experiences.</p>' +
+      '<p class="placeholder-note" style="margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">GCC healthcare pressure → prevention → digital transformation → population health</p>';
+  } else if (item.n === "15") {
+    document.getElementById("modalAnswer").innerHTML =
+      '<p class="deck-subtitle">Why do you believe Elisence can win in this market?</p>' +
+      '<p style="margin-bottom: 22px;">Elisence is not designed as another isolated health app. It is designed as a connected Health Intelligence ecosystem.</p>' +
+      '<p style="margin-bottom: 22px;">Many healthcare products solve one feature, one condition, or one short episode of care. Elisence is built around continuity: prevention, medication, chronic conditions, medical tracking, trusted communication, healthcare AI, wellbeing, family care, and long-term engagement working together rather than separately.</p>' +
+      '<p style="margin-bottom: 0;">The advantage is the combination of user value and system value. Patients, families, and caregivers need simpler health journeys. Hospitals, clinics, insurers, governments, universities, pharmacies, and healthcare professionals need trusted infrastructure that supports continuity, prevention, communication, and responsible digital health adoption.</p>' +
+      '<p class="placeholder-note" style="margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">Fragmented apps → connected ecosystem → trust → continuity → defensibility</p>';
+  } else if (item.n === "16") {
+    document.getElementById("modalAnswer").innerHTML =
+      '<p class="deck-subtitle">What has Elisence built, and what needs to happen next?</p>' +
+      '<p style="margin-bottom: 22px;">Elisence has moved beyond a presentation-only idea. The platform has developed foundations across health tracking, nutrition intelligence, medication workflows, health journeys, trusted communication, identity, privacy, governance, and connected health experiences.</p>' +
+      '<p style="margin-bottom: 22px;">The next stage is responsible validation. That means pilot conversations, strategic partnerships, user testing, healthcare-system feedback, clinical and academic collaboration, and market-specific learning.</p>' +
+      '<p style="margin-bottom: 0;">For Hub71, this is the stage where Abu Dhabi and the wider GCC can add real value: access to partners, healthcare organisations, universities, investors, public-sector conversations, and a serious environment for moving from product foundation into responsible real-world deployment.</p>' +
+      '<p class="placeholder-note" style="margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">Build → validate → partner → learn → scale responsibly</p>';
+  } else if (item.n === "17") {
+    document.getElementById("modalAnswer").innerHTML =
+      '<p class="deck-subtitle">How can healthcare organisations trust Elisence?</p>' +
+      '<p style="margin-bottom: 22px;">Trust is not an add-on for Elisence. It is part of the architecture.</p>' +
+      '<p style="margin-bottom: 22px;">Elisence is being designed around Zero Trust principles, permissioned access, privacy, auditability, role-based visibility, safety boundaries, and healthcare-aware governance. The platform is also being designed for five-language and multilingual readiness, so it can support people and healthcare environments across different cultures and regions.</p>' +
+      '<p style="margin-bottom: 0;">A key part of the vision is country and jurisdiction adaptability. Elisence can evolve according to local healthcare rules, language expectations, privacy requirements, and regulatory environments. That includes alignment thinking around NHS-style safety, FDA expectations, MDR principles, GCC healthcare realities, and local requirements in markets such as the UAE, Saudi Arabia, Qatar, and beyond.</p>' +
+      '<p class="placeholder-note" style="margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(120, 210, 255, .24); font-style: italic; text-align: center;">Trust → compliance → region-aware adaptation → healthcare readiness</p>';
   } else {
     document.getElementById("modalAnswer").innerHTML =
       '<p class="deck-subtitle">Deck slide skeleton</p>' +
