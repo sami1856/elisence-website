@@ -1649,7 +1649,7 @@
       max-height: 100dvh;
       justify-content: flex-start;
       align-items: stretch;
-      padding: clamp(6px, 0.85vh, 12px) clamp(14px, 2.6vw, 44px);
+      padding: clamp(4px, 0.55vh, 8px) clamp(14px, 2.6vw, 44px);
       overflow: hidden;
       scroll-snap-align: start;
     }
@@ -1663,7 +1663,7 @@
       min-height: 0;
       max-height: 100%;
       margin: 0 auto;
-      gap: clamp(3px, 0.4vh, 4px);
+      gap: 1px;
     }
 
     #slide-08 .s08-deck-header {
@@ -1682,20 +1682,16 @@
     }
 
     #slide-08 .s08-deck-header h2 {
-      font-size: clamp(26px, 3.2vh, 36px);
+      font-size: clamp(22px, 2.5vh, 30px);
       font-weight: 900;
-      line-height: 1.06;
+      line-height: 1.04;
       color: #fff;
-      margin: 0 0 2px;
+      margin: 0 0 1px;
       text-shadow: 0 0 16px rgba(0, 180, 255, .15);
     }
 
     #slide-08 .s08-deck-header > p {
-      font-size: clamp(12px, 1.1vh, 15px);
-      font-weight: 700;
-      line-height: 1.22;
-      color: rgba(200, 235, 255, .92);
-      margin: 0;
+      display: none;
     }
 
     #slide-08 .s08-columns {
@@ -1713,38 +1709,40 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: clamp(2px, 0.28vh, 3px);
+      gap: clamp(2px, 0.25vh, 2px);
       border-radius: 9px;
       border: 1px solid rgba(95, 210, 255, .48);
       background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
       box-shadow: 0 0 16px rgba(0, 150, 255, .12);
-      padding: clamp(2px, 0.32vh, 3px) clamp(4px, 0.55vw, 6px);
+      padding: 2px 5px 3px;
       overflow: visible;
     }
 
     #slide-08 .s08-block {
       flex-shrink: 0;
-      border-radius: 7px;
-      border: 1px solid rgba(85, 200, 255, .28);
-      background: rgba(4, 18, 48, .42);
-      padding: 2px 5px 3px;
+      min-height: 0;
+      padding: 0;
+    }
+
+    #slide-08 .s08-panel .s08-block {
+      overflow: visible;
     }
 
     #slide-08 .s08-block-head {
       display: flex;
       align-items: center;
-      gap: 5px;
-      margin-bottom: 1px;
-      padding-bottom: 1px;
+      gap: 4px;
+      margin-bottom: 0;
+      padding-bottom: 0;
       border-bottom: 1px solid rgba(85, 200, 255, .2);
       flex-shrink: 0;
     }
 
     #slide-08 .s08-block-icon {
       flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      border-radius: 5px;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1754,8 +1752,8 @@
     }
 
     #slide-08 .s08-block-icon svg {
-      width: 11px;
-      height: 11px;
+      width: 10px;
+      height: 10px;
     }
 
     #slide-08 .s08-block-icon svg path,
@@ -1764,17 +1762,9 @@
       stroke: #8edcff;
     }
 
-    #slide-08 .s08-section-panel .s08-block,
-    #slide-08 .s08-panel .s08-block {
-      flex: 0 0 auto;
-      display: block;
-      min-height: 0;
-      overflow: visible;
-    }
-
     #slide-08 .s08-block-head h3,
     #slide-08 .s08-block h3 {
-      font-size: clamp(12px, 1.15vh, 14.5px);
+      font-size: clamp(12px, 1.2vh, 14px);
       font-weight: 900;
       letter-spacing: .035em;
       line-height: 1.16;
@@ -1790,7 +1780,12 @@
       min-width: 0;
     }
 
-    #slide-08 .s08-section-panel .s08-block ul,
+    #slide-08 .s08-panel .s08-block + .s08-block {
+      margin-top: 2px;
+      padding-top: 2px;
+      border-top: 1px solid rgba(85, 200, 255, .18);
+    }
+
     #slide-08 .s08-panel .s08-block ul {
       overflow: visible;
     }
@@ -1806,6 +1801,15 @@
     #slide-08 .s08-revenue-list .s08-li-full,
     #slide-08 .s08-dense-list .s08-li-full {
       grid-column: 1 / -1;
+    }
+
+    #slide-08 .s08-expansion-list {
+      grid-template-columns: repeat(5, 1fr);
+      column-gap: clamp(4px, 0.55vw, 6px);
+    }
+
+    #slide-08 .s08-platform-chain.s08-dense-list {
+      grid-template-columns: repeat(3, 1fr);
     }
 
     #slide-08 .s08-platform-chain li {
@@ -1830,9 +1834,9 @@
     }
 
     #slide-08 .s08-block li {
-      font-size: clamp(11.5px, 1.08vh, 13.5px);
+      font-size: clamp(11px, 1.15vh, 12.5px);
       font-weight: 600;
-      line-height: 1.28;
+      line-height: 1.24;
       color: rgba(220, 245, 255, .96);
       margin-bottom: 1px;
       padding-left: 1.05em;
@@ -1855,12 +1859,12 @@
       flex-shrink: 0;
       margin: 0;
       text-align: center;
-      font-size: clamp(11.5px, 1.02vh, 13.5px);
+      font-size: clamp(10.5px, 0.95vh, 12px);
       font-weight: 800;
-      line-height: 1.3;
+      line-height: 1.26;
       color: #fff;
-      padding: 2px 6px;
-      border-radius: 8px;
+      padding: 1px 5px;
+      border-radius: 7px;
       border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
       box-shadow: 0 0 22px rgba(0, 150, 255, .16);
@@ -4180,6 +4184,7 @@
         font-size: 20pt !important;
       }
       #slide-08 .s08-deck-header > p {
+        display: block !important;
         font-size: 9.5pt !important;
       }
       #slide-08 .s08-block-head h3,
@@ -4195,9 +4200,6 @@
         padding: 1mm 1.5mm !important;
         gap: 1mm !important;
         overflow: visible !important;
-      }
-      #slide-08 .s08-block {
-        padding: 0.8mm 1.2mm !important;
       }
       #slide-08 .s08-columns {
         gap: 1.5mm !important;
@@ -5266,7 +5268,7 @@
   </section>
 
   <!-- Slide 08 Business -->
-  <section class="slide deck-slide" id="slide-08" data-deck-build="s08-business-model-enhanced">
+  <section class="slide deck-slide" id="slide-08" data-deck-build="s08-visible-panels-fix-v2">
     <div class="s08-shell">
       <header class="s08-deck-header">
         <div class="s08-kicker">08 — BUSINESS MODEL</div>
@@ -5274,18 +5276,18 @@
         <p>Trust-led healthcare value creation.</p>
       </header>
       <div class="s08-columns">
-        <article class="s08-panel s08-panel--left" aria-label="B2C, B2B, revenue streams, continuity moat, and healthy engagement">
+        <article class="s08-panel s08-panel--left" aria-label="B2C, B2B, revenue streams, healthy engagement, and long-term expansion">
           <div class="s08-block">
-            <div class="s08-block-head">
-              <span class="s08-block-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3" stroke-width="1.1"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.1" stroke-linecap="round"/></svg>
-              </span>
-              <h3>FOR PEOPLE (B2C)</h3>
-            </div>
-            <ul>
-              <li>Elisence is designed to create meaningful everyday value through prevention, continuity, trusted health participation, medication support, metabolic and wellbeing journeys, health understanding, social health participation, and more connected everyday healthcare experiences.</li>
-              <li>Premium experiences may support advanced health understanding, continuity support, intelligent health participation, deeper personalisation, and more connected long-term health journeys — while preserving the philosophy that trust, safety, and essential participation should not feel locked behind payment.</li>
-            </ul>
+              <div class="s08-block-head">
+                <span class="s08-block-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3" stroke-width="1.1"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-width="1.1" stroke-linecap="round"/></svg>
+                </span>
+                <h3>FOR PEOPLE (B2C)</h3>
+              </div>
+              <ul>
+                <li>Elisence is designed to create meaningful everyday value through prevention, continuity, trusted health participation, medication support, metabolic and wellbeing journeys, health understanding, social health participation, and more connected everyday healthcare experiences.</li>
+                <li>Premium experiences may support advanced health understanding, continuity support, intelligent health participation, deeper personalisation, and more connected long-term health journeys — while preserving the philosophy that trust, safety, and essential participation should not feel locked behind payment.</li>
+              </ul>
           </div>
           <div class="s08-block">
             <div class="s08-block-head">
@@ -5293,11 +5295,11 @@
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18h16M6 18V8l6-4 6 4v10" stroke-width="1.1" stroke-linejoin="round"/></svg>
               </span>
               <h3>FOR HEALTHCARE ORGANISATIONS (B2B / B2B2C)</h3>
-            </div>
-            <ul>
-              <li>Elisence is designed to support clinics, hospitals, pharmacies, employers, insurers, healthcare providers, and responsible care organisations through continuity, participation, communication, prevention, trusted engagement, and more connected healthcare journeys.</li>
-              <li>In some environments, organisations may enable, sponsor, or subsidise Elisence experiences for the people they support.</li>
-            </ul>
+              </div>
+              <ul>
+                <li>Elisence is designed to support clinics, hospitals, pharmacies, employers, insurers, healthcare providers, and responsible care organisations through continuity, participation, communication, prevention, trusted engagement, and more connected healthcare journeys.</li>
+                <li>In some environments, organisations may enable, sponsor, or subsidise Elisence experiences for the people they support.</li>
+              </ul>
           </div>
           <div class="s08-block">
             <div class="s08-block-head">
@@ -5305,20 +5307,67 @@
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke-width="1.1"/><path d="M12 8v8M9 11h6" stroke-width="1.1" stroke-linecap="round"/></svg>
               </span>
               <h3>REVENUE STREAMS</h3>
+              </div>
+              <ul class="s08-revenue-list">
+                <li class="s08-li-full">Elisence is designed around multiple value layers rather than a single revenue source.</li>
+                <li class="s08-li-full">Potential revenue streams may include:</li>
+                <li>Premium subscriptions</li>
+                <li>Family plans</li>
+                <li>Advanced intelligence services</li>
+                <li>Healthcare organisation licensing</li>
+                <li>Employer wellbeing programmes</li>
+                <li>Pharmacy participation services</li>
+                <li>Population health programmes</li>
+                <li>Research collaboration</li>
+                <li>Institutional intelligence services</li>
+                <li class="s08-li-full">The platform is designed to support diversified healthcare value creation over time.</li>
+              </ul>
+          </div>
+          <div class="s08-block">
+            <div class="s08-block-head">
+              <span class="s08-block-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3" stroke-width="1.1"/><circle cx="6" cy="16" r="2.5" stroke-width="1.1"/><circle cx="18" cy="16" r="2.5" stroke-width="1.1"/></svg>
+              </span>
+              <h3>HEALTHY ENGAGEMENT AS A MOAT</h3>
             </div>
-            <ul class="s08-revenue-list">
-              <li class="s08-li-full">Elisence is designed around multiple value layers rather than a single revenue source.</li>
-              <li class="s08-li-full">Potential revenue streams may include:</li>
-              <li>Premium subscriptions</li>
-              <li>Family plans</li>
-              <li>Advanced intelligence services</li>
-              <li>Healthcare organisation licensing</li>
-              <li>Employer wellbeing programmes</li>
-              <li>Pharmacy participation services</li>
-              <li>Population health programmes</li>
-              <li>Research collaboration</li>
-              <li>Institutional intelligence services</li>
-              <li class="s08-li-full">The platform is designed to support diversified healthcare value creation over time.</li>
+            <ul>
+              <li>Elisence is designed around healthy long-term participation rather than advertising-driven attention loops — helping continuity, trust, engagement, and meaningful everyday value reinforce one another over time.</li>
+            </ul>
+          </div>
+          <div class="s08-block">
+            <div class="s08-block-head">
+              <span class="s08-block-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke-width="1.1" opacity=".45"/></svg>
+              </span>
+              <h3>LONG-TERM PLATFORM EXPANSION</h3>
+            </div>
+            <ul class="s08-dense-list s08-expansion-list">
+              <li class="s08-li-full">Elisence is designed across multiple healthcare domains including:</li>
+              <li>prevention</li>
+              <li>nutrition</li>
+              <li>hydration</li>
+              <li>activity</li>
+              <li>medication</li>
+              <li>social health</li>
+              <li>women's health</li>
+              <li>diabetes</li>
+              <li>continuity support</li>
+              <li>population health</li>
+              <li class="s08-li-full">Because value is created across multiple healthcare layers, the platform is designed to support long-term expansion rather than a single niche category.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="s08-panel s08-panel--right" aria-label="B2G, trust moat, privacy, multi-sided model, and long-term platform value">
+          <div class="s08-block">
+            <div class="s08-block-head">
+              <span class="s08-block-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke-width="1.1"/><path d="M2 12h20M12 2c2.5 2.8 4 6.2 4 10s-1.5 7.2-4 10M12 2c-2.5 2.8-4 6.2-4 10s1.5 7.2 4 10" stroke-width="1.1"/></svg>
+              </span>
+              <h3>FOR GOVERNMENTS &amp; PUBLIC HEALTH SYSTEMS (B2G)</h3>
+            </div>
+            <ul>
+              <li>Public health systems increasingly need prevention, participation, continuity, trusted engagement, healthier behaviours, and lower fragmentation across healthcare journeys.</li>
+              <li>Elisence is designed to support more scalable, connected, and prevention-oriented healthcare participation rather than isolated interactions.</li>
             </ul>
           </div>
           <div class="s08-block">
@@ -5344,37 +5393,20 @@
           <div class="s08-block">
             <div class="s08-block-head">
               <span class="s08-block-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3" stroke-width="1.1"/><circle cx="6" cy="16" r="2.5" stroke-width="1.1"/><circle cx="18" cy="16" r="2.5" stroke-width="1.1"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="11" width="14" height="10" rx="2" stroke-width="1.1"/><path d="M8 11V8a4 4 0 018 0v3" stroke-width="1.1"/></svg>
               </span>
-              <h3>HEALTHY ENGAGEMENT AS A MOAT</h3>
+              <h3>PRIVACY-FIRST VALUE CREATION</h3>
             </div>
-            <ul>
-              <li>Elisence is designed around healthy long-term participation rather than advertising-driven attention loops — helping continuity, trust, engagement, and meaningful everyday value reinforce one another over time.</li>
-            </ul>
-          </div>
-        </article>
-        <article class="s08-panel s08-panel--right" aria-label="B2G, platform value, multi-sided model, privacy, and expansion">
-          <div class="s08-block">
-            <div class="s08-block-head">
-              <span class="s08-block-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke-width="1.1"/><path d="M2 12h20M12 2c2.5 2.8 4 6.2 4 10s-1.5 7.2-4 10M12 2c-2.5 2.8-4 6.2-4 10s1.5 7.2 4 10" stroke-width="1.1"/></svg>
-              </span>
-              <h3>FOR GOVERNMENTS &amp; PUBLIC HEALTH SYSTEMS (B2G)</h3>
-            </div>
-            <ul>
-              <li>Public health systems increasingly need prevention, participation, continuity, trusted engagement, healthier behaviours, and lower fragmentation across healthcare journeys.</li>
-              <li>Elisence is designed to support more scalable, connected, and prevention-oriented healthcare participation rather than isolated interactions.</li>
-            </ul>
-          </div>
-          <div class="s08-block">
-            <div class="s08-block-head">
-              <span class="s08-block-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 16l4-6 4 4 4-8 4 10" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-              <h3>LONG-TERM PLATFORM VALUE</h3>
-            </div>
-            <ul>
-              <li>Over time, Elisence may support responsible licensing, governed healthcare infrastructure, continuity tooling, workflow support, institutional partnerships, research collaboration, healthcare intelligence services, and trusted ecosystem participation.</li>
+            <ul class="s08-dense-list">
+              <li class="s08-li-full">Elisence is not designed around selling personal health data.</li>
+              <li class="s08-li-full">The platform is designed around:</li>
+              <li>trust</li>
+              <li>participation</li>
+              <li>continuity</li>
+              <li>healthcare value</li>
+              <li>responsible intelligence</li>
+              <li class="s08-li-full">Personal health information remains privacy-aware, permission-aware, and governance-aware.</li>
+              <li class="s08-li-full">The objective is long-term trust rather than short-term data monetisation.</li>
             </ul>
           </div>
           <div class="s08-block">
@@ -5401,42 +5433,12 @@
           <div class="s08-block">
             <div class="s08-block-head">
               <span class="s08-block-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="11" width="14" height="10" rx="2" stroke-width="1.1"/><path d="M8 11V8a4 4 0 018 0v3" stroke-width="1.1"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 16l4-6 4 4 4-8 4 10" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
-              <h3>PRIVACY-FIRST VALUE CREATION</h3>
+              <h3>LONG-TERM PLATFORM VALUE</h3>
             </div>
-            <ul class="s08-dense-list">
-              <li class="s08-li-full">Elisence is not designed around selling personal health data.</li>
-              <li class="s08-li-full">The platform is designed around:</li>
-              <li>trust</li>
-              <li>participation</li>
-              <li>continuity</li>
-              <li>healthcare value</li>
-              <li>responsible intelligence</li>
-              <li class="s08-li-full">Personal health information remains privacy-aware, permission-aware, and governance-aware.</li>
-              <li class="s08-li-full">The objective is long-term trust rather than short-term data monetisation.</li>
-            </ul>
-          </div>
-          <div class="s08-block">
-            <div class="s08-block-head">
-              <span class="s08-block-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M12 5l7 7-7 7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke-width="1.1" opacity=".45"/></svg>
-              </span>
-              <h3>LONG-TERM PLATFORM EXPANSION</h3>
-            </div>
-            <ul class="s08-dense-list">
-              <li class="s08-li-full">Elisence is designed across multiple healthcare domains including:</li>
-              <li>prevention</li>
-              <li>nutrition</li>
-              <li>hydration</li>
-              <li>activity</li>
-              <li>medication</li>
-              <li>social health</li>
-              <li>women's health</li>
-              <li>diabetes</li>
-              <li>continuity support</li>
-              <li>population health</li>
-              <li class="s08-li-full">Because value is created across multiple healthcare layers, the platform is designed to support long-term expansion rather than a single niche category.</li>
+            <ul>
+              <li>Over time, Elisence may support responsible licensing, governed healthcare infrastructure, continuity tooling, workflow support, institutional partnerships, research collaboration, healthcare intelligence services, and trusted ecosystem participation.</li>
             </ul>
           </div>
         </article>
@@ -5794,34 +5796,6 @@
         panel.scrollTop = overflow > 0 ? overflow / 2 : 0;
       }
 
-      function fitSlide08BusinessModel() {
-        var slide = document.getElementById("slide-08");
-        if (!slide) return;
-        var shell = slide.querySelector(".s08-shell");
-        var columns = slide.querySelector(".s08-columns");
-        var header = slide.querySelector(".s08-deck-header");
-        var closing = slide.querySelector(".s08-closing");
-        if (!shell || !columns) return;
-
-        columns.style.transform = "";
-        columns.style.width = "";
-        columns.style.marginBottom = "";
-        columns.style.transformOrigin = "top center";
-
-        window.requestAnimationFrame(function () {
-          var shellGap = parseFloat(getComputedStyle(shell).rowGap || getComputedStyle(shell).gap || "0") || 0;
-          var reserved = (header ? header.offsetHeight : 0) + (closing ? closing.offsetHeight : 0) + shellGap * 2;
-          var available = shell.clientHeight - reserved;
-          var needed = columns.scrollHeight;
-          if (needed <= available + 1) return;
-
-          var scale = Math.max(0.86, available / needed);
-          columns.style.transform = "scale(" + scale + ")";
-          columns.style.width = (100 / scale) + "%";
-          columns.style.marginBottom = "-" + Math.round(needed * (1 - scale)) + "px";
-        });
-      }
-
       function applyTransform(instant) {
         if (instant) track.classList.add("is-instant");
         track.style.transform = "translate3d(0, " + (-index * slideStep()) + "px, 0)";
@@ -5835,7 +5809,6 @@
           history.replaceState(null, "", nextHash);
         }
         window.requestAnimationFrame(centerSlide04HeroScroll);
-        window.requestAnimationFrame(fitSlide08BusinessModel);
       }
 
       function beginAnimation() {
