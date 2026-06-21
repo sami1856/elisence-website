@@ -765,9 +765,9 @@
       flex: 1;
       min-height: 0;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(6px, 0.7vh, 8px);
+      display: grid;
+      grid-template-rows: minmax(clamp(340px, 44vh, 500px), 1fr) auto auto;
+      gap: clamp(5px, 0.6vh, 7px);
     }
 
     #slide-04 .s04-v7-underglow {
@@ -790,15 +790,13 @@
     }
 
     #slide-04 .s04-v7-image-panel {
-      flex: 1 1 auto;
-      min-height: clamp(280px, 38vh, 420px);
+      flex: none;
+      min-height: clamp(340px, 44vh, 500px);
+      height: 100%;
+      max-height: none;
       border-radius: 14px;
       border: 1px solid rgba(95, 210, 255, .45);
-      overflow-x: hidden;
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(85, 217, 255, .5) rgba(4, 16, 42, .75);
+      overflow: hidden;
       background: rgba(4, 16, 42, .9);
       box-shadow: 0 0 28px rgba(0, 140, 255, .2);
       line-height: 0;
@@ -817,15 +815,15 @@
       display: block;
       width: 100%;
       max-width: none;
-      min-height: 100%;
-      height: clamp(320px, 40vh, 460px);
+      height: 100%;
+      min-height: clamp(340px, 44vh, 500px);
       object-fit: cover;
       object-position: center center;
     }
 
     #slide-04 .s04-v7-intro-line {
       flex-shrink: 0;
-      font-size: clamp(12.5px, 1vw, 14px);
+      font-size: clamp(11.5px, 0.95vw, 13px);
       font-weight: 650;
       line-height: 1.38;
       color: rgba(235, 250, 255, .96);
@@ -836,10 +834,10 @@
     }
 
     #slide-04 .s04-v7-content-grid {
-      flex: 0 0 auto;
+      flex: none;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: clamp(6px, 0.8vh, 8px);
+      gap: clamp(5px, 0.6vh, 7px);
       align-items: start;
       align-content: start;
     }
@@ -849,12 +847,12 @@
       flex-direction: column;
       height: auto;
       align-self: start;
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid rgba(95, 210, 255, .4);
       background: linear-gradient(165deg, rgba(10, 38, 88, .88), rgba(3, 10, 28, .95));
-      padding: clamp(8px, 1vh, 10px) clamp(10px, 1.1vw, 12px);
+      padding: clamp(4px, 0.45vh, 6px) clamp(7px, 0.8vw, 9px);
       box-shadow: 0 0 24px rgba(0, 130, 255, .14);
-      overflow: hidden;
+      overflow: visible;
     }
 
     #slide-04 .s04-v7-card ul {
@@ -864,24 +862,24 @@
     }
 
     #slide-04 .s04-v7-card h3 {
-      font-size: clamp(11px, 0.9vw, 13px);
+      font-size: clamp(9px, 0.76vw, 10.5px);
       font-weight: 900;
-      letter-spacing: .1em;
-      line-height: 1.2;
+      letter-spacing: .08em;
+      line-height: 1.15;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 clamp(5px, 0.6vh, 7px);
-      padding-bottom: clamp(4px, 0.5vh, 6px);
+      margin: 0 0 3px;
+      padding-bottom: 3px;
       border-bottom: 1px solid rgba(85, 200, 255, .24);
     }
 
     #slide-04 .s04-v7-card li {
-      font-size: clamp(10.5px, 0.84vw, 12.5px);
+      font-size: clamp(9px, 0.72vw, 10.5px);
       font-weight: 600;
-      line-height: 1.32;
+      line-height: 1.22;
       color: rgba(220, 245, 255, .96);
-      margin-bottom: clamp(5px, 0.6vh, 7px);
-      padding-left: 1.15em;
+      margin-bottom: 2px;
+      padding-left: 1.1em;
       position: relative;
     }
 
@@ -4593,15 +4591,15 @@
           <article class="s04-v7-card s04-v7-underglow">
             <h3>For People</h3>
             <ul>
-              <li>One connected place for prevention, medication, metabolic health, women’s health, GP communication, pharmacy journeys, wellbeing, and family care.</li>
+              <li>One connected place for prevention, medication, metabolic health, women’s health, GP communication, wellbeing, and family care.</li>
               <li>Reduces fragmented tools and helps people make better everyday health decisions.</li>
             </ul>
           </article>
           <article class="s04-v7-card s04-v7-underglow">
             <h3>For Healthcare Systems</h3>
             <ul>
-              <li>Supports continuity, prevention, communication, participation, prediction, and connected care across clinics, hospitals, pharmacies, insurers, and providers.</li>
-              <li>Helps move healthcare beyond fragmented snapshots toward trusted long-term understanding.</li>
+              <li>Supports continuity, prevention, communication, participation, prediction, and connected care across providers and institutions.</li>
+              <li>Moves care beyond fragmented snapshots toward trusted long-term understanding.</li>
             </ul>
           </article>
           <article class="s04-v7-card s04-v7-underglow">
