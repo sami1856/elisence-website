@@ -723,33 +723,42 @@
 
     #slide-04 .s04-v7-header {
       flex-shrink: 0;
-      margin-bottom: clamp(6px, 0.8vh, 8px);
+      margin-bottom: clamp(4px, 0.45vh, 6px);
     }
 
-    #slide-04 .s04-v7-kicker {
-      font-size: clamp(11px, 0.9vw, 13px);
-      font-weight: 800;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: #55d9ff;
-      margin-bottom: 4px;
+    #slide-04 .s04-v7-headline {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: baseline;
+      gap: clamp(8px, 1vw, 14px);
+      margin: 0;
+      text-align: left;
+      white-space: nowrap;
+      line-height: 1.1;
     }
 
-    #slide-04 .s04-v7-header h2 {
-      font-size: clamp(28px, 2.8vw, 36px);
-      font-weight: 900;
-      line-height: 1.06;
+    #slide-04 .s04-v7-headline-q {
+      flex-shrink: 0;
+      font-size: clamp(22px, 2.35vw, 32px);
+      font-weight: 950;
+      letter-spacing: .04em;
       color: #fff;
-      margin: 0 0 4px;
       text-shadow: 0 0 24px rgba(0, 180, 255, .22);
     }
 
-    #slide-04 .s04-v7-header > p {
-      font-size: clamp(14px, 1.15vw, 17px);
+    #slide-04 .s04-v7-headline-arrow {
+      flex-shrink: 0;
+      font-size: clamp(18px, 1.8vw, 24px);
       font-weight: 700;
-      line-height: 1.32;
-      color: rgba(200, 235, 255, .92);
-      margin: 0;
+      color: rgba(85, 217, 255, .88);
+    }
+
+    #slide-04 .s04-v7-headline-a {
+      flex: 1 1 auto;
+      min-width: 0;
+      font-size: clamp(15px, 1.35vw, 20px);
+      font-weight: 700;
+      color: #55d9ff;
     }
 
     #slide-04 .s04-v7-scroll-body {
@@ -4572,9 +4581,7 @@
   <section class="slide deck-slide" id="slide-04" data-deck-build="s04-one-screen-readable">
     <div class="s04-v7-shell">
       <header class="s04-v7-header">
-        <div class="s04-v7-kicker">04 — WHAT IS ELISENCE</div>
-        <h2>What is Elisence</h2>
-        <p>One connected health ecosystem for people and healthcare systems.</p>
+        <p class="s04-v7-headline"><span class="s04-v7-headline-q">WHAT IS ELISENCE?</span><span class="s04-v7-headline-arrow" aria-hidden="true">→</span><span class="s04-v7-headline-a">One connected health ecosystem for people, providers, and healthcare systems.</span></p>
       </header>
       <div class="s04-v7-scroll-body">
         <section class="s04-v7-image-panel s04-v7-underglow">
