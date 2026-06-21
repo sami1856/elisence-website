@@ -2085,19 +2085,19 @@
       color: rgba(210, 240, 255, .88);
     }
 
-    /* Slide 09 — PDF-safe two-panel market expansion (hero preserved) */
+    /* Slide 09 — PDF-safe global expansion strategy (two columns, 8 panels) */
     #slide-09.slide {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: stretch;
       min-height: 100vh;
       min-height: 100dvh;
       height: 100vh;
       height: 100dvh;
       max-height: 100vh;
       max-height: 100dvh;
-      padding: clamp(10px, 1.35vh, 16px) clamp(16px, 3vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding: clamp(4px, 0.55vh, 8px) clamp(14px, 2.6vw, 44px);
       overflow: hidden;
       scroll-snap-align: start;
       background:
@@ -2131,75 +2131,8 @@
       min-height: 0;
       max-height: 100%;
       margin: 0 auto;
-      gap: clamp(5px, 0.65vh, 7px);
+      gap: clamp(2px, 0.3vh, 4px);
       z-index: 1;
-    }
-
-    #slide-09 .s09-hero-banner {
-      flex: 1 1 auto;
-      min-height: clamp(180px, 36vh, 280px);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: 2px;
-      border-radius: 26px;
-      background: linear-gradient(135deg, rgba(85, 217, 255, .55), rgba(0, 220, 180, .35), rgba(60, 120, 255, .4));
-      box-shadow:
-        0 0 48px rgba(0, 160, 255, .28),
-        0 0 80px rgba(0, 220, 180, .12),
-        inset 0 0 24px rgba(85, 217, 255, .08);
-    }
-
-    #slide-09 .s09-hero-frame {
-      flex: 1 1 auto;
-      min-height: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(2, 8, 22, .92);
-      position: relative;
-      padding: clamp(4px, 0.5vh, 8px) clamp(8px, 1vw, 12px);
-    }
-
-    #slide-09 .s09-hero-frame::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(2, 8, 22, .12) 0%, transparent 22%, transparent 78%, rgba(0, 140, 255, .06) 100%),
-        radial-gradient(ellipse 90% 40% at 50% 100%, rgba(0, 200, 255, .1), transparent 70%);
-      pointer-events: none;
-    }
-
-    #slide-09 .s09-hero-banner img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      object-position: center center;
-    }
-
-    #slide-09 .s09-orbital-glow {
-      position: relative;
-      z-index: 0;
-    }
-
-    #slide-09 .s09-orbital-glow::before {
-      content: "";
-      position: absolute;
-      left: 5%;
-      right: 5%;
-      bottom: -8px;
-      height: 32px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0, 210, 255, .48), rgba(0, 220, 180, .18) 45%, transparent 72%);
-      filter: blur(14px);
-      pointer-events: none;
-      z-index: -1;
     }
 
     #slide-09 .s09-deck-header {
@@ -2209,77 +2142,85 @@
     }
 
     #slide-09 .s09-kicker {
-      font-size: clamp(10px, 0.85vw, 12px);
+      font-size: clamp(10px, 0.8vw, 12px);
       font-weight: 800;
-      letter-spacing: .14em;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: #55d9ff;
       margin: 0 0 2px;
-      line-height: 1.2;
     }
 
     #slide-09 .s09-deck-header h2 {
-      font-size: clamp(34px, 4vh, 42px);
+      font-size: clamp(22px, 2.5vh, 30px);
       font-weight: 900;
-      line-height: 1.06;
+      line-height: 1.04;
       color: #fff;
-      margin: 0 0 2px;
+      margin: 0;
       text-shadow: 0 0 16px rgba(0, 180, 255, .15);
     }
 
-    #slide-09 .s09-deck-header > p {
-      font-size: clamp(14px, 1.65vh, 18px);
-      font-weight: 700;
-      line-height: 1.28;
-      color: rgba(200, 235, 255, .92);
-      margin: 0;
-    }
-
     #slide-09 .s09-columns {
-      flex: 0 0 auto;
+      flex: 1 1 0;
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(8px, 1vh, 10px);
+      gap: clamp(3px, 0.38vh, 4px);
       align-items: stretch;
     }
 
     #slide-09 .s09-panel {
       min-height: 0;
-      height: auto;
-      max-height: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 0;
-      border-radius: 12px;
+      gap: clamp(2px, 0.25vh, 2px);
+      border-radius: 9px;
       border: 1px solid rgba(95, 210, 255, .48);
       background: linear-gradient(165deg, rgba(10, 38, 88, .9), rgba(3, 12, 32, .96));
-      box-shadow: 0 0 22px rgba(0, 150, 255, .16);
-      padding: clamp(7px, 0.9vh, 9px) clamp(9px, 1vw, 11px);
+      box-shadow: 0 0 16px rgba(0, 150, 255, .12);
+      padding: 2px 5px 3px;
       overflow: visible;
     }
 
     #slide-09 .s09-block {
       flex-shrink: 0;
+      min-height: 0;
+      padding: 0;
     }
 
-    #slide-09 .s09-block + .s09-block {
-      margin-top: 0;
-      padding-top: clamp(6px, 0.75vh, 8px);
-      border-top: 1px solid rgba(85, 200, 255, .22);
+    #slide-09 .s09-panel .s09-block + .s09-block {
+      margin-top: 2px;
+      padding-top: 2px;
+      border-top: 1px solid rgba(85, 200, 255, .18);
     }
 
     #slide-09 .s09-block h3 {
-      font-size: clamp(15px, 1.55vh, 19px);
+      font-size: clamp(12.5px, 1.25vh, 14.5px);
       font-weight: 900;
-      letter-spacing: .04em;
-      line-height: 1.18;
+      letter-spacing: .035em;
+      line-height: 1.16;
       text-transform: uppercase;
       color: #8edcff;
-      margin: 0 0 clamp(4px, 0.5vh, 6px);
-      padding-bottom: clamp(3px, 0.4vh, 5px);
+      margin: 0 0 1px;
+      padding: 0 0 1px;
       border-bottom: 1px solid rgba(85, 200, 255, .2);
+    }
+
+    #slide-09 .s09-dense-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: clamp(5px, 0.7vw, 8px);
+      row-gap: 0;
+    }
+
+    #slide-09 .s09-dense-list.s09-regions-list,
+    #slide-09 .s09-dense-list.s09-capabilities-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    #slide-09 .s09-dense-list .s09-li-full {
+      grid-column: 1 / -1;
     }
 
     #slide-09 .s09-block ul {
@@ -2289,12 +2230,12 @@
     }
 
     #slide-09 .s09-block li {
-      font-size: clamp(13px, 1.35vh, 15px);
+      font-size: clamp(11px, 1.15vh, 12.5px);
       font-weight: 600;
-      line-height: 1.38;
+      line-height: 1.24;
       color: rgba(220, 245, 255, .96);
-      margin-bottom: clamp(3px, 0.4vh, 5px);
-      padding-left: 1.1em;
+      margin-bottom: 1px;
+      padding-left: 1.05em;
       position: relative;
     }
 
@@ -2314,55 +2255,16 @@
       flex-shrink: 0;
       margin: 0;
       text-align: center;
-      font-size: clamp(13px, 1.4vh, 16px);
+      font-size: clamp(10.5px, 0.95vh, 12px);
       font-weight: 800;
-      line-height: 1.36;
+      line-height: 1.3;
       color: #fff;
-      padding: clamp(5px, 0.65vh, 7px) clamp(12px, 1.2vw, 16px);
-      border-radius: 10px;
+      padding: 2px 5px;
+      border-radius: 7px;
       border: 1px solid rgba(95, 210, 255, .45);
       background: linear-gradient(90deg, rgba(0, 75, 140, .26), rgba(70, 55, 150, .18), rgba(0, 75, 140, .26));
-      box-shadow: 0 0 20px rgba(0, 150, 255, .14);
-      text-shadow: 0 0 12px rgba(0, 180, 255, .12);
-    }
-
-    @media (max-height: 860px) {
-      #slide-09.slide {
-        padding: 8px 14px;
-      }
-      #slide-09 .s09-shell {
-        gap: 4px;
-      }
-      #slide-09 .s09-hero-banner {
-        min-height: clamp(148px, 32vh, 220px);
-      }
-      #slide-09 .s09-deck-header h2 {
-        font-size: 34px;
-      }
-      #slide-09 .s09-deck-header > p {
-        font-size: 15px;
-      }
-      #slide-09 .s09-block h3 {
-        font-size: 14px;
-        margin-bottom: 3px;
-        padding-bottom: 3px;
-      }
-      #slide-09 .s09-block li {
-        font-size: 12px;
-        line-height: 1.32;
-        margin-bottom: 3px;
-      }
-      #slide-09 .s09-block + .s09-block {
-        padding-top: 5px;
-      }
-      #slide-09 .s09-panel {
-        padding: 6px 8px;
-      }
-      #slide-09 .s09-closing {
-        font-size: 12px;
-        line-height: 1.3;
-        padding: 4px 10px;
-      }
+      box-shadow: 0 0 22px rgba(0, 150, 255, .16);
+      text-shadow: 0 0 14px rgba(0, 180, 255, .14);
     }
 
     @media (max-width: 900px) {
@@ -4382,46 +4284,38 @@
       #slide-09 .s09-shell {
         max-height: 100% !important;
         height: 100% !important;
-        gap: 1.5mm !important;
-      }
-      #slide-09 .s09-hero-banner {
-        flex: 1 1 auto !important;
-        min-height: 42mm !important;
-        max-height: 48% !important;
-      }
-      #slide-09 .s09-hero-banner img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: contain !important;
-        object-position: center center !important;
+        gap: 1mm !important;
       }
       #slide-09 .s09-columns {
-        flex: 0 0 auto !important;
+        flex: 1 1 0 !important;
       }
       #slide-09 .s09-deck-header h2 {
         font-size: 20pt !important;
       }
-      #slide-09 .s09-deck-header > p {
-        font-size: 9.5pt !important;
-      }
       #slide-09 .s09-block h3 {
         font-size: 9.5pt !important;
-        margin-bottom: 1mm !important;
-        padding-bottom: 1mm !important;
+        margin-bottom: 0.5mm !important;
+        padding-bottom: 0.5mm !important;
       }
       #slide-09 .s09-block li {
-        font-size: 9pt !important;
-        line-height: 1.24 !important;
-        margin-bottom: 1mm !important;
+        font-size: 8.5pt !important;
+        line-height: 1.28 !important;
+        margin-bottom: 0.8mm !important;
       }
-      #slide-09 .s09-block + .s09-block {
+      #slide-09 .s09-panel .s09-block + .s09-block {
         padding-top: 1mm !important;
       }
       #slide-09 .s09-panel {
-        padding: 2mm 2.5mm !important;
+        padding: 1mm 1.5mm !important;
+        gap: 1mm !important;
+        overflow: visible !important;
+      }
+      #slide-09 .s09-columns {
+        gap: 1.5mm !important;
       }
       #slide-09 .s09-closing {
-        font-size: 10pt !important;
+        font-size: 9pt !important;
+        line-height: 1.32 !important;
         padding: 2mm 4mm !important;
       }
       #slide-09 .s09-shell,
@@ -5448,61 +5342,124 @@
   </section>
 
   <!-- Slide 09 Market -->
-  <section class="slide deck-slide" id="slide-09" data-deck-build="s09-hero-balance-full-image">
+  <section class="slide deck-slide" id="slide-09" data-deck-build="s09-global-expansion-strategy">
     <div class="s09-shell">
-      <section class="s09-hero-banner s09-orbital-glow">
-        <div class="s09-hero-frame">
-          <img src="assets/investor-deck/slide09-global-expansion-banner.jpg" alt="UK to Europe to Middle East to World — Elisence global expansion pathway with Earth horizon" width="1774" height="887" />
-        </div>
-      </section>
       <header class="s09-deck-header">
         <div class="s09-kicker">09 — MARKET &amp; EXPANSION</div>
         <h2>Global Ambition, Local Execution</h2>
-        <p>Global ambition. Local trust.</p>
       </header>
       <div class="s09-columns">
-        <article class="s09-panel s09-panel--left" aria-label="Global healthcare problem, health journeys, country-aware expansion">
+        <article class="s09-panel s09-panel--left" aria-label="Global healthcare opportunity, UK foundation, country-aware architecture, and defensible platform">
           <div class="s09-block">
-            <h3>Global Healthcare Problem</h3>
-            <ul>
-              <li>Fragmentation, chronic conditions, prevention pressure, ageing populations, medication complexity, rising healthcare costs, and increasing self-management are global realities rather than country-specific problems.</li>
-              <li>The need for stronger continuity, trusted health participation, prevention, and more connected healthcare experiences exists across healthcare systems worldwide.</li>
+            <h3>🌍 GLOBAL HEALTHCARE OPPORTUNITY</h3>
+            <ul class="s09-dense-list">
+              <li class="s09-li-full">Healthcare systems around the world face similar long-term challenges:</li>
+              <li>chronic disease growth</li>
+              <li>ageing populations</li>
+              <li>prevention pressure</li>
+              <li>rising healthcare costs</li>
+              <li>medication complexity</li>
+              <li>fragmented healthcare journeys</li>
+              <li class="s09-li-full">The need for stronger continuity, prevention, participation, and long-term health engagement exists across healthcare systems worldwide rather than in a single country or region.</li>
             </ul>
           </div>
           <div class="s09-block">
-            <h3>Multiple Large Health Journeys</h3>
-            <ul>
-              <li>Elisence is designed around multiple long-term healthcare realities rather than a single condition — including prevention, women’s health, diabetes and metabolic health, medication continuity, wellbeing, GP and doctor communication, family care, pharmacy journeys, trusted health intelligence, and long-term health participation.</li>
+            <h3>🇬🇧 UNITED KINGDOM FOUNDATION</h3>
+            <ul class="s09-dense-list">
+              <li class="s09-li-full">The United Kingdom provides an important validation environment because of:</li>
+              <li>strong healthcare standards</li>
+              <li>patient safety expectations</li>
+              <li>trust requirements</li>
+              <li>governance expectations</li>
+              <li>healthcare credibility</li>
+              <li class="s09-li-full">Building responsibly within mature healthcare environments helps strengthen long-term international readiness.</li>
             </ul>
           </div>
           <div class="s09-block">
-            <h3>Country-Aware Expansion</h3>
-            <ul>
-              <li>Healthcare is never one-size-fits-all.</li>
-              <li>Different countries operate with different healthcare systems, regulation, trust expectations, reimbursement models, language, culture, safety expectations, and governance realities.</li>
-              <li>Elisence is designed with multilingual, healthcare-aware, and country-adaptable foundations — supporting responsible localisation rather than forcing one model everywhere.</li>
+            <h3>🌐 COUNTRY-AWARE ARCHITECTURE</h3>
+            <ul class="s09-dense-list">
+              <li class="s09-li-full">Healthcare is never one-size-fits-all.</li>
+              <li class="s09-li-full">Different countries operate with different:</li>
+              <li>healthcare systems</li>
+              <li>regulations</li>
+              <li>reimbursement models</li>
+              <li>languages</li>
+              <li>cultures</li>
+              <li>governance expectations</li>
+              <li class="s09-li-full">Elisence is designed with multilingual, healthcare-aware, and country-adaptive foundations that support responsible localisation rather than forcing one model everywhere.</li>
+            </ul>
+          </div>
+          <div class="s09-block">
+            <h3>🧩 DEFENSIBLE GLOBAL PLATFORM</h3>
+            <ul class="s09-dense-list s09-capabilities-list">
+              <li class="s09-li-full">Elisence is designed around multiple connected healthcare domains including:</li>
+              <li>prevention</li>
+              <li>women's health</li>
+              <li>diabetes &amp; metabolic health</li>
+              <li>medication continuity</li>
+              <li>social health</li>
+              <li>population health</li>
+              <li>trusted health intelligence</li>
+              <li class="s09-li-full">These capabilities operate on one connected platform rather than disconnected solutions.</li>
             </ul>
           </div>
         </article>
-        <article class="s09-panel s09-panel--right" aria-label="Trust-first scale model and repeatable growth">
+        <article class="s09-panel s09-panel--right" aria-label="European expansion, international markets, repeatable scale model, and long-term global vision">
           <div class="s09-block">
-            <h3>Trust-First Scale Model</h3>
-            <ul>
-              <li>Our approach is practical: validate locally, build trust, strengthen healthcare relationships, and scale responsibly.</li>
-              <li>The UK represents an important validation environment because of healthcare credibility, safety expectations, and trust standards.</li>
-              <li>Europe, the Gulf region, and other healthcare transformation markets represent meaningful long-term opportunities for responsible expansion.</li>
+            <h3>🇪🇺 EUROPEAN EXPANSION</h3>
+            <ul class="s09-dense-list">
+              <li class="s09-li-full">Many European healthcare systems share growing demand for:</li>
+              <li>prevention</li>
+              <li>continuity</li>
+              <li>digital participation</li>
+              <li>long-term health engagement</li>
+              <li class="s09-li-full">The objective is responsible expansion through localisation, partnerships, and healthcare-system awareness rather than rapid market replication.</li>
             </ul>
           </div>
           <div class="s09-block">
-            <h3>Repeatable Growth Model</h3>
-            <ul>
-              <li>The goal is not to launch everywhere at once.</li>
-              <li>The goal is to build a repeatable model where prevention, continuity, trusted participation, social health engagement, and healthcare-aware governance can scale responsibly over time.</li>
+            <h3>🌍 INTERNATIONAL HEALTHCARE TRANSFORMATION MARKETS</h3>
+            <ul class="s09-dense-list s09-regions-list">
+              <li class="s09-li-full">Healthcare transformation is taking place across many regions including:</li>
+              <li>Europe</li>
+              <li>GCC countries</li>
+              <li>North America</li>
+              <li>Asia-Pacific</li>
+              <li class="s09-li-full">emerging healthcare innovation markets</li>
+              <li class="s09-li-full">The opportunity is not limited to a single geography.</li>
+              <li class="s09-li-full">The platform is designed to adapt responsibly to different healthcare environments over time.</li>
+            </ul>
+          </div>
+          <div class="s09-block">
+            <h3>📈 REPEATABLE SCALE MODEL</h3>
+            <ul class="s09-dense-list">
+              <li class="s09-li-full">The goal is not to launch everywhere at once.</li>
+              <li class="s09-li-full">The goal is to build a repeatable model where:</li>
+              <li>prevention</li>
+              <li>continuity</li>
+              <li>participation</li>
+              <li>trusted engagement</li>
+              <li>healthcare-aware governance</li>
+              <li class="s09-li-full">can be implemented responsibly and scaled over time.</li>
+            </ul>
+          </div>
+          <div class="s09-block">
+            <h3>🚀 LONG-TERM GLOBAL VISION</h3>
+            <ul class="s09-dense-list">
+              <li class="s09-li-full">The long-term objective is a connected healthcare ecosystem that supports:</li>
+              <li>people</li>
+              <li>families</li>
+              <li>caregivers</li>
+              <li>healthcare professionals</li>
+              <li>pharmacies</li>
+              <li>healthcare organisations</li>
+              <li>insurers</li>
+              <li>public health systems</li>
+              <li class="s09-li-full">through trusted participation, continuity, and healthcare-aware intelligence.</li>
             </ul>
           </div>
         </article>
       </div>
-      <p class="s09-closing">Global problem. Local trust. Responsible scale.</p>
+      <p class="s09-closing">Global healthcare challenges.<br>Local healthcare realities.<br>Responsible localisation.<br>Repeatable expansion.<br>One platform designed for long-term international healthcare impact.</p>
     </div>
   </section>
 
