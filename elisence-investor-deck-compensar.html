@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elisence — Compensar Presentation</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020816;
+      color: #eaf8ff;
+    }
+
+    .deck-shell {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 140, 220, .18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(60, 80, 200, .12), transparent 40%),
+        linear-gradient(180deg, #061936 0%, #020816 48%, #000 100%);
+    }
+
+    .deck-shell::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(0, 200, 255, .06), transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .deck-viewport {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .deck-nav {
+      position: fixed;
+      top: 18px;
+      left: 22px;
+      z-index: 20;
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-decoration: none;
+      color: #dff5ff;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 220, 255, .85);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(0, 220, 255, .35), transparent 55%),
+        rgba(0, 80, 160, .28);
+      box-shadow: 0 0 22px rgba(0, 190, 255, .55);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .nav-pill:hover,
+    .nav-pill:focus-visible {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 32px rgba(0, 220, 255, .85);
+      outline: 2px solid rgba(0, 220, 255, .5);
+      outline-offset: 2px;
+    }
+
+    .slide {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      min-height: 100dvh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(20px, 3vh, 36px) clamp(24px, 4vw, 56px);
+    }
+
+    .slide-inner {
+      width: min(1600px, 100%);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual {
+      width: 100%;
+      max-width: min(1600px, 96vw);
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      border: 1px solid rgba(95, 205, 255, .45);
+      box-shadow:
+        0 0 56px rgba(0, 160, 255, .42),
+        0 24px 80px rgba(0, 0, 0, .45);
+      overflow: hidden;
+      background: rgba(4, 12, 34, .72);
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .slide-foot {
+      position: absolute;
+      right: 24px;
+      bottom: 16px;
+      z-index: 12;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(142, 220, 255, .55);
+    }
+
+    .compensar-slide-02 {
+      width: 100vw;
+      height: 56.25vw;
+      max-height: 100vh;
+      min-height: 720px;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(30, 180, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 78% 20%, rgba(96, 75, 255, 0.18), transparent 32%),
+        linear-gradient(135deg, #06111f 0%, #071a2e 48%, #030914 100%);
+      color: #ffffff;
+      overflow: hidden;
+      position: relative;
+      box-sizing: border-box;
+      padding: 34px 42px;
+    }
+
+    .c02-frame {
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(85, 210, 255, 0.28);
+      border-radius: 26px;
+      padding: 28px 34px;
+      box-sizing: border-box;
+      background: rgba(4, 17, 32, 0.62);
+      box-shadow: 0 0 34px rgba(0, 180, 255, 0.14);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 18px;
+    }
+
+    .c02-header {
+      max-width: 1180px;
+    }
+
+    .c02-kicker {
+      color: #39d9ff;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .c02-header h1 {
+      margin: 0;
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .c02-header h2 {
+      margin: 9px 0 12px;
+      font-size: 19px;
+      line-height: 1.2;
+      color: #9feaff;
+      font-weight: 800;
+    }
+
+    .c02-header p {
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.42;
+      color: rgba(255, 255, 255, 0.86);
+      max-width: 1220px;
+    }
+
+    .c02-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 10px;
+      min-height: 0;
+    }
+
+    .c02-card {
+      border: 1px solid rgba(90, 220, 255, 0.26);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(20, 48, 82, 0.72), rgba(7, 22, 42, 0.78));
+      padding: 16px 18px;
+      box-sizing: border-box;
+      overflow: hidden;
+      box-shadow: inset 0 0 22px rgba(46, 167, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .c02-card span {
+      display: inline-block;
+      font-size: 25px;
+      line-height: 1;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .c02-card strong {
+      font-size: 17px;
+      line-height: 1.16;
+      font-weight: 900;
+      color: #ffffff;
+      vertical-align: middle;
+    }
+
+    .c02-card p {
+      margin: 2px 0 0;
+      font-size: 14px;
+      line-height: 1.34;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .c02-bottom {
+      border: 1px solid rgba(83, 221, 255, 0.30);
+      border-radius: 16px;
+      padding: 11px 18px;
+      text-align: center;
+      color: #ffffff;
+      font-size: 14px;
+      line-height: 1.3;
+      font-weight: 800;
+      background: rgba(11, 33, 58, 0.72);
+    }
+
+    @media print {
+      .compensar-slide-02 {
+        width: 13.333in;
+        height: 7.5in;
+        min-height: 0;
+        max-height: none;
+        page-break-after: always;
+        page-break-inside: avoid;
+        overflow: hidden;
+      }
+    }
+
+    @media print {
+      @page { size: 13.333in 7.5in; margin: 0; }
+      html, body { overflow: visible; height: auto; }
+      .deck-nav, .slide-foot { display: none; }
+      .deck-viewport { overflow: visible; height: auto; }
+      .deck-shell { height: auto; }
+      .slide { min-height: 7.5in; page-break-after: always; break-after: page; }
+      .slide:last-child { page-break-after: avoid; break-after: avoid; }
+      .hero-visual {
+        box-shadow: none;
+        border-radius: 0;
+        border: none;
+        max-width: 100%;
+      }
+      .hero-visual img {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck-shell">
+    <nav class="deck-nav" aria-label="Presentation navigation">
+      <a href="compensar-presentation.html" class="nav-pill">&larr; Compensar</a>
+    </nav>
+
+    <div class="deck-viewport" id="deck-viewport">
+    <section class="slide slide-cover" id="slide-01" aria-label="Slide 01 — Cover">
+      <div class="slide-inner">
+        <div class="hero-visual">
+          <img
+            src="assets/presentations/compensar/compensar-slide-01-hero-approved.jpeg"
+            alt="Elisence x Compensar — Building the Future of Nutrition and Digital Health Together"
+            width="1600"
+            height="900"
+          />
+        </div>
+      </div>
+      <p class="slide-foot">Slide 01</p>
+    </section>
+
+    <section class="slide compensar-slide-02" id="slide-02">
+      <div class="c02-frame">
+        <div class="c02-header">
+          <div class="c02-kicker">02 — MEET ELISENCE</div>
+          <h1>Meet Elisence</h1>
+          <h2>One Connected AI-Powered Digital Health Ecosystem</h2>
+          <p>
+            Elisence is a connected digital health ecosystem that brings together people, families, healthcare professionals, hospitals, pharmacies, insurers, researchers and governments through one trusted platform. It connects prevention, nutrition, chronic disease management, medication, GP services, laboratory intelligence, social health, family engagement and continuous AI-powered guidance into one seamless health journey.
+          </p>
+        </div>
+
+        <div class="c02-grid">
+          <div class="c02-card"><span>🥗</span><strong>Nutrition Intelligence</strong><p>AI-powered healthy eating guidance.</p></div>
+          <div class="c02-card"><span>📷</span><strong>Food Photo Recognition</strong><p>Calories and nutrition from a food photo.</p></div>
+          <div class="c02-card"><span>⚖️</span><strong>Weight Intelligence</strong><p>Personalised weight-loss progress support.</p></div>
+          <div class="c02-card"><span>💉</span><strong>GLP-1 Tracking</strong><p>Track therapy, adherence and outcomes.</p></div>
+
+          <div class="c02-card"><span>❤️</span><strong>Diabetes & Chronic Care</strong><p>Support for diabetes and long-term conditions.</p></div>
+          <div class="c02-card"><span>💊</span><strong>Medication Intelligence</strong><p>Reminders, adherence and medicine support.</p></div>
+          <div class="c02-card"><span>👨‍⚕️</span><strong>GP Services</strong><p>Digital GP support and care continuity.</p></div>
+          <div class="c02-card"><span>🏥</span><strong>Pharmacy Journey</strong><p>Connected prescription and pharmacy support.</p></div>
+
+          <div class="c02-card"><span>🩸</span><strong>Blood & Lab Intelligence</strong><p>Human-friendly laboratory explanations.</p></div>
+          <div class="c02-card"><span>📈</span><strong>Predictive Health</strong><p>Early risk awareness through health trends.</p></div>
+          <div class="c02-card"><span>👩</span><strong>Women's Health</strong><p>Support across every life stage.</p></div>
+          <div class="c02-card"><span>🌦️</span><strong>Weather Health</strong><p>Environmental context for everyday health.</p></div>
+
+          <div class="c02-card"><span>🏆</span><strong>Achievement & Rewards</strong><p>Motivation through milestones and rewards.</p></div>
+          <div class="c02-card"><span>🌍</span><strong>Social Health Network</strong><p>Safe health sharing, learning and support.</p></div>
+          <div class="c02-card"><span>🎥</span><strong>Personal Health Channels</strong><p>Videos, articles, audio and trusted content.</p></div>
+          <div class="c02-card"><span>🔒</span><strong>Zero Trust + Five Languages</strong><p>Secure, governed and globally accessible.</p></div>
+        </div>
+
+        <div class="c02-bottom">
+          Nutrition is one powerful capability inside a much larger connected health ecosystem built for people, healthcare providers, governments and insurers.
+        </div>
+      </div>
+    </section>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var targetId = (location.hash || "").replace(/^#/, "");
+      if (targetId) {
+        var el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: "instant", block: "start" });
+      }
+    })();
+  </script>
+</body>
+</html>
