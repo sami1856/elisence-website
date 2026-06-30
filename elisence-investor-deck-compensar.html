@@ -420,12 +420,29 @@
       </div>
     </div>
 
-    <div class="c03-bottom">
-      Instead of delivering another nutrition application, Elisence creates a connected health ecosystem where nutrition becomes the starting point for continuous engagement, healthier behaviour, better outcomes and measurable population health.
-    </div>
-  </div>
+ <div class="c03-bottom">
+    Instead of delivering another nutrition application, Elisence creates a connected health ecosystem where nutrition becomes the starting point for prevention, engagement, continuity and long-term health intelligence.
+</div>
+
+</div>
+</div>
 </section>
 <!-- SLIDE 03 END -->
-  </script>
+
+<script>
+(function () {
+    var targetId = (location.hash || "").replace(/^#/, "");
+    if (targetId) {
+        var el = document.getElementById(targetId);
+        if (el) {
+            el.scrollIntoView({
+                behavior: "instant",
+                block: "start"
+            });
+        }
+    }
+})();
+</script>
+
 </body>
 </html>
