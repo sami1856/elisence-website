@@ -160,89 +160,108 @@
       outline: none;
     }
 
-    /* Slide 01 deck card hotspots — 1249×848 artwork, 3×4 grid, non-overlapping */
-    .card-hit.card-01 {
-      left: 3.20%;
-      top: 25.35%;
-      width: 22.42%;
-      height: 17.10%;
+    #slide-01 .card-hit {
+      position: absolute;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+      display: block;
+      z-index: 20;
+      pointer-events: auto;
     }
 
-    .card-hit.card-02 {
-      left: 26.90%;
-      top: 25.35%;
-      width: 22.42%;
-      height: 17.10%;
+    #slide-01 .card-hit:hover,
+    #slide-01 .card-hit:focus-visible {
+      background: rgba(80, 160, 255, 0.1);
+      box-shadow: 0 0 16px var(--blue-glow);
+      outline: none;
     }
 
-    .card-hit.card-03 {
-      left: 50.60%;
-      top: 25.35%;
-      width: 22.42%;
-      height: 17.10%;
+    /* Slide 01 deck card hotspots — 1249×848 artwork, image-measured 3×4 grid */
+    #slide-01 .card-hit.card-01 {
+      left: 5.84%;
+      top: 23.94%;
+      width: 20.50%;
+      height: 16.86%;
     }
 
-    .card-hit.card-04 {
-      left: 3.20%;
-      top: 44.93%;
-      width: 22.42%;
-      height: 17.10%;
+    #slide-01 .card-hit.card-02 {
+      left: 32.19%;
+      top: 23.94%;
+      width: 18.41%;
+      height: 16.86%;
     }
 
-    .card-hit.card-05 {
-      left: 26.90%;
-      top: 44.93%;
-      width: 22.42%;
-      height: 17.10%;
+    #slide-01 .card-hit.card-03 {
+      left: 56.20%;
+      top: 24.76%;
+      width: 18.41%;
+      height: 16.04%;
     }
 
-    .card-hit.card-06 {
-      left: 50.60%;
-      top: 44.93%;
-      width: 22.42%;
-      height: 17.10%;
+    #slide-01 .card-hit.card-04 {
+      left: 4.56%;
+      top: 45.87%;
+      width: 21.70%;
+      height: 15.09%;
     }
 
-    .card-hit.card-07 {
-      left: 3.20%;
-      top: 64.50%;
-      width: 22.42%;
-      height: 16.51%;
+    #slide-01 .card-hit.card-05 {
+      left: 32.19%;
+      top: 45.87%;
+      width: 18.41%;
+      height: 15.09%;
     }
 
-    .card-hit.card-08 {
-      left: 26.90%;
-      top: 64.50%;
-      width: 22.42%;
-      height: 16.51%;
+    #slide-01 .card-hit.card-06 {
+      left: 56.20%;
+      top: 45.87%;
+      width: 18.41%;
+      height: 15.09%;
     }
 
-    .card-hit.card-09 {
-      left: 50.60%;
-      top: 64.50%;
-      width: 22.42%;
-      height: 16.51%;
+    #slide-01 .card-hit.card-07 {
+      left: 4.56%;
+      top: 65.80%;
+      width: 21.70%;
+      height: 15.09%;
     }
 
-    .card-hit.card-10 {
-      left: 3.20%;
-      top: 83.49%;
-      width: 22.42%;
-      height: 14.15%;
+    #slide-01 .card-hit.card-08 {
+      left: 32.19%;
+      top: 65.80%;
+      width: 18.41%;
+      height: 15.09%;
     }
 
-    .card-hit.card-11 {
-      left: 26.90%;
-      top: 83.49%;
-      width: 22.42%;
-      height: 14.15%;
+    #slide-01 .card-hit.card-09 {
+      left: 56.20%;
+      top: 65.80%;
+      width: 18.41%;
+      height: 15.09%;
     }
 
-    .card-hit.card-12 {
-      left: 50.60%;
-      top: 83.49%;
-      width: 22.42%;
-      height: 14.15%;
+    #slide-01 .card-hit.card-10 {
+      left: 7.53%;
+      top: 85.26%;
+      width: 19.06%;
+      height: 11.32%;
+    }
+
+    #slide-01 .card-hit.card-11 {
+      left: 32.19%;
+      top: 85.26%;
+      width: 18.41%;
+      height: 10.50%;
+    }
+
+    #slide-01 .card-hit.card-12 {
+      left: 56.20%;
+      top: 85.26%;
+      width: 18.41%;
+      height: 11.32%;
     }
 
     .nav-hit.back-to-deck {
@@ -1484,64 +1503,64 @@
              alt="Inside This Partnership Deck — 12 Key Sections"
              width="1249" height="848">
         <a href="#slide-02"
-           class="nav-hit card-hit card-01"
+           class="card-hit card-01"
            data-deck-target="slide-02"
            aria-label="Card 01 — Meet Elisence"
            title="Meet Elisence"></a>
         <a href="#slide-03"
-           class="nav-hit card-hit card-02"
+           class="card-hit card-02"
            data-deck-target="slide-03"
            aria-label="Card 02 — The Challenge"
            title="The Challenge"></a>
-        <a href="#slide-03"
-           class="nav-hit card-hit card-03"
-           data-deck-target="slide-03"
+        <a href="#slide-05"
+           class="card-hit card-03"
+           data-deck-target="slide-05"
            aria-label="Card 03 — The Elisence Ecosystem"
            title="The Elisence Ecosystem"></a>
         <a href="#slide-04"
-           class="nav-hit card-hit card-04"
+           class="card-hit card-04"
            data-deck-target="slide-04"
            aria-label="Card 04 — What Makes Elisence Different"
            title="What Makes Elisence Different"></a>
         <a href="#slide-05"
-           class="nav-hit card-hit card-05"
+           class="card-hit card-05"
            data-deck-target="slide-05"
            aria-label="Card 05 — Value for Healthcare Systems"
            title="Value for Healthcare Systems"></a>
         <a href="#slide-06"
-           class="nav-hit card-hit card-06"
+           class="card-hit card-06"
            data-deck-target="slide-06"
-           aria-label="Card 06 — Global Momentum. International recognition, strategic ecosystems and global expansion."
-           title="Global Momentum"></a>
+           aria-label="Card 06 — Current Progress"
+           title="Current Progress"></a>
         <a href="#slide-07"
-           class="nav-hit card-hit card-07"
+           class="card-hit card-07"
            data-deck-target="slide-07"
-           aria-label="Card 07 — Why This Partnership Matters. Creating greater healthcare impact through strategic partnerships."
-           title="Why This Partnership Matters"></a>
+           aria-label="Card 07 — Why We Are Contacting You"
+           title="Why We Are Contacting You"></a>
         <a href="#slide-08"
-           class="nav-hit card-hit card-08"
+           class="card-hit card-08"
            data-deck-target="slide-08"
-           aria-label="Card 08 — Investment Opportunities. Strategic investment and growth opportunities to accelerate Elisence globally."
-           title="Investment Opportunities"></a>
+           aria-label="Card 08 — Partnership Opportunities"
+           title="Partnership Opportunities"></a>
         <a href="#slide-09"
-           class="nav-hit card-hit card-09"
+           class="card-hit card-09"
            data-deck-target="slide-09"
-           aria-label="Card 09 — What Partners Receive. Strategic value beyond sponsorship: visibility, pilots, innovation access and measurable healthcare impact."
+           aria-label="Card 09 — What Partners Receive"
            title="What Partners Receive"></a>
         <a href="#slide-10"
-           class="nav-hit card-hit card-10"
+           class="card-hit card-10"
            data-deck-target="slide-10"
-           aria-label="Card 10 — Business Model. How Elisence creates sustainable long-term value."
+           aria-label="Card 10 — Business Model"
            title="Business Model"></a>
         <a href="#slide-11"
-           class="nav-hit card-hit card-11"
+           class="card-hit card-11"
            data-deck-target="slide-11"
-           aria-label="Card 11 — Global Vision. International expansion roadmap."
+           aria-label="Card 11 — Global Vision"
            title="Global Vision"></a>
         <a href="#slide-12"
-           class="nav-hit card-hit card-12"
+           class="card-hit card-12"
            data-deck-target="slide-12"
-           aria-label="Card 12 — Contact. Next steps."
+           aria-label="Card 12 — Contact"
            title="Contact"></a>
       </div>
     </div>
@@ -2082,7 +2101,7 @@
       }
 
       document.addEventListener("click", function (e) {
-        var link = e.target.closest("[data-deck-target], area[href^='#'], .nav-hit[href^='#'], .slide03-footer-btn[href^='#'], .slide03-topbar-btn[href^='#'], .slide04-footer-btn[href^='#'], .slide05-footer-btn[href^='#'], .slide06-footer-btn[href^='#'], .nav-hit.eco-footer-prev[href^='#'], .nav-hit.eco-footer-deck[href^='#']");
+        var link = e.target.closest("[data-deck-target], area[href^='#'], .nav-hit[href^='#'], .card-hit[href^='#'], .slide03-footer-btn[href^='#'], .slide03-topbar-btn[href^='#'], .slide04-footer-btn[href^='#'], .slide05-footer-btn[href^='#'], .slide06-footer-btn[href^='#'], .nav-hit.eco-footer-prev[href^='#'], .nav-hit.eco-footer-deck[href^='#']");
         if (!link) return;
         var target = link.getAttribute("data-deck-target") || link.getAttribute("href").slice(1);
         if (valid.indexOf(target) === -1) return;
