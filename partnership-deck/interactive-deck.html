@@ -2229,7 +2229,7 @@
 
       document.addEventListener("click", function (e) {
         var link = e.target.closest("[data-deck-target], area[href^='#'], .nav-hit[href^='#'], .deck-nav-btn[href^='#'], .slide03-footer-btn[href^='#'], .slide03-topbar-btn[href^='#'], .slide04-footer-btn[href^='#'], .slide05-footer-btn[href^='#'], .slide06-footer-btn[href^='#'], .nav-hit.eco-footer-prev[href^='#'], .nav-hit.eco-footer-deck[href^='#']");
-        if (!link) return;
+        if (!link || link.classList.contains("card-hit")) return;
         var target = link.getAttribute("data-deck-target") || link.getAttribute("href").slice(1);
         if (valid.indexOf(target) === -1) return;
         e.preventDefault();
