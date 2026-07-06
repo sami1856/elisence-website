@@ -29,52 +29,110 @@
       font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
     }
 
-    .deck-back-nav {
+    .deck-side-nav {
       position: fixed;
-      top: 14px;
-      left: 14px;
-      z-index: 1000;
-      pointer-events: auto;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 1100;
+      max-height: 96vh;
+      overflow-y: auto;
+      padding: 8px 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
-    .deck-back-nav .nav-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 18px;
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: .06em;
-      text-decoration: none;
-      color: #dff5ff;
+    .deck-side-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .deck-side-nav .deck-nav-btn {
+      display: block;
+      padding: 10px 22px;
       border-radius: 999px;
-      border: 1px solid rgba(120, 220, 255, .85);
-      background:
-        radial-gradient(circle at 30% 20%, rgba(0, 220, 255, .35), transparent 55%),
-        rgba(0, 80, 160, .28);
-      box-shadow: 0 0 22px rgba(0, 190, 255, .55);
-      transition: transform .15s ease, box-shadow .15s ease;
-      -webkit-tap-highlight-color: transparent;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e3f2ff;
+      background: rgba(6, 8, 12, 0.92);
+      border: 1px solid rgba(90, 185, 255, 0.35);
+      box-shadow: 0 14px 28px rgba(0, 100, 220, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
       white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .deck-back-nav .nav-pill:hover,
-    .deck-back-nav .nav-pill:focus-visible {
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 0 32px rgba(0, 220, 255, .85);
-      outline: 2px solid rgba(0, 220, 255, .5);
-      outline-offset: 2px;
+    .deck-side-nav .deck-nav-btn:hover,
+    .deck-side-nav .deck-nav-btn:focus-visible {
+      transform: translateX(-3px) scale(1.03);
+      padding-right: 26px;
+      box-shadow: 0 18px 36px rgba(0, 150, 255, 0.72);
+      background: rgba(10, 12, 18, 0.96);
+      outline: none;
+    }
+
+    .deck-side-nav .deck-nav-btn:active {
+      transform: translateX(-2px) scale(0.99);
+    }
+
+    .deck-side-nav .deck-nav-btn.is-active {
+      background: rgba(14, 18, 28, 0.98);
+      border-color: rgba(90, 185, 255, 0.55);
+      box-shadow: 0 18px 40px rgba(0, 170, 255, 0.85);
+    }
+
+    .deck-nav-divider {
+      border: none;
+      height: 1px;
+      margin: 4px 10px;
+      background: rgba(90, 185, 255, 0.25);
+    }
+
+    @media (max-width: 1100px) {
+      .deck-side-nav {
+        right: 10px;
+        gap: 6px;
+      }
+
+      .deck-side-nav .deck-nav-btn {
+        padding: 8px 14px;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+      }
     }
 
     @media (max-width: 768px) {
-      .deck-back-nav {
-        top: 10px;
-        left: 10px;
+      .deck-side-nav {
+        right: 50%;
+        top: auto;
+        bottom: 12px;
+        transform: translateX(50%);
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-height: none;
+        width: calc(100% - 20px);
+        gap: 6px;
       }
 
-      .deck-back-nav .nav-pill {
-        font-size: 12px;
-        padding: 9px 14px;
+      .deck-side-nav .deck-nav-btn {
+        padding: 8px 12px;
+        font-size: 9px;
+      }
+
+      .deck-side-nav .deck-nav-btn:hover,
+      .deck-side-nav .deck-nav-btn:focus-visible {
+        transform: translateY(-2px) scale(1.03);
+        padding-right: 12px;
+      }
+
+      .deck-nav-divider {
+        display: none;
       }
     }
 
@@ -164,18 +222,17 @@
       position: absolute;
       border: none;
       background: transparent;
-      cursor: pointer;
+      cursor: default;
       border-radius: 8px;
-      transition: background 0.2s ease, box-shadow 0.2s ease;
       display: block;
       z-index: 20;
-      pointer-events: auto;
+      pointer-events: none;
     }
 
     #slide-01 .card-hit:hover,
     #slide-01 .card-hit:focus-visible {
-      background: rgba(80, 160, 255, 0.1);
-      box-shadow: 0 0 16px var(--blue-glow);
+      background: transparent;
+      box-shadow: none;
       outline: none;
     }
 
@@ -918,6 +975,22 @@
       container-type: size;
     }
 
+    #slide-13.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-13 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
     .slide05-stage {
       position: absolute;
       top: 0;
@@ -1301,7 +1374,7 @@
     }
 
     @media print {
-      .deck-back-nav { display: none !important; }
+      .deck-side-nav { display: none !important; }
 
       @page {
         size: 1920px 1080px landscape;
@@ -1455,6 +1528,18 @@
         transform: none;
       }
 
+      #slide-13 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-13 .slide06-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
       .slide03-footer,
       .slide03-topbar-btn,
       .slide04-footer-btn,
@@ -1491,8 +1576,22 @@
 </head>
 <body>
 
-  <nav class="deck-back-nav" aria-label="Deck navigation">
-    <a href="../pitch-deck.html" class="nav-pill">&larr; Pitch &amp; Deck</a>
+  <nav class="deck-side-nav" aria-label="Deck navigation">
+    <a href="../index.html" class="deck-nav-btn">Home</a>
+    <a href="../pitch-deck.html?v=decklive09b" class="deck-nav-btn">Back to Pitch &amp; Deck</a>
+    <hr class="deck-nav-divider">
+    <a href="#slide-02" class="deck-nav-btn" data-deck-target="slide-02">01 Meet Elisence</a>
+    <a href="#slide-03" class="deck-nav-btn" data-deck-target="slide-03">02 The Challenge</a>
+    <a href="#slide-05" class="deck-nav-btn" data-deck-target="slide-05">03 Ecosystem</a>
+    <a href="#slide-04" class="deck-nav-btn" data-deck-target="slide-04">04 Different</a>
+    <a href="#slide-06" class="deck-nav-btn" data-deck-target="slide-06">05 Healthcare Value</a>
+    <a href="#slide-13" class="deck-nav-btn" data-deck-target="slide-13">06 Current Progress</a>
+    <a href="#slide-07" class="deck-nav-btn" data-deck-target="slide-07">07 Why Contacting You</a>
+    <a href="#slide-08" class="deck-nav-btn" data-deck-target="slide-08">08 Partnership Opportunities</a>
+    <a href="#slide-09" class="deck-nav-btn" data-deck-target="slide-09">09 Partners Receive</a>
+    <a href="#slide-10" class="deck-nav-btn" data-deck-target="slide-10">10 Business Model</a>
+    <a href="#slide-11" class="deck-nav-btn" data-deck-target="slide-11">11 Global Vision</a>
+    <a href="#slide-12" class="deck-nav-btn" data-deck-target="slide-12">12 Contact</a>
   </nav>
 
   <!-- Slide 01 -->
@@ -1942,6 +2041,26 @@
         <div class="slide06-footer">
           <a class="slide06-footer-btn" href="#slide-05" data-deck-target="slide-05">← Previous</a>
           <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+          <a class="slide06-footer-btn" href="#slide-13" data-deck-target="slide-13">Next →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13 — Global Momentum / Current Progress artwork -->
+  <section id="slide-13" class="deck-view" aria-label="Global Momentum">
+    <div class="slide-canvas">
+      <div class="slide06-stage">
+        <div class="slide06-artwork-wrap">
+          <img class="slide06-artwork"
+               src="assets/images/slide06-global-momentum.jpeg"
+               alt=""
+               width="1536"
+               height="1024">
+        </div>
+        <div class="slide06-footer">
+          <a class="slide06-footer-btn" href="#slide-06" data-deck-target="slide-06">← Previous</a>
+          <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
           <a class="slide06-footer-btn" href="#slide-07" data-deck-target="slide-07">Next →</a>
         </div>
       </div>
@@ -1960,7 +2079,7 @@
                height="1086">
         </div>
         <div class="slide06-footer">
-          <a class="slide06-footer-btn" href="#slide-06" data-deck-target="slide-06">← Previous</a>
+          <a class="slide06-footer-btn" href="#slide-13" data-deck-target="slide-13">← Previous</a>
           <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
           <a class="slide06-footer-btn" href="#slide-08" data-deck-target="slide-08">Next →</a>
         </div>
@@ -2072,7 +2191,14 @@
   <script>
     (function () {
       var views = document.querySelectorAll(".deck-view");
-      var valid = ["slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09", "slide-10", "slide-11", "slide-12"];
+      var valid = ["slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09", "slide-10", "slide-11", "slide-12", "slide-13"];
+      var navButtons = document.querySelectorAll(".deck-nav-btn[data-deck-target]");
+
+      function updateNavActive(id) {
+        navButtons.forEach(function (btn) {
+          btn.classList.toggle("is-active", btn.getAttribute("data-deck-target") === id);
+        });
+      }
 
       function showSlide(id) {
         if (valid.indexOf(id) === -1) return;
@@ -2084,6 +2210,7 @@
         document.title = "Elisence Partnership Pitch — " + id.replace(/-/g, " ");
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
+        updateNavActive(id);
       }
 
       function navigateTo(id) {
@@ -2101,7 +2228,7 @@
       }
 
       document.addEventListener("click", function (e) {
-        var link = e.target.closest("[data-deck-target], area[href^='#'], .nav-hit[href^='#'], .card-hit[href^='#'], .slide03-footer-btn[href^='#'], .slide03-topbar-btn[href^='#'], .slide04-footer-btn[href^='#'], .slide05-footer-btn[href^='#'], .slide06-footer-btn[href^='#'], .nav-hit.eco-footer-prev[href^='#'], .nav-hit.eco-footer-deck[href^='#']");
+        var link = e.target.closest("[data-deck-target], area[href^='#'], .nav-hit[href^='#'], .deck-nav-btn[href^='#'], .slide03-footer-btn[href^='#'], .slide03-topbar-btn[href^='#'], .slide04-footer-btn[href^='#'], .slide05-footer-btn[href^='#'], .slide06-footer-btn[href^='#'], .nav-hit.eco-footer-prev[href^='#'], .nav-hit.eco-footer-deck[href^='#']");
         if (!link) return;
         var target = link.getAttribute("data-deck-target") || link.getAttribute("href").slice(1);
         if (valid.indexOf(target) === -1) return;
