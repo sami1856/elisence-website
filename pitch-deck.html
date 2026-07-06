@@ -143,6 +143,18 @@
         0 0 70px rgba(80, 80, 255, .45);
     }
 
+    .card-static {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .card-static:hover {
+      transform: none;
+      box-shadow:
+        0 0 22px rgba(0,160,255,.65),
+        inset 0 0 20px rgba(255,255,255,.04);
+    }
+
     .num {
       font-size: 17px;
       font-weight: 900;
@@ -171,27 +183,9 @@
       letter-spacing: .01em;
     }
 
-    .grid-wide-wrap {
-      width: min(1080px, 100%);
-      margin: 0 auto;
-      flex: 0 0 auto;
-    }
-
-    .card-wide {
-      min-height: 132px;
-      width: 100%;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .card-wide .num {
-      margin-bottom: 2px;
-    }
-
     @media (max-width: 1100px) {
       .grid { grid-template-columns: 1fr; width: min(360px, 100%); }
       .card { min-height: 150px; }
-      .grid-wide-wrap { width: min(360px, 100%); }
     }
 
     @media (max-width: 768px) {
@@ -231,39 +225,37 @@
         <div class="q">Investor Deck System</div>
         <div class="tag">Slide-by-slide investor narrative for Elisence</div>
       </a>
-    </section>
-
-    <div class="grid-wide-wrap">
-      <a href="elisence-overview-gallery.html" class="card card-wide">
+      <a href="elisence-overview-gallery.html" class="card">
         <div class="num">04</div>
         <div class="q">Visual Overview Gallery</div>
         <div class="tag">One-slide visual explanations for Web Summit, HLTH, investors, and partners</div>
       </a>
-    </div>
-
-    <div class="grid-wide-wrap">
-      <a href="business-model.html" class="card card-wide">
+      <a href="business-model.html" class="card">
         <div class="num">05</div>
         <div class="q">Business Model</div>
         <div class="tag">Revenue model, ecosystem growth, retention, and value creation</div>
       </a>
-    </div>
-
-    <div class="grid-wide-wrap">
-      <a href="executive-summary.html" class="card card-wide">
+      <a href="executive-summary.html" class="card">
         <div class="num">06</div>
         <div class="q">Executive Summary</div>
         <div class="tag">Executive overview, problem, solution, business model, growth strategy, and competitive advantage</div>
       </a>
-    </div>
-
-    <div class="grid-wide-wrap">
-      <a href="taqadam-hub71-presentation.html" class="card card-wide">
+      <a href="taqadam-hub71-presentation.html" class="card">
         <div class="num">07</div>
         <div class="q">TAQADAM &amp; Hub71 Presentation</div>
         <div class="tag">Final accelerator-ready presentation for TAQADAM, Hub71, investors, and strategic partners</div>
       </a>
-    </div>
+      <div class="card card-static" aria-disabled="true">
+        <div class="num">08</div>
+        <div class="q">Eatable Adventure Pitch</div>
+        <div class="tag">Investor presentation and product vision for Eatable Adventure.</div>
+      </div>
+      <a href="../elisence-global-partnership-pitch/deck/interactive-deck.html" class="card">
+        <div class="num">09</div>
+        <div class="q">Interactive Partnership Deck</div>
+        <div class="tag">Interactive 12-section partnership presentation for investors and strategic partners.</div>
+      </a>
+    </section>
   </main>
 </body>
 </html>
