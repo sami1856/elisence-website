@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Elisence Global Partnership Pitch</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --glass-bg: rgba(12, 28, 48, 0.72);
+      --glass-border: rgba(120, 180, 255, 0.25);
+      --blue-glow: rgba(60, 140, 255, 0.35);
+      --text-primary: #e8f0ff;
+      --text-muted: rgba(200, 220, 255, 0.72);
+      --accent-blue: #5eb8ff;
+      --slide-bg: #060d18;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--slide-bg);
+      color: var(--text-primary);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+
+    .deck-view {
+      display: none;
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      background: var(--slide-bg);
+    }
+
+    .deck-view.active { display: block; }
+
+    .slide-canvas {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .slide-frame {
+      position: relative;
+      display: inline-block;
+      line-height: 0;
+      max-width: 100vw;
+      max-height: 100dvh;
+    }
+
+    #slide-01 .slide-frame img {
+      width: min(100vw, calc(100dvh * 1249 / 848));
+      height: auto;
+      max-height: 100dvh;
+      pointer-events: none;
+    }
+
+    #slide-02 .slide-frame img {
+      width: min(100vw, calc(100dvh * 1535 / 1024));
+      height: auto;
+      max-height: 100dvh;
+    }
+
+    #slide-05 .slide-frame img {
+      width: min(100vw, calc(100dvh * 1448 / 1086));
+      height: auto;
+      max-height: 100dvh;
+    }
+
+    .nav-hit {
+      position: absolute;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+      display: block;
+      z-index: 10;
+      pointer-events: auto;
+    }
+
+    .slide-frame img {
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    #slide-02 .slide-frame img {
+      pointer-events: none;
+    }
+
+    #slide-05 .slide-frame img {
+      pointer-events: none;
+    }
+
+    .nav-hit:hover,
+    .nav-hit:focus-visible {
+      background: rgba(80, 160, 255, 0.1);
+      box-shadow: 0 0 16px var(--blue-glow);
+      outline: none;
+    }
+
+    /* Slide 01 deck card hotspots — 1249×848 artwork, 3×4 grid, non-overlapping */
+    .card-hit.card-01 {
+      left: 3.20%;
+      top: 25.35%;
+      width: 22.42%;
+      height: 17.10%;
+    }
+
+    .card-hit.card-02 {
+      left: 26.90%;
+      top: 25.35%;
+      width: 22.42%;
+      height: 17.10%;
+    }
+
+    .card-hit.card-03 {
+      left: 50.60%;
+      top: 25.35%;
+      width: 22.42%;
+      height: 17.10%;
+    }
+
+    .card-hit.card-04 {
+      left: 3.20%;
+      top: 44.93%;
+      width: 22.42%;
+      height: 17.10%;
+    }
+
+    .card-hit.card-05 {
+      left: 26.90%;
+      top: 44.93%;
+      width: 22.42%;
+      height: 17.10%;
+    }
+
+    .card-hit.card-06 {
+      left: 50.60%;
+      top: 44.93%;
+      width: 22.42%;
+      height: 17.10%;
+    }
+
+    .card-hit.card-07 {
+      left: 3.20%;
+      top: 64.50%;
+      width: 22.42%;
+      height: 16.51%;
+    }
+
+    .card-hit.card-08 {
+      left: 26.90%;
+      top: 64.50%;
+      width: 22.42%;
+      height: 16.51%;
+    }
+
+    .card-hit.card-09 {
+      left: 50.60%;
+      top: 64.50%;
+      width: 22.42%;
+      height: 16.51%;
+    }
+
+    .card-hit.card-10 {
+      left: 3.20%;
+      top: 83.49%;
+      width: 22.42%;
+      height: 14.15%;
+    }
+
+    .card-hit.card-11 {
+      left: 26.90%;
+      top: 83.49%;
+      width: 22.42%;
+      height: 14.15%;
+    }
+
+    .card-hit.card-12 {
+      left: 50.60%;
+      top: 83.49%;
+      width: 22.42%;
+      height: 14.15%;
+    }
+
+    .nav-hit.back-to-deck {
+      left: 78.5%;
+      top: 2.2%;
+      width: 14.5%;
+      height: 6.5%;
+    }
+
+    .nav-hit.prev-slide {
+      left: 93.2%;
+      top: 2.2%;
+      width: 3.2%;
+      height: 6.5%;
+    }
+
+    .nav-hit.next-slide {
+      left: 96.5%;
+      top: 2.2%;
+      width: 3.2%;
+      height: 6.5%;
+    }
+
+    #slide-05 .nav-hit.eco-footer-prev {
+      left: 34.5%;
+      top: 94.2%;
+      width: 11.5%;
+      height: 4.2%;
+    }
+
+    #slide-05 .nav-hit.eco-footer-deck {
+      left: 47.5%;
+      top: 94.2%;
+      width: 13.5%;
+      height: 4.2%;
+    }
+
+    #slide-05 .nav-hit.eco-footer-next {
+      left: 62.5%;
+      top: 94.2%;
+      width: 9.5%;
+      height: 4.2%;
+    }
+
+    #slide-05 .nav-hit.nav-disabled {
+      opacity: 0;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    #slide-03.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-03 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
+    #slide-03 .slide03-stage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      transform: scale(min(calc(100cqw / 1920px), calc(100cqh / 1080px)));
+      transform-origin: top left;
+      flex-shrink: 0;
+      font-family: Inter, "SF Pro Display", "Segoe UI", Arial, sans-serif;
+      color: #f5f9ff;
+      background:
+        radial-gradient(circle at 74% 32%, rgba(0, 174, 255, 0.22), transparent 30%),
+        radial-gradient(circle at 18% 85%, rgba(0, 110, 255, 0.16), transparent 34%),
+        linear-gradient(135deg, #020611 0%, #061528 48%, #02050d 100%);
+    }
+
+    .slide03-topbar {
+      position: absolute;
+      left: 48px;
+      top: 28px;
+      width: 1824px;
+      height: 58px;
+      border-radius: 20px;
+      border: 1px solid rgba(91, 190, 255, 0.28);
+      background: rgba(4, 16, 32, 0.68);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 0 28px rgba(0,140,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      box-sizing: border-box;
+    }
+
+    .slide03-topbar-left {
+      font-size: 20px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .slide03-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide03-topbar-btn {
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(95,188,255,0.36);
+      background: rgba(8,25,48,0.78);
+      color: #e9f7ff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 780;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 22px rgba(0,140,255,0.18);
+    }
+
+    .slide03-header {
+      position: absolute;
+      left: 90px;
+      top: 100px;
+      width: 1740px;
+      height: 278px;
+    }
+
+    .slide03-eyebrow {
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: 5px;
+      font-weight: 800;
+      color: #38c8ff;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .slide03-header h1 {
+      margin: 0;
+      font-size: 54px;
+      line-height: 1.02;
+      font-weight: 850;
+      letter-spacing: -1.6px;
+      color: #ffffff;
+    }
+
+    .slide03-header h2 {
+      margin: 8px 0 0 0;
+      font-size: 48px;
+      line-height: 1.04;
+      font-weight: 800;
+      letter-spacing: -1.3px;
+      color: #ffffff;
+    }
+
+    .slide03-header h2 span {
+      color: #22b8ff;
+      text-shadow: 0 0 24px rgba(34,184,255,0.42);
+    }
+
+    .slide03-header p {
+      margin: 26px 0 0 0;
+      width: 1180px;
+      font-size: 24px;
+      line-height: 1.38;
+      font-weight: 430;
+      color: #d7e8f8;
+    }
+
+    .slide03-panel-grid {
+      position: absolute;
+      left: 90px;
+      top: 413px;
+      width: 1740px;
+      height: 430px;
+      display: grid;
+      grid-template-columns: 552px 552px 552px;
+      grid-template-rows: 198px 198px;
+      column-gap: 42px;
+      row-gap: 34px;
+    }
+
+    .slide03-panel {
+      position: relative;
+      width: 552px;
+      height: 198px;
+      border-radius: 28px;
+      padding: 28px 30px;
+      box-sizing: border-box;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(0, 186, 255, 0.18), transparent 42%),
+        linear-gradient(145deg, rgba(12, 40, 72, 0.92), rgba(4, 14, 30, 0.86));
+      border: 1px solid rgba(101, 195, 255, 0.36);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        0 0 34px rgba(0,135,255,0.14),
+        0 18px 42px rgba(0,0,0,0.28);
+      overflow: visible;
+    }
+
+    .slide03-panel::after {
+      content: "";
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(42,190,255,0.9), transparent);
+      box-shadow: 0 0 22px rgba(0,174,255,0.65);
+    }
+
+    .slide03-panel-number {
+      font-size: 17px;
+      line-height: 1;
+      font-weight: 850;
+      letter-spacing: 2px;
+      color: #38c8ff;
+      margin-bottom: 14px;
+    }
+
+    .slide03-panel-title {
+      font-size: 25px;
+      line-height: 1.06;
+      font-weight: 850;
+      letter-spacing: -0.3px;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .slide03-panel-body {
+      font-size: 18px;
+      line-height: 1.32;
+      font-weight: 500;
+      color: #d4e7f8;
+    }
+
+    .slide03-result-panel {
+      background:
+        radial-gradient(circle at 15% 0%, rgba(56, 200, 255, 0.24), transparent 44%),
+        linear-gradient(145deg, rgba(18, 55, 92, 0.96), rgba(5, 17, 34, 0.92));
+      border-color: rgba(110, 210, 255, 0.52);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 0 48px rgba(0,160,255,0.22),
+        0 20px 50px rgba(0,0,0,0.34);
+    }
+
+    .slide03-closing {
+      position: absolute;
+      left: 90px;
+      top: 863px;
+      width: 1740px;
+      height: 80px;
+      border-radius: 26px;
+      background: rgba(4, 15, 30, 0.64);
+      border: 1px solid rgba(91,190,255,0.28);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 0 32px rgba(0,140,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 70px;
+      box-sizing: border-box;
+      font-size: 26px;
+      line-height: 1.25;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .slide03-closing span {
+      color: #38c8ff;
+      text-shadow: 0 0 22px rgba(56,200,255,0.42);
+    }
+
+    .slide03-footer {
+      position: absolute;
+      left: 0;
+      top: 965px;
+      width: 1920px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .slide03-footer-btn {
+      height: 46px;
+      padding: 0 30px;
+      border-radius: 15px;
+      border: 1px solid rgba(95,188,255,0.36);
+      background: rgba(8,25,48,0.78);
+      color: #e9f7ff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 780;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 22px rgba(0,140,255,0.18);
+    }
+
+    #slide-04.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-04 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
+    .slide04-stage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      transform: scale(min(calc(100cqw / 1920px), calc(100cqh / 1080px)));
+      transform-origin: top left;
+      flex-shrink: 0;
+      color: #f5f9ff;
+      font-family: Inter, "SF Pro Display", "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(42, 190, 255, 0.20), transparent 28%),
+        radial-gradient(circle at 15% 88%, rgba(0, 110, 255, 0.15), transparent 34%),
+        radial-gradient(circle at 85% 82%, rgba(0, 210, 255, 0.13), transparent 30%),
+        linear-gradient(135deg, #020611 0%, #07182d 50%, #02050d 100%);
+    }
+
+    .slide04-header {
+      position: absolute;
+      left: 80px;
+      top: 58px;
+      width: 1760px;
+      height: 178px;
+      text-align: center;
+    }
+
+    .slide04-kicker {
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 5px;
+      color: #38c8ff;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .slide04-header h1 {
+      margin: 0;
+      font-size: 62px;
+      line-height: 1;
+      font-weight: 860;
+      letter-spacing: -1.8px;
+      color: #ffffff;
+      text-shadow: 0 0 34px rgba(0, 145, 255, 0.24);
+    }
+
+    .slide04-header p {
+      margin: 22px auto 0 auto;
+      width: 1180px;
+      font-size: 24px;
+      line-height: 1.34;
+      font-weight: 500;
+      color: #d7e8f8;
+    }
+
+    .slide04-grid {
+      position: absolute;
+      left: 80px;
+      top: 260px;
+      width: 1760px;
+      height: 660px;
+      display: grid;
+      grid-template-columns: 554px 554px 554px;
+      grid-template-rows: 198px 198px 198px;
+      column-gap: 49px;
+      row-gap: 33px;
+    }
+
+    .slide04-panel {
+      position: relative;
+      width: 554px;
+      height: 198px;
+      box-sizing: border-box;
+      padding: 22px 24px 20px 24px;
+      border-radius: 27px;
+      overflow: visible;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(0, 186, 255, 0.17), transparent 42%),
+        linear-gradient(145deg, rgba(12, 40, 72, 0.92), rgba(4, 14, 30, 0.86));
+      border: 1px solid rgba(101, 195, 255, 0.36);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        0 0 34px rgba(0,135,255,0.16),
+        0 18px 42px rgba(0,0,0,0.28);
+    }
+
+    .slide04-panel::after {
+      content: "";
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(42,190,255,0.90), transparent);
+      box-shadow: 0 0 22px rgba(0,174,255,0.62);
+    }
+
+    .slide04-panel-top {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 10px;
+    }
+
+    .slide04-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 13px;
+      background: rgba(18, 62, 105, 0.72);
+      border: 1px solid rgba(120, 210, 255, 0.34);
+      box-shadow: 0 0 22px rgba(0, 150, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      flex: 0 0 auto;
+    }
+
+    .slide04-panel-number {
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 850;
+      letter-spacing: 2px;
+      color: #38c8ff;
+    }
+
+    .slide04-panel-title {
+      margin: 0 0 9px 0;
+      font-size: 21px;
+      line-height: 1.05;
+      font-weight: 850;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .slide04-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(56,200,255,0.55), rgba(56,200,255,0.08), transparent);
+      margin-bottom: 10px;
+    }
+
+    .slide04-panel-body {
+      font-size: 14.8px;
+      line-height: 1.29;
+      font-weight: 500;
+      color: #d4e7f8;
+    }
+
+    .slide04-closing {
+      position: absolute;
+      left: 80px;
+      top: 940px;
+      width: 1760px;
+      height: 70px;
+      border-radius: 24px;
+      background: rgba(4, 15, 30, 0.66);
+      border: 1px solid rgba(91,190,255,0.30);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 0 32px rgba(0,140,255,0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 80px;
+      box-sizing: border-box;
+      font-size: 22px;
+      line-height: 1.24;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .slide04-footer {
+      position: absolute;
+      left: 0;
+      top: 1015px;
+      width: 1920px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .slide04-footer-btn {
+      height: 42px;
+      padding: 0 28px;
+      border-radius: 14px;
+      border: 1px solid rgba(95,188,255,0.36);
+      background: rgba(8,25,48,0.78);
+      color: #e9f7ff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 780;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 22px rgba(0,140,255,0.18);
+    }
+
+    /* Slide 05 — Presentation Slide 05 shell (#slide-06) */
+    #slide-06.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-06 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
+    #slide-07.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-07 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
+    #slide-08.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-08 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
+    #slide-09.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-09 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
+    #slide-10.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-10 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
+    #slide-11.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-11 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
+    #slide-12.deck-view.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #slide-12 .slide-canvas {
+      position: relative;
+      width: min(100vw, calc(100dvh * 1920 / 1080));
+      height: min(100dvh, calc(100vw * 1080 / 1920));
+      overflow: hidden;
+      flex-shrink: 0;
+      container-type: size;
+    }
+
+    .slide05-stage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      transform: scale(min(calc(100cqw / 1920px), calc(100cqh / 1080px)));
+      transform-origin: top left;
+      flex-shrink: 0;
+      color: #f5f9ff;
+      font-family: Inter, "SF Pro Display", "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(42, 190, 255, 0.20), transparent 28%),
+        radial-gradient(circle at 15% 88%, rgba(0, 110, 255, 0.15), transparent 34%),
+        radial-gradient(circle at 85% 82%, rgba(0, 210, 255, 0.13), transparent 30%),
+        linear-gradient(135deg, #020611 0%, #07182d 50%, #02050d 100%);
+    }
+
+    .slide05-header {
+      position: absolute;
+      left: 80px;
+      top: 52px;
+      width: 1760px;
+      height: 148px;
+      text-align: center;
+    }
+
+    .slide05-kicker {
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 5px;
+      color: #38c8ff;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .slide05-header h1 {
+      margin: 0;
+      font-size: 58px;
+      line-height: 1.06;
+      font-weight: 860;
+      letter-spacing: -1.8px;
+      color: #ffffff;
+      text-shadow: 0 0 34px rgba(0, 145, 255, 0.24);
+    }
+
+    .slide05-header p {
+      margin: 18px auto 0 auto;
+      width: 1180px;
+      font-size: 24px;
+      line-height: 1.34;
+      font-weight: 500;
+      color: #8fa8c0;
+    }
+
+    .slide05-grid {
+      position: absolute;
+      left: 80px;
+      top: 206px;
+      width: 1760px;
+      height: 734px;
+      display: grid;
+      grid-template-columns: 868px 868px;
+      grid-template-rows: repeat(4, 170px);
+      column-gap: 24px;
+      row-gap: 18px;
+    }
+
+    .slide05-panel {
+      position: relative;
+      width: 868px;
+      height: 170px;
+      box-sizing: border-box;
+      padding: 18px 22px 16px 22px;
+      border-radius: 26px;
+      overflow: visible;
+      display: flex;
+      gap: 20px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(0, 186, 255, 0.17), transparent 42%),
+        linear-gradient(145deg, rgba(12, 40, 72, 0.92), rgba(4, 14, 30, 0.86));
+      border: 2px solid rgba(73, 170, 255, 0.70);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        0 22px 34px rgba(42, 170, 255, 0.22),
+        0 18px 42px rgba(0,0,0,0.28);
+    }
+
+    .slide05-panel::before {
+      content: "";
+      position: absolute;
+      left: 35%;
+      right: 35%;
+      bottom: -8px;
+      height: 34px;
+      border-radius: 999px;
+      background: rgba(42, 190, 255, 0.22);
+      filter: blur(34px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .slide05-panel::after {
+      content: "";
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(42,190,255,0.90), transparent);
+      box-shadow: 0 0 22px rgba(0,174,255,0.62);
+    }
+
+    .slide05-panel-left {
+      width: 72px;
+      flex: 0 0 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .slide05-panel-number {
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 850;
+      letter-spacing: 2px;
+      color: #38c8ff;
+    }
+
+    .slide05-panel-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: rgba(18, 62, 105, 0.72);
+      border: 1px solid rgba(120, 210, 255, 0.34);
+      box-shadow: 0 0 22px rgba(0, 150, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+
+    .slide05-panel-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #5eb8ff;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .slide05-panel-right {
+      flex: 1 1 auto;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide05-panel-title {
+      margin: 0 0 10px 0;
+      font-size: 24px;
+      line-height: 1.05;
+      font-weight: 850;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .slide05-panel-body {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 0;
+      padding-top: 2px;
+    }
+
+    .slide05-bar {
+      display: block;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(140,170,200,0.42), rgba(140,170,200,0.18));
+    }
+
+    .slide05-bar:nth-child(1) { width: 96%; }
+    .slide05-bar:nth-child(2) { width: 88%; }
+    .slide05-bar:nth-child(3) { width: 92%; }
+    .slide05-bar:nth-child(4) { width: 78%; }
+    .slide05-bar:nth-child(5) { width: 64%; }
+
+    .slide05-closing {
+      position: absolute;
+      left: 80px;
+      top: 940px;
+      width: 1760px;
+      height: 70px;
+      border-radius: 24px;
+      background: rgba(4, 15, 30, 0.66);
+      border: 1px solid rgba(91,190,255,0.30);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 0 32px rgba(0,140,255,0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 80px;
+      box-sizing: border-box;
+      font-size: 22px;
+      line-height: 1.24;
+      font-weight: 700;
+      color: #8fa8c0;
+    }
+
+    .slide05-footer {
+      position: absolute;
+      left: 0;
+      top: 1015px;
+      width: 1920px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .slide05-footer-btn {
+      height: 42px;
+      padding: 0 28px;
+      border-radius: 14px;
+      border: 1px solid rgba(95,188,255,0.36);
+      background: rgba(8,25,48,0.78);
+      color: #e9f7ff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 780;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 22px rgba(0,140,255,0.18);
+    }
+
+    .slide05-footer-btn:hover,
+    .slide05-footer-btn:focus-visible {
+      background: rgba(12, 35, 62, 0.88);
+      box-shadow: 0 0 28px rgba(0,160,255,0.28);
+      outline: none;
+    }
+
+    /* Slide 05 — Section 05 final artwork (#slide-05) */
+    .slide06-stage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      transform: scale(min(calc(100cqw / 1920px), calc(100cqh / 1080px)));
+      transform-origin: top left;
+      flex-shrink: 0;
+      background: var(--slide-bg);
+    }
+
+    .slide06-artwork-wrap {
+      position: absolute;
+      left: 80px;
+      top: 48px;
+      width: 1760px;
+      height: 967px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide06-artwork {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .slide06-footer {
+      position: absolute;
+      left: 0;
+      top: 1015px;
+      width: 1920px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .slide06-footer-btn {
+      height: 42px;
+      padding: 0 28px;
+      border-radius: 14px;
+      border: 1px solid rgba(95,188,255,0.36);
+      background: rgba(8,25,48,0.78);
+      color: #e9f7ff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 780;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 22px rgba(0,140,255,0.18);
+    }
+
+    .slide06-footer-btn:hover,
+    .slide06-footer-btn:focus-visible {
+      background: rgba(12, 35, 62, 0.88);
+      box-shadow: 0 0 28px rgba(0,160,255,0.28);
+      outline: none;
+    }
+
+    /* Slide 05 — Presentation Slide 03 artwork */
+    #slide-05 .slide-canvas {
+      padding: 0;
+    }
+
+    .placeholder-panel {
+      max-width: min(640px, 92vw);
+      text-align: center;
+      padding: clamp(1.25rem, 3vw, 2.5rem);
+      border-radius: 16px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+    }
+
+    .placeholder-panel h1 {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .placeholder-panel p {
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .deck-footer-overlay {
+      position: absolute;
+      left: 50%;
+      bottom: clamp(0.5rem, 1.5vh, 1rem);
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+    }
+
+    .deck-footer-overlay a,
+    .deck-footer-overlay span {
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .deck-footer-overlay .nav-disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    @media print {
+      @page {
+        size: 1920px 1080px landscape;
+        margin: 0;
+      }
+
+      html, body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      .deck-view {
+        display: none !important;
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      .deck-view.active { display: block !important; }
+
+      .slide-canvas {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-03 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-03 .slide03-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
+      #slide-04 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-04 .slide04-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
+      #slide-05 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-05 .slide-frame {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-05 .slide-frame img {
+        width: 1920px;
+        height: 1080px;
+        object-fit: contain;
+      }
+
+      #slide-06 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-06 .slide06-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
+      #slide-07 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-07 .slide06-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
+      #slide-08 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-08 .slide06-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
+      #slide-09 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-09 .slide06-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
+      #slide-10 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-10 .slide06-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
+      #slide-11 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-11 .slide06-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
+      #slide-12 .slide-canvas {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-12 .slide06-stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: none;
+      }
+
+      .slide03-footer,
+      .slide03-topbar-btn,
+      .slide04-footer-btn,
+      .slide05-footer-btn,
+      .slide06-footer-btn {
+        display: none !important;
+      }
+
+      #slide-05 { display: none !important; }
+
+      #slide-01 .slide-frame,
+      #slide-02 .slide-frame,
+      #slide-05 .slide-frame {
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #slide-01 .slide-frame img,
+      #slide-02 .slide-frame img,
+      #slide-05 .slide-frame img {
+        width: 1920px;
+        height: 1080px;
+        object-fit: contain;
+      }
+
+      .nav-hit,
+      .deck-footer-overlay,
+      .slide03-topbar,
+      map area {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 01 -->
+  <section id="slide-01" class="deck-view active" aria-label="Inside This Partnership Deck">
+    <div class="slide-canvas">
+      <div class="slide-frame">
+        <img src="assets/images/12keySection.Pitch.jpeg"
+             alt="Inside This Partnership Deck — 12 Key Sections"
+             width="1249" height="848">
+        <a href="#slide-02"
+           class="nav-hit card-hit card-01"
+           data-deck-target="slide-02"
+           aria-label="Card 01 — Meet Elisence"
+           title="Meet Elisence"></a>
+        <a href="#slide-03"
+           class="nav-hit card-hit card-02"
+           data-deck-target="slide-03"
+           aria-label="Card 02 — The Challenge"
+           title="The Challenge"></a>
+        <a href="#slide-03"
+           class="nav-hit card-hit card-03"
+           data-deck-target="slide-03"
+           aria-label="Card 03 — The Elisence Ecosystem"
+           title="The Elisence Ecosystem"></a>
+        <a href="#slide-04"
+           class="nav-hit card-hit card-04"
+           data-deck-target="slide-04"
+           aria-label="Card 04 — What Makes Elisence Different"
+           title="What Makes Elisence Different"></a>
+        <a href="#slide-05"
+           class="nav-hit card-hit card-05"
+           data-deck-target="slide-05"
+           aria-label="Card 05 — Value for Healthcare Systems"
+           title="Value for Healthcare Systems"></a>
+        <a href="#slide-06"
+           class="nav-hit card-hit card-06"
+           data-deck-target="slide-06"
+           aria-label="Card 06 — Global Momentum. International recognition, strategic ecosystems and global expansion."
+           title="Global Momentum"></a>
+        <a href="#slide-07"
+           class="nav-hit card-hit card-07"
+           data-deck-target="slide-07"
+           aria-label="Card 07 — Why This Partnership Matters. Creating greater healthcare impact through strategic partnerships."
+           title="Why This Partnership Matters"></a>
+        <a href="#slide-08"
+           class="nav-hit card-hit card-08"
+           data-deck-target="slide-08"
+           aria-label="Card 08 — Investment Opportunities. Strategic investment and growth opportunities to accelerate Elisence globally."
+           title="Investment Opportunities"></a>
+        <a href="#slide-09"
+           class="nav-hit card-hit card-09"
+           data-deck-target="slide-09"
+           aria-label="Card 09 — What Partners Receive. Strategic value beyond sponsorship: visibility, pilots, innovation access and measurable healthcare impact."
+           title="What Partners Receive"></a>
+        <a href="#slide-10"
+           class="nav-hit card-hit card-10"
+           data-deck-target="slide-10"
+           aria-label="Card 10 — Business Model. How Elisence creates sustainable long-term value."
+           title="Business Model"></a>
+        <a href="#slide-11"
+           class="nav-hit card-hit card-11"
+           data-deck-target="slide-11"
+           aria-label="Card 11 — Global Vision. International expansion roadmap."
+           title="Global Vision"></a>
+        <a href="#slide-12"
+           class="nav-hit card-hit card-12"
+           data-deck-target="slide-12"
+           aria-label="Card 12 — Contact. Next steps."
+           title="Contact"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 02 -->
+  <section id="slide-02" class="deck-view" aria-label="Meet Elisence">
+    <div class="slide-canvas">
+      <div class="slide-frame">
+        <img src="assets/images/whatiselisence.jpeg"
+             alt="Meet Elisence"
+             width="1535" height="1024">
+        <a href="#slide-01" class="nav-hit back-to-deck" aria-label="Back to Deck"></a>
+        <a href="#slide-01" class="nav-hit prev-slide" aria-label="Previous"></a>
+        <a href="#slide-03" class="nav-hit next-slide" aria-label="Next — The Challenge"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 03 — THE CHALLENGE (exact approved layout) -->
+  <section id="slide-03" class="deck-view" aria-label="The Challenge">
+    <div class="slide-canvas">
+      <div class="slide03-stage">
+      <div class="slide03-topbar">
+        <div class="slide03-topbar-left">02&nbsp;&nbsp;THE CHALLENGE</div>
+        <div class="slide03-topbar-right">
+          <a class="slide03-topbar-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+          <a class="slide03-topbar-btn" href="#slide-02" data-deck-target="slide-02">←</a>
+          <a class="slide03-topbar-btn" href="#slide-04" data-deck-target="slide-04">→</a>
+        </div>
+      </div>
+
+      <div class="slide03-header">
+        <div class="slide03-eyebrow">SLIDE 02 — THE CHALLENGE</div>
+        <h1>Healthcare is not broken because people lack data.</h1>
+        <h2>It is broken because the data, care and decisions are <span>disconnected.</span></h2>
+        <p>
+          Across the world, healthcare is still fragmented. People, providers, hospitals, insurers, governments, researchers and life-science partners often operate in separate systems with limited continuity, limited context and limited shared intelligence.
+        </p>
+      </div>
+
+      <div class="slide03-panel-grid">
+        <div class="slide03-panel">
+          <div class="slide03-panel-number">01</div>
+          <div class="slide03-panel-title">PEOPLE &amp; FAMILIES</div>
+          <div class="slide03-panel-body">
+            Health journeys are spread across appointments, apps, documents, symptoms, medication, nutrition, family support and daily life.
+          </div>
+        </div>
+        <div class="slide03-panel">
+          <div class="slide03-panel-number">02</div>
+          <div class="slide03-panel-title">PROVIDERS &amp; HOSPITALS</div>
+          <div class="slide03-panel-body">
+            Clinicians and care teams often make decisions without a continuous view of the person's wider health journey.
+          </div>
+        </div>
+        <div class="slide03-panel">
+          <div class="slide03-panel-number">03</div>
+          <div class="slide03-panel-title">GOVERNMENTS &amp; HEALTH SYSTEMS</div>
+          <div class="slide03-panel-body">
+            Public health systems need earlier prevention, better engagement and more connected population-level insight.
+          </div>
+        </div>
+        <div class="slide03-panel">
+          <div class="slide03-panel-number">04</div>
+          <div class="slide03-panel-title">INSURERS &amp; PAYERS</div>
+          <div class="slide03-panel-body">
+            Risk, prevention, adherence and outcomes are difficult to understand when health behaviour and care data remain fragmented.
+          </div>
+        </div>
+        <div class="slide03-panel">
+          <div class="slide03-panel-number">05</div>
+          <div class="slide03-panel-title">RESEARCH &amp; LIFE SCIENCES</div>
+          <div class="slide03-panel-body">
+            Real-world evidence, long-term patterns and patient context often remain isolated from meaningful, privacy-safe intelligence.
+          </div>
+        </div>
+        <div class="slide03-panel slide03-result-panel">
+          <div class="slide03-panel-number">06</div>
+          <div class="slide03-panel-title">THE RESULT</div>
+          <div class="slide03-panel-body">
+            Healthcare becomes reactive, expensive and disconnected — even when the technology exists to make it more intelligent, preventive and human-centred.
+          </div>
+        </div>
+      </div>
+
+      <div class="slide03-closing">
+        The challenge is not another app. It is building <span>one trusted ecosystem</span> where people, healthcare systems and intelligence finally work together.
+      </div>
+
+      <div class="slide03-footer">
+        <a class="slide03-footer-btn" href="#slide-02" data-deck-target="slide-02">← Previous</a>
+        <a class="slide03-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+        <a class="slide03-footer-btn" href="#slide-04" data-deck-target="slide-04">Next →</a>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 04 — WHAT MAKES ELISENCE DIFFERENT? (Presentation Slide 04) -->
+  <section id="slide-04" class="deck-view" aria-label="What Makes Elisence Different">
+
+    <div class="slide-canvas">
+
+      <div class="slide04-stage">
+
+        <div class="slide04-header">
+
+          <div class="slide04-kicker">SLIDE 04 — STRATEGIC DIFFERENTIATION</div>
+
+          <h1>WHAT MAKES ELISENCE DIFFERENT?</h1>
+
+          <p>
+
+            Elisence is not another health app. It is a trusted health intelligence ecosystem that connects people, providers, systems, research and long-term outcomes.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="slide04-grid">
+
+          <div class="slide04-panel">
+
+            <div class="slide04-panel-top">
+
+              <div class="slide04-icon">🥗</div>
+
+              <div class="slide04-panel-number">01</div>
+
+            </div>
+
+            <div class="slide04-panel-title">INTELLIGENT NUTRITION</div>
+
+            <div class="slide04-divider"></div>
+
+            <div class="slide04-panel-body">
+
+              AI-powered nutrition intelligence transforms everyday meals into clinically meaningful health insights by combining food recognition, nutritional analysis, behavioural patterns, metabolic context and personalised recommendations.
+
+            </div>
+
+          </div>
+
+          <div class="slide04-panel">
+
+            <div class="slide04-panel-top">
+
+              <div class="slide04-icon">🏆</div>
+
+              <div class="slide04-panel-number">02</div>
+
+            </div>
+
+            <div class="slide04-panel-title">ACHIEVEMENTS &amp; HEALTHY BEHAVIOUR</div>
+
+            <div class="slide04-divider"></div>
+
+            <div class="slide04-panel-body">
+
+              Elisence supports long-term engagement through achievements, personalised goals and intelligent rewards that help people build healthier routines and remain active participants in their own care journey.
+
+            </div>
+
+          </div>
+
+          <div class="slide04-panel">
+
+            <div class="slide04-panel-top">
+
+              <div class="slide04-icon">🌍</div>
+
+              <div class="slide04-panel-number">03</div>
+
+            </div>
+
+            <div class="slide04-panel-title">HEALTH SOCIAL NETWORK</div>
+
+            <div class="slide04-divider"></div>
+
+            <div class="slide04-panel-body">
+
+              A trusted healthcare social environment allows people, families, professionals and organisations to communicate, collaborate and share educational knowledge within a privacy-first health ecosystem.
+
+            </div>
+
+          </div>
+
+          <div class="slide04-panel">
+
+            <div class="slide04-panel-top">
+
+              <div class="slide04-icon">📂</div>
+
+              <div class="slide04-panel-number">04</div>
+
+            </div>
+
+            <div class="slide04-panel-title">PERSONAL HEALTH CHANNELS</div>
+
+            <div class="slide04-divider"></div>
+
+            <div class="slide04-panel-body">
+
+              Secure personal health channels bring articles, videos, lab reports, prescriptions, documents and trusted media into one organised digital space for continuous engagement beyond appointments.
+
+            </div>
+
+          </div>
+
+          <div class="slide04-panel">
+
+            <div class="slide04-panel-top">
+
+              <div class="slide04-icon">🩸</div>
+
+              <div class="slide04-panel-number">05</div>
+
+            </div>
+
+            <div class="slide04-panel-title">LABORATORY INTELLIGENCE</div>
+
+            <div class="slide04-divider"></div>
+
+            <div class="slide04-panel-body">
+
+              Complex investigations become understandable through AI-supported interpretation, historical comparison and contextual explanations that improve patient understanding and clinical decision support.
+
+            </div>
+
+          </div>
+
+          <div class="slide04-panel">
+
+            <div class="slide04-panel-top">
+
+              <div class="slide04-icon">🧠</div>
+
+              <div class="slide04-panel-number">06</div>
+
+            </div>
+
+            <div class="slide04-panel-title">360° HEALTH INTELLIGENCE</div>
+
+            <div class="slide04-divider"></div>
+
+            <div class="slide04-panel-body">
+
+              Nutrition, medication, symptoms, laboratory data, activity, sleep, chronic conditions and clinical history connect into one evolving view of long-term health continuity.
+
+            </div>
+
+          </div>
+
+          <div class="slide04-panel">
+
+            <div class="slide04-panel-top">
+
+              <div class="slide04-icon">📈</div>
+
+              <div class="slide04-panel-number">07</div>
+
+            </div>
+
+            <div class="slide04-panel-title">POPULATION HEALTH INSIGHT</div>
+
+            <div class="slide04-divider"></div>
+
+            <div class="slide04-panel-body">
+
+              Privacy-safe longitudinal intelligence helps governments, health systems and partners identify emerging risks, preventive opportunities and measurable outcome improvements earlier.
+
+            </div>
+
+          </div>
+
+          <div class="slide04-panel">
+
+            <div class="slide04-panel-top">
+
+              <div class="slide04-icon">💊</div>
+
+              <div class="slide04-panel-number">08</div>
+
+            </div>
+
+            <div class="slide04-panel-title">MEDICATION &amp; CARE CONTINUITY</div>
+
+            <div class="slide04-divider"></div>
+
+            <div class="slide04-panel-body">
+
+              Medication intelligence connects prescriptions, adherence, side effects, laboratory monitoring, pharmacy journeys and clinician guidance into one safer long-term treatment pathway.
+
+            </div>
+
+          </div>
+
+          <div class="slide04-panel">
+
+            <div class="slide04-panel-top">
+
+              <div class="slide04-icon">🛡</div>
+
+              <div class="slide04-panel-number">09</div>
+
+            </div>
+
+            <div class="slide04-panel-title">TRUSTED AI INFRASTRUCTURE</div>
+
+            <div class="slide04-divider"></div>
+
+            <div class="slide04-panel-body">
+
+              Zero Trust security, privacy-by-design architecture, multilingual intelligence, healthcare-grade governance and adaptable standards support people, providers, systems and research partners.
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="slide04-closing">
+
+          Elisence brings intelligent nutrition, health engagement, clinical continuity, trusted AI and connected healthcare into one secure ecosystem for healthier people and stronger health systems.
+
+        </div>
+
+
+
+        <div class="slide04-footer">
+
+          <a class="slide04-footer-btn" href="#slide-03" data-deck-target="slide-03">← Previous</a>
+
+          <a class="slide04-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+
+          <a class="slide04-footer-btn" href="#slide-05" data-deck-target="slide-05">Next →</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Slide 05 — THE ELISENCE ECOSYSTEM (Presentation Slide 03 artwork) -->
+  <section id="slide-05" class="deck-view" aria-label="The Elisence Ecosystem">
+    <div class="slide-canvas">
+      <div class="slide-frame">
+        <img src="assets/images/3-TheelisenceEcosystem.jpeg"
+             alt="The Elisence Ecosystem — The Complete Connected Health Ecosystem"
+             width="1448" height="1086">
+        <a href="#slide-01" class="nav-hit back-to-deck" aria-label="Back to Deck"></a>
+        <a href="#slide-04" class="nav-hit prev-slide" aria-label="Previous"></a>
+        <a href="#slide-06" class="nav-hit next-slide" data-deck-target="slide-06" aria-label="Next"></a>
+        <a href="#slide-04" class="nav-hit eco-footer-prev" data-deck-target="slide-04" aria-label="Previous"></a>
+        <a href="#slide-01" class="nav-hit eco-footer-deck" data-deck-target="slide-01" aria-label="Back to Deck"></a>
+        <a href="#slide-06" class="nav-hit eco-footer-next" data-deck-target="slide-06" aria-label="Next"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 06 — Section 05 final artwork (Value Creation) -->
+  <section id="slide-06" class="deck-view" aria-label="Value Creation Across the Healthcare Ecosystem">
+    <div class="slide-canvas">
+      <div class="slide06-stage">
+        <div class="slide06-artwork-wrap">
+          <img class="slide06-artwork"
+               src="assets/images/slide07-final.jpeg"
+               alt=""
+               width="1536"
+               height="1024">
+        </div>
+        <div class="slide06-footer">
+          <a class="slide06-footer-btn" href="#slide-05" data-deck-target="slide-05">← Previous</a>
+          <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+          <a class="slide06-footer-btn" href="#slide-07" data-deck-target="slide-07">Next →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 07 — Section 07 Why This Partnership Matters artwork -->
+  <section id="slide-07" class="deck-view" aria-label="Why This Partnership Matters">
+    <div class="slide-canvas">
+      <div class="slide06-stage">
+        <div class="slide06-artwork-wrap">
+          <img class="slide06-artwork"
+               src="assets/images/slide07-partnership-matters.jpeg"
+               alt=""
+               width="1448"
+               height="1086">
+        </div>
+        <div class="slide06-footer">
+          <a class="slide06-footer-btn" href="#slide-06" data-deck-target="slide-06">← Previous</a>
+          <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+          <a class="slide06-footer-btn" href="#slide-08" data-deck-target="slide-08">Next →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 08 — Section 08 Investment Opportunities artwork -->
+  <section id="slide-08" class="deck-view" aria-label="Investment Opportunities">
+    <div class="slide-canvas">
+      <div class="slide06-stage">
+        <div class="slide06-artwork-wrap">
+          <img class="slide06-artwork"
+               src="assets/images/slide08-investment-opportunities.jpeg"
+               alt=""
+               width="1536"
+               height="1024">
+        </div>
+        <div class="slide06-footer">
+          <a class="slide06-footer-btn" href="#slide-07" data-deck-target="slide-07">← Previous</a>
+          <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+          <a class="slide06-footer-btn" href="#slide-09" data-deck-target="slide-09">Next →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 09 — Section 09 What Partners Receive artwork -->
+  <section id="slide-09" class="deck-view" aria-label="What Partners Receive">
+    <div class="slide-canvas">
+      <div class="slide06-stage">
+        <div class="slide06-artwork-wrap">
+          <img class="slide06-artwork"
+               src="assets/images/slide09-what-partners-receive.jpeg"
+               alt=""
+               width="1536"
+               height="1024">
+        </div>
+        <div class="slide06-footer">
+          <a class="slide06-footer-btn" href="#slide-08" data-deck-target="slide-08">← Previous</a>
+          <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+          <a class="slide06-footer-btn" href="#slide-10" data-deck-target="slide-10">Next →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10 — Section 10 Business Model artwork -->
+  <section id="slide-10" class="deck-view" aria-label="Business Model">
+    <div class="slide-canvas">
+      <div class="slide06-stage">
+        <div class="slide06-artwork-wrap">
+          <img class="slide06-artwork"
+               src="assets/images/slide10-business-model.jpeg"
+               alt=""
+               width="1536"
+               height="1024">
+        </div>
+        <div class="slide06-footer">
+          <a class="slide06-footer-btn" href="#slide-09" data-deck-target="slide-09">← Previous</a>
+          <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+          <a class="slide06-footer-btn" href="#slide-11" data-deck-target="slide-11">Next →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11 — Section 11 Global Vision artwork -->
+  <section id="slide-11" class="deck-view" aria-label="Global Vision">
+    <div class="slide-canvas">
+      <div class="slide06-stage">
+        <div class="slide06-artwork-wrap">
+          <img class="slide06-artwork"
+               src="assets/images/slide11-global-vision.jpeg"
+               alt=""
+               width="1536"
+               height="1024">
+        </div>
+        <div class="slide06-footer">
+          <a class="slide06-footer-btn" href="#slide-10" data-deck-target="slide-10">← Previous</a>
+          <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+          <a class="slide06-footer-btn" href="#slide-12" data-deck-target="slide-12">Next →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12 — Section 12 Contact artwork -->
+  <section id="slide-12" class="deck-view" aria-label="Contact">
+    <div class="slide-canvas">
+      <div class="slide06-stage">
+        <div class="slide06-artwork-wrap">
+          <img class="slide06-artwork"
+               src="assets/images/slide12-contact.jpeg"
+               alt=""
+               width="1536"
+               height="1024">
+        </div>
+        <div class="slide06-footer">
+          <a class="slide06-footer-btn" href="#slide-11" data-deck-target="slide-11">← Previous</a>
+          <a class="slide06-footer-btn" href="#slide-01" data-deck-target="slide-01">Back to Deck</a>
+          <span class="slide06-footer-btn nav-disabled">Next →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    (function () {
+      var views = document.querySelectorAll(".deck-view");
+      var valid = ["slide-01", "slide-02", "slide-03", "slide-04", "slide-05", "slide-06", "slide-07", "slide-08", "slide-09", "slide-10", "slide-11", "slide-12"];
+
+      function showSlide(id) {
+        if (valid.indexOf(id) === -1) return;
+        views.forEach(function (v) {
+          var on = v.id === id;
+          v.classList.toggle("active", on);
+          v.setAttribute("aria-hidden", on ? "false" : "true");
+        });
+        document.title = "Elisence Partnership Pitch — " + id.replace(/-/g, " ");
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+
+      function navigateTo(id) {
+        if (valid.indexOf(id) === -1) return;
+        if (location.hash.replace("#", "") !== id) {
+          location.hash = id;
+        }
+        showSlide(id);
+      }
+
+      function route() {
+        var hash = location.hash.replace("#", "") || "slide-01";
+        if (valid.indexOf(hash) === -1) hash = "slide-01";
+        showSlide(hash);
+      }
+
+      document.addEventListener("click", function (e) {
+        var link = e.target.closest("[data-deck-target], area[href^='#'], .nav-hit[href^='#'], .slide03-footer-btn[href^='#'], .slide03-topbar-btn[href^='#'], .slide04-footer-btn[href^='#'], .slide05-footer-btn[href^='#'], .slide06-footer-btn[href^='#'], .nav-hit.eco-footer-prev[href^='#'], .nav-hit.eco-footer-deck[href^='#']");
+        if (!link) return;
+        var target = link.getAttribute("data-deck-target") || link.getAttribute("href").slice(1);
+        if (valid.indexOf(target) === -1) return;
+        e.preventDefault();
+        navigateTo(target);
+      });
+
+      window.addEventListener("hashchange", route);
+      window.addEventListener("load", route);
+      route();
+    })();
+  </script>
+</body>
+</html>
