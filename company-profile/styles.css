@@ -1,0 +1,182 @@
+/* Elisence Company Profile — Static Web Viewer */
+
+:root {
+  --bg-deep: #05080f;
+  --bg-navy: #0a1018;
+  --glass: rgba(12, 18, 28, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text: rgba(245, 248, 252, 0.88);
+  --text-dim: rgba(180, 190, 205, 0.45);
+  --accent: rgba(255, 255, 255, 0.95);
+  --accent-soft: rgba(255, 255, 255, 0.14);
+  --nav-height: 44px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 70% 45% at 50% -10%, rgba(40, 60, 90, 0.18), transparent 55%),
+    linear-gradient(180deg, var(--bg-navy) 0%, var(--bg-deep) 100%);
+}
+
+.viewer-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+  white-space: nowrap;
+}
+
+.nav-btn:hover:not(:disabled) {
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.page-keys {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  flex-wrap: nowrap;
+  max-width: min(100%, 720px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.page-keys::-webkit-scrollbar {
+  display: none;
+}
+
+.page-key {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 0.625rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+  line-height: 1;
+}
+
+.page-key:hover {
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.page-key.is-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+.page-key:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.viewer-stage {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.page-artwork {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.page-artwork.is-loading {
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+
+.page-artwork.is-ready {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .viewer-nav {
+    gap: 0.4rem;
+    padding: 0 0.5rem;
+  }
+
+  .nav-btn {
+    font-size: 0.625rem;
+    padding: 0.3rem 0.45rem;
+  }
+
+  .page-key {
+    font-size: 0.5625rem;
+    min-width: 1.5rem;
+    height: 1.5rem;
+  }
+}
