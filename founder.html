@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sam Asi — Founder &amp; CEO of ELISENCE</title>
+  <meta
+    name="description"
+    content="Sam Asi is the Founder and CEO of ELISENCE, leading product strategy, platform architecture, governed AI direction, safety framework and digital health development."
+  />
+  <meta
+    name="keywords"
+    content="Sam Asi, ELISENCE Founder, Founder and CEO, digital health, governed AI, privacy, safety, trust"
+  />
+  <link rel="canonical" href="https://elisence.com/founder.html" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Sam Asi — Founder &amp; CEO of ELISENCE" />
+  <meta
+    property="og:description"
+    content="Sam Asi is the Founder and CEO of ELISENCE, leading product strategy, platform architecture, governed AI direction, safety framework and digital health development."
+  />
+  <meta property="og:url" content="https://elisence.com/founder.html" />
+  <meta property="og:image" content="https://elisence.com/assets/founder-sam-asi.jpeg" />
+  <meta property="og:site_name" content="ELISENCE" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sam Asi — Founder &amp; CEO of ELISENCE" />
+  <meta
+    name="twitter:description"
+    content="Sam Asi is the Founder and CEO of ELISENCE, leading product strategy, platform architecture, governed AI direction, safety framework and digital health development."
+  />
+  <meta name="twitter:image" content="https://elisence.com/assets/founder-sam-asi.jpeg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": "https://elisence.com/founder.html#profilepage",
+    "url": "https://elisence.com/founder.html",
+    "name": "Sam Asi — Founder & CEO of ELISENCE",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ELISENCE",
+      "url": "https://elisence.com"
+    },
+    "mainEntity": {
+      "@type": "Person",
+      "@id": "https://elisence.com/founder.html#person",
+      "name": "Sam Asi",
+      "jobTitle": "Founder & CEO of ELISENCE",
+      "url": "https://elisence.com/founder.html",
+      "image": "https://elisence.com/assets/founder-sam-asi.jpeg",
+      "worksFor": {
+        "@type": "Organization",
+        "@id": "https://elisence.com/#organization",
+        "name": "ELISENCE",
+        "url": "https://elisence.com"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/elisence-official"
+      ]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://elisence.com/founder.html#person",
+    "name": "Sam Asi",
+    "jobTitle": "Founder & CEO of ELISENCE",
+    "url": "https://elisence.com/founder.html",
+    "image": "https://elisence.com/assets/founder-sam-asi.jpeg",
+    "description": "Sam Asi is the Founder and CEO of ELISENCE, leading its product strategy, platform architecture, governed AI direction, safety framework and digital health development.",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "ELISENCE",
+      "url": "https://elisence.com"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/elisence-official"
+    ]
+  }
+  </script>
+
+  <script defer src="elisa-chat.js"></script>
+
+  <style>
+    :root {
+      --bg-0: #000000;
+      --bg-1: #02040a;
+      --bg-2: #04101f;
+      --text: #ffffff;
+      --text-soft: #e3f2ff;
+      --text-muted: #a9d4ff;
+      --text-body: #dbeafe;
+      --cyan: #7dd3fc;
+      --panel-border: rgba(70, 190, 255, 0.55);
+      --focus: #38bdf8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, var(--bg-2) 0%, var(--bg-1) 45%, var(--bg-0) 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible,
+    .nav-btn:focus-visible,
+    .action-btn:focus-visible,
+    .evidence-card:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .top-dot {
+      position: fixed;
+      top: 18px;
+      left: 22px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .top-dot-orb {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #7dd3fc, #0369a1);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.95);
+    }
+
+    .top-dot-label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .side-nav {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    .nav-btn {
+      display: block;
+      padding: 13px 38px;
+      border-radius: 999px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      background: radial-gradient(circle at top, rgba(0, 130, 255, 0.45), rgba(0, 10, 35, 0.97));
+      border: 1px solid rgba(90, 185, 255, 0.9);
+      box-shadow:
+        0 0 16px rgba(0, 130, 255, 0.95),
+        0 0 34px rgba(0, 40, 120, 0.95);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, padding 0.2s ease;
+      text-align: center;
+    }
+
+    .nav-btn:hover {
+      transform: translateX(-4px);
+      padding-right: 44px;
+      box-shadow:
+        0 0 22px rgba(0, 190, 255, 1),
+        0 0 46px rgba(0, 80, 200, 1);
+      background: radial-gradient(circle at top, rgba(0, 170, 255, 0.7), rgba(0, 25, 80, 1));
+    }
+
+    .nav-btn.founder-active {
+      background: radial-gradient(circle at top, rgba(0, 170, 255, 0.75), rgba(0, 25, 80, 1));
+      box-shadow:
+        0 0 22px rgba(0, 190, 255, 1),
+        0 0 46px rgba(0, 80, 200, 1);
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 72px 40px 100px 40px;
+    }
+
+    .content-main {
+      width: 100%;
+      max-width: 1100px;
+      margin-right: 230px; /* clear fixed side-nav width */
+    }
+
+    .hero-panel {
+      width: 100%;
+      border-radius: 26px;
+      padding: 28px 26px 26px 26px;
+      background: radial-gradient(circle at top left, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
+      border: 1px solid rgba(70, 190, 255, 0.6);
+      box-shadow:
+        0 0 34px rgba(0, 170, 255, 0.9),
+        0 0 110px rgba(0, 80, 200, 0.5),
+        0 40px 80px rgba(0, 40, 120, 0.35);
+      margin-bottom: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      bottom: -40%;
+      height: 70%;
+      background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.28), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .founder-photo-wrap {
+      width: 220px;
+      height: 280px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(125, 211, 252, 0.55);
+      box-shadow:
+        0 0 28px rgba(0, 170, 255, 0.55),
+        0 18px 40px rgba(0, 0, 0, 0.45);
+      background: rgba(2, 6, 23, 0.9);
+    }
+
+    .founder-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+
+    .hero-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 34px;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      color: #e0f2fe;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-role {
+      font-size: 15px;
+      color: var(--cyan);
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #cbd5ff;
+      max-width: 640px;
+      margin-bottom: 20px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(90, 185, 255, 0.85);
+      background: radial-gradient(circle at top, rgba(0, 140, 255, 0.35), rgba(0, 10, 35, 0.95));
+      box-shadow: 0 0 18px rgba(0, 130, 255, 0.55);
+      color: var(--text-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 24px rgba(0, 190, 255, 0.9);
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 18px;
+      border: 1px solid #1e293b;
+      box-shadow:
+        0 0 22px rgba(0, 140, 255, 0.55),
+        0 0 40px rgba(0, 40, 120, 0.55),
+        0 28px 60px rgba(0, 20, 60, 0.35);
+      padding: 1.8rem 1.9rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .card h2 {
+      margin: 0 0 0.85rem;
+      font-size: 1.25rem;
+      color: var(--cyan);
+    }
+
+    .card p {
+      margin: 0.45rem 0;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: var(--text-body);
+    }
+
+    .card ul {
+      margin: 0.55rem 0 0.2rem 1.2rem;
+      padding-left: 0.2rem;
+    }
+
+    .card li {
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #dceafe;
+    }
+
+    .message-signoff {
+      margin-top: 1.1rem;
+      color: #e0f2fe;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .programme-grid,
+    .evidence-grid,
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 0.9rem;
+    }
+
+    .programme-card,
+    .principle-card {
+      border-radius: 16px;
+      padding: 1rem 1.05rem;
+      background: radial-gradient(circle at top left, rgba(8, 47, 73, 0.9), rgba(2, 6, 23, 0.98));
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      box-shadow: 0 0 18px rgba(0, 100, 200, 0.28);
+    }
+
+    .programme-card h3,
+    .principle-card h3 {
+      font-size: 1rem;
+      color: #e0f2fe;
+      margin-bottom: 0.55rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+      border: 1px solid rgba(125, 211, 252, 0.45);
+      color: #e0f2fe;
+      background: rgba(8, 47, 73, 0.85);
+    }
+
+    .badge-accepted,
+    .badge-approved,
+    .badge-confirmed {
+      border-color: rgba(34, 197, 94, 0.55);
+      color: #bbf7d0;
+      background: rgba(6, 78, 59, 0.55);
+    }
+
+    .status-list {
+      list-style: none;
+      margin: 0.7rem 0 0;
+      padding: 0;
+    }
+
+    .status-list li {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 0.85rem;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(30, 41, 59, 0.95);
+      margin: 0;
+    }
+
+    .status-list li:last-child { border-bottom: none; }
+
+    .status-label {
+      min-width: 180px;
+      color: #e0f2fe;
+      font-weight: 600;
+    }
+
+    .status-pill {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(125, 211, 252, 0.4);
+      color: #bae6fd;
+      background: rgba(8, 47, 73, 0.7);
+      white-space: nowrap;
+    }
+
+    .status-note {
+      flex: 1 1 100%;
+      color: #93c5fd;
+      font-size: 0.88rem;
+    }
+
+    .evidence-card {
+      display: block;
+      border-radius: 16px;
+      padding: 1.05rem 1.1rem;
+      background: radial-gradient(circle at top left, rgba(0, 156, 255, 0.18), rgba(2, 6, 23, 0.98));
+      border: 1px solid rgba(70, 190, 255, 0.4);
+      box-shadow: 0 0 18px rgba(0, 130, 255, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .evidence-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 26px rgba(0, 190, 255, 0.55);
+    }
+
+    .evidence-card h3 {
+      font-size: 1rem;
+      color: #e0f2fe;
+      margin-bottom: 0.35rem;
+    }
+
+    .evidence-card p {
+      font-size: 0.9rem;
+      color: #93c5fd;
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .verify-list {
+      list-style: none;
+      margin: 0.6rem 0 0;
+      padding: 0;
+    }
+
+    .verify-list li {
+      margin: 0;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(30, 41, 59, 0.95);
+      color: #dbeafe;
+      font-size: 0.95rem;
+    }
+
+    .verify-list li:last-child { border-bottom: none; }
+
+    .verify-list strong {
+      color: #e0f2fe;
+      display: inline-block;
+      min-width: 7.5rem;
+    }
+
+    .verify-list a { color: var(--cyan); text-decoration: underline; }
+
+    .site-footer {
+      margin-top: 0.4rem;
+      padding: 1.4rem 1.5rem 1.6rem;
+      border-radius: 18px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: rgba(2, 6, 23, 0.9);
+      box-shadow: 0 0 22px rgba(0, 80, 180, 0.25);
+    }
+
+    .site-footer h2 {
+      font-size: 1.05rem;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+    }
+
+    .footer-links a {
+      color: #93c5fd;
+      text-decoration: underline;
+      font-size: 0.92rem;
+    }
+
+    .footer-note {
+      margin-top: 0.9rem;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    @media (max-width: 900px) {
+      .page-shell {
+        padding: 78px 18px 110px 18px;
+      }
+
+      .content-main {
+        margin-right: 0;
+      }
+
+      .side-nav {
+        position: fixed;
+        right: 50%;
+        top: auto;
+        bottom: 12px;
+        transform: translateX(50%);
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 6px;
+        max-width: calc(100vw - 16px);
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(2, 6, 23, 0.78);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 0 24px rgba(0, 80, 180, 0.35);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .nav-btn {
+        padding: 8px 14px;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+        flex: 0 0 auto;
+      }
+
+      .nav-btn:hover {
+        transform: none;
+        padding-right: 14px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .hero-subtitle { margin-left: auto; margin-right: auto; }
+
+      .hero-actions { justify-content: center; }
+
+      .founder-photo-wrap {
+        width: 180px;
+        height: 230px;
+      }
+
+      .hero-title { font-size: 28px; }
+
+      .programme-grid,
+      .evidence-grid,
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-label { min-width: 0; }
+    }
+
+    @media (max-width: 430px) {
+      .page-shell {
+        padding: 72px 14px 100px 14px;
+      }
+
+      .hero-title { font-size: 24px; }
+      .action-btn {
+        width: 100%;
+      }
+      .card { padding: 1.35rem 1.2rem; }
+
+      .side-nav {
+        bottom: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-dot" aria-hidden="true">
+    <span class="top-dot-orb"></span>
+    <span class="top-dot-label">ELISENCE</span>
+  </div>
+
+  <nav class="side-nav" aria-label="Primary">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="index.html#phases" class="nav-btn">Phases</a>
+    <a href="governments.html" class="nav-btn">Governments</a>
+    <a href="demo-access.html" class="nav-btn">Demo Portal</a>
+    <a href="pitch-deck.html" class="nav-btn">Pitch &amp; Deck</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="story.html" class="nav-btn">Story</a>
+    <a href="video.html" class="nav-btn">Videos</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
+    <a href="founder.html" class="nav-btn founder-active" aria-current="page">Founder</a>
+    <a href="articles.html" class="nav-btn">Articles</a>
+  </nav>
+
+  <div class="page-shell">
+    <main class="content-main" id="main">
+
+      <section class="hero-panel" aria-labelledby="founder-name">
+        <div class="hero-grid">
+          <div class="founder-photo-wrap">
+            <img
+              src="assets/founder-sam-asi.jpeg"
+              width="984"
+              height="1474"
+              alt="Portrait of Sam Asi, Founder and CEO of ELISENCE"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
+          <div>
+            <div class="hero-kicker">Founder · ELISENCE</div>
+            <h1 class="hero-title" id="founder-name">Sam Asi</h1>
+            <p class="hero-role">Founder &amp; CEO of ELISENCE</p>
+            <p class="hero-subtitle">
+              Sam Asi is the Founder and CEO of ELISENCE, leading its product strategy,
+              platform architecture, governed AI direction, safety framework and digital
+              health development.
+            </p>
+            <div class="hero-actions">
+              <a class="action-btn" href="index.html">View ELISENCE</a>
+              <a class="action-btn" href="company-profile/index.html">Company Profile</a>
+              <a class="action-btn" href="evidence.html">Product Evidence</a>
+              <a class="action-btn" href="contact.html">Contact</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="overview-heading">
+        <h2 id="overview-heading">Professional Overview</h2>
+        <p>
+          Sam Asi works across law, technology, product strategy and large-scale systems
+          thinking to build ELISENCE as a trusted digital health platform.
+        </p>
+        <p>
+          His focus is practical: platform and systems architecture, digital health product
+          direction, AI governance, privacy, safety and trust — so people, professionals and
+          organisations can participate with clarity and confidence.
+        </p>
+      </section>
+
+      <section class="card" aria-labelledby="role-heading">
+        <h2 id="role-heading">Role at ELISENCE</h2>
+        <p>
+          As Founder &amp; CEO, Sam Asi sets company vision and strategy and directs the
+          product and platform path for ELISENCE. Responsibilities include:
+        </p>
+        <ul>
+          <li>Company vision and strategy</li>
+          <li>Product direction</li>
+          <li>Platform architecture</li>
+          <li>Governed AI direction</li>
+          <li>Privacy and trust framework</li>
+          <li>Safety and explainability</li>
+          <li>iOS and Android product direction</li>
+          <li>Enterprise and public-sector readiness</li>
+          <li>Partnerships and fundraising</li>
+        </ul>
+        <p>
+          This leadership role guides direction and standards. Delivery is shared across
+          engineering, product and specialised partners where required.
+        </p>
+      </section>
+
+      <section class="card" aria-labelledby="why-heading">
+        <h2 id="why-heading">Why ELISENCE Was Founded</h2>
+        <p>
+          Health and care experiences are often fragmented. Information is hard to trust,
+          continuity is broken across a person’s journey, and digital systems can fail the
+          people they are meant to support.
+        </p>
+        <p>
+          ELISENCE was founded to build a longer-term platform — not one isolated feature —
+          where dignity, privacy, explainability and safety come first, and where people and
+          professionals can participate with trust.
+        </p>
+        <p>
+          The work continues because health technology should protect humanity: clearer
+          guidance, stronger continuity, and systems that remain honest under scrutiny.
+        </p>
+        <p class="message-signoff">
+          Sam Asi<br />
+          Founder &amp; CEO, ELISENCE
+        </p>
+      </section>
+
+      <section class="card" aria-labelledby="built-heading">
+        <h2 id="built-heading">What Has Been Built</h2>
+        <p>
+          ELISENCE is advancing as a multi-surface digital health platform. Current public
+          evidence supports the following areas of work:
+        </p>
+        <ul class="status-list">
+          <li>
+            <span class="status-label">iOS application</span>
+            <span class="status-pill">In controlled development</span>
+          </li>
+          <li>
+            <span class="status-label">Android application</span>
+            <span class="status-pill">In controlled development</span>
+          </li>
+          <li>
+            <span class="status-label">Medical Journey</span>
+            <span class="status-pill">Under verification</span>
+          </li>
+          <li>
+            <span class="status-label">Daily Health Brief / Governed Intelligence</span>
+            <span class="status-pill">In controlled development</span>
+          </li>
+          <li>
+            <span class="status-label">Professional and Organisation Verification</span>
+            <span class="status-pill">Under verification</span>
+          </li>
+          <li>
+            <span class="status-label">Secure identity and trust infrastructure</span>
+            <span class="status-pill">In controlled development</span>
+          </li>
+          <li>
+            <span class="status-label">Secure communication</span>
+            <span class="status-pill">In controlled development</span>
+            <span class="status-note">Core messaging and audit capabilities described in public evidence materials.</span>
+          </li>
+          <li>
+            <span class="status-label">Health and media platform capabilities</span>
+            <span class="status-pill">In controlled development</span>
+          </li>
+          <li>
+            <span class="status-label">Backend services</span>
+            <span class="status-pill">Operational backend</span>
+            <span class="status-note">Selected engines and sealed evidence packs are publicly inspectable.</span>
+          </li>
+          <li>
+            <span class="status-label">Company and product website</span>
+            <span class="status-pill">Implemented</span>
+            <span class="status-note">Public product, evidence and company surfaces are live on elisence.com.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="programmes-heading">
+        <h2 id="programmes-heading">Confirmed Programmes &amp; Industry Participation</h2>
+        <p>
+          The following items are confirmed programme and event participation only.
+          They are not presented as endorsements, partnerships or investment.
+        </p>
+        <div class="programme-grid">
+          <article class="programme-card">
+            <span class="badge badge-accepted">Accepted</span>
+            <h3>Corti for Startups</h3>
+            <p>$5,000 in Corti API credits awarded</p>
+          </article>
+          <article class="programme-card">
+            <span class="badge badge-approved">Approved</span>
+            <h3>AWS Activate</h3>
+            <p>$1,000 in AWS credits awarded</p>
+          </article>
+          <article class="programme-card">
+            <span class="badge badge-accepted">Accepted</span>
+            <h3>Web Summit ALPHA</h3>
+            <p>Accepted programme participation</p>
+          </article>
+          <article class="programme-card">
+            <span class="badge badge-confirmed">Confirmed Participant</span>
+            <h3>Next-Gen Fintech on AWS | Startup Leaders Roundtable</h3>
+            <p>The Shard, London · 30 September 2026 · Event participation only</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="principles-heading">
+        <h2 id="principles-heading">Leadership Principles</h2>
+        <p>These are operating principles for how ELISENCE is built — not certifications.</p>
+        <div class="principles-grid">
+          <article class="principle-card">
+            <h3>Human dignity</h3>
+            <p>People and families come before growth metrics.</p>
+          </article>
+          <article class="principle-card">
+            <h3>Safety before scale</h3>
+            <p>Boundaries and safeguards precede expansion.</p>
+          </article>
+          <article class="principle-card">
+            <h3>Explainability before automation</h3>
+            <p>Systems must remain understandable under scrutiny.</p>
+          </article>
+          <article class="principle-card">
+            <h3>Privacy and trust by design</h3>
+            <p>Trust is engineered into the platform, not added later.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="evidence-heading">
+        <h2 id="evidence-heading">Product Evidence</h2>
+        <p>
+          Review public ELISENCE evidence surfaces. These cards link only to existing pages.
+        </p>
+        <div class="evidence-grid">
+          <a class="evidence-card" href="demo-access.html">
+            <h3>Demo Portal</h3>
+            <p>Request controlled product demonstration access.</p>
+          </a>
+          <a class="evidence-card" href="evidence.html">
+            <h3>Product Evidence</h3>
+            <p>Phase evidence status, sealed packs and verification links.</p>
+          </a>
+          <a class="evidence-card" href="company-profile/index.html">
+            <h3>Company Profile</h3>
+            <p>Official ELISENCE company profile materials.</p>
+          </a>
+          <a class="evidence-card" href="pitch-deck.html">
+            <h3>Pitch &amp; Deck</h3>
+            <p>Investor and partner pitch materials.</p>
+          </a>
+          <a class="evidence-card" href="about.html">
+            <h3>About ELISENCE</h3>
+            <p>Mission, architecture and platform overview.</p>
+          </a>
+          <a class="evidence-card" href="product-evidence.html">
+            <h3>Live Website Evidence</h3>
+            <p>How the public website itself functions as product proof.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="verify-heading">
+        <h2 id="verify-heading">Professional and Company Verification</h2>
+        <ul class="verify-list">
+          <li><strong>Name</strong> Sam Asi</li>
+          <li><strong>Role</strong> Founder &amp; CEO</li>
+          <li><strong>Company</strong> ELISENCE</li>
+          <li><strong>Email</strong> <a href="mailto:contact@elisence.com">contact@elisence.com</a></li>
+          <li><strong>LinkedIn</strong> <a href="https://www.linkedin.com/company/elisence-official" target="_blank" rel="noopener noreferrer">ELISENCE Official</a></li>
+          <li><strong>Website</strong> <a href="https://elisence.com">elisence.com</a></li>
+        </ul>
+      </section>
+
+      <footer class="site-footer" aria-labelledby="trust-heading">
+        <h2 id="trust-heading">Contact and Trust</h2>
+        <div class="footer-links">
+          <a href="contact.html">Contact</a>
+          <a href="company-profile/index.html">Company Profile</a>
+          <a href="evidence.html">Evidence</a>
+          <a href="about.html">About</a>
+          <a href="demo-access.html">Demo Portal</a>
+          <a href="pitch-deck.html">Pitch &amp; Deck</a>
+          <a href="articles.html">Articles</a>
+        </div>
+        <p class="footer-note">
+          Privacy Policy, Terms of Service, Cookie Policy, Security and Responsible AI pages
+          will be linked here when published as dedicated public documents.
+        </p>
+      </footer>
+
+    </main>
+  </div>
+</body>
+</html>

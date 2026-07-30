@@ -7,7 +7,7 @@
 
 | Item | Value |
 |------|--------|
-| **Desktop PDF** | `C:\Users\sami\Desktop\Elisence_Investor_Deck_WebSummit_2026.pdf` |
+| **Desktop PDF** | `C:\Users\User\Desktop\Elisence_Investor_Deck_WebSummit_2026.pdf` |
 | **Pages** | 12 |
 | **Size** | ~8.4 MB |
 | **Orientation** | Landscape 16:9 (13.333in × 7.5in) |

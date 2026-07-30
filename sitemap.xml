@@ -173,7 +173,7 @@
   </url>
 
   <url>
-    <loc>https://elisence.com/articles/national-health-intelligence-saami-salami-asl.html</loc>
+    <loc>https://elisence.com/articles/national-health-intelligence.html</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -187,7 +187,7 @@
   </url>
 
   <url>
-    <loc>https://elisence.com/articles/qatar-digital-health-2030-elisence-saami-salami-asl.html</loc>
+    <loc>https://elisence.com/articles/qatar-vision-2030-digital-health.html</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -228,94 +228,72 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Founder & name SEO pages -->
+<!-- Sam Asi hub folder -->
   <url>
-    <loc>https://elisence.com/saami-salami.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://elisence.com/sami-salami.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://elisence.com/sami-profile.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Saami hub folder -->
-  <url>
-    <loc>https://elisence.com/saami/</loc>
+    <loc>https://elisence.com/founder/</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/saami/bio.html</loc>
+    <loc>https://elisence.com/founder/bio.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/saami/timeline.html</loc>
+    <loc>https://elisence.com/founder/timeline.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/saami/achievements.html</loc>
+    <loc>https://elisence.com/founder/achievements.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/saami/articles.html</loc>
+    <loc>https://elisence.com/founder/articles.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/saami/interviews.html</loc>
+    <loc>https://elisence.com/founder/interviews.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/saami/message.html</loc>
+    <loc>https://elisence.com/founder/message.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/saami/press-kit.html</loc>
+    <loc>https://elisence.com/founder/press-kit.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/saami/linkedin-summary.html</loc>
+    <loc>https://elisence.com/founder/linkedin-summary.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/saami/youtube.html</loc>
+    <loc>https://elisence.com/founder/youtube.html</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -441,4 +419,30 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://elisence.com/founder.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  
+  <url>
+    <loc>https://elisence.com/articles/elisence-founder-philosophy.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://elisence.com/articles/human-centred-health-philosophy.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://elisence.com/articles/elisence-founder-overview.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
