@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Elisence is a sovereign, multi-phase digital health and humanity platform founded by Sam Asi. It combines Zero-Trust AI, non-diagnostic behavioral intelligence, and national-grade governance across 17 phases."
+    content="Elisence is a sovereign, multi-phase digital health and humanity platform founded by Saami Salami Asl. It combines Zero-Trust AI, non-diagnostic behavioral intelligence, and national-grade governance across 17 phases."
   />
   <meta
     name="keywords"
-    content="Elisence, About Elisence, Sam Asi, Sovereign Digital Health, Zero-Trust Health AI, Qatar Vision 2030, Women+ Health, Diabetes Intelligence, National Health Intelligence"
+    content="Elisence, About Elisence, Saami Salami Asl, Sovereign Digital Health, Zero-Trust Health AI, Qatar Vision 2030, Women+ Health, Diabetes Intelligence, National Health Intelligence"
   />
 
   <!-- JSON-LD: Organization -->
@@ -24,10 +24,7 @@
     "description": "Sovereign digital health and humanity platform built across 17 phases with Zero-Trust AI and non-diagnostic behavioral intelligence.",
     "founder": {
       "@type": "Person",
-      "name": "Sam Asi",
-      "jobTitle": "Founder & CEO of ELISENCE",
-      "url": "https://elisence.com/founder.html",
-      "image": "https://elisence.com/assets/founder-sam-asi.jpeg"
+      "name": "Saami Salami Asl"
     }
   }
   </script>
@@ -137,7 +134,7 @@
     .hero-panel {
       width: 100%;
       border-radius: 26px;
-      padding: 28px 26px 26px 26px;
+      padding: 40px 34px 42px 34px;
       background: radial-gradient(circle at top left, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
       border: 1px solid rgba(70, 190, 255, 0.6);
       box-shadow:
@@ -146,35 +143,76 @@
       margin-bottom: 26px;
     }
 
-    .hero-kicker {
+    .hero-title {
+      font-size: 28px;
+      line-height: 1.35;
+      margin-bottom: 22px;
+      color: #e0f2fe;
+      max-width: 920px;
+    }
+
+    .hero-copy {
+      max-width: 920px;
+    }
+
+    .hero-copy p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: #cbd5ff;
+      margin-bottom: 16px;
+    }
+
+    .hero-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-label {
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.22em;
       color: #a9d4ff;
-      margin-bottom: 6px;
-    }
-
-    .hero-title {
-      font-size: 24px;
-      line-height: 1.4;
       margin-bottom: 10px;
+    }
+
+    .hero-copy .why-it-matters-title {
+      font-size: 16px;
+      margin: 22px 0 10px;
       color: #e0f2fe;
+      font-weight: 600;
     }
 
-    .hero-subtitle {
-      font-size: 14px;
+    .hero-copy ul {
+      margin: 4px 0 0 18px;
+      padding: 0;
+      list-style: disc;
+    }
+
+    .hero-copy li {
+      font-size: 15px;
+      line-height: 1.85;
       color: #cbd5ff;
-      max-width: 760px;
+      margin-bottom: 10px;
     }
 
-    .hero-subtitle strong {
-      color: #ffffff;
+    .hero-copy li:last-child {
+      margin-bottom: 0;
     }
 
     .sections-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
+    }
+
+    .sections-grid-pair {
+      align-items: stretch;
+    }
+
+    .sections-grid-pair > .section-panel {
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
     }
 
     .section-panel {
@@ -194,6 +232,13 @@
       font-size: 16px;
       margin-bottom: 8px;
       color: #e5f3ff;
+    }
+
+    .section-panel .why-it-matters-title {
+      font-size: 16px;
+      margin: 14px 0 8px;
+      color: #e5f3ff;
+      font-weight: 600;
     }
 
     .section-panel p {
@@ -221,6 +266,117 @@
       text-decoration: underline;
     }
 
+    /* Mission — Founder-style two-column layout (Mission section only) */
+    .section-panel.mission-panel {
+      grid-column: 1 / -1;
+      padding: 28px 26px;
+      border-radius: 26px;
+    }
+
+    .mission-layout {
+      display: grid;
+      grid-template-columns: 55fr 45fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .mission-copy {
+      min-width: 0;
+    }
+
+    .mission-visual {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      border-radius: 26px;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.96));
+      border: 1px solid rgba(70, 190, 255, 0.55);
+      box-shadow:
+        0 0 34px rgba(0, 170, 255, 0.85),
+        0 0 110px rgba(0, 80, 200, 0.48),
+        0 0 160px rgba(56, 189, 248, 0.18),
+        0 18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .mission-visual img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 26px;
+    }
+
+    /* Multi-Phase Platform — same design language as Mission; image LEFT, full text height */
+    .section-panel.multiphase-panel {
+      grid-column: 1 / -1;
+      padding: 28px 26px;
+      border-radius: 26px;
+    }
+
+    .multiphase-layout {
+      display: grid;
+      grid-template-columns: 42fr 58fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .multiphase-visual {
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 18px;
+      border-radius: 26px;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.96));
+      border: 1px solid rgba(70, 190, 255, 0.55);
+      box-shadow:
+        0 0 34px rgba(0, 170, 255, 0.85),
+        0 0 110px rgba(0, 80, 200, 0.48),
+        0 0 160px rgba(56, 189, 248, 0.18),
+        0 18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .multiphase-visual img {
+      display: block;
+      flex: 1 1 auto;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 26px;
+    }
+
+    .multiphase-copy {
+      min-width: 0;
+      height: 100%;
+    }
+
+    .multiphase-copy .why-it-matters-title {
+      font-size: 16px;
+      margin: 18px 0 8px;
+      color: #e5f3ff;
+    }
+
+    .multiphase-copy ul {
+      margin: 4px 0 0 18px;
+    }
+
+    .multiphase-copy li {
+      margin-bottom: 6px;
+    }
+
+    .multiphase-copy li:last-child {
+      margin-bottom: 0;
+    }
+
     @media (max-width: 960px) {
       .page-shell {
         padding: 80px 18px 110px 18px;
@@ -232,6 +388,36 @@
 
       .sections-grid {
         grid-template-columns: 1fr;
+      }
+
+      .mission-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .mission-visual {
+        order: 2;
+        width: 100%;
+      }
+
+      .mission-copy {
+        order: 1;
+      }
+
+      .multiphase-layout {
+        grid-template-columns: 42fr 58fr;
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      .multiphase-visual {
+        width: auto;
+        height: 100%;
+        align-self: stretch;
+      }
+
+      .multiphase-copy {
+        height: 100%;
       }
 
       .side-nav {
@@ -252,6 +438,54 @@
         letter-spacing: 0.11em;
       }
     }
+
+    @media (max-width: 720px) {
+      .multiphase-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        align-items: start;
+      }
+
+      .multiphase-visual {
+        width: 100%;
+        height: auto;
+        min-height: 240px;
+      }
+
+      .multiphase-visual img {
+        flex: none;
+        height: auto;
+        min-height: 240px;
+        max-height: none;
+        object-fit: cover;
+      }
+
+      .multiphase-copy {
+        height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section-panel.mission-panel,
+      .section-panel.multiphase-panel {
+        padding: 22px 18px;
+      }
+
+      .mission-layout,
+      .multiphase-layout {
+        gap: 22px;
+      }
+
+      .mission-visual {
+        padding: 14px;
+        width: 100%;
+      }
+
+      .multiphase-visual {
+        padding: 14px;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -266,7 +500,7 @@
     <a href="story.html"         class="nav-btn">Story</a>
     <a href="video.html"         class="nav-btn">Videos</a>
     <a href="contact.html"       class="nav-btn">Contact</a>
-    <a href="founder.html" class="nav-btn">Founder</a>
+    <a href="founder-saami.html" class="nav-btn">Founder</a>
     <a href="articles.html"      class="nav-btn">Articles</a>
     
   </nav>
@@ -283,120 +517,219 @@
 
       <!-- HERO -->
       <section class="hero-panel">
-        <div class="hero-kicker">About · Elisence Platform</div>
-        <h1 class="hero-title">Elisence — Sovereign Digital Health &amp; Humanity Platform</h1>
-        <p class="hero-subtitle">
-          Elisence is a global, sovereign digital health infrastructure designed and founded by
-          <strong>Sam Asi</strong>. It is a 17-phase, multilingual health intelligence ecosystem
-          built on Zero-Trust AI, non-diagnostic behavioral models, and national-grade data governance.
-        </p>
+        <h1 class="hero-title">
+          One Connected Ecosystem.<br />
+          One Complete View of Health.
+        </h1>
+        <div class="hero-copy">
+          <p>
+            ELISENCE brings people, healthcare professionals, organisations, and intelligent services together in one trusted ecosystem.
+          </p>
+          <p>
+            Designed to support healthier lives, safer care, and better decisions, ELISENCE connects fragmented healthcare experiences into a single intelligent platform that grows with every stage of life.
+          </p>
+          <p>
+            Unlike traditional healthcare applications that operate independently, every connected capability within ELISENCE continuously contributes meaningful insights to a shared intelligence layer. Rather than functioning as isolated features, medications, symptoms, medical journeys, professional interactions, verified credentials, wellbeing activities, and future healthcare services work together as one connected ecosystem.
+          </p>
+          <p>
+            By allowing every part of the platform to continuously learn from and enrich every other connected part, ELISENCE builds a broader, deeper, and more complete understanding of each person's health journey. This connected intelligence helps individuals make better health decisions while providing healthcare professionals with richer clinical context, safer decision support, and a more comprehensive view of patient care.
+          </p>
+        </div>
       </section>
 
       <!-- MAIN SECTIONS -->
       <section class="sections-grid">
 
         <!-- Mission -->
-        <article class="section-panel">
-          <div class="section-tag">Mission</div>
-          <h2>1. Our Mission</h2>
-          <p>
-            Elisence aims to create the world’s safest and most intelligent health ecosystem — one that
-            supports users, clinicians, hospitals, ministries, families, and vulnerable populations
-            across GCC, MENA, UK, and EU.
-          </p>
-          <p>
-            The platform is designed as a <strong>sovereign digital health infrastructure</strong>
-            that governments can trust and scale, with clear boundaries between wellness intelligence
-            and regulated clinical care.
-          </p>
-          <p class="link-inline">
-            Learn more in the platform overview:
-            <a href="elisence.html">Elisence – The Global Digital Health Platform</a>.
-          </p>
+        <article class="section-panel mission-panel">
+          <div class="mission-layout">
+            <div class="mission-copy">
+              <div class="section-tag">Mission</div>
+              <h2>1. Our Mission</h2>
+              <p>
+                Elisence aims to create the world’s safest and most intelligent health ecosystem — one that
+                supports users, clinicians, hospitals, ministries, families, and vulnerable populations
+                across GCC, MENA, UK, and EU.
+              </p>
+              <p>
+                The platform is designed as a <strong>sovereign digital health infrastructure</strong>
+                that governments can trust and scale, with clear boundaries between wellness intelligence
+                and regulated clinical care.
+              </p>
+              <p class="link-inline">
+                Learn more in the platform overview:
+                <a href="elisence.html">Elisence – The Global Digital Health Platform</a>.
+              </p>
+            </div>
+            <div class="mission-visual">
+              <img
+                src="assets/about-mission.jpeg"
+                alt="Elisence Mission"
+                width="1200"
+                height="900"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
         </article>
 
-        <!-- 17 Phases -->
-        <article class="section-panel">
-          <div class="section-tag">Architecture</div>
-          <h2>2. The 17-Phase Architecture</h2>
+        <!-- Multi-Phase Platform -->
+        <article class="section-panel multiphase-panel">
+          <div class="multiphase-layout">
+            <div class="multiphase-visual">
+              <img
+                src="assets/about-multiphase.jpeg"
+                alt="Elisence Multi-Phase Platform"
+                width="1200"
+                height="900"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="multiphase-copy">
+              <div class="section-tag">Multi-Phase Platform</div>
+              <h2>2. Multi-Phase Platform</h2>
+              <p>
+                ELISENCE is designed as a continuously expanding, multi-phase digital health ecosystem—not a collection of disconnected healthcare applications.
+              </p>
+              <p>
+                Each capability is built as a modular and resilient component that can evolve, scale, and be updated independently without disrupting the wider platform. At the same time, authorised, privacy-preserving and governed intelligence from connected capabilities contributes to a shared intelligence layer, enabling ELISENCE to understand health through connected context rather than isolated events.
+              </p>
+              <p>
+                Every connected capability contributes a different perspective to an individual's health. Medical journeys, medications, symptoms, wellbeing activities, wearable devices, professional interactions, social health, family support, accessibility services, and future healthcare capabilities together create a broader and more meaningful understanding of each person's health journey.
+              </p>
+              <p>
+                Rather than relying on a single dataset or one isolated interaction, ELISENCE connects relevant information from across the ecosystem—subject to appropriate privacy, consent, security, and governance controls—to provide richer context, better decision support, and a more complete understanding of health.
+              </p>
+              <p>
+                The modular architecture also strengthens resilience. Individual capabilities can be developed, improved, deployed, or temporarily taken offline while the wider ecosystem continues operating. If one capability becomes temporarily unavailable, the remaining ecosystem continues operating without interruption. This supports stability, security, service continuity, and long-term innovation across the platform.
+              </p>
+              <p>
+                This approach allows ELISENCE to expand in phases while remaining one unified ecosystem for individuals, families, healthcare professionals, healthcare organisations, researchers, governments, and national health systems.
+              </p>
+              <h3 class="why-it-matters-title">Why It Matters</h3>
+              <ul>
+                <li>Every connected capability strengthens the wider ecosystem.</li>
+                <li>Shared intelligence creates broader and more meaningful health context.</li>
+                <li>Every new capability makes the platform more intelligent—not more complex.</li>
+                <li>Modular architecture supports resilience, independent evolution, and continuous innovation.</li>
+                <li>Individuals receive more personalised, connected, and continuous support.</li>
+                <li>Healthcare professionals gain richer context for safer, better-informed decisions.</li>
+                <li>Healthcare organisations benefit from deeper operational and population-level intelligence.</li>
+                <li>Researchers can explore more connected health perspectives within governed environments.</li>
+                <li>Governments and national health systems gain a scalable, resilient, and future-ready digital health foundation.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Governments — Hero-panel design language -->
+      <section class="hero-panel governments-panel">
+        <div class="hero-label">GOVERNMENTS &amp; REGULATORS</div>
+        <h2 class="hero-title">3. Why Governments Trust ELISENCE</h2>
+        <div class="hero-copy">
           <p>
-            Every component of Elisence — from Women+ Health and Diabetes Intelligence to Accessibility,
-            Mental Health, Family (0–18), Environment (Phase 12), and Global Nutrition (Phase 16) —
-            is modular, feature-flagged, clinically aware and built for ministry-grade deployment.
+            Governments and national healthcare systems require more than innovative technology. They need digital infrastructure that is secure, explainable, resilient, auditable, and capable of operating at national scale while protecting citizens' privacy and maintaining regulatory compliance.
           </p>
+          <p>
+            ELISENCE has been designed from its foundations as a governed digital health ecosystem rather than a conventional healthcare application. Every connected capability operates within a shared architecture built around Zero-Trust security, explainable artificial intelligence, modular deployment, and privacy-conscious data governance.
+          </p>
+          <p>
+            The platform is designed to support national deployment through independent capabilities that can be enabled, expanded, updated, or temporarily taken offline without disrupting the wider ecosystem. This modular architecture improves resilience, simplifies maintenance, and allows healthcare systems to evolve continuously without requiring complete platform replacement.
+          </p>
+          <p>
+            Subject to local implementation, configuration, and applicable legal requirements, ELISENCE can be adapted to regional healthcare regulations, clinical workflows, languages, accessibility requirements, and governance policies while remaining one connected digital health ecosystem.
+          </p>
+          <p>
+            Rather than replacing existing healthcare systems, ELISENCE is designed to integrate with them. Built around interoperability principles, the platform supports collaboration with electronic health records, healthcare organisations, research environments, and future digital health services, reducing fragmentation while improving continuity of care.
+          </p>
+          <h3 class="why-it-matters-title">Why It Matters</h3>
           <ul>
-            <li>Each phase can be turned ON/OFF via feature flags.</li>
-            <li>Non-diagnostic, explainable AI is used across the system.</li>
-            <li>Data flows are designed for WORM auditing and national governance.</li>
+            <li>Zero-Trust architecture protects healthcare infrastructure and sensitive information.</li>
+            <li>Explainable AI supports transparency and accountability.</li>
+            <li>Modular capabilities enable resilient national-scale deployment.</li>
+            <li>Privacy, consent, and governance remain fundamental.</li>
+            <li>Jurisdiction-aware deployment supports regional healthcare requirements.</li>
+            <li>Interoperability reduces fragmentation across existing healthcare systems.</li>
+            <li>Independent capabilities allow continuous innovation without disrupting essential services.</li>
+            <li>Governments gain a scalable, resilient, and future-ready digital health foundation.</li>
           </ul>
-        </article>
+        </div>
+      </section>
 
-        <!-- Governments -->
+      <!-- REMAINING SECTIONS -->
+      <section class="sections-grid sections-grid-pair">
+
+        <!-- Built for Real People -->
         <article class="section-panel">
-          <div class="section-tag">Governments &amp; Regulators</div>
-          <h2>3. Why Governments Trust Elisence</h2>
+          <div class="section-tag">HUMANITY &amp; PEOPLE</div>
+          <h2>4. Built for Real People</h2>
           <p>
-            Elisence has been engineered for governments, regulators and ministries who demand
-            auditable, sovereign and culturally aware technology.
+            Healthcare is ultimately about people—not data, devices, or isolated technologies.
           </p>
+          <p>
+            Behind every medical record is a person, a family, a carer, and a unique health journey. ELISENCE is designed to support those journeys by connecting fragmented healthcare experiences into one continuous, intelligent ecosystem that grows with every stage of life.
+          </p>
+          <p>
+            Whether someone is managing a long-term condition, caring for a family member, navigating pregnancy, supporting a child's wellbeing, managing healthy ageing, or simply striving to live a healthier life, ELISENCE brings together relevant information, services, and support within one connected experience.
+          </p>
+          <p>
+            By combining authorised, privacy-preserving, and governed insights from connected capabilities, ELISENCE helps people better understand and navigate their health. Where appropriate, authorised, and permitted by applicable governance, it can also provide healthcare professionals with richer context to support safer, better-informed decisions.
+          </p>
+          <p>
+            Rather than treating every healthcare interaction as an isolated event, ELISENCE continuously builds a broader understanding of each person's health by connecting relevant information across the ecosystem. This enables more personalised support for individuals while helping healthcare professionals make more informed clinical decisions.
+          </p>
+          <p>
+            The result is a digital health ecosystem designed for individuals, families, carers, healthcare professionals, organisations, researchers, governments, and public-sector health systems—while always keeping people at the centre of every connected experience.
+          </p>
+          <h3 class="why-it-matters-title">Why It Matters</h3>
           <ul>
-            <li>Zero-Trust Health AI with strict guardrails and event logging.</li>
-            <li>WORM-ledger audit layer for every critical interaction.</li>
-            <li>National data residency &amp; sovereignty (Qatar-ready design).</li>
-            <li>Non-diagnostic, patient-first architecture.</li>
-            <li>Five-language intelligence (EN, AR, FA, TR, RO).</li>
-            <li>Integration-ready for Cerner, Epic and FHIR-based systems.</li>
+            <li>Health is understood as one continuous journey rather than a series of isolated events.</li>
+            <li>People receive more personalised, connected, and relevant support.</li>
+            <li>Families and carers can contribute to more coordinated care where appropriate.</li>
+            <li>Healthcare professionals gain broader and more meaningful clinical context.</li>
+            <li>Better-connected information supports safer, better-informed decisions.</li>
+            <li>Connected experiences help reduce fragmentation across healthcare.</li>
+            <li>Every relevant new capability strengthens the wider ecosystem for everyone.</li>
           </ul>
-        </article>
-
-        <!-- Founder -->
-        <article class="section-panel">
-          <div class="section-tag">Founder</div>
-          <h2>4. About the Founder — Sam Asi</h2>
-          <p>
-            Sam Asi is the founder and architect of Elisence. He combines a background in
-            engineering, law, digital health, AI safety and large-scale system design.
-          </p>
-          <p>
-            His personal mission is to build a health ecosystem that protects people, empowers families
-            and gives governments the tools needed to run modern health infrastructures safely — without
-            sacrificing human dignity, privacy or cultural values.
-          </p>
-          <p class="link-inline">
-            For more, visit the dedicated founder page:
-            <a href="founder.html">Founder – Sam Asi</a>.
-          </p>
         </article>
 
         <!-- Global Vision -->
         <article class="section-panel">
-          <div class="section-tag">Global Vision</div>
+          <div class="section-tag">GLOBAL VISION</div>
           <h2>5. Our Global Vision</h2>
           <p>
-            Elisence is designed as a universal, sovereign platform that can serve as the foundation of
-            national digital health strategies across GCC, Europe and beyond — a platform where safety,
-            privacy, culture and intelligence work together in one unified system.
+            ELISENCE believes that access to connected, intelligent, and trustworthy digital health support should not be determined by geography, language, or the structure of any one healthcare system.
           </p>
           <p>
-            Whether deployed for a single hospital network or at national scale, the core principle
-            remains the same: <strong>health technology must protect humans first</strong> and stay
-            explainable to clinicians, regulators and families.
-          </p>
-        </article>
-
-        <!-- Humanity & Families -->
-        <article class="section-panel">
-          <div class="section-tag">Humanity &amp; Families</div>
-          <h2>6. Built for Real People, Not Just Systems</h2>
-          <p>
-            Behind every phase of Elisence there is a human story — parents, children, caregivers,
-            clinicians and vulnerable people whose lives are affected by health decisions every day.
+            Our vision is to help build a future in which individuals, families, carers, healthcare professionals, organisations, researchers, governments, and public-sector health systems can participate in one connected ecosystem that supports better health outcomes while respecting privacy, clinical governance, local requirements, and appropriate boundaries of access.
           </p>
           <p>
-            Elisence is built not only as infrastructure, but as a <strong>humanity platform</strong>:
-            a space where Women+, Diabetes, Mental Health, Kids &amp; Teens, Environment and Nutrition
-            are all treated as connected parts of the same real life.
+            Rather than replacing existing healthcare systems, ELISENCE is designed to complement and strengthen them. Where appropriately authorised, relevant information and services can be connected more intelligently to help reduce fragmentation, improve collaboration, and support safer, better-informed decisions.
           </p>
+          <p>
+            Built on a modular, multi-phase architecture, ELISENCE is designed to evolve alongside advances in medicine, artificial intelligence, digital health, and national healthcare priorities while remaining resilient, explainable, interoperable, and human-centred.
+          </p>
+          <p>
+            As the ecosystem grows, every relevant new capability has the potential to strengthen the platform as a whole, creating broader context, deeper intelligence, and greater value for everyone connected to it.
+          </p>
+          <p>
+            Our long-term vision is to help build one of the world's most trusted connected digital health ecosystems—supporting healthier lives, stronger healthcare systems, and more connected societies across future generations.
+          </p>
+          <h3 class="why-it-matters-title">Why It Matters</h3>
+          <ul>
+            <li>Healthcare should become more connected without becoming more complicated.</li>
+            <li>Digital health should strengthen existing healthcare systems rather than attempt to replace them.</li>
+            <li>Better collaboration can support improved outcomes for individuals and communities.</li>
+            <li>Privacy, governance, safety, and trust must remain central as healthcare becomes more connected.</li>
+            <li>National and regional health systems need flexible platforms that can evolve with changing priorities.</li>
+            <li>A shared and governed digital foundation can support continuous innovation and long-term resilience.</li>
+            <li>Every relevant new capability contributes to a stronger and more intelligent ecosystem.</li>
+            <li>Better-connected healthcare has the potential to improve lives across future generations.</li>
+          </ul>
         </article>
 
       </section>
