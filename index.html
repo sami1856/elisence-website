@@ -63,6 +63,18 @@
           overflow-x: hidden;
       }
 
+      .hero-platform-image {
+          display: block;
+          width: 96%;
+          max-width: 1600px;
+          height: auto;
+          margin: 0 auto;
+          filter:
+              drop-shadow(0 25px 40px rgba(0,170,255,.35))
+              drop-shadow(0 50px 90px rgba(0,170,255,.22))
+              drop-shadow(0 80px 140px rgba(0,170,255,.14));
+      }
+
       /* ===== منوی عمودی سمت راست ===== */
       .side-nav {
           position: fixed;
@@ -129,6 +141,12 @@
 
 </head>
 <body>
+
+  <img
+    src="ElisencePlatform_logo.jpeg"
+    alt=""
+    class="hero-platform-image"
+  />
 
   <!-- منوی عمودی سمت راست -->
   <nav class="side-nav">
