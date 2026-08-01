@@ -125,88 +125,107 @@
       between the left edge and the fixed navigation.
     */
 
-    main {
-      position: relative;
-      width: calc(100vw - var(--desktop-nav-space));
-      min-height: 100vh;
-      padding:
-        var(--desktop-page-gap)
-        0
-        80px
-        var(--desktop-page-gap);
-    }
+main {
+  position: relative;
+  width: calc(100vw - var(--desktop-nav-space));
+  min-height: 100vh;
 
-    /*
-      HERO PANEL
+  /* پنل بالاتر می‌رود */
+  padding:
+    4px
+    0
+    80px
+    var(--desktop-page-gap);
+}
 
-      No fixed height.
-      No max-height.
-      No object-fit containment.
-      The image scales naturally according to its aspect ratio.
-    */
+.homepage-hero {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  isolation: isolate;
 
-    .homepage-hero {
-      position: relative;
-      width: 100%;
-      max-width: 1600px;
-      margin: 0;
-      padding: 0;
-      line-height: 0;
-      isolation: isolate;
-    }
+  /* اجازه می‌دهد نور زیر پنل بیرون دیده شود */
+  overflow: visible;
+}
 
-    .homepage-hero-image {
-      display: block;
+.homepage-hero-image {
+  display: block;
+  width: 100%;
 
-      width: 100%;
-      height: auto;
+  /* ارتفاع کمتر، بدون تغییر عرض پنل */
+  height: clamp(300px, 40vw, 500px);
 
-      margin: 0;
-      padding: 0;
+  margin: 0;
+  padding: 0;
 
-      border: 0;
-      outline: 0;
+  border: 0;
+  outline: 0;
 
-      object-fit: unset;
-      object-position: unset;
+  /* تصویر تمام عرض را پر می‌کند و ارتفاع کمتر می‌شود */
+  object-fit: fill;
 
-      user-select: none;
-      -webkit-user-select: none;
-      -webkit-user-drag: none;
-    }
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
 
-    /*
-      SOFT BLUE UNDERLIGHT
+/*
+  نور آبی واقعی فقط از زیر پنل خارج می‌شود
+*/
 
-      The light remains beneath the image
-      and does not create a visible artificial border.
-    */
+.homepage-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
 
-    .homepage-hero::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
+  left: 5%;
+  right: 5%;
+  bottom: -30px;
 
-      left: 7%;
-      right: 7%;
-      bottom: -30px;
+  height: 72px;
+  pointer-events: none;
 
-      height: 76px;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(30, 220, 255, 0.95) 0%,
+      rgba(0, 155, 255, 0.72) 28%,
+      rgba(0, 95, 255, 0.34) 58%,
+      rgba(0, 40, 150, 0.12) 78%,
+      transparent 100%
+    );
 
-      pointer-events: none;
+  filter: blur(22px);
+  transform: scaleX(0.92);
+  opacity: 0.95;
+}
 
-      background:
-        radial-gradient(
-          ellipse at center,
-          rgba(0, 210, 255, 0.7) 0%,
-          rgba(0, 145, 255, 0.34) 40%,
-          rgba(0, 75, 210, 0.12) 70%,
-          transparent 100%
-        );
+.homepage-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
 
-      filter: blur(24px);
-      opacity: 0.95;
-    }
+  left: 12%;
+  right: 12%;
+  bottom: -11px;
+
+  height: 34px;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(120, 235, 255, 0.82) 0%,
+      rgba(0, 170, 255, 0.46) 42%,
+      transparent 78%
+    );
+
+  filter: blur(13px);
+  opacity: 0.9;
+}
 
     /*
       FIXED RIGHT-SIDE NAVIGATION
@@ -435,6 +454,39 @@
         font-size: 8px;
       }
     }
+    @media (max-width: 1200px) {
+  .homepage-hero-image {
+    height: clamp(260px, 39vw, 420px);
+  }
+}
+
+@media (max-width: 900px) {
+  main {
+    padding: 4px 12px 60px;
+  }
+
+  .homepage-hero-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .homepage-hero::before {
+    left: 4%;
+    right: 4%;
+    bottom: -22px;
+    height: 54px;
+    filter: blur(18px);
+  }
+
+  .homepage-hero::after {
+    left: 10%;
+    right: 10%;
+    bottom: -9px;
+    height: 28px;
+    filter: blur(11px);
+  }
+}
   </style>
 </head>
 
