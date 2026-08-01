@@ -999,6 +999,89 @@ main {
     }
 
 
+    /* ===== MEDICAL JOURNEY FEATURE CARD V1 (namespaced; additive only) ===== */
+    .mj-feature {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0;
+      padding: 24px 0 72px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mj-feature-panel {
+      box-sizing: border-box;
+      display: block;
+      position: relative;
+      width: min(100%, 520px);
+      aspect-ratio: 2 / 3;
+      margin: 0 auto;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(8, 15, 28, 0.92);
+      border: 1px solid rgba(120, 200, 255, 0.22);
+      box-shadow: 0 0 32px 4px rgba(50, 170, 255, 0.45);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transform: scale(1);
+      transition: transform 350ms ease, box-shadow 350ms ease;
+    }
+
+    .mj-feature-panel:hover,
+    .mj-feature-panel:focus-visible {
+      transform: scale(1.02);
+      box-shadow: 0 0 48px 8px rgba(50, 170, 255, 0.7);
+      outline: none;
+    }
+
+    .mj-feature-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border: 0;
+    }
+
+    @media (max-width: 1200px) and (min-width: 901px) {
+      .mj-feature {
+        padding: 20px 0 64px;
+      }
+
+      .mj-feature-panel {
+        width: min(100%, 460px);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .mj-feature {
+        width: 100%;
+        max-width: none;
+        padding: 16px 0 48px;
+      }
+
+      .mj-feature-panel {
+        width: 100%;
+        max-width: none;
+        border-radius: 28px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mj-feature-panel {
+        transition: none;
+      }
+
+      .mj-feature-panel:hover,
+      .mj-feature-panel:focus-visible {
+        transform: none;
+      }
+    }
+
+
     /* ===== WAVE 3 — CONNECTED ECOSYSTEM (namespaced; additive only) ===== */
     .wave3-ecosystem { box-sizing:border-box; width:100%; max-width:1600px; margin:0; padding:72px 0 110px; color:#e8f4ff; }
     .wave3-ecosystem-header { max-width:860px; margin:0 0 40px; }
@@ -1035,6 +1118,1192 @@ main {
       .wave3-ecosystem { width: 100%; max-width: none; padding: 48px 0 40px; }
       .wave3-ecosystem-image { border-radius: 18px; }
     }
+
+
+    /* ===== WAVE 4 — TRUST ARCHITECTURE (namespaced; additive only) ===== */
+    .wave4-trust {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0;
+      padding: 72px 0 110px;
+      color: #e8f4ff;
+    }
+
+    .wave4-trust-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .wave4-trust-content {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .wave4-trust-art {
+      position: sticky;
+      top: 24px;
+      min-width: 0;
+    }
+
+    .wave4-trust-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 28px;
+    }
+
+    .wave4-panel {
+      position: relative;
+      isolation: isolate;
+      overflow: visible;
+      padding: 22px 22px 24px;
+      border-radius: 22px;
+      background:
+        linear-gradient(165deg, rgba(18, 48, 92, 0.38) 0%, rgba(4, 12, 28, 0.72) 55%, rgba(2, 6, 16, 0.88) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        0 -4px 16px rgba(0, 145, 255, 0.08),
+        -6px 0 18px rgba(0, 155, 255, 0.12),
+        6px 0 18px rgba(0, 155, 255, 0.12),
+        0 14px 28px rgba(0, 170, 255, 0.18);
+    }
+
+    .wave4-panel::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      left: 10%;
+      right: 10%;
+      bottom: -16px;
+      height: 40px;
+      border-radius: 999px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(55, 220, 255, 0.48) 0%,
+          rgba(0, 160, 255, 0.22) 45%,
+          transparent 78%
+        );
+      filter: blur(16px);
+      opacity: 0.82;
+    }
+
+    .wave4-title {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 3.2vw, 40px);
+      font-weight: 650;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #f2f8ff;
+    }
+
+    .wave4-subtitle {
+      margin: 0 0 16px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7ec8ff;
+    }
+
+    .wave4-intro p {
+      margin: 0 0 14px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #a9c7e8;
+    }
+
+    .wave4-intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    .wave4-panel-title {
+      margin: 0 0 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #d7ecff;
+    }
+
+    .wave4-engine-grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .wave4-engine-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(0, 12, 28, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 16px rgba(0, 140, 255, 0.08);
+      color: #e8f4ff;
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .wave4-engine-icon {
+      flex-shrink: 0;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .wave4-reg-copy p,
+    .wave4-footer-copy p {
+      margin: 0 0 12px;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #a9c7e8;
+    }
+
+    .wave4-reg-copy p:last-child,
+    .wave4-footer-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .wave4-reg-list {
+      list-style: none;
+      margin: 12px 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .wave4-reg-list li {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(0, 12, 28, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e3f2ff;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .wave4-ecosystem-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .wave4-ecosystem-list li {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(0, 12, 28, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e3f2ff;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .wave4-footer-lead {
+      margin: 0 0 12px !important;
+      font-size: 16px !important;
+      font-weight: 650 !important;
+      color: #f0f7ff !important;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 1200px) and (min-width: 901px) {
+      .wave4-trust { padding: 64px 0 90px; }
+      .wave4-trust-layout { gap: 20px; }
+      .wave4-engine-grid,
+      .wave4-ecosystem-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .wave4-trust {
+        width: 100%;
+        max-width: none;
+        padding: 48px 0 40px;
+      }
+
+      .wave4-trust-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .wave4-trust-art {
+        position: static;
+      }
+
+      .wave4-trust-image {
+        border-radius: 18px;
+      }
+
+      .wave4-engine-grid,
+      .wave4-ecosystem-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* ===== WAVE 5 — FROM INTELLIGENCE TO BETTER OUTCOMES (namespaced; additive only) ===== */
+    .wave5-outcomes {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0;
+      padding: 72px 0 110px;
+      color: #e8f4ff;
+    }
+
+    .wave5-outcomes-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .wave5-outcomes-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-width: 0;
+      padding-top: 8px;
+    }
+
+    .wave5-outcomes-art {
+      position: sticky;
+      top: 28px;
+      min-width: 0;
+      align-self: stretch;
+    }
+
+    .wave5-artwork-frame {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      min-height: 520px;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(165deg, rgba(10, 28, 56, 0.55) 0%, rgba(2, 8, 20, 0.88) 60%, rgba(0, 4, 12, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow:
+        0 -5px 18px rgba(0, 145, 255, 0.08),
+        -8px 0 22px rgba(0, 155, 255, 0.12),
+        8px 0 22px rgba(0, 155, 255, 0.12),
+        0 18px 36px rgba(0, 170, 255, 0.16);
+    }
+
+    .wave5-artwork-frame::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      left: 12%;
+      right: 12%;
+      bottom: -18px;
+      height: 44px;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at center, rgba(55, 220, 255, 0.45) 0%, rgba(0, 160, 255, 0.2) 45%, transparent 78%);
+      filter: blur(16px);
+      opacity: 0.85;
+    }
+
+    .wave5-artwork-image {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .wave5-artwork-image[src] {
+      display: block;
+    }
+
+    .wave5-artwork-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 28px;
+      text-align: center;
+      color: #8fb8dc;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .wave5-artwork-frame:has(.wave5-artwork-image[src]) .wave5-artwork-placeholder {
+      display: none;
+    }
+
+    .wave5-card {
+      position: relative;
+      isolation: isolate;
+      overflow: visible;
+      padding: 24px 26px 26px;
+      border-radius: 24px;
+      background:
+        linear-gradient(165deg, rgba(18, 48, 92, 0.36) 0%, rgba(4, 12, 28, 0.7) 55%, rgba(2, 6, 16, 0.88) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow:
+        0 -4px 16px rgba(0, 145, 255, 0.07),
+        -6px 0 18px rgba(0, 155, 255, 0.11),
+        6px 0 18px rgba(0, 155, 255, 0.11),
+        0 14px 28px rgba(0, 170, 255, 0.16);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .wave5-card::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      left: 12%;
+      right: 12%;
+      bottom: -15px;
+      height: 38px;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at center, rgba(55, 220, 255, 0.42) 0%, rgba(0, 160, 255, 0.18) 48%, transparent 78%);
+      filter: blur(15px);
+      opacity: 0.82;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .wave5-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.24);
+        box-shadow:
+          0 -5px 18px rgba(0, 150, 255, 0.1),
+          -8px 0 20px rgba(0, 175, 255, 0.14),
+          8px 0 20px rgba(0, 175, 255, 0.14),
+          0 18px 32px rgba(0, 195, 255, 0.2);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wave5-card { transition: none; }
+      .wave5-card:hover { transform: none; }
+    }
+
+    .wave5-card-1 {
+      width: 100%;
+      max-width: 100%;
+      margin-right: 0;
+      padding: 28px 30px 30px;
+    }
+
+    .wave5-card-2 {
+      width: 88%;
+      margin-left: auto;
+      margin-right: 2%;
+    }
+
+    .wave5-card-3 {
+      width: 92%;
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    .wave5-card-4 {
+      width: 84%;
+      margin-left: auto;
+      margin-right: 6%;
+    }
+
+    .wave5-eyebrow {
+      margin: 0 0 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #7ec8ff;
+    }
+
+    .wave5-heading {
+      margin: 0 0 16px;
+      font-size: clamp(28px, 3.4vw, 42px);
+      font-weight: 650;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: #f2f8ff;
+    }
+
+    .wave5-copy {
+      margin: 0;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: #a9c7e8;
+    }
+
+    .wave5-bottom {
+      margin-top: 34px;
+      position: relative;
+      isolation: isolate;
+      overflow: visible;
+      padding: 28px 28px 30px;
+      border-radius: 26px;
+      background:
+        linear-gradient(165deg, rgba(18, 48, 92, 0.36) 0%, rgba(4, 12, 28, 0.72) 55%, rgba(2, 6, 16, 0.9) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow:
+        0 -5px 18px rgba(0, 145, 255, 0.08),
+        0 16px 34px rgba(0, 170, 255, 0.16);
+    }
+
+    .wave5-bottom::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      left: 14%;
+      right: 14%;
+      bottom: -18px;
+      height: 44px;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at center, rgba(55, 220, 255, 0.45) 0%, rgba(0, 160, 255, 0.18) 48%, transparent 78%);
+      filter: blur(16px);
+      opacity: 0.85;
+    }
+
+    .wave5-bottom-title {
+      margin: 0 0 20px;
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 650;
+      line-height: 1.25;
+      color: #f0f7ff;
+    }
+
+    .wave5-capsule-grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 14px;
+    }
+
+    .wave5-capsule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 54px;
+      padding: 14px 16px;
+      border-radius: 999px;
+      background: rgba(0, 14, 32, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow:
+        0 0 18px rgba(0, 150, 255, 0.12),
+        inset 0 0 14px rgba(70, 170, 255, 0.06);
+      color: #e8f4ff;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .wave5-capsule-dot {
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #7ed0ff 0%, #1185ff 70%);
+      box-shadow: 0 0 12px rgba(0, 180, 255, 0.75);
+    }
+
+    @media (max-width: 1200px) and (min-width: 901px) {
+      .wave5-outcomes { padding: 64px 0 90px; }
+      .wave5-outcomes-layout { gap: 22px; }
+      .wave5-artwork-frame { min-height: 460px; }
+      .wave5-card-2 { width: 92%; }
+      .wave5-card-3 { width: 94%; }
+      .wave5-card-4 { width: 90%; }
+    }
+
+    @media (max-width: 900px) {
+      .wave5-outcomes {
+        width: 100%;
+        max-width: none;
+        padding: 48px 0 40px;
+      }
+
+      .wave5-outcomes-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .wave5-outcomes-art {
+        position: static;
+      }
+
+      .wave5-artwork-frame {
+        min-height: 320px;
+        aspect-ratio: 4 / 3;
+        border-radius: 20px;
+      }
+
+      .wave5-card-1,
+      .wave5-card-2,
+      .wave5-card-3,
+      .wave5-card-4 {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .wave5-capsule-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wave5-bottom {
+        padding: 22px 18px 24px;
+        border-radius: 20px;
+      }
+    }
+
+    /* ===== WAVE 6 — FUTURE + FOOTER (namespaced; additive only) ===== */
+
+    .wave6-future {
+
+      box-sizing: border-box;
+
+      width: 100%;
+
+      max-width: 1600px;
+
+      margin: 0;
+
+      padding: 72px 0 48px;
+
+      color: #e8f4ff;
+
+    }
+
+
+
+    .wave6-hero {
+
+      position: relative;
+
+      isolation: isolate;
+
+      min-height: 240px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      gap: 16px;
+
+      padding: 42px 28px 36px;
+
+      border-radius: 28px;
+
+      background:
+
+        linear-gradient(165deg, rgba(14, 36, 72, 0.34) 0%, rgba(4, 12, 28, 0.72) 55%, rgba(2, 6, 16, 0.9) 100%);
+
+      border: 1px solid rgba(255, 255, 255, 0.14);
+
+      box-shadow:
+
+        0 -5px 18px rgba(0, 145, 255, 0.08),
+
+        0 16px 34px rgba(0, 170, 255, 0.14);
+
+    }
+
+
+
+    .wave6-hero::after {
+
+      content: "";
+
+      position: absolute;
+
+      z-index: -1;
+
+      pointer-events: none;
+
+      left: 16%;
+
+      right: 16%;
+
+      bottom: -16px;
+
+      height: 40px;
+
+      border-radius: 999px;
+
+      background: radial-gradient(ellipse at center, rgba(55, 220, 255, 0.4) 0%, rgba(0, 160, 255, 0.16) 48%, transparent 78%);
+
+      filter: blur(16px);
+
+      opacity: 0.82;
+
+    }
+
+
+
+    .wave6-title {
+
+      margin: 0;
+
+      font-size: clamp(32px, 4vw, 48px);
+
+      font-weight: 650;
+
+      line-height: 1.1;
+
+      letter-spacing: -0.03em;
+
+      color: #f2f8ff;
+
+    }
+
+
+
+    .wave6-subtitle {
+
+      margin: 0;
+
+      font-size: clamp(18px, 2vw, 24px);
+
+      font-weight: 600;
+
+      color: #7ec8ff;
+
+      letter-spacing: 0.02em;
+
+    }
+
+
+
+    .wave6-support {
+
+      margin: 0;
+
+      max-width: 68ch;
+
+      font-size: 16px;
+
+      line-height: 1.7;
+
+      color: #a9c7e8;
+
+    }
+
+
+
+    .wave6-cta-row {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      gap: 12px;
+
+      margin-top: 8px;
+
+    }
+
+
+
+    .wave6-cta {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      min-height: 46px;
+
+      padding: 12px 24px;
+
+      border-radius: 999px;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      letter-spacing: 0.1em;
+
+      text-transform: uppercase;
+
+      color: #e9f7ff;
+
+      background:
+
+        radial-gradient(circle at 50% 0%, rgba(0, 145, 255, 0.42), rgba(0, 24, 60, 0.92) 55%, rgba(0, 7, 22, 0.98) 100%);
+
+      border: 1px solid rgba(90, 190, 255, 0.72);
+
+      box-shadow:
+
+        inset 0 0 12px rgba(65, 170, 255, 0.16),
+
+        0 0 14px rgba(0, 140, 255, 0.55);
+
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+    }
+
+
+
+    @media (hover: hover) and (pointer: fine) {
+
+      .wave6-cta:hover {
+
+        transform: translateY(-2px);
+
+        box-shadow:
+
+          inset 0 0 14px rgba(90, 210, 255, 0.22),
+
+          0 0 20px rgba(0, 190, 255, 0.75);
+
+      }
+
+    }
+
+
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .wave6-cta { transition: none; }
+
+      .wave6-cta:hover { transform: none; }
+
+    }
+
+
+
+    .wave6-divider {
+
+      width: min(420px, 55%);
+
+      height: 1px;
+
+      margin: 42px auto 48px;
+
+      border: 0;
+
+      background: linear-gradient(90deg, transparent, rgba(90, 190, 255, 0.55), transparent);
+
+      box-shadow: 0 0 12px rgba(0, 170, 255, 0.25);
+
+    }
+
+
+
+    .wave6-footer {
+
+      display: grid;
+
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+
+      gap: 24px;
+
+      padding: 8px 4px 36px;
+
+    }
+
+
+
+    .wave6-footer-col-title {
+
+      margin: 0 0 14px;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.16em;
+
+      text-transform: uppercase;
+
+      color: #9fd0ff;
+
+    }
+
+
+
+    .wave6-footer-list {
+
+      list-style: none;
+
+      margin: 0;
+
+      padding: 0;
+
+      display: grid;
+
+      gap: 10px;
+
+    }
+
+
+
+    .wave6-footer-list a,
+
+    .wave6-footer-list span {
+
+      color: #a9c7e8;
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+      line-height: 1.4;
+
+      transition: color 0.2s ease;
+
+    }
+
+
+
+    @media (hover: hover) and (pointer: fine) {
+
+      .wave6-footer-list a:hover { color: #e8f4ff; }
+
+    }
+
+
+
+    .wave6-bottom-bar {
+
+      display: grid;
+
+      grid-template-columns: 1.2fr 1fr 1.2fr;
+
+      gap: 16px;
+
+      align-items: center;
+
+      padding: 18px 20px;
+
+      border-radius: 18px;
+
+      background: rgba(0, 12, 28, 0.45);
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+
+      box-shadow: 0 0 20px rgba(0, 140, 255, 0.1);
+
+    }
+
+
+
+    .wave6-bottom-left,
+
+    .wave6-bottom-center,
+
+    .wave6-bottom-right {
+
+      font-size: 12.5px;
+
+      line-height: 1.55;
+
+      color: #9bb8d8;
+
+    }
+
+
+
+    .wave6-bottom-center {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      gap: 14px;
+
+    }
+
+
+
+    .wave6-bottom-center a {
+
+      color: #9bb8d8;
+
+      text-decoration: none;
+
+    }
+
+
+
+    .wave6-bottom-right {
+
+      text-align: right;
+
+    }
+
+
+
+    .wave6-bottom-strong {
+
+      color: #d7ecff;
+
+      font-weight: 600;
+
+    }
+
+
+
+    .wave6-status {
+
+      margin-top: 16px;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 14px;
+
+      padding: 14px 18px;
+
+      border-radius: 16px;
+
+      background:
+
+        linear-gradient(165deg, rgba(14, 36, 72, 0.34) 0%, rgba(4, 12, 28, 0.72) 100%);
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+
+      box-shadow:
+
+        0 0 18px rgba(0, 150, 255, 0.12),
+
+        0 10px 24px rgba(0, 40, 100, 0.25);
+
+    }
+
+
+
+    .wave6-status-left {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 4px;
+
+      font-size: 13px;
+
+      color: #a9c7e8;
+
+    }
+
+
+
+    .wave6-status-label {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      font-weight: 650;
+
+      color: #e8f4ff;
+
+    }
+
+
+
+    .wave6-status-dot {
+
+      width: 8px;
+
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: #34d399;
+
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.8);
+
+    }
+
+
+
+    .wave6-status-badges {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      justify-content: flex-end;
+
+    }
+
+
+
+    .wave6-badge {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      min-height: 34px;
+
+      padding: 8px 14px;
+
+      border-radius: 999px;
+
+      font-size: 11px;
+
+      font-weight: 650;
+
+      letter-spacing: 0.08em;
+
+      text-transform: uppercase;
+
+      color: #d7ecff;
+
+      background: rgba(0, 16, 36, 0.55);
+
+      border: 1px solid rgba(90, 185, 255, 0.35);
+
+      box-shadow: 0 0 14px rgba(0, 150, 255, 0.16);
+
+    }
+
+
+
+    @media (max-width: 1200px) and (min-width: 901px) {
+
+      .wave6-future { padding: 64px 0 40px; }
+
+      .wave6-footer { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 18px; }
+
+      .wave6-bottom-bar { grid-template-columns: 1fr; text-align: center; }
+
+      .wave6-bottom-right { text-align: center; }
+
+    }
+
+
+
+    @media (max-width: 900px) {
+
+      .wave6-future {
+
+        width: 100%;
+
+        max-width: none;
+
+        padding: 48px 0 120px;
+
+      }
+
+
+
+      .wave6-hero {
+
+        min-height: 220px;
+
+        padding: 32px 18px 28px;
+
+        border-radius: 20px;
+
+      }
+
+
+
+      .wave6-cta-row {
+
+        width: 100%;
+
+        flex-direction: column;
+
+      }
+
+
+
+      .wave6-cta { width: 100%; }
+
+
+
+      .wave6-footer {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 22px 14px;
+
+        padding-bottom: 28px;
+
+      }
+
+
+
+      .wave6-bottom-bar {
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+      }
+
+
+
+      .wave6-bottom-center { justify-content: center; }
+
+      .wave6-bottom-right { text-align: center; }
+
+
+
+      .wave6-status {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+      }
+
+
+
+      .wave6-status-badges { justify-content: flex-start; }
+
+    }
+
 
   </style>
 </head>
@@ -1169,7 +2438,7 @@ main {
           </div>
           <h3 class="wave2-capability-title">Medical Journey</h3>
           <p class="wave2-capability-description">A connected health journey bringing records, plans, progress and meaningful health context together across time.</p>
-          <span class="wave2-capability-action" aria-hidden="true">Learn More</span>
+          <a class="wave2-capability-action" href="medical-journey.html">Learn More</a>
         </li>
         <li class="wave2-capability-card">
           <div class="wave2-capability-icon" aria-hidden="true">
@@ -1244,6 +2513,20 @@ main {
       </ul>
     </section>
 
+    <section id="medical-journey-feature" class="mj-feature" aria-label="ELISENCE Medical Journey">
+      <a class="mj-feature-panel" href="medical-journey.html">
+        <img
+          class="mj-feature-image"
+          src="assets/Medicaljourney.jpeg"
+          alt="ELISENCE Medical Journey"
+          width="1024"
+          height="1536"
+          decoding="async"
+          loading="lazy"
+        />
+      </a>
+    </section>
+
     <section id="connected-ecosystem" class="wave3-ecosystem" aria-labelledby="wave3-ecosystem-heading">
       <header class="wave3-ecosystem-header">
         <p class="wave3-ecosystem-eyebrow">CONNECTED ECOSYSTEM</p>
@@ -1263,6 +2546,357 @@ main {
         />
       </div>
     </section>
+
+    <section id="trust-architecture" class="wave4-trust" aria-labelledby="wave4-trust-title">
+      <div class="wave4-trust-layout">
+        <div class="wave4-trust-content">
+          <article class="wave4-panel wave4-panel-intro">
+            <h2 id="wave4-trust-title" class="wave4-title">The Trust Architecture</h2>
+            <p class="wave4-subtitle">Trusted Digital Health Infrastructure</p>
+            <div class="wave4-intro">
+              <p>Connected healthcare is not created by adding more digital systems.
+It is created by establishing one trusted foundation where people, organisations, intelligence and information can work together with confidence.</p>
+              <p>ELISENCE provides the trusted digital infrastructure that enables governments, national health services, healthcare organisations, professionals, researchers, insurers and citizens to collaborate through one secure, governed and intelligent ecosystem.</p>
+              <p>Rather than replacing existing healthcare systems, ELISENCE is designed to connect them—preserving continuity, strengthening interoperability and enabling authorised information to move securely, responsibly and transparently wherever it is needed.</p>
+              <p>Engineered to support healthcare at every level—from local clinics and regional providers to national health systems and future international collaborations—the platform combines Zero Trust Security, Privacy by Design, Explainable AI, Clinical Governance and Human Oversight within one unified Trust Engine.</p>
+            </div>
+          </article>
+
+          <article class="wave4-panel">
+            <h3 class="wave4-panel-title">THE TRUST ENGINE</h3>
+            <ul class="wave4-engine-grid">
+              <li class="wave4-engine-card"><span class="wave4-engine-icon" aria-hidden="true">🛡</span><span>Zero Trust Security</span></li>
+              <li class="wave4-engine-card"><span class="wave4-engine-icon" aria-hidden="true">🔒</span><span>Privacy by Design</span></li>
+              <li class="wave4-engine-card"><span class="wave4-engine-icon" aria-hidden="true">🧠</span><span>Explainable AI</span></li>
+              <li class="wave4-engine-card"><span class="wave4-engine-icon" aria-hidden="true">🏛</span><span>Clinical &amp; Regulatory Governance</span></li>
+              <li class="wave4-engine-card"><span class="wave4-engine-icon" aria-hidden="true">👥</span><span>Human Oversight</span></li>
+              <li class="wave4-engine-card"><span class="wave4-engine-icon" aria-hidden="true">🔄</span><span>Interoperability</span></li>
+              <li class="wave4-engine-card"><span class="wave4-engine-icon" aria-hidden="true">📋</span><span>Continuous Audit &amp; Accountability</span></li>
+              <li class="wave4-engine-card"><span class="wave4-engine-icon" aria-hidden="true">🌍</span><span>National-Scale Infrastructure</span></li>
+            </ul>
+          </article>
+
+          <article class="wave4-panel">
+            <h3 class="wave4-panel-title">Adaptive Regulatory Intelligence</h3>
+            <div class="wave4-reg-copy">
+              <p>Healthcare regulations differ across countries.</p>
+              <p>ELISENCE is architected to identify the authorised operational jurisdiction and dynamically apply the appropriate governance, privacy, security and clinical workflows required for that environment.</p>
+              <p>Designed to support regulatory frameworks including:</p>
+              <ul class="wave4-reg-list">
+                <li>FDA</li>
+                <li>NHS</li>
+                <li>EU MDR</li>
+                <li>GCC Healthcare Frameworks</li>
+                <li>National Healthcare Regulations</li>
+              </ul>
+              <p>The platform adapts its governance layer while preserving one trusted global architecture.</p>
+            </div>
+          </article>
+
+          <article class="wave4-panel">
+            <h3 class="wave4-panel-title">Supporting a Connected Healthcare Ecosystem</h3>
+            <ul class="wave4-ecosystem-list">
+              <li>Governments</li>
+              <li>National Health Services</li>
+              <li>Hospitals &amp; Health Systems</li>
+              <li>Healthcare Professionals</li>
+              <li>Insurance Organisations</li>
+              <li>Research Institutions</li>
+              <li>Universities</li>
+              <li>Pharmacies</li>
+              <li>Public Health Organisations</li>
+              <li>Citizens &amp; Families</li>
+            </ul>
+          </article>
+
+          <article class="wave4-panel wave4-panel-footer">
+            <div class="wave4-footer-copy">
+              <p class="wave4-footer-lead">Trusted by Design.<br />Built for Scale.</p>
+              <p>Trust is not a feature.<br />It is the infrastructure that makes connected healthcare possible.</p>
+              <p>Every clinical decision deserves trusted infrastructure.</p>
+            </div>
+          </article>
+        </div>
+
+        <aside class="wave4-trust-art" aria-label="Wave 4 Trust Architecture artwork">
+          <img
+            class="wave4-trust-image"
+            src="assets/Wave4.1.jpeg"
+            alt="ELISENCE Trust Architecture artwork"
+            width="1536"
+            height="1024"
+            decoding="async"
+            loading="lazy"
+          />
+        </aside>
+      </div>
+    </section>
+
+    <section id="better-outcomes" class="wave5-outcomes" aria-labelledby="wave5-heading">
+      <div class="wave5-outcomes-layout">
+        <div class="wave5-outcomes-content">
+          <article class="wave5-card wave5-card-1">
+            <p class="wave5-eyebrow">WAVE 5</p>
+            <h2 id="wave5-heading" class="wave5-heading">From Intelligence to Better Outcomes</h2>
+            <p class="wave5-copy">Healthcare should not simply become more digital.
+It should become safer, more coordinated, more proactive and more human.</p>
+          </article>
+
+          <article class="wave5-card wave5-card-2">
+            <p class="wave5-copy">Built upon its trusted digital health infrastructure, ELISENCE transforms authorised health information into explainable intelligence that enables earlier intervention, better-informed clinical decisions and stronger collaboration across the entire healthcare ecosystem.</p>
+          </article>
+
+          <article class="wave5-card wave5-card-3">
+            <p class="wave5-copy">Rather than delivering isolated insights, ELISENCE continuously converts trusted data into coordinated intelligence—connecting individuals, families, healthcare professionals, healthcare organisations and intelligent services through one governed platform that delivers the right information, to the right people, at the right time.</p>
+          </article>
+
+          <article class="wave5-card wave5-card-4">
+            <p class="wave5-copy">The result is measurable improvements for individuals, healthcare organisations and national health systems—creating healthier populations, more resilient healthcare services and better long-term outcomes.</p>
+          </article>
+        </div>
+
+        <aside class="wave5-outcomes-art" aria-label="Wave 5 outcomes artwork">
+          <div class="wave5-artwork-frame">
+            <img
+              class="wave5-artwork-image"
+              src="assets/Wave5.jpeg"
+              alt="ELISENCE Wave 5 approved artwork"
+              width="1012"
+              height="765"
+              decoding="async"
+              loading="lazy"
+            />
+          </div>
+        </aside>
+      </div>
+
+      <div class="wave5-bottom">
+        <h3 class="wave5-bottom-title">Better Outcomes Through Connected Intelligence</h3>
+        <ul class="wave5-capsule-grid">
+          <li class="wave5-capsule"><span class="wave5-capsule-dot" aria-hidden="true"></span><span>Earlier detection of health risks</span></li>
+          <li class="wave5-capsule"><span class="wave5-capsule-dot" aria-hidden="true"></span><span>Better clinical decision support</span></li>
+          <li class="wave5-capsule"><span class="wave5-capsule-dot" aria-hidden="true"></span><span>Reduced fragmentation across the care journey</span></li>
+          <li class="wave5-capsule"><span class="wave5-capsule-dot" aria-hidden="true"></span><span>Improved operational efficiency</span></li>
+          <li class="wave5-capsule"><span class="wave5-capsule-dot" aria-hidden="true"></span><span>Stronger patient engagement</span></li>
+          <li class="wave5-capsule"><span class="wave5-capsule-dot" aria-hidden="true"></span><span>More coordinated multidisciplinary care</span></li>
+          <li class="wave5-capsule"><span class="wave5-capsule-dot" aria-hidden="true"></span><span>Better population health intelligence</span></li>
+          <li class="wave5-capsule"><span class="wave5-capsule-dot" aria-hidden="true"></span><span>More resilient and sustainable healthcare systems</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="future" class="wave6-future" aria-labelledby="wave6-title">
+
+      <div class="wave6-hero">
+
+        <h2 id="wave6-title" class="wave6-title">The Future Is Connected.</h2>
+
+        <p class="wave6-subtitle">And It Starts Today.</p>
+
+        <p class="wave6-support">ELISENCE is building one trusted digital health ecosystem where individuals, healthcare professionals, organisations, governments and intelligent technologies can work together to create better health for everyone.</p>
+
+        <div class="wave6-cta-row">
+
+          <a class="wave6-cta" href="about.html">Explore ELISENCE</a>
+
+          <a class="wave6-cta" href="company-profile/">Company Profile</a>
+
+          <a class="wave6-cta" href="contact.html">Contact Us</a>
+
+        </div>
+
+      </div>
+
+
+
+      <hr class="wave6-divider" />
+
+
+
+      <footer class="wave6-footer" aria-label="Site footer">
+
+      <div class="wave6-footer-col">
+
+        <h3 class="wave6-footer-col-title">Platform</h3>
+
+        <ul class="wave6-footer-list">
+
+          <li><a href="medical-journey.html">Medical Journey</a></li>
+
+          <li><span>Daily Brief</span></li>
+
+          <li><a href="#platform-capabilities">Medical Intelligence</a></li>
+
+          <li><span>Blood Test Reading</span></li>
+
+          <li><span>Predictive Health</span></li>
+
+          <li><a href="video.html">Media</a></li>
+
+        </ul>
+
+      </div>
+
+
+
+      <div class="wave6-footer-col">
+
+        <h3 class="wave6-footer-col-title">Solutions</h3>
+
+        <ul class="wave6-footer-list">
+
+          <li><a href="about.html">Individuals</a></li>
+
+          <li><a href="about.html">Healthcare Professionals</a></li>
+
+          <li><a href="governments.html">Hospitals</a></li>
+
+          <li><a href="governments.html">Governments</a></li>
+
+          <li><span>Insurance</span></li>
+
+          <li><span>Research</span></li>
+
+        </ul>
+
+      </div>
+
+
+
+      <div class="wave6-footer-col">
+
+        <h3 class="wave6-footer-col-title">Company</h3>
+
+        <ul class="wave6-footer-list">
+
+          <li><a href="about.html">About</a></li>
+
+          <li><a href="story.html">Mission</a></li>
+
+          <li><a href="about.html">Vision</a></li>
+
+          <li><a href="#trust-architecture">Trust Architecture</a></li>
+
+          <li><a href="founder.html">Founder</a></li>
+
+          <li><span>Careers (Future)</span></li>
+
+        </ul>
+
+      </div>
+
+
+
+      <div class="wave6-footer-col">
+
+        <h3 class="wave6-footer-col-title">Resources</h3>
+
+        <ul class="wave6-footer-list">
+
+          <li><a href="articles.html">Articles</a></li>
+
+          <li><a href="video.html">Videos</a></li>
+
+          <li><span>Documentation</span></li>
+
+          <li><span>Privacy</span></li>
+
+          <li><span>Security</span></li>
+
+          <li><span>Compliance</span></li>
+
+        </ul>
+
+      </div>
+
+
+
+      <div class="wave6-footer-col">
+
+        <h3 class="wave6-footer-col-title">Connect</h3>
+
+        <ul class="wave6-footer-list">
+
+          <li><a href="https://www.linkedin.com/company/elisence-official">LinkedIn</a></li>
+
+          <li><span>X</span></li>
+
+          <li><span>GitHub</span></li>
+
+          <li><span>YouTube</span></li>
+
+          <li><a href="contact.html">Contact</a></li>
+
+        </ul>
+
+      </div>
+
+
+
+      </footer>
+
+
+
+      <div class="wave6-bottom-bar">
+
+        <div class="wave6-bottom-left">
+
+          <div class="wave6-bottom-strong">© 2026 ELISENCE AI Ltd.</div>
+
+          <div>Building Trusted Digital Health Infrastructure.</div>
+
+        </div>
+
+        <div class="wave6-bottom-center">
+
+          <a href="contact.html">Privacy</a>
+
+          <a href="contact.html">Terms</a>
+
+          <a href="contact.html">Cookies</a>
+
+          <a href="contact.html">Accessibility</a>
+
+        </div>
+
+        <div class="wave6-bottom-right">
+
+          <div class="wave6-bottom-strong">Designed in the United Kingdom 🇬🇧</div>
+
+          <div>Built for Global Healthcare.</div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="wave6-status" aria-label="Platform trust status">
+
+        <div class="wave6-status-left">
+
+          <div class="wave6-status-label"><span aria-hidden="true">🟢</span> Platform Status</div>
+
+          <div>All Core Services Operational</div>
+
+        </div>
+
+        <div class="wave6-status-badges">
+
+          <span class="wave6-badge">Zero Trust</span>
+
+          <span class="wave6-badge">Privacy by Design</span>
+
+          <span class="wave6-badge">Explainable AI</span>
+
+          <span class="wave6-badge">Global Ready</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
 
   </main>
 
