@@ -139,68 +139,41 @@ main {
 }
 
 .homepage-hero {
-  position: relative;
-  width: 100%;
-  max-width: 1600px;
-  margin: 0;
-  padding: 0;
-  line-height: 0;
-  isolation: isolate;
-
-  /* اجازه می‌دهد نور زیر پنل بیرون دیده شود */
-  overflow: visible;
+    position: relative;
+    overflow: visible;
 }
 
-.homepage-hero-image {
-  display: block;
-  width: 100%;
+/* Blue ambient glow */
+.homepage-hero::before{
+    content:"";
+    position:absolute;
+    inset:-18px;
+    z-index:-2;
+    pointer-events:none;
 
-  /* ارتفاع کمتر، بدون تغییر عرض پنل */
-  height: clamp(300px, 40vw, 500px);
+    border-radius:42px;
 
-  margin: 0;
-  padding: 0;
+    background:
+        radial-gradient(circle at 50% 0%,
+            rgba(0,210,255,.22) 0%,
+            rgba(0,150,255,.12) 35%,
+            transparent 70%),
 
-  border: 0;
-  outline: 0;
+        radial-gradient(circle at 50% 100%,
+            rgba(0,180,255,.34) 0%,
+            rgba(0,120,255,.18) 40%,
+            transparent 75%),
 
-  /* تصویر تمام عرض را پر می‌کند و ارتفاع کمتر می‌شود */
-  object-fit: fill;
+        radial-gradient(circle at 0% 50%,
+            rgba(0,170,255,.18) 0%,
+            transparent 70%),
 
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-user-drag: none;
-}
+        radial-gradient(circle at 100% 50%,
+            rgba(0,170,255,.18) 0%,
+            transparent 70%);
 
-/*
-  نور آبی واقعی فقط از زیر پنل خارج می‌شود
-*/
-
-.homepage-hero::before {
-  content: "";
-  position: absolute;
-  z-index: -2;
-
-  left: 5%;
-  right: 5%;
-  bottom: -30px;
-
-  height: 72px;
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(30, 220, 255, 0.95) 0%,
-      rgba(0, 155, 255, 0.72) 28%,
-      rgba(0, 95, 255, 0.34) 58%,
-      rgba(0, 40, 150, 0.12) 78%,
-      transparent 100%
-    );
-
-  filter: blur(22px);
-  transform: scaleX(0.92);
-  opacity: 0.95;
+    filter:blur(34px);
+    opacity:.95;
 }
 
 .homepage-hero::after {
