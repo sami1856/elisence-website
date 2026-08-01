@@ -621,32 +621,37 @@ main {
         linear-gradient(165deg, rgba(18, 48, 92, 0.42) 0%, rgba(4, 12, 28, 0.72) 55%, rgba(2, 6, 16, 0.85) 100%);
       border: 1px solid rgba(90, 170, 255, 0.28);
       box-shadow:
-        0 10px 28px rgba(0, 20, 60, 0.45),
-        inset 0 1px 0 rgba(160, 210, 255, 0.12);
+        0 -5px 18px rgba(0, 145, 255, 0.10),
+        -8px 0 22px rgba(0, 155, 255, 0.16),
+        8px 0 22px rgba(0, 155, 255, 0.16),
+        0 14px 28px rgba(0, 170, 255, 0.26);
       transition:
         transform 0.2s ease,
         border-color 0.2s ease,
         box-shadow 0.2s ease;
     }
 
-
     .wave1-platform-card::after {
       content: "";
       position: absolute;
       z-index: -1;
       pointer-events: none;
-      left: 10%;
-      right: 10%;
+      left: 8%;
+      right: 8%;
       bottom: -18px;
-      height: 42px;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(0, 190, 255, 0.58) 0%,
-        rgba(0, 115, 255, 0.25) 48%,
-        transparent 78%
-      );
+      height: 46px;
+      border-radius: 999px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(55, 220, 255, 0.68) 0%,
+          rgba(0, 160, 255, 0.36) 38%,
+          rgba(0, 90, 255, 0.16) 65%,
+          transparent 82%
+        );
       filter: blur(18px);
-      opacity: 0.82;
+      opacity: 0.88;
+      transition: opacity 0.2s ease;
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -654,14 +659,23 @@ main {
         transform: translateY(-3px);
         border-color: rgba(120, 200, 255, 0.48);
         box-shadow:
-          0 16px 36px rgba(0, 40, 100, 0.55),
-          0 0 24px rgba(0, 140, 255, 0.18),
-          inset 0 1px 0 rgba(180, 220, 255, 0.16);
+          0 -6px 20px rgba(0, 150, 255, 0.14),
+          -10px 0 26px rgba(0, 175, 255, 0.22),
+          10px 0 26px rgba(0, 175, 255, 0.22),
+          0 18px 34px rgba(0, 195, 255, 0.34);
+      }
+
+      .wave1-platform-card:hover::after {
+        opacity: 1;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .wave1-platform-card {
+        transition: none;
+      }
+
+      .wave1-platform-card::after {
         transition: none;
       }
 
@@ -739,6 +753,14 @@ main {
 
       .wave1-platform-card {
         padding: 22px 20px 24px;
+      }
+
+      .wave1-platform-card::after {
+        left: 12%;
+        right: 12%;
+        bottom: -14px;
+        height: 38px;
+        filter: blur(15px);
       }
     }
 
