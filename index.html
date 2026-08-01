@@ -460,6 +460,20 @@ main {
     filter: blur(11px);
   }
 }
+    /* SAFE AMBIENT GLOW — DOES NOT CHANGE HERO SIZE */
+
+.homepage-hero {
+  overflow: visible;
+}
+
+.homepage-hero-image {
+  filter:
+    drop-shadow(0 -4px 14px rgba(0, 145, 255, 0.18))
+    drop-shadow(-10px 0 18px rgba(0, 155, 255, 0.22))
+    drop-shadow(10px 0 18px rgba(0, 155, 255, 0.22))
+    drop-shadow(0 18px 24px rgba(0, 185, 255, 0.48))
+    drop-shadow(0 30px 42px rgba(0, 90, 255, 0.30));
+}
   </style>
 </head>
 
