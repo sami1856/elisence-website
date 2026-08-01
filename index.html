@@ -271,22 +271,28 @@
         width: 100%;
         max-width: 1320px;
         margin: 4px auto 10px auto;
-        padding: 10px 40px 12px 40px;
+        padding: 0;
+        text-align: center;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+      /* Hero image panel — glow/border wraps logo only; bottom sits just under image */
+     .hero-logo-container {
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto 8px auto;
+        position: relative;
+        padding: 10px 40px 10px 40px;
         border-radius: 30px;
         background: radial-gradient(circle at top, rgba(0, 156, 255, 0.32), rgba(0, 12, 40, 0.96));
         box-shadow:
             0 0 45px rgba(0, 170, 255, 0.85),
             0 0 120px rgba(0, 80, 200, 0.65);
-        text-align: center;
         border: 1px solid rgba(70, 190, 255, 0.6);
-    }
-
-      /* کانتینر و استایل لوگوی بزرگ Elisence */
-     .hero-logo-container {
-        width: 100%;
-        max-width: 1320px;
-        margin: 0 auto 6px auto;
-        position: relative;
+        box-sizing: border-box;
     }
     
         .main-hero-logo {
@@ -535,7 +541,12 @@
 
           .hero-card {
               max-width: 100%;
-              padding: 14px 18px 16px 18px;
+              padding: 0;
+          }
+
+          .hero-logo-container {
+              max-width: 100%;
+              padding: 14px 18px 14px 18px;
           }
 
           .home-smart-search-bar {
