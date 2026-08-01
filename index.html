@@ -614,12 +614,12 @@ main {
       min-height: 100%;
       padding: 26px 24px 28px;
       border-radius: 22px;
-      background:
-        linear-gradient(165deg, rgba(18, 48, 92, 0.42) 0%, rgba(4, 12, 28, 0.72) 55%, rgba(2, 6, 16, 0.85) 100%);
-      border: 1px solid rgba(90, 170, 255, 0.28);
+      overflow: visible;
+      background: radial-gradient(circle at top, rgba(0, 110, 255, 0.36), rgba(0, 15, 40, 0.96));
+      border: 1px solid rgba(90, 185, 255, 0.85);
       box-shadow:
-        0 10px 28px rgba(0, 20, 60, 0.45),
-        inset 0 1px 0 rgba(160, 210, 255, 0.12);
+        0 0 22px rgba(0, 140, 255, 0.9),
+        0 0 40px rgba(0, 40, 120, 0.9);
       transition:
         transform 0.2s ease,
         border-color 0.2s ease,
@@ -629,11 +629,10 @@ main {
     @media (hover: hover) and (pointer: fine) {
       .wave1-platform-card:hover {
         transform: translateY(-3px);
-        border-color: rgba(120, 200, 255, 0.48);
+        border-color: rgba(120, 195, 255, 0.95);
         box-shadow:
-          0 16px 36px rgba(0, 40, 100, 0.55),
-          0 0 24px rgba(0, 140, 255, 0.18),
-          inset 0 1px 0 rgba(180, 220, 255, 0.16);
+          0 0 28px rgba(0, 160, 255, 0.95),
+          0 0 48px rgba(0, 50, 140, 0.95);
       }
     }
 
@@ -655,9 +654,11 @@ main {
       height: 64px;
       border-radius: 18px;
       color: #7ed0ff;
-      background: radial-gradient(circle at 30% 25%, rgba(0, 160, 255, 0.28), rgba(0, 40, 90, 0.35) 70%, rgba(0, 10, 30, 0.5));
-      border: 1px solid rgba(100, 185, 255, 0.35);
-      box-shadow: 0 0 22px rgba(0, 140, 255, 0.22);
+      background: radial-gradient(circle at top, rgba(0, 120, 255, 0.40), rgba(0, 15, 40, 0.96));
+      border: 1px solid rgba(90, 185, 255, 0.85);
+      box-shadow:
+        0 0 16px rgba(0, 140, 255, 0.75),
+        0 0 28px rgba(0, 40, 120, 0.7);
       flex-shrink: 0;
     }
 
@@ -780,8 +781,8 @@ main {
               <path d="M7.25 10.5v2.25M16 10.5v2.25M24.75 10.5v2.25M10.5 7.25h2.25M10.5 16h2.25M19.25 7.25h2.25M19.25 16h2.25M7.25 19.25v2.25M16 19.25v2.25M24.75 19.25v2.25"/>
             </svg>
           </div>
-          <h3 class="wave1-platform-title">17 Connected Phases</h3>
-          <p class="wave1-platform-description">Seventeen coordinated phases working together across health, wellbeing, care and public systems.</p>
+          <h3 class="wave1-platform-title">Multi-Phase Platform</h3>
+          <p class="wave1-platform-description">A coordinated multi-phase ecosystem connecting health, wellbeing, care and public systems through one unified platform.</p>
         </li>
 
         <li class="wave1-platform-card">
