@@ -1006,104 +1006,34 @@ main {
     .wave3-ecosystem-heading { margin:0 0 18px; font-size:clamp(28px,3.2vw,40px); font-weight:650; line-height:1.15; letter-spacing:-.02em; color:#f2f8ff; }
     .wave3-ecosystem-intro { margin:0; font-size:17px; line-height:1.65; color:#a9c7e8; max-width:68ch; }
     .wave3-ecosystem-stage {
-      position:relative; isolation:isolate; overflow:visible; width:100%; min-height:640px; padding:28px 18px 36px; border-radius:28px;
-      background:linear-gradient(165deg, rgba(8,24,48,.55) 0%, rgba(2,8,20,.82) 55%, rgba(0,4,12,.9) 100%);
-      border:1px solid rgba(90,170,255,.28);
-      box-shadow:0 -6px 22px rgba(0,145,255,.08), 0 18px 40px rgba(0,40,100,.35), 0 28px 56px rgba(0,170,255,.16);
+      position: relative;
+      isolation: isolate;
+      overflow: visible;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border-radius: 28px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
-    .wave3-ecosystem-stage::after {
-      content:""; position:absolute; z-index:-1; pointer-events:none; left:12%; right:12%; bottom:-20px; height:48px; border-radius:999px;
-      background:radial-gradient(ellipse at center, rgba(55,220,255,.55) 0%, rgba(0,160,255,.28) 42%, transparent 78%);
-      filter:blur(18px); opacity:.85;
+
+    .wave3-ecosystem-image {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      border-radius: 28px;
     }
-    .wave3-ecosystem-connections { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:1; }
-    .wave3-ecosystem-connections .wave3-conn-line { fill:none; stroke:rgba(90,190,255,.42); stroke-width:1.4; filter:drop-shadow(0 0 4px rgba(0,170,255,.35)); }
-    .wave3-ecosystem-connections .wave3-conn-ring { fill:none; stroke:rgba(70,170,255,.14); stroke-width:1; }
-    .wave3-ecosystem-core {
-      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3; width:min(240px,34%); aspect-ratio:1/1;
-      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:22px; text-align:center; border-radius:50%;
-      background:radial-gradient(circle at 35% 28%, rgba(0,190,255,.28), rgba(0,40,90,.55) 42%, rgba(2,8,20,.96) 78%);
-      border:1px solid rgba(120,210,255,.55);
-      box-shadow:0 0 28px rgba(0,170,255,.35), 0 0 56px rgba(0,90,220,.28), inset 0 0 24px rgba(80,200,255,.18);
+
+    @media (max-width: 1200px) and (min-width: 901px) {
+      .wave3-ecosystem { padding: 64px 0 90px; }
     }
-    .wave3-ecosystem-core-title { margin:0; font-size:clamp(14px,1.5vw,18px); font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#f2f9ff; }
-    .wave3-ecosystem-core-subtitle { margin:0; font-size:clamp(11px,1.1vw,12.5px); line-height:1.45; color:#9ec8ea; max-width:18ch; }
-    .wave3-ecosystem-nodes { position:absolute; inset:0; z-index:4; }
-    .wave3-ecosystem-node {
-      position:absolute; width:min(190px,22%); display:flex; flex-direction:column; align-items:center; gap:10px; padding:14px 12px 16px;
-      border-radius:18px; text-align:center; isolation:isolate; overflow:visible;
-      background:linear-gradient(165deg, rgba(18,48,92,.42) 0%, rgba(4,12,28,.78) 55%, rgba(2,6,16,.9) 100%);
-      border:1px solid rgba(90,170,255,.34);
-      box-shadow:0 -4px 14px rgba(0,145,255,.08), -6px 0 16px rgba(0,155,255,.12), 6px 0 16px rgba(0,155,255,.12), 0 12px 22px rgba(0,170,255,.20);
-      transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-    }
-    .wave3-ecosystem-node::after {
-      content:""; position:absolute; z-index:-1; pointer-events:none; left:14%; right:14%; bottom:-14px; height:34px; border-radius:999px;
-      background:radial-gradient(ellipse at center, rgba(55,220,255,.55) 0%, rgba(0,160,255,.26) 45%, transparent 78%);
-      filter:blur(14px); opacity:.82; transition:opacity .2s ease;
-    }
-    .wave3-node-medical { left:10%; top:7%; }
-    .wave3-node-medication { left:50%; top:3%; transform:translateX(-50%); }
-    .wave3-node-ai { right:10%; top:7%; left:auto; }
-    .wave3-node-social { left:3%; top:46%; transform:translateY(-50%); }
-    .wave3-node-professionals { right:3%; top:46%; left:auto; transform:translateY(-50%); }
-    .wave3-node-governments { left:10%; bottom:6%; top:auto; }
-    .wave3-node-nutrition { left:50%; bottom:3%; top:auto; transform:translateX(-50%); }
-    .wave3-node-mental { right:10%; bottom:6%; top:auto; left:auto; }
-    .wave3-ecosystem-node-icon {
-      display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:14px; color:#7ed0ff; flex-shrink:0;
-      background:radial-gradient(circle at 30% 25%, rgba(0,160,255,.28), rgba(0,40,90,.35) 70%, rgba(0,10,30,.5));
-      border:1px solid rgba(100,185,255,.35); box-shadow:0 0 16px rgba(0,140,255,.2);
-    }
-    .wave3-ecosystem-node-icon svg { width:24px; height:24px; display:block; }
-    .wave3-ecosystem-node-title { margin:0; font-size:13px; font-weight:650; line-height:1.35; color:#f0f7ff; }
-    .wave3-ecosystem-spine { display:none; }
-    @media (hover:hover) and (pointer:fine) {
-      .wave3-ecosystem-node:hover {
-        transform:translateY(-2px); border-color:rgba(120,200,255,.55);
-        box-shadow:0 -5px 16px rgba(0,150,255,.12), -8px 0 18px rgba(0,175,255,.18), 8px 0 18px rgba(0,175,255,.18), 0 16px 28px rgba(0,195,255,.28);
-      }
-      .wave3-node-medication:hover, .wave3-node-nutrition:hover { transform:translateX(-50%) translateY(-2px); }
-      .wave3-node-social:hover, .wave3-node-professionals:hover { transform:translateY(calc(-50% - 2px)); }
-      .wave3-ecosystem-node:hover::after { opacity:1; }
-      .wave3-ecosystem-node:hover .wave3-ecosystem-node-icon { color:#a8e6ff; }
-    }
-    @media (prefers-reduced-motion:reduce) {
-      .wave3-ecosystem-node, .wave3-ecosystem-node::after { transition:none; }
-      .wave3-ecosystem-node:hover { transform:none; }
-      .wave3-node-medication:hover, .wave3-node-nutrition:hover { transform:translateX(-50%); }
-      .wave3-node-social:hover, .wave3-node-professionals:hover { transform:translateY(-50%); }
-    }
-    @media (max-width:1200px) and (min-width:901px) {
-      .wave3-ecosystem { padding:64px 0 90px; }
-      .wave3-ecosystem-stage { min-height:0; padding:24px 18px 28px; }
-      .wave3-ecosystem-connections { display:none; }
-      .wave3-ecosystem-spine {
-        display:block; width:2px; margin:0 auto 18px; height:28px; border-radius:999px;
-        background:linear-gradient(to bottom, rgba(90,190,255,.55), rgba(0,140,255,.08));
-        box-shadow:0 0 12px rgba(0,170,255,.35);
-      }
-      .wave3-ecosystem-core { position:relative; left:auto; top:auto; transform:none; width:min(220px,46%); margin:0 auto 22px; }
-      .wave3-ecosystem-nodes { position:relative; inset:auto; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
-      .wave3-ecosystem-node { position:relative; left:auto!important; right:auto!important; top:auto!important; bottom:auto!important; width:auto; transform:none!important; }
-    }
-    @media (max-width:900px) {
-      .wave3-ecosystem { width:100%; max-width:none; padding:48px 0 40px; }
-      .wave3-ecosystem-stage { min-height:0; padding:20px 14px 24px; }
-      .wave3-ecosystem-connections { display:none; }
-      .wave3-ecosystem-spine {
-        display:block; width:2px; margin:0 auto 16px; height:24px; border-radius:999px;
-        background:linear-gradient(to bottom, rgba(90,190,255,.55), rgba(0,140,255,.08));
-        box-shadow:0 0 12px rgba(0,170,255,.35);
-      }
-      .wave3-ecosystem-core { position:relative; left:auto; top:auto; transform:none; width:min(200px,70%); margin:0 auto 18px; }
-      .wave3-ecosystem-nodes { position:relative; inset:auto; display:grid; grid-template-columns:1fr; gap:14px; }
-      .wave3-ecosystem-node {
-        position:relative; left:auto!important; right:auto!important; top:auto!important; bottom:auto!important; width:auto; transform:none!important;
-        flex-direction:row; text-align:left; padding:14px 16px;
-      }
-      .wave3-ecosystem-node::after { left:18%; right:18%; bottom:-12px; height:30px; filter:blur(12px); }
-      .wave3-ecosystem-node-title { font-size:14px; }
+
+    @media (max-width: 900px) {
+      .wave3-ecosystem { width: 100%; max-width: none; padding: 48px 0 40px; }
+      .wave3-ecosystem-image { border-radius: 18px; }
     }
 
   </style>
@@ -1322,89 +1252,15 @@ main {
       </header>
 
       <div class="wave3-ecosystem-stage">
-        <svg class="wave3-ecosystem-connections" viewBox="0 0 1000 640" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <circle class="wave3-conn-ring" cx="500" cy="320" r="118" />
-          <circle class="wave3-conn-ring" cx="500" cy="320" r="210" />
-          <path class="wave3-conn-line" d="M500 320 L170 95" />
-          <path class="wave3-conn-line" d="M500 320 L500 70" />
-          <path class="wave3-conn-line" d="M500 320 L830 95" />
-          <path class="wave3-conn-line" d="M500 320 L110 320" />
-          <path class="wave3-conn-line" d="M500 320 L890 320" />
-          <path class="wave3-conn-line" d="M500 320 L170 540" />
-          <path class="wave3-conn-line" d="M500 320 L500 560" />
-          <path class="wave3-conn-line" d="M500 320 L830 540" />
-        </svg>
-        <div class="wave3-ecosystem-core">
-          <p class="wave3-ecosystem-core-title">ELISENCE CORE</p>
-          <p class="wave3-ecosystem-core-subtitle">Governed Intelligence &amp; Connected Health Infrastructure</p>
-        </div>
-        <div class="wave3-ecosystem-spine" aria-hidden="true"></div>
-        <div class="wave3-ecosystem-nodes">
-        <article class="wave3-ecosystem-node wave3-node-medical">
-          <div class="wave3-ecosystem-node-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-              <path d="M5 22c3-8 6-12 11-12s8 4 11 12"/><circle cx="8" cy="18" r="1.6"/><circle cx="16" cy="12" r="1.6"/><circle cx="24" cy="18" r="1.6"/><path d="M8 18h8M16 12v6"/><path d="M14 25h4M16 23v4"/>
-            </svg>
-          </div>
-          <h3 class="wave3-ecosystem-node-title">Medical Journey</h3>
-        </article>
-        <article class="wave3-ecosystem-node wave3-node-medication">
-          <div class="wave3-ecosystem-node-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-              <rect x="10" y="5" width="12" height="22" rx="6"/><path d="M10 16h12"/><path d="M14 10h4M14 22h4"/>
-            </svg>
-          </div>
-          <h3 class="wave3-ecosystem-node-title">Medication Intelligence</h3>
-        </article>
-        <article class="wave3-ecosystem-node wave3-node-ai">
-          <div class="wave3-ecosystem-node-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-              <circle cx="16" cy="16" r="3"/><path d="M16 6v4M16 22v4M6 16h4M22 16h4"/><path d="M9.2 9.2l2.8 2.8M20 20l2.8 2.8M20 12l2.8-2.8M9.2 22.8l2.8-2.8"/><circle cx="16" cy="6" r="1.4"/><circle cx="16" cy="26" r="1.4"/><circle cx="6" cy="16" r="1.4"/><circle cx="26" cy="16" r="1.4"/>
-            </svg>
-          </div>
-          <h3 class="wave3-ecosystem-node-title">AI Companion</h3>
-        </article>
-        <article class="wave3-ecosystem-node wave3-node-social">
-          <div class="wave3-ecosystem-node-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-              <circle cx="11" cy="10" r="3"/><circle cx="22" cy="11" r="2.5"/><path d="M4.5 24c1.1-4 3.4-6 6.5-6s5.4 2 6.5 6"/><path d="M17 24c.6-2.6 2-4 4-4 1.6 0 2.9.9 3.8 2.6"/><path d="M14.5 13.5l4.2-1"/>
-            </svg>
-          </div>
-          <h3 class="wave3-ecosystem-node-title">Social Health</h3>
-        </article>
-        <article class="wave3-ecosystem-node wave3-node-professionals">
-          <div class="wave3-ecosystem-node-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-              <circle cx="12" cy="10" r="3"/><path d="M5.5 24c1.1-4 3.3-6 6.5-6s5.4 2 6.5 6"/><path d="M20 8h6M23 5v6"/><path d="M19 18h7v7h-7z"/>
-            </svg>
-          </div>
-          <h3 class="wave3-ecosystem-node-title">Healthcare Professionals</h3>
-        </article>
-        <article class="wave3-ecosystem-node wave3-node-governments">
-          <div class="wave3-ecosystem-node-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-              <path d="M6 26V12l10-7 10 7v14"/><path d="M12 26V18h8v8"/><path d="M4 26h24"/><path d="M14.5 10.5h3v3h-3z"/>
-            </svg>
-          </div>
-          <h3 class="wave3-ecosystem-node-title">Governments &amp; Public Health</h3>
-        </article>
-        <article class="wave3-ecosystem-node wave3-node-nutrition">
-          <div class="wave3-ecosystem-node-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-              <path d="M6 18c0-5 4.5-9 10-9s10 4 10 9"/><path d="M6 18h20v2c0 3.5-4.5 6-10 6s-10-2.5-10-6v-2z"/><path d="M16 9c-1.5 2-2 4-2 6"/><path d="M13 11c2-.5 4-.5 6 0"/>
-            </svg>
-          </div>
-          <h3 class="wave3-ecosystem-node-title">Nutrition Intelligence</h3>
-        </article>
-        <article class="wave3-ecosystem-node wave3-node-mental">
-          <div class="wave3-ecosystem-node-icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-              <circle cx="16" cy="14" r="8"/><path d="M11 14c1.2 1.5 2.8 2.4 5 2.4S20.8 15.5 22 14"/><path d="M12.5 11.5h.2M19.3 11.5h.2"/><path d="M10 24c2-2 4.5-3 6-3s4 1 6 3"/>
-            </svg>
-          </div>
-          <h3 class="wave3-ecosystem-node-title">Mental Health &amp; Wellbeing</h3>
-        </article>
-        </div>
+        <img
+          class="wave3-ecosystem-image"
+          src="assets/onecore.44.jpeg"
+          alt="ELISENCE Core connected ecosystem visualisation"
+          width="1536"
+          height="1024"
+          decoding="async"
+          loading="lazy"
+        />
       </div>
     </section>
 
