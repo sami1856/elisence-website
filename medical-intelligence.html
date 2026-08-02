@@ -4,26 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ELISENCE Medical Intelligence</title>
-  <meta name="description" content="Governed medical intelligence that connects authorised health signals into explainable, continuity-preserving insight." />
+  <meta
+    name="description"
+    content="Medical Intelligence is the clinical reasoning layer of the ELISENCE ecosystem — explainable, evidence-based insights that support safer healthcare decisions."
+  />
   <link rel="canonical" href="https://elisence.com/medical-intelligence.html" />
+
   <style>
+    /* ===== MEDICAL INTELLIGENCE PAGE (namespaced; page-local only) ===== */
     :root {
-      --pp-text: #e8f4ff;
-      --pp-muted: #a9c7e8;
-      --pp-title: #f2f8ff;
-      --pp-accent: #7ec8ff;
-      --pp-nav-space: 250px;
+      --mi-nav-space: 250px;
+      --mi-page-gap: 28px;
+      --mi-text: #e8f4ff;
+      --mi-muted: #a9c7e8;
+      --mi-title: #f2f8ff;
+      --mi-accent: #7ec8ff;
+      --mi-glass-bg:
+        linear-gradient(
+          165deg,
+          rgba(18, 48, 92, 0.36) 0%,
+          rgba(4, 12, 28, 0.72) 55%,
+          rgba(2, 6, 16, 0.9) 100%
+        );
+      --mi-glass-border: rgba(126, 200, 255, 0.28);
+      --mi-glow:
+        0 -4px 16px rgba(0, 145, 255, 0.08),
+        -8px 0 22px rgba(0, 155, 255, 0.12),
+        8px 0 22px rgba(0, 155, 255, 0.12),
+        0 16px 32px rgba(0, 170, 255, 0.16);
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
+
     body {
       min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
-      color: var(--pp-text);
+      color: var(--mi-text);
       line-height: 1.65;
       overflow-x: hidden;
     }
+
+    /* Existing ELISENCE right-side navigation (unchanged style) */
     .side-nav {
       position: fixed;
       right: 30px;
@@ -36,11 +60,14 @@
       width: 205px;
       max-height: calc(100vh - 30px);
       overflow-y: auto;
+      overflow-x: visible;
       padding: 12px 5px;
       z-index: 999;
       scrollbar-width: none;
     }
+
     .side-nav::-webkit-scrollbar { display: none; }
+
     .nav-btn {
       display: flex;
       align-items: center;
@@ -64,128 +91,669 @@
           rgba(0, 24, 60, 0.92) 55%,
           rgba(0, 7, 22, 0.98) 100%
         );
-      border: 1px solid rgba(90, 185, 255, 0.9);
+      border: 1px solid rgba(90, 190, 255, 0.82);
       box-shadow:
-        0 0 16px rgba(0, 130, 255, 0.95),
-        0 0 34px rgba(0, 40, 120, 0.95);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+        inset 0 0 13px rgba(65, 170, 255, 0.18),
+        0 0 13px rgba(0, 140, 255, 0.72),
+        0 0 28px rgba(0, 55, 160, 0.68);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
+
     .nav-btn:hover {
-      transform: translateY(-1px);
+      transform: translateX(-5px);
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(0, 190, 255, 0.62),
+          rgba(0, 42, 100, 0.96) 56%,
+          rgba(0, 10, 30, 1) 100%
+        );
       box-shadow:
-        0 0 20px rgba(0, 160, 255, 1),
-        0 0 40px rgba(0, 60, 140, 0.95);
+        inset 0 0 16px rgba(90, 210, 255, 0.25),
+        0 0 19px rgba(0, 195, 255, 0.95),
+        0 0 40px rgba(0, 90, 220, 0.85);
     }
-    .pp-page {
-      max-width: 920px;
+
+    .nav-btn:active { transform: translateX(-2px) scale(0.985); }
+    .nav-btn:focus-visible { outline: 2px solid #b9efff; outline-offset: 4px; }
+
+    .mi-page {
+      width: 100%;
+      max-width: 1500px;
       margin: 0 auto;
-      padding: 56px 28px 80px;
-      padding-right: calc(var(--pp-nav-space) + 28px);
+      padding: 48px var(--mi-page-gap) 80px;
+      padding-right: calc(var(--mi-nav-space) + var(--mi-page-gap));
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
     }
-    .pp-eyebrow {
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--pp-accent);
-      margin-bottom: 14px;
+
+    /* ===== HERO: 40% image / 60% text ===== */
+    .mi-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+      gap: 28px;
+      align-items: stretch;
     }
-    .pp-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 650;
-      color: var(--pp-title);
-      letter-spacing: -0.02em;
-      margin-bottom: 18px;
+
+    .mi-hero-art {
+      min-width: 0;
+      align-self: stretch;
     }
-    .pp-lead {
-      font-size: 1.125rem;
-      color: var(--pp-muted);
-      max-width: 42rem;
-      margin-bottom: 28px;
-    }
-    .pp-panel {
-      padding: 28px 26px;
-      border-radius: 22px;
+
+    .mi-hero-panel {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      height: 100%;
+      min-height: min(62vh, 720px);
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background:
         linear-gradient(
           165deg,
-          rgba(18, 48, 92, 0.36) 0%,
-          rgba(4, 12, 28, 0.72) 55%,
-          rgba(2, 6, 16, 0.9) 100%
+          rgba(10, 28, 56, 0.78) 0%,
+          rgba(4, 12, 28, 0.92) 55%,
+          rgba(2, 6, 16, 0.97) 100%
         );
-      border: 1px solid rgba(126, 200, 255, 0.22);
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
-      margin-bottom: 22px;
+      border: 1px solid rgba(180, 220, 255, 0.22);
+      box-shadow:
+        0 0 32px 4px rgba(50, 170, 255, 0.35),
+        0 -4px 18px rgba(0, 145, 255, 0.08),
+        0 18px 36px rgba(0, 170, 255, 0.16);
     }
-    .pp-panel h2 {
-      font-size: 1.15rem;
-      color: var(--pp-title);
-      margin-bottom: 12px;
-    }
-    .pp-panel p, .pp-panel li {
-      color: var(--pp-muted);
-      font-size: 1rem;
-    }
-    .pp-panel ul {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      margin-top: 8px;
-    }
-    .pp-panel li::before {
+
+    .mi-hero-panel::after {
       content: "";
-      display: inline-block;
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      left: 10%;
+      right: 10%;
+      bottom: -18px;
+      height: 44px;
+      border-radius: 999px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(55, 220, 255, 0.45) 0%,
+          rgba(0, 160, 255, 0.2) 48%,
+          transparent 78%
+        );
+      filter: blur(16px);
+      opacity: 0.88;
+    }
+
+    .mi-hero-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      border: 0;
+    }
+
+    .mi-hero-copy {
+      position: relative;
+      isolation: isolate;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 36px 34px 38px;
+      border-radius: 28px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22, 58, 108, 0.42) 0%,
+          rgba(6, 16, 36, 0.78) 55%,
+          rgba(2, 8, 20, 0.92) 100%
+        );
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        0 20px 48px rgba(0, 40, 100, 0.35),
+        0 0 0 1px rgba(90, 190, 255, 0.08) inset,
+        var(--mi-glow);
+    }
+
+    .mi-hero-copy::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -22px 18%;
+      width: 64%;
+      height: 42px;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at center, rgba(0, 180, 255, 0.35), transparent 70%);
+      filter: blur(18px);
+      z-index: -1;
+    }
+
+    .mi-eyebrow {
+      margin: 0 0 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mi-accent);
+    }
+
+    .mi-title {
+      margin: 0 0 16px;
+      font-size: clamp(28px, 3.2vw, 42px);
+      font-weight: 650;
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+      color: var(--mi-title);
+    }
+
+    .mi-subtitle {
+      margin: 0 0 22px;
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 600;
+      line-height: 1.4;
+      color: #d7ecff;
+    }
+
+    .mi-copy {
+      margin: 0 0 14px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--mi-muted);
+      max-width: 68ch;
+    }
+
+    .mi-copy:last-child { margin-bottom: 0; }
+
+    /* ===== ARCHITECTURAL CONTENT PANELS ===== */
+    .mi-architecture {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .mi-panel {
+      position: relative;
+      isolation: isolate;
+      overflow: visible;
+      padding: 28px 28px 30px;
+      border-radius: 24px;
+      background: var(--mi-glass-bg);
+      border: 1px solid var(--mi-glass-border);
+      box-shadow: var(--mi-glow);
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+    }
+
+    .mi-panel::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      left: 12%;
+      right: 12%;
+      bottom: -14px;
+      height: 36px;
+      border-radius: 999px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(55, 220, 255, 0.38) 0%,
+          rgba(0, 160, 255, 0.16) 48%,
+          transparent 78%
+        );
+      filter: blur(14px);
+      opacity: 0.8;
+      transition: opacity 0.22s ease;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .mi-panel:hover {
+        transform: translateY(-3px);
+        border-color: rgba(120, 200, 255, 0.48);
+        box-shadow:
+          0 -6px 20px rgba(0, 150, 255, 0.14),
+          -10px 0 26px rgba(0, 175, 255, 0.22),
+          10px 0 26px rgba(0, 175, 255, 0.22),
+          0 18px 34px rgba(0, 195, 255, 0.34);
+      }
+
+      .mi-panel:hover::after { opacity: 1; }
+    }
+
+    .mi-block-title {
+      margin: 0 0 14px;
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 650;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--mi-title);
+    }
+
+    .mi-evidence-list {
+      list-style: none;
+      margin: 8px 0 16px;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .mi-evidence-list li {
+      position: relative;
+      padding: 10px 14px 10px 34px;
+      border-radius: 12px;
+      background: rgba(0, 12, 28, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #d7ebff;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .mi-evidence-list li::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      margin-right: 10px;
-      background: var(--pp-accent);
+      background: var(--mi-accent);
       box-shadow: 0 0 10px rgba(126, 200, 255, 0.8);
-      vertical-align: middle;
     }
-    .pp-home {
-      display: inline-flex;
+
+    /* Section geometries — intentionally asymmetric */
+    .mi-panel-horizontal {
+      width: 100%;
+      min-height: 210px;
+      padding: 34px 36px 36px;
+      border-radius: 26px;
+    }
+
+    .mi-row-asymmetric {
+      display: grid;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .mi-row-square-tall {
+      grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+    }
+
+    .mi-row-tall-asymmetric {
+      grid-template-columns: minmax(0, 0.38fr) minmax(0, 0.62fr);
+    }
+
+    .mi-panel-square {
+      min-height: 340px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 28px;
+      padding: 30px 28px;
+    }
+
+    .mi-panel-large-rect {
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 22px;
+      padding: 32px 30px;
+    }
+
+    .mi-panel-wide {
+      width: 94%;
+      margin-left: auto;
+      margin-right: auto;
+      min-height: 200px;
+      border-radius: 20px;
+      padding: 30px 34px;
+    }
+
+    .mi-panel-tall {
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 26px;
+      padding: 34px 28px;
+    }
+
+    .mi-panel-asymmetric {
+      min-height: 420px;
+      width: 100%;
+      border-radius: 30px 18px 30px 18px;
+      padding: 34px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mi-panel-wide-alt {
+      width: 100%;
+      min-height: 220px;
+      border-radius: 18px;
+      padding: 32px 36px;
+      border-left: 4px solid rgba(70, 190, 255, 0.85);
+    }
+
+    .mi-panel-closing {
+      width: 100%;
+      min-height: 280px;
       margin-top: 8px;
+      padding: 48px 42px 50px;
+      border-radius: 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at top center, rgba(0, 120, 220, 0.22), transparent 55%),
+        linear-gradient(
+          165deg,
+          rgba(18, 48, 92, 0.42) 0%,
+          rgba(4, 12, 28, 0.78) 55%,
+          rgba(2, 6, 16, 0.94) 100%
+        );
+      box-shadow:
+        0 0 40px 6px rgba(50, 170, 255, 0.28),
+        0 -6px 22px rgba(0, 145, 255, 0.1),
+        0 22px 48px rgba(0, 170, 255, 0.2);
+    }
+
+    .mi-panel-closing .mi-block-title {
+      font-size: clamp(24px, 2.8vw, 34px);
+      margin-bottom: 18px;
+    }
+
+    .mi-panel-closing .mi-copy {
+      max-width: 72ch;
+      text-align: center;
+    }
+
+    .mi-home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      margin-top: 4px;
+      min-height: 46px;
       padding: 12px 22px;
       border-radius: 999px;
       text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: #e9f7ff;
-      border: 1px solid rgba(90, 185, 255, 0.9);
-      background: rgba(0, 40, 90, 0.55);
-    }
-    .pp-home:hover { color: #fff; }
-    @media (max-width: 900px) {
-      .side-nav { display: none; }
-      .pp-page { padding: 32px 16px 56px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .nav-btn { transition: none; }
-      .nav-btn:hover { transform: none; }
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(0, 145, 255, 0.42),
+          rgba(0, 24, 60, 0.92) 55%,
+          rgba(0, 7, 22, 0.98) 100%
+        );
+      border: 1px solid rgba(90, 190, 255, 0.82);
+      box-shadow:
+        inset 0 0 13px rgba(65, 170, 255, 0.18),
+        0 0 13px rgba(0, 140, 255, 0.55);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
+    .mi-home-btn:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 0 16px rgba(90, 210, 255, 0.25),
+        0 0 19px rgba(0, 195, 255, 0.75);
+    }
+
+    .mi-home-btn:focus-visible {
+      outline: 2px solid #b9efff;
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 1200px) and (min-width: 901px) {
+      :root { --mi-nav-space: 225px; --mi-page-gap: 18px; }
+      .side-nav { right: 14px; width: 180px; gap: 8px; }
+      .nav-btn { min-height: 38px; padding: 9px 16px; font-size: 10px; letter-spacing: 0.1em; }
+      .mi-hero { gap: 22px; }
+      .mi-hero-copy { padding: 28px 26px 30px; }
+      .mi-copy { font-size: 15.5px; }
+      .mi-panel-square { aspect-ratio: auto; min-height: 320px; }
+      .mi-panel-wide { width: 100%; }
+    }
+
+    @media (max-width: 900px) {
+      body { padding-bottom: 235px; }
+
+      .side-nav {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        top: auto;
+        bottom: 12px;
+        transform: none;
+        width: auto;
+        max-height: 205px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        gap: 7px;
+        padding: 8px;
+      }
+
+      .nav-btn {
+        width: auto;
+        min-width: calc(50% - 6px);
+        flex: 1 1 calc(50% - 6px);
+        min-height: 36px;
+        padding: 8px 12px;
+        font-size: 10px;
+      }
+
+      .mi-page {
+        padding: 24px 14px 48px;
+        padding-right: 14px;
+        gap: 20px;
+      }
+
+      .mi-hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .mi-hero-panel {
+        min-height: 280px;
+        aspect-ratio: 3 / 2;
+        border-radius: 22px;
+      }
+
+      .mi-hero-copy {
+        padding: 24px 18px 26px;
+        border-radius: 20px;
+      }
+
+      .mi-row-asymmetric,
+      .mi-row-square-tall,
+      .mi-row-tall-asymmetric {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .mi-panel,
+      .mi-panel-horizontal,
+      .mi-panel-square,
+      .mi-panel-large-rect,
+      .mi-panel-wide,
+      .mi-panel-tall,
+      .mi-panel-asymmetric,
+      .mi-panel-wide-alt,
+      .mi-panel-closing {
+        width: 100%;
+        min-height: 0;
+        aspect-ratio: auto;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 22px 18px 24px;
+        border-radius: 18px;
+      }
+
+      .mi-panel-asymmetric {
+        border-radius: 18px;
+      }
+
+      .mi-panel-closing {
+        padding: 28px 18px 30px;
+        text-align: left;
+        align-items: flex-start;
+      }
+
+      .mi-panel-closing .mi-copy {
+        text-align: left;
+      }
+
+      .mi-title {
+        font-size: clamp(26px, 7vw, 34px);
+      }
+
+      .mi-copy { font-size: 15px; }
+      .mi-home-btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .nav-btn,
+      .mi-panel,
+      .mi-home-btn { transition: none; }
+      .nav-btn:hover,
+      .mi-panel:hover,
+      .mi-home-btn:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
-  <main class="pp-page" id="platform-page">
-    <p class="pp-eyebrow">PLATFORM CAPABILITY</p>
-    <h1 class="pp-title">Medical Intelligence</h1>
-    <p class="pp-lead">ELISENCE Medical Intelligence is the governed intelligence layer that helps people and care teams understand health context with clarity — without fragmenting the journey.</p>
+  <main class="mi-page" id="medical-intelligence">
+    <section class="mi-hero" aria-label="Medical Intelligence hero">
+      <aside class="mi-hero-art" aria-label="Medical Intelligence artwork">
+        <div class="mi-hero-panel">
+          <img
+            class="mi-hero-image"
+            src="assets/medical.jpeg"
+            alt="ELISENCE Medical Intelligence"
+            width="1536"
+            height="1024"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </aside>
 
-        <section class="pp-panel">
-          <h2>What it supports</h2>
-          <ul>
-          <li>Explainable health insight grounded in authorised information.</li>
-          <li>Continuity across records, plans and everyday health signals.</li>
-          <li>Human oversight with Zero Trust privacy and security framing.</li>
+      <article class="mi-hero-copy">
+        <p class="mi-eyebrow">PLATFORM CAPABILITY</p>
+        <h1 class="mi-title">Medical Intelligence</h1>
+        <p class="mi-subtitle">Intelligence You Can Understand.<br />Decisions You Can Trust.</p>
+        <p class="mi-copy">Medical Intelligence is the clinical reasoning layer of the ELISENCE ecosystem. Rather than replacing healthcare professionals, it helps transform fragmented health information into explainable, evidence-based insights that support safer and more informed healthcare decisions.</p>
+        <p class="mi-copy">Every conclusion is built upon evidence, connected through a longitudinal health timeline, and presented with transparency so that people and healthcare professionals can understand not only the result, but also how it was reached.</p>
+      </article>
+    </section>
+
+    <section class="mi-architecture" aria-label="Medical Intelligence architecture">
+      <!-- Section 1 — Large horizontal panel -->
+      <article class="mi-panel mi-panel-horizontal">
+        <h2 class="mi-block-title">One Intelligence.<br />One Medical Understanding.</h2>
+        <p class="mi-copy">Modern healthcare often separates laboratory results, medications, symptoms, appointments, wearable devices and medical documents into disconnected systems.</p>
+        <p class="mi-copy">Medical Intelligence brings these information sources together into one governed understanding of a person's health journey without replacing existing healthcare systems or clinical judgement.</p>
+        <p class="mi-copy">Instead of analysing isolated events, ELISENCE continuously builds context across time, helping people and healthcare professionals see the complete picture rather than individual fragments.</p>
+      </article>
+
+      <!-- Section 2 square + Section 3 large rectangle -->
+      <div class="mi-row-asymmetric mi-row-square-tall">
+        <article class="mi-panel mi-panel-square">
+          <h2 class="mi-block-title">Built on Evidence.<br />Never on Assumptions.</h2>
+          <p class="mi-copy">Every insight generated by Medical Intelligence must be supported by real evidence.</p>
+          <p class="mi-copy">No evidence means no conclusion.</p>
+          <p class="mi-copy">Rather than attempting to guess missing information, the platform openly identifies uncertainty and limits its conclusions to the information that has actually been authorised and verified.</p>
+          <p class="mi-copy">This evidence-first approach helps reduce unnecessary assumptions while increasing transparency and clinical confidence.</p>
+        </article>
+
+        <article class="mi-panel mi-panel-large-rect">
+          <h2 class="mi-block-title">Explainable by Design.</h2>
+          <p class="mi-copy">Medical Intelligence never produces unexplained recommendations.</p>
+          <p class="mi-copy">Every conclusion can be traced back to:</p>
+          <ul class="mi-evidence-list">
+            <li>Timeline events</li>
+            <li>Laboratory information</li>
+            <li>Medications</li>
+            <li>Symptoms</li>
+            <li>Measurements</li>
+            <li>Medical records</li>
+            <li>Wearable devices</li>
+            <li>Clinical context</li>
           </ul>
-        </section>
+          <p class="mi-copy">Users can understand why an observation exists, which evidence supports it, and how different health events relate to one another over time.</p>
+        </article>
+      </div>
 
-        <section class="pp-panel">
-          <h2>Designed for trust</h2>
-          <p>Rather than delivering isolated scores, Medical Intelligence is designed to preserve context, support safer understanding and keep people in control of their health journey.</p>
-        </section>
+      <!-- Section 4 — Wide panel -->
+      <article class="mi-panel mi-panel-wide">
+        <h2 class="mi-block-title">Human Intelligence Remains Central.</h2>
+        <p class="mi-copy">Medical Intelligence supports healthcare professionals.</p>
+        <p class="mi-copy">It never replaces them.</p>
+        <p class="mi-copy">ELISENCE is designed to assist clinical understanding, improve continuity of care, and help organise complex health information while keeping every important healthcare decision under human responsibility.</p>
+        <p class="mi-copy">Human review remains an essential part of the platform's architecture.</p>
+      </article>
 
-    <a class="pp-home" href="index.html">Return to ELISENCE Home</a>
+      <!-- Section 5 tall + Section 6 large asymmetric -->
+      <div class="mi-row-asymmetric mi-row-tall-asymmetric">
+        <article class="mi-panel mi-panel-tall">
+          <h2 class="mi-block-title">Safety Before Intelligence.</h2>
+          <p class="mi-copy">Clinical safety is permanently embedded within the Medical Intelligence architecture.</p>
+          <p class="mi-copy">The platform never:</p>
+          <ul class="mi-evidence-list">
+            <li>Diagnoses disease</li>
+            <li>Prescribes medication</li>
+            <li>Changes medication</li>
+            <li>Replaces clinicians</li>
+            <li>Claims certainty</li>
+            <li>Provides hidden medical reasoning</li>
+          </ul>
+          <p class="mi-copy">Instead, it provides transparent observations, evidence-based context and explainable clinical support.</p>
+        </article>
+
+        <article class="mi-panel mi-panel-asymmetric">
+          <h2 class="mi-block-title">One Governed Intelligence Architecture.</h2>
+          <p class="mi-copy">Medical Intelligence works together with specialised intelligence engines across the ELISENCE ecosystem, including medication understanding, laboratory interpretation, timeline analysis, sensor integration and clinical documentation.</p>
+          <p class="mi-copy">Rather than creating competing decision systems, ELISENCE orchestrates these specialised capabilities through one governed architecture that maintains consistency, transparency and patient safety.</p>
+        </article>
+      </div>
+
+      <!-- Section 7 — Wide panel -->
+      <article class="mi-panel mi-panel-wide-alt">
+        <h2 class="mi-block-title">Privacy, Consent and Trust.</h2>
+        <p class="mi-copy">Every analysis begins with patient consent.</p>
+        <p class="mi-copy">Individuals remain in control of their health information, how it is shared, and which authorised information Medical Intelligence may analyse.</p>
+        <p class="mi-copy">Privacy, Zero Trust architecture, explainability and full auditability remain fundamental principles across every intelligence workflow.</p>
+      </article>
+
+      <!-- Closing — Largest panel -->
+      <article class="mi-panel mi-panel-closing">
+        <h2 class="mi-block-title">Building the Future of Trusted Medical Intelligence.</h2>
+        <p class="mi-copy">Healthcare increasingly depends on intelligent systems.</p>
+        <p class="mi-copy">Trust depends on how those systems are designed.</p>
+        <p class="mi-copy">Medical Intelligence represents ELISENCE's commitment to building intelligence that is explainable, evidence-based, clinically safe and always centred around people.</p>
+        <p class="mi-copy">It is designed not simply to generate answers, but to help individuals, healthcare professionals and healthcare organisations make better-informed decisions together.</p>
+      </article>
+    </section>
+
+    <a class="mi-home-btn" href="index.html">Return to ELISENCE Home</a>
   </main>
 
   <nav class="side-nav" aria-label="Primary navigation">
