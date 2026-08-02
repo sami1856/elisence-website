@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ELISENCE Daily Health Brief</title>
+  <meta
+    name="description"
+    content="Daily Health Brief intelligently organises the information that matters most today into one trusted, explainable health overview."
+  />
+  <link rel="canonical" href="https://elisence.com/daily-health-brief.html" />
+
+  <style>
+    /* ===== DAILY HEALTH BRIEF PAGE (namespaced; page-local only) ===== */
+    :root {
+      --dhb-nav-space: 250px;
+      --dhb-page-gap: 28px;
+      --dhb-text: #e8f4ff;
+      --dhb-muted: #a9c7e8;
+      --dhb-title: #f2f8ff;
+      --dhb-accent: #7ec8ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+      color: var(--dhb-text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* Existing ELISENCE right-side navigation (unchanged style) */
+    .side-nav {
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      width: 205px;
+      max-height: calc(100vh - 30px);
+      overflow-y: auto;
+      overflow-x: visible;
+      padding: 12px 5px;
+      z-index: 999;
+      scrollbar-width: none;
+    }
+
+    .side-nav::-webkit-scrollbar { display: none; }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 42px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      text-align: center;
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #e9f7ff;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(0, 145, 255, 0.42),
+          rgba(0, 24, 60, 0.92) 55%,
+          rgba(0, 7, 22, 0.98) 100%
+        );
+      border: 1px solid rgba(90, 190, 255, 0.82);
+      box-shadow:
+        inset 0 0 13px rgba(65, 170, 255, 0.18),
+        0 0 13px rgba(0, 140, 255, 0.72),
+        0 0 28px rgba(0, 55, 160, 0.68);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateX(-5px);
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(0, 190, 255, 0.62),
+          rgba(0, 42, 100, 0.96) 56%,
+          rgba(0, 10, 30, 1) 100%
+        );
+      box-shadow:
+        inset 0 0 16px rgba(90, 210, 255, 0.25),
+        0 0 19px rgba(0, 195, 255, 0.95),
+        0 0 40px rgba(0, 90, 220, 0.85);
+    }
+
+    .nav-btn:active { transform: translateX(-2px) scale(0.985); }
+    .nav-btn:focus-visible { outline: 2px solid #b9efff; outline-offset: 4px; }
+
+    .dhb-page {
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 48px var(--dhb-page-gap) 80px;
+      padding-right: calc(var(--dhb-nav-space) + var(--dhb-page-gap));
+    }
+
+    /* LEFT content / RIGHT image — opposite of Medical Journey */
+    .dhb-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .dhb-content {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-width: 0;
+      order: 1;
+    }
+
+    .dhb-art-column {
+      position: sticky;
+      top: 28px;
+      align-self: start;
+      min-width: 0;
+      order: 2;
+      z-index: 1;
+    }
+
+    .dhb-art-panel {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      min-height: min(74vh, 860px);
+      aspect-ratio: 1 / 2;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(
+          165deg,
+          rgba(10, 28, 56, 0.78) 0%,
+          rgba(4, 12, 28, 0.92) 55%,
+          rgba(2, 6, 16, 0.97) 100%
+        );
+      border: 1px solid rgba(180, 220, 255, 0.22);
+      box-shadow:
+        0 0 32px 4px rgba(50, 170, 255, 0.35),
+        0 -4px 18px rgba(0, 145, 255, 0.08),
+        0 18px 36px rgba(0, 170, 255, 0.16);
+    }
+
+    .dhb-art-panel::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      left: 10%;
+      right: 10%;
+      bottom: -18px;
+      height: 44px;
+      border-radius: 999px;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(55, 220, 255, 0.45) 0%,
+          rgba(0, 160, 255, 0.2) 48%,
+          transparent 78%
+        );
+      filter: blur(16px);
+      opacity: 0.88;
+    }
+
+    .dhb-art-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+      border: 0;
+    }
+
+    .dhb-eyebrow {
+      margin: 0 0 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dhb-accent);
+    }
+
+    .dhb-title {
+      margin: 0 0 18px;
+      font-size: clamp(28px, 3.2vw, 42px);
+      font-weight: 650;
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+      color: var(--dhb-title);
+    }
+
+    .dhb-block-title {
+      margin: 0 0 14px;
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 650;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--dhb-title);
+    }
+
+    .dhb-copy {
+      margin: 0 0 14px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--dhb-muted);
+      max-width: 62ch;
+    }
+
+    .dhb-copy:last-child { margin-bottom: 0; }
+
+    /* HERO — floating panel */
+    .dhb-hero {
+      position: relative;
+      isolation: isolate;
+      padding: 32px 32px 34px;
+      border-radius: 28px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22, 58, 108, 0.42) 0%,
+          rgba(6, 16, 36, 0.78) 55%,
+          rgba(2, 8, 20, 0.92) 100%
+        );
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        0 20px 48px rgba(0, 40, 100, 0.35),
+        0 0 0 1px rgba(90, 190, 255, 0.08) inset;
+    }
+
+    .dhb-hero::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -22px 18%;
+      width: 64%;
+      height: 42px;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at center, rgba(0, 180, 255, 0.35), transparent 70%);
+      filter: blur(18px);
+      z-index: -1;
+    }
+
+    /* BLOCK 1 — large premium glass card */
+    .dhb-card {
+      position: relative;
+      isolation: isolate;
+      padding: 28px 28px 30px;
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          165deg,
+          rgba(18, 48, 92, 0.36) 0%,
+          rgba(4, 12, 28, 0.72) 55%,
+          rgba(2, 6, 16, 0.9) 100%
+        );
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow:
+        0 -4px 16px rgba(0, 145, 255, 0.07),
+        0 14px 28px rgba(0, 170, 255, 0.14);
+    }
+
+    .dhb-card::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 14%;
+      right: 14%;
+      bottom: -14px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at center, rgba(55, 220, 255, 0.32), transparent 75%);
+      filter: blur(14px);
+    }
+
+    /* BLOCK 2 — horizontal highlighted panel, different border */
+    .dhb-highlight {
+      padding: 22px 26px 24px;
+      border-radius: 18px;
+      background: rgba(4, 18, 40, 0.72);
+      border: 1px solid transparent;
+      border-image: linear-gradient(90deg, rgba(80, 200, 255, 0.75), rgba(255, 255, 255, 0.12), rgba(80, 200, 255, 0.45)) 1;
+      box-shadow:
+        inset 0 0 0 1px rgba(90, 190, 255, 0.12),
+        0 0 28px rgba(0, 150, 255, 0.12);
+      border-left: 4px solid rgba(70, 190, 255, 0.85);
+    }
+
+    /* BLOCK 3 — split panel with accent glow */
+    .dhb-split {
+      display: grid;
+      grid-template-columns: 8px 1fr;
+      gap: 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(3, 12, 28, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 16px 34px rgba(0, 60, 140, 0.22);
+    }
+
+    .dhb-split-accent {
+      background: linear-gradient(180deg, rgba(60, 200, 255, 0.95), rgba(0, 90, 220, 0.35));
+      box-shadow: 0 0 24px rgba(50, 180, 255, 0.55);
+    }
+
+    .dhb-split-body {
+      padding: 24px 26px 26px;
+      background:
+        linear-gradient(
+          120deg,
+          rgba(12, 36, 72, 0.35) 0%,
+          rgba(4, 12, 28, 0.55) 100%
+        );
+    }
+
+    /* BLOCK 4 — premium bordered glass */
+    .dhb-bordered {
+      padding: 26px 28px 28px;
+      border-radius: 20px;
+      background: rgba(6, 16, 34, 0.88);
+      border: 1.5px solid rgba(120, 200, 255, 0.38);
+      box-shadow:
+        inset 0 0 24px rgba(40, 140, 255, 0.08),
+        0 0 0 6px rgba(0, 80, 160, 0.12),
+        0 18px 36px rgba(0, 40, 100, 0.28);
+    }
+
+    /* FINAL — inset feature list */
+    .dhb-final {
+      padding: 28px 24px 26px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(0, 120, 220, 0.18), transparent 45%),
+        rgba(2, 10, 24, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .dhb-final .dhb-block-title { margin-bottom: 18px; }
+
+    .dhb-benefits {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .dhb-benefit {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px 14px 14px 12px;
+      border-radius: 14px;
+      background: rgba(0, 16, 36, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .dhb-benefit-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9ad8ff;
+      background: rgba(0, 90, 180, 0.28);
+      border: 1px solid rgba(110, 200, 255, 0.28);
+      flex-shrink: 0;
+    }
+
+    .dhb-benefit-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dhb-benefit-text {
+      margin: 0;
+      padding-top: 7px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #d7ebff;
+      font-weight: 500;
+    }
+
+    .dhb-home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 8px;
+      align-self: flex-start;
+      min-height: 46px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #e9f7ff;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(0, 145, 255, 0.42),
+          rgba(0, 24, 60, 0.92) 55%,
+          rgba(0, 7, 22, 0.98) 100%
+        );
+      border: 1px solid rgba(90, 190, 255, 0.82);
+      box-shadow:
+        inset 0 0 13px rgba(65, 170, 255, 0.18),
+        0 0 13px rgba(0, 140, 255, 0.55);
+    }
+
+    .dhb-home-btn:hover {
+      box-shadow:
+        inset 0 0 16px rgba(90, 210, 255, 0.25),
+        0 0 19px rgba(0, 195, 255, 0.75);
+    }
+
+    @media (max-width: 1200px) and (min-width: 901px) {
+      :root { --dhb-nav-space: 225px; --dhb-page-gap: 18px; }
+      .side-nav { right: 14px; width: 180px; gap: 8px; }
+      .nav-btn { min-height: 38px; padding: 9px 16px; font-size: 10px; letter-spacing: 0.1em; }
+      .dhb-layout { gap: 22px; }
+      .dhb-copy { font-size: 15.5px; }
+    }
+
+    @media (max-width: 900px) {
+      body { padding-bottom: 235px; }
+
+      .side-nav {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        top: auto;
+        bottom: 12px;
+        transform: none;
+        width: auto;
+        max-height: 205px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        gap: 7px;
+        padding: 8px;
+      }
+
+      .nav-btn {
+        width: auto;
+        min-width: calc(50% - 6px);
+        flex: 1 1 calc(50% - 6px);
+        min-height: 36px;
+        padding: 8px 12px;
+        font-size: 10px;
+      }
+
+      .dhb-page {
+        padding: 24px 14px 48px;
+        padding-right: 14px;
+      }
+
+      .dhb-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .dhb-art-column {
+        position: static;
+        order: -1;
+      }
+
+      .dhb-content { order: 2; }
+
+      .dhb-art-panel {
+        min-height: 420px;
+        aspect-ratio: 3 / 5;
+        border-radius: 22px;
+      }
+
+      .dhb-hero,
+      .dhb-card,
+      .dhb-highlight,
+      .dhb-bordered,
+      .dhb-final {
+        padding: 22px 18px 24px;
+        border-radius: 18px;
+      }
+
+      .dhb-split { border-radius: 18px; }
+      .dhb-home-btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .nav-btn { transition: none; }
+      .nav-btn:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="dhb-page" id="daily-health-brief">
+    <div class="dhb-layout">
+      <div class="dhb-content">
+        <article class="dhb-hero">
+          <p class="dhb-eyebrow">DAILY HEALTH BRIEF</p>
+          <h1 class="dhb-title">Every Day Starts With Better Decisions.</h1>
+          <p class="dhb-copy">Not every piece of health information deserves equal attention.</p>
+          <p class="dhb-copy">Daily Health Brief intelligently organises the information that matters most today, presenting the right priorities, the right context and the right actions in one trusted view.</p>
+          <p class="dhb-copy">Instead of searching through fragmented records, individuals receive a personalised, explainable and continuously updated health overview that supports safer daily decisions.</p>
+        </article>
+
+        <article class="dhb-card">
+          <h2 class="dhb-block-title">Your Health, Prioritised Every Morning</h2>
+          <p class="dhb-copy">Daily Health Brief continuously reviews authorised health information and presents only what is relevant today.</p>
+          <p class="dhb-copy">It helps people focus on important changes, upcoming activities, medications, measurements, appointments and health priorities without unnecessary complexity.</p>
+        </article>
+
+        <article class="dhb-highlight">
+          <h2 class="dhb-block-title">Explainable Intelligence You Can Trust</h2>
+          <p class="dhb-copy">Every recommendation is supported by transparent reasoning rather than hidden algorithms.</p>
+          <p class="dhb-copy">Individuals and healthcare professionals can understand why information appears, where it originates and how it contributes to better health decisions.</p>
+        </article>
+
+        <article class="dhb-split" aria-labelledby="dhb-daily-life-title">
+          <div class="dhb-split-accent" aria-hidden="true"></div>
+          <div class="dhb-split-body">
+            <h2 id="dhb-daily-life-title" class="dhb-block-title">Designed Around Daily Life</h2>
+            <p class="dhb-copy">Daily Health Brief adapts to everyday healthcare.</p>
+            <p class="dhb-copy">Instead of overwhelming users with every record ever created, it highlights what requires attention now while preserving access to the complete medical journey whenever needed.</p>
+          </div>
+        </article>
+
+        <article class="dhb-bordered">
+          <h2 class="dhb-block-title">Trusted By Design</h2>
+          <p class="dhb-copy">Every Health Brief is generated inside the ELISENCE governed platform.</p>
+          <p class="dhb-copy">Only authorised information is used.</p>
+          <p class="dhb-copy">Privacy, governance, explainability and clinical transparency remain embedded throughout every generated brief.</p>
+        </article>
+
+        <article class="dhb-final">
+          <h2 class="dhb-block-title">What Daily Health Brief Helps You Achieve</h2>
+          <ul class="dhb-benefits">
+            <li class="dhb-benefit">
+              <span class="dhb-benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 10l7-7 7 7"/></svg>
+              </span>
+              <p class="dhb-benefit-text">Start every day with trusted health priorities.</p>
+            </li>
+            <li class="dhb-benefit">
+              <span class="dhb-benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+              </span>
+              <p class="dhb-benefit-text">Never miss important medications or appointments.</p>
+            </li>
+            <li class="dhb-benefit">
+              <span class="dhb-benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 16l5-5 4 4 7-8"/><path d="M15 7h5v5"/></svg>
+              </span>
+              <p class="dhb-benefit-text">Understand meaningful health changes earlier.</p>
+            </li>
+            <li class="dhb-benefit">
+              <span class="dhb-benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h10"/><path d="M4 17h7"/></svg>
+              </span>
+              <p class="dhb-benefit-text">Reduce information overload.</p>
+            </li>
+            <li class="dhb-benefit">
+              <span class="dhb-benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 14c0-2.2 1.8-4 4-4s4 1.8 4 4"/><circle cx="12" cy="8" r="2.5"/><path d="M5 19c1.2-2.4 3.4-3.5 7-3.5s5.8 1.1 7 3.5"/></svg>
+              </span>
+              <p class="dhb-benefit-text">Support better conversations with healthcare professionals.</p>
+            </li>
+            <li class="dhb-benefit">
+              <span class="dhb-benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 12c3-6 13-6 16 0"/><path d="M4 12c3 6 13 6 16 0"/><circle cx="12" cy="12" r="2"/></svg>
+              </span>
+              <p class="dhb-benefit-text">Improve long-term continuity of care.</p>
+            </li>
+          </ul>
+        </article>
+
+        <a class="dhb-home-btn" href="index.html">Return to ELISENCE Home</a>
+      </div>
+
+      <aside class="dhb-art-column" aria-label="Daily Health Brief artwork">
+        <div class="dhb-art-panel">
+          <img
+            class="dhb-art-image"
+            src="assets/daily.jpeg"
+            alt="ELISENCE Daily Health Brief"
+            width="887"
+            height="1774"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <nav class="side-nav" aria-label="Primary navigation">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="phases.html" class="nav-btn">Phases</a>
+    <a href="governments.html" class="nav-btn">Governments</a>
+    <a href="demo-access.html" class="nav-btn">Demo Portal</a>
+    <a href="pitch-deck.html?v=decklive09b" class="nav-btn">Pitch &amp; Deck</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="story.html" class="nav-btn">Story</a>
+    <a href="video.html" class="nav-btn">Videos</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
+    <a href="founder.html" class="nav-btn">Founder</a>
+    <a href="articles.html" class="nav-btn">Articles</a>
+  </nav>
+</body>
+</html>
