@@ -1972,9 +1972,7 @@ main {
 
 
 
-    .wave6-footer-list a,
-
-    .wave6-footer-list span {
+    .wave6-footer-list a {
 
       color: #a9c7e8;
 
@@ -1984,7 +1982,9 @@ main {
 
       line-height: 1.4;
 
-      transition: color 0.2s ease;
+      cursor: pointer;
+
+      transition: color 0.2s ease, text-shadow 0.2s ease;
 
     }
 
@@ -1992,8 +1992,18 @@ main {
 
     @media (hover: hover) and (pointer: fine) {
 
-      .wave6-footer-list a:hover { color: #e8f4ff; }
+      .wave6-footer-list a:hover {
+        color: #e8f4ff;
+        text-shadow: 0 0 12px rgba(126, 200, 255, 0.75);
+      }
 
+    }
+
+    .wave6-footer-list a:focus-visible {
+      color: #e8f4ff;
+      outline: 1px solid currentColor;
+      outline-offset: 3px;
+      text-shadow: 0 0 12px rgba(126, 200, 255, 0.75);
     }
 
 
@@ -2725,13 +2735,13 @@ It should become safer, more coordinated, more proactive and more human.</p>
 
           <li><a href="daily-health-brief.html">Daily Brief</a></li>
 
-          <li><a href="#platform-capabilities">Medical Intelligence</a></li>
+          <li><a href="medical-intelligence.html">Medical Intelligence</a></li>
 
-          <li><span>Blood Test Reading</span></li>
+          <li><a href="blood-test-reading.html">Blood Test Reading</a></li>
 
-          <li><span>Predictive Health</span></li>
+          <li><a href="predictive-health.html">Predictive Health</a></li>
 
-          <li><a href="video.html">Media</a></li>
+          <li><a href="media.html">Media</a></li>
 
         </ul>
 
@@ -2745,17 +2755,17 @@ It should become safer, more coordinated, more proactive and more human.</p>
 
         <ul class="wave6-footer-list">
 
-          <li><a href="about.html">Individuals</a></li>
+          <li><a href="individuals.html">Individuals</a></li>
 
-          <li><a href="about.html">Healthcare Professionals</a></li>
+          <li><a href="healthcare-professionals.html">Healthcare Professionals</a></li>
 
-          <li><a href="governments.html">Hospitals</a></li>
+          <li><a href="hospitals.html">Hospitals</a></li>
 
           <li><a href="governments.html">Governments</a></li>
 
-          <li><span>Insurance</span></li>
+          <li><a href="insurance.html">Insurance</a></li>
 
-          <li><span>Research</span></li>
+          <li><a href="research.html">Research</a></li>
 
         </ul>
 
@@ -2779,7 +2789,7 @@ It should become safer, more coordinated, more proactive and more human.</p>
 
           <li><a href="founder.html">Founder</a></li>
 
-          <li><span>Careers (Future)</span></li>
+          <li><a href="careers.html">Careers (Future)</a></li>
 
         </ul>
 
@@ -2797,13 +2807,13 @@ It should become safer, more coordinated, more proactive and more human.</p>
 
           <li><a href="video.html">Videos</a></li>
 
-          <li><span>Documentation</span></li>
+          <li><a href="documentation.html">Documentation</a></li>
 
-          <li><span>Privacy</span></li>
+          <li><a href="privacy.html">Privacy</a></li>
 
-          <li><span>Security</span></li>
+          <li><a href="security.html">Security</a></li>
 
-          <li><span>Compliance</span></li>
+          <li><a href="compliance.html">Compliance</a></li>
 
         </ul>
 
@@ -2819,11 +2829,11 @@ It should become safer, more coordinated, more proactive and more human.</p>
 
           <li><a href="https://www.linkedin.com/company/elisence-official">LinkedIn</a></li>
 
-          <li><span>X</span></li>
+          <li><a href="https://x.com/ElisenceOfficial">X</a></li>
 
-          <li><span>GitHub</span></li>
+          <li><a href="https://github.com/sami1856">GitHub</a></li>
 
-          <li><span>YouTube</span></li>
+          <li><a href="https://www.youtube.com/@ElisenceOfficial">YouTube</a></li>
 
           <li><a href="contact.html">Contact</a></li>
 
