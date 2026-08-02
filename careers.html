@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ELISENCE Careers (Future)</title>
+  <meta name="description" content="Future careers at ELISENCE — building trusted digital health infrastructure for people, organisations and nations." />
+  <link rel="canonical" href="https://elisence.com/careers.html" />
+  <style>
+    :root {
+      --pp-text: #e8f4ff;
+      --pp-muted: #a9c7e8;
+      --pp-title: #f2f8ff;
+      --pp-accent: #7ec8ff;
+      --pp-nav-space: 250px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #04101f 0%, #02040a 45%, #000000 100%);
+      color: var(--pp-text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    .side-nav {
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      width: 205px;
+      max-height: calc(100vh - 30px);
+      overflow-y: auto;
+      padding: 12px 5px;
+      z-index: 999;
+      scrollbar-width: none;
+    }
+    .side-nav::-webkit-scrollbar { display: none; }
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 42px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      text-align: center;
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #e9f7ff;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(0, 145, 255, 0.42),
+          rgba(0, 24, 60, 0.92) 55%,
+          rgba(0, 7, 22, 0.98) 100%
+        );
+      border: 1px solid rgba(90, 185, 255, 0.9);
+      box-shadow:
+        0 0 16px rgba(0, 130, 255, 0.95),
+        0 0 34px rgba(0, 40, 120, 0.95);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 20px rgba(0, 160, 255, 1),
+        0 0 40px rgba(0, 60, 140, 0.95);
+    }
+    .pp-page {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 56px 28px 80px;
+      padding-right: calc(var(--pp-nav-space) + 28px);
+    }
+    .pp-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pp-accent);
+      margin-bottom: 14px;
+    }
+    .pp-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 650;
+      color: var(--pp-title);
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .pp-lead {
+      font-size: 1.125rem;
+      color: var(--pp-muted);
+      max-width: 42rem;
+      margin-bottom: 28px;
+    }
+    .pp-panel {
+      padding: 28px 26px;
+      border-radius: 22px;
+      background:
+        linear-gradient(
+          165deg,
+          rgba(18, 48, 92, 0.36) 0%,
+          rgba(4, 12, 28, 0.72) 55%,
+          rgba(2, 6, 16, 0.9) 100%
+        );
+      border: 1px solid rgba(126, 200, 255, 0.22);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+      margin-bottom: 22px;
+    }
+    .pp-panel h2 {
+      font-size: 1.15rem;
+      color: var(--pp-title);
+      margin-bottom: 12px;
+    }
+    .pp-panel p, .pp-panel li {
+      color: var(--pp-muted);
+      font-size: 1rem;
+    }
+    .pp-panel ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .pp-panel li::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-right: 10px;
+      background: var(--pp-accent);
+      box-shadow: 0 0 10px rgba(126, 200, 255, 0.8);
+      vertical-align: middle;
+    }
+    .pp-home {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: #e9f7ff;
+      border: 1px solid rgba(90, 185, 255, 0.9);
+      background: rgba(0, 40, 90, 0.55);
+    }
+    .pp-home:hover { color: #fff; }
+    @media (max-width: 900px) {
+      .side-nav { display: none; }
+      .pp-page { padding: 32px 16px 56px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .nav-btn { transition: none; }
+      .nav-btn:hover { transform: none; }
+    }
+
+  
+  </style>
+</head>
+<body>
+  <main class="pp-page" id="platform-page">
+    <p class="pp-eyebrow">COMPANY</p>
+    <h1 class="pp-title">Careers (Future)</h1>
+    <p class="pp-lead">ELISENCE is building trusted digital health infrastructure. Future roles will support engineering, governance, clinical responsibility, product and national-scale deployment.</p>
+
+        <section class="pp-panel">
+          <h2>What is coming</h2>
+          <ul>
+          <li>Opportunities across engineering, trust architecture and product.</li>
+          <li>Roles supporting healthcare professionals, organisations and governments.</li>
+          <li>A culture grounded in Zero Trust, Privacy by Design and Explainable AI.</li>
+          </ul>
+        </section>
+
+        <section class="pp-panel">
+          <h2>Today</h2>
+          <p>Careers openings will be published here as ELISENCE expands. Until then, contact ELISENCE to register interest in future roles.</p>
+        </section>
+
+    <a class="pp-home" href="index.html">Return to ELISENCE Home</a>
+  </main>
+
+  <nav class="side-nav" aria-label="Primary navigation">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="phases.html" class="nav-btn">Phases</a>
+    <a href="governments.html" class="nav-btn">Governments</a>
+    <a href="demo-access.html" class="nav-btn">Demo Portal</a>
+    <a href="pitch-deck.html?v=decklive09b" class="nav-btn">Pitch &amp; Deck</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="story.html" class="nav-btn">Story</a>
+    <a href="video.html" class="nav-btn">Videos</a>
+    <a href="contact.html" class="nav-btn">Contact</a>
+    <a href="founder.html" class="nav-btn">Founder</a>
+    <a href="articles.html" class="nav-btn">Articles</a>
+  </nav>
+</body>
+</html>
