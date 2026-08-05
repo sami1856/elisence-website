@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Shiva’s ELISENCE Card | ELISENCE</title>
+  <meta
+    name="description"
+    content="Request Shiva Razdar’s ELISENCE digital card by email, including a permanent link to the live card and contact details."
+  />
+  <meta name="robots" content="noindex,follow" />
+  <link rel="canonical" href="https://elisence.com/shiva/email/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Email Shiva’s ELISENCE Card | ELISENCE" />
+  <meta
+    property="og:description"
+    content="Request Shiva Razdar’s ELISENCE digital card by email, including a permanent link to the live card and contact details."
+  />
+  <meta property="og:url" content="https://elisence.com/shiva/email/" />
+  <meta property="og:site_name" content="ELISENCE" />
+
+  <style>
+    :root {
+      --bg-0: #000000;
+      --bg-1: #02040a;
+      --bg-2: #04101f;
+      --text: #ffffff;
+      --text-soft: #e3f2ff;
+      --text-muted: #a9d4ff;
+      --text-body: #dbeafe;
+      --cyan: #7dd3fc;
+      --panel-border: rgba(70, 190, 255, 0.55);
+      --focus: #38bdf8;
+      --field-bg: rgba(0, 18, 42, 0.88);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, var(--bg-2) 0%, var(--bg-1) 45%, var(--bg-0) 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px 40px;
+    }
+
+    .page-inner {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .brand-marker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .brand-orb {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: radial-gradient(circle, #7dd3fc, #0369a1);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.9);
+    }
+
+    .brand-name {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .panel {
+      position: relative;
+      border-radius: 24px;
+      padding: 22px 18px 20px;
+      background:
+        radial-gradient(ellipse at top center, rgba(0, 140, 255, 0.2), transparent 52%),
+        linear-gradient(165deg, rgba(8, 28, 58, 0.98), rgba(0, 10, 28, 0.98));
+      border: 1px solid var(--panel-border);
+      box-shadow:
+        0 0 26px rgba(0, 174, 239, 0.4),
+        0 0 55px rgba(0, 174, 239, 0.15),
+        0 22px 48px rgba(0, 20, 60, 0.4);
+      overflow: visible;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: -20px;
+      height: 42px;
+      background: radial-gradient(ellipse at center top, rgba(0, 174, 239, 0.38), transparent 72%);
+      filter: blur(16px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      left: 14%;
+      right: 14%;
+      bottom: -38px;
+      height: 60px;
+      background: radial-gradient(ellipse at center, rgba(0, 174, 239, 0.14), transparent 70%);
+      filter: blur(26px);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .panel-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: clamp(22px, 5vw, 26px);
+      line-height: 1.2;
+      color: #e0f2fe;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .intro {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 14px;
+    }
+
+    .source-label {
+      display: none;
+      margin-bottom: 14px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .source-label.is-visible {
+      display: block;
+    }
+
+    .field {
+      margin-bottom: 10px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .field input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(118, 190, 255, 0.45);
+      background: var(--field-bg);
+      color: var(--text-soft);
+      font: inherit;
+      font-size: 15px;
+      box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.25);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field input::placeholder {
+      color: rgba(169, 212, 255, 0.45);
+    }
+
+    .field input:focus {
+      border-color: rgba(0, 210, 255, 0.9);
+      box-shadow:
+        0 0 0 1px rgba(56, 189, 248, 0.35),
+        0 0 18px rgba(0, 170, 255, 0.35),
+        inset 0 0 14px rgba(0, 0, 0, 0.2);
+      outline: none;
+    }
+
+    .privacy {
+      font-size: 12px;
+      line-height: 1.5;
+      color: rgba(219, 234, 254, 0.8);
+      margin-bottom: 16px;
+    }
+
+    .send-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      border: 1px solid rgba(125, 220, 255, 0.85);
+      background:
+        linear-gradient(180deg, rgba(0, 170, 255, 0.28) 0%, transparent 42%),
+        linear-gradient(145deg, rgba(0, 90, 190, 0.98), rgba(0, 35, 95, 0.98));
+      box-shadow:
+        0 1px 0 rgba(190, 240, 255, 0.35) inset,
+        0 0 18px rgba(0, 174, 239, 0.5),
+        0 4px 14px rgba(0, 30, 80, 0.4);
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    .send-btn:disabled,
+    .send-btn[aria-disabled="true"] {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .runtime-status {
+      margin-top: 14px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .success-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .success-copy {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .success-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .success-actions .send-btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-top: 18px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7fb5ff;
+      padding: 4px 2px;
+    }
+
+    .back-link:hover {
+      color: var(--cyan);
+      text-decoration: underline;
+    }
+
+    .back-wrap {
+      text-align: center;
+    }
+
+    @media (max-width: 430px) {
+      .page-shell {
+        padding: 18px 12px 36px;
+        justify-content: flex-start;
+      }
+
+      .panel {
+        padding: 18px 14px 16px;
+        border-radius: 20px;
+      }
+
+      .intro {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .page-shell {
+        padding: 14px 10px 32px;
+      }
+
+      .brand-name {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+      }
+
+      .panel {
+        padding: 16px 12px 14px;
+      }
+
+      .send-btn {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="page-inner">
+      <header class="brand-marker" aria-label="ELISENCE">
+        <span class="brand-orb" aria-hidden="true"></span>
+        <span class="brand-name">ELISENCE</span>
+      </header>
+
+      <main>
+        <section class="panel" aria-labelledby="email-card-title">
+          <div class="panel-inner">
+            <h1 id="email-card-title">Email Shiva’s ELISENCE Card</h1>
+            <p class="intro">
+              Enter your email address and we’ll send you Shiva Razdar’s ELISENCE digital card, including a permanent link back to the live card and an option to save her contact details.
+            </p>
+            <p id="sourceLabel" class="source-label" aria-live="polite"></p>
+
+            <form id="emailCardForm" action="#" method="post" novalidate>
+              <div class="field">
+                <label for="email">Email address</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                  maxlength="254"
+                  placeholder="name@company.com"
+                />
+              </div>
+
+              <input
+                type="text"
+                id="company_website"
+                name="company_website"
+                value=""
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"
+              />
+
+              <p class="privacy">
+                We’ll use this address only to send the requested digital card and protect the service from abuse.
+              </p>
+
+              <button
+                type="submit"
+                id="sendCardBtn"
+                class="send-btn"
+                disabled
+                aria-disabled="true"
+              >Send Card</button>
+
+              <p id="runtimeStatus" class="runtime-status" role="status" aria-live="polite"></p>
+            </form>
+
+            <div id="successPanel" hidden>
+              <h2 class="success-title">Card sent</h2>
+              <p class="success-copy">
+                Please check your inbox. The email contains a permanent link to Shiva’s ELISENCE card and an option to download her contact details.
+              </p>
+              <div class="success-actions">
+                <a class="send-btn" href="https://elisence.com/shiva/">View Shiva’s Card</a>
+                <a class="back-link" href="https://elisence.com/">Return to ELISENCE</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="back-wrap">
+          <a class="back-link" href="/shiva/">Back to Shiva’s Card</a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var ALLOWED = { shiva_qr_card: "Source: Shiva QR Digital Card" };
+      var FIXED_PAGE_URL = "https://elisence.com/shiva/";
+      var FIXED_CONSENT = "requested_digital_card";
+      var API_ENDPOINT = "https://api.elisence.com/v8/digital-cards/shiva/email";
+
+      var raw = (new URLSearchParams(window.location.search).get("source") || "").trim();
+      var source = Object.prototype.hasOwnProperty.call(ALLOWED, raw) ? raw : "unknown";
+      var label = document.getElementById("sourceLabel");
+      var form = document.getElementById("emailCardForm");
+      var emailInput = document.getElementById("email");
+      var honeypot = document.getElementById("company_website");
+      var sendBtn = document.getElementById("sendCardBtn");
+      var statusEl = document.getElementById("runtimeStatus");
+      var successPanel = document.getElementById("successPanel");
+      var pending = false;
+
+      if (source === "shiva_qr_card") {
+        label.textContent = ALLOWED.shiva_qr_card;
+        label.classList.add("is-visible");
+      }
+
+      function isValidEmail() {
+        var v = String(emailInput.value || "").trim();
+        emailInput.value = v;
+        if (!v || v.length > 254) return false;
+        return emailInput.checkValidity();
+      }
+
+      function setSendEnabled(enabled) {
+        sendBtn.disabled = !enabled;
+        sendBtn.setAttribute("aria-disabled", enabled ? "false" : "true");
+      }
+
+      function syncButton() {
+        if (pending) {
+          setSendEnabled(false);
+          return;
+        }
+        setSendEnabled(isValidEmail());
+      }
+
+      function opaqueKey() {
+        var bytes = new Uint8Array(24);
+        if (window.crypto && window.crypto.getRandomValues) {
+          window.crypto.getRandomValues(bytes);
+        } else {
+          for (var i = 0; i < bytes.length; i++) bytes[i] = Math.floor(Math.random() * 256);
+        }
+        var out = "";
+        for (var j = 0; j < bytes.length; j++) {
+          out += ("0" + bytes[j].toString(16)).slice(-2);
+        }
+        return "dc_" + out;
+      }
+
+      function showError(message) {
+        statusEl.textContent = message;
+        statusEl.hidden = false;
+        successPanel.hidden = true;
+        form.hidden = false;
+      }
+
+      function showSuccess() {
+        form.hidden = true;
+        statusEl.hidden = true;
+        successPanel.hidden = false;
+      }
+
+      emailInput.addEventListener("input", syncButton);
+      emailInput.addEventListener("change", syncButton);
+      syncButton();
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (pending) return false;
+
+        var email = String(emailInput.value || "").trim();
+        emailInput.value = email;
+        if (!isValidEmail()) {
+          showError("Enter a valid email address.");
+          syncButton();
+          return false;
+        }
+
+        pending = true;
+        setSendEnabled(false);
+        sendBtn.textContent = "Sending…";
+        statusEl.textContent = "";
+
+        var payload = {
+          email: email,
+          card_owner: "shiva",
+          source: source,
+          page_url: FIXED_PAGE_URL,
+          consent_context: FIXED_CONSENT,
+          idempotency_key: opaqueKey(),
+          honeypot: String(honeypot.value || "")
+        };
+
+        fetch(API_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+          credentials: "omit",
+          cache: "no-store"
+        })
+          .then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+              return { status: res.status, data: data };
+            });
+          })
+          .then(function (result) {
+            if (result.status === 202 && result.data && result.data.status === "accepted") {
+              showSuccess();
+              return;
+            }
+            if (result.status === 429) {
+              showError("Please wait before requesting the card again.");
+            } else if (result.status === 422) {
+              showError("Enter a valid email address.");
+            } else {
+              showError("We couldn’t send the card right now. Please try again shortly.");
+            }
+          })
+          .catch(function () {
+            showError("We couldn’t send the card right now. Please try again shortly.");
+          })
+          .then(function () {
+            pending = false;
+            sendBtn.textContent = "Send Card";
+            syncButton();
+          });
+
+        return false;
+      });
+    })();
+  </script>
+</body>
+</html>
