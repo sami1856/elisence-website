@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Asi;Sam;;;
+FN:Sam Asi
+ORG:ELISENCE
+TITLE:Founder & CEO
+EMAIL;TYPE=INTERNET,WORK:contact@elisence.com
+URL:https://elisence.com/sam/
+URL;TYPE=WORK:https://elisence.com/
+NOTE:Founder & CEO of ELISENCE
+END:VCARD
