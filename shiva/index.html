@@ -297,13 +297,30 @@
       z-index: 2;
     }
 
-    .hero-image-wrap img {
+    .hero-image-wrap img.hero-image-fill {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
+      max-width: none;
       object-fit: cover;
-      object-position: center 16%;
+      object-position: center 58%;
+      transform: scale(1.12);
+      transform-origin: center center;
+      filter: blur(14px) brightness(0.52) saturate(0.9);
       display: block;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-image-wrap img.hero-image-main {
       position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center 50%;
+      display: block;
       z-index: 1;
     }
 
@@ -617,6 +634,17 @@
           <div class="hero-photo-panel">
             <div class="hero-image-wrap">
               <img
+                class="hero-image-fill"
+                src="/assets/shiva/shiva-elisence.jpeg?v=shiva-card-v1"
+                alt=""
+                aria-hidden="true"
+                width="480"
+                height="600"
+                loading="eager"
+                decoding="async"
+              />
+              <img
+                class="hero-image-main"
                 src="/assets/shiva/shiva-elisence.jpeg?v=shiva-card-v1"
                 alt="Shiva Razdar, Co-Founder of ELISENCE"
                 width="480"
