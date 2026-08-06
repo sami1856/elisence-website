@@ -136,6 +136,22 @@
           <span class="menu-btn__hint">Co-Founder digital card</span>
         </button>
       </nav>
+
+      <section class="ecc-connect-panel" aria-labelledby="ecc-connect-heading">
+        <p class="ecc-connect-panel__kicker">ELISENCE Connect</p>
+        <h2 id="ecc-connect-heading" class="ecc-connect-panel__title">Stay Connected with ELISENCE</h2>
+        <p class="ecc-connect-panel__copy">
+          Keep ELISENCE within reach with meaningful updates about our mission, partnerships, events and milestones.
+        </p>
+        <button
+          type="button"
+          class="ecc-connect-panel__btn ecc-stay-connected"
+          data-ecc-open
+          data-source="connect_pwa"
+        >
+          Stay Connected
+        </button>
+      </section>
     </main>
 
     <footer class="app-footer">ELISENCE · Truth Before Everything</footer>
@@ -172,5 +188,7 @@
 
   <script src="/connect/vendor/qrcode.min.js" defer></script>
   <script src="/connect/app.js" defer></script>
+  <link rel="stylesheet" href="/assets/connect-consent/connect-consent.css" />
+  <script src="/assets/connect-consent/connect-consent.js" defer></script>
 </body>
 </html>

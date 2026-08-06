@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ELISENCE Connect Preferences</title>
+  <meta name="robots" content="noindex,follow" />
+  <link rel="stylesheet" href="/assets/connect-consent/connect-consent.css" />
+</head>
+<body class="ecc-page">
+  <main class="ecc-page-card" aria-live="polite">
+    <h1 id="pageTitle">Email preferences</h1>
+    <p id="pageCopy">Loading your ELISENCE Connect preferences…</p>
+    <form id="prefsForm" class="ecc-prefs-form" hidden>
+      <fieldset class="ecc-fieldset">
+        <legend id="prefs-interests-legend">Interests</legend>
+        <div id="prefsChips" class="ecc-chips" role="group" aria-labelledby="prefs-interests-legend"></div>
+      </fieldset>
+      <button type="submit" id="prefsSave" class="ecc-btn ecc-btn--primary" style="margin-top:14px;">Save preferences</button>
+    </form>
+    <p id="prefsStatus" class="ecc-status" role="status" aria-live="polite"></p>
+    <a class="ecc-home-link" href="https://elisence.com/">Return to ELISENCE</a>
+  </main>
+  <script>
+    (function () {
+      var API_BASE = "https://api.elisence.com";
+      var INTERESTS = [
+        { label: "Investment", key: "investment" },
+        { label: "Strategic Partnership", key: "strategic_partnership" },
+        { label: "Healthcare Systems", key: "healthcare_systems" },
+        { label: "Technology & AI", key: "technology_ai" },
+        { label: "Research", key: "research" },
+        { label: "Events", key: "events" },
+        { label: "General ELISENCE Updates", key: "general_updates" }
+      ];
+
+      var titleEl = document.getElementById("pageTitle");
+      var copyEl = document.getElementById("pageCopy");
+      var formEl = document.getElementById("prefsForm");
+      var chipsWrap = document.getElementById("prefsChips");
+      var statusEl = document.getElementById("prefsStatus");
+      var saveBtn = document.getElementById("prefsSave");
+      var selected = Object.create(null);
+      var token = "";
+
+      try {
+        token = String(new URLSearchParams(window.location.search).get("token") || "").trim();
+      } catch (err) {
+        token = "";
+      }
+
+      function showFailure() {
+        titleEl.textContent = "Link unavailable";
+        copyEl.textContent =
+          "This preferences link is invalid or has expired. Contact contact@elisence.com if you need help updating your ELISENCE Connect settings.";
+        formEl.hidden = true;
+      }
+
+      function renderChips(active) {
+        chipsWrap.innerHTML = "";
+        selected = Object.create(null);
+        INTERESTS.forEach(function (item) {
+          var chip = document.createElement("button");
+          chip.type = "button";
+          chip.className = "ecc-chip";
+          chip.textContent = item.label;
+          chip.setAttribute("data-interest", item.key);
+          var isOn = active.indexOf(item.key) !== -1;
+          chip.setAttribute("aria-pressed", isOn ? "true" : "false");
+          if (isOn) selected[item.key] = true;
+          chip.addEventListener("click", function () {
+            var pressed = chip.getAttribute("aria-pressed") === "true";
+            chip.setAttribute("aria-pressed", pressed ? "false" : "true");
+            if (pressed) delete selected[item.key];
+            else selected[item.key] = true;
+          });
+          chipsWrap.appendChild(chip);
+        });
+      }
+
+      if (!token) {
+        showFailure();
+        return;
+      }
+
+      fetch(API_BASE + "/v8/connect/preferences?token=" + encodeURIComponent(token), {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        credentials: "omit",
+        cache: "no-store"
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            return { status: res.status, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.status < 200 || result.status >= 300) {
+            showFailure();
+            return;
+          }
+          var interests = (result.data && result.data.interests) || [];
+          copyEl.textContent = "Choose the ELISENCE topics you would like to hear about.";
+          formEl.hidden = false;
+          renderChips(interests);
+        })
+        .catch(function () {
+          showFailure();
+        });
+
+      formEl.addEventListener("submit", function (event) {
+        event.preventDefault();
+        saveBtn.disabled = true;
+        statusEl.textContent = "Saving…";
+        statusEl.classList.remove("is-error", "is-success");
+
+        fetch(API_BASE + "/v8/connect/preferences", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ token: token, interests: Object.keys(selected) }),
+          credentials: "omit",
+          cache: "no-store"
+        })
+          .then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+              return { status: res.status, data: data };
+            });
+          })
+          .then(function (result) {
+            if (result.status >= 200 && result.status < 300) {
+              statusEl.textContent = "Preferences saved.";
+              statusEl.classList.add("is-success");
+              return;
+            }
+            statusEl.textContent = "We could not save your preferences. Please try again.";
+            statusEl.classList.add("is-error");
+          })
+          .catch(function () {
+            statusEl.textContent = "We could not save your preferences. Please try again.";
+            statusEl.classList.add("is-error");
+          })
+          .then(function () {
+            saveBtn.disabled = false;
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

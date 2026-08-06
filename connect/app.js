@@ -2,7 +2,7 @@
   "use strict";
 
   var SW_URL = "/connect/service-worker.js";
-  var CACHE_BUST = "elisence-connect-v1";
+  var CACHE_BUST = "elisence-connect-v2";
 
   var modal = document.getElementById("qrModal");
   var modalTitle = document.getElementById("modalTitle");

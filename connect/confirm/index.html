@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Confirm ELISENCE Connection</title>
+  <meta name="robots" content="noindex,follow" />
+  <link rel="stylesheet" href="/assets/connect-consent/connect-consent.css" />
+</head>
+<body class="ecc-page">
+  <main class="ecc-page-card" aria-live="polite">
+    <h1 id="pageTitle">Confirming connection…</h1>
+    <p id="pageCopy">Please wait while we verify your confirmation link.</p>
+    <a class="ecc-home-link" href="https://elisence.com/">Return to ELISENCE</a>
+  </main>
+  <script>
+    (function () {
+      var API_BASE = "https://api.elisence.com";
+      var titleEl = document.getElementById("pageTitle");
+      var copyEl = document.getElementById("pageCopy");
+
+      function showSuccess() {
+        titleEl.textContent = "You're connected";
+        copyEl.textContent =
+          "Thank you for confirming. ELISENCE will keep you informed with meaningful updates aligned with our mission to connect fragmented healthcare information into one understandable, longitudinal and trusted health journey.";
+      }
+
+      function showFailure() {
+        titleEl.textContent = "Link unavailable";
+        copyEl.textContent =
+          "This confirmation link is invalid or has expired. If you still wish to stay connected, please submit the form again from an ELISENCE digital card or the ELISENCE Connect app.";
+      }
+
+      var token = "";
+      try {
+        token = String(new URLSearchParams(window.location.search).get("token") || "").trim();
+      } catch (err) {
+        token = "";
+      }
+
+      if (!token) {
+        showFailure();
+        return;
+      }
+
+      fetch(API_BASE + "/v8/connect/confirm?token=" + encodeURIComponent(token), {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        credentials: "omit",
+        cache: "no-store"
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            return { status: res.status, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.status >= 200 && result.status < 300) {
+            showSuccess();
+            return;
+          }
+          showFailure();
+        })
+        .catch(function () {
+          showFailure();
+        });
+    })();
+  </script>
+</body>
+</html>

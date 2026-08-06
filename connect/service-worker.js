@@ -1,5 +1,5 @@
-/* ELISENCE Connect service worker — caches app shell only; never caches API. */
-var CACHE_NAME = "elisence-connect-shell-v1";
+/* ELISENCE Connect service worker — caches app shell only; never caches API or token URLs. */
+var CACHE_NAME = "elisence-connect-shell-v2";
 var SCOPE_PATH = "/connect/";
 
 var PRECACHE = [
@@ -13,7 +13,9 @@ var PRECACHE = [
   "/connect/icons/apple-touch-icon.png",
   "/connect/icons/icon-192.png",
   "/connect/icons/icon-512.png",
-  "/connect/icons/maskable-512.png"
+  "/connect/icons/maskable-512.png",
+  "/assets/connect-consent/connect-consent.css",
+  "/assets/connect-consent/connect-consent.js"
 ];
 
 function isApiRequest(url) {
@@ -21,6 +23,18 @@ function isApiRequest(url) {
     url.hostname === "api.elisence.com" ||
     url.pathname.indexOf("/v8/") === 0 ||
     url.pathname.indexOf("/api/") === 0
+  );
+}
+
+function isTokenBearingConnectUrl(url) {
+  if (url.searchParams && url.searchParams.has("token")) {
+    return true;
+  }
+  var path = url.pathname || "";
+  return (
+    path.indexOf("/connect/confirm") === 0 ||
+    path.indexOf("/connect/unsubscribe") === 0 ||
+    path.indexOf("/connect/preferences") === 0
   );
 }
 
@@ -73,7 +87,11 @@ self.addEventListener("fetch", function (event) {
     return;
   }
 
-  if (!isConnectAsset(url)) {
+  if (isTokenBearingConnectUrl(url)) {
+    return;
+  }
+
+  if (!isConnectAsset(url) && url.pathname.indexOf("/assets/connect-consent/") !== 0) {
     return;
   }
 
