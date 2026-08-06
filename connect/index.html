@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>ELISENCE Connect | Official QR Codes</title>
+  <meta
+    name="description"
+    content="ELISENCE Connect — installable QR companion for the ELISENCE website, company profile, pitch deck, and leadership digital cards."
+  />
+  <meta name="theme-color" content="#04101f" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="ELISENCE" />
+  <meta name="application-name" content="ELISENCE Connect" />
+  <link rel="canonical" href="https://elisence.com/connect/" />
+  <link rel="manifest" href="/connect/manifest.webmanifest" />
+  <link rel="icon" href="/connect/icons/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/connect/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="/connect/icons/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ELISENCE Connect" />
+  <meta
+    property="og:description"
+    content="Official ELISENCE QR codes in a premium installable companion app."
+  />
+  <meta property="og:url" content="https://elisence.com/connect/" />
+  <meta property="og:image" content="https://elisence.com/connect/icons/icon-512.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ELISENCE Connect" />
+  <meta
+    name="twitter:description"
+    content="Official ELISENCE QR codes in a premium installable companion app."
+  />
+  <meta name="twitter:image" content="https://elisence.com/connect/icons/icon-512.png" />
+  <link rel="stylesheet" href="/connect/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to menu</a>
+
+  <div class="app-shell">
+    <header class="brand-panel" role="banner">
+      <div class="brand-mark">
+        <img
+          src="/connect/icons/icon-192.png"
+          width="72"
+          height="72"
+          alt="ELISENCE Connect app icon"
+        />
+      </div>
+      <p class="brand-kicker">Digital Health</p>
+      <h1 class="brand-title">ELISENCE Connect</h1>
+      <p class="brand-sub">
+        Official QR codes for the ELISENCE ecosystem. Tap a destination to display a
+        scannable code — without leaving the app.
+      </p>
+      <div class="install-row">
+        <button id="installBtn" class="install-btn" type="button" hidden>
+          Install App
+        </button>
+      </div>
+      <p id="iosHint" class="ios-hint" hidden>
+        On iPhone: tap Share, then Add to Home Screen for the full-screen ELISENCE Connect app.
+      </p>
+    </header>
+
+    <main id="main">
+      <nav class="menu" aria-label="ELISENCE Connect destinations">
+        <button
+          class="menu-btn"
+          type="button"
+          data-id="website"
+          data-title="Website"
+          data-url="https://elisence.com/"
+          aria-haspopup="dialog"
+        >
+          <span class="menu-btn__index" aria-hidden="true">1</span>
+          <span class="menu-btn__label">Website</span>
+          <span class="menu-btn__hint">elisence.com</span>
+        </button>
+
+        <button
+          class="menu-btn"
+          type="button"
+          data-id="company-profile"
+          data-title="Company Profile"
+          data-url="https://elisence.com/company-profile/"
+          aria-haspopup="dialog"
+        >
+          <span class="menu-btn__index" aria-hidden="true">2</span>
+          <span class="menu-btn__label">Company Profile</span>
+          <span class="menu-btn__hint">Official company profile</span>
+        </button>
+
+        <button
+          class="menu-btn"
+          type="button"
+          data-id="pitch-deck"
+          data-title="Pitch Deck"
+          data-url="https://elisence.com/pitch-deck.html"
+          aria-haspopup="dialog"
+        >
+          <span class="menu-btn__index" aria-hidden="true">3</span>
+          <span class="menu-btn__label">Pitch Deck</span>
+          <span class="menu-btn__hint">Investor pitch deck</span>
+        </button>
+
+        <button
+          class="menu-btn"
+          type="button"
+          data-id="sam"
+          data-title="Sam Asi"
+          data-url="https://elisence.com/sam/"
+          aria-haspopup="dialog"
+        >
+          <span class="menu-btn__index" aria-hidden="true">4</span>
+          <span class="menu-btn__label">Sam Asi</span>
+          <span class="menu-btn__hint">Founder digital card</span>
+        </button>
+
+        <button
+          class="menu-btn"
+          type="button"
+          data-id="shiva"
+          data-title="Shiva Razdar"
+          data-url="https://elisence.com/shiva/"
+          aria-haspopup="dialog"
+        >
+          <span class="menu-btn__index" aria-hidden="true">5</span>
+          <span class="menu-btn__label">Shiva Razdar</span>
+          <span class="menu-btn__hint">Co-Founder digital card</span>
+        </button>
+      </nav>
+    </main>
+
+    <footer class="app-footer">ELISENCE · Truth Before Everything</footer>
+  </div>
+
+  <div
+    id="qrModal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+    hidden
+  >
+    <div class="modal__backdrop" data-close="true" tabindex="-1"></div>
+    <div class="modal__panel">
+      <h2 id="modalTitle" class="modal__title">Destination</h2>
+      <p id="modalDestination" class="modal__destination"></p>
+      <div class="qr-stage" aria-hidden="false">
+        <div id="qrcode" role="img" aria-label="QR code"></div>
+      </div>
+      <div class="modal__actions">
+        <a id="openLink" class="action-btn action-btn--primary" href="#" target="_blank" rel="noopener noreferrer">
+          Open
+        </a>
+        <button id="copyLink" class="action-btn" type="button">Copy Link</button>
+        <button id="shareLink" class="action-btn" type="button">Share</button>
+        <button id="closeModal" class="action-btn action-btn--close" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="statusLive" class="visually-hidden" aria-live="polite"></div>
+
+  <script src="/connect/vendor/qrcode.min.js" defer></script>
+  <script src="/connect/app.js" defer></script>
+</body>
+</html>

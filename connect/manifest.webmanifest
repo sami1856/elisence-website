@@ -1,0 +1,41 @@
+{
+  "id": "/connect/",
+  "name": "ELISENCE Connect",
+  "short_name": "ELISENCE",
+  "description": "Official ELISENCE QR codes for website, company profile, pitch deck, and leadership digital cards.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/connect/",
+  "scope": "/connect/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#04101f",
+  "background_color": "#02040a",
+  "categories": ["business", "utilities"],
+  "icons": [
+    {
+      "src": "/connect/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/connect/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/connect/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/connect/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
