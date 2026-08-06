@@ -396,10 +396,11 @@
     .action-btn {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      gap: 10px;
       width: 100%;
-      min-height: 42px;
-      padding: 10px 12px;
+      min-height: 44px;
+      padding: 9px 14px 9px 12px;
       border-radius: 999px;
       font-size: 10px;
       font-weight: 600;
@@ -438,10 +439,11 @@
     .action-btn-primary {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      gap: 10px;
       width: 100%;
-      min-height: 42px;
-      padding: 10px 12px;
+      min-height: 44px;
+      padding: 9px 14px 9px 12px;
       border-radius: 999px;
       font-size: 10px;
       font-weight: 700;
@@ -482,6 +484,69 @@
         0 1px 0 rgba(190, 240, 255, 0.25) inset,
         0 0 14px rgba(0, 160, 255, 0.5),
         0 2px 8px rgba(0, 30, 80, 0.35);
+    }
+
+    .btn-icon {
+      flex: 0 0 18px;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan);
+    }
+
+    .action-btn-primary .btn-icon {
+      color: #e0f7ff;
+    }
+
+    .btn-icon svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .btn-icon svg.btn-icon--fill {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .btn-copy {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-right: 18px;
+    }
+
+    .btn-label {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .btn-sub {
+      display: block;
+      margin-top: 2px;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .action-btn-primary .btn-sub {
+      color: rgba(220, 245, 255, 0.85);
     }
 
     /* Compact in-card footer */
@@ -575,10 +640,15 @@
         gap: 6px;
       }
 
-      .action-btn {
-        min-height: 40px;
+      .action-btn,
+      .action-btn-primary {
+        min-height: 44px;
         font-size: 9.5px;
-        padding: 9px 10px;
+        padding: 8px 12px 8px 10px;
+      }
+
+      .btn-sub {
+        font-size: 8.5px;
       }
     }
 
@@ -604,10 +674,22 @@
         max-height: 155px;
       }
 
-      .action-btn {
-        min-height: 40px;
+      .action-btn,
+      .action-btn-primary {
+        min-height: 44px;
         font-size: 9px;
-        padding: 8px 8px;
+        padding: 8px 10px 8px 9px;
+        gap: 8px;
+      }
+
+      .btn-icon,
+      .btn-icon svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .btn-copy {
+        padding-right: 16px;
       }
     }
 
@@ -666,46 +748,99 @@
                   class="action-btn"
                   href="https://elisence.com/assets/contact/shiva.vcf"
                   download="Shiva-Razdar.vcf"
-                >Save Contact</a>
+                >
+                  <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/></svg>
+                  </span>
+                  <span class="btn-copy"><span class="btn-label">Save Contact</span></span>
+                </a>
+
+                <a
+                  class="action-btn"
+                  href="tel:+447886863495"
+                >
+                  <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.68 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.25a2 2 0 0 1 2.11-.45c.74.32 1.53.55 2.34.68A2 2 0 0 1 22 16.92z"/></svg>
+                  </span>
+                  <span class="btn-copy">
+                    <span class="btn-label">Call Shiva</span>
+                    <span class="btn-sub">+44 7886 863495</span>
+                  </span>
+                </a>
 
                 <a
                   class="action-btn-primary"
                   href="/shiva/email/?source=shiva_qr_card"
-                >Email Me This Card</a>
+                >
+                  <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+                  </span>
+                  <span class="btn-copy"><span class="btn-label">Email Me This Card</span></span>
+                </a>
 
                 <a
                   class="action-btn"
                   href="https://www.linkedin.com/in/shiva-razdar-8954bb83/"
                   target="_blank"
                   rel="noopener noreferrer"
-                >Connect with Shiva on LinkedIn</a>
+                >
+                  <span class="btn-icon" aria-hidden="true">
+                    <svg class="btn-icon--fill" viewBox="0 0 24 24" focusable="false"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v2h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.75 2.64 4.75 6.07V23h-4v-6.6c0-1.57-.03-3.59-2.19-3.59-2.19 0-2.53 1.71-2.53 3.48V23h-3.83V8.5z"/></svg>
+                  </span>
+                  <span class="btn-copy"><span class="btn-label">Connect with Shiva on LinkedIn</span></span>
+                </a>
 
                 <a
                   class="action-btn"
                   href="https://www.linkedin.com/company/elisence/"
                   target="_blank"
                   rel="noopener noreferrer"
-                >Connect with ELISENCE on LinkedIn</a>
+                >
+                  <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
+                  </span>
+                  <span class="btn-copy"><span class="btn-label">Connect with ELISENCE on LinkedIn</span></span>
+                </a>
 
                 <a
                   class="action-btn"
                   href="https://elisence.com/"
-                >Visit ELISENCE</a>
+                >
+                  <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  </span>
+                  <span class="btn-copy"><span class="btn-label">Visit ELISENCE</span></span>
+                </a>
 
                 <a
                   class="action-btn"
                   href="https://elisence.com/company-profile/"
-                >View Company Profile</a>
+                >
+                  <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/></svg>
+                  </span>
+                  <span class="btn-copy"><span class="btn-label">View Company Profile</span></span>
+                </a>
 
                 <a
                   class="action-btn"
                   href="mailto:Shiva@elisence.com?subject=Connecting%20with%20Shiva%20Razdar%20via%20ELISENCE"
-                >Email Shiva</a>
+                >
+                  <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+                  </span>
+                  <span class="btn-copy"><span class="btn-label">Email Shiva</span></span>
+                </a>
 
                 <a
                   class="action-btn"
                   href="/pitch-request/?source=shiva"
-                >Request Pitch Deck</a>
+                >
+                  <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M3 4h13a2 2 0 0 1 2 2v9H5a2 2 0 0 0-2 2V4z"/><path d="M18 15h3v2a2 2 0 0 1-2 2h-1"/><path d="M8 22h6"/></svg>
+                  </span>
+                  <span class="btn-copy"><span class="btn-label">Request Pitch Deck</span></span>
+                </a>
               </nav>
             </div>
 
