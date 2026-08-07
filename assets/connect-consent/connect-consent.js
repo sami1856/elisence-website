@@ -60,20 +60,6 @@
     }
   }
 
-  function opaqueKey() {
-    var bytes = new Uint8Array(24);
-    if (window.crypto && window.crypto.getRandomValues) {
-      window.crypto.getRandomValues(bytes);
-    } else {
-      for (var i = 0; i < bytes.length; i++) bytes[i] = Math.floor(Math.random() * 256);
-    }
-    var out = "";
-    for (var j = 0; j < bytes.length; j++) {
-      out += ("0" + bytes[j].toString(16)).slice(-2);
-    }
-    return "cc_" + out;
-  }
-
   function isValidEmail(value) {
     var v = String(value || "").trim();
     if (!v || v.length > 254) return false;
@@ -122,6 +108,7 @@
     var organisation = formEl.querySelector("#ecc-organisation");
     var role = formEl.querySelector("#ecc-role");
     var meeting = formEl.querySelector("#ecc-meeting");
+    var interestCount = Object.keys(selectedInterests).length;
 
     var valid =
       state === "idle" &&
@@ -137,6 +124,7 @@
       String(role.value || "").trim().length > 0 &&
       meeting &&
       String(meeting.value || "").length > 0 &&
+      interestCount > 0 &&
       consent &&
       consent.checked;
 
@@ -219,10 +207,11 @@
     sheet.setAttribute("aria-labelledby", "ecc-dialog-title");
 
     sheet.innerHTML =
-      '<div class="ecc-sheet__header">' +
+      '<div class="ecc-sheet__header" data-ecc-drag-region="true">' +
+      '<div class="ecc-sheet__handle" data-ecc-drag-region="true" aria-hidden="true"><span></span></div>' +
       '<h2 id="ecc-dialog-title" class="ecc-sheet__title">Stay Connected with ELISENCE</h2>' +
       '<p class="ecc-sheet__lead">Keep ELISENCE within reach.</p>' +
-      '<p class="ecc-sheet__support">Receive meaningful updates about our mission to connect fragmented healthcare information into one understandable, longitudinal and trusted health journey.</p>' +
+      '<p class="ecc-sheet__support">Receive occasional updates about meaningful product progress, partnership opportunities, events and important ELISENCE milestones. No noise. No hidden subscription. Unsubscribe at any time.</p>' +
       "</div>" +
       '<div class="ecc-sheet__body">' +
       '<form id="ecc-form" class="ecc-form" novalidate>' +
@@ -230,11 +219,11 @@
       '<div class="ecc-field"><label for="ecc-first-name">First name</label><input id="ecc-first-name" name="first_name" type="text" autocomplete="given-name" required /></div>' +
       '<div class="ecc-field"><label for="ecc-last-name">Last name</label><input id="ecc-last-name" name="last_name" type="text" autocomplete="family-name" required /></div>' +
       "</div>" +
-      '<div class="ecc-field"><label for="ecc-email">Work email</label><input id="ecc-email" name="work_email" type="email" autocomplete="email" inputmode="email" required /></div>' +
+      '<div class="ecc-field"><label for="ecc-email">Work email</label><input id="ecc-email" name="email" type="email" autocomplete="email" inputmode="email" required /></div>' +
       '<div class="ecc-field"><label for="ecc-organisation">Organisation</label><input id="ecc-organisation" name="organisation" type="text" autocomplete="organization" required /></div>' +
       '<div class="ecc-field"><label for="ecc-role">Role</label><input id="ecc-role" name="role" type="text" autocomplete="organization-title" required /></div>' +
       '<fieldset class="ecc-fieldset"><legend id="ecc-interests-legend">Interests</legend><div class="ecc-chips" role="group" aria-labelledby="ecc-interests-legend"></div></fieldset>' +
-      '<div class="ecc-field"><label for="ecc-meeting">Meeting context</label><select id="ecc-meeting" name="meeting_context" required><option value="">Select context</option></select></div>' +
+      '<div class="ecc-field"><label for="ecc-meeting">Where did we meet?</label><select id="ecc-meeting" name="meeting_context" required><option value="">Select context</option></select></div>' +
       '<div class="ecc-consent">' +
       '<input type="checkbox" id="ecc-consent" name="consent" value="yes" />' +
       '<label for="ecc-consent">' +
@@ -242,7 +231,7 @@
       ' <a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Notice</a>.' +
       "</label>" +
       "</div>" +
-      '<input type="text" id="ecc-honeypot" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" class="ecc-visually-hidden" />' +
+      '<input type="text" id="ecc-honeypot" name="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" class="ecc-visually-hidden" />' +
       "</form>" +
       '<div id="ecc-result" class="ecc-result" hidden>' +
       '<h3 class="ecc-result__title"></h3>' +
@@ -281,6 +270,7 @@
         } else {
           selectedInterests[item.key] = true;
         }
+        syncSubmit();
       });
       chipsWrap.appendChild(chip);
     });
@@ -300,6 +290,7 @@
 
     submitBtn.addEventListener("click", handleSubmit);
     sheet.querySelector("#ecc-cancel").addEventListener("click", close);
+    bindSheetDismissGesture(sheet);
 
     overlay.addEventListener("click", function (event) {
       if (event.target && event.target.getAttribute("data-ecc-close") === "true") {
@@ -350,24 +341,46 @@
     var consent = formEl.querySelector("#ecc-consent");
     if (!consent || !consent.checked) invalid = true;
 
+    if (Object.keys(selectedInterests).length < 1) invalid = true;
+
     return !invalid;
   }
 
   function collectPayload() {
     var interests = Object.keys(selectedInterests);
+    var consent = formEl.querySelector("#ecc-consent");
     return {
       first_name: String(formEl.querySelector("#ecc-first-name").value || "").trim(),
       last_name: String(formEl.querySelector("#ecc-last-name").value || "").trim(),
-      work_email: String(formEl.querySelector("#ecc-email").value || "").trim(),
+      email: String(formEl.querySelector("#ecc-email").value || "").trim(),
       organisation: String(formEl.querySelector("#ecc-organisation").value || "").trim(),
       role: String(formEl.querySelector("#ecc-role").value || "").trim(),
       interests: interests,
       meeting_context: String(formEl.querySelector("#ecc-meeting").value || "").trim(),
       source: currentSource,
+      consent: !!(consent && consent.checked),
       consent_wording_version: CONSENT_VERSION,
-      idempotency_key: opaqueKey(),
-      honeypot: String(formEl.querySelector("#ecc-honeypot").value || "")
+      honeypot: String((formEl.querySelector("#ecc-honeypot") && formEl.querySelector("#ecc-honeypot").value) || "")
     };
+  }
+
+  function localValidationMessage() {
+    if (Object.keys(selectedInterests).length < 1) {
+      return "Please select at least one interest.";
+    }
+    var consent = formEl.querySelector("#ecc-consent");
+    if (!consent || !consent.checked) {
+      return "Please confirm consent to receive ELISENCE updates.";
+    }
+    var meeting = formEl.querySelector("#ecc-meeting");
+    if (!meeting || !String(meeting.value || "").trim()) {
+      return "Please select where you met ELISENCE.";
+    }
+    var email = formEl.querySelector("#ecc-email");
+    if (!email || !isValidEmail(email.value)) {
+      return "Please enter a valid work email address.";
+    }
+    return "Please complete all required fields and confirm consent.";
   }
 
   function handleSubmit() {
@@ -377,7 +390,15 @@
 
     if (!validateFields()) {
       setState("idle");
-      setStatus("Please complete all required fields, enter a valid work email, and confirm consent.", "error");
+      setStatus(localValidationMessage(), "error");
+      syncSubmit();
+      return;
+    }
+
+    var payload = collectPayload();
+    if (!payload.consent) {
+      setState("idle");
+      setStatus("Please confirm consent to receive ELISENCE updates.", "error");
       syncSubmit();
       return;
     }
@@ -388,7 +409,7 @@
     fetch(SUBSCRIBE_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(collectPayload()),
+      body: JSON.stringify(payload),
       credentials: "omit",
       cache: "no-store"
     })
@@ -435,6 +456,64 @@
       .then(function () {
         syncSubmit();
       });
+  }
+
+  function bindSheetDismissGesture(sheet) {
+    var startY = 0;
+    var tracking = false;
+    var reducedMotion =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var DISMISS_THRESHOLD = 80;
+
+    function onTouchStart(event) {
+      if (!event.touches || event.touches.length !== 1) return;
+      var target = event.target;
+      if (!target || !target.closest) return;
+      if (!target.closest("[data-ecc-drag-region='true']")) return;
+      var body = sheet.querySelector(".ecc-sheet__body");
+      if (body && body.scrollTop > 0) return;
+      tracking = true;
+      startY = event.touches[0].clientY;
+      sheet.classList.add("ecc-sheet--dragging");
+    }
+
+    function onTouchMove(event) {
+      if (!tracking || !event.touches || event.touches.length !== 1) return;
+      var delta = event.touches[0].clientY - startY;
+      if (delta < 0) delta = 0;
+      if (delta > 0 && event.cancelable) event.preventDefault();
+      if (!reducedMotion) {
+        sheet.style.transform = "translateY(" + delta + "px)";
+        sheet.style.opacity = String(Math.max(0.55, 1 - delta / 280));
+      }
+    }
+
+    function resetDragVisual() {
+      sheet.classList.remove("ecc-sheet--dragging");
+      sheet.style.transform = "";
+      sheet.style.opacity = "";
+    }
+
+    function onTouchEnd(event) {
+      if (!tracking) return;
+      tracking = false;
+      var endY = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientY : startY;
+      var delta = endY - startY;
+      if (delta >= DISMISS_THRESHOLD) {
+        resetDragVisual();
+        close();
+        return;
+      }
+      resetDragVisual();
+    }
+
+    sheet.addEventListener("touchstart", onTouchStart, { passive: true });
+    sheet.addEventListener("touchmove", onTouchMove, { passive: false });
+    sheet.addEventListener("touchend", onTouchEnd, { passive: true });
+    sheet.addEventListener("touchcancel", function () {
+      tracking = false;
+      resetDragVisual();
+    }, { passive: true });
   }
 
   function open(source) {
@@ -489,7 +568,37 @@
 
   window.ElisenceConnectConsent = {
     open: open,
-    close: close
+    close: close,
+    sanitizeSource: sanitizeSource,
+    interests: INTERESTS.slice(),
+    meetingOptions: MEETING_OPTIONS.slice(),
+    consentVersion: CONSENT_VERSION,
+    buildCanonicalPayload: function (input) {
+      var src = sanitizeSource(input && input.source);
+      var interestKeys = ((input && input.interests) || []).map(function (v) {
+        var found = INTERESTS.filter(function (item) {
+          return item.key === v || item.label === v;
+        })[0];
+        return found ? found.key : null;
+      }).filter(Boolean);
+      var meetingRaw = (input && input.meeting_context) || "";
+      var meetingFound = MEETING_OPTIONS.filter(function (item) {
+        return item.key === meetingRaw || item.label === meetingRaw;
+      })[0];
+      return {
+        first_name: String((input && input.first_name) || "").trim(),
+        last_name: String((input && input.last_name) || "").trim(),
+        email: String((input && input.email) || "").trim(),
+        organisation: String((input && input.organisation) || "").trim(),
+        role: String((input && input.role) || "").trim(),
+        interests: interestKeys,
+        meeting_context: meetingFound ? meetingFound.key : "",
+        source: src,
+        consent: !!(input && input.consent),
+        consent_wording_version: CONSENT_VERSION,
+        honeypot: ""
+      };
+    }
   };
 
   if (document.readyState === "loading") {

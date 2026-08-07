@@ -141,6 +141,31 @@ button.ecc-stay-connected {
     0 24px 48px rgba(0, 0, 0, 0.55);
   overflow: hidden;
   animation: ecc-sheet-in 0.28s ease both;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+  touch-action: pan-y;
+}
+
+.ecc-sheet.ecc-sheet--dragging {
+  transition: none;
+  animation: none;
+}
+
+.ecc-sheet__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  margin: -4px 0 8px;
+  cursor: grab;
+  touch-action: none;
+}
+
+.ecc-sheet__handle span {
+  width: 44px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(173, 216, 255, 0.45);
+  box-shadow: 0 0 10px rgba(0, 174, 239, 0.25);
 }
 
 @media (min-width: 640px) {
@@ -186,9 +211,10 @@ body.ecc-modal-open {
 
 .ecc-sheet__header {
   flex-shrink: 0;
-  padding: 20px 18px 12px;
+  padding: 12px 18px 12px;
   text-align: center;
   border-bottom: 1px solid rgba(70, 190, 255, 0.14);
+  touch-action: none;
 }
 
 .ecc-sheet__title {
