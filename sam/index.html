@@ -98,6 +98,7 @@
     a:focus-visible,
     .action-btn:focus-visible,
     .action-btn-primary:focus-visible,
+    .action-btn.ecc-stay-connected:focus-visible,
     .footer-link:focus-visible {
       outline: 2px solid var(--focus);
       outline-offset: 3px;
@@ -417,6 +418,36 @@
       box-shadow:
         0 0 12px rgba(0, 130, 255, 0.45),
         0 2px 8px rgba(0, 40, 100, 0.3);
+    }
+
+    /* Stay Connected — soft sage accent (visual distinction only) */
+    .action-btn.ecc-stay-connected {
+      color: #f3fbf6;
+      border-color: rgba(148, 198, 170, 0.58);
+      background:
+        radial-gradient(circle at top, rgba(118, 172, 142, 0.30), rgba(6, 24, 32, 0.95));
+      box-shadow:
+        0 0 14px rgba(96, 158, 124, 0.30),
+        0 3px 12px rgba(8, 36, 48, 0.32);
+    }
+
+    .action-btn.ecc-stay-connected:hover {
+      border-color: rgba(176, 218, 192, 0.78);
+      background:
+        radial-gradient(circle at top, rgba(132, 188, 156, 0.42), rgba(8, 34, 42, 0.97));
+      box-shadow:
+        0 0 20px rgba(110, 176, 138, 0.42),
+        0 5px 16px rgba(10, 48, 56, 0.36);
+    }
+
+    .action-btn.ecc-stay-connected:active {
+      box-shadow:
+        0 0 12px rgba(96, 158, 124, 0.32),
+        0 2px 8px rgba(8, 36, 48, 0.30);
+    }
+
+    .action-btn.ecc-stay-connected .btn-icon {
+      color: #c5e6d2;
     }
 
     .action-btn-primary {
