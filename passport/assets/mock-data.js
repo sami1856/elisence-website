@@ -50,7 +50,7 @@ window.ElisencePassportMock = (function () {
 
   var relationships = [
     {
-      id: "rel-sam-jones",
+      id: "sam-jones",
       name: "Sam Jones",
       role: "Director",
       organisation: "ABC Health",
@@ -63,7 +63,7 @@ window.ElisencePassportMock = (function () {
       engagement: "High"
     },
     {
-      id: "rel-amina-okeke",
+      id: "amina-okeke",
       name: "Amina Okeke",
       role: "Chief Digital Officer",
       organisation: "Northbridge Care System",
@@ -76,7 +76,7 @@ window.ElisencePassportMock = (function () {
       engagement: "High"
     },
     {
-      id: "rel-james-liu",
+      id: "james-liu",
       name: "James Liu",
       role: "Partner",
       organisation: "Horizon Ventures",
@@ -89,7 +89,7 @@ window.ElisencePassportMock = (function () {
       engagement: "Pending"
     },
     {
-      id: "rel-elena-vass",
+      id: "elena-vass",
       name: "Elena Vass",
       role: "Research Lead",
       organisation: "Civic Health Lab",
@@ -102,7 +102,7 @@ window.ElisencePassportMock = (function () {
       engagement: "Medium"
     },
     {
-      id: "rel-omar-hassan",
+      id: "omar-hassan",
       name: "Omar Hassan",
       role: "Strategy Advisor",
       organisation: "Gulf Health Alliance",
@@ -115,7 +115,7 @@ window.ElisencePassportMock = (function () {
       engagement: "Inactive"
     },
     {
-      id: "rel-priya-nair",
+      id: "priya-nair",
       name: "Priya Nair",
       role: "Programme Director",
       organisation: "National Pathways Trust",
@@ -130,7 +130,7 @@ window.ElisencePassportMock = (function () {
   ];
 
   var timelines = {
-    "rel-sam-jones": [
+    "sam-jones": [
       { date: "07 Aug", title: "QR card opened", meta: "Sam Digital Card" },
       { date: "07 Aug", title: "Stay Connected submitted", meta: "Consent wording v1" },
       { date: "07 Aug", title: "Confirmation email sent", meta: "Double opt-in" },
@@ -258,13 +258,15 @@ window.ElisencePassportMock = (function () {
     consentMeta: consentMeta,
     audit: audit,
     getRelationship: function (id) {
-      return relationships.filter(function (r) { return r.id === id; })[0] || relationships[0];
+      if (!id) return null;
+      return relationships.filter(function (r) { return r.id === id; })[0] || null;
     },
     getTimeline: function (id) {
-      return timelines[id] || timelines["rel-sam-jones"];
+      if (!id || !timelines[id]) return [];
+      return timelines[id];
     },
     getSegment: function (id) {
-      return segments.filter(function (s) { return s.id === id; })[0] || segments[0];
+      return segments.filter(function (s) { return s.id === id; })[0] || null;
     }
   };
 })();

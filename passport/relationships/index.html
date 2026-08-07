@@ -60,6 +60,7 @@
               <th>Interests</th>
               <th>Consent</th>
               <th>Last communication</th>
+              <th><span class="pp-sr-only">Open</span></th>
             </tr>
           </thead>
           <tbody id="rows"></tbody>
@@ -93,11 +94,14 @@
         });
         empty.hidden = rows.length > 0;
         tbody.innerHTML = rows.map(function (r) {
+          var href = "/passport/relationships/detail.html?id=" + encodeURIComponent(r.id);
           return (
-            "<tr>" +
-            '<td><a class="pp-person pp-linkish" href="/passport/relationships/detail.html?id=' + encodeURIComponent(r.id) + '">' +
-            ui.escapeHtml(r.name) + "</a><div class=\"pp-person__meta\">" +
-            ui.escapeHtml(r.role) + " — " + ui.escapeHtml(r.organisation) + "</div></td>" +
+            '<tr class="pp-row-link">' +
+            '<td><a class="pp-row-link__primary" href="' + href + '">' +
+            '<span class="pp-person">' + ui.escapeHtml(r.name) + "</span>" +
+            '<span class="pp-person__meta">' +
+            ui.escapeHtml(r.role) + " — " + ui.escapeHtml(r.organisation) +
+            "</span></a></td>" +
             "<td>" + ui.statusChip(r.status) + "</td>" +
             '<td><span class="pp-chip">' + ui.escapeHtml(r.source) + "</span></td>" +
             "<td>" + ui.escapeHtml(r.met) + "</td>" +
@@ -106,6 +110,7 @@
             }).join("") + "</div></td>" +
             "<td>" + ui.escapeHtml(r.consentConfirmed) + "</td>" +
             "<td>" + ui.escapeHtml(r.lastCommunication) + "</td>" +
+            '<td class="pp-row-link__chev" aria-hidden="true"><span>›</span></td>' +
             "</tr>"
           );
         }).join("");

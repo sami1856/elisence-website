@@ -51,6 +51,7 @@
 
       function showDetail(id) {
         var s = mock.getSegment(id);
+        if (!s) return;
         detail.hidden = false;
         document.getElementById("detail-name").textContent = s.name;
         document.getElementById("detail-type").textContent = s.type;
