@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Consent &amp; Suppression | ELISENCE Passport</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="stylesheet" href="/passport/assets/passport.css" />
+</head>
+<body data-pp-page="consent">
+  <a class="pp-skip" href="#pp-main">Skip to content</a>
+  <main id="pp-main" class="pp-main" data-pp-main>
+    <div class="pp-topbar">
+      <div>
+        <p class="pp-kicker">Consent</p>
+        <h1 class="pp-title">Consent &amp; suppression</h1>
+        <p class="pp-subtitle">Operational view of consent states and suppression buckets. Sample counts only.</p>
+      </div>
+      <div class="pp-demo-banner">Sample / demo data · UI only</div>
+    </div>
+
+    <section class="pp-grid pp-grid--kpi" id="buckets"></section>
+
+    <section class="pp-grid pp-grid--2">
+      <article class="pp-card">
+        <h2 class="pp-card__title">Consent evidence versions</h2>
+        <div class="pp-stat-row"><span>Consent wording version</span><strong id="consent-v">—</strong></div>
+        <div class="pp-stat-row"><span>Privacy notice version</span><strong id="privacy-v">—</strong></div>
+        <p class="pp-card__meta" style="margin-top:12px">Future integration will read these from the Connect consent ledger — not from this UI mock.</p>
+      </article>
+      <article class="pp-card pp-card--green">
+        <h2 class="pp-card__title">Traceability posture</h2>
+        <p class="pp-card__meta">Confirmed consent remains double opt-in. Unsubscribed, suppressed, bounced and complaint states must block marketing eligibility in any future engine connection.</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="/passport/assets/mock-data.js"></script>
+  <script src="/passport/assets/passport.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var mock = window.ElisencePassportMock;
+      var ui = window.ElisencePassportUI;
+      document.getElementById("buckets").innerHTML = mock.consentBuckets.map(function (b) {
+        var chip = "pp-chip--" + b.tone;
+        return (
+          '<article class="pp-card">' +
+          '<p class="pp-card__label"><span class="pp-chip ' + chip + '">' + ui.escapeHtml(b.name) + "</span></p>" +
+          '<p class="pp-card__value">' + b.count.toLocaleString() + "</p>" +
+          "</article>"
+        );
+      }).join("");
+      document.getElementById("consent-v").textContent = mock.consentMeta.consentVersion;
+      document.getElementById("privacy-v").textContent = mock.consentMeta.privacyNoticeVersion;
+    });
+  </script>
+</body>
+</html>

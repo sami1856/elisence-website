@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Segments | ELISENCE Passport</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="stylesheet" href="/passport/assets/passport.css" />
+</head>
+<body data-pp-page="segments">
+  <a class="pp-skip" href="#pp-main">Skip to content</a>
+  <main id="pp-main" class="pp-main" data-pp-main>
+    <div class="pp-topbar">
+      <div>
+        <p class="pp-kicker">Segments</p>
+        <h1 class="pp-title">Audience segments</h1>
+        <p class="pp-subtitle">Base interest segments and composite dynamic audiences. Counts are sample estimates.</p>
+      </div>
+      <div class="pp-demo-banner">Sample / demo data · UI only</div>
+    </div>
+
+    <div class="pp-toolbar">
+      <select class="pp-select" id="f-type" aria-label="Filter segment type">
+        <option value="">All types</option>
+        <option>Base</option>
+        <option>Composite</option>
+      </select>
+    </div>
+
+    <section class="pp-grid pp-grid--2" id="segment-grid" aria-label="Segment cards"></section>
+
+    <section class="pp-card" style="margin-top:16px" id="segment-detail" hidden>
+      <h2 class="pp-card__title" id="detail-name">Segment detail</h2>
+      <div class="pp-stat-row"><span>Type</span><strong id="detail-type">—</strong></div>
+      <div class="pp-stat-row"><span>Estimated audience</span><strong id="detail-count">—</strong></div>
+      <div class="pp-stat-row"><span>Status</span><strong id="detail-status">—</strong></div>
+      <div class="pp-stat-row"><span>Last updated</span><strong id="detail-updated">—</strong></div>
+      <div class="pp-stat-row"><span>Rule summary</span><strong id="detail-rules">—</strong></div>
+      <p class="pp-card__meta" id="detail-desc" style="margin-top:12px"></p>
+    </section>
+  </main>
+
+  <script src="/passport/assets/mock-data.js"></script>
+  <script src="/passport/assets/passport.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var mock = window.ElisencePassportMock;
+      var ui = window.ElisencePassportUI;
+      var grid = document.getElementById("segment-grid");
+      var detail = document.getElementById("segment-detail");
+
+      function showDetail(id) {
+        var s = mock.getSegment(id);
+        detail.hidden = false;
+        document.getElementById("detail-name").textContent = s.name;
+        document.getElementById("detail-type").textContent = s.type;
+        document.getElementById("detail-count").textContent = s.count.toLocaleString();
+        document.getElementById("detail-status").textContent = s.status;
+        document.getElementById("detail-updated").textContent = s.updated;
+        document.getElementById("detail-rules").textContent = s.rules;
+        document.getElementById("detail-desc").textContent = s.description;
+        detail.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function render() {
+        var type = document.getElementById("f-type").value;
+        var rows = mock.segments.filter(function (s) { return !type || s.type === type; });
+        grid.innerHTML = rows.map(function (s) {
+          var green = s.type === "Composite" ? " pp-card--green" : "";
+          return (
+            '<article class="pp-card' + green + '">' +
+            '<p class="pp-card__label">' + ui.escapeHtml(s.type) + " · " + ui.escapeHtml(s.status) + "</p>" +
+            '<h2 class="pp-card__title">' + ui.escapeHtml(s.name) + "</h2>" +
+            '<p class="pp-card__meta">' + ui.escapeHtml(s.description) + "</p>" +
+            '<div class="pp-stat-row"><span>Audience</span><strong>' + s.count.toLocaleString() + "</strong></div>" +
+            '<div class="pp-stat-row"><span>Rules</span><strong style="text-align:right;max-width:60%">' + ui.escapeHtml(s.rules) + "</strong></div>" +
+            '<div class="pp-stat-row"><span>Updated</span><strong>' + ui.escapeHtml(s.updated) + "</strong></div>" +
+            '<button type="button" class="pp-btn" style="margin-top:12px;width:100%" data-seg="' + ui.escapeHtml(s.id) + '">Open segment</button>' +
+            "</article>"
+          );
+        }).join("");
+        grid.querySelectorAll("[data-seg]").forEach(function (btn) {
+          btn.addEventListener("click", function () { showDetail(btn.getAttribute("data-seg")); });
+        });
+      }
+
+      document.getElementById("f-type").addEventListener("change", render);
+      render();
+    });
+  </script>
+</body>
+</html>

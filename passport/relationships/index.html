@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Relationships | ELISENCE Passport</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="stylesheet" href="/passport/assets/passport.css" />
+</head>
+<body data-pp-page="relationships">
+  <a class="pp-skip" href="#pp-main">Skip to content</a>
+  <main id="pp-main" class="pp-main" data-pp-main>
+    <div class="pp-topbar">
+      <div>
+        <p class="pp-kicker">Relationships</p>
+        <h1 class="pp-title">Contacts &amp; relationships</h1>
+        <p class="pp-subtitle">Search and filter sample relationships. Future builds will bind this list to the consent ledger.</p>
+      </div>
+      <div class="pp-demo-banner">Sample / demo data · UI only</div>
+    </div>
+
+    <div class="pp-toolbar" role="search">
+      <input class="pp-search" id="q" type="search" placeholder="Search name, organisation, role…" aria-label="Search relationships" />
+      <select class="pp-select" id="f-status" aria-label="Filter by status">
+        <option value="">All statuses</option>
+        <option>Confirmed</option>
+        <option>Pending Confirmation</option>
+        <option>Unsubscribed</option>
+        <option>Suppressed</option>
+      </select>
+      <select class="pp-select" id="f-source" aria-label="Filter by source">
+        <option value="">All sources</option>
+        <option>Sam Digital Card</option>
+        <option>Shiva Digital Card</option>
+        <option>Web Summit</option>
+        <option>ELISENCE Connect</option>
+        <option>Other Events</option>
+      </select>
+      <select class="pp-select" id="f-interest" aria-label="Filter by interest">
+        <option value="">All interests</option>
+        <option>Investment</option>
+        <option>Strategic Partnership</option>
+        <option>Healthcare Systems</option>
+        <option>Technology &amp; AI</option>
+        <option>Research</option>
+        <option>Events</option>
+        <option>General Updates</option>
+      </select>
+    </div>
+
+    <section class="pp-card">
+      <div class="pp-table-wrap">
+        <table class="pp-table" aria-label="Relationships sample table">
+          <thead>
+            <tr>
+              <th>Contact</th>
+              <th>Status</th>
+              <th>Source</th>
+              <th>Met</th>
+              <th>Interests</th>
+              <th>Consent</th>
+              <th>Last communication</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p class="pp-empty" id="empty" hidden>No sample relationships match these filters.</p>
+    </section>
+  </main>
+
+  <script src="/passport/assets/mock-data.js"></script>
+  <script src="/passport/assets/passport.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var mock = window.ElisencePassportMock;
+      var ui = window.ElisencePassportUI;
+      var tbody = document.getElementById("rows");
+      var empty = document.getElementById("empty");
+
+      function render() {
+        var q = String(document.getElementById("q").value || "").toLowerCase();
+        var st = document.getElementById("f-status").value;
+        var src = document.getElementById("f-source").value;
+        var interest = document.getElementById("f-interest").value;
+        var rows = mock.relationships.filter(function (r) {
+          var hay = (r.name + " " + r.role + " " + r.organisation).toLowerCase();
+          if (q && hay.indexOf(q) === -1) return false;
+          if (st && r.status !== st) return false;
+          if (src && r.source !== src) return false;
+          if (interest && r.interests.indexOf(interest) === -1) return false;
+          return true;
+        });
+        empty.hidden = rows.length > 0;
+        tbody.innerHTML = rows.map(function (r) {
+          return (
+            "<tr>" +
+            '<td><a class="pp-person pp-linkish" href="/passport/relationships/detail.html?id=' + encodeURIComponent(r.id) + '">' +
+            ui.escapeHtml(r.name) + "</a><div class=\"pp-person__meta\">" +
+            ui.escapeHtml(r.role) + " — " + ui.escapeHtml(r.organisation) + "</div></td>" +
+            "<td>" + ui.statusChip(r.status) + "</td>" +
+            '<td><span class="pp-chip">' + ui.escapeHtml(r.source) + "</span></td>" +
+            "<td>" + ui.escapeHtml(r.met) + "</td>" +
+            '<td><div class="pp-tags">' + r.interests.map(function (i) {
+              return '<span class="pp-chip">' + ui.escapeHtml(i) + "</span>";
+            }).join("") + "</div></td>" +
+            "<td>" + ui.escapeHtml(r.consentConfirmed) + "</td>" +
+            "<td>" + ui.escapeHtml(r.lastCommunication) + "</td>" +
+            "</tr>"
+          );
+        }).join("");
+      }
+
+      ["q", "f-status", "f-source", "f-interest"].forEach(function (id) {
+        document.getElementById(id).addEventListener("input", render);
+        document.getElementById(id).addEventListener("change", render);
+      });
+      render();
+    });
+  </script>
+</body>
+</html>

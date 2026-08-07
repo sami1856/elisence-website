@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Audit | ELISENCE Passport</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="stylesheet" href="/passport/assets/passport.css" />
+</head>
+<body data-pp-page="audit">
+  <a class="pp-skip" href="#pp-main">Skip to content</a>
+  <main id="pp-main" class="pp-main" data-pp-main>
+    <div class="pp-topbar">
+      <div>
+        <p class="pp-kicker">Audit</p>
+        <h1 class="pp-title">Governance events</h1>
+        <p class="pp-subtitle">Who changed what, when. Sample audit trail for campaign and consent governance.</p>
+      </div>
+      <div class="pp-demo-banner">Sample / demo data · UI only</div>
+    </div>
+
+    <section class="pp-card">
+      <div class="pp-table-wrap">
+        <table class="pp-table" aria-label="Audit events">
+          <thead>
+            <tr>
+              <th>When</th>
+              <th>What</th>
+              <th>Who</th>
+              <th>Campaign</th>
+              <th>Audience</th>
+              <th>Previous</th>
+              <th>New</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/passport/assets/mock-data.js"></script>
+  <script src="/passport/assets/passport.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var mock = window.ElisencePassportMock;
+      var ui = window.ElisencePassportUI;
+      document.getElementById("rows").innerHTML = mock.audit.map(function (e) {
+        return (
+          "<tr>" +
+          "<td>" + ui.escapeHtml(e.when) + "</td>" +
+          "<td><strong>" + ui.escapeHtml(e.what) + "</strong></td>" +
+          "<td>" + ui.escapeHtml(e.who) + "</td>" +
+          "<td>" + ui.escapeHtml(e.campaign) + "</td>" +
+          "<td>" + ui.escapeHtml(e.audience) + "</td>" +
+          "<td>" + ui.escapeHtml(e.previous) + "</td>" +
+          "<td>" + ui.escapeHtml(e.next) + "</td>" +
+          "<td>" + ui.escapeHtml(e.note) + "</td>" +
+          "</tr>"
+        );
+      }).join("");
+    });
+  </script>
+</body>
+</html>

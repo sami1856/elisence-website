@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ELISENCE Relationships Passport | Overview</title>
+  <meta name="description" content="UI-only ELISENCE Relationships Passport overview. Sample data — not connected to live engines." />
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="canonical" href="https://elisence.com/passport/" />
+  <link rel="stylesheet" href="/passport/assets/passport.css" />
+</head>
+<body data-pp-page="overview">
+  <a class="pp-skip" href="#pp-main">Skip to content</a>
+  <main id="pp-main" class="pp-main" data-pp-main>
+    <div class="pp-topbar">
+      <div>
+        <p class="pp-kicker">ELISENCE Relationships</p>
+        <h1 class="pp-title">Relationships Passport</h1>
+        <p class="pp-subtitle">Governed Relationship Intelligence — overview of growth, confirmation, interests and sources.</p>
+      </div>
+      <div class="pp-demo-banner" role="status">Sample / demo data · UI only</div>
+    </div>
+
+    <section class="pp-grid pp-grid--kpi" aria-label="Relationship KPIs">
+      <article class="pp-card"><p class="pp-card__label">Total Relationships</p><p class="pp-card__value" id="kpi-total">—</p></article>
+      <article class="pp-card pp-card--green"><p class="pp-card__label">Confirmed</p><p class="pp-card__value" id="kpi-confirmed">—</p></article>
+      <article class="pp-card"><p class="pp-card__label">Pending Confirmation</p><p class="pp-card__value" id="kpi-pending">—</p></article>
+      <article class="pp-card"><p class="pp-card__label">Unsubscribed</p><p class="pp-card__value" id="kpi-unsub">—</p></article>
+      <article class="pp-card"><p class="pp-card__label">Suppressed / Bounced</p><p class="pp-card__value" id="kpi-supp">—</p></article>
+    </section>
+
+    <section class="pp-grid pp-grid--2" aria-label="Growth summary">
+      <article class="pp-card pp-card--green">
+        <p class="pp-card__label">New this month</p>
+        <p class="pp-card__value" id="kpi-new">—</p>
+        <p class="pp-card__meta">Relationship growth (sample)</p>
+      </article>
+      <article class="pp-card">
+        <p class="pp-card__label">Confirmation rate</p>
+        <p class="pp-card__value" id="kpi-rate">—</p>
+        <p class="pp-card__meta">Confirmed ÷ submitted (sample)</p>
+      </article>
+    </section>
+
+    <section class="pp-grid pp-grid--2" aria-label="Interests and sources">
+      <article class="pp-card">
+        <h2 class="pp-card__title">Top Interests</h2>
+        <div class="pp-bar-list" id="interest-bars"></div>
+      </article>
+      <article class="pp-card">
+        <h2 class="pp-card__title">Top Sources</h2>
+        <div class="pp-bar-list" id="source-bars"></div>
+      </article>
+    </section>
+
+    <section class="pp-grid pp-grid--2" aria-label="Funnel and activity">
+      <article class="pp-card">
+        <h2 class="pp-card__title">Confirmation funnel</h2>
+        <div id="funnel"></div>
+      </article>
+      <article class="pp-card">
+        <h2 class="pp-card__title">Recent activity</h2>
+        <div id="activity"></div>
+      </article>
+    </section>
+
+    <section class="pp-card" style="margin-top:16px" aria-label="Relationship growth">
+      <h2 class="pp-card__title">Relationship growth</h2>
+      <div class="pp-bar-list" id="growth-bars"></div>
+      <p class="pp-card__meta" style="margin-top:12px">Chart bars are sample visualisations only — not live analytics.</p>
+    </section>
+  </main>
+
+  <script src="/passport/assets/mock-data.js"></script>
+  <script src="/passport/assets/passport.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var mock = window.ElisencePassportMock;
+      var ui = window.ElisencePassportUI;
+      var o = mock.overview;
+      document.getElementById("kpi-total").textContent = o.totalRelationships.toLocaleString();
+      document.getElementById("kpi-confirmed").textContent = o.confirmed.toLocaleString();
+      document.getElementById("kpi-pending").textContent = o.pendingConfirmation.toLocaleString();
+      document.getElementById("kpi-unsub").textContent = o.unsubscribed.toLocaleString();
+      document.getElementById("kpi-supp").textContent = o.suppressedBounced.toLocaleString();
+      document.getElementById("kpi-new").textContent = "+" + o.newThisMonth;
+      document.getElementById("kpi-rate").textContent = o.confirmationRate.toFixed(1) + "%";
+      ui.renderBars(document.getElementById("interest-bars"), o.topInterests, false);
+      ui.renderBars(document.getElementById("source-bars"), o.topSources, true);
+      document.getElementById("funnel").innerHTML = o.funnel.map(function (step) {
+        return '<div class="pp-stat-row"><span>' + ui.escapeHtml(step.label) + '</span><strong>' + step.value.toLocaleString() + '</strong></div>';
+      }).join("");
+      document.getElementById("activity").innerHTML = o.recentActivity.map(function (item) {
+        return '<div class="pp-stat-row"><span><strong>' + ui.escapeHtml(item.when) + '</strong><br />' + ui.escapeHtml(item.text) + '</span></div>';
+      }).join("");
+      ui.renderBars(
+        document.getElementById("growth-bars"),
+        o.growth.map(function (g) { return { name: g.month, count: g.value }; }),
+        true
+      );
+    });
+  </script>
+</body>
+</html>
