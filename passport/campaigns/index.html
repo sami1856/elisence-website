@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Campaigns | ELISENCE Passport</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="stylesheet" href="/passport/assets/passport.css" />
+</head>
+<body data-pp-page="campaigns">
+  <a class="pp-skip" href="#pp-main">Skip to content</a>
+  <main id="pp-main" class="pp-main" data-pp-main>
+    <div class="pp-topbar">
+      <div>
+        <p class="pp-kicker">Campaigns</p>
+        <h1 class="pp-title">Campaign workspace</h1>
+        <p class="pp-subtitle">Read-only campaign and execution state from ERCP. This screen does not send email.</p>
+      </div>
+      <div class="pp-demo-banner">Connecting to ERCP…</div>
+    </div>
+
+    <section class="pp-card" aria-label="Lifecycle">
+      <h2 class="pp-card__title">Governed lifecycle</h2>
+      <div class="pp-flow" id="lifecycle"></div>
+    </section>
+
+    <section class="pp-grid pp-grid--2" style="margin-top:16px">
+      <article class="pp-card pp-card--green">
+        <p class="pp-card__label">Featured campaign</p>
+        <h2 class="pp-card__title" id="c-name">—</h2>
+        <div class="pp-stat-row"><span>Audience</span><strong id="c-audience">—</strong></div>
+        <div class="pp-stat-row"><span>Eligible contacts</span><strong id="c-eligible">—</strong></div>
+        <div class="pp-stat-row"><span>Final recipients / jobs</span><strong id="c-final">—</strong></div>
+        <div class="pp-stat-row"><span>Current stage</span><strong id="c-stage">—</strong></div>
+      </article>
+      <article class="pp-card">
+        <h2 class="pp-card__title">Exclusions</h2>
+        <div class="pp-stat-row"><span>Unsubscribed</span><strong id="ex-unsub">—</strong></div>
+        <div class="pp-stat-row"><span>Suppressed</span><strong id="ex-supp">—</strong></div>
+        <div class="pp-stat-row"><span>Bounced</span><strong id="ex-bounce">—</strong></div>
+        <div class="pp-stat-row"><span>Cadence restricted</span><strong id="ex-cadence">—</strong></div>
+      </article>
+    </section>
+
+    <section class="pp-card" style="margin-top:16px">
+      <h2 class="pp-card__title">Delivery / execution analytics</h2>
+      <div class="pp-grid pp-grid--kpi" id="analytics-kpis"></div>
+      <p class="pp-card__meta">Open/Click tracking is not implemented. Values marked Not available are capability gaps, not measured zeros.</p>
+    </section>
+
+    <section class="pp-card" style="margin-top:16px">
+      <h2 class="pp-card__title">Campaign list</h2>
+      <div id="campaign-list"></div>
+    </section>
+  </main>
+
+  <script src="/passport/assets/config.js"></script>
+  <script src="/passport/assets/operations-api.js"></script>
+  <script src="/passport/assets/operations-adapters.js"></script>
+  <script src="/passport/assets/passport.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var ui = window.ElisencePassportUI;
+      var api = window.ElisenceOperationsApi;
+      var adapt = window.ElisenceOperationsAdapters;
+      var lifecycle = ["DRAFT", "PREVIEW_READY", "APPROVED", "RUNNING", "PAUSED", "COMPLETED", "CANCELLED"];
+
+      ui.showLoading("Loading campaigns from ERCP…");
+      Promise.all([api.getCampaigns(), api.getExecutions(), api.getDeliveryAnalytics()]).then(function (parts) {
+        ui.clearStatus();
+        ui.setLiveBanner("Live ERCP read · production");
+        var camps = parts[0].items || [];
+        var exes = parts[1].items || [];
+        var delivery = (parts[2].delivery_summary) || {};
+        var featured = camps[0] || null;
+        var featuredExe = null;
+        if (featured) {
+          for (var i = 0; i < exes.length; i++) {
+            if (exes[i].campaign_id === featured.campaign_id) { featuredExe = exes[i]; break; }
+          }
+        }
+
+        var stage = featured
+          ? (featured.latest_execution_status || featured.status || "—")
+          : "—";
+        document.getElementById("c-name").textContent = featured ? featured.name : "No campaigns";
+        document.getElementById("c-audience").textContent = featured
+          ? ((featured.required_interests || []).join(", ") || featured.classification)
+          : "—";
+        document.getElementById("c-eligible").textContent = featured && featured.preview
+          ? adapt.fmtNum(featured.preview.eligible_count)
+          : "—";
+        document.getElementById("c-final").textContent = featuredExe
+          ? adapt.fmtNum(featuredExe.jobs_created_count)
+          : (featured && featured.preview ? adapt.fmtNum(featured.preview.eligible_count) : "—");
+        document.getElementById("c-stage").textContent = stage;
+
+        var excl = (featured && featured.preview && featured.preview.exclusion_counts) || null;
+        function exclVal(keys) {
+          if (!excl) return "—";
+          for (var i = 0; i < keys.length; i++) {
+            if (excl[keys[i]] !== undefined && excl[keys[i]] !== null) return adapt.fmtNum(excl[keys[i]]);
+          }
+          return adapt.fmtNum(0);
+        }
+        document.getElementById("ex-unsub").textContent = exclVal(["UNSUBSCRIBED", "unsubscribed"]);
+        document.getElementById("ex-supp").textContent = exclVal(["SUPPRESSED", "suppressed"]);
+        document.getElementById("ex-bounce").textContent = exclVal(["HARD_BOUNCED", "BOUNCED", "bounced"]);
+        document.getElementById("ex-cadence").textContent = exclVal(["CADENCE_BLOCKED", "cadenceRestricted"]);
+
+        var life = document.getElementById("lifecycle");
+        life.innerHTML = lifecycle.map(function (step, idx) {
+          var current = step === stage ? " is-current" : "";
+          var arrow = idx < lifecycle.length - 1 ? '<span class="pp-flow__arrow" aria-hidden="true">→</span>' : "";
+          return '<span class="pp-flow__step' + current + '">' + ui.escapeHtml(step) + "</span>" + arrow;
+        }).join("");
+
+        var kpiPairs = [
+          ["Queued", delivery.queued],
+          ["Provider accepted / sent", delivery.sent_provider_accepted_or_local],
+          ["Delivered", delivery.delivered],
+          ["Bounced", delivery.bounced],
+          ["Opened", null],
+          ["Clicked", null],
+          ["Unsubscribed", delivery.unsubscribed]
+        ];
+        document.getElementById("analytics-kpis").innerHTML = kpiPairs.map(function (pair) {
+          var val = pair[1] === null || pair[1] === undefined ? "Not available" : adapt.fmtNum(pair[1]);
+          return '<article class="pp-card"><p class="pp-card__label">' + pair[0] + '</p><p class="pp-card__value" style="font-size:1.4rem">' + val + "</p></article>";
+        }).join("");
+
+        if (!camps.length) {
+          document.getElementById("campaign-list").innerHTML = '<p class="pp-empty">Authoritative empty dataset: 0 campaigns.</p>';
+        } else {
+          document.getElementById("campaign-list").innerHTML = camps.map(function (item) {
+            var count = item.preview ? item.preview.eligible_count : 0;
+            return (
+              '<div class="pp-stat-row"><span><strong>' + ui.escapeHtml(item.name) + "</strong><br />" +
+              ui.escapeHtml(item.classification) + " · " + ui.escapeHtml(item.status) +
+              (item.latest_execution_status ? " · exe " + ui.escapeHtml(item.latest_execution_status) : "") +
+              "</span><strong>" + adapt.fmtNum(count) + "</strong></div>"
+            );
+          }).join("");
+        }
+      }).catch(function (err) {
+        ui.showOpsFailure(err);
+      });
+    });
+  </script>
+</body>
+</html>

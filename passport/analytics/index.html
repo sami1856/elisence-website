@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Analytics | ELISENCE Passport</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="stylesheet" href="/passport/assets/passport.css" />
+</head>
+<body data-pp-page="analytics">
+  <a class="pp-skip" href="#pp-main">Skip to content</a>
+  <main id="pp-main" class="pp-main" data-pp-main>
+    <div class="pp-topbar">
+      <div>
+        <p class="pp-kicker">Analytics</p>
+        <h1 class="pp-title">Engagement &amp; delivery</h1>
+        <p class="pp-subtitle">Authoritative delivery metrics from ERCP. Open and click tracking are not implemented.</p>
+      </div>
+      <div class="pp-demo-banner">Connecting to ERCP…</div>
+    </div>
+
+    <section class="pp-grid pp-grid--kpi" id="kpi"></section>
+
+    <section class="pp-grid pp-grid--2">
+      <article class="pp-card">
+        <h2 class="pp-card__title">Top segments by engagement</h2>
+        <div class="pp-bar-list" id="seg-bars"></div>
+        <p class="pp-card__meta" id="seg-note" style="margin-top:12px"></p>
+      </article>
+      <article class="pp-card">
+        <h2 class="pp-card__title">Top campaigns</h2>
+        <div class="pp-bar-list" id="camp-bars"></div>
+        <p class="pp-card__meta" id="camp-note" style="margin-top:12px"></p>
+      </article>
+    </section>
+
+    <section class="pp-card" style="margin-top:16px">
+      <h2 class="pp-card__title">Recent performance notes</h2>
+      <div class="pp-stat-row"><span>Bounce rate</span><strong id="bounce">—</strong></div>
+      <div class="pp-stat-row"><span>Open tracking</span><strong>Not available</strong></div>
+      <div class="pp-stat-row"><span>Click tracking</span><strong>Not available</strong></div>
+      <p class="pp-card__meta" style="margin-top:12px">Delivered ≠ Opened. Provider accepted ≠ Delivered. Open/Click remain NOT_IMPLEMENTED.</p>
+    </section>
+  </main>
+
+  <script src="/passport/assets/config.js"></script>
+  <script src="/passport/assets/operations-api.js"></script>
+  <script src="/passport/assets/operations-adapters.js"></script>
+  <script src="/passport/assets/passport.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var ui = window.ElisencePassportUI;
+      var api = window.ElisenceOperationsApi;
+      var adapt = window.ElisenceOperationsAdapters;
+      ui.showLoading("Loading delivery analytics from ERCP…");
+      Promise.all([api.getDeliveryAnalytics(), api.getCampaigns(), api.getSegments()]).then(function (parts) {
+        ui.clearStatus();
+        ui.setLiveBanner("Live ERCP read · production");
+        var d = parts[0].delivery_summary || {};
+        var tracking = parts[0].engagement_tracking || {};
+        document.getElementById("kpi").innerHTML = [
+          ["Sent / accepted", d.sent_provider_accepted_or_local],
+          ["Delivered", d.delivered],
+          ["Opened", null],
+          ["Clicked", null],
+          ["Unsubscribed", d.unsubscribed],
+          ["Bounced", d.bounced]
+        ].map(function (pair) {
+          var val = pair[1] === null || pair[1] === undefined ? "Not available" : adapt.fmtNum(pair[1]);
+          return '<article class="pp-card"><p class="pp-card__label">' + pair[0] + '</p><p class="pp-card__value">' + val + "</p></article>";
+        }).join("");
+        document.getElementById("bounce").textContent =
+          parts[0].bounce_rate !== undefined ? Number(parts[0].bounce_rate).toFixed(1) + "%" : "—";
+
+        var camps = (parts[1].items || []).map(function (c) {
+          return { name: c.name, count: c.preview ? c.preview.eligible_count : 0 };
+        });
+        var segs = (parts[2].items || []).map(function (s) {
+          return { name: s.name, count: s.count };
+        });
+        if (segs.length) ui.renderBars(document.getElementById("seg-bars"), segs.slice(0, 8), true);
+        else document.getElementById("seg-note").textContent = "No segment engagement scores — showing empty authoritative set.";
+        if (camps.length) ui.renderBars(document.getElementById("camp-bars"), camps.slice(0, 8), false);
+        else document.getElementById("camp-note").textContent = "No campaigns in local ERCP dataset.";
+
+        if (tracking.open_tracking !== "NOT_IMPLEMENTED" || tracking.click_tracking !== "NOT_IMPLEMENTED") {
+          ui.showError("Unexpected tracking capability flag");
+        }
+      }).catch(function (err) {
+        ui.showOpsFailure(err);
+        document.getElementById("kpi").innerHTML = "";
+      });
+    });
+  </script>
+</body>
+</html>
