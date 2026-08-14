@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Relationships | ELISENCE Passport</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="stylesheet" href="/passport/assets/passport.css" />
+</head>
+<body data-pp-page="relationships">
+  <a class="pp-skip" href="#pp-main">Skip to content</a>
+  <main id="pp-main" class="pp-main" data-pp-main>
+    <div class="pp-topbar">
+      <div>
+        <p class="pp-kicker">Relationships</p>
+        <h1 class="pp-title">Contacts &amp; relationships</h1>
+        <p class="pp-subtitle">Search and filter relationships from the authoritative ERCP consent ledger (production read).</p>
+      </div>
+      <div class="pp-demo-banner">Connecting to ERCP…</div>
+    </div>
+
+    <div class="pp-toolbar" role="search">
+      <input class="pp-search" id="q" type="search" placeholder="Search name, organisation, role…" aria-label="Search relationships" />
+      <select class="pp-select" id="f-status" aria-label="Filter by status">
+        <option value="">All statuses</option>
+        <option>Confirmed</option>
+        <option>Pending Confirmation</option>
+        <option>Unsubscribed</option>
+        <option>Suppressed</option>
+      </select>
+      <select class="pp-select" id="f-source" aria-label="Filter by source">
+        <option value="">All sources</option>
+        <option value="direct">direct</option>
+        <option value="event">event</option>
+        <option value="digital_card">digital_card</option>
+        <option value="connect">connect</option>
+      </select>
+      <select class="pp-select" id="f-interest" aria-label="Filter by interest">
+        <option value="">All interests</option>
+        <option>Investment</option>
+        <option>Strategic Partnership</option>
+        <option>Healthcare Systems</option>
+        <option>Technology &amp; AI</option>
+        <option>Research</option>
+        <option>Events</option>
+        <option>General Updates</option>
+      </select>
+    </div>
+
+    <section class="pp-card">
+      <div class="pp-table-wrap">
+        <table class="pp-table" aria-label="Relationships table">
+          <thead>
+            <tr>
+              <th>Contact</th>
+              <th>Status</th>
+              <th>Source</th>
+              <th>Met</th>
+              <th>Interests</th>
+              <th>Consent</th>
+              <th>Last communication</th>
+              <th><span class="pp-sr-only">Open</span></th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p class="pp-empty" id="empty" hidden>No relationships match these filters.</p>
+    </section>
+  </main>
+
+  <script src="/passport/assets/config.js"></script>
+  <script src="/passport/assets/operations-api.js"></script>
+  <script src="/passport/assets/operations-adapters.js"></script>
+  <script src="/passport/assets/passport.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var ui = window.ElisencePassportUI;
+      var api = window.ElisenceOperationsApi;
+      var adapt = window.ElisenceOperationsAdapters;
+      var tbody = document.getElementById("rows");
+      var empty = document.getElementById("empty");
+      var timer = null;
+
+      function params() {
+        var stLabel = document.getElementById("f-status").value;
+        var interestLabel = document.getElementById("f-interest").value;
+        return {
+          q: document.getElementById("q").value || "",
+          status: adapt.STATUS_API[stLabel] || "",
+          source: document.getElementById("f-source").value || "",
+          interest: adapt.INTEREST_API[interestLabel] || interestLabel || "",
+          page: 1,
+          page_size: 100,
+          sort: "created_at",
+          order: "desc"
+        };
+      }
+
+      function render() {
+        ui.showLoading("Loading relationships from ERCP…");
+        api.getRelationships(params()).then(function (body) {
+          ui.clearStatus();
+          ui.setLiveBanner("Live ERCP read · production");
+          var items = (body.items || []).map(adapt.mapRelationshipRow);
+          empty.hidden = items.length > 0;
+          if (!items.length && body.pagination && body.pagination.total === 0) {
+            empty.textContent = "Authoritative empty dataset: 0 relationships.";
+            empty.hidden = false;
+          }
+          tbody.innerHTML = items.map(function (r) {
+            var href = "/passport/relationships/detail.html?id=" + encodeURIComponent(r.id);
+            return (
+              '<tr class="pp-row-link">' +
+              '<td><a class="pp-row-link__primary" href="' + href + '">' +
+              '<span class="pp-person">' + ui.escapeHtml(r.name) + "</span>" +
+              '<span class="pp-person__meta">' +
+              ui.escapeHtml(r.role) + " — " + ui.escapeHtml(r.organisation) +
+              "</span></a></td>" +
+              "<td>" + ui.statusChip(r.status) + "</td>" +
+              '<td><span class="pp-chip">' + ui.escapeHtml(r.source) + "</span></td>" +
+              "<td>" + ui.escapeHtml(r.met) + "</td>" +
+              '<td><div class="pp-tags">' + r.interests.map(function (i) {
+                return '<span class="pp-chip">' + ui.escapeHtml(i) + "</span>";
+              }).join("") + "</div></td>" +
+              "<td>" + ui.escapeHtml(r.consentConfirmed) + "</td>" +
+              "<td>" + ui.escapeHtml(r.lastCommunication) + "</td>" +
+              '<td class="pp-row-link__chev" aria-hidden="true"><span>›</span></td>' +
+              "</tr>"
+            );
+          }).join("");
+        }).catch(function (err) {
+          tbody.innerHTML = "";
+          empty.hidden = true;
+          ui.showOpsFailure(err);
+        });
+      }
+
+      function schedule() {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(render, 200);
+      }
+
+      ["q", "f-status", "f-source", "f-interest"].forEach(function (id) {
+        document.getElementById(id).addEventListener("input", schedule);
+        document.getElementById(id).addEventListener("change", schedule);
+      });
+      render();
+    });
+  </script>
+</body>
+</html>
