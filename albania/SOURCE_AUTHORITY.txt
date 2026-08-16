@@ -2,10 +2,10 @@ ELISENCE × Albania briefing — branded mirror under elisence.com/albania/
 
 AUTHORITATIVE_SOURCE_REPOSITORY=https://github.com/sami1856/elisence-albania-briefing.git
 AUTHORITATIVE_LOCAL_WORKSPACE=/Users/elisenceclean/Documents/elisence_albania-briefing
-SOURCE_COMMIT=e10424e9e4b5a6d2caa2e0317fc8a7c38323330d
+SOURCE_COMMIT=08f294bd7bc9b1e5a273df21c6c4cf36bc394de3
 MIRROR_ROLE=static GitHub Pages publish of the standalone briefing under /albania/
 UPDATE_POLICY=refresh this subtree from the authoritative Albania repository commit; do not edit briefing copy here as primary source
 PUBLISHED_ROUTE=https://elisence.com/albania/
 STANDALONE_URL_RETAINED=https://sami1856.github.io/elisence-albania-briefing/
-MIRRORED_AT_UTC=2026-08-16T14:20:55Z
+MIRRORED_AT_UTC=2026-08-16T14:51:52Z
 MISSION=ELISENCE_ALBANIA_GOLDEN_LIBRARY_PHASE10_ELIS_AND_APPLICATION_INTEGRATION_V1
