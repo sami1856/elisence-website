@@ -3950,6 +3950,178 @@ html {
   text-decoration: none;
 }
 
+/* Featured ELIS + Application authoritative pair (presentation hierarchy only) */
+.golden-core {
+  margin-top: clamp(36px, 4.5vw, 56px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.4vw, 26px);
+  min-width: 0;
+}
+
+.golden-core__intro {
+  margin: 0;
+  padding: 0 2px;
+}
+
+.golden-core__heading {
+  margin: 0 0 8px;
+  font-size: clamp(15px, 1.35vw, 18px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #dff4ff;
+}
+
+.golden-core__lead {
+  margin: 0;
+  max-width: 62ch;
+  color: #b7c9d8;
+  font-size: clamp(13.5px, 1.05vw, 15px);
+  line-height: 1.5;
+}
+
+.golden-featured {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
+  min-width: 0;
+}
+
+.golden-featured__card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(28px, 3.2vw, 38px) clamp(22px, 2.8vw, 32px);
+  border: 1px solid rgba(127, 215, 255, 0.42);
+  border-radius: clamp(18px, 1.8vw, 24px);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(43, 201, 255, 0.16), transparent 42%),
+    linear-gradient(157deg, rgba(16, 48, 92, 0.62), rgba(5, 18, 40, 0.9) 54%, rgba(2, 8, 20, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(220, 245, 255, 0.14),
+    inset 0 0 28px rgba(0, 120, 210, 0.1),
+    0 16px 36px rgba(0, 0, 0, 0.32),
+    0 28px 56px -14px rgba(0, 170, 255, 0.32);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
+}
+
+.golden-featured__card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 10%;
+  right: 10%;
+  bottom: -30px;
+  height: 60px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(160, 245, 255, 0.78) 0%,
+    rgba(43, 201, 255, 0.4) 34%,
+    rgba(0, 132, 255, 0) 74%
+  );
+  filter: blur(10px);
+  opacity: 0.55;
+}
+
+.golden-featured__label {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8fe2ff;
+}
+
+.golden-featured__title {
+  margin: 0;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: #f2fbff;
+  text-wrap: balance;
+}
+
+.golden-featured__subtitle {
+  margin: 0;
+  flex: 1 1 auto;
+  max-width: 40ch;
+  color: #c8d9e8;
+  font-size: clamp(14.5px, 1.15vw, 16.5px);
+  line-height: 1.5;
+}
+
+.golden-featured__btn {
+  align-self: flex-start;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
+.golden-continuation {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  padding: clamp(16px, 2vw, 22px) clamp(18px, 2.4vw, 26px);
+  border: 1px solid rgba(100, 194, 255, 0.18);
+  border-radius: clamp(14px, 1.5vw, 18px);
+  background:
+    linear-gradient(157deg, rgba(10, 28, 54, 0.38), rgba(4, 12, 28, 0.72) 60%, rgba(2, 7, 18, 0.84));
+  box-shadow:
+    inset 0 1px 0 rgba(202, 239, 255, 0.05),
+    0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.golden-continuation__meta {
+  margin: 0 0 6px;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #6fb8d8;
+}
+
+.golden-continuation__title {
+  margin: 0 0 8px;
+  font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #d7e8f4;
+}
+
+.golden-continuation__body {
+  margin: 0 0 4px;
+  max-width: 68ch;
+  color: #9eb4c6;
+  font-size: clamp(12.5px, 0.95vw, 14px);
+  line-height: 1.45;
+}
+
+.golden-continuation__body--secondary {
+  margin-bottom: 10px;
+}
+
+.golden-continuation__next {
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(100, 194, 255, 0.12);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6fb8d8;
+  opacity: 0.85;
+  pointer-events: none;
+  user-select: none;
+}
+
 @media (min-width: 1100px) {
   .golden-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3967,18 +4139,26 @@ html {
   .golden-grid {
     grid-template-columns: 1fr;
   }
+  .golden-featured {
+    grid-template-columns: 1fr;
+  }
   .golden-panel,
-  .golden-card {
+  .golden-card,
+  .golden-featured__card {
     padding: 22px 18px;
   }
   .golden-panel--master h2 {
     max-width: none;
   }
   .golden-card::after,
-  .golden-panel::after {
+  .golden-panel::after,
+  .golden-featured__card::after {
     left: 14%;
     right: 14%;
     opacity: 0.35;
+  }
+  .golden-featured__card::after {
+    opacity: 0.42;
   }
 }
 
