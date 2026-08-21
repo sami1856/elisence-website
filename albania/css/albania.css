@@ -3284,7 +3284,6 @@ html {
   isolation: isolate;
   min-width: 0;
   min-height: 0;
-  aspect-ratio: 16 / 9;
   padding: 14px;
   border: 1px solid rgba(110, 190, 255, 0.26);
   border-radius: 24px;
@@ -3324,14 +3323,13 @@ html {
 
 .albania-deck__figure.is-active {
   display: block;
-  width: 100%;
-  height: 100%;
 }
 
 .albania-deck__image {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: min(78vh, 820px);
   object-fit: contain;
   object-position: center;
   border-radius: 14px;
