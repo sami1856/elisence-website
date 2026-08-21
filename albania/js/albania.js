@@ -123,27 +123,27 @@
   const deckRoot = document.querySelector("[data-deck]");
   if (!deckRoot) return;
 
-  const order = ["menu", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
+  const order = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
   const figures = Array.from(deckRoot.querySelectorAll("[data-deck-slide]"));
   const gotoButtons = Array.from(deckRoot.querySelectorAll("[data-deck-goto]"));
   const prevBtn = deckRoot.querySelector("[data-deck-prev]");
   const nextBtn = deckRoot.querySelector("[data-deck-next]");
   const statusEl = deckRoot.querySelector("[data-deck-status]");
-  let current = "menu";
+  let current = "01";
 
-  const labelFor = (key) => (key === "menu" ? "Menu" : `Slide ${key}`);
-  const hashFor = (key) => (key === "menu" ? "#eit-pitch" : `#eit-pitch-${key}`);
+  const hashFor = (key) => (key === "01" ? "#eit-pitch" : `#eit-pitch-${key}`);
 
   const keyFromHash = (hash) => {
-    if (!hash || hash === "#eit-pitch" || hash === "#eit-pitch-menu") return "menu";
+    if (!hash || hash === "#eit-pitch" || hash === "#eit-pitch-menu" || hash === "#eit-pitch-01") return "01";
     const match = /^#eit-pitch-(\d{2})$/.exec(hash);
     if (match && order.includes(match[1])) return match[1];
-    return null;
+    return "01";
   };
 
   const setSlide = (key, { updateHash = true } = {}) => {
     if (!order.includes(key)) return;
     current = key;
+    const idx = order.indexOf(key);
 
     figures.forEach((fig) => {
       const active = fig.getAttribute("data-deck-slide") === key;
@@ -159,23 +159,13 @@
       else btn.removeAttribute("aria-current");
     });
 
-    if (prevBtn) prevBtn.disabled = key === "menu";
-    if (nextBtn) {
-      nextBtn.disabled = false;
-      if (key === "11") {
-        nextBtn.textContent = "MENU";
-        nextBtn.setAttribute("aria-label", "Return to deck menu");
-      } else {
-        nextBtn.textContent = "NEXT";
-        nextBtn.setAttribute("aria-label", "Next slide");
-      }
-    }
-    if (statusEl) statusEl.textContent = labelFor(key);
+    if (prevBtn) prevBtn.disabled = idx === 0;
+    if (nextBtn) nextBtn.disabled = idx === order.length - 1;
+    if (statusEl) statusEl.textContent = `${key} / 11`;
 
     if (updateHash) {
       const nextHash = hashFor(key);
-      const menuAlias = key === "menu" && (location.hash === "#eit-pitch" || location.hash === "#eit-pitch-menu");
-      if (!menuAlias && location.hash !== nextHash) {
+      if (location.hash !== nextHash) {
         history.pushState({ deck: key }, "", nextHash);
       }
     }
@@ -183,16 +173,13 @@
 
   const showFromHash = () => {
     if (!location.hash.startsWith("#eit-pitch")) return;
-    setSlide(keyFromHash(location.hash) || "menu", { updateHash: false });
+    setSlide(keyFromHash(location.hash), { updateHash: false });
   };
 
-  // In-deck navigation updates slide state + history only.
-  // Never scrollIntoView here — that jumps the whole page while changing slides.
   const goTo = (key) => {
     setSlide(key);
   };
 
-  // Event delegation: rail MENU / 01–11 remain clickable even if nodes are reflowed.
   deckRoot.addEventListener("click", (event) => {
     const target = event.target instanceof Element ? event.target.closest("[data-deck-goto]") : null;
     if (!target || !deckRoot.contains(target)) return;
@@ -209,26 +196,36 @@
 
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      if (current === "11") {
-        goTo("menu");
-        return;
-      }
       const idx = order.indexOf(current);
       if (idx >= 0 && idx < order.length - 1) goTo(order[idx + 1]);
     });
   }
 
-  // Hash / history restore deck state. pushState slide changes do not fire hashchange,
-  // so in-deck navigation does not re-trigger native section scrolling.
+  window.addEventListener("keydown", (event) => {
+    if (!location.hash.startsWith("#eit-pitch")) return;
+    const typing = event.target instanceof HTMLElement && event.target.closest("input, textarea, select, [contenteditable='true']");
+    if (typing) return;
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      const idx = order.indexOf(current);
+      if (idx > 0) goTo(order[idx - 1]);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      const idx = order.indexOf(current);
+      if (idx >= 0 && idx < order.length - 1) goTo(order[idx + 1]);
+    }
+  });
+
   window.addEventListener("hashchange", showFromHash);
   window.addEventListener("popstate", showFromHash);
 
   if (location.hash.startsWith("#eit-pitch")) showFromHash();
-  else setSlide("menu", { updateHash: false });
+  else setSlide("01", { updateHash: false });
 
   document.querySelectorAll('a[href="#eit-pitch"]').forEach((link) => {
     link.addEventListener("click", () => {
-      setSlide("menu", { updateHash: false });
+      setSlide("01", { updateHash: false });
     });
   });
 })();
