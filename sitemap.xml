@@ -12,7 +12,7 @@
   <!-- Core pages -->
   <url>
     <loc>https://elisence.com/about.html</loc>
-    <lastmod>2026-01-30</lastmod>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -228,76 +228,22 @@
     <priority>0.7</priority>
   </url>
 
-<!-- Sam Asi hub folder -->
+<!-- Canonical Sam Asi identity surfaces -->
   <url>
-    <loc>https://elisence.com/founder/</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://elisence.com/sam/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://elisence.com/founder/bio.html</loc>
-    <lastmod>2026-01-30</lastmod>
+    <loc>https://elisence.com/founder.html</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
 
-  <url>
-    <loc>https://elisence.com/founder/timeline.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
 
-  <url>
-    <loc>https://elisence.com/founder/achievements.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://elisence.com/founder/articles.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://elisence.com/founder/interviews.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://elisence.com/founder/message.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://elisence.com/founder/press-kit.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://elisence.com/founder/linkedin-summary.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://elisence.com/founder/youtube.html</loc>
-    <lastmod>2026-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
 
   <!-- Phase pages 1–17 -->
   <url>
@@ -419,14 +365,6 @@
     <priority>0.7</priority>
   </url>
 
-  <url>
-    <loc>https://elisence.com/founder.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  
   <url>
     <loc>https://elisence.com/articles/elisence-founder-philosophy.html</loc>
     <lastmod>2026-07-30</lastmod>
