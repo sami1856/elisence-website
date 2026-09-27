@@ -3757,6 +3757,13 @@ html {
    Visual language mirrors collab / whatis blue glass panels
    ============================================================ */
 
+/* Public-access hold: keep Golden References in source, but do not expose
+   the navigation control or evidence surface until owner re-enables it. */
+.nav-bubble[href="#golden-references"],
+#golden-references {
+  display: none !important;
+}
+
 .albania-golden {
   position: relative;
   width: min(1180px, calc(100% - clamp(28px, 5vw, 72px)));
