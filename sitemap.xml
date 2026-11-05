@@ -48,9 +48,16 @@
 
   <url>
     <loc>https://elisence.com/articles.html</loc>
-    <lastmod>2026-01-30</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://elisence.com/articles/hospital-discharge-communication-closed-loop.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- Phoenix Phase 5B articles -->
