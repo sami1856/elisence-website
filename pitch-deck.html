@@ -194,6 +194,30 @@
       .nav-left { position: static; align-self: flex-start; margin-bottom: 10px; }
       .header-wrap { display: flex; flex-direction: column; align-items: center; }
     }
+
+    .public-decks {
+      width: min(1080px, 100%);
+      margin: 0 auto 10px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .public-decks .card { min-height: 130px; }
+
+    .public-decks .card:first-child {
+      border-color: #c4efff;
+      box-shadow: 0 0 28px rgba(0, 190, 255, .8);
+    }
+
+    .public-decks .card:focus-visible {
+      outline: 2px solid #dff5ff;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 768px) {
+      .public-decks { grid-template-columns: 1fr; width: min(360px, 100%); }
+    }
   </style>
 </head>
 
@@ -209,6 +233,19 @@
         <p class="description">Founder pitch and investor deck systems for Elisence.</p>
       </header>
     </div>
+
+    <section class="public-decks" aria-label="Public presentations">
+      <a href="/assets/presentations/elisence-universal-introduction.pdf" class="card">
+        <div class="num">START HERE · PUBLIC PDF</div>
+        <div class="q">ELISENCE — Universal Introduction</div>
+        <div class="tag">For all visitors · 10 slides</div>
+      </a>
+      <a href="/assets/presentations/elisence-institutional-golden.pdf" class="card">
+        <div class="num">INSTITUTIONS · PUBLIC PDF</div>
+        <div class="q">ELISENCE — Institutional Golden</div>
+        <div class="tag">For hospitals, universities, governments, researchers and organisational partners · 16 slides</div>
+      </a>
+    </section>
 
     <section class="grid">
       <a href="web-summit-board.html" class="card">
