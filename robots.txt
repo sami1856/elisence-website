@@ -1,0 +1,3 @@
+# Sitemap discovery for search engines.
+# Cloudflare manages additional crawler policy at the edge.
+Sitemap: https://elisence.com/sitemap.xml
