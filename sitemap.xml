@@ -48,7 +48,7 @@
 
   <url>
     <loc>https://elisence.com/articles.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -403,4 +403,5 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url><loc>https://elisence.com/articles/web-summit-lisbon-2026-reflections.html</loc><lastmod>2026-11-13</lastmod></url>
 </urlset>
