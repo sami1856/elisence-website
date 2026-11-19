@@ -204,6 +204,19 @@
     }
 
     .public-decks .card { min-height: 130px; }
+    .public-decks[aria-label="Approved official presentations"] {
+      width: min(1320px, 100%);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+    .public-decks[aria-label="Approved official presentations"] .card {
+      min-height: 190px;
+      padding: 22px 18px;
+      box-shadow: 0 0 16px rgba(0, 160, 255, .32);
+    }
+    @media (max-width: 900px) {
+      .public-decks[aria-label="Approved official presentations"] { grid-template-columns: 1fr; width: min(540px, 100%); }
+    }
 
     .public-decks .card:first-child {
       border-color: #c4efff;
@@ -239,6 +252,16 @@
         <div class="num">OFFICIAL · 38-PAGE PRESENTATION</div>
         <div class="q">ELISENCE — Corporate Introduction</div>
         <div class="tag">Explore the ELISENCE health and wellbeing ecosystem, its human-centred mission, specialist capabilities, modular architecture and governance principles.</div>
+      </a>
+      <a href="/assets/presentations/ELISENCE_INVESTOR_PRESENTATION_PUBLIC_CLEARED_63P_2026-11-19.pdf" class="card" aria-label="Open ELISENCE Investor Presentation, 63-page PDF">
+        <div class="num">OFFICIAL · 63-PAGE INVESTOR PRESENTATION</div>
+        <div class="q">ELISENCE — Investor Presentation</div>
+        <div class="tag">Discover ELISENCE’s investment opportunity, developed technology, commercial model, revenue pathways, growth strategy and disciplined approach to managing risk.</div>
+      </a>
+      <a href="/story.html" class="card" aria-label="Read the approved ELISENCE Founder Story">
+        <div class="num">OFFICIAL · FOUNDER NARRATIVE</div>
+        <div class="q">ELISENCE — Founder Story</div>
+        <div class="tag">Read the complete approved English story behind ELISENCE, its human-centred mission and vision for health and wellbeing.</div>
       </a>
     </section>
 
